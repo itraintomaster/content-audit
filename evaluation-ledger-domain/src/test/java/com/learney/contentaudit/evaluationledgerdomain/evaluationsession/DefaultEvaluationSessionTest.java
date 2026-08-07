@@ -698,4 +698,162 @@ public class DefaultEvaluationSessionTest {
                 "the evaluator must be consulted only for the content whose re-evaluation was explicitly requested, "
                         + "and never for the neighbour (F-EVCOST-R008)");
     }
+
+    @Test
+    @DisplayName("should reuse the registered result without consulting the evaluator and without spending the run budget when the content is resolved without consulting")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R018")
+    public void shouldReuseTheRegisteredResultWithoutConsultingTheEvaluatorAndWithoutSpendingTheRunBudgetWhenTheContentIsResolvedWithoutConsulting() {
+        // R018 inv.1: an exercise FOREIGN to the declared re-evaluation set keeps
+        // reusing its registered result without ever consulting the evaluator. R018
+        // inv.2 reserves the run's entire budget for the declared set, so resolving
+        // a foreign exercise this way must never spend any of it.
+        Map<String, String> content = Map.of("instruction", "Content outside the declared re-evaluation set.");
+
+        ContentFingerprinter fingerprinter = mock(ContentFingerprinter.class);
+        when(fingerprinter.fingerprint(content)).thenReturn("fp-foreign");
+
+        Evaluator evaluator = mock(Evaluator.class);
+        when(evaluator.evaluatorId()).thenReturn("qinst-judge");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
+
+        InMemoryLedger ledger = new InMemoryLedger();
+        ledger.append(new EvaluationRecord(
+                new EvaluationKey("qinst-judge", "fp-foreign"),
+                "APPROVED-FOREIGN",
+                "quiz-foreign",
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
+
+        EvaluationBudget policy = new EvaluationBudget(5);
+        DefaultEvaluationSession session =
+                new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
+
+        EvaluationResolution resolution =
+                session.resolveWithoutConsulting(new EvaluationSubject("quiz-foreign", content));
+
+        assertEquals(EvaluationResolutionKind.REUSED, resolution.getKind());
+        assertEquals("APPROVED-FOREIGN", resolution.getPayload());
+        verify(evaluator, never()).evaluate(any());
+        assertEquals(0, session.coverage().getEvaluatedInRun(),
+                "resolveWithoutConsulting must never spend the run budget (F-QINST-R018)");
+    }
+
+    @Test
+    @DisplayName("should leave the content pending without consulting the evaluator when it is resolved without consulting and nothing is registered for it")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R018")
+    public void shouldLeaveTheContentPendingWithoutConsultingTheEvaluatorWhenItIsResolvedWithoutConsultingAndNothingIsRegisteredForIt() {
+        // R018 inv.1: an exercise FOREIGN to the declared re-evaluation set is never
+        // consulted, whether or not it already has a registered result. Without one,
+        // it is reported pending -- even with budget available, because that budget
+        // is reserved entirely for the declared set (R018 inv.2), never spent on a
+        // foreign exercise.
+        Map<String, String> content = Map.of("instruction", "Foreign content never judged before.");
+
+        ContentFingerprinter fingerprinter = mock(ContentFingerprinter.class);
+        when(fingerprinter.fingerprint(content)).thenReturn("fp-foreign-unjudged");
+
+        Evaluator evaluator = mock(Evaluator.class);
+        when(evaluator.evaluatorId()).thenReturn("qinst-judge");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
+
+        InMemoryLedger ledger = new InMemoryLedger();
+        EvaluationBudget policy = new EvaluationBudget(5);
+        DefaultEvaluationSession session =
+                new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
+
+        EvaluationResolution resolution =
+                session.resolveWithoutConsulting(new EvaluationSubject("quiz-foreign-pending", content));
+
+        assertEquals(EvaluationResolutionKind.PENDING, resolution.getKind());
+        verify(evaluator, never()).evaluate(any());
+        assertTrue(ledger.records.isEmpty());
+    }
+
+    @Test
+    @DisplayName("should consult the evaluator for content that already has a registered result when a new evaluation is preferred for it")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R018")
+    public void shouldConsultTheEvaluatorForContentThatAlreadyHasARegisteredResultWhenANewEvaluationIsPreferredForIt() {
+        // R018 inv.1: every exercise IN the declared re-evaluation set is consulted
+        // in this run regardless of whether it already has a registered result --
+        // unlike ordinary implicit resolution, which simply reuses it.
+        Map<String, String> content = Map.of("instruction", "Content declared in the re-evaluation set.");
+
+        ContentFingerprinter fingerprinter = mock(ContentFingerprinter.class);
+        when(fingerprinter.fingerprint(content)).thenReturn("fp-in-set");
+
+        Evaluator evaluator = mock(Evaluator.class);
+        when(evaluator.evaluatorId()).thenReturn("qinst-judge");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v2"));
+        when(evaluator.evaluate(any())).thenReturn(new EvaluationEmitted("APPROVED-PREFERRED-NEW"));
+
+        InMemoryLedger ledger = new InMemoryLedger();
+        ledger.append(new EvaluationRecord(
+                new EvaluationKey("qinst-judge", "fp-in-set"),
+                "APPROVED-PREVIOUS",
+                "quiz-in-set",
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
+
+        EvaluationBudget policy = new EvaluationBudget(5);
+        DefaultEvaluationSession session =
+                new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
+
+        EvaluationSubject subject = new EvaluationSubject("quiz-in-set", content);
+
+        // The registered result is confirmed reusable by ordinary implicit
+        // resolution first, isolating what resolvePreferringNew changes.
+        EvaluationResolution implicit = session.resolve(subject);
+        assertEquals(EvaluationResolutionKind.REUSED, implicit.getKind());
+        verify(evaluator, never()).evaluate(any());
+
+        EvaluationResolution preferringNew = session.resolvePreferringNew(subject);
+
+        assertEquals(EvaluationResolutionKind.EVALUATED, preferringNew.getKind());
+        assertEquals("APPROVED-PREFERRED-NEW", preferringNew.getPayload());
+        verify(evaluator, times(1)).evaluate(any());
+    }
+
+    @Test
+    @DisplayName("should keep the registered result instead of leaving the content pending when a new evaluation is preferred and the budget is already exhausted")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R018")
+    public void shouldKeepTheRegisteredResultInsteadOfLeavingTheContentPendingWhenANewEvaluationIsPreferredAndTheBudgetIsAlreadyExhausted() {
+        // R018 inv.2: the run's budget is spent on the declared set FIRST, but once
+        // it is exhausted, a set member that already has a registered result KEEPS
+        // it -- still scored, never pending. This is exactly what sets
+        // resolvePreferringNew apart from resolveForced (F-EVCOST-R008 above), which
+        // discards the registered result and reports PENDING in this same situation.
+        Map<String, String> content = Map.of("instruction", "Content in the set the exhausted budget cannot reach.");
+
+        ContentFingerprinter fingerprinter = mock(ContentFingerprinter.class);
+        when(fingerprinter.fingerprint(content)).thenReturn("fp-in-set-exhausted");
+
+        Evaluator evaluator = mock(Evaluator.class);
+        when(evaluator.evaluatorId()).thenReturn("qinst-judge");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
+
+        InMemoryLedger ledger = new InMemoryLedger();
+        ledger.append(new EvaluationRecord(
+                new EvaluationKey("qinst-judge", "fp-in-set-exhausted"),
+                "APPROVED-PREVIOUS",
+                "quiz-in-set-exhausted",
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
+
+        // No budget left for any new evaluation.
+        EvaluationBudget policy = new EvaluationBudget(0);
+        DefaultEvaluationSession session =
+                new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
+
+        EvaluationResolution resolution =
+                session.resolvePreferringNew(new EvaluationSubject("quiz-in-set-exhausted", content));
+
+        assertEquals(EvaluationResolutionKind.REUSED, resolution.getKind(),
+                "a set member the exhausted budget cannot reach must keep its registered result, not go pending (F-QINST-R018)");
+        assertEquals("APPROVED-PREVIOUS", resolution.getPayload());
+        verify(evaluator, never()).evaluate(any());
+    }
 }

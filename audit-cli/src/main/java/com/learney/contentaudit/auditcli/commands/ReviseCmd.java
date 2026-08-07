@@ -349,6 +349,25 @@ class ReviseCmd implements ReviseCommand, Callable<Integer> {
                         : "El verbo revise no acepta correctionContext para este tipo de tarea.");
                 yield 1;
             }
+            case DIAGNOSIS_NOT_SUSTAINED -> {
+                // F-QICOR-R009: the current validation already declares the original
+                // compliant. Not a failure — nothing was attempted, nothing regressed —
+                // so this exits zero, distinct from NO_ACCEPTABLE_CANDIDATE below.
+                System.out.println("[QICOR] El diagnostico de la tarea " + taskId
+                        + " en el plan " + planId + " ya no se sostiene: la validacion vigente"
+                        + " declara que el ejercicio cumple su consigna. No se corrigio nada.");
+                yield 0;
+            }
+            case NO_ACCEPTABLE_CANDIDATE -> {
+                // F-QICOR-R006: attempts were exhausted and no candidate ever passed the
+                // catalog of criteria. Explicit failure, naming what failed.
+                System.err.println("No se logro una correccion aceptable para la tarea " + taskId
+                        + " en el plan " + planId + ".");
+                if (outcome.getErrorMessage() != null) {
+                    System.err.println("Detalle: " + outcome.getErrorMessage());
+                }
+                yield 1;
+            }
         };
     }
 

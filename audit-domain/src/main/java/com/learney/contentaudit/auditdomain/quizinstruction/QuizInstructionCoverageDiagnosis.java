@@ -16,14 +16,18 @@ public class QuizInstructionCoverageDiagnosis {
 
     private List<JudgeVersionVerdictCount> verdictsByJudgeVersion;
 
+    private List<String> unmatchedReevaluationIds;
+
     public QuizInstructionCoverageDiagnosis() {
     }
 
     public QuizInstructionCoverageDiagnosis(EvaluationCoverage coverage,
-            String consultedJudgeVersion, List<JudgeVersionVerdictCount> verdictsByJudgeVersion) {
+            String consultedJudgeVersion, List<JudgeVersionVerdictCount> verdictsByJudgeVersion,
+            List<String> unmatchedReevaluationIds) {
         this.coverage = coverage;
         this.consultedJudgeVersion = consultedJudgeVersion;
         this.verdictsByJudgeVersion = verdictsByJudgeVersion;
+        this.unmatchedReevaluationIds = unmatchedReevaluationIds;
     }
 
     public EvaluationCoverage getCoverage() {
@@ -50,6 +54,14 @@ public class QuizInstructionCoverageDiagnosis {
         this.verdictsByJudgeVersion = verdictsByJudgeVersion;
     }
 
+    public List<String> getUnmatchedReevaluationIds() {
+        return this.unmatchedReevaluationIds;
+    }
+
+    public void setUnmatchedReevaluationIds(List<String> unmatchedReevaluationIds) {
+        this.unmatchedReevaluationIds = unmatchedReevaluationIds;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,11 +69,12 @@ public class QuizInstructionCoverageDiagnosis {
         QuizInstructionCoverageDiagnosis that = (QuizInstructionCoverageDiagnosis) o;
         return Objects.equals(this.coverage, that.coverage)
                     && Objects.equals(this.consultedJudgeVersion, that.consultedJudgeVersion)
-                    && Objects.equals(this.verdictsByJudgeVersion, that.verdictsByJudgeVersion);
+                    && Objects.equals(this.verdictsByJudgeVersion, that.verdictsByJudgeVersion)
+                    && Objects.equals(this.unmatchedReevaluationIds, that.unmatchedReevaluationIds);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(coverage, consultedJudgeVersion, verdictsByJudgeVersion);
+        return Objects.hash(coverage, consultedJudgeVersion, verdictsByJudgeVersion, unmatchedReevaluationIds);
     }
 }

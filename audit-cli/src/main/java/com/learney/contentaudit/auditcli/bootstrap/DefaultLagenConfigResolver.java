@@ -1,4 +1,9 @@
 package com.learney.contentaudit.auditcli.bootstrap;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolver;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolution;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderRejected;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderRejectionKind;
 
 import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
 import java.time.Duration;
@@ -11,6 +16,12 @@ import javax.annotation.processing.Generated;
 )
 public final class DefaultLagenConfigResolver implements LagenConfigResolver {
 
+private final LlmProviderResolver llmProviderResolver;
+
+public DefaultLagenConfigResolver(LlmProviderResolver llmProviderResolver) {
+    this.llmProviderResolver = llmProviderResolver;
+}
+
     static final String KEY_PROVIDER = "CONTENT_AUDIT_LAGEN_PROVIDER";
     static final String KEY_ENDPOINT = "CONTENT_AUDIT_LAGEN_ENDPOINT";
     static final String KEY_MODEL = "CONTENT_AUDIT_LAGEN_MODEL";
@@ -21,20 +32,44 @@ public final class DefaultLagenConfigResolver implements LagenConfigResolver {
     static final String KEY_MAX_EVAL_RETRIES = "CONTENT_AUDIT_LAGEN_MAX_EVAL_RETRIES";
 
     private static final int DEFAULT_MAX_EVAL_RETRIES = 3;
-    private static final String DEFAULT_PROVIDER = "claude-cli";
+
+    /** F-LAGEN-R015: the datum is named exactly as the operator declares it here --
+     * "endpoint" (LagenConfig#endpoint / CONTENT_AUDIT_LAGEN_ENDPOINT) -- not the judge's
+     * own name for the same kind of datum ("baseUrl", see DefaultQuizInstructionJudgeFactory). */
+    private static final String SERVICE_ADDRESS_INPUT_NAME = "endpoint";
 
     @Override
     public LagenConfig resolve(Map<String, String> env) {
         // All parsing happens atomically in a single pass at startup (R014)
         LagenConfig config = new LagenConfig();
 
-        // provider is optional: absent/blank defaults to "claude-cli" (claude -p, auth via subscription)
+        // F-LAGEN-R015: the service address is only required when the declared
+        // provider's class actually needs one -- same single criterion F-QINST-R016
+        // already applies (LlmProviderResolver, one source, both consumers). A
+        // subscription-authenticated provider (the "claude-cli" default included) is
+        // valid configuration with no address at all; the ':' name is not doubled up
+        // to a manual "claude-cli" default here anymore -- LlmProviderResolved#getProviderName
+        // is already the effective (defaulted) name.
         String providerValue = env.get(KEY_PROVIDER);
-        config.setProviderName((providerValue != null && !providerValue.isBlank())
-                ? providerValue.trim()
-                : DEFAULT_PROVIDER);
+        String endpointValue = env.get(KEY_ENDPOINT);
+        LlmProviderResolution resolution =
+                llmProviderResolver.resolve(providerValue, endpointValue, SERVICE_ADDRESS_INPUT_NAME);
+        if (resolution instanceof LlmProviderRejected rejected) {
+            // F-LAGEN-R015 / TECH_SPEC: InvalidLagenConfigException is reserved for values that
+            // fail to parse (temperature/timeout/maxTokens below) -- these two rejection reasons
+            // get their own types, each carrying only the fields that reason actually has. An
+            // unsupported provider has no "missing input" to name (there's nothing to declare);
+            // tagging it with CONTENT_AUDIT_LAGEN_ENDPOINT would point the operator at the wrong
+            // knob.
+            if (rejected.getKind() == LlmProviderRejectionKind.UNSUPPORTED_PROVIDER) {
+                throw new UnsupportedLagenProviderException(rejected.getProviderName());
+            }
+            throw new MissingLagenProviderInputException(rejected.getProviderName(), rejected.getMissingInput());
+        }
+        LlmProviderResolved resolvedProvider = (LlmProviderResolved) resolution;
+        config.setProviderName(resolvedProvider.getProviderName());
+        config.setEndpoint(endpointValue != null && !endpointValue.isBlank() ? endpointValue.trim() : null);
 
-        config.setEndpoint(requireString(env, KEY_ENDPOINT));
         config.setModelId(requireString(env, KEY_MODEL));
 
         // Optional fields

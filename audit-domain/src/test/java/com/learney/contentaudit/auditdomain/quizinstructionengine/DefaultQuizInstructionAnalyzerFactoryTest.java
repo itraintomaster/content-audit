@@ -1,12 +1,16 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 
+import com.learney.contentaudit.auditdomain.AmbiguousReevaluationScopeException;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.EmptyReevaluationSetException;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
 import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -89,5 +93,35 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
         Assertions.assertEquals(sut.analyzerName(), analyzer.getName(),
                 "R015: the factory's published analyzerName() must be exactly the name the analyzer it builds "
                 + "reports via getName() -- a single name, the one read is the one written");
+    }
+
+    @Test
+    @DisplayName("should reject the run request that declares an empty set of quizzes, before opening the evaluation session")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R018")
+    public void shouldRejectTheRunRequestThatDeclaresAnEmptySetOfQuizzesBeforeOpeningTheEvaluationSession() {
+        // Conjunto declarado y vacio: NO equivale a "todo el curso" -- se rechaza (R018 inv.3)
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, Set.of());
+
+        Assertions.assertThrows(EmptyReevaluationSetException.class, () -> sut.create(policy),
+                "R018: a run request that declares an empty set of quizzes must be rejected, not read as the whole course");
+
+        Mockito.verifyNoInteractions(sessionFactory);
+    }
+
+    @Test
+    @DisplayName("should reject the run request that declares a set of quizzes together with a course area, before opening the evaluation session")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R018")
+    public void shouldRejectTheRunRequestThatDeclaresASetOfQuizzesTogetherWithACourseAreaBeforeOpeningTheEvaluationSession() {
+        // Conjunto declarado Y area del curso a la vez: dos lecturas posibles (interseccion/union)
+        // que difieren en ordenes de magnitud de gasto -- se rechaza sin adivinar (R018 inv.3)
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, true, "knowledge-a", Set.of("quiz-a1"));
+
+        Assertions.assertThrows(AmbiguousReevaluationScopeException.class, () -> sut.create(policy),
+                "R018: a run request that declares both a set of quizzes and a course area at once must be rejected, "
+                + "since neither intersection nor union can be chosen without guessing");
+
+        Mockito.verifyNoInteractions(sessionFactory);
     }
 }

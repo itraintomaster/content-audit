@@ -13,12 +13,15 @@ import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
+import com.learney.contentaudit.refinerdomain.QuizInstructionCorrectionContext;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.revisiondomain.CourseElementLocator;
 import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.DiagnosisNotSustainedException;
+import com.learney.contentaudit.revisiondomain.NoAcceptableCandidateException;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
@@ -150,6 +153,13 @@ class DefaultRevisionEngine implements RevisionEngine {
             // carries sourceAuditId from the JSON payload and must not be overwritten.
             if (context instanceof LemmaAbsenceCorrectionContext lac) {
                 lac.setSourceAuditId(plan.getSourceAuditId());
+            } else if (context instanceof QuizInstructionCorrectionContext qic) {
+                // F-QICOR-R002/R004 criterio 3: the distinctness criterion compares the
+                // candidate against the same analysis that produced the task. The resolver
+                // cannot know sourceAuditId on its own (AuditReport carries no id of its
+                // own), so it is stamped here -- same fix, same reason as
+                // LemmaAbsenceCorrectionContext above.
+                qic.setSourceAuditId(plan.getSourceAuditId());
             }
         }
 
@@ -184,6 +194,29 @@ class DefaultRevisionEngine implements RevisionEngine {
                     e.getMessage());
         } catch (ProposalStrategyFailedException e) {
             return new RevisionOutcome(RevisionOutcomeKind.STRATEGY_FAILED, null,
+                    e.getMessage());
+        } catch (DiagnosisNotSustainedException e) {
+            // F-QICOR-R009: the current validation already declares the original quiz
+            // compliant. This is not a failure -- nothing was attempted and nothing
+            // regressed -- so it gets its own outcome, never STRATEGY_FAILED /
+            // NO_ACCEPTABLE_CANDIDATE. DOUBT-TAREA-CAIDA opcion B: the task is marked
+            // STALE (visible, not retried by future runs) rather than silently left
+            // PENDING or auto-closed as COMPLETED — no correction happened here.
+            task.setStatus(RefinementTaskStatus.STALE);
+            List<RefinementTask> staleTasks = new ArrayList<>(plan.getTasks());
+            int staleTaskIndex = staleTasks.indexOf(task);
+            if (staleTaskIndex >= 0) {
+                staleTasks.set(staleTaskIndex, task);
+            }
+            RefinementPlan staleDeclaredPlan = new RefinementPlan(
+                    plan.getId(), plan.getSourceAuditId(), plan.getCreatedAt(), staleTasks);
+            refinementPlanStore.save(staleDeclaredPlan);
+            return new RevisionOutcome(RevisionOutcomeKind.DIAGNOSIS_NOT_SUSTAINED, null,
+                    e.getMessage());
+        } catch (NoAcceptableCandidateException e) {
+            // F-QICOR-R006: attempts were exhausted and no candidate ever passed the
+            // catalog of criteria. There was spend and there are named failed criteria.
+            return new RevisionOutcome(RevisionOutcomeKind.NO_ACCEPTABLE_CANDIDATE, null,
                     e.getMessage());
         }
         // The Reviser may not know the real planId/sourceAuditId — the engine does, so overwrite.

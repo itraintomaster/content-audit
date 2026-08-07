@@ -290,6 +290,48 @@ modules:
         \ del consumidor (id de knowledge, F-QINST-R012). Vive en audit-domain porque\
         \ solo aca hay con que resolverlo: de un sujeto la sesion solo conoce su subjectRef\
         \ y su contenido."
+    - name: reevaluationSubjectIds
+      type: Set<String>
+      description: "Conjunto declarado de elementos a re-evaluar, expresado en el\
+        \ vocabulario del consumidor (ids de ejercicio para quiz-instruction, F-QINST-R018).\
+        \ null = no se declaro conjunto. Vacio NO significa todo el curso: significa\
+        \ pedido declarado y vacio, que se rechaza (F-QINST-R019 invariante 3: un\
+        \ origen legible del que no sale ningun identificador llega hasta aca como\
+        \ conjunto vacio). El id SELECCIONA a quien se le vuelve a preguntar; no identifica\
+        \ el veredicto, que sigue siendo la huella del contenido (F-QINST-R009). Se\
+        \ coteja contra EvaluationSubject.subjectRef, igualmente informativo. Set\
+        \ y no List porque un ejercicio declarado dos veces cuenta una (F-QINST-R019\
+        \ invariante 1). Es excluyente con reevaluate y con reevaluationScope: un\
+        \ conjunto declarado ES el pedido de re-evaluacion, asi que declarar ademas\
+        \ alcance total o por area es un pedido que no se puede interpretar."
+  - name: EmptyReevaluationSetException
+    type: exception
+    fields:
+    - name: analyzerName
+      type: String
+      description: Nombre publicado del analisis cuyo pedido de corrida se rechaza;
+        el mismo por el que se filtra y se presupuesta (F-QINST-R015).
+    message: "El pedido de re-evaluacion para el analisis '%s' declara un conjunto\
+      \ vacio de ejercicios: no se puede interpretar el alcance y la corrida no se\
+      \ ejecuta"
+    extends: IllegalArgumentException
+  - name: AmbiguousReevaluationScopeException
+    type: exception
+    fields:
+    - name: analyzerName
+      type: String
+      description: Nombre publicado del analisis cuyo pedido de corrida se rechaza
+        (F-QINST-R015).
+    - name: declaredScope
+      type: String
+      description: "El alcance que compite con el conjunto declarado: el id del area\
+        \ del curso, o el texto que nombra el alcance total cuando se pidio re-evaluar\
+        \ todo. Se nombra en el mensaje porque las dos lecturas posibles del pedido\
+        \ difieren en ordenes de magnitud de gasto y el usuario tiene que ver cual\
+        \ de sus dos declaraciones sacar."
+    message: "El pedido de re-evaluacion para el analisis '%s' declara a la vez un\
+      \ conjunto de ejercicios y otro alcance (%s): no se puede determinar el alcance"
+    extends: IllegalArgumentException
   interfaces:
   - name: AuditEngine
     stereotype: port
@@ -3146,7 +3188,7 @@ modules:
       - SentenceLexicalEvaluator
   - name: quizinstruction
     description: |
-      FEAT-QINST. Contrato publico del analisis de cumplimiento de consigna: el veredicto tipado del juez, el diagnostico por ejercicio y la cobertura declarada. Publico porque el CLI lo formatea y porque una feature posterior de correccion va a partir de estas violaciones con su evidencia.
+      FEAT-QINST + FEAT-QICOR. Contrato publico del cumplimiento de consigna: el veredicto tipado del juez, el diagnostico por ejercicio, la cobertura declarada, y —desde FEAT-QICOR— la vista del ejercicio juzgado y la verificacion de cumplimiento. Que la verificacion viva aca y no del lado de revision es lo que permite que la revalidacion del original (F-QICOR-R009) y la verificacion del corregido (F-QICOR-R005) se sometan EXACTAMENTE al mismo criterio que detecto el incumplimiento: mismo render del quiz, misma huella, mismo evaluador, mismo lector de payload. La alternativa era duplicar el criterio de juicio, que es lo que R005 y R009 existen para impedir.
     visibility: public
     models:
     - name: InstructionSeverity
@@ -3229,6 +3271,17 @@ modules:
           \ que el informe PUNTUA (F-QINST-R005). Una fila por version presente, ordenadas\
           \ por version para que el informe y los tests sean reproducibles. Su suma\
           \ debe cerrar contra coverage.withResult: es la segunda suma que exige F-QINST-R005."
+      - name: unmatchedReevaluationIds
+        type: List<String>
+        description: "Identificadores del conjunto declarado que no correspondieron\
+          \ a ningun ejercicio alcanzado por la corrida (F-QINST-R018). Vive AL LADO\
+          \ de coverage y no dentro: esos identificadores no son ejercicios del curso,\
+          \ asi que no entran en ningun recuento de cobertura y las dos sumas de F-QINST-R005/R014\
+          \ siguen cerrando sin tocarlas. Vacia cuando el pedido no declaro conjunto\
+          \ o cuando todos correspondieron. Cada identificador figura una sola vez,\
+          \ porque el conjunto llega ya deduplicado desde su declaracion (F-QINST-R019).\
+          \ Se informa en lugar de callarse porque ignorar en silencio un identificador\
+          \ viejo haria creer que se re-juzgo algo que nadie miro."
     - name: JudgeVersionVerdictCount
       type: record
       fields:
@@ -3239,16 +3292,124 @@ modules:
         type: int
         description: Cuantos de los veredictos que el informe puntua provienen de
           esa version.
+    - name: QuizInstructionSubjectView
+      type: record
+      fields:
+      - name: subjectRef
+        type: String
+        description: Identificador informativo del ejercicio. NO entra en el contenido
+          juzgado ni en la huella (F-QINST-R009).
+      - name: cefrLevel
+        type: String
+        description: "Label del milestone, verbatim. String y no CefrLevel para reproducir\
+          \ byte a byte lo que hoy entra al mapa de contenido."
+      - name: topic
+        type: String
+      - name: title
+        type: String
+        description: "Label del knowledge — fuente canonica, nunca la copia desincronizada\
+          \ del quiz."
+      - name: instructions
+        type: String
+        description: Instructions del knowledge. Nullable (F-QINST-R014).
+      - name: sentenceParts
+        type: List<SentencePartEntity>
+        description: Partes del ejercicio en orden con todas las opciones aceptadas.
+          Es la unica entrada real del render del quiz.
+      visibility: public
+    - name: QuizInstructionComplianceStatus
+      type: enum
+      fields:
+      - name: EVALUATED
+        description: El juez se pronuncio (consulta nueva o veredicto reutilizado
+          del registro). El veredicto viene poblado.
+      - name: UNAVAILABLE
+        description: "El juez no llego a pronunciarse (servicio caido, timeout, presupuesto\
+          \ agotado, version no enunciable). No hay veredicto; el ejercicio no se\
+          \ puede juzgar y por lo tanto no se corrige ni se propone."
+      - name: UNUSABLE
+        description: El juez respondio pero su salida no es usable (F-QINST-R013).
+          Tampoco hay veredicto.
+      visibility: public
+    - name: QuizInstructionComplianceResult
+      type: record
+      fields:
+      - name: status
+        type: QuizInstructionComplianceStatus
+      - name: verdict
+        type: QuizInstructionVerdict
+        description: Veredicto completo con sus violaciones. Poblado exactamente cuando
+          status es EVALUATED; null en los otros dos casos.
+      - name: reason
+        type: String
+        description: Motivo legible cuando no hubo veredicto. Alimenta el detalle
+          que F-QICOR-R006 exige nombrar.
+      - name: evaluatorVersion
+        type: String
+        description: "Version del juez que produjo el veredicto (procedencia, F-EVCOST-R001).\
+          \ Null cuando no hubo veredicto."
+      - name: reused
+        type: boolean
+        description: "Si el veredicto salio del registro en vez de una consulta nueva.\
+          \ Siempre false en revalidate, que fuerza la consulta por definicion."
+      visibility: public
+    interfaces:
+    - name: QuizInstructionSubjectViewFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "fromQuiz(QuizTemplateEntity quiz, String cefrLevel, String topic,\
+          \ String title, String instructions): QuizInstructionSubjectView"
+      visibility: public
+    - name: QuizInstructionComplianceChecker
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "check(QuizInstructionSubjectView view): QuizInstructionComplianceResult"
+      - signature: "revalidate(QuizInstructionSubjectView view): QuizInstructionComplianceResult"
+      visibility: public
+    - name: QuizInstructionComplianceCheckerFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(EvaluationSessionFactory sessionFactory,Evaluator evaluator,QuizInstructionVerdictReader\
+          \ verdictReader,EvaluationBudget budget): QuizInstructionComplianceChecker"
+      visibility: public
   - name: quizinstructionengine
     description: |
-      Motor del analizador de consigna. Solo la factory es publica; el analizador, el armado del contenido juzgado y la traduccion de veredicto a puntaje son package-private.
+      Motor del analizador de consigna. Solo la factory es publica; el analizador, el armado del contenido juzgado, la traduccion de veredicto a puntaje y la decision de alcance de la re-evaluacion son package-private. La factory es ademas el unico punto donde un pedido de corrida que no se puede interpretar se rechaza (F-QINST-R018): se valida antes de abrir la sesion, y fuera del recorrido del arbol, donde el manejo generico de F-QINST-R007 se tragaria la excepcion en silencio. Lo que llega aca es siempre un conjunto ya resuelto: como se declaro —enumerado o desde un origen externo— es asunto del adaptador y no cambia nada de este motor (F-QINST-R019 invariante 1).
     visibility: public
+    models:
+    - name: QuizInstructionReevaluationDecision
+      type: enum
+      fields:
+      - name: ORDINARY
+        description: "Sin pedido explicito que alcance a este ejercicio: se reutiliza\
+          \ el veredicto registrado y, si no hay, se consulta dentro del tope (F-QINST-R008/R006).\
+          \ Resuelve con EvaluationSession.resolve."
+      - name: AREA_REEVALUATION
+        description: "Pedido explicito acotado por area del curso o total (F-QINST-R012),\
+          \ comportamiento previo intacto: consulta nueva obligatoria dentro del tope.\
+          \ Resuelve con EvaluationSession.resolveForced."
+      - name: DECLARED_SET_REEVALUATION
+        description: "El ejercicio pertenece al conjunto declarado en el pedido (F-QINST-R018):\
+          \ se vuelve a juzgar tenga o no veredicto, y si el tope ya se agoto conserva\
+          \ el veredicto anterior y sigue puntuando en vez de quedar pendiente. Resuelve\
+          \ con EvaluationSession.resolvePreferringNew."
+      - name: OUTSIDE_DECLARED_SET
+        description: "Hay conjunto declarado y este ejercicio no pertenece (F-QINST-R018):\
+          \ se reutiliza sin consulta y no gasta tope, tenga o no veredicto. Es lo\
+          \ que hace que el tope se gaste PRIMERO en el conjunto sin ningun mecanismo\
+          \ de prioridad: fuera del conjunto no hay consultas nuevas que competir.\
+          \ Resuelve con EvaluationSession.resolveWithoutConsulting."
+      visibility: internal
     interfaces:
     - name: QuizInstructionSubjectBuilder
       sealed: false
       exposes:
       - signature: "build(AuditNode quizNode): EvaluationSubject"
-      visibility: internal
+      - signature: "buildFromView(QuizInstructionSubjectView view): EvaluationSubject"
+      visibility: public
     - name: QuizInstructionScorer
       sealed: false
       exposes:
@@ -3258,6 +3419,7 @@ modules:
       sealed: false
       exposes:
       - signature: "matches(AuditNode quizNode,String reevaluationScope): boolean"
+      - signature: "decide(AuditNode quizNode,EvaluationRunPolicy policy): QuizInstructionReevaluationDecision"
       visibility: internal
     implementations:
     - name: DefaultQuizInstructionAnalyzerFactory
@@ -3282,6 +3444,16 @@ modules:
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R015
+      - name: "should reject the run request that declares an empty set of quizzes,\
+          \ before opening the evaluation session"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R018
+      - name: "should reject the run request that declares a set of quizzes together\
+          \ with a course area, before opening the evaluation session"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R018
       implements:
       - EvaluationAnalyzerFactory
     - name: QuizInstructionAnalyzer
@@ -3409,6 +3581,26 @@ modules:
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R005
+      - name: "should query the judge for every quiz of the declared set and for no\
+          \ quiz outside it, whatever verdict the outsiders already have"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R018
+      - name: "should keep the score and the diagnosis of a quiz of the declared set\
+          \ the budget did not reach, instead of leaving it pending"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R018
+      - name: should declare as unmatched every id of the declared set that no quiz
+          of the course corresponded to
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R018
+      - name: should keep the reached total and the coverage sums closed when the
+          declared set carries ids that match no quiz of the course
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R018
       implements:
       - ContentAnalyzer
     - name: DefaultQuizInstructionSubjectBuilder
@@ -3447,6 +3639,12 @@ modules:
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R014
+      - name: "should derive from a subject view the same judged content it derives\
+          \ from the audited quiz node, so a correction verified as compliant is verified\
+          \ with the criterion of the audit itself"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R005
       implements:
       - QuizInstructionSubjectBuilder
     - name: DefaultQuizInstructionScorer
@@ -3500,8 +3698,42 @@ modules:
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R012
+      - name: should decide a new judgement for every quiz of the declared set and
+          a reuse without consulting for every quiz outside it
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R018
+      - name: should keep deciding by the declared course area when the request declares
+          no set of quizzes
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R012
       implements:
       - QuizInstructionScopeMatcher
+    - name: DefaultQuizInstructionComplianceCheckerFactory
+      visibility: public
+      implements:
+      - QuizInstructionComplianceCheckerFactory
+    - name: DefaultQuizInstructionSubjectViewFactory
+      visibility: public
+      implements:
+      - QuizInstructionSubjectViewFactory
+    - name: LedgerBackedQuizInstructionComplianceChecker
+      requiresInject:
+      - name: session
+        type: EvaluationSession
+      - name: subjectBuilder
+        type: QuizInstructionSubjectBuilder
+      - name: verdictReader
+        type: QuizInstructionVerdictReader
+      handwrittenTests:
+      - name: "should ask the judge again when revalidating the original quiz, instead\
+          \ of returning the verdict already recorded for that content"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R009
+      implements:
+      - QuizInstructionComplianceChecker
 - name: course-domain
   description: "Domain module for course structure. Contains entity models representing\
     \ the 5-level hierarchy (Course > ROOT > Milestone > Topic > Knowledge > QuizTemplate),\
@@ -4121,6 +4353,9 @@ modules:
     - name: PENDING
     - name: COMPLETED
     - name: SKIPPED
+    - name: STALE
+      description: |
+        El diagnostico que origino la tarea ya no se sostiene (F-QICOR-R009). La tarea queda visible pero no se vuelve a intentar en las corridas siguientes, que es lo que evita pagar la misma consulta una y otra vez para llegar a la misma conclusion (DOUBT-TAREA-CAIDA, opcion A del analista descartada a favor de la B). Distinto de SKIPPED, que significa que alguien decidio saltearla, y de COMPLETED, que significa que se corrigio.
   - name: RefinementTask
     type: record
     fields:
@@ -4522,6 +4757,67 @@ modules:
       type: double
       description: Descuento que compitio en el maximo de F-LABS-R019. Permite al
         agente priorizar que palabra reemplazar (F-LABS-R038).
+  - name: QuizInstructionCorrectionContext
+    type: record
+    fields:
+    - name: taskId
+      type: String
+    - name: nodeId
+      type: String
+      description: Id del ejercicio señalado por la tarea (nodeTarget siempre QUIZ
+        para QUIZ_INSTRUCTION).
+    - name: quizSentence
+      type: String
+      description: DSL FEAT-QSENT del ejercicio original. Es el punto de partida a
+        editar y la forma en que vuelve el candidato.
+    - name: translation
+      type: String
+    - name: sentence
+      type: String
+      description: "Oracion canonica en texto plano, baseline de la medicion de longitud."
+    - name: knowledgeTitle
+      type: String
+      description: Etiqueta del knowledge — mitad de la consigna que el ejercicio
+        incumple.
+    - name: knowledgeInstructions
+      type: String
+      description: Instructions del knowledge — la otra mitad de la consigna. Nullable.
+    - name: topicLabel
+      type: String
+    - name: cefrLevel
+      type: CefrLevel
+      description: Nivel del ejercicio; fija rango de longitud y vocabulario esperados
+        (F-QICOR-R004 criterios 1 y 2).
+    - name: cefrLevelLabel
+      type: String
+      description: "Label del milestone verbatim. Distinto de cefrLevel a proposito,\
+        \ porque es el valor que entra al contenido juzgado; sin el, la revalidacion\
+        \ calcularia otra huella y R009 dejaria de comparar contra lo mismo."
+    - name: sentenceMode
+      type: SentenceMode
+      description: "Modo de frase del knowledge (F-SMODE-R003). Lo consume el deriver\
+        \ para construir la frase canonica del corregido con el mismo modo del original.\
+        \ Nullable, fallback FILL."
+    - name: violations
+      type: List<InstructionViolation>
+      description: "Cada violacion con su restriccion, su evidencia textual y su explicacion\
+        \ (F-QICOR-R002). Materia prima de la correccion, no adorno del informe."
+    - name: verdictReason
+      type: String
+      description: Motivo global del veredicto de incumplimiento.
+    - name: severity
+      type: InstructionSeverity
+    - name: siblingQuizSentences
+      type: List<String>
+      description: "quizSentence de los demas ejercicios del mismo knowledge (F-QICOR-R002,\
+        \ R004 criterio 3). Lista vacia cuando no hay hermanos."
+    - name: sourceAuditId
+      type: String
+      description: Analisis del que se derivo el contexto. Liviano; ata la comparacion
+        de distincion al mismo analisis fuente de la tarea.
+    visibility: public
+    implements:
+    - CorrectionContext
   interfaces:
   - name: RefinerEngine
     stereotype: port
@@ -5004,6 +5300,11 @@ modules:
       type: LemmaAbsenceContextResolver
     - name: knowledgeTitleResolver
       type: KnowledgeTitleContextResolver
+    - name: quizInstructionResolver
+      type: QuizInstructionContextResolver
+      description: Cierra el hueco principal de la feature. Hoy no hay ningun resolver
+        registrado para QUIZ_INSTRUCTION y la revision cae al comportamiento de identidad
+        (F-REVBYP-R004).
     visibility: public
     handwrittenTests:
     - name: should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH
@@ -5089,6 +5390,23 @@ modules:
       traceability:
         feature: FEAT-KTLR
         rule: F-KTLR-R011
+    implements:
+    - CorrectionContextResolver
+  - name: QuizInstructionContextResolver
+    visibility: public
+    handwrittenTests:
+    - name: "should resolve a correction context carrying every violation the quiz\
+        \ diagnosis recorded, each with its breached constraint, its textual evidence\
+        \ and its explanation"
+      traceability:
+        feature: FEAT-QICOR
+        rule: F-QICOR-R002
+    - name: "should resolve a correction context carrying the whole quiz with its\
+        \ gaps and its accepted options, the knowledge instruction, the CEFR level\
+        \ and the sibling quizzes of the knowledge"
+      traceability:
+        feature: FEAT-QICOR
+        rule: F-QICOR-R002
     implements:
     - CorrectionContextResolver
   patterns:
@@ -6751,6 +7069,17 @@ modules:
       type: String
       description: "--reevaluate-instructions[=SCOPE]: pide volver a juzgar contenido\
         \ con veredicto vigente, acotado o total (F-QINST-R012)."
+    - name: reevaluateInstructionQuizIds
+      type: Set<String>
+      description: "Conjunto de ejercicios a re-evaluar, YA RESUELTO a identificadores\
+        \ y deduplicado (F-QINST-R018/R019). null = no se declaro conjunto; vacio\
+        \ = se declaro y no salio ningun identificador, y el dominio lo rechaza como\
+        \ conjunto vacio. El carrier lleva UN solo campo aunque las formas de declararlo\
+        \ sean dos: enumerado (--reevaluate-instruction-quizzes) y origen externo\
+        \ (--reevaluate-instruction-quizzes-file) se resuelven antes, en ReevaluationQuizSetResolver,\
+        \ y desde aca en adelante son indistinguibles, que es lo que exige la invariante\
+        \ 1 de F-QINST-R019. Como efecto, la decision de alcance se ejercita con un\
+        \ conjunto en memoria, sin archivos."
   interfaces:
   - name: AnalyzeCommand
     stereotype: port
@@ -6831,6 +7160,12 @@ modules:
     exposes:
     - signature: "repair(String resource, String coursePath, boolean dryRun): Integer"
     visibility: public
+  - name: ReviseInstructionsCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "reviseInstructions(String planId, Integer maxCorrections, String\
+        \ coursePath): Integer"
   patterns:
   - type: Strategy
     implementations:
@@ -6902,6 +7237,8 @@ modules:
         type: "Map<String,DetailedFormatter>"
       - name: auditReportStore
         type: AuditReportStore
+      - name: reevaluationQuizSetResolver
+        type: ReevaluationQuizSetResolver
       types:
       - Component
       handwrittenTests:
@@ -6963,6 +7300,16 @@ modules:
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R001
+      - name: "should carry into the instruction run policy the set of quizzes the\
+          \ user declared, as the only re evaluation scope of the run"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R018
+      - name: "should not run the audit at all, and should report the origin it could\
+          \ not read, when the request names an unreadable origin for the set of quizzes"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R019
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -8118,6 +8465,20 @@ modules:
       - java.util.concurrent.Callable<Integer>
       implements:
       - RepairCommand
+    - name: ReviseInstructionsCmd
+      requiresInject:
+      - name: correctionRunner
+        type: QuizInstructionCorrectionRunner
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: runFormatter
+        type: QuizInstructionCorrectionRunFormatter
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - ReviseInstructionsCommand
   - name: formatting
     description: "Internal formatting infrastructure — report transformers, view models,\
       \ formatters, drill-down resolution, and proposal/preview rendering."
@@ -8408,6 +8769,11 @@ modules:
       exposes:
       - signature: "format(ConsolidatedView view, String format): String"
       visibility: public
+    - name: QuizInstructionCorrectionRunFormatter
+      sealed: false
+      exposes:
+      - signature: "format(QuizInstructionCorrectionRunReport report): String"
+      visibility: public
     implementations:
     - name: TextReportFormatter
       requiresInject:
@@ -8596,10 +8962,13 @@ modules:
           rule: F-QINST-R005
       implements:
       - DetailedFormatter
+    - name: DefaultQuizInstructionCorrectionRunFormatter
+      visibility: public
+      implements:
+      - QuizInstructionCorrectionRunFormatter
   - name: bootstrap
-    description: "Env-var -> domain-object parsing plus composition-root helpers translating\
-      \ external inputs (workdir, approval mode, proposal strategy selection, LAGEN\
-      \ mode + LLM config) into typed values consumed by the engine factories."
+    description: |
+      Env-var -> domain-object parsing plus composition-root helpers translating external inputs (workdir, approval mode, proposal strategy selection, LAGEN mode + LLM config, conjunto de ejercicios a re-evaluar declarado enumerado o por origen externo) into typed values consumed by the engine factories.
     visibility: internal
     models:
     - name: InvalidWorkdirException
@@ -8650,6 +9019,62 @@ modules:
           \ got abc')."
       message: "Invalid LAGEN configuration (%s): %s"
       extends: RuntimeException
+    - name: UnsupportedLagenProviderException
+      type: exception
+      fields:
+      - name: providerName
+        type: String
+      message: "El proveedor '%s' no es uno que el sistema sepa consultar. Declarar\
+        \ uno soportado, o pedir el modo de generacion fija para correr sin ningun\
+        \ proveedor."
+      visibility: public
+      extends: RuntimeException
+    - name: MissingLagenProviderInputException
+      type: exception
+      fields:
+      - name: providerName
+        type: String
+      - name: missingInput
+        type: String
+      message: "No se pudo dirigir la consulta al proveedor '%s': falta '%s'. Declararlo,\
+        \ o pedir el modo de generacion fija para correr sin ningun proveedor."
+      visibility: public
+      extends: RuntimeException
+    - name: UnreadableQuizSetOriginException
+      type: exception
+      fields:
+      - name: origin
+        type: String
+        description: "El origen tal como lo nombro quien pidio la corrida. Se nombra\
+          \ en el mensaje porque es lo que hay que corregir: F-QINST-R019 invariante\
+          \ 2 exige que este rechazo no se pueda confundir con el de conjunto vacio,\
+          \ y lo que separa a los dos es donde esta el arreglo (apuntar bien vs rehacer\
+          \ la seleccion)."
+      - name: detail
+        type: String
+        description: "Por que no se pudo leer. El conjunto NUNCA se conocio, asi que\
+          \ cualquier lectura que siga adelante afirma algo sobre una seleccion que\
+          \ el sistema no llego a ver."
+      message: "No se pudo leer el origen '%s' declarado para el conjunto de ejercicios\
+        \ a re-evaluar: %s"
+      visibility: public
+      extends: IllegalArgumentException
+    - name: AmbiguousQuizSetDeclarationException
+      type: exception
+      fields:
+      - name: enumeratedIds
+        type: String
+        description: "La enumeracion declarada en el pedido, tal como se escribio."
+      - name: origin
+        type: String
+        description: "El origen declarado en el pedido, tal como se nombro. Se nombran\
+          \ los dos porque union y 'una gana' son lecturas distintas del mismo pedido\
+          \ y nada dice cual se quiso (F-QINST-R019): el usuario tiene que ver sus\
+          \ dos declaraciones para sacar una."
+      message: "El pedido de re-evaluacion declara a la vez los ejercicios ('%s')\
+        \ y un origen del que leerlos ('%s'): no se puede determinar el conjunto"
+      visibility: public
+      extends: IllegalArgumentException
     interfaces:
     - name: WorkdirResolver
       stereotype: port
@@ -8682,6 +9107,17 @@ modules:
       exposes:
       - signature: "resolve(): QuizInstructionJudgeConfig"
       visibility: internal
+    - name: QuizInstructionCorrectionConfigResolver
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "resolve(Map<String,String> env): QuizInstructionCorrectionConfig"
+      visibility: public
+    - name: ReevaluationQuizSetResolver
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "resolve(String enumeratedIds,String origin): Set<String>"
     implementations:
     - name: DefaultWorkdirResolver
       visibility: public
@@ -8821,6 +9257,13 @@ modules:
       implements:
       - LagenModeResolver
     - name: DefaultLagenConfigResolver
+      requiresInject:
+      - name: llmProviderResolver
+        type: LlmProviderResolver
+        description: "Juzga la configuracion contra el proveedor declarado en la misma\
+          \ pasada en que la interpreta, sin emitir ninguna consulta. Es el mismo\
+          \ objeto que usa la validacion de consigna: una sola implementacion del\
+          \ criterio, dos consumidores."
       types:
       - Component
       visibility: public
@@ -8885,6 +9328,45 @@ modules:
     - name: DefaultQuizInstructionJudgeConfigResolver
       implements:
       - QuizInstructionJudgeConfigResolver
+    - name: EnvQuizInstructionCorrectionConfigResolver
+      visibility: public
+      implements:
+      - QuizInstructionCorrectionConfigResolver
+    - name: DefaultReevaluationQuizSetResolver
+      visibility: public
+      handwrittenTests:
+      - name: should resolve the same set of quiz ids whether they are enumerated
+          in the request or read from the origin the request names
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R019
+      - name: should count a quiz id declared more than once as a single id of the
+          set
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R019
+      - name: "should discard the surplus separators, the spaces around each id and\
+          \ the blank entries instead of keeping them as ids"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R019
+      - name: "should reject the request naming the origin it could not read, instead\
+          \ of returning an empty set"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R019
+      - name: "should return an empty set when the origin it read carries no id at\
+          \ all, leaving the rejection to the run request"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R019
+      - name: should reject the request that enumerates ids and names an origin to
+          read them from at the same time
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R019
+      implements:
+      - ReevaluationQuizSetResolver
 - name: nlp-infrastructure
   description: "Infrastructure module for NLP processing. Provides SpaCy-backed tokenization\
     \ behind a factory, with internal caching. Only the factory and configuration\
@@ -9440,6 +9922,10 @@ modules:
         rule: F-CDIFF-R002
     implements:
     - ActiveAnalysisSelectionStore
+  - name: FileSystemQuizInstructionCorrectionRunStore
+    visibility: public
+    implements:
+    - QuizInstructionCorrectionRunStore
   scope: internal
 - name: revision-domain
   description: "Domain module for the revision phase of the refinement pipeline. Consumes\
@@ -9506,6 +9992,12 @@ modules:
       description: La tarea revisada es de un DiagnosisKind para el cual no existe
         contrato de correctionContext (R004). El override no tiene como afectar al
         bypass; se rechaza la invocacion sin persistir artefacto.
+    - name: DIAGNOSIS_NOT_SUSTAINED
+      description: |
+        La revalidacion previa declaro que el ejercicio original ya cumple su consigna, asi que no se genero ningun candidato y no se corrigio nada (F-QICOR-R009). NO es un fracaso: no se intento y no reprobo nada, el problema simplemente ya no existe. Se mantiene separado de NO_ACCEPTABLE_CANDIDATE porque el operador reacciona de forma opuesta ante los dos — uno es trabajo que se evaporo, el otro es trabajo que hay que hacer a mano.
+    - name: NO_ACCEPTABLE_CANDIDATE
+      description: |
+        Se agotaron los intentos y ningun candidato paso el catalogo de criterios (F-QICOR-R006). Hubo gasto y hay criterios reprobados que informar. No se persiste artefacto, no se toca el curso y la tarea sigue disponible.
   - name: CourseElementSnapshot
     type: record
     fields:
@@ -9686,6 +10178,29 @@ modules:
         \ en el elementAfter (title->label + instructions sobre copia del knowledge\
         \ before). Nullable -> la factory wirea DefaultKnowledgeTitleProposalDeriver.\
         \ Espejo de lemmaAbsenceProposalDeriver (F-KTLR-R005, R006, R007)."
+    - name: quizInstructionStrategyRegistry
+      type: QuizInstructionProposalStrategyRegistry
+      description: Resuelve la estrategia activa de correccion de consigna. Sin ella
+        las tareas QUIZ_INSTRUCTION siguen cayendo al bypass de identidad.
+    - name: candidateAssessor
+      type: CandidateAssessor
+      description: "Somete cada candidato al catalogo de criterios y decide si se\
+        \ propone (F-QICOR-R004, R005, R006)."
+    - name: quizInstructionComplianceChecker
+      type: QuizInstructionComplianceChecker
+      description: "La misma validacion de consigna, usada por el reviser para revalidar\
+        \ el original antes de corregir (F-QICOR-R009). Es el mismo objeto que consume\
+        \ el criterio de cumplimiento del candidato; una sola definicion, dos puntos\
+        \ de invocacion."
+    - name: quizInstructionSubjectViewFactory
+      type: QuizInstructionSubjectViewFactory
+      description: Arma la vista juzgada del ejercicio. Compartida por la revalidacion
+        del original y por la verificacion del corregido para que ambas mapeen los
+        mismos campos a las mismas entradas.
+    - name: quizInstructionCorrectionConfig
+      type: QuizInstructionCorrectionConfig
+      description: "Perillas de la correccion de consigna (intentos por tarea, tope\
+        \ por corrida). Configurables, nunca cableadas."
   - name: ApprovalMode
     type: enum
     fields:
@@ -9857,6 +10372,30 @@ modules:
         \ nodeId/diagnosisKind no coinciden con la tarea persistida)."
     message: "correctionContext override rejected: %s"
     extends: RuntimeException
+  - name: DiagnosisNotSustainedException
+    type: exception
+    fields:
+    - name: quizId
+      type: String
+    - name: taskId
+      type: String
+    message: "El diagnostico de consigna del ejercicio '%s' ya no se sostiene: la\
+      \ validacion vigente declara que cumple"
+    visibility: public
+    extends: RuntimeException
+  - name: NoAcceptableCandidateException
+    type: exception
+    fields:
+    - name: quizId
+      type: String
+    - name: failedCriteria
+      type: List<CorrectionCriterion>
+    - name: taskId
+      type: String
+    message: "No se logro una correccion aceptable para el ejercicio '%s': reprobaron\
+      \ %s"
+    visibility: public
+    extends: RuntimeException
   interfaces:
   - name: Reviser
     stereotype: port
@@ -9986,6 +10525,45 @@ modules:
     - signature: "createCheck(): PreservationCheck"
     - signature: "createRepair(RevisionArtifactStore artifactStore): PreservationRepair"
     visibility: public
+  - name: QuizInstructionProposalStrategy
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "id(): StrategyId"
+    - signature: "handles(DiagnosisKind kind): boolean"
+    - signature: "propose(RefinementTask task, QuizInstructionCorrectionContext context,\
+        \ List<CriterionVerdict> previousVerdicts, int attempt): LemmaAbsenceQuizCandidate"
+    visibility: public
+  - name: QuizInstructionProposalStrategyRegistry
+    stereotype: service
+    sealed: true
+    exposes:
+    - signature: "active(): Optional<QuizInstructionProposalStrategy>"
+    - signature: "byName(String name): Optional<QuizInstructionProposalStrategy>"
+    - signature: "listAll(): List<StrategyId>"
+    visibility: public
+  - name: QuizInstructionCorrectionRunner
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "run(QuizInstructionCorrectionRunRequest request): QuizInstructionCorrectionRunReport"
+    visibility: public
+  - name: QuizInstructionCorrectionRunnerFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(RevisionEngineConfig config, QuizInstructionCorrectionRunStore\
+        \ runStore, QuizInstructionCorrectionConfig correctionConfig): QuizInstructionCorrectionRunner"
+    visibility: public
+  - name: QuizInstructionCorrectionRunStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "save(QuizInstructionCorrectionRunReport report): String"
+    - signature: "load(String runId): Optional<QuizInstructionCorrectionRunReport>"
+    - signature: "listByPlan(String planId): List<QuizInstructionCorrectionRunReport>"
+    - signature: "latest(): Optional<QuizInstructionCorrectionRunReport>"
+    visibility: public
   patterns:
   - type: Strategy
     implementations:
@@ -10033,6 +10611,14 @@ modules:
         type: String
         description: Nombre de la estrategia activa; resuelto via byName(). Nullable
           -> active() vacio -> el reviser reporta sin-estrategia (F-KTLR-R010).
+    - name: QuizInstructionProposalStrategyRegistryConfig
+      type: record
+      fields:
+      - name: strategies
+        type: List<QuizInstructionProposalStrategy>
+      - name: activeStrategyName
+        type: String
+      visibility: public
     implementations:
     - name: DefaultRevisionEngineFactory
       types:
@@ -11092,6 +11678,127 @@ modules:
           rule: F-KTLR-R007
       implements:
       - KnowledgeTitleProposalDeriver
+    - name: QuizInstructionReviser
+      requiresInject:
+      - name: strategyRegistry
+        type: QuizInstructionProposalStrategyRegistry
+      - name: deriver
+        type: LemmaAbsenceProposalDeriver
+      - name: assessor
+        type: CandidateAssessor
+      - name: complianceChecker
+        type: QuizInstructionComplianceChecker
+      - name: subjectViewFactory
+        type: QuizInstructionSubjectViewFactory
+      - name: config
+        type: QuizInstructionCorrectionConfig
+      handwrittenTests:
+      - name: should propose a correction whose previous state is the quiz as it stands
+          in the course and whose proposed state is a different quiz
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R001
+      - name: "should take charge of the quiz-instruction diagnosis and of no other,\
+          \ so its tasks stop resolving to the identity revision"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R001
+      - name: should leave no proposal and report the failure naming at least one
+          failed criterion when the attempts were exhausted without an acceptable
+          candidate
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
+      - name: should discard the best candidate it produced instead of proposing one
+          that failed a criterion
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
+      - name: "should stop generating candidates once the configured attempt limit\
+          \ is reached, instead of retrying indefinitely"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
+      - name: should end the task as a fallen diagnosis without generating a single
+          candidate when the current validation declares the original quiz already
+          compliant
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R009
+      - name: should carry on with the correction when the current validation confirms
+          the original quiz still breaches its instruction
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R009
+      implements:
+      - Reviser
+    - name: DefaultQuizInstructionProposalStrategyRegistry
+      requiresInject:
+      - name: config
+        type: QuizInstructionProposalStrategyRegistryConfig
+      visibility: public
+      implements:
+      - QuizInstructionProposalStrategyRegistry
+    - name: DefaultQuizInstructionCorrectionRunner
+      requiresInject:
+      - name: revisionEngine
+        type: RevisionEngine
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: runStore
+        type: QuizInstructionCorrectionRunStore
+      - name: config
+        type: QuizInstructionCorrectionConfig
+      handwrittenTests:
+      - name: should touch at most the configured number of quiz-instruction tasks
+          and finish without error when the plan holds more tasks than the cap
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R008
+      - name: should name the tasks the cap left out and leave them available for
+          the next run
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R008
+      - name: should declare no task as left out when the plan holds fewer quiz-instruction
+          tasks than the cap
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R008
+      - name: "should report the four task outcomes in four separate counts when a\
+          \ single run mixes a proposed correction, one not achieved, a fallen diagnosis\
+          \ and a task not attempted"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R008
+      - name: should fall back to the configured default cap when the run request
+          does not state one
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R008
+      - name: should not spend the run cap on plan tasks whose diagnosis is not a
+          quiz-instruction breach
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R008
+      - name: "should report a task whose every candidate failed as a correction not\
+          \ achieved, naming the criteria that failed, and leave the task available\
+          \ for another run"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
+      - name: "should report a task whose diagnosis no longer holds with no failed\
+          \ criterion and no generation attempt, in a count apart from the corrections\
+          \ not achieved"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R009
+      implements:
+      - QuizInstructionCorrectionRunner
+    - name: DefaultQuizInstructionCorrectionRunnerFactory
+      visibility: public
+      implements:
+      - QuizInstructionCorrectionRunnerFactory
   - name: lemmaabsence
     description: "Proposal-strategy SPI for LEMMA_ABSENCE. Public so the composition\
       \ root and revision-infrastructure can both instantiate strategies and the canned\
@@ -12291,6 +12998,544 @@ modules:
       visibility: public
       implements:
       - PreservationFactory
+  - name: candidatecriteria
+    description: |
+      Catalogo de criterios que un ejercicio candidato debe cumplir para poder proponerse, y el veredicto por criterio. DELIBERADAMENTE NEUTRO: el puerto no menciona violaciones, ni tarea, ni diagnostico — habla de un original y un candidato. Esa neutralidad no es elegancia. La fidelidad de traduccion y la resolubilidad ya se juzgan hoy en el nodo eval_quality del grafo de lemma-absence, asi que el criterio vive en dos lugares hasta que lemma-absence adopte este puerto; diseñarlo neutro ahora es lo que vuelve esa adopcion una migracion y no un rediseño.
+    visibility: public
+    models:
+    - name: CorrectionCriterion
+      type: enum
+      fields:
+      - name: SCOPED_EDIT
+        description: El cambio se limita a lo que las violaciones señalan; lo no señalado
+          vuelve identico (F-QICOR-R003).
+      - name: LENGTH_IN_RANGE
+        description: "Longitud dentro del rango objetivo del nivel, medida con el\
+          \ mismo criterio de la auditoria (F-QICOR-R004 criterio 1)."
+      - name: LEVEL_VOCABULARY
+        description: No introduce palabras mal ubicadas ni fuera de catalogo que el
+          original no tuviera ya. Los flags preexistentes no bloquean (F-QICOR-R004
+          criterio 2).
+      - name: DISTINCTNESS
+        description: No se confunde con los hermanos del knowledge ni con el resto
+          del curso (F-QICOR-R004 criterio 3).
+      - name: FAITHFUL_TRANSLATION
+        description: Traduccion fiel al español de la oracion propuesta (F-QICOR-R004
+          criterio 4). Criterio de juicio.
+      - name: SOLVABLE_SAME_KIND
+        description: Sigue siendo resoluble y conserva el tipo de ejercicio del original
+          (F-QICOR-R004 criterio 5). Criterio de juicio.
+      - name: INSTRUCTION_COMPLIANCE
+        description: El ejercicio corregido cumple su consigna segun la misma validacion
+          que detecto el incumplimiento (F-QICOR-R005). Unico valor propio de la correccion
+          de consigna; los demas aplican a cualquier correccion de ejercicio.
+      visibility: public
+    - name: CriterionOutcome
+      type: enum
+      fields:
+      - name: PASSED
+      - name: FAILED
+        description: El criterio se evaluo y el candidato lo reprobo. Bloquea la propuesta
+          y se nombra en el fallo (F-QICOR-R006).
+      - name: NOT_EVALUABLE
+        description: "El criterio no se pudo evaluar (evaluador caido, medicion no\
+          \ disponible). Bloquea igual —no se propone lo que no se pudo verificar—\
+          \ pero es un desenlace distinto de reprobar, y se informa como tal."
+      visibility: public
+    - name: CriterionVerdict
+      type: record
+      fields:
+      - name: criterion
+        type: CorrectionCriterion
+      - name: outcome
+        type: CriterionOutcome
+      - name: detail
+        type: String
+        description: Que se midio y por que reprobo. Alimenta el reintento informado
+          y el mensaje de fallo al operador.
+      visibility: public
+    - name: CandidateAssessmentInput
+      type: record
+      fields:
+      - name: subjectRef
+        type: String
+      - name: sourceAuditId
+        type: String
+        description: Ata la comparacion de distincion al mismo analisis del que salio
+          la tarea.
+      - name: original
+        type: CourseElementSnapshot
+        description: "El ejercicio tal como esta hoy en el curso. Es el piso a superar,\
+          \ no el vacio."
+      - name: candidate
+        type: CourseElementSnapshot
+        description: "El ejercicio corregido, ya derivado."
+      - name: cefrLevel
+        type: CefrLevel
+      - name: topicLabel
+        type: String
+      - name: knowledgeTitle
+        type: String
+      - name: knowledgeInstructions
+        type: String
+      - name: cefrLevelLabel
+        type: String
+        description: "Label verbatim del milestone, necesario para que el criterio\
+          \ de cumplimiento reconstruya la huella exacta."
+      - name: sentenceMode
+        type: SentenceMode
+      - name: siblingQuizSentences
+        type: List<String>
+      - name: signalledFragments
+        type: List<String>
+        description: "Fragmentos que el diagnostico señalo y que el candidato tiene\
+          \ permitido tocar. Lista vacia significa que ningun fragmento fue señalado,\
+          \ no que todo este permitido."
+      visibility: public
+    - name: CandidateAssessment
+      type: record
+      fields:
+      - name: accepted
+        type: boolean
+        description: Verdadero solo si todos los criterios del catalogo dieron PASSED.
+      - name: verdicts
+        type: List<CriterionVerdict>
+        description: "Un veredicto por criterio evaluado, en orden de evaluacion.\
+          \ El primero no-PASSED corta la evaluacion, asi que la lista tambien dice\
+          \ hasta donde se llego."
+      visibility: public
+    - name: QuizSimilarity
+      type: record
+      fields:
+      - name: quizId
+        type: String
+      - name: quizSentence
+        type: String
+      - name: score
+        type: double
+        description: Similitud entre 0 y 1. El 1 es coincidencia total.
+      visibility: public
+    - name: CandidateCriteriaConfig
+      type: record
+      fields:
+      - name: tokenizer
+        type: NlpTokenizer
+        description: "La misma tokenizacion de la auditoria. Medicion real, no aproximacion\
+          \ (F-QICOR-R004)."
+      - name: sentenceLengthConfig
+        type: SentenceLengthConfig
+        description: El mismo rango objetivo por nivel que aplica la auditoria (F-SLEN-R002).
+      - name: lexicalEvaluator
+        type: SentenceLexicalEvaluator
+        description: El mismo analisis lexico de la auditoria (FEAT-CLEX).
+      - name: complianceChecker
+        type: QuizInstructionComplianceChecker
+        description: La misma validacion de consigna que detecto el incumplimiento
+          (F-QICOR-R005).
+      - name: subjectViewFactory
+        type: QuizInstructionSubjectViewFactory
+        description: Arma la vista juzgada del candidato con el mismo mapeo con el
+          que el reviser arma la del original.
+      - name: judgmentEvaluators
+        type: List<CandidateCriterionEvaluator>
+        description: "Evaluadores de criterios de juicio (traduccion fiel, resolubilidad)\
+          \ aportados por la infraestructura. Vacia significa que esos criterios no\
+          \ se evaluan y el catalogo activo se reduce."
+      - name: siblingSimilarityThreshold
+        type: Double
+        description: Umbral de confusion con los hermanos del knowledge. Nullable;
+          la factory sustituye con el default.
+      - name: courseSimilarityThreshold
+        type: Double
+        description: Umbral de la comparacion aproximada contra el resto del curso.
+          Nullable.
+      - name: courseWideDistinctness
+        type: Boolean
+        description: "Si la comparacion se extiende mas alla de los hermanos (DOUBT-DISTINCION-ALCANCE,\
+          \ opcion A). Nullable."
+      - name: auditReportStore
+        type: AuditReportStore
+        description: |
+          Fuente de los ejercicios contra los que se compara la distincion. Reemplaza al campo quizCorpus, que pedia a la composition root una instancia de CourseQuizCorpus cuya unica implementacion vive package-private dentro del paquete interno candidatecriteriaengine: el carrier exigia un tipo inalcanzable para quien tiene que llenarlo. Abrir esa implementacion habria perforado el paquete interno sobre el que se apoya el seam del catalogo, asi que se invierte la direccion — el carrier pide el puerto que la composition root ya tiene cableado (AuditReportStore) y la factory construye el corpus adentro, donde el criterio sigue recibiendolo por inyeccion sin que nadie afuera vea la clase.
+      visibility: public
+    - name: CandidateCriteriaDefaults
+      type: record
+      fields:
+      - name: siblingSimilarityThreshold
+        type: double
+      - name: courseSimilarityThreshold
+        type: double
+      - name: courseWideDistinctness
+        type: boolean
+      visibility: public
+    interfaces:
+    - name: CandidateCriterionEvaluator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "criterion(): CorrectionCriterion"
+      - signature: "evaluate(CandidateAssessmentInput input): CriterionVerdict"
+      visibility: public
+    - name: CandidateAssessor
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "assess(CandidateAssessmentInput input): CandidateAssessment"
+      - signature: "catalog(): List<CorrectionCriterion>"
+      visibility: public
+    - name: CourseQuizCorpus
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "mostSimilar(String sourceAuditId, String candidateSentence, String\
+          \ excludedQuizId): Optional<QuizSimilarity>"
+      visibility: public
+    - name: CandidateCriteriaFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(CandidateCriteriaConfig config): CandidateAssessor"
+      visibility: public
+  - name: candidatecriteriaengine
+    description: Motor del catalogo de criterios. Solo la factory es publica; cada
+      criterio es package-private y se alcanza unicamente por el assessor. Los criterios
+      deterministas llaman a la medicion real de la auditoria en vez de reimplementarla
+      o aproximarla.
+    visibility: internal
+    implementations:
+    - name: DefaultCandidateCriteriaFactory
+      visibility: public
+      implements:
+      - CandidateCriteriaFactory
+    - name: DefaultCandidateAssessor
+      requiresInject:
+      - name: evaluatorsByCriterion
+        type: "Map<CorrectionCriterion,CandidateCriterionEvaluator>"
+        description: Registro por clave. Un criterio sin evaluador registrado sale
+          del catalogo activo en vez de aprobar por omision.
+      handwrittenTests:
+      - name: should accept a candidate only when every criterion of the active catalog
+          returned a passing verdict
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      - name: "should refuse a candidate as soon as one criterion returns a failing\
+          \ verdict, whichever criterion it is"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      - name: "should refuse a candidate whose criterion could not be evaluated, instead\
+          \ of letting an unverified candidate through"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      - name: should carry in the assessment the criterion that blocked the candidate
+          together with the detail of why it failed
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
+      implements:
+      - CandidateAssessor
+    - name: ScopedEditCriterion
+      handwrittenTests:
+      - name: should pass a candidate that changed only the part a violation signalled
+          and returned every other part character for character
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R003
+      - name: should fail a candidate that rewrote a part no violation signalled
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R003
+      - name: should fail a candidate that altered the accepted options of a gap no
+          violation implicated
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R003
+      - name: should fail any candidate that differs from the original when the diagnosis
+          signalled no fragment at all
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R003
+      implements:
+      - CandidateCriterionEvaluator
+    - name: LengthInRangeCriterion
+      requiresInject:
+      - name: tokenizer
+        type: NlpTokenizer
+      - name: sentenceLengthConfig
+        type: SentenceLengthConfig
+      handwrittenTests:
+      - name: should fail a candidate whose corrected sentence falls outside the token
+          range its CEFR level targets
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      - name: "should measure the candidate with the same tokenizer and the same level\
+          \ range the audit applies, and pass it when the count lands inside"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      implements:
+      - CandidateCriterionEvaluator
+    - name: LevelVocabularyCriterion
+      requiresInject:
+      - name: lexicalEvaluator
+        type: SentenceLexicalEvaluator
+      - name: tokenizer
+        type: NlpTokenizer
+      handwrittenTests:
+      - name: should fail a candidate that introduces a word misplaced for the level
+          that the original quiz did not have
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      - name: should fail a candidate that introduces an out-of-catalog word that
+          the original quiz did not have
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      - name: should pass a candidate that keeps a lexical flag the original already
+          had and adds none of its own
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      implements:
+      - CandidateCriterionEvaluator
+    - name: DistinctnessCriterion
+      requiresInject:
+      - name: quizCorpus
+        type: CourseQuizCorpus
+      - name: siblingSimilarityThreshold
+        type: double
+      - name: courseSimilarityThreshold
+        type: double
+      - name: courseWideDistinctness
+        type: boolean
+      handwrittenTests:
+      - name: should fail a candidate that becomes confusable with another quiz of
+          the same knowledge
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      - name: should fail a candidate that collides with a quiz elsewhere in the course
+          when the comparison reaches beyond the knowledge
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      - name: should not count the quiz being corrected as a collision with itself
+          and should pass a candidate distinct from its siblings
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      implements:
+      - CandidateCriterionEvaluator
+    - name: InstructionComplianceCriterion
+      requiresInject:
+      - name: complianceChecker
+        type: QuizInstructionComplianceChecker
+      - name: subjectViewFactory
+        type: QuizInstructionSubjectViewFactory
+      handwrittenTests:
+      - name: should pass a candidate that the instruction validation declares compliant
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R005
+      - name: should fail a candidate that resolved only part of the violations and
+          still breaches its instruction
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R005
+      - name: "should submit the corrected quiz as a whole to the instruction validation,\
+          \ with its parts, its level and its knowledge instruction, instead of checking\
+          \ the violations one by one"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R005
+      - name: "should refuse a candidate whose instruction validation could not be\
+          \ obtained, instead of assuming that it complies"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R005
+      implements:
+      - CandidateCriterionEvaluator
+    - name: AuditReportQuizCorpus
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      implements:
+      - CourseQuizCorpus
+  - name: quizinstruction
+    description: |
+      SPI de la correccion de consigna. Espejo de los packages lemmaabsence y knowledgetitle: aloja el puerto del generador de candidatos, sus carriers, la estrategia que delega en el puerto, las perillas de la correccion y el vocabulario de la corrida acotada. Publico para que la composition root y revision-infrastructure instancien generador y estrategia y los pasen al builder del registry.
+    visibility: public
+    models:
+    - name: QuizInstructionGeneratorResponse
+      type: record
+      fields:
+      - name: quizSentence
+        type: String
+      - name: translation
+        type: String
+      - name: rationale
+        type: String
+        description: "Explicacion breve de que se cambio y por que. Nullable; informativa,\
+          \ no participa de ningun criterio."
+      visibility: public
+    - name: QuizInstructionGenerationRequest
+      type: record
+      fields:
+      - name: context
+        type: QuizInstructionCorrectionContext
+      - name: previousVerdicts
+        type: List<CriterionVerdict>
+        description: Que reprobo el intento anterior y por que. Vacia en el primer
+          intento.
+      - name: attempt
+        type: int
+        description: "Numero de intento, empezando en 1."
+      visibility: public
+    - name: QuizInstructionCorrectionConfig
+      type: record
+      fields:
+      - name: maxAttempts
+        type: Integer
+        description: "Intentos por tarea antes de declarar que no se logro (DOUBT-REINTENTOS,\
+          \ opcion A). Nullable; la factory sustituye con el default 3."
+      - name: maxCorrectionsPerRun
+        type: Integer
+        description: "Tope de tareas que una corrida TOCA, no solo de las que corrige:\
+          \ una tarea cuyo diagnostico se cae consume tope igual, porque su revalidacion\
+          \ es una consulta pagada (F-QICOR-R008, DOUBT-REVALIDACION-PRESUPUESTO opcion\
+          \ A). Nullable; default 20."
+      visibility: public
+    - name: QuizInstructionCorrectionDefaults
+      type: record
+      fields:
+      - name: maxAttempts
+        type: int
+      - name: maxCorrectionsPerRun
+        type: int
+      visibility: public
+    - name: QuizInstructionCorrectionRunRequest
+      type: record
+      fields:
+      - name: planId
+        type: String
+      - name: coursePath
+        type: Path
+      - name: maxCorrections
+        type: Integer
+        description: Tope explicito de la corrida. Nullable; cae al default de la
+          configuracion.
+      visibility: public
+    - name: QuizInstructionTaskOutcomeKind
+      type: enum
+      fields:
+      - name: PROPOSED
+        description: Se logro una correccion aceptable y quedo una propuesta revisable.
+      - name: NOT_CORRECTED
+        description: "Se intento, se gasto, y ningun candidato paso los criterios.\
+          \ Hay criterios reprobados que informar (F-QICOR-R006)."
+      - name: DIAGNOSIS_STALE
+        description: "La revalidacion previa declaro que el ejercicio ya cumple, asi\
+          \ que no se genero candidato alguno (F-QICOR-R009). Hubo un gasto minimo\
+          \ y una buena noticia. Mezclarlo con NOT_CORRECTED le diria al operador\
+          \ que tiene decenas de correcciones imposibles cuando lo que tiene son decenas\
+          \ de diagnosticos viejos que se cayeron solos."
+      - name: NOT_ATTEMPTED
+        description: No se intento por tope de corrida. No hubo gasto y no hay motivo
+          que informar.
+      - name: FAILED
+        description: "La correccion se interrumpio antes de poder juzgar (servicio\
+          \ caido, timeout). Sin propuesta y sin tocar el curso, con el criterio de\
+          \ F-KTLR-R010. No es uno de los cuatro recuentos declarados de R008 pero\
+          \ se cuenta para que la aritmetica del reporte cierre."
+      visibility: public
+    - name: QuizInstructionTaskOutcome
+      type: record
+      fields:
+      - name: taskId
+        type: String
+      - name: nodeId
+        type: String
+      - name: kind
+        type: QuizInstructionTaskOutcomeKind
+      - name: failedCriteria
+        type: List<CorrectionCriterion>
+        description: "Criterios reprobados. Poblada en NOT_CORRECTED; vacia en los\
+          \ demas desenlaces, incluido DIAGNOSIS_STALE, donde no reprobo ninguno porque\
+          \ no hubo candidato."
+      - name: detail
+        type: String
+      - name: proposalId
+        type: String
+        description: Propuesta emitida. Poblado solo en PROPOSED.
+      - name: attempts
+        type: int
+        description: "Cuantos intentos de generacion consumio la tarea. Cero en NOT_ATTEMPTED\
+          \ y tambien en DIAGNOSIS_STALE, que es lo que hace verificable que un diagnostico\
+          \ caido no gasto ninguna correccion."
+      visibility: public
+    - name: QuizInstructionCorrectionRunReport
+      type: record
+      fields:
+      - name: runId
+        type: String
+      - name: planId
+        type: String
+      - name: sourceAuditId
+        type: String
+      - name: startedAt
+        type: Instant
+      - name: finishedAt
+        type: Instant
+      - name: maxCorrections
+        type: int
+      - name: eligibleTasks
+        type: int
+        description: Tareas QUIZ_INSTRUCTION disponibles en el plan. Es el denominador
+          sin el cual el resto de los numeros mienten.
+      - name: attempted
+        type: int
+        description: "Tareas TOCADAS por la corrida, es decir las que consumieron\
+          \ tope: incluye las que solo se revalidaron y resultaron caidas."
+      - name: proposed
+        type: int
+      - name: notCorrected
+        type: int
+      - name: diagnosisStale
+        type: int
+        description: "Tareas cuyo diagnostico ya no se sostenia. Recuento propio y\
+          \ no sumado a notCorrected, por exigencia expresa de F-QICOR-R008 y F-QICOR-R009."
+      - name: failed
+        type: int
+        description: Tareas interrumpidas antes de poder juzgar. Permite que proposed
+          + notCorrected + diagnosisStale + failed cierre contra attempted.
+      - name: notAttempted
+        type: List<String>
+        description: "Ids de las tareas que el tope dejo afuera, nominadas y no solo\
+          \ contadas. Siguen disponibles para la corrida siguiente."
+      - name: outcomes
+        type: List<QuizInstructionTaskOutcome>
+      visibility: public
+    interfaces:
+    - name: QuizInstructionCandidateGenerator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "generate(QuizInstructionGenerationRequest request): QuizInstructionGeneratorResponse"
+      visibility: public
+    implementations:
+    - name: QuizInstructionAgentStrategy
+      requiresInject:
+      - name: generator
+        type: QuizInstructionCandidateGenerator
+      - name: providerId
+        type: String
+      visibility: public
+      implements:
+      - QuizInstructionProposalStrategy
 - name: revision-infrastructure
   description: "Infrastructure adapter for the revision phase. Provides the LLM-backed\
     \ implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence\
@@ -12313,6 +13558,8 @@ modules:
   - revision-domain
   - refiner-domain
   - agent-runtime-infrastructure
+  - audit-domain
+  - course-domain
   allowedClients:
   - audit-cli
   patterns:
@@ -12351,8 +13598,8 @@ modules:
           \ (F-LAGEN-R009). Required."
       - name: endpoint
         type: String
-        description: "OpenAI-compatible chat/completions base URL, e.g. 'http://localhost:1234/v1'\
-          \ for the LM Studio default. Required."
+        description: |
+          Direccion de servicio del proveedor. Exigible solo cuando la clase del proveedor declarado la necesita (F-LAGEN-R015, mismo criterio que F-QINST-R016): un proveedor que se autentica con la sesion local no tiene direccion, y exigirsela es pedir un dato inexistente. Nullable. Declararla igual para un proveedor que no la usa no invalida la configuracion (DOUBT-DIRECCION-SOBRANTE, opcion A).
       - name: apiKey
         type: String
         description: "Bearer credential. Nullable: when absent, the adapter sends\
@@ -12681,6 +13928,133 @@ modules:
         type: AgentGraphRunner
       implements:
       - KnowledgeTitleAgentRuntimeLauncher
+  - name: quizinstructionagent
+    description: |
+      Adapter agente de la correccion de consigna. Espejo de knowledgetitleagent, con un unico factory seam que construye el generador respaldado por un grafo declarativo sobre el runtime compartido. El prompt de la correccion —edicion minima dirigida por la evidencia— vive en la definicion del agente y no aca; el adapter solo traduce el contexto a entradas, parsea el candidato y clasifica fallas de runtime preservando la categoria.
+    visibility: public
+    interfaces:
+    - name: QuizInstructionAgentGeneratorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config): QuizInstructionCandidateGenerator"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
+    - name: QuizInstructionAgentRuntimeLauncher
+      sealed: false
+      exposes:
+      - signature: "launch(String agentName, Map<String,String> inputs, ChatModel\
+          \ chatModel): RunState"
+      visibility: internal
+    - name: QuizInstructionAgentCandidateParser
+      sealed: false
+      exposes:
+      - signature: "parse(RunState runState, String quizId): QuizInstructionGeneratorResponse"
+      visibility: internal
+    - name: QuizInstructionAgentErrorClassifier
+      sealed: false
+      exposes:
+      - signature: "classify(RunState runState): LlmGenerationFailureCategory"
+      - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
+      visibility: internal
+    implementations:
+    - name: DefaultQuizInstructionAgentGeneratorFactory
+      visibility: public
+      implements:
+      - QuizInstructionAgentGeneratorFactory
+    - name: QuizInstructionAgentGenerator
+      requiresInject:
+      - name: agentRuntimeLauncher
+        type: QuizInstructionAgentRuntimeLauncher
+      - name: candidateParser
+        type: QuizInstructionAgentCandidateParser
+      - name: errorClassifier
+        type: QuizInstructionAgentErrorClassifier
+      - name: chatModel
+        type: ChatModel
+      - name: config
+        type: LagenConfig
+      - name: projectRoot
+        type: Path
+      implements:
+      - QuizInstructionCandidateGenerator
+    - name: DefaultQuizInstructionAgentCandidateParser
+      implements:
+      - QuizInstructionAgentCandidateParser
+    - name: DefaultQuizInstructionAgentErrorClassifier
+      implements:
+      - QuizInstructionAgentErrorClassifier
+    - name: SharedRuntimeQuizInstructionLauncher
+      requiresInject:
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      implements:
+      - QuizInstructionAgentRuntimeLauncher
+  - name: candidatejudgment
+    description: |
+      Evaluadores de los criterios de juicio (traduccion fiel, resolubilidad) respaldados por un grafo declarativo independiente del generador, para que el que juzga no sea el que genero y el candidato no se corrija a si mismo. La factory se indexa por CorrectionCriterion, que es un tipo neutro, de modo que este adapter sirve a cualquier correccion de ejercicio y no solo a la de consigna.
+    visibility: public
+    interfaces:
+    - name: CandidateJudgmentEvaluatorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config, CorrectionCriterion criterion): CandidateCriterionEvaluator"
+      visibility: public
+    - name: CandidateJudgmentRuntimeLauncher
+      sealed: false
+      exposes:
+      - signature: "launch(String agentName, Map<String,String> inputs, ChatModel\
+          \ chatModel): RunState"
+      visibility: internal
+    - name: CandidateJudgmentVerdictParser
+      sealed: false
+      exposes:
+      - signature: "parse(RunState runState, CorrectionCriterion criterion): CriterionVerdict"
+      visibility: internal
+    implementations:
+    - name: DefaultCandidateJudgmentEvaluatorFactory
+      visibility: public
+      implements:
+      - CandidateJudgmentEvaluatorFactory
+    - name: AgentCandidateJudgmentEvaluator
+      requiresInject:
+      - name: criterion
+        type: CorrectionCriterion
+      - name: agentRuntimeLauncher
+        type: CandidateJudgmentRuntimeLauncher
+      - name: verdictParser
+        type: CandidateJudgmentVerdictParser
+      - name: chatModel
+        type: ChatModel
+      - name: config
+        type: LagenConfig
+      handwrittenTests:
+      - name: should fail a candidate whose Spanish translation does not faithfully
+          render the corrected sentence
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      - name: should fail a candidate that stopped being solvable by the student or
+          that changed the exercise kind of the original
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      - name: should not return a passing verdict when the judgment could not be obtained
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      implements:
+      - CandidateCriterionEvaluator
+    - name: DefaultCandidateJudgmentVerdictParser
+      implements:
+      - CandidateJudgmentVerdictParser
+    - name: SharedRuntimeCandidateJudgmentLauncher
+      requiresInject:
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      implements:
+      - CandidateJudgmentRuntimeLauncher
 - name: evaluation-ledger-domain
   description: |
     FEAT-EVCOST. Capacidad general de resultados de evaluacion costosa reutilizables entre analisis. No sabe nada de auditoria, de cursos ni de LLMs: define la identidad de un resultado —evaluador + huella del contenido, y nada mas (F-EVCOST-R001)—, el registro append-only clave->payload opaco, y la coordinacion reanudable de una corrida (consultar lo registrado -> si falta, evaluar dentro del presupuesto -> registrar apenas se obtiene). La version del evaluador NO integra la identidad: es procedencia obligatoria que se registra junto a cada resultado y viaja con el en cada consulta, de modo que ningun cambio de version invalida, borra ni deja pendiente nada (F-EVCOST-R006, F-EVCOST-R008). Cada consumidor aporta tres cosas y nada mas: como construye el contenido (EvaluationSubject.content), como su evaluador se pronuncia (Evaluator -> EvaluationOutcome) y como interpreta su payload. La huella NO la calcula el consumidor: la deriva la sesion del propio mapa de contenido entregado al evaluador, de modo que F-EVCOST-R002 ("exactamente lo que el evaluador recibe, ni mas ni menos") queda garantizada por construccion y no por disciplina.
@@ -12831,6 +14205,8 @@ modules:
     - signature: "resolveForced(EvaluationSubject subject): EvaluationResolution"
     - signature: "coverage(): EvaluationCoverage"
     - signature: "consultedEvaluatorVersion(): Optional<String>"
+    - signature: "resolvePreferringNew(EvaluationSubject subject): EvaluationResolution"
+    - signature: "resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution"
   - name: EvaluationSessionFactory
     stereotype: factory
     sealed: false
@@ -12938,6 +14314,27 @@ modules:
         traceability:
           feature: FEAT-EVCOST
           rule: F-EVCOST-R008
+      - name: should reuse the registered result without consulting the evaluator
+          and without spending the run budget when the content is resolved without
+          consulting
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R018
+      - name: should leave the content pending without consulting the evaluator when
+          it is resolved without consulting and nothing is registered for it
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R018
+      - name: should consult the evaluator for content that already has a registered
+          result when a new evaluation is preferred for it
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R018
+      - name: should keep the registered result instead of leaving the content pending
+          when a new evaluation is preferred and the budget is already exhausted
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R018
       implements:
       - EvaluationSession
   - name: contentfingerprint
@@ -13119,6 +14516,76 @@ modules:
         type: AgentGraphRunnerConfig
       implements:
       - AgentDefinitionLocator
+  - name: llmprovider
+    description: |
+      Fuente unica del criterio de validez de una configuracion frente al proveedor de modelo que declara. Responde una sola pregunta —¿esta configuracion alcanza para dirigir una consulta a este proveedor?— y la responde igual para todos los consumidores.
+
+      Vive aca y no en ninguno de los consumidores por tres razones. Este modulo ya envuelve la libreria de agentes, que es donde estan `LlmFactory.isSubscriptionCli` y `LlmFactory.defaultBaseUrl`, o sea el conocimiento sobre clases de proveedor. No depende de nadie, asi que ningun consumidor invierte una dependencia para llegar. Y sus `allowedClients` ya son exactamente los tres modulos que necesitan el criterio.
+    visibility: public
+    models:
+    - name: LlmProviderClass
+      type: enum
+      fields:
+      - name: LOCAL_SESSION
+        description: Se autentica con la sesion local del usuario y se lo consulta
+          por la herramienta que deja instalada en la maquina. No exige ningun dato
+          de conexion.
+      - name: REMOTE_SERVICE
+        description: "Se lo alcanza por su direccion de servicio. Exige poder determinar\
+          \ esa direccion, y nada mas; la credencial no entra en la lista de exigidos."
+      visibility: public
+    - name: LlmProviderRejectionKind
+      type: enum
+      fields:
+      - name: UNSUPPORTED_PROVIDER
+        description: El proveedor declarado no es uno que el sistema sepa consultar.
+      - name: MISSING_REQUIRED_INPUT
+        description: Falta un dato que la clase de proveedor declarada exige.
+      visibility: public
+    - name: LlmProviderResolved
+      type: record
+      fields:
+      - name: providerName
+        type: String
+        description: "Nombre efectivo, no el declarado: sin declarar y declarado-igual-al-defecto\
+          \ producen el mismo proveedor."
+      - name: providerClass
+        type: LlmProviderClass
+      visibility: public
+      implements:
+      - LlmProviderResolution
+    - name: LlmProviderRejected
+      type: record
+      fields:
+      - name: providerName
+        type: String
+      - name: missingInput
+        type: String
+        description: "Nombre del dato ausente, tal como lo declara el operador de\
+          \ ese consumidor. Nulo cuando el motivo es UNSUPPORTED_PROVIDER: ahi no\
+          \ falta un dato, falta un proveedor consultable."
+      - name: kind
+        type: LlmProviderRejectionKind
+      visibility: public
+      implements:
+      - LlmProviderResolution
+    interfaces:
+    - name: LlmProviderResolution
+      stereotype: port
+      sealed: false
+      visibility: public
+    - name: LlmProviderResolver
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "resolve(String declaredProviderName, String declaredServiceAddress,\
+          \ String serviceAddressInputName): LlmProviderResolution"
+      visibility: public
+    implementations:
+    - name: DefaultLlmProviderResolver
+      visibility: public
+      implements:
+      - LlmProviderResolver
 - name: quiz-instruction-infrastructure
   description: |
     Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). El juez no tiene proveedor propio: admite las mismas clases de proveedor que el resto del sistema —incluidas las que se autentican con la sesion local del usuario y por eso no llevan direccion de servicio ni credencial— y juzga la validez de su configuracion contra el proveedor que ella declara (F-QINST-R016). Su version es procedencia, no vigencia: se deriva de la definicion del agente, del modelo y del proveedor efectivo, se estampa sobre cada veredicto nuevo y se declara en el informe, pero no decide que veredictos valen (F-QINST-R010). Cuando la definicion no se puede localizar el juez no enuncia version alguna —evaluatorVersion() devuelve Optional.empty()— y con eso queda tratado como no disponible por la propia sesion. Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
@@ -13176,81 +14643,28 @@ modules:
     description: |
       Motor del adaptador del juez. Solo la factory es publica; el juez, el resolutor de proveedor, el constructor de ChatModel y el resolutor de version son package-private. La disponibilidad del juez se decide en un solo lugar —QuizInstructionJudgeProviderResolver— que devuelve el proveedor efectivo (JudgeProviderResolved) o el motivo del rechazo (JudgeProviderRejected) con el dato que falta y el proveedor que lo exige, de modo que el mensaje del evaluador no disponible dice cual es el problema en lugar de "configuracion invalida" (F-QINST-R016). Como QuizInstructionAgentJudge solo se puede construir con un JudgeProviderResolved, una configuracion rechazada no puede producir un juez que consulte: la invariante 3 de F-QINST-R016 —con configuracion invalida no se emite ni una sola consulta— queda garantizada por construccion y no por una guarda que alguien pueda olvidar. El enrutamiento por clase de proveedor no se reimplementa aca: JudgeChatModelFactory delega en la libreria de agentes compartida, que ya elige entre shell-out a la herramienta local del proveedor de suscripcion y cliente compatible OpenAI, y conserva el listener del framework para que los transcripts de la conversacion queden en el log de la corrida. El resolutor de version no conoce rutas: le pide la definicion al mismo AgentDefinitionLocator con el que se construye el runner, asi que el digest de los archivos del agente se calcula siempre sobre la definicion que efectivamente se ejecuta (F-QINST-R010). Ese digest cubre agente + modelo + proveedor efectivo: dos consultas al mismo modelo por vias distintas no son la misma forma de preguntar, y como la version ya no invalida nada (F-EVCOST-R001), incluir el proveedor no cuesta re-evaluaciones y hace que la procedencia declarada en F-QINST-R005 diga la verdad completa. Cuando el locator responde AgentDefinitionUnresolved, el resolutor devuelve Optional.empty(): la ausencia de version se representa con un tipo y no con un prefijo reservado dentro del String, porque un String fabricado se registraria como procedencia legitima y contaminaria los recuentos de F-QINST-R005 de forma permanente.
     visibility: public
-    models:
-    - name: JudgeProviderClass
-      type: enum
-      fields:
-      - name: LOCAL_SESSION
-        description: |
-          Se autentica con la sesion local del usuario y se lo consulta por la herramienta que deja instalada en la maquina. No exige ningun dato de conexion: direccion de servicio y credencial no existen para esta clase.
-      - name: REMOTE_SERVICE
-        description: |
-          Se lo consulta por su direccion de servicio. Exige la direccion, y nada mas: la credencial no entra en la lista de exigidos.
-      visibility: internal
-      glossarySuggestions:
-      - name: Clase de proveedor del juez
-        technicalName: JudgeProviderClass
-        kind: integration-language-candidate
-        basedOn: instructionjudge/JudgeProviderClass
-        rationale: |
-          F-QINST-R016 introduce "clase de proveedor" como lenguaje del operador: es lo que decide que datos exige una configuracion y que respuesta da el sistema cuando faltan. Hoy vive solo en este adaptador; si otro evaluador costoso lo necesita, merece ser termino canonico.
-    - name: JudgeProviderResolved
-      type: record
-      fields:
-      - name: providerName
-        type: String
-        description: |
-          Nombre efectivo, no el declarado: "sin declarar" y "declarado igual al defecto" producen el mismo proveedor y por lo tanto la misma version.
-      - name: providerClass
-        type: JudgeProviderClass
-      visibility: internal
-      implements:
-      - JudgeProviderResolution
-    - name: JudgeProviderRejectionKind
-      type: enum
-      fields:
-      - name: UNSUPPORTED_PROVIDER
-        description: El proveedor declarado no es uno que el sistema sepa consultar.
-      - name: MISSING_REQUIRED_INPUT
-        description: Falta un dato que la clase de proveedor declarada exige.
-      visibility: internal
-    - name: JudgeProviderRejected
-      type: record
-      fields:
-      - name: providerName
-        type: String
-      - name: missingInput
-        type: String
-        description: |
-          Nombre del dato ausente que el proveedor declarado exige. Nulo cuando el motivo es UNSUPPORTED_PROVIDER: ahi no falta un dato, falta un proveedor consultable.
-      - name: kind
-        type: JudgeProviderRejectionKind
-      visibility: internal
-      implements:
-      - JudgeProviderResolution
     interfaces:
     - name: QuizInstructionJudgeVersionResolver
       sealed: false
       exposes:
-      - signature: "resolve(QuizInstructionJudgeConfig config,JudgeProviderResolved\
+      - signature: "resolve(QuizInstructionJudgeConfig config,LlmProviderResolved\
           \ provider): Optional<String>"
-      visibility: internal
-    - name: JudgeProviderResolution
-      sealed: false
-      visibility: internal
-    - name: QuizInstructionJudgeProviderResolver
-      sealed: false
-      exposes:
-      - signature: "resolve(QuizInstructionJudgeConfig config): JudgeProviderResolution"
       visibility: internal
     - name: JudgeChatModelFactory
       sealed: false
       exposes:
-      - signature: "create(QuizInstructionJudgeConfig config,JudgeProviderResolved\
-          \ provider): ChatModel"
+      - signature: "create(QuizInstructionJudgeConfig config,LlmProviderResolved provider):\
+          \ ChatModel"
       visibility: internal
     implementations:
     - name: DefaultQuizInstructionJudgeFactory
+      requiresInject:
+      - name: llmProviderResolver
+        type: LlmProviderResolver
+        description: "El criterio, ahora inyectado en vez de implementado aca. La\
+          \ invariante 3 de F-QINST-R016 —con configuracion invalida no se emite ni\
+          \ una consulta— se sigue garantizando por construccion, porque el juez solo\
+          \ se puede construir con un LlmProviderResolved."
       visibility: public
       handwrittenTests:
       - name: "should yield an evaluator that reports itself unavailable when the\
@@ -13300,9 +14714,10 @@ modules:
       - name: chatModelFactory
         type: JudgeChatModelFactory
       - name: provider
-        type: JudgeProviderResolved
-        description: |
-          El proveedor efectivo viaja como colaborador, no se re-deriva: el juez consulta y compone su version con exactamente el mismo proveedor que la factory acepto.
+        type: LlmProviderResolved
+        description: El proveedor efectivo viaja como colaborador y no se re-deriva.
+          Pasa a ser el tipo neutro porque el criterio que lo produjo dejo de ser
+          propio del juez.
       handwrittenTests:
       - name: "should report the conservative infrastructure verdict of the judge,\
           \ with null confidence and a judge output invalid violation, as an unusable\
@@ -13355,9 +14770,6 @@ modules:
           rule: F-QINST-R010
       implements:
       - QuizInstructionJudgeVersionResolver
-    - name: DefaultQuizInstructionJudgeProviderResolver
-      implements:
-      - QuizInstructionJudgeProviderResolver
     - name: SentinelAgentsJudgeChatModelFactory
       implements:
       - JudgeChatModelFactory
@@ -13648,6 +15060,11 @@ features:
     validation: AUTO_VALIDATED
 - id: FEAT-LAGEN
   code: F-LAGEN
+  journeys:
+  - id: F-LAGEN-J007
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
 - id: FEAT-PIPRE
   code: F-PIPRE
   journeys:
@@ -13897,6 +15314,10 @@ features:
     validation: AUTO_VALIDATED
     testModule: audit-application
     testPackage: com.learney.contentaudit.auditapplication
+  - id: F-QINST-J004
+    validation: AUTO_VALIDATED
+    testModule: audit-application
+    testPackage: com.learney.contentaudit.auditapplication
 - id: FEAT-EVCOST
   code: F-EVCOST
   journeys:
@@ -13909,6 +15330,17 @@ features:
     testModule: evaluation-ledger-infrastructure
     testPackage: com.learney.contentaudit.evaluationledgerinfrastructure
   - id: F-EVCOST-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+- id: FEAT-QICOR
+  code: F-QICOR
+  journeys:
+  - id: F-QICOR-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-QICOR-J002
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.journeys

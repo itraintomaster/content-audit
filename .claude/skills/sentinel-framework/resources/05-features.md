@@ -897,6 +897,11 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 | F-LAGEN-R012 | El modo de generacion fija (canned) entrega siempre el mismo candidato predeterminado | minor | - |
 | F-LAGEN-R013 | El operador puede elegir el modo de generacion; el default es dinamico y el modo fijo es opt-in explicito | critical | Modo de generacion no reconocido: '{modo}'. Valores admitidos: dinamico, fijo. |
 | F-LAGEN-R014 | La configuracion del operador se valida atomicamente antes de ejecutar cualquier operacion de revision | major | Configuracion invalida en '{perilla}': {detalle}. Corregir antes de re-ejecutar. |
+| F-LAGEN-R015 | La direccion de servicio se exige segun la clase del proveedor declarado, con el mismo criterio que la validacion de consigna | critical | No se pudo dirigir la consulta al proveedor '{proveedor}': falta '{dato}'. Declararlo, o pedir el modo de generacion fija para correr sin ningun proveedor. |
+
+**User Journeys:**
+
+- **F-LAGEN-J007**: La direccion de servicio se exige solo cuando el proveedor declarado la necesita
 
 ### FEAT-PIPRE: Preview de impacto de propuestas de revision sobre los scores de auditoria [F-PIPRE]
 
@@ -1413,6 +1418,8 @@ contradicen su propia instruccion y ningun analisis los detecta.
 | F-QINST-R015 | El analisis tiene un solo nombre: el que se lee es el que se escribe | critical | Se pidio '{opcion}' para el analisis '{nombre}' y la corrida lo ignoro: el informe publica ese analisis con ese mismo nombre |
 | F-QINST-R016 | El juez admite todo proveedor que el sistema sepa consultar; "invalida" se juzga contra el proveedor declarado | critical | El juez de consigna se declaro no disponible por falta de '{dato}', que el proveedor '{proveedor}' no utiliza |
 | F-QINST-R017 | El incumplimiento detectado se convierte en trabajo: cada ejercicio que incumple entra al plan como tarea | critical | El informe declara {n} ejercicios con incumplimiento de consigna y el plan generado a partir de el no contiene ninguna tarea de ese tipo |
+| F-QINST-R018 | La re-evaluacion se puede acotar a un conjunto de ejercicios declarado en el pedido | major | El pedido de re-evaluacion declara un conjunto vacio de ejercicios |
+| F-QINST-R019 | El conjunto se enumera en el pedido o se lee de un origen externo; un origen ilegible no es un conjunto vacio | major | No se pudo leer el origen '{origen}' declarado para el conjunto de ejercicios a re-evaluar |
 
 **User Journeys:**
 
@@ -1421,6 +1428,8 @@ contradicen su propia instruccion y ningun analisis los detecta.
 - **F-QINST-J002**: Auditar con cobertura parcial y reanudar en la corrida siguiente
 
 - **F-QINST-J003**: Ejecucion por omision, exclusion y re-evaluacion explicita
+
+- **F-QINST-J004**: Re-evaluar un conjunto de ejercicios declarado en el pedido
 
 ### FEAT-EVCOST: Resultados de evaluacion costosa reutilizables entre analisis [F-EVCOST]
 
@@ -1453,4 +1462,35 @@ del servicio |
 - **F-EVCOST-J002**: Una interrupcion o una falla no pierden el trabajo hecho
 
 - **F-EVCOST-J003**: Los resultados sobreviven a los informes y solo se rehacen a pedido
+
+### FEAT-QICOR: Correccion del incumplimiento de consigna de un ejercicio [F-QICOR]
+
+> **Que**: Una tarea de incumplimiento de consigna se convierte en una correccion
+propuesta del ejercicio —minima, que no empeora lo que ya estaba bien y que
+cumple la consigna— revisable y aprobable con el mismo flujo que las demas.
+
+**Por que**: Hoy el incumplimiento se detecta, se puntua y llega al plan como
+tarea, pero ahi se detiene: no hay forma de pedirle al sistema que proponga como
+arreglarlo, y el operador queda con una lista de problemas sin una sola
+correccion que aprobar.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-QICOR-R001 | Una tarea de incumplimiento de consigna produce una correccion propuesta y revisable | critical | La revision de la tarea de incumplimiento de consigna del ejercicio '{quizId}' no produjo ninguna correccion |
+| F-QICOR-R002 | La correccion se prepara sobre las violaciones señaladas, con su evidencia | critical | La correccion del ejercicio '{quizId}' se preparo sin las violaciones que registro su diagnostico de consigna |
+| F-QICOR-R003 | Corregir no es reescribir: el cambio se limita a lo que la violacion señala | critical | La correccion del ejercicio '{quizId}' modifico contenido que ninguna violacion de su consigna señala |
+| F-QICOR-R004 | No empeorar: el ejercicio corregido conserva todo lo que ya cumplia | critical | La correccion propuesta para el ejercicio '{quizId}' reprueba el criterio '{criterio}' que el ejercicio original cumplia |
+| F-QICOR-R005 | El resultado cumple la consigna, verificado con el mismo criterio que detecto el incumplimiento | critical | Se propuso para el ejercicio '{quizId}' una correccion que sigue incumpliendo su consigna |
+| F-QICOR-R006 | No lograr una correccion aceptable es un desenlace explicito, no un silencio ni una propuesta peor | critical | No se logro una correccion aceptable para el ejercicio '{quizId}': reprobaron {criterios} |
+| F-QICOR-R007 | Aprobar deja el ejercicio corregido en el curso; rechazar no cambia nada | critical | Se aprobo la correccion de consigna del ejercicio '{quizId}' y el curso conserva su contenido anterior |
+| F-QICOR-R008 | Cada corrida acota cuantas correcciones intenta y declara lo que quedo sin corregir | major | - |
+| F-QICOR-R009 | Antes de corregir se revalida el original; si ya cumple, no se corrige nada | critical | Se corrigio el ejercicio '{quizId}' a partir de un diagnostico de consigna que la validacion vigente ya no sostiene |
+
+**User Journeys:**
+
+- **F-QICOR-J001**: Corregir un ejercicio que incumple su consigna, y decidir la correccion
+
+- **F-QICOR-J002**: Corregir un tramo acotado de las tareas de consigna del plan
 

@@ -15,4 +15,8 @@ public interface EvaluationSession {
     EvaluationCoverage coverage();
 
     Optional<String> consultedEvaluatorVersion();
+
+    EvaluationResolution resolvePreferringNew(EvaluationSubject subject);
+
+    EvaluationResolution resolveWithoutConsulting(EvaluationSubject subject);
 }

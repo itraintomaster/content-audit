@@ -6,6 +6,7 @@ import com.learney.contentaudit.auditdomain.AuditableKnowledge;
 import com.learney.contentaudit.auditdomain.AuditableMilestone;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectView;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
@@ -281,5 +282,34 @@ public class DefaultQuizInstructionSubjectBuilderTest {
         Assertions.assertEquals("K label", subject.getContent().get("title"));
         Assertions.assertNotNull(subject.getContent().get("quiz"),
                 "R014: the quiz content must still be built without explicit instructions");
+    }
+
+    @Test
+    @DisplayName("should derive from a subject view the same judged content it derives from the audited quiz node, so a correction verified as compliant is verified with the criterion of the audit itself")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R005")
+    public void shouldDeriveFromASubjectViewTheSameJudgedContentItDerivesFromTheAuditedQuizNodeSoACorrectionVerifiedAsCompliantIsVerifiedWithTheCriterionOfTheAuditItself() {
+        List<SentencePartEntity> sentenceParts = parts("have eaten", "'ve eaten");
+        AuditableKnowledge knowledge = new AuditableKnowledge(
+                List.of(), "Present Perfect", "Complete with present perfect", true,
+                "k1", "Present Perfect", "PP", null, "Verb Tenses");
+        AuditableQuiz quiz = new AuditableQuiz(
+                List.of(), "q1", "Present Perfect", "Q1", null, List.of("I have eaten"), null,
+                "Complete with present perfect", sentenceParts);
+        AuditNode quizNode = quizNodeUnder("B1", knowledge, quiz);
+
+        // Same underlying quiz, expressed as the standalone view a correction would build
+        // instead of walking the audit tree: same milestone label, same knowledge-derived
+        // topic/title/instructions, same sentence parts.
+        QuizInstructionSubjectView view = new QuizInstructionSubjectView(
+                "q1", "B1", "Verb Tenses", "Present Perfect", "Complete with present perfect", sentenceParts);
+
+        EvaluationSubject fromNode = sut.build(quizNode);
+        EvaluationSubject fromView = sut.buildFromView(view);
+
+        Assertions.assertEquals(fromNode.getContent(), fromView.getContent(),
+                "R005: buildFromView must derive exactly the same judged content as build(quizNode) for the "
+                        + "same quiz, or the fingerprint computed while verifying a correction diverges from the "
+                        + "one the next audit computes and the verdict is never reused");
     }
 }

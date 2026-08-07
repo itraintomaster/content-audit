@@ -1,8 +1,11 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -24,4 +27,33 @@ class DefaultQuizInstructionScopeMatcher implements QuizInstructionScopeMatcher 
                 .map(reevaluationScope::equals)
                 .orElse(false);
     }
+
+    @Override
+    public QuizInstructionReevaluationDecision decide(AuditNode quizNode,EvaluationRunPolicy policy) {
+        // F-QINST-R018: a declared set of quizzes IS the re-evaluation request --
+        // it takes over from the by-area/whole-course mechanism entirely (the two
+        // are mutually exclusive by the time a policy reaches here, rejected
+        // earlier by DefaultQuizInstructionAnalyzerFactory.create()). Membership
+        // in the declared set decides everything; the quiz's own id is the only
+        // stable name by which it can be singled out.
+        Set<String> declaredSet = policy.getReevaluationSubjectIds();
+        if (declaredSet != null) {
+            return declaredSet.contains(quizId(quizNode))
+                    ? QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION
+                    : QuizInstructionReevaluationDecision.OUTSIDE_DECLARED_SET;
+        }
+
+        // R012: no set declared -- the older by-area (or whole-course) explicit
+        // re-evaluation mechanism applies, delegating to matches() so the two
+        // never diverge.
+        if (policy.isReevaluate() && matches(quizNode, policy.getReevaluationScope())) {
+            return QuizInstructionReevaluationDecision.AREA_REEVALUATION;
+        }
+        return QuizInstructionReevaluationDecision.ORDINARY;
+    }
+
+    private static String quizId(AuditNode quizNode) {
+        return quizNode.getEntity() instanceof AuditableQuiz quiz ? quiz.getId() : null;
+    }
+
 }

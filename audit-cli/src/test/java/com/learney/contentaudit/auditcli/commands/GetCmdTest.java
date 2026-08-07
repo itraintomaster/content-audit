@@ -16,6 +16,7 @@ import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
 import com.learney.contentaudit.refinerdomain.OutOfCatalogWordContext;
+import com.learney.contentaudit.refinerdomain.QuizInstructionCorrectionContext;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
@@ -23,6 +24,8 @@ import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
 import com.learney.contentaudit.refinerdomain.ScarceContentWord;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.RevisionProposal;
@@ -50,6 +53,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -4255,10 +4259,23 @@ public class GetCmdTest {
                 List.of(quizInstructionTask, sentenceLengthTask));
         when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
 
-        // QUIZ_INSTRUCTION has no CorrectionContextResolver registered — same situation as
-        // COCA_BUCKETS/LEMMA_RECURRENCE today — so 'get tasks' must not attempt to resolve a
-        // correction context for it, and the audit report backing that resolution is never
-        // even loaded. The listing must still succeed regardless.
+        // F-QICOR-R002 (re-homed 2026-08-04): QUIZ_INSTRUCTION now HAS a registered
+        // CorrectionContextResolver (QuizInstructionContextResolver) — unlike COCA_BUCKETS/
+        // LEMMA_RECURRENCE, which still have none. 'get tasks' must resolve the correction
+        // context for it (the violations are the raw material of the correction), so both
+        // the audit report and the resolver are stubbed here.
+        AuditReport report = new AuditReport();
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+        QuizInstructionCorrectionContext qiCtx = new QuizInstructionCorrectionContext(
+                "task-qi-001", "quiz-node-1", "He ____ [go|goes] to school.",
+                "El va a la escuela.", "He goes to school.", "Present Simple",
+                "Escribe la forma afirmativa", "Verbs", CefrLevel.A1, "A1", null,
+                List.of(new InstructionViolation("AGREEMENT", "El verbo debe concordar con el sujeto",
+                        "goes", "El sujeto es de tercera persona singular")),
+                "No cumple: 1 violacion", InstructionSeverity.MAJOR, List.of(), sourceAuditId);
+        when(correctionContextResolver.resolve(any(AuditReport.class), eq(quizInstructionTask)))
+                .thenReturn(Optional.of(qiCtx));
+
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
                 Optional.empty(), Optional.empty(), Optional.of(DiagnosisKind.QUIZ_INSTRUCTION));
@@ -4279,12 +4296,18 @@ public class GetCmdTest {
                 "Expected the QUIZ_INSTRUCTION task in the filtered listing: " + output);
         assertFalse(output.contains("task-sl-001"),
                 "Expected the SENTENCE_LENGTH task to be excluded by --diagnosis QUIZ_INSTRUCTION: " + output);
+        // F-QICOR-R002: the violation and its constraint/evidence/explanation must be
+        // present in the JSON output, not just an empty/omitted correctionContext key.
+        assertTrue(output.contains("correctionContext"),
+                "Expected a resolved correctionContext for the QUIZ_INSTRUCTION task: " + output);
+        assertTrue(output.contains("El sujeto es de tercera persona singular"),
+                "Expected the violation's explanation to be present in the JSON output: " + output);
 
-        // No correction context is attempted for either task: QUIZ_INSTRUCTION has no
-        // registered resolver (same as COCA_BUCKETS/LEMMA_RECURRENCE), and the SENTENCE_LENGTH
-        // task was filtered out of the listing entirely, so it is never even considered.
-        verify(correctionContextResolver, never()).resolve(any(AuditReport.class), eq(quizInstructionTask));
+        // The correction context IS resolved for the listed QUIZ_INSTRUCTION task
+        // (F-QICOR-R002); the SENTENCE_LENGTH task was filtered out of the listing
+        // entirely by --diagnosis, so it is never even considered.
+        verify(correctionContextResolver, times(1)).resolve(any(AuditReport.class), eq(quizInstructionTask));
         verify(correctionContextResolver, never()).resolve(any(AuditReport.class), eq(sentenceLengthTask));
-        verify(auditReportStore, never()).load(any(String.class));
+        verify(auditReportStore, times(1)).load(sourceAuditId);
     }
 }

@@ -1,0 +1,14 @@
+code: FEAT-QICOR
+description: "FEAT-QICOR fix — revierte ARCH-QICOR-002. QuizInstructionContextResolver\
+  \ vuelve a declarar implements sobre CorrectionContextResolver, copiando la forma\
+  \ de KnowledgeTitleContextResolver. Sin la declaracion, cada sentinel generate deja\
+  \ la clase sin la clausula y el modulo deja de compilar; con ella, la relacion port/adapter\
+  \ vuelve a estar declarada y ArchUnit la cubre."
+modules:
+- name: refiner-domain
+  implementations:
+  - name: QuizInstructionContextResolver
+    implements:
+    - CorrectionContextResolver
+    _change: modify
+  _change: modify

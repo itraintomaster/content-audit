@@ -73,10 +73,12 @@ The following interfaces are `sealed`. Only the listed classes may implement the
 - `SetActiveAnalysisCommand` permits: (none declared)
 - `LexisCommand` permits: (none declared)
 - `RepairCommand` permits: (none declared)
+- `ReviseInstructionsCommand` permits: (none declared)
 - `LemmaAbsenceProposalStrategyRegistry` permits: (none declared)
 - `LemmaAbsenceProposalDeriver` permits: (none declared)
 - `KnowledgeTitleProposalStrategyRegistry` permits: (none declared)
 - `KnowledgeTitleProposalDeriver` permits: (none declared)
+- `QuizInstructionProposalStrategyRegistry` permits: (none declared)
 
 ## Rule C - Dependency Injection
 
@@ -231,7 +233,7 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Depends on:** course-domain, evaluation-ledger-domain
 
-**Models:** AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection, EvaluationRunPolicy
+**Models:** AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection, EvaluationRunPolicy, EmptyReevaluationSetException, AmbiguousReevaluationScopeException
 
 **Interfaces:** AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig, EvaluationAnalyzerFactory, QuizInstructionVerdictReader, QuizInstructionConfig
 
@@ -247,11 +249,11 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Depends on:** audit-domain, course-domain
 
-**Models:** DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext, OutOfCatalogWordContext
+**Models:** DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext, OutOfCatalogWordContext, QuizInstructionCorrectionContext
 
 **Interfaces:** RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext, SuggestedLemmaQueryPort, SuggestedLemmaQuerySession, SuggestedLemmaQuerySessionFactory
 
-**Implementations:** SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine, KnowledgeTitleContextResolver
+**Implementations:** SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine, KnowledgeTitleContextResolver, QuizInstructionContextResolver
 
 ### audit-application
 
@@ -275,7 +277,7 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Models:** GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter, AnalyzeOptions
 
-**Interfaces:** AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand, RepairCommand
+**Interfaces:** AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand, RepairCommand, ReviseInstructionsCommand
 
 ### nlp-infrastructure
 
@@ -293,19 +295,19 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Depends on:** audit-domain, refiner-domain, revision-domain
 
-**Implementations:** FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore, FileSystemActiveAnalysisSelectionStore
+**Implementations:** FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore, FileSystemActiveAnalysisSelectionStore, FileSystemQuizInstructionCorrectionRunStore
 
 ### revision-domain
 
 **Depends on:** audit-domain, refiner-domain, course-domain
 
-**Models:** RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException, ConsolidatedViewBuilderConfig, CorrectionContextSource, CorrectionContextOverride, OverrideRejectedException
+**Models:** RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException, ConsolidatedViewBuilderConfig, CorrectionContextSource, CorrectionContextOverride, OverrideRejectedException, DiagnosisNotSustainedException, NoAcceptableCandidateException
 
-**Interfaces:** Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser, KnowledgeTitleProposalStrategy, KnowledgeTitleProposalStrategyRegistry, KnowledgeTitleProposalDeriver, PreservationFactory
+**Interfaces:** Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser, KnowledgeTitleProposalStrategy, KnowledgeTitleProposalStrategyRegistry, KnowledgeTitleProposalDeriver, PreservationFactory, QuizInstructionProposalStrategy, QuizInstructionProposalStrategyRegistry, QuizInstructionCorrectionRunner, QuizInstructionCorrectionRunnerFactory, QuizInstructionCorrectionRunStore
 
 ### revision-infrastructure
 
-**Depends on:** revision-domain, refiner-domain, agent-runtime-infrastructure
+**Depends on:** revision-domain, refiner-domain, agent-runtime-infrastructure, audit-domain, course-domain
 
 ### evaluation-ledger-domain
 
@@ -353,7 +355,7 @@ Features, business rules, and user journeys for this project are defined in `REQ
 | vocabulary-infrastructure | audit-domain |
 | audit-infrastructure | audit-domain, refiner-domain, revision-domain |
 | revision-domain | audit-domain, refiner-domain, course-domain |
-| revision-infrastructure | revision-domain, refiner-domain, agent-runtime-infrastructure |
+| revision-infrastructure | revision-domain, refiner-domain, agent-runtime-infrastructure, audit-domain, course-domain |
 | evaluation-ledger-domain | (none) |
 | evaluation-ledger-infrastructure | evaluation-ledger-domain |
 | agent-runtime-infrastructure | (none) |

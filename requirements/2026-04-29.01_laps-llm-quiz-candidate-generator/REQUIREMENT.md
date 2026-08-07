@@ -272,6 +272,103 @@ El operador no debe descubrir un typo en su configuracion despues de haber gasta
 
 </details>
 
+<a id="F-LAGEN-R015"></a>
+### Rule[F-LAGEN-R015] - La direccion de servicio se exige segun la clase del proveedor declarado, con el mismo criterio que la validacion de consigna
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> La configuracion de generacion se juzga **contra el proveedor que declara**, con
+> **el mismo criterio** que ya aplica la validacion de consigna
+> ([F-QINST-R016](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R016)):
+> se exige lo que ese proveedor necesita para poder dirigir la consulta, y nada mas.
+> Tres consecuencias para la generacion:
+> 1. Un proveedor que **se autentica con la sesion local del usuario** —y que por eso
+>    no tiene direccion de servicio— produce configuracion **valida sin ninguna
+>    direccion declarada**: la generacion se ejecuta y el operador recibe su candidato.
+> 2. Un proveedor que **se alcanza por su direccion de servicio** exige poder
+>    determinar esa direccion. Si no puede determinarse —ni declarada por el operador,
+>    ni conocida de antemano por el sistema para ese proveedor— la configuracion es
+>    invalida, igual que cuando el proveedor declarado no es uno que el sistema sepa
+>    consultar.
+> 3. Con configuracion invalida no se emite **ninguna** consulta y el reporte de
+>    [F-LAGEN-R014](#F-LAGEN-R014) no pierde nada de lo que hoy tiene: nombra el dato
+>    que falta —con el mismo nombre con el que el operador lo declara—, el proveedor
+>    que lo necesita, y ofrece el modo de generacion fija ([F-LAGEN-R012](#F-LAGEN-R012))
+>    como alternativa para correr sin ningun proveedor.
+
+<details><summary>Detail</summary>
+
+**El defecto: se exige un dato que para esa clase de proveedor no existe.** Hasta esta
+regla, toda generacion exigia una direccion de servicio, cualquiera fuera el proveedor
+declarado. Para los proveedores por suscripcion —los que se alcanzan a traves de una
+sesion ya iniciada en la maquina del operador, no por red— no hay ninguna direccion que
+declarar. La unica forma de correr es inventar un valor de relleno. Verificado
+(2026-08-04) sobre una corrida real de correccion con un proveedor de esa clase: se
+declaro la direccion `http://localhost:7400`, que no existe, y la correccion se completo
+sin ningun problema. Un dato obligatorio que puede tomar un valor falso sin consecuencia
+no es un requisito: es un tramite.
+
+**Por que es una inconsistencia y no solo una incomodidad.** El mismo sistema responde
+distinto a la misma pregunta segun que parte se le toque:
+
+| La pregunta | Como la responde la validacion de consigna | Como la respondia la generacion |
+|---|---|---|
+| ¿Que datos exige una configuracion para ser valida? | Los que **el proveedor declarado** necesita para dirigir la consulta | La direccion de servicio, siempre |
+| Un proveedor que se autentica con la sesion local, sin direccion | Configuracion valida: el juez queda disponible | Configuracion invalida: no se genera nada |
+| Consecuencia para el operador | Configura el juez una vez y funciona | Con **ese mismo** proveedor, la generacion le pide un dato que no existe |
+
+Un operador que configuro el juez y quiere generar correcciones con el mismo proveedor
+se topaba con que ahora si necesitaba una direccion. Eso no es una perilla de mas: es el
+sistema contradiciendose sobre que significa "configuracion valida".
+
+**Por que esta regla cita el criterio en vez de repetirlo.** Dos enunciados del mismo
+criterio, en dos requerimientos distintos, pueden divergir —y divergir es exactamente el
+defecto que se esta arreglando—. Por eso el criterio tiene **una sola fuente**:
+[F-QINST-R016](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R016),
+que ya lo enuncia de forma general ("las mismas clases de proveedor que el resto del
+sistema ya usa", "se exige lo que el proveedor declarado necesita, y nada mas") y no
+como una particularidad del juez. Esta regla no lo redefine: declara que la generacion
+se somete a el y fija cual es su consecuencia observable de este lado. Si manana el
+criterio cambia —porque aparece una clase de proveedor nueva con otras exigencias—
+cambia en un solo lugar y las dos partes se mueven juntas. La direccion de la cita es
+esa y no la inversa porque el criterio ya esta escrito alla en su forma general, y
+mudarlo aca solo trasladaria el problema.
+
+**Que NO decide esta regla, y donde se decide.** Tres cosas que no se re-litigan aca:
+
+| Pregunta | Donde se responde |
+|---|---|
+| ¿La credencial es requisito de disponibilidad? | **No**, y ya esta decidido: su ausencia no impide dirigir la consulta; si el servicio la exige, la consulta se emite y el rechazo es falla en tiempo de consulta —`LLM_AUTH_FAILED` de [F-LAGEN-R006](#F-LAGEN-R006)—, no configuracion invalida ([F-QINST-R016](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R016)) |
+| ¿Que pasa si la configuracion no declara ningun proveedor? | Duda abierta compartida, con asuncion ya tomada (mismo proveedor por defecto que el resto del sistema): [DOUBT-PROVEEDOR-DEL-JUEZ](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#DOUBT-PROVEEDOR-DEL-JUEZ). Cualquiera sea la respuesta, no cambia el enunciado de esta regla |
+| ¿El identificador del modelo sigue siendo exigible? | Si, y esta regla no lo toca: no es un dato de conexion sino la identidad de lo que produce el contenido, que toda clase de proveedor tiene y que la trazabilidad de cada propuesta necesita ([F-LAGEN-R009](#F-LAGEN-R009)) |
+
+**Lo que esta regla NO relaja.** [F-LAGEN-R014](#F-LAGEN-R014) sigue intacta: la
+configuracion se interpreta en una sola pasada y lo invalido se reporta antes de gastar
+tokens, antes de tocar el curso y antes de modificar artefactos. Lo unico que cambia es
+**cual** es el conjunto de configuraciones invalidas: deja de ser "las que no traen
+direccion" y pasa a ser "las que no traen lo que su proveedor necesita". El mensaje que
+recibe el operador tampoco se degrada — hoy nombra el dato faltante y sugiere el modo de
+generacion fija, y esa sigue siendo la exigencia (invariante 3).
+
+**Alcance de la regla.** La configuracion de generacion que esta regla gobierna es la
+misma para todas las correcciones que consultan un modelo —la de ejercicios por lema
+ausente, la de titulos de knowledge y la de consigna de quiz—: todas se juzgan validas o
+invalidas con este unico criterio, no uno por tipo de correccion.
+
+**Criterio de aceptacion**: (a) declarado un proveedor que se autentica con la sesion
+local del usuario y **sin ninguna direccion**, pedir una correccion produce su candidato
+y el operador no recibe ningun error de configuracion; (b) declarado un proveedor que se
+alcanza por direccion de servicio y sin direccion determinable, no se emite ninguna
+consulta, el pedido termina con el reporte del dato faltante nombrando al proveedor y
+ofreciendo el modo de generacion fija; (c) declarado un proveedor que el sistema no sabe
+consultar, el desenlace es el de (b); (d) la ausencia de credencial, por si sola, nunca
+produce el desenlace de (b); (e) declarar igualmente una direccion para un proveedor que
+no la usa no cambia el desenlace de (a) — ver
+[DOUBT-DIRECCION-SOBRANTE](#DOUBT-DIRECCION-SOBRANTE).
+
+**Error**: "No se pudo dirigir la consulta al proveedor '{proveedor}': falta '{dato}'. Declararlo, o pedir el modo de generacion fija para correr sin ningun proveedor." / "La generacion se rechazo por falta de '{dato}', que el proveedor '{proveedor}' no utiliza" (condicion prohibida)
+
+</details>
+
 ---
 
 ## Contexto
@@ -334,6 +431,41 @@ El actor humano relevante es el operador que invoca `revise task <id>` sobre una
 > el agente las honra sin cambios; lo que se retira es la **mecánica single-shot**
 > que esos journeys describían. Ver [FEAT-LASAG](../2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md).
 
+Lo absorbido por FEAT-LASAG es la **mecanica de generacion**. El journey que sigue no
+describe esa mecanica sino lo que ocurre **antes de cualquier consulta**: si la
+configuracion declarada por el operador alcanza para dirigirla ([F-LAGEN-R015](#F-LAGEN-R015)).
+
+### Journey[F-LAGEN-J007] - La direccion de servicio se exige solo cuando el proveedor declarado la necesita
+**Validation**: AUTO_VALIDATED
+
+```yaml
+journeys:
+  - id: F-LAGEN-J007
+    name: La direccion de servicio se exige solo cuando el proveedor declarado la necesita
+    flow:
+      - id: declarar_configuracion
+        action: "El operador declara la configuracion de generacion sin ninguna direccion de servicio"
+        then: interpretar
+      - id: interpretar
+        action: "El sistema interpreta la configuracion en una sola pasada y juzga su validez contra el proveedor declarado"
+        gate: [F-LAGEN-R015, F-LAGEN-R014]
+        outcomes:
+          - when: "El proveedor declarado se autentica con la sesion local del usuario"
+            then: generar
+          - when: "El proveedor declarado se alcanza por una direccion de servicio que no puede determinarse"
+            then: reportar_dato_faltante
+          - when: "El proveedor declarado no es uno que el sistema sepa consultar"
+            then: reportar_dato_faltante
+      - id: generar
+        action: "La generacion se ejecuta y el operador recibe su candidato, sin ningun error de configuracion"
+        gate: [F-LAGEN-R015]
+        result: success
+      - id: reportar_dato_faltante
+        action: "El sistema reporta el dato que falta y el proveedor que lo necesita, ofrece el modo de generacion fija como alternativa sin proveedor, y no emite ninguna consulta"
+        gate: [F-LAGEN-R015, F-LAGEN-R012]
+        result: failure
+```
+
 ---
 
 ## Open Questions
@@ -362,6 +494,35 @@ Hoy el sistema produce candidatos canned. Tras esta iteracion el comportamiento 
 
 **Answer**: Opcion B. El modo canned se conserva como opcion explicita opt-in del operador. Su comportamiento queda fijado por [F-LAGEN-R012](#F-LAGEN-R012) (idempotente, independiente del contexto, sin contactar proveedor) y la mecanica de seleccion por [F-LAGEN-R013](#F-LAGEN-R013) (default dinamico, canned solo via opt-in explicito).
 
+<a id="DOUBT-DIRECCION-SOBRANTE"></a>
+### Doubt[DOUBT-DIRECCION-SOBRANTE] - Que hace el sistema con una direccion de servicio declarada que el proveedor no usa?
+**Status**: OPEN
+
+[F-LAGEN-R015](#F-LAGEN-R015) resuelve el caso de la direccion **ausente**. Falta decidir
+el simetrico: que ocurre cuando el operador declara una direccion y el proveedor
+declarado no la usa. No es hipotetico: hoy toda instalacion que corre con un proveedor de
+sesion local lleva un valor de relleno, puesto unicamente porque el sistema lo exigia.
+
+- [x] Opcion A: **Se ignora en silencio.** La configuracion sigue siendo valida y el
+  desenlace es identico al de no haberla declarado. Las instalaciones que hoy llevan el
+  valor de relleno siguen funcionando sin tocar nada.
+- [ ] Opcion B: **Se ignora, pero el sistema lo dice.** Mismo desenlace que A, mas un
+  aviso de que ese dato no se esta usando. Evita que una direccion olvidada le haga creer
+  al operador que la consulta viaja a ese lugar.
+- [ ] Opcion C: **Vuelve invalida la configuracion.** Obliga a limpiar lo que sobra, a
+  costa de romper instalaciones que hoy funcionan y de contradecir la direccion misma del
+  arreglo (dejar de exigir datos que no aplican, no empezar a prohibirlos).
+
+**Answer**: Pendiente. Se especifica la **Opcion A** [ASSUMPTION]. Razon: el valor de
+relleno existe hoy **porque el sistema lo exigia**; convertirlo en error castigaria al
+operador por haber obedecido, y obligaria a una migracion para arreglar una molestia. El
+riesgo que motivaria a B o C —que una direccion olvidada enrute la corrida al lugar
+equivocado— no aplica aca: la clase de proveedor nunca se infiere de los datos presentes,
+sino del proveedor declarado
+([DOUBT-PROVEEDOR-DEL-JUEZ](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#DOUBT-PROVEEDOR-DEL-JUEZ),
+Opcion C descartada por esa misma razon). Si mas adelante se prefiere B, es un agregado
+al reporte y no un cambio del enunciado de [F-LAGEN-R015](#F-LAGEN-R015).
+
 ---
 
 ## Referencias
@@ -371,3 +532,5 @@ Hoy el sistema produce candidatos canned. Tras esta iteracion el comportamiento 
 - **FEAT-QSENT** (`requirements/2026-04-22.01_quiz-sentence-dsl/`) — Formaliza la DSL `quizSentence`. Este requerimiento no parsea ni valida la DSL: el `quizSentence` que el modelo genera se entrega tal cual al pipeline. Citado por [F-LAGEN-R004](#F-LAGEN-R004) (responsabilidad funcional impuesta al modelo) y [F-LAGEN-R005](#F-LAGEN-R005) / [F-LAGEN-R010](#F-LAGEN-R010) (la validacion gramatical post-generacion la hace el deriver de FEAT-LAPS, no este requerimiento).
 - **FEAT-REVAPR** (`requirements/2026-04-20.01_refiner-revision-approval/`) — Define el rechazo de re-revise mientras hay propuesta pendiente. Citado por [F-LAGEN-R011](#F-LAGEN-R011) como mecanismo que evita la acumulacion accidental de candidatos no-deterministicos.
 - **FEAT-REVBYP** — Aporta el flujo posterior a la generacion (validacion, persistencia del artefacto, escritura al curso). Se reutiliza tal cual; no se cita inline porque ningun rule introduce restricciones nuevas sobre ese flujo.
+- **FEAT-QINST** (`requirements/2026-07-29.02_validacion-de-consigna-de-quiz/`) — **Fuente unica del criterio de validez de una configuracion frente al proveedor que declara**: que exige cada clase de proveedor, por que la credencial no es requisito de disponibilidad y como se distingue configuracion invalida de falla en tiempo de consulta. Este requerimiento no lo repite: lo cita y declara que la generacion se somete a el. Citado por [F-LAGEN-R015](#F-LAGEN-R015). Aporta ademas la duda abierta compartida sobre el proveedor por defecto ([DOUBT-PROVEEDOR-DEL-JUEZ](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#DOUBT-PROVEEDOR-DEL-JUEZ)), citada por [DOUBT-DIRECCION-SOBRANTE](#DOUBT-DIRECCION-SOBRANTE).
+- **FEAT-LASAG** (`requirements/2026-06-18.01_lemma-absence-agent-migration/`) — Absorbio los journeys de generacion de esta feature y aporta el backend actual de la ruta con modelo. Las reglas de esta feature siguen vigentes y el agente las honra; [F-LAGEN-R015](#F-LAGEN-R015) gobierna la configuracion previa a cualquier consulta, no la mecanica de generacion.

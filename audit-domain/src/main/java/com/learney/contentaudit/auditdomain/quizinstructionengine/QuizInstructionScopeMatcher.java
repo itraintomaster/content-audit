@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -9,4 +10,6 @@ import javax.annotation.processing.Generated;
 )
 interface QuizInstructionScopeMatcher {
     boolean matches(AuditNode quizNode, String reevaluationScope);
+
+    QuizInstructionReevaluationDecision decide(AuditNode quizNode, EvaluationRunPolicy policy);
 }

@@ -2,6 +2,7 @@ package com.learney.contentaudit.auditcli;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -27,12 +28,15 @@ public class AnalyzeOptions {
 
     private String reevaluateInstructions;
 
+    private Set<String> reevaluateInstructionQuizIds;
+
     public AnalyzeOptions() {
     }
 
     public AnalyzeOptions(String format, String level, String topic, String knowledge,
             List<String> analyzers, List<String> excludeAnalyzers, boolean detailed,
-            Integer instructionBudget, String reevaluateInstructions) {
+            Integer instructionBudget, String reevaluateInstructions,
+            Set<String> reevaluateInstructionQuizIds) {
         this.format = format;
         this.level = level;
         this.topic = topic;
@@ -42,6 +46,7 @@ public class AnalyzeOptions {
         this.detailed = detailed;
         this.instructionBudget = instructionBudget;
         this.reevaluateInstructions = reevaluateInstructions;
+        this.reevaluateInstructionQuizIds = reevaluateInstructionQuizIds;
     }
 
     public String getFormat() {
@@ -116,6 +121,14 @@ public class AnalyzeOptions {
         this.reevaluateInstructions = reevaluateInstructions;
     }
 
+    public Set<String> getReevaluateInstructionQuizIds() {
+        return this.reevaluateInstructionQuizIds;
+    }
+
+    public void setReevaluateInstructionQuizIds(Set<String> reevaluateInstructionQuizIds) {
+        this.reevaluateInstructionQuizIds = reevaluateInstructionQuizIds;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -129,11 +142,12 @@ public class AnalyzeOptions {
                     && Objects.equals(this.excludeAnalyzers, that.excludeAnalyzers)
                     && Objects.equals(this.detailed, that.detailed)
                     && Objects.equals(this.instructionBudget, that.instructionBudget)
-                    && Objects.equals(this.reevaluateInstructions, that.reevaluateInstructions);
+                    && Objects.equals(this.reevaluateInstructions, that.reevaluateInstructions)
+                    && Objects.equals(this.reevaluateInstructionQuizIds, that.reevaluateInstructionQuizIds);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(format, level, topic, knowledge, analyzers, excludeAnalyzers, detailed, instructionBudget, reevaluateInstructions);
+        return Objects.hash(format, level, topic, knowledge, analyzers, excludeAnalyzers, detailed, instructionBudget, reevaluateInstructions, reevaluateInstructionQuizIds);
     }
 }

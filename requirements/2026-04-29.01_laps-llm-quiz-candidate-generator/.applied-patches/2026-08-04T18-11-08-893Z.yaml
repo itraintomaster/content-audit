@@ -1,0 +1,224 @@
+code: FEAT-LAGEN
+description: "F-LAGEN-R015 — la exigencia de la direccion de servicio pasa a depender\
+  \ de la clase de proveedor declarado. El criterio se promueve a agent-runtime-infrastructure\
+  \ como unica fuente y el juez de consigna pasa a consumirlo en vez de tenerlo propio,\
+  \ de modo que generacion y validacion de consigna se muevan juntas."
+modules:
+- name: agent-runtime-infrastructure
+  packages:
+  - name: llmprovider
+    description: |
+      Fuente unica del criterio de validez de una configuracion frente al proveedor de modelo que declara. Responde una sola pregunta —¿esta configuracion alcanza para dirigir una consulta a este proveedor?— y la responde igual para todos los consumidores.
+
+      Vive aca y no en ninguno de los consumidores por tres razones. Este modulo ya envuelve la libreria de agentes, que es donde estan `LlmFactory.isSubscriptionCli` y `LlmFactory.defaultBaseUrl`, o sea el conocimiento sobre clases de proveedor. No depende de nadie, asi que ningun consumidor invierte una dependencia para llegar. Y sus `allowedClients` ya son exactamente los tres modulos que necesitan el criterio.
+    visibility: public
+    models:
+    - name: LlmProviderClass
+      type: enum
+      fields:
+      - name: LOCAL_SESSION
+        description: Se autentica con la sesion local del usuario y se lo consulta
+          por la herramienta que deja instalada en la maquina. No exige ningun dato
+          de conexion.
+        _change: add
+      - name: REMOTE_SERVICE
+        description: "Se lo alcanza por su direccion de servicio. Exige poder determinar\
+          \ esa direccion, y nada mas; la credencial no entra en la lista de exigidos."
+        _change: add
+      visibility: public
+      _change: add
+    - name: LlmProviderRejectionKind
+      type: enum
+      fields:
+      - name: UNSUPPORTED_PROVIDER
+        description: El proveedor declarado no es uno que el sistema sepa consultar.
+        _change: add
+      - name: MISSING_REQUIRED_INPUT
+        description: Falta un dato que la clase de proveedor declarada exige.
+        _change: add
+      visibility: public
+      _change: add
+    - name: LlmProviderResolved
+      type: record
+      fields:
+      - name: providerName
+        type: String
+        description: "Nombre efectivo, no el declarado: sin declarar y declarado-igual-al-defecto\
+          \ producen el mismo proveedor."
+      - name: providerClass
+        type: LlmProviderClass
+      visibility: public
+      _change: add
+      implements:
+      - LlmProviderResolution
+    - name: LlmProviderRejected
+      type: record
+      fields:
+      - name: providerName
+        type: String
+      - name: missingInput
+        type: String
+        description: "Nombre del dato ausente, tal como lo declara el operador de\
+          \ ese consumidor. Nulo cuando el motivo es UNSUPPORTED_PROVIDER: ahi no\
+          \ falta un dato, falta un proveedor consultable."
+      - name: kind
+        type: LlmProviderRejectionKind
+      visibility: public
+      _change: add
+      implements:
+      - LlmProviderResolution
+    interfaces:
+    - name: LlmProviderResolution
+      stereotype: port
+      sealed: false
+      visibility: public
+      _change: add
+    - name: LlmProviderResolver
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "resolve(String declaredProviderName, String declaredServiceAddress,\
+          \ String serviceAddressInputName): LlmProviderResolution"
+      visibility: public
+      _change: add
+    implementations:
+    - name: DefaultLlmProviderResolver
+      visibility: public
+      implements:
+      - LlmProviderResolver
+      _change: add
+    _change: add
+  _change: modify
+- name: quiz-instruction-infrastructure
+  packages:
+  - name: instructionjudge
+    models:
+    - name: JudgeProviderClass
+      type: record
+      _change: delete
+    - name: JudgeProviderRejectionKind
+      type: record
+      _change: delete
+    - name: JudgeProviderResolved
+      type: record
+      _change: delete
+    - name: JudgeProviderRejected
+      type: record
+      _change: delete
+    interfaces:
+    - name: JudgeProviderResolution
+      sealed: false
+      _change: delete
+    - name: QuizInstructionJudgeProviderResolver
+      sealed: false
+      _change: delete
+    - name: QuizInstructionJudgeVersionResolver
+      sealed: false
+      exposes:
+      - signature: "resolve(QuizInstructionJudgeConfig config,JudgeProviderResolved\
+          \ provider): Optional<String>"
+        _change: delete
+      - signature: "resolve(QuizInstructionJudgeConfig config,LlmProviderResolved\
+          \ provider): Optional<String>"
+        _change: add
+      _change: modify
+    - name: JudgeChatModelFactory
+      sealed: false
+      exposes:
+      - signature: "create(QuizInstructionJudgeConfig config,JudgeProviderResolved\
+          \ provider): ChatModel"
+        _change: delete
+      - signature: "create(QuizInstructionJudgeConfig config,LlmProviderResolved provider):\
+          \ ChatModel"
+        _change: add
+      _change: modify
+    implementations:
+    - name: DefaultQuizInstructionJudgeProviderResolver
+      _change: delete
+    - name: QuizInstructionAgentJudge
+      requiresInject:
+      - name: provider
+        type: LlmProviderResolved
+        description: El proveedor efectivo viaja como colaborador y no se re-deriva.
+          Pasa a ser el tipo neutro porque el criterio que lo produjo dejo de ser
+          propio del juez.
+      implements:
+      - Evaluator
+      _change: modify
+    - name: DefaultQuizInstructionJudgeFactory
+      requiresInject:
+      - name: llmProviderResolver
+        type: LlmProviderResolver
+        description: "El criterio, ahora inyectado en vez de implementado aca. La\
+          \ invariante 3 de F-QINST-R016 —con configuracion invalida no se emite ni\
+          \ una consulta— se sigue garantizando por construccion, porque el juez solo\
+          \ se puede construir con un LlmProviderResolved."
+      implements:
+      - QuizInstructionJudgeFactory
+      _change: modify
+    _change: modify
+  _change: modify
+- name: revision-infrastructure
+  packages:
+  - name: lagen
+    models:
+    - name: LagenConfig
+      type: record
+      fields:
+      - name: endpoint
+        type: String
+        description: |
+          Direccion de servicio del proveedor. Exigible solo cuando la clase del proveedor declarado la necesita (F-LAGEN-R015, mismo criterio que F-QINST-R016): un proveedor que se autentica con la sesion local no tiene direccion, y exigirsela es pedir un dato inexistente. Nullable. Declararla igual para un proveedor que no la usa no invalida la configuracion (DOUBT-DIRECCION-SOBRANTE, opcion A).
+        _change: modify
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: bootstrap
+    models:
+    - name: UnsupportedLagenProviderException
+      type: exception
+      fields:
+      - name: providerName
+        type: String
+      message: "El proveedor '%s' no es uno que el sistema sepa consultar. Declarar\
+        \ uno soportado, o pedir el modo de generacion fija para correr sin ningun\
+        \ proveedor."
+      visibility: public
+      _change: add
+      extends: RuntimeException
+    - name: MissingLagenProviderInputException
+      type: exception
+      fields:
+      - name: providerName
+        type: String
+      - name: missingInput
+        type: String
+      message: "No se pudo dirigir la consulta al proveedor '%s': falta '%s'. Declararlo,\
+        \ o pedir el modo de generacion fija para correr sin ningun proveedor."
+      visibility: public
+      _change: add
+      extends: RuntimeException
+    implementations:
+    - name: DefaultLagenConfigResolver
+      requiresInject:
+      - name: llmProviderResolver
+        type: LlmProviderResolver
+        description: "Juzga la configuracion contra el proveedor declarado en la misma\
+          \ pasada en que la interpreta, sin emitir ninguna consulta. Es el mismo\
+          \ objeto que usa la validacion de consigna: una sola implementacion del\
+          \ criterio, dos consumidores."
+      implements:
+      - LagenConfigResolver
+      _change: modify
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-LAGEN
+  code: F-LAGEN
+  journeys:
+  - id: F-LAGEN-J007
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

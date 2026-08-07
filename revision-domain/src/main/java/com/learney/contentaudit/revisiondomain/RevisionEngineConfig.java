@@ -3,11 +3,15 @@ package com.learney.contentaudit.revisiondomain;
 import com.learney.contentaudit.auditdomain.AuditEngine;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditdomain.CourseMapper;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionComplianceChecker;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectViewFactory;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessor;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCorrectionConfig;
 import java.util.Map;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
@@ -49,6 +53,16 @@ public class RevisionEngineConfig {
 
     private KnowledgeTitleProposalDeriver knowledgeTitleProposalDeriver;
 
+    private QuizInstructionProposalStrategyRegistry quizInstructionStrategyRegistry;
+
+    private CandidateAssessor candidateAssessor;
+
+    private QuizInstructionComplianceChecker quizInstructionComplianceChecker;
+
+    private QuizInstructionSubjectViewFactory quizInstructionSubjectViewFactory;
+
+    private QuizInstructionCorrectionConfig quizInstructionCorrectionConfig;
+
     public RevisionEngineConfig() {
     }
 
@@ -62,7 +76,12 @@ public class RevisionEngineConfig {
             AuditEngine auditEngine, ImpactPreviewStore impactPreviewStore,
             CorrectionContextOverrideParser correctionContextOverrideParser,
             KnowledgeTitleProposalStrategyRegistry knowledgeTitleStrategyRegistry,
-            KnowledgeTitleProposalDeriver knowledgeTitleProposalDeriver) {
+            KnowledgeTitleProposalDeriver knowledgeTitleProposalDeriver,
+            QuizInstructionProposalStrategyRegistry quizInstructionStrategyRegistry,
+            CandidateAssessor candidateAssessor,
+            QuizInstructionComplianceChecker quizInstructionComplianceChecker,
+            QuizInstructionSubjectViewFactory quizInstructionSubjectViewFactory,
+            QuizInstructionCorrectionConfig quizInstructionCorrectionConfig) {
         this.revisers = revisers;
         this.validator = validator;
         this.artifactStore = artifactStore;
@@ -79,6 +98,11 @@ public class RevisionEngineConfig {
         this.correctionContextOverrideParser = correctionContextOverrideParser;
         this.knowledgeTitleStrategyRegistry = knowledgeTitleStrategyRegistry;
         this.knowledgeTitleProposalDeriver = knowledgeTitleProposalDeriver;
+        this.quizInstructionStrategyRegistry = quizInstructionStrategyRegistry;
+        this.candidateAssessor = candidateAssessor;
+        this.quizInstructionComplianceChecker = quizInstructionComplianceChecker;
+        this.quizInstructionSubjectViewFactory = quizInstructionSubjectViewFactory;
+        this.quizInstructionCorrectionConfig = quizInstructionCorrectionConfig;
     }
 
     public Map<DiagnosisKind, Reviser> getRevisers() {
@@ -214,6 +238,50 @@ public class RevisionEngineConfig {
         this.knowledgeTitleProposalDeriver = knowledgeTitleProposalDeriver;
     }
 
+    public QuizInstructionProposalStrategyRegistry getQuizInstructionStrategyRegistry() {
+        return this.quizInstructionStrategyRegistry;
+    }
+
+    public void setQuizInstructionStrategyRegistry(
+            QuizInstructionProposalStrategyRegistry quizInstructionStrategyRegistry) {
+        this.quizInstructionStrategyRegistry = quizInstructionStrategyRegistry;
+    }
+
+    public CandidateAssessor getCandidateAssessor() {
+        return this.candidateAssessor;
+    }
+
+    public void setCandidateAssessor(CandidateAssessor candidateAssessor) {
+        this.candidateAssessor = candidateAssessor;
+    }
+
+    public QuizInstructionComplianceChecker getQuizInstructionComplianceChecker() {
+        return this.quizInstructionComplianceChecker;
+    }
+
+    public void setQuizInstructionComplianceChecker(
+            QuizInstructionComplianceChecker quizInstructionComplianceChecker) {
+        this.quizInstructionComplianceChecker = quizInstructionComplianceChecker;
+    }
+
+    public QuizInstructionSubjectViewFactory getQuizInstructionSubjectViewFactory() {
+        return this.quizInstructionSubjectViewFactory;
+    }
+
+    public void setQuizInstructionSubjectViewFactory(
+            QuizInstructionSubjectViewFactory quizInstructionSubjectViewFactory) {
+        this.quizInstructionSubjectViewFactory = quizInstructionSubjectViewFactory;
+    }
+
+    public QuizInstructionCorrectionConfig getQuizInstructionCorrectionConfig() {
+        return this.quizInstructionCorrectionConfig;
+    }
+
+    public void setQuizInstructionCorrectionConfig(
+            QuizInstructionCorrectionConfig quizInstructionCorrectionConfig) {
+        this.quizInstructionCorrectionConfig = quizInstructionCorrectionConfig;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -234,11 +302,16 @@ public class RevisionEngineConfig {
                     && Objects.equals(this.impactPreviewStore, that.impactPreviewStore)
                     && Objects.equals(this.correctionContextOverrideParser, that.correctionContextOverrideParser)
                     && Objects.equals(this.knowledgeTitleStrategyRegistry, that.knowledgeTitleStrategyRegistry)
-                    && Objects.equals(this.knowledgeTitleProposalDeriver, that.knowledgeTitleProposalDeriver);
+                    && Objects.equals(this.knowledgeTitleProposalDeriver, that.knowledgeTitleProposalDeriver)
+                    && Objects.equals(this.quizInstructionStrategyRegistry, that.quizInstructionStrategyRegistry)
+                    && Objects.equals(this.candidateAssessor, that.candidateAssessor)
+                    && Objects.equals(this.quizInstructionComplianceChecker, that.quizInstructionComplianceChecker)
+                    && Objects.equals(this.quizInstructionSubjectViewFactory, that.quizInstructionSubjectViewFactory)
+                    && Objects.equals(this.quizInstructionCorrectionConfig, that.quizInstructionCorrectionConfig);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(revisers, validator, artifactStore, courseRepository, elementLocator, refinementPlanStore, auditReportStore, contextResolver, lemmaAbsenceStrategyRegistry, lemmaAbsenceProposalDeriver, courseMapper, auditEngine, impactPreviewStore, correctionContextOverrideParser, knowledgeTitleStrategyRegistry, knowledgeTitleProposalDeriver);
+        return Objects.hash(revisers, validator, artifactStore, courseRepository, elementLocator, refinementPlanStore, auditReportStore, contextResolver, lemmaAbsenceStrategyRegistry, lemmaAbsenceProposalDeriver, courseMapper, auditEngine, impactPreviewStore, correctionContextOverrideParser, knowledgeTitleStrategyRegistry, knowledgeTitleProposalDeriver, quizInstructionStrategyRegistry, candidateAssessor, quizInstructionComplianceChecker, quizInstructionSubjectViewFactory, quizInstructionCorrectionConfig);
     }
 }

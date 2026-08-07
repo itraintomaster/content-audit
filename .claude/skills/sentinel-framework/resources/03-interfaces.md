@@ -411,6 +411,34 @@ Examples:
 |--------|--------|
 | `evaluate(List<NlpToken> tokens, CefrLevel sentenceLevel): SentenceLexicalFlags` | (none) |
 
+#### QuizInstructionSubjectViewFactory (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `fromQuiz(QuizTemplateEntity quiz, String cefrLevel, String topic, String title, String instructions): QuizInstructionSubjectView` | (none) |
+
+#### QuizInstructionComplianceChecker (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `check(QuizInstructionSubjectView view): QuizInstructionComplianceResult` | (none) |
+| `revalidate(QuizInstructionSubjectView view): QuizInstructionComplianceResult` | (none) |
+
+#### QuizInstructionComplianceCheckerFactory (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(EvaluationSessionFactory sessionFactory,Evaluator evaluator,QuizInstructionVerdictReader verdictReader,EvaluationBudget budget): QuizInstructionComplianceChecker` | (none) |
+
 #### QuizInstructionSubjectBuilder (package: quizinstructionengine)
 
 **Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
@@ -419,6 +447,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `build(AuditNode quizNode): EvaluationSubject` | (none) |
+| `buildFromView(QuizInstructionSubjectView view): EvaluationSubject` | (none) |
 
 #### QuizInstructionScorer (package: quizinstructionengine)
 
@@ -437,6 +466,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `matches(AuditNode quizNode,String reevaluationScope): boolean` | (none) |
+| `decide(AuditNode quizNode,EvaluationRunPolicy policy): QuizInstructionReevaluationDecision` | (none) |
 
 ### Module: course-domain
 
@@ -501,7 +531,7 @@ Examples:
 
 **Package:** `com.learney.contentaudit.refinerdomain`
 
-**Implemented by:** SentenceLengthContextResolver (refiner-domain), LemmaAbsenceContextResolver (refiner-domain), DispatchingCorrectionContextResolver (refiner-domain), KnowledgeTitleContextResolver (refiner-domain)
+**Implemented by:** SentenceLengthContextResolver (refiner-domain), LemmaAbsenceContextResolver (refiner-domain), DispatchingCorrectionContextResolver (refiner-domain), KnowledgeTitleContextResolver (refiner-domain), QuizInstructionContextResolver (refiner-domain)
 
 | Method | Throws |
 |--------|--------|
@@ -698,6 +728,14 @@ Examples:
 |--------|--------|
 | `repair(String resource, String coursePath, boolean dryRun): Integer` | (none) |
 
+#### ReviseInstructionsCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `reviseInstructions(String planId, Integer maxCorrections, String coursePath): Integer` | (none) |
+
 #### EphemeralPlanRenderer (package: commands)
 
 **Package:** `com.learney.contentaudit.auditcli.commands`
@@ -808,6 +846,15 @@ Examples:
 |--------|--------|
 | `format(ConsolidatedView view, String format): String` | (none) |
 
+#### QuizInstructionCorrectionRunFormatter (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `format(QuizInstructionCorrectionRunReport report): String` | (none) |
+
 #### WorkdirResolver (package: bootstrap) [SEALED]
 
 **Package:** `com.learney.contentaudit.auditcli.bootstrap`
@@ -861,6 +908,24 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `resolve(): QuizInstructionJudgeConfig` | (none) |
+
+#### QuizInstructionCorrectionConfigResolver (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `resolve(Map<String,String> env): QuizInstructionCorrectionConfig` | (none) |
+
+#### ReevaluationQuizSetResolver (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `resolve(String enumeratedIds,String origin): Set<String>` | (none) |
 
 ### Module: nlp-infrastructure
 
@@ -1051,6 +1116,55 @@ Examples:
 | `createCheck(): PreservationCheck` | (none) |
 | `createRepair(RevisionArtifactStore artifactStore): PreservationRepair` | (none) |
 
+#### QuizInstructionProposalStrategy (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `id(): StrategyId` | (none) |
+| `handles(DiagnosisKind kind): boolean` | (none) |
+| `propose(RefinementTask task, QuizInstructionCorrectionContext context, List<CriterionVerdict> previousVerdicts, int attempt): LemmaAbsenceQuizCandidate` | (none) |
+
+#### QuizInstructionProposalStrategyRegistry [SEALED] (service)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `active(): Optional<QuizInstructionProposalStrategy>` | (none) |
+| `byName(String name): Optional<QuizInstructionProposalStrategy>` | (none) |
+| `listAll(): List<StrategyId>` | (none) |
+
+#### QuizInstructionCorrectionRunner (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `run(QuizInstructionCorrectionRunRequest request): QuizInstructionCorrectionRunReport` | (none) |
+
+#### QuizInstructionCorrectionRunnerFactory (factory)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `create(RevisionEngineConfig config, QuizInstructionCorrectionRunStore runStore, QuizInstructionCorrectionConfig correctionConfig): QuizInstructionCorrectionRunner` | (none) |
+
+#### QuizInstructionCorrectionRunStore (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+**Implemented by:** FileSystemQuizInstructionCorrectionRunStore (audit-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `save(QuizInstructionCorrectionRunReport report): String` | (none) |
+| `load(String runId): Optional<QuizInstructionCorrectionRunReport>` | (none) |
+| `listByPlan(String planId): List<QuizInstructionCorrectionRunReport>` | (none) |
+| `latest(): Optional<QuizInstructionCorrectionRunReport>` | (none) |
+
 #### LemmaAbsenceQuizCandidateGenerator (package: lemmaabsence)
 
 **Package:** `com.learney.contentaudit.revisiondomain.lemmaabsence`
@@ -1170,6 +1284,53 @@ Examples:
 | `inspect(CourseEntity course): RepairReport` | (none) |
 | `repair(CourseEntity course): RepairReport` | (none) |
 
+#### CandidateCriterionEvaluator (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `criterion(): CorrectionCriterion` | (none) |
+| `evaluate(CandidateAssessmentInput input): CriterionVerdict` | (none) |
+
+#### CandidateAssessor (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `assess(CandidateAssessmentInput input): CandidateAssessment` | (none) |
+| `catalog(): List<CorrectionCriterion>` | (none) |
+
+#### CourseQuizCorpus (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `mostSimilar(String sourceAuditId, String candidateSentence, String excludedQuizId): Optional<QuizSimilarity>` | (none) |
+
+#### CandidateCriteriaFactory (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(CandidateCriteriaConfig config): CandidateAssessor` | (none) |
+
+#### QuizInstructionCandidateGenerator (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `generate(QuizInstructionGenerationRequest request): QuizInstructionGeneratorResponse` | (none) |
+
 ### Module: revision-infrastructure
 
 #### LemmaAbsenceAgentGeneratorFactory (package: lagen)
@@ -1257,6 +1418,71 @@ Examples:
 | `classify(RunState runState): LlmGenerationFailureCategory` | (none) |
 | `classify(Throwable cause): LlmGenerationFailureCategory` | (none) |
 
+#### QuizInstructionAgentGeneratorFactory (package: quizinstructionagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.quizinstructionagent`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(LagenConfig config): QuizInstructionCandidateGenerator` | (none) |
+| `providerIdFor(LagenConfig config): String` | (none) |
+
+#### QuizInstructionAgentRuntimeLauncher (package: quizinstructionagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.quizinstructionagent`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `launch(String agentName, Map<String,String> inputs, ChatModel chatModel): RunState` | (none) |
+
+#### QuizInstructionAgentCandidateParser (package: quizinstructionagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.quizinstructionagent`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `parse(RunState runState, String quizId): QuizInstructionGeneratorResponse` | (none) |
+
+#### QuizInstructionAgentErrorClassifier (package: quizinstructionagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.quizinstructionagent`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `classify(RunState runState): LlmGenerationFailureCategory` | (none) |
+| `classify(Throwable cause): LlmGenerationFailureCategory` | (none) |
+
+#### CandidateJudgmentEvaluatorFactory (package: candidatejudgment)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.candidatejudgment`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(LagenConfig config, CorrectionCriterion criterion): CandidateCriterionEvaluator` | (none) |
+
+#### CandidateJudgmentRuntimeLauncher (package: candidatejudgment)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.candidatejudgment`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `launch(String agentName, Map<String,String> inputs, ChatModel chatModel): RunState` | (none) |
+
+#### CandidateJudgmentVerdictParser (package: candidatejudgment)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.candidatejudgment`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `parse(RunState runState, CorrectionCriterion criterion): CriterionVerdict` | (none) |
+
 ### Module: evaluation-ledger-domain
 
 #### EvaluationOutcome (port)
@@ -1303,6 +1529,8 @@ Examples:
 | `resolveForced(EvaluationSubject subject): EvaluationResolution` | (none) |
 | `coverage(): EvaluationCoverage` | (none) |
 | `consultedEvaluatorVersion(): Optional<String>` | (none) |
+| `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution` | (none) |
+| `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution` | (none) |
 
 #### EvaluationSessionFactory (factory)
 
@@ -1351,6 +1579,20 @@ Examples:
 |--------|--------|
 | `create(AgentGraphRunnerConfig config): AgentDefinitionLocator` | (none) |
 
+#### LlmProviderResolution (package: llmprovider)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure.llmprovider`
+**Visibility:** public
+
+#### LlmProviderResolver (package: llmprovider)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure.llmprovider`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `resolve(String declaredProviderName, String declaredServiceAddress, String serviceAddressInputName): LlmProviderResolution` | (none) |
+
 ### Module: quiz-instruction-infrastructure
 
 #### QuizInstructionJudgeFactory (factory)
@@ -1368,21 +1610,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `resolve(QuizInstructionJudgeConfig config,JudgeProviderResolved provider): Optional<String>` | (none) |
-
-#### JudgeProviderResolution (package: instructionjudge)
-
-**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
-**Visibility:** public
-
-#### QuizInstructionJudgeProviderResolver (package: instructionjudge)
-
-**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
-**Visibility:** public
-
-| Method | Throws |
-|--------|--------|
-| `resolve(QuizInstructionJudgeConfig config): JudgeProviderResolution` | (none) |
+| `resolve(QuizInstructionJudgeConfig config,LlmProviderResolved provider): Optional<String>` | (none) |
 
 #### JudgeChatModelFactory (package: instructionjudge)
 
@@ -1391,5 +1619,5 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `create(QuizInstructionJudgeConfig config,JudgeProviderResolved provider): ChatModel` | (none) |
+| `create(QuizInstructionJudgeConfig config,LlmProviderResolved provider): ChatModel` | (none) |
 

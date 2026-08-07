@@ -17,9 +17,12 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -52,6 +55,13 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
     // el orden ascendente por version que la regla exige sin ordenar aparte.
     private final Map<String, Integer> verdictCountByJudgeVersion = new TreeMap<>();
 
+    // F-QINST-R018: ids of the declared re-evaluation set that DID correspond to a
+    // real quiz reached during this run. At onCourseComplete, whatever is left in
+    // the declared set after subtracting this is reported as unmatched -- never
+    // counted in any coverage sum (F-QINST-R005/R014 keep counting only quizzes
+    // of the course).
+    private final Set<String> matchedDeclaredSetIds = new HashSet<>();
+
     public QuizInstructionAnalyzer(EvaluationSession session,
             QuizInstructionSubjectBuilder subjectBuilder, QuizInstructionScorer scorer,
             QuizInstructionScopeMatcher scopeMatcher, QuizInstructionVerdictReader verdictReader,
@@ -73,15 +83,30 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
     public Void onQuiz(AuditNode node) {
         EvaluationSubject subject = subjectBuilder.build(node);
 
-        // R012: an explicit, scoped re-evaluation forces a fresh judge query even for a quiz
-        // that already has a current verdict. Outside the requested scope (or absent an
-        // explicit re-evaluation request), the ordinary reuse/budget path applies (R008/R006).
-        boolean forceReevaluation = policy.isReevaluate()
-                && scopeMatcher.matches(node, policy.getReevaluationScope());
-
-        EvaluationResolution resolution = forceReevaluation
-                ? session.resolveForced(subject)
-                : session.resolve(subject);
+        EvaluationResolution resolution;
+        if (policy.getReevaluationSubjectIds() != null) {
+            // F-QINST-R018: a declared set of quizzes IS the re-evaluation request --
+            // every quiz of the set is consulted regardless of any current verdict
+            // (inv.1), every quiz outside it keeps being reused without ever
+            // consulting the judge, tenga o no veredicto (inv.1), and the run's
+            // budget is reserved for the set (inv.2, enforced inside the session).
+            QuizInstructionReevaluationDecision decision = scopeMatcher.decide(node, policy);
+            if (decision == QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION) {
+                // Matched regardless of what the resolution below turns out to be --
+                // this id DID correspond to a real quiz of the course.
+                matchedDeclaredSetIds.add(subject.getSubjectRef());
+                resolution = session.resolvePreferringNew(subject);
+            } else {
+                resolution = session.resolveWithoutConsulting(subject);
+            }
+        } else {
+            // R012: an explicit, scoped re-evaluation forces a fresh judge query even for a quiz
+            // that already has a current verdict. Outside the requested scope (or absent an
+            // explicit re-evaluation request), the ordinary reuse/budget path applies (R008/R006).
+            boolean forceReevaluation = policy.isReevaluate()
+                    && scopeMatcher.matches(node, policy.getReevaluationScope());
+            resolution = forceReevaluation ? session.resolveForced(subject) : session.resolve(subject);
+        }
 
         // R004/R007/R013: pending (budget exhausted or stale judge version) and failed
         // (judge unavailable or its own infrastructure verdict) resolutions leave the quiz
@@ -145,8 +170,20 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
             verdictsByJudgeVersion.add(new JudgeVersionVerdictCount(entry.getKey(), entry.getValue()));
         }
 
+        // F-QINST-R018: an id of the declared set that matched no quiz of the course
+        // never reaches onQuiz, so it is reported here by set difference instead --
+        // it must never enter any coverage count above. null when no set was declared
+        // at all (the concept simply does not apply to an ordinary/by-area run).
+        Set<String> declaredSet = policy.getReevaluationSubjectIds();
+        List<String> unmatchedReevaluationIds = declaredSet == null
+                ? null
+                : declaredSet.stream()
+                        .filter(id -> !matchedDeclaredSetIds.contains(id))
+                        .sorted()
+                        .collect(Collectors.toList());
+
         courseDiagnoses.setQuizInstructionCoverage(new QuizInstructionCoverageDiagnosis(
-                coverage, consultedJudgeVersion, verdictsByJudgeVersion));
+                coverage, consultedJudgeVersion, verdictsByJudgeVersion, unmatchedReevaluationIds));
 
         return null;
     }

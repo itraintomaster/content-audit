@@ -1,130 +1,161 @@
 ---
-patch: F-LAGEN
+patch: ARCH-LAGEN-R015
 requirement: 2026-04-29.01_laps-llm-quiz-candidate-generator
-generated: 2026-04-30T19:30:00Z
+generated: 2026-08-04T23:59:00Z
 ---
 
-# Tech Spec: FEAT-LAGEN — Generador de candidatos respaldado por LLM para LEMMA_ABSENCE
+# Tech Spec: FEAT-LAGEN — Generador de candidatos respaldado por modelo de lenguaje
 
-## Renombrar `revision-domain.strategy` a `revision-domain.lemmaabsence`
-El package previo se llamaba con el nombre de un patrón GoF (`strategy`) en lugar de describir el sub-dominio que encapsula. Como hoy alberga exclusivamente piezas LEMMA_ABSENCE-específicas — el port `LemmaAbsenceQuizCandidateGenerator`, la estrategia MVP, el carrier `LemmaAbsenceGeneratorResponse` y el generador canned — el nombre se reemplaza por `lemmaabsence`, siguiendo la convención del módulo hermano `audit-domain` (`coca`, `lrec`, `labs`). Aprovechamos la misma ventana de cambio que abre F-LAGEN (visibility flip + un componente nuevo) para que el churn de imports se pague una sola vez. Los cuatro componentes (3 preexistentes en la baseline + 1 que agrega esta feature: `CannedLemmaAbsenceQuizCandidateGenerator`) se relocalizan en bloque al nuevo package, todos con `visibility: public` (cierra el flip que originalmente motivó el cambio: el composition root y `revision-infrastructure` necesitan instanciar tanto la estrategia MVP como el generador canned).
+> **Como leer este documento.** Las secciones con fence describen `ARCH-LAGEN-R015`, el cambio pendiente. Antes va, en prosa, el razonamiento del diseño original de abril de 2026: sus fences ya no validan contra el patch vigente, asi que se conserva el porque y se deja el detalle de contratos —que se lee en `sentinel.yaml`— afuera. Al final se marca que reemplazo FEAT-LASAG.
+
+## Registro del diseño original (abril 2026)
+
+**Nombrar el sub-dominio, no el patron.** El package de estrategias se llamaba `strategy` —un nombre de patron GoF— y paso a `lemmaabsence`, siguiendo la convencion de los packages hermanos de `audit-domain` (`coca`, `lrec`, `labs`). El renombre se hizo en la misma ventana que el resto del cambio para pagar el churn de imports una sola vez.
+
+**Materializar el generador canned.** Vivia como lambda inline en `Main.java`, una filtracion del SPI hacia el composition root y la razon por la que DOUBT-CANNED-MODE-AVAILABILITY seguia abierta. Como implementacion nombrada e inyectable honra la Opcion B de esa duda —opt-in explicito, nunca default— y recibe su contenido por constructor para que tests y corridas offline elijan su fixture sin subclasear.
+
+**Ubicar el vocabulario de fallas donde se usa.** `LlmGenerationFailureCategory` no tenia **ningun** consumidor en `revision-domain`: ningun port la menciona y `ProposalStrategyFailedException.reason` es un String libre por diseño. Se movio a `revision-infrastructure`, junto al codigo que clasifica errores. El argumento original —co-localizar el vocabulario de fallas con el contrato que modula— no aguanto escrutinio porque la enum no modulaba ningun contrato del dominio.
+
+**Aislar el adapter en su propio modulo.** `revision-infrastructure` nacio para que ningun modulo de dominio viera la libreria del proveedor, con `allowedClients: [audit-cli]` (P8, Qualified Export): es un detalle de implementacion del composition root y de nadie mas.
+
+**Un unico factory seam, con dos operaciones.** `create(LagenConfig)` devuelve el port runtime y `providerIdFor(LagenConfig)` devuelve el identificador `provider:model`, para que el bootstrap estampe la trazabilidad de F-LAGEN-R009 sin re-parsear la configuracion. El engine quedo detras de un package interno (P2): un grafo de colaboradores —prompt, parseo, clasificacion de errores— cada uno testeable por separado y ninguno visible afuera.
+
+**Config Record con perillas nullable.** `LagenConfig` reune las siete perillas de F-LAGEN-R008 en un solo tipo cross-module. Las opcionales son nullable para que el factory sustituya defaults sin obligar a cada caller a elegir uno, y esos defaults se materializaron como `LagenDefaults` en vez de literales escondidos: los tests asertan contra el tipo, no re-tipean el numero, y re-pinearlos toca un solo punto observable.
+
+**Formato de `providerId` cerrado.** `providerName:modelId` literal, sin normalizar case ni whitespace, y rechazo con `InvalidProviderIdException` si alguno de los dos trae `:`, porque eso rompe el round-trip de la trazabilidad: nadie podria re-parsear `lmstudio:gemma:7b` sin ambiguedad. La validacion vive en el factory y no en el constructor del carrier porque es la concatenacion la que introduce la restriccion.
+
+**Modo por env-var, con enum tipada.** `LagenMode` en la raiz del modulo porque lo referencian tanto el resolver (en `bootstrap`) como `Main` (en `commands`). `LLM` por defecto, `CANNED` como opt-in explicito (F-LAGEN-R013). `LagenConfigResolver` interpreta la configuracion en una sola pasada y falla antes de tocar el curso (F-LAGEN-R014).
+
+**Lo que reemplazo FEAT-LASAG.** El engine descrito arriba —el package `lagenopenai` con su prompt builder, su parser, su clasificador de errores y su factory sobre la libreria de chat— fue sustituido por `lemmaabsenceagent`, respaldado por el runtime de agentes declarativos. El razonamiento de encapsulamiento sigue valiendo y la forma se conservo; lo que cambio es el backend. Por eso este documento no reproduce la tabla de mapeo de excepciones a categorias de falla que cerraba el contrato de `DefaultLangChainErrorClassifier`: esa clase ya no existe, y su equivalente vigente es `DefaultAgentRuntimeErrorClassifier`, cuyo contrato vive en FEAT-LASAG.
+
+## Promover el criterio de validez a `agent-runtime-infrastructure`
+
+F-LAGEN-R015 exige que la generacion juzgue su configuracion contra el proveedor declarado **con el mismo criterio** que ya aplica la validacion de consigna, y el analista lo escribio como cita a F-QINST-R016 en vez de repetirlo. La arquitectura tiene que honrar eso: una sola implementacion, no dos que puedan divergir.
+
+El criterio se muda a `agent-runtime-infrastructure` por tres razones que ninguno de los dos consumidores puede ofrecer. Ese modulo ya envuelve la libreria de agentes, que es donde vive el conocimiento sobre clases de proveedor. No depende de nadie, asi que ningun consumidor invierte una dependencia para llegar. Y sus `allowedClients` ya son exactamente los tres modulos que lo necesitan, con lo cual no hubo que tocar ninguna frontera.
+
+La implementacion no se esconde detras de un factory: construirla es trivial y no tiene colaboradores ni grafo que encapsular, asi que un seam seria un componente de mas para ocultar cero.
 
 ```architecture
 modules:
-  - name: revision-domain
+  - name: agent-runtime-infrastructure
     _change: modify
     packages:
-      - name: lemmaabsence
-        _change: modify
+      - name: llmprovider
+        _change: add
         visibility: public
         models:
-          - name: LemmaAbsenceGeneratorResponse
-            _change: add
-            type: record
-            visibility: public
-            fields:
-              - { name: quizSentence, type: String }
-              - { name: translation, type: String }
-        interfaces:
-          - name: LemmaAbsenceQuizCandidateGenerator
-            _change: add
-            stereotype: port
-            visibility: public
-            exposes:
-              - signature: "generate(LemmaAbsenceCorrectionContext context): LemmaAbsenceGeneratorResponse"
-        implementations:
-          - name: LemmaAbsenceMvpStrategy
-            _change: add
-            visibility: public
-            implements: ["LemmaAbsenceProposalStrategy"]
-            requiresInject:
-              - { name: generator, type: LemmaAbsenceQuizCandidateGenerator }
-```
-
-## Mover el generador canned dentro de `revision-domain.lemmaabsence` como `CannedLemmaAbsenceQuizCandidateGenerator`
-Hoy el generador canned vive como un lambda inline dentro de `audit-cli/Main.java` — una filtración de las responsabilidades del SPI hacia el composition root, y la razón por la que DOUBT-CANNED-MODE-AVAILABILITY seguía abierta. Materializarlo como una implementación nombrada, pública e inyectable honra la Opción B de esa duda (queda como opt-in explícito, nunca default) y le permite a `audit-cli.bootstrap` cablearlo por el mismo camino factory-style que usa para todas las demás estrategias LAPS. Los parámetros del constructor llevan el contenido canned para que tests y corridas offline elijan su propio fixture sin necesidad de hacer subclases.
-
-```architecture
-modules:
-  - name: revision-domain
-    _change: modify
-    packages:
-      - name: lemmaabsence
-        _change: modify
-        implementations:
-          - name: CannedLemmaAbsenceQuizCandidateGenerator
-            _change: add
-            visibility: public
-            implements: ["LemmaAbsenceQuizCandidateGenerator"]
-            requiresInject:
-              - { name: cannedQuizSentence, type: String }
-              - { name: cannedTranslation, type: String }
-```
-
-## Mover `LlmGenerationFailureCategory` a `revision-infrastructure.lagen`
-La auditoría de superficie reveló que el único consumidor real de la enum es `LangChainErrorClassifier` (en `revision-infrastructure.lagenopenai`): el adapter clasifica el `Throwable` en una categoría y antepone el nombre de esa categoría como prefijo del `String reason` que viaja en `ProposalStrategyFailedException`. **Cero consumidores en `revision-domain`** — ningún port ni modelo de dominio menciona la enum, y `ProposalStrategyFailedException.reason` sigue siendo un `String` libre por diseño (FEAT-LAPS R015). Mover la enum a `revision-infrastructure.lagen` co-localiza el vocabulario con el factory que clasifica errores, deja `revision-domain` libre de vocabulario LLM, y mantiene la enum visible para el package interno `lagenopenai` (mismo módulo) y para futuros consumidores del CLI sin cruzar dominios.
-
-```architecture
-modules:
-  - name: revision-infrastructure
-    _change: modify
-    packages:
-      - name: lagen
-        _change: modify
-        models:
-          - name: LlmGenerationFailureCategory
+          - name: LlmProviderClass
             _change: add
             type: enum
-            visibility: public
             fields:
-              - { name: LLM_UNREACHABLE }
-              - { name: LLM_TIMEOUT }
-              - { name: LLM_AUTH_FAILED }
-              - { name: LLM_RESPONSE_EMPTY }
-              - { name: LLM_RESPONSE_MALFORMED }
-              - { name: LLM_OTHER }
+              - { name: LOCAL_SESSION, _change: add }
+              - { name: REMOTE_SERVICE, _change: add }
+          - name: LlmProviderRejectionKind
+            _change: add
+            type: enum
+            fields:
+              - { name: UNSUPPORTED_PROVIDER, _change: add }
+              - { name: MISSING_REQUIRED_INPUT, _change: add }
+          - name: LlmProviderResolved
+            _change: add
+            type: record
+            implements: ["LlmProviderResolution"]
+            fields:
+              - { name: providerName, type: String }
+              - { name: providerClass, type: LlmProviderClass }
+          - name: LlmProviderRejected
+            _change: add
+            type: record
+            implements: ["LlmProviderResolution"]
+            fields:
+              - { name: providerName, type: String }
+              - { name: missingInput, type: String }
+              - { name: kind, type: LlmProviderRejectionKind }
+        interfaces:
+          - name: LlmProviderResolution
+            _change: add
+            stereotype: port
+        implementations:
+          - name: DefaultLlmProviderResolver
+            _change: add
+            visibility: public
+            implements: ["LlmProviderResolver"]
 ```
 
-## Crear `revision-infrastructure` como módulo adapter LangChain4j
-El adapter LLM es una preocupación de infraestructura que depende de `revision-domain` (el port) y `refiner-domain` (el carrier `LemmaAbsenceCorrectionContext` que consume). Siguiendo la convención `*-infrastructure` del proyecto, lo alojamos en su propio módulo para que los módulos de dominio nunca vean LangChain4j. `allowedClients: [audit-cli]` (P8 Qualified Export) impone que este módulo sea un detalle de implementación del composition root del CLI, y nada más — ningún otro módulo puede depender de él, descartando acoplamientos cross-application accidentales. El módulo declara los dos aliases de LangChain4j (`langchain4j-openai` para el cliente OpenAI-compatible + builder, `langchain4j-core` para los tipos de chat-message y response que consume el API fluent legacy).
+## Recibir el nombre del dato faltante en vez de fijarlo
+
+El criterio no puede hardcodear como se llama la direccion de servicio. El juez la declara `baseUrl` y la generacion `endpoint`, y F-LAGEN-R015 invariante 3 exige que el reporte nombre el dato faltante **con el mismo nombre con el que el operador lo declara**. Hoy `DefaultQuizInstructionJudgeProviderResolver` lo tiene fijo en una constante; mudarlo asi haria que el criterio mintiera para uno de los dos consumidores, y ese nombre es lo unico que vuelve accionable el error.
+
+Por eso la firma recibe los dos datos que el operador declara mas la etiqueta con la que ese consumidor los llama. Todo lo demas —que clase es cada proveedor, que direccion conoce el sistema de antemano— es conocimiento de la libreria, no del llamador.
 
 ```architecture
 modules:
-  - name: revision-infrastructure
-    _change: modify
-    description: "Infrastructure adapter for the revision phase."
-    dependsOn: ["revision-domain", "refiner-domain"]
-    allowedClients: ["audit-cli"]
-    uses: ["langchain4j-openai", "langchain4j-core"]
-```
-
-## Exponer un único Factory Seam en `revision-infrastructure.lagen`
-El composition root tiene que construir un `LemmaAbsenceQuizCandidateGenerator` totalmente cableado en una sola llamada, y además poblar `StrategyId.providerId` (F-LAGEN-R009) desde la misma configuración. Exponemos dos operaciones en el factory: `create(LagenConfig)` devuelve el port runtime, `providerIdFor(LagenConfig)` devuelve el identificador `provider:model` correspondiente para que `audit-cli.bootstrap` pueda estampar la estrategia sin re-parsear la config. Ambos viven en el package público `lagen` junto con el carrier `LagenConfig`; el adapter y sus colaboradores se quedan ocultos en el package internal hermano.
-
-```architecture
-modules:
-  - name: revision-infrastructure
+  - name: agent-runtime-infrastructure
     _change: modify
     packages:
-      - name: lagen
+      - name: llmprovider
         _change: modify
-        visibility: public
         interfaces:
-          - name: LemmaAbsenceLlmGeneratorFactory
-            _change: modify
-            stereotype: factory
-            visibility: public
+          - name: LlmProviderResolver
+            _change: add
+            stereotype: port
             exposes:
-              - signature: "create(LagenConfig config): LemmaAbsenceQuizCandidateGenerator"
-              - signature: "providerIdFor(LagenConfig config): String"
-    patterns:
-      - type: Factory
-        interface: LemmaAbsenceLlmGeneratorFactory
-        implementations: ["DefaultLemmaAbsenceLlmGeneratorFactory"]
+              - signature: "resolve(String declaredProviderName, String declaredServiceAddress, String serviceAddressInputName): LlmProviderResolution"
 ```
 
-## Definir `LagenConfig` como Config Record carrier público
-F-LAGEN-R008 lista siete perillas que el operador debe poder ajustar sin recompilar. El factory las recibe como un único record para que la superficie cross-module siga siendo un solo tipo; los campos requeridos (provider, model, endpoint) son no-null, las perillas opcionales (apiKey, temperature, maxTokens, timeout) son nullable para que el factory pueda sustituir defaults. `apiKey` es nullable para honrar la Asunción 3 (el default local no requiere credenciales); `temperature` es nullable para que el factory pueda aplicar un default no-cero (Asunción 4) sin obligar a cada caller a elegir uno.
+## Retirar el vocabulario propio del juez en vez de adaptarlo
+
+`JudgeProviderClass` no es un tipo auxiliar: **es** el criterio, porque sus dos valores enuncian que exige cada clase de proveedor. Dejarlo al lado de `LlmProviderClass` habria creado el segundo enunciado que puede divergir —una clase de proveedor nueva habria que agregarla en los dos—, que es exactamente lo que R015 vino a eliminar. Un adaptador entre cinco tipos y sus cinco espejos habria sido peso cuyo unico trabajo es renombrar.
+
+El juez conserva su invariante mas fuerte: `QuizInstructionAgentJudge` solo se puede construir con un proveedor ya resuelto, asi que la invariante 3 de F-QINST-R016 —con configuracion invalida no se emite ni una sola consulta— sigue garantizada por construccion y no por una guarda que alguien pueda olvidar. Lo unico que cambia es de quien es el tipo que lo garantiza.
+
+```architecture
+modules:
+  - name: quiz-instruction-infrastructure
+    _change: modify
+    packages:
+      - name: instructionjudge
+        _change: modify
+        models:
+          - { name: JudgeProviderClass, _change: delete }
+          - { name: JudgeProviderRejectionKind, _change: delete }
+          - { name: JudgeProviderResolved, _change: delete }
+          - { name: JudgeProviderRejected, _change: delete }
+        interfaces:
+          - { name: JudgeProviderResolution, _change: delete }
+          - { name: QuizInstructionJudgeProviderResolver, _change: delete }
+          - name: QuizInstructionJudgeVersionResolver
+            _change: modify
+            exposes:
+              - signature: "resolve(QuizInstructionJudgeConfig config,JudgeProviderResolved provider): Optional<String>"
+                _change: delete
+              - signature: "resolve(QuizInstructionJudgeConfig config,LlmProviderResolved provider): Optional<String>"
+                _change: add
+          - name: JudgeChatModelFactory
+            _change: modify
+            exposes:
+              - signature: "create(QuizInstructionJudgeConfig config,JudgeProviderResolved provider): ChatModel"
+                _change: delete
+              - signature: "create(QuizInstructionJudgeConfig config,LlmProviderResolved provider): ChatModel"
+                _change: add
+        implementations:
+          - { name: DefaultQuizInstructionJudgeProviderResolver, _change: delete }
+          - name: QuizInstructionAgentJudge
+            _change: modify
+            requiresInject:
+              - { name: provider, type: LlmProviderResolved }
+          - name: DefaultQuizInstructionJudgeFactory
+            _change: modify
+            requiresInject:
+              - { name: llmProviderResolver, type: LlmProviderResolver }
+```
+
+## Volver opcional la direccion de servicio en la configuracion de generacion
+
+El campo se declaraba requerido, y esa es la exigencia que R015 corrige: para un proveedor que se autentica con la sesion local no existe ninguna direccion que declarar, asi que la unica forma de correr era inventar un valor de relleno. Un dato obligatorio que puede tomar un valor falso sin consecuencia —verificado sobre una corrida real con `http://localhost:7400` inexistente— no es un requisito.
+
+Declararla igualmente para un proveedor que no la usa sigue siendo valido y se ignora en silencio: hoy toda instalacion que corre con esa clase de proveedor lleva un valor de relleno puesto unicamente porque el sistema lo exigia, y rechazarlo romperia instalaciones que funcionan.
 
 ```architecture
 modules:
@@ -135,176 +166,16 @@ modules:
         _change: modify
         models:
           - name: LagenConfig
-            _change: add
-            type: record
-            visibility: public
+            _change: modify
             fields:
-              - { name: providerName, type: String }
-              - { name: modelId, type: String }
-              - { name: endpoint, type: String }
-              - { name: apiKey, type: String }
-              - { name: temperature, type: Double }
-              - { name: maxTokens, type: Integer }
-              - { name: timeout, type: Duration }
+              - { name: endpoint, type: String, _change: modify }
 ```
 
-## Contrato cerrado: defaults numéricos del factory materializados en `LagenDefaults`
-QA flagged que las firmas de tres tests del factory (`temperature`, `maxTokens`, `timeout` cuando los campos correspondientes de `LagenConfig` son null) decían "non-zero" / "sensible default" / "default timeout" sin pinear el número. Cierro el contrato con valores explícitos y los materializo como un record nominado `LagenDefaults` en el package `lagen`, no como literales escondidos dentro del factory. Razones: (1) los tests pueden asertar igualdad contra `LagenDefaults` (un getter por campo) en lugar de re-tipear `0.7` (acopla el test a la decisión, no al literal); (2) cualquier futura iteración que quiera re-pinear los defaults toca un único punto observable; (3) `LagenDefaults` queda público por la misma razón que `LagenConfig`: es contrato cross-module que `audit-cli` y los tests pueden leer. Los valores elegidos son `temperature=0.7` (cumple Asunción 4: no-cero / no-determinístico, alineado con la práctica usual de LangChain4j para chat), `maxTokens=2048` (suficiente para una respuesta JSON con un `quizSentence` cloze + traducción al español sin truncar), `timeout=Duration.ofSeconds(30)` (alineado con el ejemplo `LLM_TIMEOUT: deadline 30s exceeded` de REQUIREMENT.md R006). El developer DEBE inicializar la única instancia de `LagenDefaults` con esos valores exactos; el QA puede leer los getters y asertar igualdad.
+## Reportar los dos rechazos con dos excepciones distintas
 
-```architecture
-modules:
-  - name: revision-infrastructure
-    _change: modify
-    packages:
-      - name: lagen
-        _change: modify
-        models:
-          - name: LagenDefaults
-            _change: add
-            type: record
-            visibility: public
-            fields:
-              - { name: temperature, type: double }
-              - { name: maxTokens, type: int }
-              - { name: timeout, type: Duration }
-```
+R015 invariante 3 exige que el reporte nombre el dato que falta, el proveedor que lo necesita y ofrezca el modo de generacion fija como alternativa. La plantilla de mensaje de una excepcion no puede ramificar, y los dos rechazos informan cosas distintas: cuando el proveedor no es consultable no falta un dato, falta un proveedor. Con una sola excepcion, ese caso imprimiria `falta 'null'`.
 
-## Contrato cerrado: formato de `providerId` y rechazo ante `:` embebido
-QA flagged que la signature `providerIdFor(LagenConfig): String` no declaraba el formato del retorno ni el comportamiento ante caracteres ambiguos. Cierro el contrato así: el formato canónico es `providerName:modelId` con `:` literal como separador (ya pinneado en decisions.md línea 27); el factory **no** normaliza case ni whitespace (`LMStudio:gemma-3-4b-IT` y `lmstudio:gemma-3-4b-it` producen providerIds distintos — el operador es responsable de la consistencia, igual que con cualquier otra env-var); el factory **rechaza con `InvalidProviderIdException`** si `providerName` o `modelId` contienen `:` ellos mismos, porque eso rompe el round-trip de la trazabilidad (un consumidor del artefacto archivado no podría re-parsear `lmstudio:gemma:7b` sin ambigüedad). La excepción carga ambos campos para que el mensaje al operador sea accionable. La validación está en el factory (no en el constructor de `LagenConfig`) porque `LagenConfig` puede tener otros usos donde el `:` no sea relevante; es la concatenación la que introduce la restricción.
-
-```architecture
-modules:
-  - name: revision-infrastructure
-    _change: modify
-    packages:
-      - name: lagen
-        _change: modify
-        models:
-          - name: InvalidProviderIdException
-            _change: add
-            type: exception
-            extends: RuntimeException
-            visibility: public
-            message: "providerName and modelId must not contain ':' (got providerName='%s', modelId='%s'). The ':' is reserved as the providerId separator (provider:model)."
-            fields:
-              - { name: providerName, type: String }
-              - { name: modelId, type: String }
-```
-
-## Contrato cerrado: tabla de mapeo de `DefaultLangChainErrorClassifier.classify`
-QA flagged que la signature `classify(Throwable cause): LlmGenerationFailureCategory` no declaraba qué Throwables corresponden a qué categoría. Cierro el contrato así, en orden de evaluación (el classifier itera la cadena de causas con `Throwable.getCause()` y devuelve la primera categoría matcheada; si nada matchea devuelve `LLM_OTHER`):
-
-| Detector | Categoría | Justificación |
-|---|---|---|
-| Hay `java.net.ConnectException`, `java.net.UnknownHostException` o `java.net.NoRouteToHostException` en la cadena de causas | `LLM_UNREACHABLE` | Comunicación TCP/DNS no establecida — no hay forma de que el proveedor haya recibido la consulta. |
-| Hay `java.net.SocketTimeoutException` o `java.util.concurrent.TimeoutException` en la cadena de causas | `LLM_TIMEOUT` | Conexión establecida pero deadline agotado antes de respuesta — coincide con la categoría que F-LAGEN-R008 menciona como observable. |
-| La excepción raíz es `dev.ai4j.openai4j.OpenAiHttpException` (o subtipo) y su `statusCode()` es `401` o `403` | `LLM_AUTH_FAILED` | LangChain4j legacy expone el status HTTP del proveedor por esta excepción cuando usa el cliente OpenAI-compatible. |
-| El `getMessage()` de la excepción raíz matchea `(?i)\b(unauthorized\|forbidden\|invalid api key\|401\|403)\b` | `LLM_AUTH_FAILED` | Heurística de fallback para proveedores que NO emiten `OpenAiHttpException` (p.ej. wrappers cloud que envuelven el error con su propia clase). Necesario porque LangChain4j 0.36.2 no estandariza un `AuthException` cross-provider. |
-| Cualquier otro `Throwable` no-null | `LLM_OTHER` | Catch-all explícito; nunca devuelve null para una entrada no-null. |
-
-Tres decisiones intencionales sobre las que QA preguntó: (1) **matching por tipo de Throwable, no por HTTP status genérico** — porque el legacy `generate(List<ChatMessage>)` no expone uniformemente el status; sólo `OpenAiHttpException` lo hace explícito y eso queda como detector preferente con la heurística regex como fallback. (2) `LLM_RESPONSE_EMPTY` y `LLM_RESPONSE_MALFORMED` **no aparecen en este classifier** — los emite el `LemmaAbsenceResponseParser` sobre el texto crudo del modelo antes de llegar acá, confirmado por la firma `parse(LemmaAbsenceLlmRawResponse, String, String): LemmaAbsenceGeneratorResponse`. (3) **No agrego un modelo `Map<Class<? extends Throwable>, LlmGenerationFailureCategory>`** porque la lógica del classifier no es una tabla pura: incluye iteración sobre la cadena de causas, inspección de un statusCode tipado, y matching regex sobre el message — un map estático no representaría fielmente el algoritmo.
-
-```architecture
-modules:
-  - name: revision-infrastructure
-    _change: modify
-    packages:
-      - name: lagenopenai
-        _change: modify
-        interfaces:
-          - name: LangChainErrorClassifier
-            _change: add
-            stereotype: service
-            visibility: internal
-            exposes:
-              - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
-```
-
-## Ocultar el engine LangChain4j en `revision-infrastructure.lagenopenai`
-El adapter es un grafo de colaboradores (cableado del cliente HTTP, template de prompt, validación de forma JSON, clasificación de errores) — exactamente la situación que pide P2: encapsular dentro de un package cuyo único seam público es el factory implementation. Partir el armado de prompt, el parseo de respuesta y la clasificación de errores en sus propias interfaces internal mantiene cada preocupación testeable de forma aislada (el QA agent va a aseverar F-LAGEN-R005 sobre el parser, las categorías F-LAGEN-R006 sobre el classifier, y F-LAGEN-R003/R004 sobre el prompt builder) sin exponer ninguna de ellas. Solo `DefaultLemmaAbsenceLlmGeneratorFactory` es `visibility: public` — todos los colaboradores son package-private para que la elección de LangChain4j pueda ser cambiada sin romper la superficie cross-module.
-
-```architecture
-modules:
-  - name: revision-infrastructure
-    _change: modify
-    packages:
-      - name: lagenopenai
-        _change: modify
-        visibility: internal
-        models:
-          - name: LemmaAbsenceLlmRawResponse
-            _change: add
-            type: record
-            fields:
-              - { name: rawText, type: String }
-        interfaces:
-          - name: LemmaAbsencePromptBuilder
-            _change: add
-            stereotype: service
-            visibility: internal
-            exposes:
-              - signature: "buildSystemPrompt(): String"
-              - signature: "buildUserPrompt(LemmaAbsenceCorrectionContext context): String"
-          - name: LemmaAbsenceResponseParser
-            _change: add
-            stereotype: service
-            visibility: internal
-            exposes:
-              - signature: "parse(LemmaAbsenceLlmRawResponse raw, String taskId, String strategyName): LemmaAbsenceGeneratorResponse"
-        implementations:
-          - name: DefaultLemmaAbsenceLlmGeneratorFactory
-            _change: add
-            visibility: public
-            implements: ["LemmaAbsenceLlmGeneratorFactory"]
-          - name: LemmaAbsenceLlmGenerator
-            _change: add
-            implements: ["LemmaAbsenceQuizCandidateGenerator"]
-            requiresInject:
-              - { name: config, type: LagenConfig }
-              - { name: promptBuilder, type: LemmaAbsencePromptBuilder }
-              - { name: responseParser, type: LemmaAbsenceResponseParser }
-              - { name: errorClassifier, type: LangChainErrorClassifier }
-              - { name: strategyName, type: String }
-          - name: DefaultLemmaAbsencePromptBuilder
-            _change: add
-            implements: ["LemmaAbsencePromptBuilder"]
-          - name: DefaultLemmaAbsenceResponseParser
-            _change: add
-            implements: ["LemmaAbsenceResponseParser"]
-          - name: DefaultLangChainErrorClassifier
-            _change: add
-            implements: ["LangChainErrorClassifier"]
-```
-
-## Cablear `audit-cli` para depender de `revision-infrastructure`
-El composition root del CLI es el único módulo legalmente autorizado para instanciar factories concretos desde módulos de infraestructura (P4). Agregar `revision-infrastructure` a `audit-cli.dependsOn` hace al nuevo factory alcanzable desde `Main.java`; la declaración `allowedClients: [audit-cli]` sobre `revision-infrastructure` mantiene a todo el resto fuera del cuadro.
-
-```architecture
-modules:
-  - name: audit-cli
-    _change: modify
-    dependsOn: ["revision-infrastructure"]
-```
-
-## Agregar enum `LagenMode` a `audit-cli`
-D2 confirmó configuración por env-vars sin archivos de config. El switch de modo (`CONTENT_AUDIT_LAGEN_MODE=llm|canned`) necesita una representación tipada sobre la cual ramifiquen tanto el resolver como el cableado del bootstrap. El default es `LLM` (F-LAGEN-R013); `CANNED` es el opt-in explícito que materializa la Opción B de DOUBT-CANNED-MODE-AVAILABILITY. Lo ubicamos en la raíz del módulo porque tanto el resolver (en el package `bootstrap`) como `Main.java` (en el package `commands`) necesitan referenciarlo.
-
-```architecture
-modules:
-  - name: audit-cli
-    _change: modify
-    models:
-      - name: LagenMode
-        _change: add
-        type: enum
-        visibility: public
-        fields:
-          - { name: LLM }
-          - { name: CANNED }
-```
-
-## Agregar `LagenModeResolver` a `audit-cli.bootstrap`
-Espeja el patrón existente de `ApprovalModeResolver` / `ProposalStrategySelector` en el mismo package: un port sealed + una implementación default que convierte una sola string de env-var en la enum tipada, lanzando una excepción tipada ante input inválido. Sellar el port prohíbe terceras implementaciones accidentales y le da al test writer un set exhaustivo de casos.
+Las dos mapean uno a uno contra los dos motivos de rechazo del criterio, asi que el conjunto es exhaustivo por construccion. `InvalidLagenConfigException` queda intacta reportando los valores que no parsean: el reporte accionable de F-LAGEN-R014 no pierde nada, gana un caso que antes caia en un mensaje generico.
 
 ```architecture
 modules:
@@ -314,29 +185,28 @@ modules:
       - name: bootstrap
         _change: modify
         models:
-          - name: InvalidLagenModeException
+          - name: UnsupportedLagenProviderException
             _change: add
             type: exception
             extends: RuntimeException
-            message: "Invalid value for CONTENT_AUDIT_LAGEN_MODE: '%s'. Allowed: llm, canned"
+            message: "El proveedor '%s' no es uno que el sistema sepa consultar. Declarar uno soportado, o pedir el modo de generacion fija para correr sin ningun proveedor."
             fields:
-              - { name: value, type: String }
-        interfaces:
-          - name: LagenModeResolver
+              - { name: providerName, type: String }
+          - name: MissingLagenProviderInputException
             _change: add
-            stereotype: port
-            sealed: true
-            exposes:
-              - signature: "resolve(String envValue): LagenMode"
-        implementations:
-          - name: DefaultLagenModeResolver
-            _change: add
-            visibility: public
-            implements: ["LagenModeResolver"]
+            type: exception
+            extends: RuntimeException
+            message: "No se pudo dirigir la consulta al proveedor '%s': falta '%s'. Declararlo, o pedir el modo de generacion fija para correr sin ningun proveedor."
+            fields:
+              - { name: providerName, type: String }
+              - { name: missingInput, type: String }
 ```
 
-## Agregar `LagenConfigResolver` a `audit-cli.bootstrap`
-Parsea las env-vars `CONTENT_AUDIT_LAGEN_*` (provider, model, endpoint, apiKey, temperature, maxTokens, timeout) hacia un carrier `LagenConfig`. Pasamos el mapa de env como un argumento explícito `Map<String,String>` en lugar de leer `System.getenv()` directamente para que el resolver sea unit-testable de forma aislada. La `InvalidLagenConfigException` lleva tanto el nombre de la env-var ofensora como un detalle del error de parseo, así el CLI puede imprimir un mensaje accionable y salir con código distinto de cero antes de que se intente cualquier round-trip al LLM.
+## Inyectar el criterio en el resolver de configuracion
+
+El punto de aplicacion es uno solo y es este: la configuracion se juzga contra su proveedor en la misma pasada en que se interpreta, sin emitir ninguna consulta, que es lo que F-LAGEN-R014 ya exigia y R015 no relaja. Lo unico que cambia es cual es el conjunto de configuraciones invalidas.
+
+Que el criterio llegue inyectado y no implementado aca es lo que hace que las tres correcciones que consultan un modelo —lemas ausentes, titulos de knowledge y consigna de quiz— se juzguen con el mismo criterio sin que ninguna lo reimplemente: todas consumen esta configuracion, y esta configuracion se valida una sola vez.
 
 ```architecture
 modules:
@@ -345,25 +215,15 @@ modules:
     packages:
       - name: bootstrap
         _change: modify
-        models:
-          - name: InvalidLagenConfigException
-            _change: add
-            type: exception
-            extends: RuntimeException
-            message: "Invalid LAGEN configuration (%s): %s"
-            fields:
-              - { name: key, type: String }
-              - { name: detail, type: String }
-        interfaces:
-          - name: LagenConfigResolver
-            _change: add
-            stereotype: port
-            sealed: true
-            exposes:
-              - signature: "resolve(Map<String,String> env): LagenConfig"
         implementations:
           - name: DefaultLagenConfigResolver
-            _change: add
-            visibility: public
-            implements: ["LagenConfigResolver"]
+            _change: modify
+            requiresInject:
+              - { name: llmProviderResolver, type: LlmProviderResolver }
 ```
+
+## Lo que este cambio no re-decide
+
+Tres cosas quedan citadas y no re-enunciadas, porque ya estan decididas en F-QINST-R016 y re-litigarlas seria volver a crear el problema que R015 cierra.
+
+La **credencial** nunca es requisito de disponibilidad: su ausencia no impide dirigir la consulta, y si el servicio la exige el rechazo llega como falla en tiempo de consulta, no como configuracion invalida. El **identificador del modelo** sigue exigible para toda clase de proveedor, porque no es un dato de conexion sino la identidad de lo que produce el contenido, que la trazabilidad de cada propuesta necesita. Y el **proveedor por defecto** cuando no se declara ninguno sigue siendo la duda abierta compartida, con su asuncion vigente; cualquiera sea la respuesta, no cambia el enunciado de R015 ni esta arquitectura.

@@ -4,9 +4,11 @@ import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -87,5 +89,25 @@ public class DefaultQuizInstructionScopeMatcherTest {
                 "R012: a re-evaluation request without a declared scope must reach the whole course");
         Assertions.assertTrue(sut.matches(quizUnderB, null),
                 "R012: a re-evaluation request without a declared scope must reach the whole course");
+    }
+
+    @Test
+    @DisplayName("should decide a new judgement for every quiz of the declared set and a reuse without consulting for every quiz outside it")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R018")
+    public void shouldDecideANewJudgementForEveryQuizOfTheDeclaredSetAndAReuseWithoutConsultingForEveryQuizOutsideIt() {
+        AuditNode knowledgeA = buildKnowledgeNode("knowledge-a");
+        AuditNode quizInDeclaredSet = buildQuizNodeUnder(knowledgeA, "quiz-a1");
+        AuditNode quizOutsideDeclaredSet = buildQuizNodeUnder(knowledgeA, "quiz-a2");
+
+        // Conjunto declarado en el pedido: excluyente con reevaluate/reevaluationScope (R018)
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, Set.of("quiz-a1"));
+
+        Assertions.assertEquals(QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION,
+                sut.decide(quizInDeclaredSet, policy),
+                "R018: a quiz that belongs to the declared set must be judged again");
+        Assertions.assertEquals(QuizInstructionReevaluationDecision.OUTSIDE_DECLARED_SET,
+                sut.decide(quizOutsideDeclaredSet, policy),
+                "R018: a quiz outside the declared set must be reused without consulting the judge, so the run's budget is spent on the set");
     }
 }

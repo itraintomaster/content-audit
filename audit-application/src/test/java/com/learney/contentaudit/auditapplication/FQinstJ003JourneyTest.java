@@ -224,7 +224,7 @@ public class FQinstJ003JourneyTest {
         DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
                 List.of(), scoreAggregator, List.of(quizInstructionFactory));
 
-        EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null);
+        EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null, Map.of(ANALYZER_NAME, reevaluationPolicy));
         runner.runAudit(coursePath, request);
 
@@ -354,7 +354,7 @@ public class FQinstJ003JourneyTest {
      * a null policy reaches EvaluationSession directly, which the real factory never does.
      */
     private static EvaluationRunPolicy withDefaultBudgetWhenAbsent(EvaluationRunPolicy policy) {
-        return policy != null ? policy : new EvaluationRunPolicy(DEFAULT_MAX_NEW_EVALUATIONS, false, null);
+        return policy != null ? policy : new EvaluationRunPolicy(DEFAULT_MAX_NEW_EVALUATIONS, false, null, null);
     }
 
     /**

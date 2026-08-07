@@ -237,6 +237,11 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Given a KNOWLEDGE_TITLE_LENGTH task pointing at an existing knowledge, when resolve runs, then the context exposes the current title, current instructions and the containing topic label of that knowledge → FEAT-KTLR/F-KTLR-R002
 - Given a KNOWLEDGE_TITLE_LENGTH task whose knowledge does not exist in the course, when resolve runs, then it fails explicitly without producing a context and without invoking the agent → FEAT-KTLR/F-KTLR-R011
 
+### QuizInstructionContextResolver (refiner-domain)
+
+- should resolve a correction context carrying every violation the quiz diagnosis recorded, each with its breached constraint, its textual evidence and its explanation → FEAT-QICOR/F-QICOR-R002
+- should resolve a correction context carrying the whole quiz with its gaps and its accepted options, the knowledge instruction, the CEFR level and the sibling quizzes of the knowledge → FEAT-QICOR/F-QICOR-R002
+
 ### CourseToAuditableMapper (audit-application)
 
 - Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse → FEAT-NLP/F-NLP-R010

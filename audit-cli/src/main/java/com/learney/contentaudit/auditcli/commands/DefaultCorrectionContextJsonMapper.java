@@ -1,11 +1,13 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.KnowledgeTitleCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
 import com.learney.contentaudit.refinerdomain.OutOfCatalogWordContext;
+import com.learney.contentaudit.refinerdomain.QuizInstructionCorrectionContext;
 import com.learney.contentaudit.refinerdomain.ScarceContentWord;
 import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
@@ -29,9 +31,46 @@ class DefaultCorrectionContextJsonMapper implements CorrectionContextJsonMapper 
             return buildLemmaAbsenceContextMap((LemmaAbsenceCorrectionContext) context);
         } else if (context instanceof KnowledgeTitleCorrectionContext) {
             return buildKnowledgeTitleContextMap((KnowledgeTitleCorrectionContext) context);
+        } else if (context instanceof QuizInstructionCorrectionContext) {
+            return buildQuizInstructionContextMap((QuizInstructionCorrectionContext) context);
         }
         throw new IllegalArgumentException(
                 "Unsupported CorrectionContext type: " + context.getClass().getName());
+    }
+
+    /**
+     * F-QICOR-R002: the violations with their constraint/evidence/explanation are the raw
+     * material of the correction (and of the dashboard that consumes this same JSON) —
+     * they must be serialized in full, never collapsed to an empty/omitted key.
+     */
+    private Map<String, Object> buildQuizInstructionContextMap(QuizInstructionCorrectionContext ctx) {
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("quizSentence", ctx.getQuizSentence());
+        map.put("sentence", ctx.getSentence());
+        map.put("translation", ctx.getTranslation());
+        map.put("knowledgeTitle", ctx.getKnowledgeTitle());
+        map.put("knowledgeInstructions", ctx.getKnowledgeInstructions());
+        map.put("topicLabel", ctx.getTopicLabel());
+        map.put("cefrLevel", ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : null);
+        map.put("sentenceMode", ctx.getSentenceMode() != null ? ctx.getSentenceMode().name() : null);
+        List<InstructionViolation> violations = ctx.getViolations();
+        map.put("violations", violations == null ? List.of() : violations.stream()
+                .map(v -> {
+                    Map<String, Object> vm = new LinkedHashMap<>();
+                    vm.put("code", v.getCode());
+                    vm.put("constraint", v.getConstraint());
+                    vm.put("evidence", v.getEvidence());
+                    vm.put("explanation", v.getExplanation());
+                    return vm;
+                })
+                .collect(Collectors.toList()));
+        map.put("verdictReason", ctx.getVerdictReason());
+        map.put("severity", ctx.getSeverity() != null ? ctx.getSeverity().name() : null);
+        List<String> siblings = ctx.getSiblingQuizSentences();
+        map.put("siblingQuizSentences", siblings == null ? List.of() : siblings.stream()
+                .filter(s -> s != null && !s.isBlank())
+                .collect(Collectors.toList()));
+        return map;
     }
 
     private Map<String, Object> buildKnowledgeTitleContextMap(KnowledgeTitleCorrectionContext ctx) {

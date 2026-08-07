@@ -15,6 +15,7 @@ public class DispatchingCorrectionContextResolverTest {
     private SentenceLengthContextResolver sentenceLengthResolver;
     private LemmaAbsenceContextResolver lemmaAbsenceResolver;
     private KnowledgeTitleContextResolver knowledgeTitleResolver;
+    private QuizInstructionContextResolver quizInstructionResolver;
     private DispatchingCorrectionContextResolver sut;
 
     @BeforeEach
@@ -22,7 +23,8 @@ public class DispatchingCorrectionContextResolverTest {
         sentenceLengthResolver = new SentenceLengthContextResolver();
         lemmaAbsenceResolver = new LemmaAbsenceContextResolver();
         knowledgeTitleResolver = new KnowledgeTitleContextResolver();
-        sut = new DispatchingCorrectionContextResolver(sentenceLengthResolver, lemmaAbsenceResolver, knowledgeTitleResolver);
+        quizInstructionResolver = new QuizInstructionContextResolver();
+        sut = new DispatchingCorrectionContextResolver(sentenceLengthResolver, lemmaAbsenceResolver, knowledgeTitleResolver, quizInstructionResolver);
     }
 
     /** Builds a minimal AuditReport with an empty root node to satisfy non-null checks. */

@@ -1,4 +1,5 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved;
 
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
 import com.sentinel.agents.analyst.LlmFactory;
@@ -28,7 +29,7 @@ class SentinelAgentsJudgeChatModelFactory implements JudgeChatModelFactory {
      * el log de la corrida (queda inerte si no hay sink activo durante la corrida).
      */
     @Override
-    public ChatModel create(QuizInstructionJudgeConfig config, JudgeProviderResolved provider) {
+    public ChatModel create(QuizInstructionJudgeConfig config, LlmProviderResolved provider) {
         Double temperature = config != null ? config.getTemperature() : null;
 
         LlmFactory.LlmConfig llmConfig = new LlmFactory.LlmConfig(

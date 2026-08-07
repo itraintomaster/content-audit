@@ -4,16 +4,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import com.learney.contentaudit.auditapplication.AuditRunRequest;
 import com.learney.contentaudit.auditapplication.AuditRunner;
 import com.learney.contentaudit.auditcli.AnalyzeOptions;
+import com.learney.contentaudit.auditcli.bootstrap.ReevaluationQuizSetResolver;
+import com.learney.contentaudit.auditcli.bootstrap.UnreadableQuizSetOriginException;
 import com.learney.contentaudit.auditcli.formatting.DefaultDrillDownResolver;
 import com.learney.contentaudit.auditcli.formatting.DetailedFormatter;
 import com.learney.contentaudit.auditcli.formatting.DrillDownResolver;
@@ -78,7 +82,7 @@ public class AnalyzeCmdTest {
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
                 rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
-                ignored -> null);
+                ignored -> null, mock(ReevaluationQuizSetResolver.class));
 
         ByteArrayOutputStream errCapture = new ByteArrayOutputStream();
         PrintStream originalErr = System.err;
@@ -116,7 +120,7 @@ public class AnalyzeCmdTest {
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
                 rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
-                CoursePathResolver::resolve);
+                CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         ByteArrayOutputStream errCapture = new ByteArrayOutputStream();
         PrintStream originalErr = System.err;
@@ -162,7 +166,7 @@ public class AnalyzeCmdTest {
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
                 rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
-                CoursePathResolver::resolve);
+                CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         ByteArrayOutputStream outCapture = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -209,7 +213,7 @@ public class AnalyzeCmdTest {
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
                 rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
-                CoursePathResolver::resolve);
+                CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         ByteArrayOutputStream outCapture = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -255,7 +259,7 @@ public class AnalyzeCmdTest {
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
                 rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
-                CoursePathResolver::resolve);
+                CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -289,7 +293,7 @@ public class AnalyzeCmdTest {
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
                 rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
-                CoursePathResolver::resolve);
+                CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         ByteArrayOutputStream errCapture = new ByteArrayOutputStream();
         PrintStream originalErr = System.err;
@@ -337,10 +341,10 @@ public class AnalyzeCmdTest {
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
                 rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
-                CoursePathResolver::resolve);
+                CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                List.of("quiz-instruction"), false, null, null);
+                List.of("quiz-instruction"), false, null, null, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -389,10 +393,10 @@ public class AnalyzeCmdTest {
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
                 rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
-                CoursePathResolver::resolve);
+                CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                null, false, 250, null);
+                null, false, 250, null, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -443,10 +447,10 @@ public class AnalyzeCmdTest {
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
                 rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
-                CoursePathResolver::resolve);
+                CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                null, false, null, "knowledge:K-042");
+                null, false, null, "knowledge:K-042", null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -500,10 +504,10 @@ public class AnalyzeCmdTest {
 
         AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
                 rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
-                CoursePathResolver::resolve);
+                CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                null, false, null, null);
+                null, false, null, null, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -528,5 +532,113 @@ public class AnalyzeCmdTest {
                 && request.getAnalyzerPolicies().containsKey("quiz-instruction");
         assertFalse(narrowed,
                 "R001: quiz-instruction's run policy must not be narrowed when the user passes no analyzer option");
+    }
+
+    @Test
+    @DisplayName("should carry into the instruction run policy the set of quizzes the user declared, as the only re evaluation scope of the run")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R018")
+    public void shouldCarryIntoTheInstructionRunPolicyTheSetOfQuizzesTheUserDeclaredAsTheOnlyReEvaluationScopeOfTheRun() {
+        // R018: the set of exercise ids the user declares in the request must reach the
+        // judge's run policy as its re-evaluation scope, and as the ONLY one — a declared
+        // set IS the re-evaluation request, so it must not also carry an area/total
+        // re-evaluation flag (F-QINST-R012 stays a separate, mutually exclusive form).
+        AuditRunner auditRunner = mock(AuditRunner.class);
+        AuditReport report = new AuditReport(new AuditNode());
+        when(auditRunner.runAudit(any(Path.class), any(AuditRunRequest.class))).thenReturn(report);
+
+        ReportFormatter textFormatter = mock(ReportFormatter.class);
+        when(textFormatter.format(any(), any())).thenReturn("REPORT");
+        FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
+        when(formatterRegistry.getFormatter("text")).thenReturn(textFormatter);
+
+        ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
+        when(viewModelTransformer.transform(report)).thenReturn(mock(ReportViewModel.class));
+
+        RawReportFormatter rawReportFormatter = mock(RawReportFormatter.class);
+        AuditReportStore auditReportStore = mock(AuditReportStore.class);
+        when(auditReportStore.save(any())).thenReturn("audit-qinst-r018");
+
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+        ReevaluationQuizSetResolver reevaluationQuizSetResolver = mock(ReevaluationQuizSetResolver.class);
+
+        AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
+                CoursePathResolver::resolve, reevaluationQuizSetResolver);
+
+        Set<String> declaredQuizIds = Set.of("Q-101", "Q-202", "Q-303");
+        AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
+                null, false, null, null, declaredQuizIds);
+
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(new ByteArrayOutputStream()));
+        int exitCode;
+        try {
+            exitCode = sut.analyze("/valid/course", options);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exitCode, "R018: a declared re-evaluation set must not fail the audit");
+        ArgumentCaptor<AuditRunRequest> captor = ArgumentCaptor.forClass(AuditRunRequest.class);
+        verify(auditRunner).runAudit(any(Path.class), captor.capture());
+        AuditRunRequest request = captor.getValue();
+        assertNotNull(request.getAnalyzerPolicies(),
+                "R018: the run policy map must be present when a set of quizzes is declared");
+        EvaluationRunPolicy policy = request.getAnalyzerPolicies().get("quiz-instruction");
+        assertNotNull(policy,
+                "R018: the run policy for quiz-instruction must be present when a set of quizzes is declared");
+        assertEquals(declaredQuizIds, policy.getReevaluationSubjectIds(),
+                "R018: the declared set of quizzes must be carried into the run policy of the judge");
+        assertFalse(policy.isReevaluate(),
+                "R018: a declared set is itself the re-evaluation request; it must not also carry an area/total re-evaluation flag");
+        assertNull(policy.getReevaluationScope(),
+                "R018: a declared set must be the only re-evaluation scope, not combined with an area scope");
+    }
+
+    @Test
+    @DisplayName("should not run the audit at all, and should report the origin it could not read, when the request names an unreadable origin for the set of quizzes")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R019")
+    public void shouldNotRunTheAuditAtAllAndShouldReportTheOriginItCouldNotReadWhenTheRequestNamesAnUnreadableOriginForTheSetOfQuizzes() {
+        // R019 invariant 2: an origin the request names for the set of quizzes, that the
+        // system cannot read, must reject the request before the audit ever runs, naming
+        // the origin. This is the half of the invariant the resolver alone cannot observe
+        // (that no audit runs at all), so it is exercised here through the full command,
+        // via the CLI option that names the origin.
+        AuditRunner auditRunner = mock(AuditRunner.class);
+        FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
+        ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
+        RawReportFormatter rawReportFormatter = mock(RawReportFormatter.class);
+        AuditReportStore auditReportStore = mock(AuditReportStore.class);
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+
+        String unreadableOrigin = "/no/such/origin/quiz-ids.txt";
+        ReevaluationQuizSetResolver reevaluationQuizSetResolver = mock(ReevaluationQuizSetResolver.class);
+        when(reevaluationQuizSetResolver.resolve(any(), any())).thenThrow(
+                new UnreadableQuizSetOriginException(unreadableOrigin, "No such file or directory"));
+
+        AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
+                CoursePathResolver::resolve, reevaluationQuizSetResolver);
+
+        ByteArrayOutputStream errCapture = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(errCapture));
+        int exitCode;
+        try {
+            exitCode = new CommandLine(sut).execute("/valid/course",
+                    "--reevaluate-instruction-quizzes-file", unreadableOrigin);
+        } finally {
+            System.setErr(originalErr);
+        }
+
+        assertNotEquals(0, exitCode, "R019: an unreadable origin must produce a non-zero exit code");
+        verifyNoInteractions(auditRunner);
+        String errOutput = errCapture.toString();
+        assertTrue(errOutput.contains(unreadableOrigin),
+                "R019: the error must name the origin that could not be read; got: " + errOutput);
     }
 }

@@ -1,0 +1,189 @@
+code: FEAT-QINST
+description: "F-QINST-R018 / F-QINST-J004: la re-evaluacion explicita del juez de\
+  \ consigna se puede acotar a un conjunto de ejercicios declarado en el pedido, ademas\
+  \ de por area del curso"
+modules:
+- name: evaluation-ledger-domain
+  interfaces:
+  - name: EvaluationSession
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "resolvePreferringNew(EvaluationSubject subject): EvaluationResolution"
+      _change: add
+    - signature: "resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution"
+      _change: add
+    _change: modify
+  _change: modify
+- name: audit-domain
+  models:
+  - name: EvaluationRunPolicy
+    type: record
+    fields:
+    - name: reevaluationSubjectIds
+      type: Set<String>
+      description: "Conjunto declarado de elementos a re-evaluar, expresado en el\
+        \ vocabulario del consumidor (ids de ejercicio para quiz-instruction, F-QINST-R018).\
+        \ null = no se declaro conjunto. Vacio NO significa todo el curso: significa\
+        \ pedido declarado y vacio, que se rechaza. El id SELECCIONA a quien se le\
+        \ vuelve a preguntar; no identifica el veredicto, que sigue siendo la huella\
+        \ del contenido (F-QINST-R009). Se coteja contra EvaluationSubject.subjectRef,\
+        \ igualmente informativo. Es excluyente con reevaluate y con reevaluationScope:\
+        \ un conjunto declarado ES el pedido de re-evaluacion, asi que declarar ademas\
+        \ alcance total o por area es un pedido que no se puede interpretar."
+      _change: add
+    _change: modify
+  - name: EmptyReevaluationSetException
+    type: exception
+    fields:
+    - name: analyzerName
+      type: String
+      description: Nombre publicado del analisis cuyo pedido de corrida se rechaza;
+        el mismo por el que se filtra y se presupuesta (F-QINST-R015).
+    message: "El pedido de re-evaluacion para el analisis '%s' declara un conjunto\
+      \ vacio de ejercicios: no se puede interpretar el alcance y la corrida no se\
+      \ ejecuta"
+    _change: add
+    extends: IllegalArgumentException
+  - name: AmbiguousReevaluationScopeException
+    type: exception
+    fields:
+    - name: analyzerName
+      type: String
+      description: Nombre publicado del analisis cuyo pedido de corrida se rechaza
+        (F-QINST-R015).
+    - name: declaredScope
+      type: String
+      description: "El alcance que compite con el conjunto declarado: el id del area\
+        \ del curso, o el texto que nombra el alcance total cuando se pidio re-evaluar\
+        \ todo. Se nombra en el mensaje porque las dos lecturas posibles del pedido\
+        \ difieren en ordenes de magnitud de gasto y el usuario tiene que ver cual\
+        \ de sus dos declaraciones sacar."
+    message: "El pedido de re-evaluacion para el analisis '%s' declara a la vez un\
+      \ conjunto de ejercicios y otro alcance (%s): no se puede determinar el alcance"
+    _change: add
+    extends: IllegalArgumentException
+  packages:
+  - name: quizinstruction
+    description: |
+      FEAT-QINST + FEAT-QICOR. Contrato publico del cumplimiento de consigna: el veredicto tipado del juez, el diagnostico por ejercicio, la cobertura declarada, y —desde FEAT-QICOR— la vista del ejercicio juzgado y la verificacion de cumplimiento. Que la verificacion viva aca y no del lado de revision es lo que permite que la revalidacion del original (F-QICOR-R009) y la verificacion del corregido (F-QICOR-R005) se sometan EXACTAMENTE al mismo criterio que detecto el incumplimiento: mismo render del quiz, misma huella, mismo evaluador, mismo lector de payload. La alternativa era duplicar el criterio de juicio, que es lo que R005 y R009 existen para impedir.
+    visibility: public
+    models:
+    - name: QuizInstructionCoverageDiagnosis
+      type: record
+      fields:
+      - name: unmatchedReevaluationIds
+        type: List<String>
+        description: "Identificadores del conjunto declarado que no correspondieron\
+          \ a ningun ejercicio alcanzado por la corrida (F-QINST-R018). Vive AL LADO\
+          \ de coverage y no dentro: esos identificadores no son ejercicios del curso,\
+          \ asi que no entran en ningun recuento de cobertura y las dos sumas de F-QINST-R005/R014\
+          \ siguen cerrando sin tocarlas. Vacia cuando el pedido no declaro conjunto\
+          \ o cuando todos correspondieron. Se informa en lugar de callarse porque\
+          \ ignorar en silencio un identificador viejo haria creer que se re-juzgo\
+          \ algo que nadie miro."
+        _change: add
+      _change: modify
+    _change: modify
+  - name: quizinstructionengine
+    description: |
+      Motor del analizador de consigna. Solo la factory es publica; el analizador, el armado del contenido juzgado, la traduccion de veredicto a puntaje y la decision de alcance de la re-evaluacion son package-private. La factory es ademas el unico punto donde un pedido de corrida que no se puede interpretar se rechaza (F-QINST-R018): se valida antes de abrir la sesion, y fuera del recorrido del arbol, donde el manejo generico de F-QINST-R007 se tragaria la excepcion en silencio.
+    visibility: public
+    models:
+    - name: QuizInstructionReevaluationDecision
+      type: enum
+      fields:
+      - name: ORDINARY
+        description: "Sin pedido explicito que alcance a este ejercicio: se reutiliza\
+          \ el veredicto registrado y, si no hay, se consulta dentro del tope (F-QINST-R008/R006).\
+          \ Resuelve con EvaluationSession.resolve."
+      - name: AREA_REEVALUATION
+        description: "Pedido explicito acotado por area del curso o total (F-QINST-R012),\
+          \ comportamiento previo intacto: consulta nueva obligatoria dentro del tope.\
+          \ Resuelve con EvaluationSession.resolveForced."
+      - name: DECLARED_SET_REEVALUATION
+        description: "El ejercicio pertenece al conjunto declarado en el pedido (F-QINST-R018):\
+          \ se vuelve a juzgar tenga o no veredicto, y si el tope ya se agoto conserva\
+          \ el veredicto anterior y sigue puntuando en vez de quedar pendiente. Resuelve\
+          \ con EvaluationSession.resolvePreferringNew."
+      - name: OUTSIDE_DECLARED_SET
+        description: "Hay conjunto declarado y este ejercicio no pertenece (F-QINST-R018):\
+          \ se reutiliza sin consulta y no gasta tope, tenga o no veredicto. Es lo\
+          \ que hace que el tope se gaste PRIMERO en el conjunto sin ningun mecanismo\
+          \ de prioridad: fuera del conjunto no hay consultas nuevas que competir.\
+          \ Resuelve con EvaluationSession.resolveWithoutConsulting."
+      visibility: internal
+      _change: add
+    interfaces:
+    - name: QuizInstructionScopeMatcher
+      sealed: false
+      exposes:
+      - signature: "decide(AuditNode quizNode,EvaluationRunPolicy policy): QuizInstructionReevaluationDecision"
+        _change: add
+      visibility: internal
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  models:
+  - name: AnalyzeOptions
+    type: record
+    fields:
+    - name: reevaluateInstructionQuizIds
+      type: Set<String>
+      description: "Conjunto de ejercicios declarado en --reevaluate-instruction-quizzes,\
+        \ YA RESUELTO a identificadores (F-QINST-R018). null = la opcion no se uso;\
+        \ vacio = se declaro vacia, y el dominio la rechaza. El carrier lleva el conjunto\
+        \ resuelto y no la especificacion cruda porque la lectura del archivo es I/O\
+        \ del adaptador y ocurre antes, en ReevaluationQuizSetResolver: asi la decision\
+        \ de alcance se puede ejercitar con un conjunto en memoria, sin archivos."
+      _change: add
+    _change: modify
+  packages:
+  - name: bootstrap
+    description: |
+      Env-var -> domain-object parsing plus composition-root helpers translating external inputs (workdir, approval mode, proposal strategy selection, LAGEN mode + LLM config, conjunto de ejercicios declarado para re-evaluar) into typed values consumed by the engine factories.
+    visibility: internal
+    models:
+    - name: UnreadableQuizSetFileException
+      type: exception
+      fields:
+      - name: path
+        type: String
+        description: Ruta tal como la escribio el operador despues del prefijo @.
+      - name: detail
+        type: String
+        description: "Por que no se pudo leer. Existe para que un archivo inexistente\
+          \ no se confunda con un conjunto vacio: los dos rechazan el pedido, pero\
+          \ por razones distintas y con arreglos distintos."
+      message: "No se pudo leer el archivo de ejercicios declarados '%s': %s"
+      visibility: public
+      _change: add
+      extends: IllegalArgumentException
+    interfaces:
+    - name: ReevaluationQuizSetResolver
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "resolve(String optionValue): Set<String>"
+      _change: add
+    implementations:
+    - name: DefaultReevaluationQuizSetResolver
+      visibility: public
+      implements:
+      - ReevaluationQuizSetResolver
+      _change: add
+    _change: modify
+  - name: commands
+    description: Public CLI command tree — the only exported API of the audit-cli
+      module
+    visibility: internal
+    implementations:
+    - name: AnalyzeCmd
+      requiresInject:
+      - name: reevaluationQuizSetResolver
+        type: ReevaluationQuizSetResolver
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify

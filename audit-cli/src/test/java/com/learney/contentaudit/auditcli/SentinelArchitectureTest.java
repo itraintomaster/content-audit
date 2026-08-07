@@ -155,6 +155,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: RepairCommand - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.ReviseInstructionsCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ReviseInstructionsCommand - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.commands.EphemeralPlanRenderer");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: EphemeralPlanRenderer - " + e.getMessage());
@@ -253,6 +258,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.commands.RepairCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RepairCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.ReviseInstructionsCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ReviseInstructionsCmd - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.ReportViewModel");
@@ -375,6 +385,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: ConsolidatedViewFormatter - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.QuizInstructionCorrectionRunFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionCorrectionRunFormatter - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.TextReportFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: TextReportFormatter - " + e.getMessage());
@@ -440,6 +455,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: QuizInstructionDetailedFormatter - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DefaultQuizInstructionCorrectionRunFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultQuizInstructionCorrectionRunFormatter - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.InvalidWorkdirException");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: InvalidWorkdirException - " + e.getMessage());
@@ -463,6 +483,26 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.InvalidLagenConfigException");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: InvalidLagenConfigException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.UnsupportedLagenProviderException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: UnsupportedLagenProviderException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.MissingLagenProviderInputException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MissingLagenProviderInputException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.UnreadableQuizSetOriginException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: UnreadableQuizSetOriginException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.AmbiguousQuizSetDeclarationException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AmbiguousQuizSetDeclarationException - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.WorkdirResolver");
@@ -495,6 +535,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: QuizInstructionJudgeConfigResolver - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.QuizInstructionCorrectionConfigResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionCorrectionConfigResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.ReevaluationQuizSetResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ReevaluationQuizSetResolver - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultWorkdirResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultWorkdirResolver - " + e.getMessage());
@@ -523,6 +573,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultQuizInstructionJudgeConfigResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultQuizInstructionJudgeConfigResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.EnvQuizInstructionCorrectionConfigResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EnvQuizInstructionCorrectionConfigResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultReevaluationQuizSetResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultReevaluationQuizSetResolver - " + e.getMessage());
     }
   }
 }

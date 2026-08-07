@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectView;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -50,10 +51,57 @@ class DefaultQuizInstructionSubjectBuilder implements QuizInstructionSubjectBuil
      * parts, in the same order, always produce the same string, which is what
      * lets a reprocessed course reuse a verdict (R009) instead of always
      * missing the cache.
+     *
+     * <p>Delegates to {@link #serializeParts(List)} -- the single place the
+     * quiz's sentence parts are ever rendered, shared with {@link
+     * #buildFromView(QuizInstructionSubjectView)} -- so a future change to the
+     * render (e.g. folding in {@code form.sentences}) is one edit, not two that
+     * can silently drift apart. This delegation changes nothing about what gets
+     * returned: both bodies were character-for-character identical before this
+     * change, so no fingerprint moves.
      */
     private static String serializeQuiz(AuditableQuiz quiz) {
+        return serializeParts(quiz.getSentenceParts());
+    }
+
+    /**
+     * R005/R009: builds the very same kind of {@link EvaluationSubject} that
+     * {@link #build(AuditNode)} builds, but from a {@link QuizInstructionSubjectView}
+     * assembled around a candidate or a revalidated quiz instead of a live
+     * {@link AuditNode}. The content map is built with the exact same keys, in
+     * the exact same order, and the sentence parts are rendered through the
+     * same {@link #serializeParts(List)} that {@link #serializeQuiz(AuditableQuiz)}
+     * delegates to, so the fingerprint that the 1329 verdicts already
+     * registered depend on never moves.
+     *
+     * <p>{@code view.getSubjectRef()} never enters the content map, mirroring
+     * that {@code quiz.getId()} never enters it either in {@link #build(AuditNode)}:
+     * identity is content, not element (R009).
+     */
+    @Override
+    public EvaluationSubject buildFromView(QuizInstructionSubjectView view) {
+        Map<String, String> content = new LinkedHashMap<>();
+        content.put("cefrLevel", view.getCefrLevel());
+        content.put("topic", view.getTopic());
+        content.put("title", view.getTitle());
+        content.put("instructions", view.getInstructions());
+        content.put("quiz", serializeParts(view.getSentenceParts()));
+
+        return new EvaluationSubject(view.getSubjectRef(), content);
+    }
+
+    /**
+     * The single place the quiz's sentence parts are ever rendered into the
+     * fingerprinted string, in order, with every accepted option of every
+     * cloze. Both {@link #serializeQuiz(AuditableQuiz)} (the live-{@link
+     * AuditNode} path) and {@link #buildFromView(QuizInstructionSubjectView)}
+     * (the candidate/revalidation path) call this same method with the same
+     * kind of {@code List<SentencePartEntity>}, so the render can only ever
+     * change in one place -- there is no second copy of this algorithm to
+     * forget to update.
+     */
+    private static String serializeParts(List<SentencePartEntity> parts) {
         StringBuilder builder = new StringBuilder();
-        List<SentencePartEntity> parts = quiz.getSentenceParts();
         if (parts != null) {
             for (SentencePartEntity part : parts) {
                 builder.append(part.getKind())
@@ -68,4 +116,5 @@ class DefaultQuizInstructionSubjectBuilder implements QuizInstructionSubjectBuil
         }
         return builder.toString();
     }
+
 }

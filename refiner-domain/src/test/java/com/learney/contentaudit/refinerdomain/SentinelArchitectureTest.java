@@ -118,6 +118,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: OutOfCatalogWordContext - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.refinerdomain.QuizInstructionCorrectionContext");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionCorrectionContext - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.refinerdomain.RefinerEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RefinerEngine - " + e.getMessage());
@@ -176,6 +181,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.refinerdomain.KnowledgeTitleContextResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: KnowledgeTitleContextResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.QuizInstructionContextResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionContextResolver - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.refinerdomain.lemmasuggestion.LeveledLemmaInventory");

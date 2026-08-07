@@ -53,39 +53,9 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: QuizInstructionJudgeFactory - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.JudgeProviderClass");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: JudgeProviderClass - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.JudgeProviderResolved");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: JudgeProviderResolved - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.JudgeProviderRejectionKind");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: JudgeProviderRejectionKind - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.JudgeProviderRejected");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: JudgeProviderRejected - " + e.getMessage());
-    }
-    try {
       Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.QuizInstructionJudgeVersionResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: QuizInstructionJudgeVersionResolver - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.JudgeProviderResolution");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: JudgeProviderResolution - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.QuizInstructionJudgeProviderResolver");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: QuizInstructionJudgeProviderResolver - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.JudgeChatModelFactory");
@@ -106,11 +76,6 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.DefaultQuizInstructionJudgeVersionResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultQuizInstructionJudgeVersionResolver - " + e.getMessage());
-    }
-    try {
-      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.DefaultQuizInstructionJudgeProviderResolver");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DefaultQuizInstructionJudgeProviderResolver - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.SentinelAgentsJudgeChatModelFactory");

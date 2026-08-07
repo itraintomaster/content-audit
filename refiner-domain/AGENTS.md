@@ -26,6 +26,7 @@ Refinement engine
 | PENDING | `null` |
 | COMPLETED | `null` |
 | SKIPPED | `null` |
+| STALE | `null` |
 
 ### RefinementTask (`record`)
 
@@ -184,6 +185,27 @@ Refinement engine
 | frequencyRank | `Integer` |
 | discount | `double` |
 
+### QuizInstructionCorrectionContext (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| nodeId | `String` |
+| quizSentence | `String` |
+| translation | `String` |
+| sentence | `String` |
+| knowledgeTitle | `String` |
+| knowledgeInstructions | `String` |
+| topicLabel | `String` |
+| cefrLevel | `CefrLevel` |
+| cefrLevelLabel | `String` |
+| sentenceMode | `SentenceMode` |
+| violations | `List<InstructionViolation>` |
+| verdictReason | `String` |
+| severity | `InstructionSeverity` |
+| siblingQuizSentences | `List<String>` |
+| sourceAuditId | `String` |
+
 ## Interfaces
 
 ### RefinerEngine (port)
@@ -335,6 +357,7 @@ Methods:
 - `sentenceLengthResolver`: `SentenceLengthContextResolver`
 - `lemmaAbsenceResolver`: `LemmaAbsenceContextResolver`
 - `knowledgeTitleResolver`: `KnowledgeTitleContextResolver`
+- `quizInstructionResolver`: `QuizInstructionContextResolver`
 
 **Tests that must pass:**
 
@@ -367,6 +390,15 @@ Methods:
 
 - Given a KNOWLEDGE_TITLE_LENGTH task pointing at an existing knowledge, when resolve runs, then the context exposes the current title, current instructions and the containing topic label of that knowledge → FEAT-KTLR/F-KTLR-R002
 - Given a KNOWLEDGE_TITLE_LENGTH task whose knowledge does not exist in the course, when resolve runs, then it fails explicitly without producing a context and without invoking the agent → FEAT-KTLR/F-KTLR-R011
+
+### QuizInstructionContextResolver
+
+**Implements:** CorrectionContextResolver
+
+**Tests that must pass:**
+
+- should resolve a correction context carrying every violation the quiz diagnosis recorded, each with its breached constraint, its textual evidence and its explanation → FEAT-QICOR/F-QICOR-R002
+- should resolve a correction context carrying the whole quiz with its gaps and its accepted options, the knowledge instruction, the CEFR level and the sibling quizzes of the knowledge → FEAT-QICOR/F-QICOR-R002
 
 ## Dependency Contracts
 
@@ -528,6 +560,28 @@ The following models and interfaces are available from dependencies. You can use
 | maxNewEvaluations | `int` |
 | reevaluate | `boolean` |
 | reevaluationScope | `String` |
+| reevaluationSubjectIds | `Set<String>` |
+
+### EmptyReevaluationSetException (`exception`)
+
+**Extends:** `IllegalArgumentException`
+
+**Message:** `El pedido de re-evaluacion para el analisis '%s' declara un conjunto vacio de ejercicios: no se puede interpretar el alcance y la corrida no se ejecuta`
+
+| Field | Type |
+|-------|------|
+| analyzerName | `String` |
+
+### AmbiguousReevaluationScopeException (`exception`)
+
+**Extends:** `IllegalArgumentException`
+
+**Message:** `El pedido de re-evaluacion para el analisis '%s' declara a la vez un conjunto de ejercicios y otro alcance (%s): no se puede determinar el alcance`
+
+| Field | Type |
+|-------|------|
+| analyzerName | `String` |
+| declaredScope | `String` |
 
 ### AuditEngine (port)
 
@@ -1032,6 +1086,8 @@ Methods:
 - `resolveForced(EvaluationSubject subject): EvaluationResolution`
 - `coverage(): EvaluationCoverage`
 - `consultedEvaluatorVersion(): Optional<String>`
+- `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution`
+- `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution`
 
 ### EvaluationSessionFactory (factory)
 

@@ -14,10 +14,12 @@ import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
 import com.learney.contentaudit.refinerdomain.OutOfCatalogWordContext;
+import com.learney.contentaudit.refinerdomain.QuizInstructionCorrectionContext;
 import com.learney.contentaudit.refinerdomain.ScarceContentWord;
 import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation;
 
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.auditcli.GetCommand;
@@ -706,7 +708,8 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
     private static boolean needsCorrectionContext(RefinementTask task) {
         return task.getDiagnosisKind() == DiagnosisKind.SENTENCE_LENGTH
                 || task.getDiagnosisKind() == DiagnosisKind.LEMMA_ABSENCE
-                || task.getDiagnosisKind() == DiagnosisKind.KNOWLEDGE_TITLE_LENGTH;
+                || task.getDiagnosisKind() == DiagnosisKind.KNOWLEDGE_TITLE_LENGTH
+                || task.getDiagnosisKind() == DiagnosisKind.QUIZ_INSTRUCTION;
     }
 
     /** Resolves the correction context for a task, capturing any error reason. */
@@ -752,6 +755,8 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
             printLemmaAbsenceContextText(ctx.laContext);
         } else if (ctx.context instanceof KnowledgeTitleCorrectionContext ktCtx) {
             printKnowledgeTitleContextText(ktCtx);
+        } else if (ctx.context instanceof QuizInstructionCorrectionContext qiCtx) {
+            printQuizInstructionContextText(qiCtx);
         } else {
             System.out.println("  Correction context: not available ("
                     + (ctx.error != null ? ctx.error : "unknown reason") + ")");
@@ -768,6 +773,43 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         System.out.println("    Instructions target: " + ctx.getInstructionsTargetMax());
         System.out.println("    Expected title language: " + nullToEmpty(ctx.getExpectedTitleLanguage()));
         System.out.println("    Expected instructions language: " + nullToEmpty(ctx.getExpectedInstructionsLanguage()));
+    }
+
+    /** F-QICOR-R002: violations with their constraint/evidence/explanation are the
+     * raw material of the correction — never rendered as an empty/hidden key. */
+    private void printQuizInstructionContextText(QuizInstructionCorrectionContext ctx) {
+        System.out.println("  Correction context:");
+        System.out.println("    Sentence:      " + nullToEmpty(ctx.getSentence()));
+        System.out.println("    QuizSentence:  " + nullToEmpty(ctx.getQuizSentence()));
+        System.out.println("    Translation:   " + nullToEmpty(ctx.getTranslation()));
+        System.out.println("    Knowledge:     " + nullToEmpty(ctx.getKnowledgeTitle()));
+        System.out.println("    Instructions:  " + nullToEmpty(ctx.getKnowledgeInstructions()));
+        System.out.println("    Topic:         " + nullToEmpty(ctx.getTopicLabel()));
+        System.out.println("    CEFR Level:    " + (ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : ""));
+        System.out.println("    Sentence mode: " + (ctx.getSentenceMode() != null ? ctx.getSentenceMode().name() : ""));
+        System.out.println("    Severity:      " + (ctx.getSeverity() != null ? ctx.getSeverity().name() : ""));
+        System.out.println("    Verdict reason:" + " " + nullToEmpty(ctx.getVerdictReason()));
+        System.out.println("    Violations:");
+        List<InstructionViolation> violations = ctx.getViolations();
+        if (violations == null || violations.isEmpty()) {
+            System.out.println("      (none)");
+        } else {
+            for (int i = 0; i < violations.size(); i++) {
+                InstructionViolation v = violations.get(i);
+                System.out.println("      " + (i + 1) + ". " + nullToEmpty(v.getConstraint()));
+                System.out.println("         Evidence:    " + nullToEmpty(v.getEvidence()));
+                System.out.println("         Explanation: " + nullToEmpty(v.getExplanation()));
+            }
+        }
+        System.out.println("    Sibling quiz sentences:");
+        List<String> siblings = ctx.getSiblingQuizSentences();
+        if (siblings == null || siblings.isEmpty()) {
+            System.out.println("      (none)");
+        } else {
+            for (int i = 0; i < siblings.size(); i++) {
+                System.out.println("      " + (i + 1) + ". " + nullToEmpty(siblings.get(i)));
+            }
+        }
     }
 
     private void printSentenceLengthContextText(SentenceLengthCorrectionContext ctx) {

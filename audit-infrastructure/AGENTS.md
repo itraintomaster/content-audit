@@ -87,6 +87,10 @@ Filesystem persistence adapters for audit reports, refinement plans, revision ar
 - Dado un store con una seleccion escrita, cuando clear corre, entonces read posterior retorna Optional.empty → FEAT-CDIFF/F-CDIFF-R001
 - Dado un courseRoot con AuditReports y RefinementPlans persistidos, cuando write y clear se invocan sobre el ActiveAnalysisSelectionStore, entonces ningun AuditReport, RefinementPlan, RevisionArtifact ni archivo del curso se modifica → FEAT-CDIFF/F-CDIFF-R002
 
+### FileSystemQuizInstructionCorrectionRunStore
+
+**Implements:** QuizInstructionCorrectionRunStore
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -247,6 +251,28 @@ The following models and interfaces are available from dependencies. You can use
 | maxNewEvaluations | `int` |
 | reevaluate | `boolean` |
 | reevaluationScope | `String` |
+| reevaluationSubjectIds | `Set<String>` |
+
+### EmptyReevaluationSetException (`exception`)
+
+**Extends:** `IllegalArgumentException`
+
+**Message:** `El pedido de re-evaluacion para el analisis '%s' declara un conjunto vacio de ejercicios: no se puede interpretar el alcance y la corrida no se ejecuta`
+
+| Field | Type |
+|-------|------|
+| analyzerName | `String` |
+
+### AmbiguousReevaluationScopeException (`exception`)
+
+**Extends:** `IllegalArgumentException`
+
+**Message:** `El pedido de re-evaluacion para el analisis '%s' declara a la vez un conjunto de ejercicios y otro alcance (%s): no se puede determinar el alcance`
+
+| Field | Type |
+|-------|------|
+| analyzerName | `String` |
+| declaredScope | `String` |
 
 ### AuditEngine (port)
 
@@ -751,6 +777,8 @@ Methods:
 - `resolveForced(EvaluationSubject subject): EvaluationResolution`
 - `coverage(): EvaluationCoverage`
 - `consultedEvaluatorVersion(): Optional<String>`
+- `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution`
+- `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution`
 
 ### EvaluationSessionFactory (factory)
 
@@ -781,6 +809,7 @@ Methods:
 | PENDING | `null` |
 | COMPLETED | `null` |
 | SKIPPED | `null` |
+| STALE | `null` |
 
 ### RefinementTask (`record`)
 
@@ -939,6 +968,27 @@ Methods:
 | frequencyRank | `Integer` |
 | discount | `double` |
 
+### QuizInstructionCorrectionContext (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| nodeId | `String` |
+| quizSentence | `String` |
+| translation | `String` |
+| sentence | `String` |
+| knowledgeTitle | `String` |
+| knowledgeInstructions | `String` |
+| topicLabel | `String` |
+| cefrLevel | `CefrLevel` |
+| cefrLevelLabel | `String` |
+| sentenceMode | `SentenceMode` |
+| violations | `List<InstructionViolation>` |
+| verdictReason | `String` |
+| severity | `InstructionSeverity` |
+| siblingQuizSentences | `List<String>` |
+| sourceAuditId | `String` |
+
 ### RefinerEngine (port)
 
 Methods:
@@ -1010,6 +1060,8 @@ Methods:
 | STRATEGY_FAILED | `null` |
 | OVERRIDE_INVALID | `null` |
 | OVERRIDE_NOT_APPLICABLE | `null` |
+| DIAGNOSIS_NOT_SUSTAINED | `null` |
+| NO_ACCEPTABLE_CANDIDATE | `null` |
 
 ### CourseElementSnapshot (`record`)
 
@@ -1079,6 +1131,11 @@ Methods:
 | correctionContextOverrideParser | `CorrectionContextOverrideParser` |
 | knowledgeTitleStrategyRegistry | `KnowledgeTitleProposalStrategyRegistry` |
 | knowledgeTitleProposalDeriver | `KnowledgeTitleProposalDeriver` |
+| quizInstructionStrategyRegistry | `QuizInstructionProposalStrategyRegistry` |
+| candidateAssessor | `CandidateAssessor` |
+| quizInstructionComplianceChecker | `QuizInstructionComplianceChecker` |
+| quizInstructionSubjectViewFactory | `QuizInstructionSubjectViewFactory` |
+| quizInstructionCorrectionConfig | `QuizInstructionCorrectionConfig` |
 
 ### ApprovalMode (`enum`)
 
@@ -1182,6 +1239,29 @@ Methods:
 | Field | Type |
 |-------|------|
 | reason | `String` |
+
+### DiagnosisNotSustainedException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `El diagnostico de consigna del ejercicio '%s' ya no se sostiene: la validacion vigente declara que cumple`
+
+| Field | Type |
+|-------|------|
+| quizId | `String` |
+| taskId | `String` |
+
+### NoAcceptableCandidateException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `No se logro una correccion aceptable para el ejercicio '%s': reprobaron %s`
+
+| Field | Type |
+|-------|------|
+| quizId | `String` |
+| failedCriteria | `List<CorrectionCriterion>` |
+| taskId | `String` |
 
 ### Reviser (port)
 
@@ -1317,4 +1397,41 @@ Methods:
 
 - `createCheck(): PreservationCheck`
 - `createRepair(RevisionArtifactStore artifactStore): PreservationRepair`
+
+### QuizInstructionProposalStrategy (port)
+
+Methods:
+
+- `id(): StrategyId`
+- `handles(DiagnosisKind kind): boolean`
+- `propose(RefinementTask task, QuizInstructionCorrectionContext context, List<CriterionVerdict> previousVerdicts, int attempt): LemmaAbsenceQuizCandidate`
+
+### QuizInstructionProposalStrategyRegistry (service) [sealed]
+
+Methods:
+
+- `active(): Optional<QuizInstructionProposalStrategy>`
+- `byName(String name): Optional<QuizInstructionProposalStrategy>`
+- `listAll(): List<StrategyId>`
+
+### QuizInstructionCorrectionRunner (port)
+
+Methods:
+
+- `run(QuizInstructionCorrectionRunRequest request): QuizInstructionCorrectionRunReport`
+
+### QuizInstructionCorrectionRunnerFactory (factory)
+
+Methods:
+
+- `create(RevisionEngineConfig config, QuizInstructionCorrectionRunStore runStore, QuizInstructionCorrectionConfig correctionConfig): QuizInstructionCorrectionRunner`
+
+### QuizInstructionCorrectionRunStore (port)
+
+Methods:
+
+- `save(QuizInstructionCorrectionRunReport report): String`
+- `load(String runId): Optional<QuizInstructionCorrectionRunReport>`
+- `listByPlan(String planId): List<QuizInstructionCorrectionRunReport>`
+- `latest(): Optional<QuizInstructionCorrectionRunReport>`
 

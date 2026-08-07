@@ -1,4 +1,5 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved;
 import java.util.Optional;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -46,9 +47,9 @@ class QuizInstructionAgentJudge implements Evaluator {
 
 private final JudgeChatModelFactory chatModelFactory;
 
-private final JudgeProviderResolved provider;
+private final LlmProviderResolved provider;
 
-public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRunner agentGraphRunner, QuizInstructionJudgeVersionResolver versionResolver, JudgeChatModelFactory chatModelFactory, JudgeProviderResolved provider) {
+public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRunner agentGraphRunner, QuizInstructionJudgeVersionResolver versionResolver, JudgeChatModelFactory chatModelFactory, LlmProviderResolved provider) {
     this.config = config;
     this.agentGraphRunner = agentGraphRunner;
     this.versionResolver = versionResolver;

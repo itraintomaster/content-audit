@@ -3,6 +3,7 @@ package com.learney.contentaudit.journeys;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLlmProviderResolver;
 import com.learney.contentaudit.auditcli.bootstrap.DefaultLagenConfigResolver;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
@@ -40,7 +41,8 @@ public class FLasagJ009JourneyTest {
         // Se invoca DefaultLagenConfigResolver.resolve(...) sin la env-var de reintentos.
         // El env base cubre las perillas requeridas (provider, endpoint, model) pero
         // intencionalmente NO incluye CONTENT_AUDIT_LAGEN_MAX_EVAL_RETRIES (F-LASAG-R011).
-        DefaultLagenConfigResolver resolver = new DefaultLagenConfigResolver();
+        DefaultLagenConfigResolver resolver =
+                new DefaultLagenConfigResolver(new DefaultLlmProviderResolver());
         Map<String, String> env = new HashMap<>();
         env.put("CONTENT_AUDIT_LAGEN_PROVIDER",  "lmstudio");
         env.put("CONTENT_AUDIT_LAGEN_ENDPOINT",  "http://localhost:1234/v1");

@@ -404,7 +404,7 @@ public class DefaultAuditRunnerTest {
         QuizInstructionDiagnosis quizDiagnosis = new QuizInstructionDiagnosis(verdict, 1.0, false);
         EvaluationCoverage coverage = new EvaluationCoverage(1, 1, 1, 0, 0, 0);
         QuizInstructionCoverageDiagnosis coverageDiagnosis =
-                new QuizInstructionCoverageDiagnosis(coverage, "v1", List.of());
+                new QuizInstructionCoverageDiagnosis(coverage, "v1", List.of(), null);
 
         ContentAnalyzer quizInstructionAnalyzer = mock(ContentAnalyzer.class);
         doAnswer(invocation -> {
@@ -612,7 +612,7 @@ public class DefaultAuditRunnerTest {
         DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
                 List.of(), scoreAggregator, List.of(quizInstructionFactory));
 
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(200, false, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(200, false, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null, Map.of("quiz-instruction", policy));
 
         runner.runAudit(coursePath, request);
@@ -643,7 +643,7 @@ public class DefaultAuditRunnerTest {
         when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
         lenient().when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
             EvaluationRunPolicy policy = invocation.getArgument(0);
-            EvaluationRunPolicy effectivePolicy = policy != null ? policy : new EvaluationRunPolicy(500, false, null);
+            EvaluationRunPolicy effectivePolicy = policy != null ? policy : new EvaluationRunPolicy(500, false, null, null);
             EvaluationSession session = sessionFactory.open(quizInstructionBudgetFrom(effectivePolicy), evaluator);
             return quizInstructionSessionBackedAnalyzer(session, effectivePolicy);
         });
@@ -700,7 +700,7 @@ public class DefaultAuditRunnerTest {
         DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
                 List.of(), scoreAggregator, List.of(quizInstructionFactory));
 
-        EvaluationRunPolicy cappedPolicy = new EvaluationRunPolicy(2, false, null);
+        EvaluationRunPolicy cappedPolicy = new EvaluationRunPolicy(2, false, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null, Map.of(ANALYZER_NAME, cappedPolicy));
         runner.runAudit(coursePath, request);
 
@@ -749,7 +749,7 @@ public class DefaultAuditRunnerTest {
         DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
                 List.of(), scoreAggregator, List.of(quizInstructionFactory));
 
-        EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null);
+        EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null, Map.of(ANALYZER_NAME, reevaluationPolicy));
         runner.runAudit(coursePath, request);
 

@@ -1,0 +1,16 @@
+code: FEAT-QICOR
+description: "FEAT-QICOR fix — ReviseInstructionsCmd declara Callable<Integer> como\
+  \ todos los demas comandos del modulo, sin lo cual no puede registrarse como subcomando\
+  \ picocli y la corrida acotada del plan queda escrita pero inalcanzable (J002 completo\
+  \ y la mitad de R008)."
+modules:
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: ReviseInstructionsCmd
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      _change: modify
+    _change: modify
+  _change: modify

@@ -1,0 +1,60 @@
+name: quiz-instruction-corrector
+description: |
+  Generador de candidatos de corrección para UN ejercicio que incumple la
+  consigna de su knowledge (FEAT-QICOR). Recibe el ejercicio, la consigna, y
+  las violaciones señaladas con su evidencia, y emite UN candidato
+  {quizSentence, translation, rationale} como artifact `correctionCandidate`.
+
+  Es el backend declarativo del puerto QuizInstructionCandidateGenerator: el
+  adaptador Java (revision-infrastructure.quizinstructionagent) lanza este
+  grafo con AgentRun.run, le inyecta el ChatModel y parsea el artifact.
+
+  Flujo:
+
+      generate (llm_call: construye el candidato mínimo)
+        ──▶ gate_candidate (gate: forma del candidate.json; failed reintenta)
+        ──▶ emit (script: artifact correctionCandidate)
+
+  **Este grafo NO evalúa su propio candidato.** El catálogo de criterios
+  (longitud, léxico, distinción, traducción, resolubilidad, cumplimiento de
+  consigna) vive en Java, detrás de CandidateCriterionEvaluator, y el lazo de
+  reintentos lo conduce el assessor: cuando un criterio reprueba, Java vuelve a
+  lanzar este grafo con `previousVerdicts` poblado. Un generador que se evaluara
+  a sí mismo sería el candidato corrigiéndose solo.
+
+  Por eso el grafo es corto y no tiene lazo propio: su única responsabilidad es
+  producir un candidato bien formado a partir de lo que le señalaron.
+kind: agent
+strategy: graph
+initial_node: generate
+budgets:
+  # Pase limpio son 3 nodos. El único lazo es gate_candidate ↔ generate,
+  # acotado por max_attempts de generate (3). 12 deja margen sin permitir
+  # que un modelo que nunca emite JSON válido gire indefinidamente.
+  max_iterations: 12
+nodes:
+  - ./nodes/generate.md
+  - ./nodes/gate_candidate.md
+  - ./nodes/emit.md
+goal:
+  required_artifacts:
+    - correctionCandidate
+  required_nodes_done:
+    - emit
+dependencies:
+  # QuizInstructionCorrectionContext, aplanado por el adaptador Java.
+  - taskId
+  - cefrLevel
+  - topicLabel
+  - knowledgeTitle
+  - knowledgeInstructions   # la consigna: es lo que hay que cumplir
+  - quizSentence            # el ejercicio original, en DSL de huecos
+  - sentence                # la oración terminada del original
+  - translation             # traducción original al español
+  - sentenceMode            # FILL o REWRITE
+  - violations              # lo señalado: restricción + evidencia + explicación
+  - verdictReason           # la razón decisiva del juez, en una frase
+  - siblingQuizzes          # los otros ejercicios del knowledge (uno por línea)
+  # Estado del reintento, provisto por el assessor de Java:
+  - previousVerdicts        # criterios reprobados en el intento anterior (puede ser "")
+  - attempt                 # 1 en el primer intento

@@ -102,5 +102,40 @@ public class SentinelArchitectureTest {
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultAgentDefinitionLocator - " + e.getMessage());
     }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderClass");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LlmProviderClass - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderRejectionKind");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LlmProviderRejectionKind - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LlmProviderResolved - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderRejected");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LlmProviderRejected - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolution");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LlmProviderResolution - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LlmProviderResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLlmProviderResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultLlmProviderResolver - " + e.getMessage());
+    }
   }
 }

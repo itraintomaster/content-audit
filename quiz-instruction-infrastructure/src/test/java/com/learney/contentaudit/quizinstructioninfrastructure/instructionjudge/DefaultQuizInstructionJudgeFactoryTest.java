@@ -18,6 +18,7 @@ import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionFound;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunnerConfig;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLlmProviderResolver;
 import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentDefinitionLocatorFactory;
 import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentGraphRunnerFactory;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
@@ -103,7 +104,8 @@ public class DefaultQuizInstructionJudgeFactoryTest {
     @Tag("F-QINST-R007")
     public void shouldYieldAnEvaluatorThatReportsItselfUnavailableWhenTheJudgeConfigurationIsMissingOrInvalidInsteadOfFailingTheAudit(
             ) {
-        DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
+        DefaultQuizInstructionJudgeFactory factory =
+                new DefaultQuizInstructionJudgeFactory(new DefaultLlmProviderResolver());
         AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
         AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
         // F-QINST-R016: "invalida" se juzga contra el proveedor declarado. Esta
@@ -152,7 +154,8 @@ public class DefaultQuizInstructionJudgeFactoryTest {
                 "http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30,
                 "quiz-instruction-validator", "openai");
 
-        DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
+        DefaultQuizInstructionJudgeFactory factory =
+                new DefaultQuizInstructionJudgeFactory(new DefaultLlmProviderResolver());
         Evaluator evaluator = factory.create(config, realAgentGraphRunner, realAgentDefinitionLocator);
 
         Map<String, String> content = new LinkedHashMap<>();
@@ -192,7 +195,8 @@ public class DefaultQuizInstructionJudgeFactoryTest {
         when(agentDefinitionLocator.locate(anyString()))
                 .thenReturn(new AgentDefinitionFound(agentDefinitionDir));
 
-        DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
+        DefaultQuizInstructionJudgeFactory factory =
+                new DefaultQuizInstructionJudgeFactory(new DefaultLlmProviderResolver());
         Evaluator evaluator = factory.create(config, agentGraphRunner, agentDefinitionLocator);
 
         EvaluationOutcome outcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-1")),
@@ -225,7 +229,8 @@ public class DefaultQuizInstructionJudgeFactoryTest {
         AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
         AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
 
-        DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
+        DefaultQuizInstructionJudgeFactory factory =
+                new DefaultQuizInstructionJudgeFactory(new DefaultLlmProviderResolver());
         Evaluator evaluator = factory.create(missingBaseUrl, agentGraphRunner, agentDefinitionLocator);
 
         EvaluationOutcome firstOutcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-1")));
@@ -262,7 +267,8 @@ public class DefaultQuizInstructionJudgeFactoryTest {
         AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
         AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
 
-        DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
+        DefaultQuizInstructionJudgeFactory factory =
+                new DefaultQuizInstructionJudgeFactory(new DefaultLlmProviderResolver());
         Evaluator evaluator = factory.create(unknownProvider, agentGraphRunner, agentDefinitionLocator);
 
         EvaluationOutcome firstOutcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-1")));
@@ -299,7 +305,8 @@ public class DefaultQuizInstructionJudgeFactoryTest {
         when(agentDefinitionLocator.locate(anyString()))
                 .thenReturn(new AgentDefinitionFound(agentDefinitionDir));
 
-        DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
+        DefaultQuizInstructionJudgeFactory factory =
+                new DefaultQuizInstructionJudgeFactory(new DefaultLlmProviderResolver());
         Evaluator evaluator = factory.create(noCredential, agentGraphRunner, agentDefinitionLocator);
 
         EvaluationOutcome outcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-1")),

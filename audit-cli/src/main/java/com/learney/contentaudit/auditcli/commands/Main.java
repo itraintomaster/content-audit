@@ -51,6 +51,7 @@ import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.DispatchingCorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.KnowledgeTitleContextResolver;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver;
+import com.learney.contentaudit.refinerdomain.QuizInstructionContextResolver;
 import com.learney.contentaudit.refinerdomain.SentenceLengthContextResolver;
 import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
 import com.learney.contentaudit.refinerdomain.RefinerEngine;
@@ -71,6 +72,36 @@ import com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposa
 import com.learney.contentaudit.revisiondomain.engine.DefaultKnowledgeTitleProposalDeriver;
 import com.learney.contentaudit.revisiondomain.engine.DefaultKnowledgeTitleProposalStrategyRegistry;
 import com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposalStrategyRegistry;
+import com.learney.contentaudit.revisiondomain.engine.DefaultQuizInstructionProposalStrategyRegistry;
+import com.learney.contentaudit.revisiondomain.engine.DefaultQuizInstructionCorrectionRunnerFactory;
+import com.learney.contentaudit.revisiondomain.engine.QuizInstructionProposalStrategyRegistryConfig;
+import com.learney.contentaudit.revisiondomain.QuizInstructionProposalStrategyRegistry;
+import com.learney.contentaudit.revisiondomain.QuizInstructionCorrectionRunner;
+import com.learney.contentaudit.revisiondomain.QuizInstructionCorrectionRunStore;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCandidateGenerator;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCorrectionConfig;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionGeneratorResponse;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionAgentStrategy;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessor;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateCriteriaConfig;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateCriterionEvaluator;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
+import com.learney.contentaudit.revisiondomain.candidatecriteriaengine.DefaultCandidateCriteriaFactory;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionComplianceChecker;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectViewFactory;
+import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionComplianceCheckerFactory;
+import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionSubjectViewFactory;
+import com.learney.contentaudit.auditinfrastructure.FileSystemQuizInstructionCorrectionRunStore;
+import com.learney.contentaudit.auditcli.bootstrap.EnvQuizInstructionCorrectionConfigResolver;
+import com.learney.contentaudit.auditcli.formatting.QuizInstructionCorrectionRunFormatter;
+import com.learney.contentaudit.auditcli.formatting.DefaultQuizInstructionCorrectionRunFormatter;
+import com.learney.contentaudit.revisioninfrastructure.quizinstructionagent.QuizInstructionAgentGeneratorFactory;
+import com.learney.contentaudit.revisioninfrastructure.quizinstructionagent.DefaultQuizInstructionAgentGeneratorFactory;
+import com.learney.contentaudit.revisioninfrastructure.candidatejudgment.CandidateJudgmentEvaluatorFactory;
+import com.learney.contentaudit.revisioninfrastructure.candidatejudgment.DefaultCandidateJudgmentEvaluatorFactory;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.revisiondomain.contextoverride.DefaultCorrectionContextOverrideParser;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -94,6 +125,8 @@ import com.learney.contentaudit.auditcli.bootstrap.DefaultLagenModeResolver;
 import com.learney.contentaudit.auditcli.bootstrap.DefaultLagenConfigResolver;
 import com.learney.contentaudit.auditcli.bootstrap.InvalidLagenModeException;
 import com.learney.contentaudit.auditcli.bootstrap.InvalidLagenConfigException;
+import com.learney.contentaudit.auditcli.bootstrap.MissingLagenProviderInputException;
+import com.learney.contentaudit.auditcli.bootstrap.UnsupportedLagenProviderException;
 import com.learney.contentaudit.revisiondomain.ApprovalMode;
 import com.learney.contentaudit.revisiondomain.ProposalDecisionService;
 import com.learney.contentaudit.revisiondomain.RevisionValidator;
@@ -138,11 +171,14 @@ import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
 import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
 import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory;
 import com.learney.contentaudit.auditcli.bootstrap.QuizInstructionJudgeConfigResolverBootstrap;
+import com.learney.contentaudit.auditcli.bootstrap.DefaultReevaluationQuizSetResolver;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunnerConfig;
 import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentDefinitionLocatorFactory;
 import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentGraphRunnerFactory;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolver;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLlmProviderResolver;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeFactory;
 import com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.DefaultQuizInstructionJudgeFactory;
@@ -330,16 +366,34 @@ class Main {
         // are public and constructed directly here. Escalated to @architect to align the
         // visibility; see the bridge's Javadoc for detail.
         // ----------------------------------------------------------------
+        // ARCH-LAGEN-R015: single source of the "what does this provider need" criterion
+        // (F-QINST-R016 / F-LAGEN-R015) -- one instance, shared by the quiz-instruction
+        // judge below and by every LAGEN config resolution (LAPS and quiz-instruction
+        // correction), so the two consumers can never apply two divergent readings of
+        // the same rule.
+        LlmProviderResolver llmProviderResolver = new DefaultLlmProviderResolver();
+
         QuizInstructionJudgeConfig quizInstructionJudgeConfig =
                 QuizInstructionJudgeConfigResolverBootstrap.resolve();
 
-        AgentGraphRunnerConfig quizInstructionAgentGraphRunnerConfig = new AgentGraphRunnerConfig();
+        // R017 / --workdir: this config feeds both the agent-definition locator and the
+        // graph runner for the quiz-instruction-validator judge (analyze's own analyzer
+        // AND F-QICOR-R009's revalidation reuse the very same Evaluator below). Neither
+        // this judge's inputs (EvaluationSubject.getContent(), fixed at five keys per
+        // F-QINST-R009's fingerprint-stability contract) nor the candidate-judgment
+        // evaluator's inputs populate "project_root", so — unlike quiz-instruction-corrector
+        // and knowledge-title-agent, which thread baseDir per-call via that input key —
+        // these two must get agentsBaseDir/runsBaseDir explicitly from baseDir here,
+        // or they silently fall back to the process CWD instead of --workdir.
+        AgentGraphRunnerConfig quizInstructionAgentGraphRunnerConfig = new AgentGraphRunnerConfig(
+                baseDir.resolve(".sentinel/agents"), baseDir.resolve(".sentinel/runs"));
         AgentGraphRunner quizInstructionAgentGraphRunner =
                 new DefaultAgentGraphRunnerFactory().create(quizInstructionAgentGraphRunnerConfig);
         AgentDefinitionLocator quizInstructionAgentDefinitionLocator =
                 new DefaultAgentDefinitionLocatorFactory().create(quizInstructionAgentGraphRunnerConfig);
 
-        QuizInstructionJudgeFactory quizInstructionJudgeFactory = new DefaultQuizInstructionJudgeFactory();
+        QuizInstructionJudgeFactory quizInstructionJudgeFactory =
+                new DefaultQuizInstructionJudgeFactory(llmProviderResolver);
         Evaluator quizInstructionJudge = quizInstructionJudgeFactory.create(
                 quizInstructionJudgeConfig, quizInstructionAgentGraphRunner,
                 quizInstructionAgentDefinitionLocator);
@@ -409,8 +463,10 @@ class Main {
         SentenceLengthContextResolver sentenceLengthContextResolver = new SentenceLengthContextResolver();
         LemmaAbsenceContextResolver lemmaAbsenceContextResolver = new LemmaAbsenceContextResolver();
         KnowledgeTitleContextResolver knowledgeTitleContextResolver = new KnowledgeTitleContextResolver();
+        QuizInstructionContextResolver quizInstructionContextResolver = new QuizInstructionContextResolver();
         CorrectionContextResolver correctionContextResolver = new DispatchingCorrectionContextResolver(
-                sentenceLengthContextResolver, lemmaAbsenceContextResolver, knowledgeTitleContextResolver);
+                sentenceLengthContextResolver, lemmaAbsenceContextResolver, knowledgeTitleContextResolver,
+                quizInstructionContextResolver);
 
         RevisionValidator revisionValidator = new DefaultRevisionValidatorFactory().create(approvalMode);
 
@@ -442,8 +498,12 @@ class Main {
             LagenConfig lagenConfig = null;
             String lagenSetupError = null;
             try {
-                lagenConfig = new DefaultLagenConfigResolver().resolve(System.getenv());
-            } catch (InvalidLagenConfigException e) {
+                lagenConfig = new DefaultLagenConfigResolver(llmProviderResolver).resolve(System.getenv());
+            } catch (InvalidLagenConfigException | MissingLagenProviderInputException
+                    | UnsupportedLagenProviderException e) {
+                // F-LAGEN-R015: the criterion now rejects with two dedicated types (missing
+                // input / unsupported provider) alongside the pre-existing parse-failure
+                // exception -- all three defer the same way (R014), so all three are caught here.
                 lagenSetupError = e.getMessage();
             }
 
@@ -530,6 +590,111 @@ class Main {
                     new DefaultKnowledgeTitleProposalStrategyRegistry(knowledgeTitleRegistryConfig);
         }
 
+        // ----------------------------------------------------------------
+        // Step 7c: FEAT-QICOR wiring — candidate criteria catalog, the same
+        // quiz-instruction compliance checker the judge uses (R005/R009), the
+        // correction candidate generator, and the two judgment criteria
+        // (FAITHFUL_TRANSLATION, SOLVABLE_SAME_KIND).
+        // ----------------------------------------------------------------
+        com.learney.contentaudit.auditdomain.lexicalflags.SentenceLexicalEvaluator sentenceLexicalEvaluator =
+                new com.learney.contentaudit.auditdomain.lexicalflags.DefaultSentenceLexicalEvaluator(
+                        sentenceLexicalScorer);
+
+        QuizInstructionSubjectViewFactory quizInstructionSubjectViewFactory =
+                new DefaultQuizInstructionSubjectViewFactory();
+        // R005/R009: same evaluationSessionFactory + quizInstructionJudge + verdictReader
+        // already wired for the audit's own quiz-instruction analyzer (Step 4b above), so
+        // the verdict this checker produces or reuses is exactly what the next audit would.
+        QuizInstructionComplianceChecker quizInstructionComplianceChecker =
+                new DefaultQuizInstructionComplianceCheckerFactory().create(
+                        evaluationSessionFactory, quizInstructionJudge, quizInstructionVerdictReader,
+                        new EvaluationBudget(quizInstructionConfig.getDefaultMaxNewEvaluations()));
+
+        QuizInstructionCorrectionConfig quizInstructionCorrectionConfig =
+                new EnvQuizInstructionCorrectionConfigResolver().resolve(System.getenv());
+
+        QuizInstructionCandidateGenerator quizInstructionGenerator;
+        String quizInstructionProviderId;
+        List<CandidateCriterionEvaluator> judgmentEvaluators;
+
+        if (lagenMode == LagenMode.CANNED) {
+            quizInstructionGenerator = request -> new QuizInstructionGeneratorResponse(
+                    request.getContext() != null ? request.getContext().getQuizSentence() : "",
+                    request.getContext() != null ? request.getContext().getTranslation() : "",
+                    "canned: sin cambios");
+            quizInstructionProviderId = "canned:fixed";
+            judgmentEvaluators = List.of(
+                    cannedPassingJudgmentEvaluator(CorrectionCriterion.FAITHFUL_TRANSLATION),
+                    cannedPassingJudgmentEvaluator(CorrectionCriterion.SOLVABLE_SAME_KIND));
+        } else {
+            // F-LAGEN-R014 precedent: config resolution failures defer to the moment the
+            // correction actually runs, exactly like LAPS/knowledge-title above, so other
+            // commands never require CONTENT_AUDIT_LAGEN_* to be set.
+            LagenConfig quizInstructionLagenConfig = null;
+            String quizInstructionLagenSetupError = null;
+            try {
+                quizInstructionLagenConfig =
+                        new DefaultLagenConfigResolver(llmProviderResolver).resolve(System.getenv());
+            } catch (InvalidLagenConfigException | MissingLagenProviderInputException
+                    | UnsupportedLagenProviderException e) {
+                quizInstructionLagenSetupError = e.getMessage();
+            }
+
+            if (quizInstructionLagenSetupError == null) {
+                QuizInstructionAgentGeneratorFactory quizInstructionAgentGeneratorFactory =
+                        new DefaultQuizInstructionAgentGeneratorFactory(baseDir);
+                quizInstructionGenerator =
+                        quizInstructionAgentGeneratorFactory.create(quizInstructionLagenConfig);
+                quizInstructionProviderId =
+                        quizInstructionAgentGeneratorFactory.providerIdFor(quizInstructionLagenConfig);
+
+                CandidateJudgmentEvaluatorFactory candidateJudgmentEvaluatorFactory =
+                        new DefaultCandidateJudgmentEvaluatorFactory(baseDir);
+                judgmentEvaluators = List.of(
+                        candidateJudgmentEvaluatorFactory.create(
+                                quizInstructionLagenConfig, CorrectionCriterion.FAITHFUL_TRANSLATION),
+                        candidateJudgmentEvaluatorFactory.create(
+                                quizInstructionLagenConfig, CorrectionCriterion.SOLVABLE_SAME_KIND));
+            } else {
+                final String deferredMsg = quizInstructionLagenSetupError;
+                quizInstructionGenerator = request -> {
+                    throw new ProposalStrategyFailedException(
+                            "quiz-instruction-agent",
+                            request.getContext() != null ? request.getContext().getTaskId() : null,
+                            "INVALID_CONFIG: " + deferredMsg);
+                };
+                quizInstructionProviderId = "lagen:misconfigured";
+                // Without a resolvable LLM config, the two judgment criteria simply do not
+                // enter the active catalog (CandidateCriteriaConfig.judgmentEvaluators doc);
+                // the deterministic criteria and INSTRUCTION_COMPLIANCE still run.
+                judgmentEvaluators = List.of();
+            }
+        }
+
+        QuizInstructionAgentStrategy quizInstructionStrategy =
+                new QuizInstructionAgentStrategy(quizInstructionGenerator, quizInstructionProviderId);
+        QuizInstructionProposalStrategyRegistryConfig quizInstructionRegistryConfig =
+                new QuizInstructionProposalStrategyRegistryConfig(
+                        List.of(quizInstructionStrategy), "quiz-instruction-agent");
+        QuizInstructionProposalStrategyRegistry quizInstructionStrategyRegistry =
+                new DefaultQuizInstructionProposalStrategyRegistry(quizInstructionRegistryConfig);
+
+        // DOUBT-DISTINCION-ALCANCE / DOUBT-PRESUPUESTO-CORRECCION: thresholds left null so
+        // DefaultCandidateCriteriaFactory substitutes its own defaults.
+        CandidateCriteriaConfig candidateCriteriaConfig = new CandidateCriteriaConfig(
+                nlpTokenizer,
+                sentenceLengthConfig,
+                sentenceLexicalEvaluator,
+                quizInstructionComplianceChecker,
+                quizInstructionSubjectViewFactory,
+                judgmentEvaluators,
+                null,
+                null,
+                null,
+                auditReportStore);
+        CandidateAssessor candidateAssessor =
+                new DefaultCandidateCriteriaFactory().create(candidateCriteriaConfig);
+
         LemmaAbsenceProposalDeriver proposalDeriver =
                 new DefaultLemmaAbsenceProposalDeriver(quizSentenceConverter);
         KnowledgeTitleProposalDeriver knowledgeTitleProposalDeriver =
@@ -552,7 +717,28 @@ class Main {
         revisionEngineConfig.setImpactPreviewStore(impactPreviewStore);
         revisionEngineConfig.setCorrectionContextOverrideParser(
                 DefaultCorrectionContextOverrideParser.withDefaultValidators(new ObjectMapper()));
+        revisionEngineConfig.setQuizInstructionStrategyRegistry(quizInstructionStrategyRegistry);
+        revisionEngineConfig.setCandidateAssessor(candidateAssessor);
+        revisionEngineConfig.setQuizInstructionComplianceChecker(quizInstructionComplianceChecker);
+        revisionEngineConfig.setQuizInstructionSubjectViewFactory(quizInstructionSubjectViewFactory);
+        revisionEngineConfig.setQuizInstructionCorrectionConfig(quizInstructionCorrectionConfig);
         RevisionEngine revisionEngine = new DefaultRevisionEngineFactory().create(revisionEngineConfig);
+
+        // F-QICOR-R008 (journey J002): the bounded batch runner over QUIZ_INSTRUCTION
+        // tasks, its filesystem report store, and its text formatter. Registered below as
+        // the "revise-instructions" subcommand (Step 8) — its own verb, not a flag on
+        // "revise": correcting consigna is always an explicit operator action.
+        QuizInstructionCorrectionRunStore quizInstructionCorrectionRunStore =
+                new FileSystemQuizInstructionCorrectionRunStore(baseDir);
+        QuizInstructionCorrectionRunner quizInstructionCorrectionRunner =
+                new DefaultQuizInstructionCorrectionRunnerFactory().create(
+                        revisionEngineConfig, quizInstructionCorrectionRunStore,
+                        quizInstructionCorrectionConfig);
+        QuizInstructionCorrectionRunFormatter quizInstructionCorrectionRunFormatter =
+                new DefaultQuizInstructionCorrectionRunFormatter();
+        ReviseInstructionsCmd reviseInstructionsCmd = new ReviseInstructionsCmd(
+                quizInstructionCorrectionRunner, refinementPlanStore,
+                quizInstructionCorrectionRunFormatter);
 
         ProposalDecisionService proposalDecisionService;
         try {
@@ -573,7 +759,8 @@ class Main {
         cmd.addSubcommand("analyze", new picocli.CommandLine(
                 new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
                         rawReportFormatter, drillDownResolver, detailedFormatters,
-                        auditReportStore, CoursePathResolver::resolve)));
+                        auditReportStore, CoursePathResolver::resolve,
+                        new DefaultReevaluationQuizSetResolver())));
 
         // plan
         com.learney.contentaudit.auditdomain.AuditNodeIndexFactory auditNodeIndexFactory =
@@ -587,6 +774,11 @@ class Main {
         // revise
         ReviseCmd reviseCmd = new ReviseCmd(revisionEngine, refinementPlanStore);
         cmd.addSubcommand("revise", new picocli.CommandLine(reviseCmd));
+
+        // revise-instructions — F-QICOR-R008 (journey J002): bounded batch of
+        // QUIZ_INSTRUCTION corrections over a plan. Its own verb, always explicit —
+        // never triggered by "analyze" or by a plain "revise task <id>".
+        cmd.addSubcommand("revise-instructions", new picocli.CommandLine(reviseInstructionsCmd));
 
         // approve / reject — only available when ProposalDecisionService could be constructed
         if (proposalDecisionService != null) {
@@ -643,10 +835,9 @@ class Main {
         // lexis — F-CLEX: consulta lexica de solo lectura oracion+nivel -> palabras
         // flaggeadas (mal ubicadas / fuera de catalogo), reutilizando el mismo pipeline
         // lexico del audit via SentenceLexicalEvaluator (que delega en sentenceLexicalScorer,
-        // el mismo motor que ya usa lemmaAbsenceAnalyzer).
-        com.learney.contentaudit.auditdomain.lexicalflags.SentenceLexicalEvaluator sentenceLexicalEvaluator =
-                new com.learney.contentaudit.auditdomain.lexicalflags.DefaultSentenceLexicalEvaluator(
-                        sentenceLexicalScorer);
+        // el mismo motor que ya usa lemmaAbsenceAnalyzer). sentenceLexicalEvaluator was
+        // already built in Step 7c above for FEAT-QICOR's LevelVocabularyCriterion; reused
+        // here rather than built twice.
         cmd.addSubcommand("lexis", new picocli.CommandLine(
                 new LexisCmd(quizSentenceConverter, nlpTokenizer, sentenceLexicalEvaluator)));
 
@@ -681,5 +872,28 @@ class Main {
         // ----------------------------------------------------------------
         int exitCode = cmd.execute(remainingArgs.toArray(new String[0]));
         System.exit(exitCode);
+    }
+
+    /**
+     * FEAT-QICOR canned-mode judgment evaluator: always PASSED, mirroring the canned
+     * candidate generator/knowledge-title generator above (LagenMode.CANNED — deterministic,
+     * no LLM contact). CandidateCriterionEvaluator has two abstract methods, so it cannot be
+     * a lambda.
+     */
+    private static CandidateCriterionEvaluator cannedPassingJudgmentEvaluator(
+            CorrectionCriterion criterion) {
+        return new CandidateCriterionEvaluator() {
+            @Override
+            public CorrectionCriterion criterion() {
+                return criterion;
+            }
+
+            @Override
+            public CriterionVerdict evaluate(
+                    com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessmentInput input) {
+                return new CriterionVerdict(criterion, CriterionOutcome.PASSED,
+                        "canned: siempre aprueba");
+            }
+        };
     }
 }

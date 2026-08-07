@@ -48,7 +48,10 @@ public class DefaultRevisionEngineFactoryTest {
                 null,                                            // auditEngine
                 null,                                            // impactPreviewStore
                 null                                             // correctionContextOverrideParser (nullable per TECH_SPEC)
-        , null, null);
+        , null, null                                             // knowledgeTitleStrategyRegistry, knowledgeTitleProposalDeriver
+        , null, null, null, null, null                           // FEAT-QICOR: quizInstructionStrategyRegistry, candidateAssessor,
+                                                                   // quizInstructionComplianceChecker, subjectViewFactory, quizInstructionCorrectionConfig
+        );
 
         RevisionEngineFactory factory = new DefaultRevisionEngineFactory();
 

@@ -65,7 +65,7 @@ public class FQinstJ001JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
 
         // Nodo "consultar_juez": el sistema entrega al juez el contenido completo del ejercicio
         AuditNode quizNode = buildQuizNode();
@@ -114,7 +114,7 @@ public class FQinstJ001JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
 
         // Nodo "consultar_juez": el sistema entrega al juez el contenido completo del ejercicio
         AuditNode quizNode = buildQuizNode();
@@ -162,7 +162,7 @@ public class FQinstJ001JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
 
         // Nodo "consultar_juez": el sistema entrega al juez el contenido completo del ejercicio
         AuditNode quizNode = buildQuizNode();
@@ -209,7 +209,7 @@ public class FQinstJ001JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
 
         // Nodo "consultar_juez": el sistema entrega al juez el contenido completo del ejercicio
         AuditNode quizNode = buildQuizNode();
@@ -257,7 +257,7 @@ public class FQinstJ001JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
 
         // Nodo "consultar_juez": el sistema entrega al juez el contenido completo de un
         // ejercicio pendiente (nivel CEFR, topic, etiqueta e instrucciones del knowledge y el

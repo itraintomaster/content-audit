@@ -120,6 +120,8 @@ Methods:
 - `resolveForced(EvaluationSubject subject): EvaluationResolution`
 - `coverage(): EvaluationCoverage`
 - `consultedEvaluatorVersion(): Optional<String>`
+- `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution`
+- `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution`
 
 ### EvaluationSessionFactory (factory)
 

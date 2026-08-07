@@ -1,0 +1,52 @@
+name: candidate-judgment
+description: |
+  Juez de UN criterio de calidad sobre UN candidato de corrección de ejercicio.
+  Recibe el original, el candidato y el nombre del criterio a juzgar, y emite un
+  veredicto {criterion, outcome, detail} como artifact `criterionVerdict`.
+
+  Es el backend declarativo de CandidateCriterionEvaluator para los criterios
+  que son juicio y no medición: hoy FAITHFUL_TRANSLATION y SOLVABLE_SAME_KIND.
+  Los otros cuatro (SCOPED_EDIT, LENGTH_IN_RANGE, LEVEL_VOCABULARY,
+  DISTINCTNESS) son deterministas y se miden en Java, no acá.
+
+  **Deliberadamente neutro respecto de qué corrección lo invoca.** No menciona
+  violaciones de consigna, ni tareas, ni diagnósticos: habla de un original y un
+  candidato. Esa es la condición para que la corrección de lemas ausentes pueda
+  adoptarlo después como migración y no como rediseño — hoy juzga lo mismo en el
+  nodo `eval_quality` de `.sentinel/agents/lemma-absence-agent`, y esa
+  duplicación es deuda conocida.
+
+  **Es un grafo aparte del generador, y eso es a propósito.** Si el mismo grafo
+  generara y evaluara, el candidato se estaría corrigiendo a sí mismo.
+
+  Flujo:
+
+      judge (llm_call: un criterio, un veredicto)
+        ──▶ gate_verdict (gate: forma y coherencia; failed reintenta)
+        ──▶ emit (script: artifact criterionVerdict)
+kind: agent
+strategy: graph
+initial_node: judge
+budgets:
+  # Pase limpio son 3 nodos; el único lazo es gate_verdict ↔ judge, acotado por
+  # max_attempts de judge (3).
+  max_iterations: 12
+nodes:
+  - ./nodes/judge.md
+  - ./nodes/gate_verdict.md
+  - ./nodes/emit.md
+goal:
+  required_artifacts:
+    - criterionVerdict
+  required_nodes_done:
+    - emit
+dependencies:
+  - criterion               # FAITHFUL_TRANSLATION | SOLVABLE_SAME_KIND
+  - cefrLevel
+  - knowledgeTitle
+  - knowledgeInstructions
+  - sentenceMode
+  - originalQuizSentence
+  - originalTranslation
+  - candidateQuizSentence
+  - candidateTranslation

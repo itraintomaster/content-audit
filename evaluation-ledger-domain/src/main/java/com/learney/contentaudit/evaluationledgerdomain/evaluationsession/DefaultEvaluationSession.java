@@ -207,4 +207,88 @@ class DefaultEvaluationSession implements EvaluationSession {
         return evaluatorVersionConsulted ? evaluatorVersion : Optional.empty();
     }
 
+
+    @Override
+    public EvaluationResolution resolvePreferringNew(EvaluationSubject subject) {
+        reached++;
+
+        // R002: same discipline as resolveInternal -- the fingerprint is derived
+        // from exactly the map that would be handed to the evaluator.
+        Map<String, String> content = subject.getContent();
+        String contentFingerprint = fingerprinter.fingerprint(content);
+        EvaluationKey key = new EvaluationKey(evaluator.evaluatorId(), contentFingerprint);
+
+        // F-QINST-R018 inv.1: every subject in the declared re-evaluation set is
+        // consulted in this run regardless of whether it already has a registered
+        // result -- unlike ordinary resolve(), which reuses without ever
+        // attempting a fresh evaluation. Same guard as resolveForced (unavailable
+        // evaluator, exhausted budget) decides whether a fresh attempt is even
+        // possible.
+        if (!evaluatorUnavailable && newEvaluationsUsed < budget.getMaxNewEvaluations()) {
+            newEvaluationsUsed++;
+            evaluatorVersionConsulted = true;
+
+            EvaluationOutcome outcome = evaluator.evaluate(subject);
+
+            if (outcome instanceof EvaluationEmitted emitted) {
+                String version = evaluatorVersion.get();
+                EvaluationRecord record = new EvaluationRecord(
+                        key, emitted.getPayload(), subject.getSubjectRef(), Instant.now(), version);
+                ledger.append(record);
+                evaluatedInRun++;
+                return new EvaluationResolution(EvaluationResolutionKind.EVALUATED, emitted.getPayload(), version);
+            }
+
+            if (outcome instanceof EvaluationNotEmitted notEmitted) {
+                failed++;
+                if (notEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE) {
+                    evaluatorUnavailable = true;
+                }
+                return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null);
+            }
+
+            throw new IllegalStateException(
+                    "Unknown EvaluationOutcome implementation: " + outcome.getClass().getName());
+        }
+
+        // F-QINST-R018 inv.2: a set member the run's budget cannot reach (or that
+        // an evaluator unavailable for the rest of the run now makes unreachable)
+        // keeps its registered result instead of going pending -- exactly what
+        // sets this method apart from resolveForced, which discards it in this
+        // same situation.
+        Optional<EvaluationRecord> current = ledger.findLatest(key);
+        if (current.isPresent()) {
+            reused++;
+            EvaluationRecord record = current.get();
+            return new EvaluationResolution(
+                    EvaluationResolutionKind.REUSED, record.getPayload(), record.getEvaluatorVersion());
+        }
+        pending++;
+        return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null);
+    }
+
+
+    @Override
+    public EvaluationResolution resolveWithoutConsulting(EvaluationSubject subject) {
+        reached++;
+
+        // F-QINST-R018 inv.1: a subject FOREIGN to the declared re-evaluation set
+        // is never consulted, whether or not it already has a registered result --
+        // and it never spends any of the run's budget, which is reserved entirely
+        // for the declared set (F-QINST-R018 inv.2).
+        Map<String, String> content = subject.getContent();
+        String contentFingerprint = fingerprinter.fingerprint(content);
+        EvaluationKey key = new EvaluationKey(evaluator.evaluatorId(), contentFingerprint);
+
+        Optional<EvaluationRecord> current = ledger.findLatest(key);
+        if (current.isPresent()) {
+            reused++;
+            EvaluationRecord record = current.get();
+            return new EvaluationResolution(
+                    EvaluationResolutionKind.REUSED, record.getPayload(), record.getEvaluatorVersion());
+        }
+        pending++;
+        return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null);
+    }
+
 }

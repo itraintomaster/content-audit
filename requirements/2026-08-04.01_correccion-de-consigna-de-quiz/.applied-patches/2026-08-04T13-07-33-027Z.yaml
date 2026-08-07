@@ -1,0 +1,51 @@
+code: FEAT-QICOR
+description: "FEAT-QICOR fix — visibilidad de los elementos nuevos que sus clientes\
+  \ declarados no alcanzan. Abre el formatter de corrida y su implementacion, el store\
+  \ del reporte y el resolver de configuracion, alineandolos con sus precedentes directos.\
+  \ El corpus de distincion no se abre: se saca del carrier de wiring, porque abrirlo\
+  \ perforaria el paquete interno sobre el que se apoya el seam del catalogo."
+modules:
+- name: audit-cli
+  packages:
+  - name: formatting
+    interfaces:
+    - name: QuizInstructionCorrectionRunFormatter
+      sealed: false
+      visibility: public
+      _change: modify
+    implementations:
+    - name: DefaultQuizInstructionCorrectionRunFormatter
+      visibility: public
+      _change: modify
+    _change: modify
+  - name: bootstrap
+    interfaces:
+    - name: QuizInstructionCorrectionConfigResolver
+      sealed: false
+      visibility: public
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemQuizInstructionCorrectionRunStore
+    visibility: public
+    _change: modify
+  _change: modify
+- name: revision-domain
+  packages:
+  - name: candidatecriteria
+    models:
+    - name: CandidateCriteriaConfig
+      type: record
+      fields:
+      - name: quizCorpus
+        _change: delete
+      - name: auditReportStore
+        type: AuditReportStore
+        description: |
+          Fuente de los ejercicios contra los que se compara la distincion. Reemplaza al campo quizCorpus, que pedia a la composition root una instancia de CourseQuizCorpus cuya unica implementacion vive package-private dentro del paquete interno candidatecriteriaengine: el carrier exigia un tipo inalcanzable para quien tiene que llenarlo. Abrir esa implementacion habria perforado el paquete interno sobre el que se apoya el seam del catalogo, asi que se invierte la direccion — el carrier pide el puerto que la composition root ya tiene cableado (AuditReportStore) y la factory construye el corpus adentro, donde el criterio sigue recibiendolo por inyeccion sin que nadie afuera vea la clase.
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify

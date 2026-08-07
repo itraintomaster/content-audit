@@ -165,6 +165,28 @@ The following models and interfaces are available from dependencies. You can use
 | maxNewEvaluations | `int` |
 | reevaluate | `boolean` |
 | reevaluationScope | `String` |
+| reevaluationSubjectIds | `Set<String>` |
+
+### EmptyReevaluationSetException (`exception`)
+
+**Extends:** `IllegalArgumentException`
+
+**Message:** `El pedido de re-evaluacion para el analisis '%s' declara un conjunto vacio de ejercicios: no se puede interpretar el alcance y la corrida no se ejecuta`
+
+| Field | Type |
+|-------|------|
+| analyzerName | `String` |
+
+### AmbiguousReevaluationScopeException (`exception`)
+
+**Extends:** `IllegalArgumentException`
+
+**Message:** `El pedido de re-evaluacion para el analisis '%s' declara a la vez un conjunto de ejercicios y otro alcance (%s): no se puede determinar el alcance`
+
+| Field | Type |
+|-------|------|
+| analyzerName | `String` |
+| declaredScope | `String` |
 
 ### AuditEngine (port)
 
@@ -669,6 +691,8 @@ Methods:
 - `resolveForced(EvaluationSubject subject): EvaluationResolution`
 - `coverage(): EvaluationCoverage`
 - `consultedEvaluatorVersion(): Optional<String>`
+- `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution`
+- `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution`
 
 ### EvaluationSessionFactory (factory)
 

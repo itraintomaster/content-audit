@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.auditcli.bootstrap.ReevaluationQuizSetResolver;
 import com.learney.contentaudit.auditcli.AnalyzeOptions;
 import javax.annotation.processing.Generated;
 
@@ -139,28 +140,61 @@ class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
             fallbackValue = "")
     private String reevaluateInstructions;
 
-    public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry,
-            ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter,
-            DrillDownResolver drillDownResolver,
-            Map<String, DetailedFormatter> detailedFormatters,
-            AuditReportStore auditReportStore,
-            Function<String, String> pathResolver) {
-        this.auditRunner = auditRunner;
-        this.formatterRegistry = formatterRegistry;
-        this.viewModelTransformer = viewModelTransformer;
-        this.rawReportFormatter = rawReportFormatter;
-        this.drillDownResolver = drillDownResolver;
-        this.detailedFormatters = detailedFormatters;
-        this.auditReportStore = auditReportStore;
-        this.pathResolver = pathResolver;
-    }
+    @Option(names = {"--reevaluate-instruction-quizzes"},
+            description = "Comma-separated set of quiz ids to explicitly re-judge, declared inline "
+                    + "(F-QINST-R018/R019). A declared set IS the re-evaluation request: it narrows "
+                    + "the run to exactly these quizzes instead of an area or the whole course, and "
+                    + "is mutually exclusive with both --reevaluate-instructions and "
+                    + "--reevaluate-instruction-quizzes-file. Still respects --instruction-budget, "
+                    + "which is spent on the declared set first.")
+    private String reevaluateInstructionQuizzes;
+
+    @Option(names = {"--reevaluate-instruction-quizzes-file"},
+            description = "Path to a file listing (comma-separated) the set of quiz ids to "
+                    + "explicitly re-judge (F-QINST-R018/R019), for sets too large to enumerate "
+                    + "inline. Mutually exclusive with --reevaluate-instruction-quizzes.")
+    private String reevaluateInstructionQuizzesFile;
+
+private final ReevaluationQuizSetResolver reevaluationQuizSetResolver;
+
+public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter, DrillDownResolver drillDownResolver, Map<String, DetailedFormatter> detailedFormatters, AuditReportStore auditReportStore, Function<String, String> pathResolver, ReevaluationQuizSetResolver reevaluationQuizSetResolver) {
+    this.auditRunner = auditRunner;
+    this.formatterRegistry = formatterRegistry;
+    this.viewModelTransformer = viewModelTransformer;
+    this.rawReportFormatter = rawReportFormatter;
+    this.drillDownResolver = drillDownResolver;
+    this.detailedFormatters = detailedFormatters;
+    this.auditReportStore = auditReportStore;
+    this.pathResolver = pathResolver;
+    this.reevaluationQuizSetResolver = reevaluationQuizSetResolver;
+}
 
     @Override
     public Integer call() {
-        AnalyzeOptions options = new AnalyzeOptions(this.formatName, this.level, this.topic,
-                this.knowledge, this.analyzerFilter, this.excludeAnalyzers, this.detailed,
-                this.instructionBudget, this.reevaluateInstructions);
-        return analyze(this.coursePath, options);
+        try {
+            // F-QINST-R018/R019: resolution (and any I/O it needs to read an external
+            // origin) happens here, in call() -- analyze(path, options) stays free of
+            // I/O and takes the set already resolved. Absent BOTH options, no set is
+            // declared at all: this must stay null, never an empty set, or an ordinary
+            // audit that never asked for a re-evaluation would be rejected downstream
+            // as an empty declared set (F-QINST-R018 inv.3).
+            Set<String> reevaluateInstructionQuizIds =
+                    this.reevaluateInstructionQuizzes != null || this.reevaluateInstructionQuizzesFile != null
+                            ? reevaluationQuizSetResolver.resolve(
+                                    this.reevaluateInstructionQuizzes, this.reevaluateInstructionQuizzesFile)
+                            : null;
+
+            AnalyzeOptions options = new AnalyzeOptions(this.formatName, this.level, this.topic,
+                    this.knowledge, this.analyzerFilter, this.excludeAnalyzers, this.detailed,
+                    this.instructionBudget, this.reevaluateInstructions, reevaluateInstructionQuizIds);
+            return analyze(this.coursePath, options);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 1;
+        } catch (RuntimeException e) {
+            System.err.println("Error running audit: " + e.getMessage());
+            return 1;
+        }
     }
 
     @Override
@@ -349,9 +383,10 @@ class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
 
         Integer instructionBudget = options.getInstructionBudget();
         String reevaluateInstructions = options.getReevaluateInstructions();
+        Set<String> reevaluateInstructionQuizIds = options.getReevaluateInstructionQuizIds();
 
         Map<String, EvaluationRunPolicy> analyzerPolicies = null;
-        if (instructionBudget != null || reevaluateInstructions != null) {
+        if (instructionBudget != null || reevaluateInstructions != null || reevaluateInstructionQuizIds != null) {
             EvaluationRunPolicy policy = new EvaluationRunPolicy();
             if (instructionBudget != null) {
                 policy.setMaxNewEvaluations(instructionBudget);
@@ -361,6 +396,15 @@ class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
                 // An empty scope (--reevaluate-instructions with no value) means "the whole
                 // course"; QuizInstructionScopeMatcher treats a null scope as unrestricted.
                 policy.setReevaluationScope(reevaluateInstructions.isEmpty() ? null : reevaluateInstructions);
+            }
+            if (reevaluateInstructionQuizIds != null) {
+                // F-QINST-R018: carried verbatim, never combined with reevaluate/scope above
+                // by this translation -- if the user also passed --reevaluate-instructions,
+                // the resulting policy legitimately declares both at once, and
+                // DefaultQuizInstructionAnalyzerFactory.create() is the one that rejects that
+                // combination (AmbiguousReevaluationScopeException) before opening the
+                // session. Picking one here instead would hide the ambiguity from the user.
+                policy.setReevaluationSubjectIds(reevaluateInstructionQuizIds);
             }
             analyzerPolicies = new HashMap<>();
             analyzerPolicies.put(QUIZ_INSTRUCTION_ANALYZER_NAME, policy);

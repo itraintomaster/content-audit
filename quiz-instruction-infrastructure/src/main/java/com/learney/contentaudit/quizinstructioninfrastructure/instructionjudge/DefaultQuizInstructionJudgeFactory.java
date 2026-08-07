@@ -1,4 +1,9 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolver;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolution;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderRejected;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderRejectionKind;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
 
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
@@ -20,34 +25,46 @@ public class DefaultQuizInstructionJudgeFactory implements QuizInstructionJudgeF
 
     private static final String DEFAULT_AGENT_NAME = "quiz-instruction-validator";
 
-    private final QuizInstructionJudgeProviderResolver providerResolver =
-            new DefaultQuizInstructionJudgeProviderResolver();
+    /** ARCH-LAGEN-R015: the judge declares its service address as "baseUrl" -- the name
+     * the operator's own config vocabulary uses for it (QuizInstructionJudgeConfig#baseUrl),
+     * not the env var name -- so a rejection names the datum exactly as it is declared. */
+    private static final String SERVICE_ADDRESS_INPUT_NAME = "baseUrl";
 
     private final JudgeChatModelFactory chatModelFactory =
             new SentinelAgentsJudgeChatModelFactory();
 
+private final LlmProviderResolver llmProviderResolver;
+
+public DefaultQuizInstructionJudgeFactory(LlmProviderResolver llmProviderResolver) {
+    this.llmProviderResolver = llmProviderResolver;
+}
+
     @Override
     public Evaluator create(QuizInstructionJudgeConfig config, AgentGraphRunner agentGraphRunner,
             AgentDefinitionLocator agentDefinitionLocator) {
-        // F-QINST-R016: la validez de la configuracion se juzga contra el proveedor
-        // que ella declara, en un solo lugar. Antes se exigia siempre direccion de
+        // F-QINST-R016 / ARCH-LAGEN-R015: la validez de la configuracion se juzga contra
+        // el proveedor que ella declara, con el mismo criterio unico que ahora tambien
+        // usa la generacion (F-LAGEN-R015). Antes se exigia siempre direccion de
         // servicio y credencial, con lo cual un proveedor que se autentica con la
         // sesion local del usuario -- el que el resto del sistema usa -- dejaba al
         // juez permanentemente no disponible sin un solo error visible.
-        JudgeProviderResolution resolution = providerResolver.resolve(config);
+        LlmProviderResolution resolution = llmProviderResolver.resolve(
+                config != null ? config.getProviderName() : null,
+                config != null ? config.getBaseUrl() : null,
+                SERVICE_ADDRESS_INPUT_NAME);
 
         // F-QINST-R007: una configuracion invalida nunca tumba el arranque de la
         // auditoria. Se devuelve un evaluador que se declara no disponible y jamas
         // toca el runtime del agente -- y como QuizInstructionAgentJudge solo se
-        // puede construir con un JudgeProviderResolved, la invariante 3 de R016
+        // puede construir con un LlmProviderResolved, la invariante 3 de R016
         // (con configuracion invalida no se emite ni una sola consulta) queda
         // garantizada por construccion.
-        if (resolution instanceof JudgeProviderRejected rejected) {
+        if (resolution instanceof LlmProviderRejected rejected) {
             return new UnavailableQuizInstructionJudge(resolveAgentName(config),
                     describeRejection(rejected));
         }
 
-        JudgeProviderResolved provider = (JudgeProviderResolved) resolution;
+        LlmProviderResolved provider = (LlmProviderResolved) resolution;
         return new QuizInstructionAgentJudge(config, agentGraphRunner,
                 new DefaultQuizInstructionJudgeVersionResolver(agentDefinitionLocator),
                 chatModelFactory, provider);
@@ -58,8 +75,8 @@ public class DefaultQuizInstructionJudgeFactory implements QuizInstructionJudgeF
      * exige, en lugar de "configuracion invalida" -- que es lo que volvia
      * indiagnosticable al juez permanentemente no disponible.
      */
-    private static String describeRejection(JudgeProviderRejected rejected) {
-        if (rejected.getKind() == JudgeProviderRejectionKind.UNSUPPORTED_PROVIDER) {
+    private static String describeRejection(LlmProviderRejected rejected) {
+        if (rejected.getKind() == LlmProviderRejectionKind.UNSUPPORTED_PROVIDER) {
             return "El juez de consigna no esta disponible: el proveedor '"
                     + rejected.getProviderName() + "' no es uno que el sistema sepa consultar";
         }

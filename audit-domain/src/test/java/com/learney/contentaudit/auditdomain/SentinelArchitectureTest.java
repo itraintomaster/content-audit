@@ -147,6 +147,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: EvaluationRunPolicy - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.EmptyReevaluationSetException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EmptyReevaluationSetException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.AmbiguousReevaluationScopeException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AmbiguousReevaluationScopeException - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.AuditEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AuditEngine - " + e.getMessage());
@@ -722,6 +732,41 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: JudgeVersionVerdictCount - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionSubjectView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionComplianceStatus");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionComplianceStatus - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionComplianceResult");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionComplianceResult - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectViewFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionSubjectViewFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionComplianceChecker");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionComplianceChecker - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionComplianceCheckerFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionComplianceCheckerFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.QuizInstructionReevaluationDecision");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionReevaluationDecision - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.QuizInstructionSubjectBuilder");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: QuizInstructionSubjectBuilder - " + e.getMessage());
@@ -760,6 +805,21 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionScopeMatcher");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultQuizInstructionScopeMatcher - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionComplianceCheckerFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultQuizInstructionComplianceCheckerFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionSubjectViewFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultQuizInstructionSubjectViewFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.LedgerBackedQuizInstructionComplianceChecker");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LedgerBackedQuizInstructionComplianceChecker - " + e.getMessage());
     }
   }
 }

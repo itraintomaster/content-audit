@@ -4,6 +4,7 @@ import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.revisiondomain.CourseElementLocator;
 import com.learney.contentaudit.revisiondomain.KnowledgeTitleProposalDeriver;
 import com.learney.contentaudit.revisiondomain.KnowledgeTitleProposalStrategyRegistry;
+import com.learney.contentaudit.revisiondomain.QuizInstructionProposalStrategyRegistry;
 import com.learney.contentaudit.revisiondomain.Reviser;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
@@ -43,6 +44,26 @@ public class DefaultRevisionEngineFactory implements RevisionEngineFactory {
                         : new DefaultKnowledgeTitleProposalDeriver();
         revisers.put(DiagnosisKind.KNOWLEDGE_TITLE_LENGTH,
                 new KnowledgeTitleReviser(knowledgeTitleStrategyRegistry, knowledgeTitleProposalDeriver));
+
+        // F-QICOR-R001: register the dedicated QuizInstructionReviser in the byKind seam
+        // so QUIZ_INSTRUCTION tasks route here instead of falling through to the identity
+        // bypass (FEAT-REVBYP) -- the exact gap this feature closes. Mirrors
+        // knowledgeTitleStrategyRegistry's nullability: an empty registry means active()
+        // is always empty, so every task surfaces a ProposalStrategyFailedException
+        // instead of silently bypassing.
+        QuizInstructionProposalStrategyRegistry quizInstructionStrategyRegistry =
+                config.getQuizInstructionStrategyRegistry() != null
+                        ? config.getQuizInstructionStrategyRegistry()
+                        : new DefaultQuizInstructionProposalStrategyRegistry(
+                                new QuizInstructionProposalStrategyRegistryConfig(
+                                        java.util.List.of(), null));
+        revisers.put(DiagnosisKind.QUIZ_INSTRUCTION, new QuizInstructionReviser(
+                quizInstructionStrategyRegistry,
+                config.getLemmaAbsenceProposalDeriver(),
+                config.getCandidateAssessor(),
+                config.getQuizInstructionComplianceChecker(),
+                config.getQuizInstructionSubjectViewFactory(),
+                config.getQuizInstructionCorrectionConfig()));
 
         DispatchingReviser dispatcher = new DispatchingReviser(
                 revisers,

@@ -1,0 +1,15 @@
+code: FEAT-QICOR
+description: "FEAT-QICOR fix — QuizInstructionContextResolver deja de declarar implements\
+  \ sobre CorrectionContextResolver, que es generico. El generador no sustituye la\
+  \ variable de tipo al copiar las firmas del puerto, asi que el stub salia con Optional<T>\
+  \ sin ligar. La relacion port/adapter la escribe la clase con el tipo concreto,\
+  \ igual que LemmaAbsenceContextResolver."
+modules:
+- name: refiner-domain
+  implementations:
+  - name: QuizInstructionContextResolver
+    _change: delete
+  - name: QuizInstructionContextResolver
+    visibility: public
+    _change: add
+  _change: modify

@@ -40,7 +40,7 @@ public class QuizInstructionDetailedFormatterTest {
         // pending / failed next to the analysis score — without it the score is misleading.
         EvaluationCoverage coverage = new EvaluationCoverage(1060, 156, 52, 104, 811, 93);
         QuizInstructionCoverageDiagnosis coverageDiagnosis =
-                new QuizInstructionCoverageDiagnosis(coverage, "judge-v1", List.of());
+                new QuizInstructionCoverageDiagnosis(coverage, "judge-v1", List.of(), null);
 
         CourseDiagnoses courseDiagnoses = mock(CourseDiagnoses.class);
         when(courseDiagnoses.getQuizInstructionCoverage()).thenReturn(Optional.of(coverageDiagnosis));
@@ -129,7 +129,7 @@ public class QuizInstructionDetailedFormatterTest {
         EvaluationCoverage coverage = new EvaluationCoverage(742, 610, 88, 522, 120, 12);
         String judgeVersion = "qij-8f3d1c-2026.07";
         QuizInstructionCoverageDiagnosis coverageDiagnosis =
-                new QuizInstructionCoverageDiagnosis(coverage, judgeVersion, List.of());
+                new QuizInstructionCoverageDiagnosis(coverage, judgeVersion, List.of(), null);
 
         CourseDiagnoses courseDiagnoses = mock(CourseDiagnoses.class);
         when(courseDiagnoses.getQuizInstructionCoverage()).thenReturn(Optional.of(coverageDiagnosis));
@@ -164,7 +164,7 @@ public class QuizInstructionDetailedFormatterTest {
                 new JudgeVersionVerdictCount(judgeVersionOlder, 47),
                 new JudgeVersionVerdictCount(judgeVersionNewer, 253));
         QuizInstructionCoverageDiagnosis coverageDiagnosis =
-                new QuizInstructionCoverageDiagnosis(coverage, judgeVersionNewer, verdictsByJudgeVersion);
+                new QuizInstructionCoverageDiagnosis(coverage, judgeVersionNewer, verdictsByJudgeVersion, null);
 
         CourseDiagnoses courseDiagnoses = mock(CourseDiagnoses.class);
         when(courseDiagnoses.getQuizInstructionCoverage()).thenReturn(Optional.of(coverageDiagnosis));
@@ -215,7 +215,7 @@ public class QuizInstructionDetailedFormatterTest {
                 List.of(new JudgeVersionVerdictCount("qij-old999", 180));
 
         QuizInstructionCoverageDiagnosis coverageDiagnosisWithVersion =
-                new QuizInstructionCoverageDiagnosis(coverage, "qij-old999", verdictsByJudgeVersion);
+                new QuizInstructionCoverageDiagnosis(coverage, "qij-old999", verdictsByJudgeVersion, null);
         CourseDiagnoses courseDiagnosesWithVersion = mock(CourseDiagnoses.class);
         when(courseDiagnosesWithVersion.getQuizInstructionCoverage())
                 .thenReturn(Optional.of(coverageDiagnosisWithVersion));
@@ -223,7 +223,7 @@ public class QuizInstructionDetailedFormatterTest {
                 Map.of("quiz-instruction", 0.4), Map.of(), courseDiagnosesWithVersion);
 
         QuizInstructionCoverageDiagnosis coverageDiagnosisNoVersion =
-                new QuizInstructionCoverageDiagnosis(coverage, null, verdictsByJudgeVersion);
+                new QuizInstructionCoverageDiagnosis(coverage, null, verdictsByJudgeVersion, null);
         CourseDiagnoses courseDiagnosesNoVersion = mock(CourseDiagnoses.class);
         when(courseDiagnosesNoVersion.getQuizInstructionCoverage())
                 .thenReturn(Optional.of(coverageDiagnosisNoVersion));

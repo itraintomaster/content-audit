@@ -1,4 +1,5 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved;
 import java.util.Optional;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
 
@@ -34,7 +35,7 @@ public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDe
 
     @Override
     public Optional<String> resolve(QuizInstructionJudgeConfig config,
-            JudgeProviderResolved provider) {
+            LlmProviderResolved provider) {
         String agentName = resolveAgentName(config);
         String modelName = config != null ? config.getModelName() : null;
         String providerName = provider != null ? provider.getProviderName() : null;

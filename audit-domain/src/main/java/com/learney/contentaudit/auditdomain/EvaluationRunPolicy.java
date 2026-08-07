@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain;
 
 import java.util.Objects;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -14,14 +15,17 @@ public class EvaluationRunPolicy {
 
     private String reevaluationScope;
 
+    private Set<String> reevaluationSubjectIds;
+
     public EvaluationRunPolicy() {
     }
 
-    public EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate,
-            String reevaluationScope) {
+    public EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reevaluationScope,
+            Set<String> reevaluationSubjectIds) {
         this.maxNewEvaluations = maxNewEvaluations;
         this.reevaluate = reevaluate;
         this.reevaluationScope = reevaluationScope;
+        this.reevaluationSubjectIds = reevaluationSubjectIds;
     }
 
     public int getMaxNewEvaluations() {
@@ -48,6 +52,14 @@ public class EvaluationRunPolicy {
         this.reevaluationScope = reevaluationScope;
     }
 
+    public Set<String> getReevaluationSubjectIds() {
+        return this.reevaluationSubjectIds;
+    }
+
+    public void setReevaluationSubjectIds(Set<String> reevaluationSubjectIds) {
+        this.reevaluationSubjectIds = reevaluationSubjectIds;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,11 +67,12 @@ public class EvaluationRunPolicy {
         EvaluationRunPolicy that = (EvaluationRunPolicy) o;
         return Objects.equals(this.maxNewEvaluations, that.maxNewEvaluations)
                     && Objects.equals(this.reevaluate, that.reevaluate)
-                    && Objects.equals(this.reevaluationScope, that.reevaluationScope);
+                    && Objects.equals(this.reevaluationScope, that.reevaluationScope)
+                    && Objects.equals(this.reevaluationSubjectIds, that.reevaluationSubjectIds);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(maxNewEvaluations, reevaluate, reevaluationScope);
+        return Objects.hash(maxNewEvaluations, reevaluate, reevaluationScope, reevaluationSubjectIds);
     }
 }

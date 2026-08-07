@@ -10,6 +10,8 @@ import static org.mockito.Mockito.when;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionFound;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionUnresolved;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderClass;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -32,8 +34,8 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
      * comparan versiones tienen que mantenerlo fijo para aislar la variable que
      * cada uno estudia (modelo, definicion del agente, o datos de conexion).
      */
-    private static final JudgeProviderResolved PROVIDER =
-            new JudgeProviderResolved("claude-cli", JudgeProviderClass.LOCAL_SESSION);
+    private static final LlmProviderResolved PROVIDER =
+            new LlmProviderResolved("claude-cli", LlmProviderClass.LOCAL_SESSION);
 
     private QuizInstructionJudgeConfig config(String modelName, String agentName) {
         return new QuizInstructionJudgeConfig(

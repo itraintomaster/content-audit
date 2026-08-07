@@ -304,10 +304,44 @@ new ActiveAnalysisSelection(String auditId, String planId)
 | `maxNewEvaluations` | `int` |  |
 | `reevaluate` | `boolean` |  |
 | `reevaluationScope` | `String` |  |
+| `reevaluationSubjectIds` | `Set<String>` |  |
 
 **Generated constructor:**
 ```java
-new EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reevaluationScope)
+new EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reevaluationScope, Set<String> reevaluationSubjectIds)
+```
+
+#### EmptyReevaluationSetException
+
+**Package:** `com.learney.contentaudit.auditdomain`
+**Type:** exception
+**Extends:** `IllegalArgumentException`
+**Message:** `"El pedido de re-evaluacion para el analisis '%s' declara un conjunto vacio de ejercicios: no se puede interpretar el alcance y la corrida no se ejecuta"`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `analyzerName` | `String` |  |
+
+**Generated class** extends `IllegalArgumentException` with constructor:
+```java
+new EmptyReevaluationSetException(String analyzerName)
+```
+
+#### AmbiguousReevaluationScopeException
+
+**Package:** `com.learney.contentaudit.auditdomain`
+**Type:** exception
+**Extends:** `IllegalArgumentException`
+**Message:** `"El pedido de re-evaluacion para el analisis '%s' declara a la vez un conjunto de ejercicios y otro alcance (%s): no se puede determinar el alcance"`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `analyzerName` | `String` |  |
+| `declaredScope` | `String` |  |
+
+**Generated class** extends `IllegalArgumentException` with constructor:
+```java
+new AmbiguousReevaluationScopeException(String analyzerName, String declaredScope)
 ```
 
 #### FrequencyBand (package: coca)
@@ -1021,6 +1055,7 @@ new EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reeval
 | `coverage` | `EvaluationCoverage` |
 | `consultedJudgeVersion` | `String` |
 | `verdictsByJudgeVersion` | `List<JudgeVersionVerdictCount>` |
+| `unmatchedReevaluationIds` | `List<String>` |
 
 #### JudgeVersionVerdictCount (package: quizinstruction)
 
@@ -1032,6 +1067,60 @@ new EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reeval
 |-------|------|
 | `judgeVersion` | `String` |
 | `verdictCount` | `int` |
+
+#### QuizInstructionSubjectView (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `subjectRef` | `String` |
+| `cefrLevel` | `String` |
+| `topic` | `String` |
+| `title` | `String` |
+| `instructions` | `String` |
+| `sentenceParts` | `List<SentencePartEntity>` |
+
+#### QuizInstructionComplianceStatus (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `EVALUATED` | `null` |
+| `UNAVAILABLE` | `null` |
+| `UNUSABLE` | `null` |
+
+#### QuizInstructionComplianceResult (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `status` | `QuizInstructionComplianceStatus` |
+| `verdict` | `QuizInstructionVerdict` |
+| `reason` | `String` |
+| `evaluatorVersion` | `String` |
+| `reused` | `boolean` |
+
+#### QuizInstructionReevaluationDecision (package: quizinstructionengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `ORDINARY` | `null` |
+| `AREA_REEVALUATION` | `null` |
+| `DECLARED_SET_REEVALUATION` | `null` |
+| `OUTSIDE_DECLARED_SET` | `null` |
 
 ### Module: course-domain
 
@@ -1330,10 +1419,11 @@ new DiagnosisKind(null SENTENCE_LENGTH, null LEMMA_ABSENCE, null COCA_BUCKETS, n
 | `PENDING` | `null` |  |
 | `COMPLETED` | `null` |  |
 | `SKIPPED` | `null` |  |
+| `STALE` | `null` |  |
 
 **Generated constructor:**
 ```java
-new RefinementTaskStatus(null PENDING, null COMPLETED, null SKIPPED)
+new RefinementTaskStatus(null PENDING, null COMPLETED, null SKIPPED, null STALE)
 ```
 
 #### RefinementTask
@@ -1598,6 +1688,36 @@ new KnowledgeTitleCorrectionContext(String taskId, String knowledgeId, String cu
 new OutOfCatalogWordContext(String lemma, String observedPos, Integer frequencyRank, double discount)
 ```
 
+#### QuizInstructionCorrectionContext
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+**Implements:** `CorrectionContext`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `taskId` | `String` |  |
+| `nodeId` | `String` |  |
+| `quizSentence` | `String` |  |
+| `translation` | `String` |  |
+| `sentence` | `String` |  |
+| `knowledgeTitle` | `String` |  |
+| `knowledgeInstructions` | `String` |  |
+| `topicLabel` | `String` |  |
+| `cefrLevel` | `CefrLevel` |  |
+| `cefrLevelLabel` | `String` |  |
+| `sentenceMode` | `SentenceMode` |  |
+| `violations` | `List<InstructionViolation>` | Import `java.util.List` |
+| `verdictReason` | `String` |  |
+| `severity` | `InstructionSeverity` |  |
+| `siblingQuizSentences` | `List<String>` | Import `java.util.List` |
+| `sourceAuditId` | `String` |  |
+
+**Generated constructor:**
+```java
+new QuizInstructionCorrectionContext(String taskId, String nodeId, String quizSentence, String translation, String sentence, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, String cefrLevelLabel, SentenceMode sentenceMode, List<InstructionViolation> violations, String verdictReason, InstructionSeverity severity, List<String> siblingQuizSentences, String sourceAuditId)
+```
+
 ### Module: audit-application
 
 #### AuditRunRequest
@@ -1715,10 +1835,11 @@ new SuggestedLemmasFilter(Optional<Integer> limit, Optional<String> partOfSpeech
 | `detailed` | `boolean` |  |
 | `instructionBudget` | `Integer` |  |
 | `reevaluateInstructions` | `String` |  |
+| `reevaluateInstructionQuizIds` | `Set<String>` |  |
 
 **Generated constructor:**
 ```java
-new AnalyzeOptions(String format, String level, String topic, String knowledge, List<String> analyzers, List<String> excludeAnalyzers, boolean detailed, Integer instructionBudget, String reevaluateInstructions)
+new AnalyzeOptions(String format, String level, String topic, String knowledge, List<String> analyzers, List<String> excludeAnalyzers, boolean detailed, Integer instructionBudget, String reevaluateInstructions, Set<String> reevaluateInstructionQuizIds)
 ```
 
 #### ReportViewModel (package: formatting)
@@ -1960,6 +2081,49 @@ new AnalyzeOptions(String format, String level, String topic, String knowledge, 
 | `key` | `String` |
 | `detail` | `String` |
 
+#### UnsupportedLagenProviderException (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `providerName` | `String` |
+
+#### MissingLagenProviderInputException (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `providerName` | `String` |
+| `missingInput` | `String` |
+
+#### UnreadableQuizSetOriginException (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `origin` | `String` |
+| `detail` | `String` |
+
+#### AmbiguousQuizSetDeclarationException (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `enumeratedIds` | `String` |
+| `origin` | `String` |
+
 ### Module: nlp-infrastructure
 
 #### NlpTokenizerConfig
@@ -2015,10 +2179,12 @@ new RevisionVerdict(null APPROVED, null REJECTED, null PENDING_APPROVAL)
 | `STRATEGY_FAILED` | `null` |  |
 | `OVERRIDE_INVALID` | `null` |  |
 | `OVERRIDE_NOT_APPLICABLE` | `null` |  |
+| `DIAGNOSIS_NOT_SUSTAINED` | `null` |  |
+| `NO_ACCEPTABLE_CANDIDATE` | `null` |  |
 
 **Generated constructor:**
 ```java
-new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND, null PENDING_APPROVAL_PERSISTED, null ALREADY_PENDING_DECISION, null NO_ACTIVE_STRATEGY, null STRATEGY_FAILED, null OVERRIDE_INVALID, null OVERRIDE_NOT_APPLICABLE)
+new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND, null PENDING_APPROVAL_PERSISTED, null ALREADY_PENDING_DECISION, null NO_ACTIVE_STRATEGY, null STRATEGY_FAILED, null OVERRIDE_INVALID, null OVERRIDE_NOT_APPLICABLE, null DIAGNOSIS_NOT_SUSTAINED, null NO_ACCEPTABLE_CANDIDATE)
 ```
 
 #### CourseElementSnapshot
@@ -2124,10 +2290,15 @@ new RevisionOutcome(RevisionOutcomeKind kind, RevisionArtifact artifact, String 
 | `correctionContextOverrideParser` | `CorrectionContextOverrideParser` |  |
 | `knowledgeTitleStrategyRegistry` | `KnowledgeTitleProposalStrategyRegistry` |  |
 | `knowledgeTitleProposalDeriver` | `KnowledgeTitleProposalDeriver` |  |
+| `quizInstructionStrategyRegistry` | `QuizInstructionProposalStrategyRegistry` |  |
+| `candidateAssessor` | `CandidateAssessor` |  |
+| `quizInstructionComplianceChecker` | `QuizInstructionComplianceChecker` |  |
+| `quizInstructionSubjectViewFactory` | `QuizInstructionSubjectViewFactory` |  |
+| `quizInstructionCorrectionConfig` | `QuizInstructionCorrectionConfig` |  |
 
 **Generated constructor:**
 ```java
-new RevisionEngineConfig(Map<DiagnosisKind,Reviser> revisers, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver, LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry, LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver, CourseMapper courseMapper, AuditEngine auditEngine, ImpactPreviewStore impactPreviewStore, CorrectionContextOverrideParser correctionContextOverrideParser, KnowledgeTitleProposalStrategyRegistry knowledgeTitleStrategyRegistry, KnowledgeTitleProposalDeriver knowledgeTitleProposalDeriver)
+new RevisionEngineConfig(Map<DiagnosisKind,Reviser> revisers, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver, LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry, LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver, CourseMapper courseMapper, AuditEngine auditEngine, ImpactPreviewStore impactPreviewStore, CorrectionContextOverrideParser correctionContextOverrideParser, KnowledgeTitleProposalStrategyRegistry knowledgeTitleStrategyRegistry, KnowledgeTitleProposalDeriver knowledgeTitleProposalDeriver, QuizInstructionProposalStrategyRegistry quizInstructionStrategyRegistry, CandidateAssessor candidateAssessor, QuizInstructionComplianceChecker quizInstructionComplianceChecker, QuizInstructionSubjectViewFactory quizInstructionSubjectViewFactory, QuizInstructionCorrectionConfig quizInstructionCorrectionConfig)
 ```
 
 #### ApprovalMode
@@ -2315,6 +2486,41 @@ new CorrectionContextOverride(CorrectionContext context, String rawPayload)
 new OverrideRejectedException(String reason)
 ```
 
+#### DiagnosisNotSustainedException
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** exception
+**Extends:** `RuntimeException`
+**Message:** `"El diagnostico de consigna del ejercicio '%s' ya no se sostiene: la validacion vigente declara que cumple"`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `quizId` | `String` |  |
+| `taskId` | `String` |  |
+
+**Generated class** extends `RuntimeException` with constructor:
+```java
+new DiagnosisNotSustainedException(String quizId, String taskId)
+```
+
+#### NoAcceptableCandidateException
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+**Type:** exception
+**Extends:** `RuntimeException`
+**Message:** `"No se logro una correccion aceptable para el ejercicio '%s': reprobaron %s"`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `quizId` | `String` |  |
+| `failedCriteria` | `List<CorrectionCriterion>` | Import `java.util.List` |
+| `taskId` | `String` |  |
+
+**Generated class** extends `RuntimeException` with constructor:
+```java
+new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> failedCriteria, String taskId)
+```
+
 #### LemmaAbsenceProposalStrategyRegistryConfig (package: engine)
 
 **Package:** `com.learney.contentaudit.revisiondomain.engine`
@@ -2336,6 +2542,17 @@ new OverrideRejectedException(String reason)
 |-------|------|
 | `registered` | `List<KnowledgeTitleProposalStrategy>` |
 | `activeName` | `String` |
+
+#### QuizInstructionProposalStrategyRegistryConfig (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `strategies` | `List<QuizInstructionProposalStrategy>` |
+| `activeStrategyName` | `String` |
 
 #### LemmaAbsenceGeneratorResponse (package: lemmaabsence)
 
@@ -2667,6 +2884,232 @@ new OverrideRejectedException(String reason)
 | `path` | `String` |
 | `elementKind` | `String` |
 
+#### CorrectionCriterion (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `SCOPED_EDIT` | `null` |
+| `LENGTH_IN_RANGE` | `null` |
+| `LEVEL_VOCABULARY` | `null` |
+| `DISTINCTNESS` | `null` |
+| `FAITHFUL_TRANSLATION` | `null` |
+| `SOLVABLE_SAME_KIND` | `null` |
+| `INSTRUCTION_COMPLIANCE` | `null` |
+
+#### CriterionOutcome (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `PASSED` | `null` |
+| `FAILED` | `null` |
+| `NOT_EVALUABLE` | `null` |
+
+#### CriterionVerdict (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `criterion` | `CorrectionCriterion` |
+| `outcome` | `CriterionOutcome` |
+| `detail` | `String` |
+
+#### CandidateAssessmentInput (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `subjectRef` | `String` |
+| `sourceAuditId` | `String` |
+| `original` | `CourseElementSnapshot` |
+| `candidate` | `CourseElementSnapshot` |
+| `cefrLevel` | `CefrLevel` |
+| `topicLabel` | `String` |
+| `knowledgeTitle` | `String` |
+| `knowledgeInstructions` | `String` |
+| `cefrLevelLabel` | `String` |
+| `sentenceMode` | `SentenceMode` |
+| `siblingQuizSentences` | `List<String>` |
+| `signalledFragments` | `List<String>` |
+
+#### CandidateAssessment (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `accepted` | `boolean` |
+| `verdicts` | `List<CriterionVerdict>` |
+
+#### QuizSimilarity (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `quizId` | `String` |
+| `quizSentence` | `String` |
+| `score` | `double` |
+
+#### CandidateCriteriaConfig (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `tokenizer` | `NlpTokenizer` |
+| `sentenceLengthConfig` | `SentenceLengthConfig` |
+| `lexicalEvaluator` | `SentenceLexicalEvaluator` |
+| `complianceChecker` | `QuizInstructionComplianceChecker` |
+| `subjectViewFactory` | `QuizInstructionSubjectViewFactory` |
+| `judgmentEvaluators` | `List<CandidateCriterionEvaluator>` |
+| `siblingSimilarityThreshold` | `Double` |
+| `courseSimilarityThreshold` | `Double` |
+| `courseWideDistinctness` | `Boolean` |
+| `auditReportStore` | `AuditReportStore` |
+
+#### CandidateCriteriaDefaults (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `siblingSimilarityThreshold` | `double` |
+| `courseSimilarityThreshold` | `double` |
+| `courseWideDistinctness` | `boolean` |
+
+#### QuizInstructionGeneratorResponse (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `quizSentence` | `String` |
+| `translation` | `String` |
+| `rationale` | `String` |
+
+#### QuizInstructionGenerationRequest (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `context` | `QuizInstructionCorrectionContext` |
+| `previousVerdicts` | `List<CriterionVerdict>` |
+| `attempt` | `int` |
+
+#### QuizInstructionCorrectionConfig (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `maxAttempts` | `Integer` |
+| `maxCorrectionsPerRun` | `Integer` |
+
+#### QuizInstructionCorrectionDefaults (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `maxAttempts` | `int` |
+| `maxCorrectionsPerRun` | `int` |
+
+#### QuizInstructionCorrectionRunRequest (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `planId` | `String` |
+| `coursePath` | `Path` |
+| `maxCorrections` | `Integer` |
+
+#### QuizInstructionTaskOutcomeKind (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `PROPOSED` | `null` |
+| `NOT_CORRECTED` | `null` |
+| `DIAGNOSIS_STALE` | `null` |
+| `NOT_ATTEMPTED` | `null` |
+| `FAILED` | `null` |
+
+#### QuizInstructionTaskOutcome (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `taskId` | `String` |
+| `nodeId` | `String` |
+| `kind` | `QuizInstructionTaskOutcomeKind` |
+| `failedCriteria` | `List<CorrectionCriterion>` |
+| `detail` | `String` |
+| `proposalId` | `String` |
+| `attempts` | `int` |
+
+#### QuizInstructionCorrectionRunReport (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `runId` | `String` |
+| `planId` | `String` |
+| `sourceAuditId` | `String` |
+| `startedAt` | `Instant` |
+| `finishedAt` | `Instant` |
+| `maxCorrections` | `int` |
+| `eligibleTasks` | `int` |
+| `attempted` | `int` |
+| `proposed` | `int` |
+| `notCorrected` | `int` |
+| `diagnosisStale` | `int` |
+| `failed` | `int` |
+| `notAttempted` | `List<String>` |
+| `outcomes` | `List<QuizInstructionTaskOutcome>` |
+
 ### Module: revision-infrastructure
 
 #### LagenConfig (package: lagen)
@@ -2937,6 +3380,51 @@ new AgentDefinitionFound(Path directory)
 new AgentDefinitionUnresolved(String agentName, Path searchedIn)
 ```
 
+#### LlmProviderClass (package: llmprovider)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure.llmprovider`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `LOCAL_SESSION` | `null` |
+| `REMOTE_SERVICE` | `null` |
+
+#### LlmProviderRejectionKind (package: llmprovider)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure.llmprovider`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `UNSUPPORTED_PROVIDER` | `null` |
+| `MISSING_REQUIRED_INPUT` | `null` |
+
+#### LlmProviderResolved (package: llmprovider)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure.llmprovider`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `providerName` | `String` |
+| `providerClass` | `LlmProviderClass` |
+
+#### LlmProviderRejected (package: llmprovider)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure.llmprovider`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `providerName` | `String` |
+| `missingInput` | `String` |
+| `kind` | `LlmProviderRejectionKind` |
+
 ### Module: quiz-instruction-infrastructure
 
 #### QuizInstructionJudgeConfig
@@ -2958,49 +3446,4 @@ new AgentDefinitionUnresolved(String agentName, Path searchedIn)
 ```java
 new QuizInstructionJudgeConfig(String baseUrl, String apiKey, String modelName, Double temperature, Integer timeoutSeconds, String agentName, String providerName)
 ```
-
-#### JudgeProviderClass (package: instructionjudge)
-
-**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
-**Visibility:** public
-**Type:** enum
-
-| Field | Type |
-|-------|------|
-| `LOCAL_SESSION` | `null` |
-| `REMOTE_SERVICE` | `null` |
-
-#### JudgeProviderResolved (package: instructionjudge)
-
-**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
-**Visibility:** public
-**Type:** record
-
-| Field | Type |
-|-------|------|
-| `providerName` | `String` |
-| `providerClass` | `JudgeProviderClass` |
-
-#### JudgeProviderRejectionKind (package: instructionjudge)
-
-**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
-**Visibility:** public
-**Type:** enum
-
-| Field | Type |
-|-------|------|
-| `UNSUPPORTED_PROVIDER` | `null` |
-| `MISSING_REQUIRED_INPUT` | `null` |
-
-#### JudgeProviderRejected (package: instructionjudge)
-
-**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
-**Visibility:** public
-**Type:** record
-
-| Field | Type |
-|-------|------|
-| `providerName` | `String` |
-| `missingInput` | `String` |
-| `kind` | `JudgeProviderRejectionKind` |
 

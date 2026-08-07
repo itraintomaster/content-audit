@@ -1,0 +1,894 @@
+code: FEAT-QICOR
+description: "FEAT-QICOR — correccion del incumplimiento de consigna de un ejercicio.\
+  \ Estado consolidado del diseño tal como quedo aplicado, incluidos los cuatro arreglos\
+  \ posteriores (resolver generico, visibilidad, superficie CLI y la reversion del\
+  \ primero)."
+modules:
+- name: audit-domain
+  packages:
+  - name: quizinstruction
+    models:
+    - name: QuizInstructionSubjectView
+      type: record
+      fields:
+      - name: subjectRef
+        type: String
+      - name: cefrLevel
+        type: String
+      - name: topic
+        type: String
+      - name: title
+        type: String
+      - name: instructions
+        type: String
+      - name: sentenceParts
+        type: List<SentencePartEntity>
+      visibility: public
+      _change: add
+    - name: QuizInstructionComplianceStatus
+      type: enum
+      fields:
+      - name: EVALUATED
+      - name: UNAVAILABLE
+      - name: UNUSABLE
+      visibility: public
+      _change: add
+    - name: QuizInstructionComplianceResult
+      type: record
+      fields:
+      - name: status
+        type: QuizInstructionComplianceStatus
+      - name: verdict
+        type: QuizInstructionVerdict
+      - name: reason
+        type: String
+      - name: evaluatorVersion
+        type: String
+      - name: reused
+        type: boolean
+      visibility: public
+      _change: add
+    interfaces:
+    - name: QuizInstructionSubjectViewFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "fromQuiz(QuizTemplateEntity quiz, String cefrLevel, String topic,\
+          \ String title, String instructions): QuizInstructionSubjectView"
+      visibility: public
+      _change: add
+    - name: QuizInstructionComplianceChecker
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "check(QuizInstructionSubjectView view): QuizInstructionComplianceResult"
+      - signature: "revalidate(QuizInstructionSubjectView view): QuizInstructionComplianceResult"
+      visibility: public
+      _change: add
+    - name: QuizInstructionComplianceCheckerFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(EvaluationSessionFactory sessionFactory,Evaluator evaluator,QuizInstructionVerdictReader\
+          \ verdictReader,EvaluationBudget budget): QuizInstructionComplianceChecker"
+      visibility: public
+      _change: add
+    _change: modify
+  - name: quizinstructionengine
+    interfaces:
+    - name: QuizInstructionSubjectBuilder
+      sealed: false
+      exposes:
+      - signature: "buildFromView(QuizInstructionSubjectView view): EvaluationSubject"
+        _change: add
+      visibility: public
+      _change: modify
+    implementations:
+    - name: DefaultQuizInstructionComplianceCheckerFactory
+      visibility: public
+      implements:
+      - QuizInstructionComplianceCheckerFactory
+      _change: add
+    - name: DefaultQuizInstructionSubjectViewFactory
+      visibility: public
+      implements:
+      - QuizInstructionSubjectViewFactory
+      _change: add
+    - name: LedgerBackedQuizInstructionComplianceChecker
+      requiresInject:
+      - name: session
+        type: EvaluationSession
+      - name: subjectBuilder
+        type: QuizInstructionSubjectBuilder
+      - name: verdictReader
+        type: QuizInstructionVerdictReader
+      implements:
+      - QuizInstructionComplianceChecker
+      _change: add
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: RefinementTaskStatus
+    type: record
+    fields:
+    - name: STALE
+      _change: add
+    _change: modify
+  - name: QuizInstructionCorrectionContext
+    type: record
+    fields:
+    - name: taskId
+      type: String
+    - name: nodeId
+      type: String
+    - name: quizSentence
+      type: String
+    - name: translation
+      type: String
+    - name: sentence
+      type: String
+    - name: knowledgeTitle
+      type: String
+    - name: knowledgeInstructions
+      type: String
+    - name: topicLabel
+      type: String
+    - name: cefrLevel
+      type: CefrLevel
+    - name: cefrLevelLabel
+      type: String
+    - name: sentenceMode
+      type: SentenceMode
+    - name: violations
+      type: List<InstructionViolation>
+    - name: verdictReason
+      type: String
+    - name: severity
+      type: InstructionSeverity
+    - name: siblingQuizSentences
+      type: List<String>
+    - name: sourceAuditId
+      type: String
+    visibility: public
+    _change: add
+    implements:
+    - CorrectionContext
+  implementations:
+  - name: QuizInstructionContextResolver
+    visibility: public
+    implements:
+    - CorrectionContextResolver
+    _change: add
+  - name: DispatchingCorrectionContextResolver
+    requiresInject:
+    - name: quizInstructionResolver
+      type: QuizInstructionContextResolver
+    implements:
+    - CorrectionContextResolver
+    _change: modify
+  _change: modify
+- name: revision-domain
+  models:
+  - name: RevisionOutcomeKind
+    type: record
+    fields:
+    - name: DIAGNOSIS_NOT_SUSTAINED
+      _change: add
+    - name: NO_ACCEPTABLE_CANDIDATE
+      _change: add
+    _change: modify
+  - name: DiagnosisNotSustainedException
+    type: exception
+    fields:
+    - name: quizId
+      type: String
+    - name: taskId
+      type: String
+    message: El diagnostico de consigna del ejercicio '%s' ya no se sostiene
+    visibility: public
+    _change: add
+    extends: RuntimeException
+  - name: NoAcceptableCandidateException
+    type: exception
+    fields:
+    - name: quizId
+      type: String
+    - name: failedCriteria
+      type: List<CorrectionCriterion>
+    - name: taskId
+      type: String
+    message: "No se logro una correccion aceptable para el ejercicio '%s': reprobaron\
+      \ %s"
+    visibility: public
+    _change: add
+    extends: RuntimeException
+  - name: RevisionEngineConfig
+    type: record
+    fields:
+    - name: quizInstructionStrategyRegistry
+      type: QuizInstructionProposalStrategyRegistry
+      _change: add
+    - name: candidateAssessor
+      type: CandidateAssessor
+      _change: add
+    - name: quizInstructionComplianceChecker
+      type: QuizInstructionComplianceChecker
+      _change: add
+    - name: quizInstructionSubjectViewFactory
+      type: QuizInstructionSubjectViewFactory
+      _change: add
+    - name: quizInstructionCorrectionConfig
+      type: QuizInstructionCorrectionConfig
+      _change: add
+    _change: modify
+  interfaces:
+  - name: QuizInstructionProposalStrategy
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "id(): StrategyId"
+    - signature: "handles(DiagnosisKind kind): boolean"
+    - signature: "propose(RefinementTask task, QuizInstructionCorrectionContext context,\
+        \ List<CriterionVerdict> previousVerdicts, int attempt): LemmaAbsenceQuizCandidate"
+    visibility: public
+    _change: add
+  - name: QuizInstructionProposalStrategyRegistry
+    stereotype: service
+    sealed: true
+    exposes:
+    - signature: "active(): Optional<QuizInstructionProposalStrategy>"
+    - signature: "byName(String name): Optional<QuizInstructionProposalStrategy>"
+    - signature: "listAll(): List<StrategyId>"
+    visibility: public
+    _change: add
+  - name: QuizInstructionCorrectionRunner
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "run(QuizInstructionCorrectionRunRequest request): QuizInstructionCorrectionRunReport"
+    visibility: public
+    _change: add
+  - name: QuizInstructionCorrectionRunnerFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(RevisionEngineConfig config, QuizInstructionCorrectionRunStore\
+        \ runStore, QuizInstructionCorrectionConfig correctionConfig): QuizInstructionCorrectionRunner"
+    visibility: public
+    _change: add
+  - name: QuizInstructionCorrectionRunStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "save(QuizInstructionCorrectionRunReport report): String"
+    - signature: "load(String runId): Optional<QuizInstructionCorrectionRunReport>"
+    - signature: "listByPlan(String planId): List<QuizInstructionCorrectionRunReport>"
+    - signature: "latest(): Optional<QuizInstructionCorrectionRunReport>"
+    visibility: public
+    _change: add
+  packages:
+  - name: candidatecriteria
+    visibility: public
+    models:
+    - name: CorrectionCriterion
+      type: enum
+      fields:
+      - name: SCOPED_EDIT
+      - name: LENGTH_IN_RANGE
+      - name: LEVEL_VOCABULARY
+      - name: DISTINCTNESS
+      - name: FAITHFUL_TRANSLATION
+      - name: SOLVABLE_SAME_KIND
+      - name: INSTRUCTION_COMPLIANCE
+      visibility: public
+      _change: add
+    - name: CriterionOutcome
+      type: enum
+      fields:
+      - name: PASSED
+      - name: FAILED
+      - name: NOT_EVALUABLE
+      visibility: public
+      _change: add
+    - name: CriterionVerdict
+      type: record
+      fields:
+      - name: criterion
+        type: CorrectionCriterion
+      - name: outcome
+        type: CriterionOutcome
+      - name: detail
+        type: String
+      visibility: public
+      _change: add
+    - name: CandidateAssessmentInput
+      type: record
+      fields:
+      - name: subjectRef
+        type: String
+      - name: sourceAuditId
+        type: String
+      - name: original
+        type: CourseElementSnapshot
+      - name: candidate
+        type: CourseElementSnapshot
+      - name: cefrLevel
+        type: CefrLevel
+      - name: topicLabel
+        type: String
+      - name: knowledgeTitle
+        type: String
+      - name: knowledgeInstructions
+        type: String
+      - name: cefrLevelLabel
+        type: String
+      - name: sentenceMode
+        type: SentenceMode
+      - name: siblingQuizSentences
+        type: List<String>
+      - name: signalledFragments
+        type: List<String>
+      visibility: public
+      _change: add
+    - name: CandidateAssessment
+      type: record
+      fields:
+      - name: accepted
+        type: boolean
+      - name: verdicts
+        type: List<CriterionVerdict>
+      visibility: public
+      _change: add
+    - name: QuizSimilarity
+      type: record
+      fields:
+      - name: quizId
+        type: String
+      - name: quizSentence
+        type: String
+      - name: score
+        type: double
+      visibility: public
+      _change: add
+    - name: CandidateCriteriaConfig
+      type: record
+      fields:
+      - name: tokenizer
+        type: NlpTokenizer
+      - name: sentenceLengthConfig
+        type: SentenceLengthConfig
+      - name: lexicalEvaluator
+        type: SentenceLexicalEvaluator
+      - name: complianceChecker
+        type: QuizInstructionComplianceChecker
+      - name: subjectViewFactory
+        type: QuizInstructionSubjectViewFactory
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: judgmentEvaluators
+        type: List<CandidateCriterionEvaluator>
+      - name: siblingSimilarityThreshold
+        type: Double
+      - name: courseSimilarityThreshold
+        type: Double
+      - name: courseWideDistinctness
+        type: Boolean
+      visibility: public
+      _change: add
+    - name: CandidateCriteriaDefaults
+      type: record
+      fields:
+      - name: siblingSimilarityThreshold
+        type: double
+      - name: courseSimilarityThreshold
+        type: double
+      - name: courseWideDistinctness
+        type: boolean
+      visibility: public
+      _change: add
+    interfaces:
+    - name: CandidateCriterionEvaluator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "criterion(): CorrectionCriterion"
+      - signature: "evaluate(CandidateAssessmentInput input): CriterionVerdict"
+      visibility: public
+      _change: add
+    - name: CandidateAssessor
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "assess(CandidateAssessmentInput input): CandidateAssessment"
+      - signature: "catalog(): List<CorrectionCriterion>"
+      visibility: public
+      _change: add
+    - name: CourseQuizCorpus
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "mostSimilar(String sourceAuditId, String candidateSentence, String\
+          \ excludedQuizId): Optional<QuizSimilarity>"
+      visibility: public
+      _change: add
+    - name: CandidateCriteriaFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(CandidateCriteriaConfig config): CandidateAssessor"
+      visibility: public
+      _change: add
+    _change: add
+  - name: candidatecriteriaengine
+    visibility: internal
+    implementations:
+    - name: DefaultCandidateCriteriaFactory
+      visibility: public
+      implements:
+      - CandidateCriteriaFactory
+      _change: add
+    - name: DefaultCandidateAssessor
+      requiresInject:
+      - name: evaluatorsByCriterion
+        type: "Map<CorrectionCriterion,CandidateCriterionEvaluator>"
+      implements:
+      - CandidateAssessor
+      _change: add
+    - name: ScopedEditCriterion
+      implements:
+      - CandidateCriterionEvaluator
+      _change: add
+    - name: LengthInRangeCriterion
+      requiresInject:
+      - name: tokenizer
+        type: NlpTokenizer
+      - name: sentenceLengthConfig
+        type: SentenceLengthConfig
+      implements:
+      - CandidateCriterionEvaluator
+      _change: add
+    - name: LevelVocabularyCriterion
+      requiresInject:
+      - name: lexicalEvaluator
+        type: SentenceLexicalEvaluator
+      - name: tokenizer
+        type: NlpTokenizer
+      implements:
+      - CandidateCriterionEvaluator
+      _change: add
+    - name: DistinctnessCriterion
+      requiresInject:
+      - name: quizCorpus
+        type: CourseQuizCorpus
+      - name: siblingSimilarityThreshold
+        type: double
+      - name: courseSimilarityThreshold
+        type: double
+      - name: courseWideDistinctness
+        type: boolean
+      implements:
+      - CandidateCriterionEvaluator
+      _change: add
+    - name: InstructionComplianceCriterion
+      requiresInject:
+      - name: complianceChecker
+        type: QuizInstructionComplianceChecker
+      - name: subjectViewFactory
+        type: QuizInstructionSubjectViewFactory
+      implements:
+      - CandidateCriterionEvaluator
+      _change: add
+    - name: AuditReportQuizCorpus
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      implements:
+      - CourseQuizCorpus
+      _change: add
+    _change: add
+  - name: quizinstruction
+    visibility: public
+    models:
+    - name: QuizInstructionGeneratorResponse
+      type: record
+      fields:
+      - name: quizSentence
+        type: String
+      - name: translation
+        type: String
+      - name: rationale
+        type: String
+      visibility: public
+      _change: add
+    - name: QuizInstructionGenerationRequest
+      type: record
+      fields:
+      - name: context
+        type: QuizInstructionCorrectionContext
+      - name: previousVerdicts
+        type: List<CriterionVerdict>
+      - name: attempt
+        type: int
+      visibility: public
+      _change: add
+    - name: QuizInstructionCorrectionConfig
+      type: record
+      fields:
+      - name: maxAttempts
+        type: Integer
+      - name: maxCorrectionsPerRun
+        type: Integer
+      visibility: public
+      _change: add
+    - name: QuizInstructionCorrectionDefaults
+      type: record
+      fields:
+      - name: maxAttempts
+        type: int
+      - name: maxCorrectionsPerRun
+        type: int
+      visibility: public
+      _change: add
+    - name: QuizInstructionCorrectionRunRequest
+      type: record
+      fields:
+      - name: planId
+        type: String
+      - name: coursePath
+        type: Path
+      - name: maxCorrections
+        type: Integer
+      visibility: public
+      _change: add
+    - name: QuizInstructionTaskOutcomeKind
+      type: enum
+      fields:
+      - name: PROPOSED
+      - name: NOT_CORRECTED
+      - name: DIAGNOSIS_STALE
+      - name: NOT_ATTEMPTED
+      - name: FAILED
+      visibility: public
+      _change: add
+    - name: QuizInstructionTaskOutcome
+      type: record
+      fields:
+      - name: taskId
+        type: String
+      - name: nodeId
+        type: String
+      - name: kind
+        type: QuizInstructionTaskOutcomeKind
+      - name: failedCriteria
+        type: List<CorrectionCriterion>
+      - name: detail
+        type: String
+      - name: proposalId
+        type: String
+      - name: attempts
+        type: int
+      visibility: public
+      _change: add
+    - name: QuizInstructionCorrectionRunReport
+      type: record
+      fields:
+      - name: runId
+        type: String
+      - name: planId
+        type: String
+      - name: sourceAuditId
+        type: String
+      - name: startedAt
+        type: Instant
+      - name: finishedAt
+        type: Instant
+      - name: maxCorrections
+        type: int
+      - name: eligibleTasks
+        type: int
+      - name: attempted
+        type: int
+      - name: proposed
+        type: int
+      - name: notCorrected
+        type: int
+      - name: diagnosisStale
+        type: int
+      - name: failed
+        type: int
+      - name: notAttempted
+        type: List<String>
+      - name: outcomes
+        type: List<QuizInstructionTaskOutcome>
+      visibility: public
+      _change: add
+    interfaces:
+    - name: QuizInstructionCandidateGenerator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "generate(QuizInstructionGenerationRequest request): QuizInstructionGeneratorResponse"
+      visibility: public
+      _change: add
+    implementations:
+    - name: QuizInstructionAgentStrategy
+      requiresInject:
+      - name: generator
+        type: QuizInstructionCandidateGenerator
+      - name: providerId
+        type: String
+      visibility: public
+      implements:
+      - QuizInstructionProposalStrategy
+      _change: add
+    _change: add
+  - name: engine
+    models:
+    - name: QuizInstructionProposalStrategyRegistryConfig
+      type: record
+      fields:
+      - name: strategies
+        type: List<QuizInstructionProposalStrategy>
+      - name: activeStrategyName
+        type: String
+      visibility: public
+      _change: add
+    implementations:
+    - name: QuizInstructionReviser
+      requiresInject:
+      - name: strategyRegistry
+        type: QuizInstructionProposalStrategyRegistry
+      - name: deriver
+        type: LemmaAbsenceProposalDeriver
+      - name: assessor
+        type: CandidateAssessor
+      - name: complianceChecker
+        type: QuizInstructionComplianceChecker
+      - name: subjectViewFactory
+        type: QuizInstructionSubjectViewFactory
+      - name: config
+        type: QuizInstructionCorrectionConfig
+      implements:
+      - Reviser
+      _change: add
+    - name: DefaultQuizInstructionProposalStrategyRegistry
+      requiresInject:
+      - name: config
+        type: QuizInstructionProposalStrategyRegistryConfig
+      visibility: public
+      implements:
+      - QuizInstructionProposalStrategyRegistry
+      _change: add
+    - name: DefaultQuizInstructionCorrectionRunner
+      requiresInject:
+      - name: revisionEngine
+        type: RevisionEngine
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: runStore
+        type: QuizInstructionCorrectionRunStore
+      - name: config
+        type: QuizInstructionCorrectionConfig
+      implements:
+      - QuizInstructionCorrectionRunner
+      _change: add
+    - name: DefaultQuizInstructionCorrectionRunnerFactory
+      visibility: public
+      implements:
+      - QuizInstructionCorrectionRunnerFactory
+      _change: add
+    _change: modify
+  _change: modify
+- name: revision-infrastructure
+  dependsOn:
+  - audit-domain
+  - course-domain
+  packages:
+  - name: quizinstructionagent
+    visibility: public
+    interfaces:
+    - name: QuizInstructionAgentGeneratorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config): QuizInstructionCandidateGenerator"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
+      _change: add
+    - name: QuizInstructionAgentRuntimeLauncher
+      sealed: false
+      exposes:
+      - signature: "launch(String agentName, Map<String,String> inputs, ChatModel\
+          \ chatModel): RunState"
+      visibility: internal
+      _change: add
+    - name: QuizInstructionAgentCandidateParser
+      sealed: false
+      exposes:
+      - signature: "parse(RunState runState, String quizId): QuizInstructionGeneratorResponse"
+      visibility: internal
+      _change: add
+    - name: QuizInstructionAgentErrorClassifier
+      sealed: false
+      exposes:
+      - signature: "classify(RunState runState): LlmGenerationFailureCategory"
+      - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultQuizInstructionAgentGeneratorFactory
+      visibility: public
+      implements:
+      - QuizInstructionAgentGeneratorFactory
+      _change: add
+    - name: QuizInstructionAgentGenerator
+      requiresInject:
+      - name: agentRuntimeLauncher
+        type: QuizInstructionAgentRuntimeLauncher
+      - name: candidateParser
+        type: QuizInstructionAgentCandidateParser
+      - name: errorClassifier
+        type: QuizInstructionAgentErrorClassifier
+      - name: chatModel
+        type: ChatModel
+      - name: config
+        type: LagenConfig
+      - name: projectRoot
+        type: Path
+      implements:
+      - QuizInstructionCandidateGenerator
+      _change: add
+    - name: DefaultQuizInstructionAgentCandidateParser
+      implements:
+      - QuizInstructionAgentCandidateParser
+      _change: add
+    - name: DefaultQuizInstructionAgentErrorClassifier
+      implements:
+      - QuizInstructionAgentErrorClassifier
+      _change: add
+    - name: SharedRuntimeQuizInstructionLauncher
+      requiresInject:
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      implements:
+      - QuizInstructionAgentRuntimeLauncher
+      _change: add
+    _change: add
+  - name: candidatejudgment
+    visibility: public
+    interfaces:
+    - name: CandidateJudgmentEvaluatorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config, CorrectionCriterion criterion): CandidateCriterionEvaluator"
+      visibility: public
+      _change: add
+    - name: CandidateJudgmentRuntimeLauncher
+      sealed: false
+      exposes:
+      - signature: "launch(String agentName, Map<String,String> inputs, ChatModel\
+          \ chatModel): RunState"
+      visibility: internal
+      _change: add
+    - name: CandidateJudgmentVerdictParser
+      sealed: false
+      exposes:
+      - signature: "parse(RunState runState, CorrectionCriterion criterion): CriterionVerdict"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultCandidateJudgmentEvaluatorFactory
+      visibility: public
+      implements:
+      - CandidateJudgmentEvaluatorFactory
+      _change: add
+    - name: AgentCandidateJudgmentEvaluator
+      requiresInject:
+      - name: criterion
+        type: CorrectionCriterion
+      - name: agentRuntimeLauncher
+        type: CandidateJudgmentRuntimeLauncher
+      - name: verdictParser
+        type: CandidateJudgmentVerdictParser
+      - name: chatModel
+        type: ChatModel
+      - name: config
+        type: LagenConfig
+      implements:
+      - CandidateCriterionEvaluator
+      _change: add
+    - name: DefaultCandidateJudgmentVerdictParser
+      implements:
+      - CandidateJudgmentVerdictParser
+      _change: add
+    - name: SharedRuntimeCandidateJudgmentLauncher
+      requiresInject:
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      implements:
+      - CandidateJudgmentRuntimeLauncher
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemQuizInstructionCorrectionRunStore
+    visibility: public
+    implements:
+    - QuizInstructionCorrectionRunStore
+    _change: add
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: ReviseInstructionsCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "reviseInstructions(String planId, Integer maxCorrections, String\
+        \ coursePath): Integer"
+    _change: add
+  packages:
+  - name: commands
+    implementations:
+    - name: ReviseInstructionsCmd
+      requiresInject:
+      - name: correctionRunner
+        type: QuizInstructionCorrectionRunner
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: runFormatter
+        type: QuizInstructionCorrectionRunFormatter
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - ReviseInstructionsCommand
+      _change: add
+    _change: modify
+  - name: formatting
+    interfaces:
+    - name: QuizInstructionCorrectionRunFormatter
+      sealed: false
+      exposes:
+      - signature: "format(QuizInstructionCorrectionRunReport report): String"
+      visibility: public
+      _change: add
+    implementations:
+    - name: DefaultQuizInstructionCorrectionRunFormatter
+      visibility: public
+      implements:
+      - QuizInstructionCorrectionRunFormatter
+      _change: add
+    _change: modify
+  - name: bootstrap
+    interfaces:
+    - name: QuizInstructionCorrectionConfigResolver
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "resolve(Map<String,String> env): QuizInstructionCorrectionConfig"
+      visibility: public
+      _change: add
+    implementations:
+    - name: EnvQuizInstructionCorrectionConfigResolver
+      visibility: public
+      implements:
+      - QuizInstructionCorrectionConfigResolver
+      _change: add
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-QICOR
+  code: F-QICOR
+  journeys:
+  - id: F-QICOR-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-QICOR-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

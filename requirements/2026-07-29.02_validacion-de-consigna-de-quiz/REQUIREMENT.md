@@ -576,10 +576,11 @@ veredictos registrados siguen intactos para la corrida siguiente.
 
 > El usuario puede pedir explicitamente que se vuelva a juzgar contenido que ya
 > tiene veredicto registrado. Es el **unico** mecanismo por el que un veredicto se
-> rehace. El pedido puede alcanzar todo el curso o una parte de el, respeta el
-> presupuesto de la corrida ([F-QINST-R006](#F-QINST-R006)), no destruye los
-> veredictos anteriores, y a partir de entonces el informe puntua el veredicto
-> nuevo.
+> rehace. El pedido puede alcanzar todo el curso o una parte de el —delimitada por
+> un area del curso o por un conjunto de ejercicios declarado en el propio pedido
+> ([F-QINST-R018](#F-QINST-R018))—, respeta el presupuesto de la corrida
+> ([F-QINST-R006](#F-QINST-R006)), no destruye los veredictos anteriores, y a
+> partir de entonces el informe puntua el veredicto nuevo.
 
 <details><summary>Detalle</summary>
 
@@ -598,6 +599,13 @@ Que respete el presupuesto no es un detalle: una re-evaluacion total sin tope se
 exactamente la factura sorpresa que [F-QINST-R010](#F-QINST-R010) evita. Con tope,
 la re-evaluacion tambien es incremental — se pide una vez y avanza corrida a
 corrida.
+
+**Esta regla no fija como se delimita "una parte".** Las dos formas de acotar el
+pedido —un area del curso, o un conjunto de ejercicios declarado por quien pide la
+corrida— y que ocurre cuando se declaran las dos a la vez son materia de
+[F-QINST-R018](#F-QINST-R018). Lo que esta regla exige vale igual para cualquiera de
+ellas y no cambia con el alcance elegido: el pedido es explicito, respeta el tope,
+no destruye los veredictos anteriores y el informe pasa a puntuar el nuevo.
 
 **Criterio de aceptacion**: pedida la re-evaluacion, la corrida consulta al juez
 por ejercicios que ya tenian veredicto registrado, sin exceder el presupuesto, los
@@ -917,6 +925,205 @@ y ni los ejercicios que cumplen, ni los pendientes, ni los fallidos aportan ning
 
 </details>
 
+<a id="F-QINST-R018"></a>
+### Rule[F-QINST-R018] - La re-evaluacion se puede acotar a un conjunto de ejercicios declarado en el pedido
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> Quien pide la corrida puede acotar la re-evaluacion explicita
+> ([F-QINST-R012](#F-QINST-R012)) declarando **el conjunto de ejercicios** que
+> quiere volver a juzgar, en lugar de un area del curso. Tres invariantes:
+> 1. **Se vuelve a juzgar el conjunto y nada mas.** Cada ejercicio del conjunto se
+>    consulta al juez en esa corrida, tenga o no veredicto registrado; todo
+>    ejercicio ajeno al conjunto se sigue reutilizando sin consulta
+>    ([F-QINST-R008](#F-QINST-R008)).
+> 2. **El conjunto no amplia el tope de la corrida** ([F-QINST-R006](#F-QINST-R006)),
+>    pero el tope se gasta **primero** en el: los ejercicios del conjunto que el tope
+>    no alcanza conservan su veredicto anterior, se siguen puntuando y **no** quedan
+>    pendientes.
+> 3. **Un pedido que no se puede interpretar se rechaza a la vista y sin gastar**:
+>    conjunto vacio —que **no** equivale a "todo el curso"— o los dos alcances
+>    declarados a la vez. En cambio, un identificador que no corresponde a ningun
+>    ejercicio del curso **no** invalida el pedido: se informa, y el resto del
+>    conjunto se vuelve a juzgar igual.
+
+<details><summary>Detalle</summary>
+
+**Lo que hoy no se puede pedir, y lo que cuesta no poder pedirlo.** Acotar la
+re-evaluacion por area del curso es la unica forma que existe, y hay un pedido
+perfectamente corriente que esa forma no sabe expresar: **volver a juzgar un conjunto
+de ejercicios que no comparten area**. La medicion del caso que motivo la regla:
+
+| Medicion sobre el curso real (2026-08-06) | Valor |
+|---|---|
+| Veredictos emitidos hasta hoy | 7.952, sobre 6.694 ejercicios distintos |
+| Ejercicios con veredicto de incumplimiento | 966 |
+| Knowledges en los que viven esos 966 | 221 |
+| Ejercicios que suman entre todos esos 221 knowledges | 4.185 |
+| Consultas de mas para volver a juzgar los 966 acotando por knowledge | 3.219 (77% del gasto) |
+
+A las ~100 consultas por hora que rindio la corrida anterior, la diferencia entre
+pedir 966 y pagar 4.185 son unas 32 horas de reloj y su factura, sin obtener a cambio
+ni un veredicto mas de los que se querian.
+
+**La regla no nombra ningun conjunto en particular, y eso es deliberado.** El caso que
+la motivo —volver a juzgar los ejercicios marcados como incumplidores, ahora que el
+juez juzga mejor, para ver cuales de esas marcas se caen— es un **uso**, no la
+funcion. El conjunto lo declara quien pide la corrida y puede salir de donde sea: los
+que quedaron marcados, veinte que alguien quiere mirar a mano, una seleccion hecha
+desde el tablero. Fijar en la regla el criterio con el que se arma la lista la ataria
+a un uso y obligaria a escribir otra regla para el siguiente.
+
+**El identificador elige a quien se le vuelve a preguntar; no decide que veredicto
+aplica.** [F-QINST-R009](#F-QINST-R009) queda intacta: la identidad de un veredicto
+sigue siendo la huella del contenido juzgado y el identificador no interviene en ella.
+Aca el identificador cumple otro papel, el de **seleccionar**: es el unico nombre
+estable con el que quien pide la corrida —o el tablero que le arma la lista— puede
+señalar un ejercicio. No hay contradiccion: se elige por identificador, y se juzga y
+se registra por contenido. Como todo pedido dirigido a este analisis, se dirige ademas
+por el nombre que el informe publica ([F-QINST-R015](#F-QINST-R015)).
+
+**Los bordes, y por que cada uno se resuelve asi.** El criterio es siempre el mismo:
+entre callar y avisar, avisar; y entre adivinar y rechazar, rechazar. Un pedido de
+re-evaluacion mueve dinero, y el error caro de esta familia es el silencioso
+([F-QINST-R015](#F-QINST-R015)).
+
+| Caso | Desenlace | Por que |
+|---|---|---|
+| Un identificador del conjunto no corresponde a ningun ejercicio del curso | El resto del conjunto se vuelve a juzgar igual, la corrida termina sin error e **informa** esos identificadores | Rechazar el pedido entero por un identificador viejo dejaria inservible cualquier lista larga —basta que un ejercicio se haya borrado desde que se armo—; ignorarlo en silencio haria creer que se re-juzgo algo que nadie miro |
+| Un ejercicio existe y nunca fue juzgado | Se consulta al juez y recibe puntaje y diagnostico como cualquier evaluado, sin error ni tratamiento especial | No hay nada que "rehacer", pero tampoco nada que objetar: el ejercicio estaba pendiente y el pedido simplemente lo adelanta. Exigir que el conjunto solo contenga ejercicios ya juzgados obligaria a quien arma la lista a saber de antemano cuales tienen veredicto |
+| Conjunto vacio | Pedido rechazado: ninguna consulta y ningun veredicto rehecho | Es el borde peligroso. Leer "vacio" como "todo el curso" convierte una seleccion fallida en una re-evaluacion completa: exactamente la factura sorpresa que [F-QINST-R006](#F-QINST-R006) y [F-QINST-R010](#F-QINST-R010) existen para impedir. Leerlo como "no re-evalues nada" es gratis pero igual de malo: produce una auditoria normal, indistinguible de la que el usuario cree haber pedido |
+| Conjunto **y** area del curso declarados a la vez | Pedido rechazado: ninguna consulta | Las dos lecturas posibles —interseccion y union— difieren en ordenes de magnitud de gasto, y una de ellas puede ser vacia. Elegir una es adivinar con la plata del usuario, y el desenlace de haber adivinado mal no se ve en ningun lado |
+| El conjunto es mas grande que el tope de la corrida | Se atienden ejercicios del conjunto hasta agotar el tope, sin error; los que no se alcanzaron conservan su veredicto y se siguen puntuando | El tope es la unica proteccion contra el gasto no querido ([F-QINST-R006](#F-QINST-R006)) y un conjunto declarado no puede levantarlo. Que el tope se gaste **primero** en el conjunto es lo que hace que el pedido sirva de algo: sin esa prioridad, una corrida con ejercicios todavia sin juzgar puede agotar el tope antes de llegar al primero de los pedidos y devolver una corrida que no re-juzgo nada de lo que se le pidio |
+
+**Que significa "rechazado".** El pedido se rechaza **antes de emitir ninguna consulta**
+y la corrida no se ejecuta: es un pedido que el sistema no puede interpretar, no una
+falla ocurrida a mitad de camino. No hay tension con [F-QINST-R007](#F-QINST-R007)
+—que exige que una auditoria en curso termine igual ante una falla del juez—: aca no
+llego a correr nada, no hay cobertura parcial que preservar, y el usuario corrige el
+pedido y vuelve a pedir sin haber pagado un peso.
+
+**Como se lee el resultado: no hace falta ningun dato nuevo en el informe.** Los
+ejercicios del conjunto que se volvieron a juzgar cuentan como **evaluados en esta
+corrida** y los demas como **reutilizados** ([F-QINST-R005](#F-QINST-R005)); y como el
+tope se gasta primero en el conjunto, comparar los evaluados-en-esta-corrida contra el
+tamaño del conjunto alcanza para saber si quedo cubierto entero o si conviene repetir
+el pedido. Los identificadores que no correspondieron a ningun ejercicio **no entran
+en ningun recuento de cobertura**: esos recuentos siguen contando ejercicios del curso
+([F-QINST-R014](#F-QINST-R014)) y sus dos sumas siguen cerrando.
+
+**Quien acota el alcance ya estaba repartido.**
+[F-EVCOST-R008](../2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md#F-EVCOST-R008)
+garantiza que volver a evaluar **uno** no arrastre a los demas, y deja en manos del
+consumidor elegir **cuales**. Esta regla es exactamente ese "cuales" para el analisis
+de consigna: no pide ninguna capacidad nueva de reuso, define un alcance nuevo.
+
+**Por que regla propia y no un retoque de R012.**
+[F-QINST-R012](#F-QINST-R012) responde "que garantias tiene volver a juzgar algo ya
+juzgado": que es explicito, que respeta el tope, que no destruye nada. Esta responde
+"como se delimita **que** se vuelve a juzgar". Se rompen por separado y se observan
+distinto: R012 se rompe si una re-evaluacion destruye los veredictos anteriores o
+ignora el tope; esta se rompe si el juez recibe una consulta por un ejercicio ajeno al
+conjunto, o si un conjunto vacio termina re-evaluando el curso entero.
+
+**Criterio de aceptacion**: sobre un curso con veredictos ya registrados y un conjunto
+declarado de M ejercicios: (a) con un tope mayor o igual a M, el juez recibe
+exactamente M consultas y **todas** son por ejercicios del conjunto —ningun ejercicio
+con veredicto ajeno al conjunto genera consulta—, los veredictos anteriores siguen
+consultables y el informe pasa a puntuar los nuevos; (b) con un tope N menor que M, la
+corrida emite exactamente N consultas, todas por ejercicios del conjunto, termina sin
+error, y los M-N restantes conservan su veredicto anterior, se siguen puntuando y no
+figuran como pendientes; (c) si K identificadores del conjunto no corresponden a
+ningun ejercicio del curso, la corrida vuelve a juzgar los que si corresponden,
+informa esos K, termina sin error, y ningun recuento de cobertura los incluye; (d) si
+el conjunto declara un ejercicio que existe y no tiene veredicto registrado, ese
+ejercicio se consulta al juez y recibe puntaje y diagnostico como cualquier evaluado;
+(e) con el conjunto vacio, o con un conjunto y un area del curso declarados a la vez,
+el pedido se rechaza de forma visible, el juez no recibe ninguna consulta y ningun
+veredicto registrado se rehace — en particular, no se re-evalua el curso entero.
+
+**Error**: "El pedido de re-evaluacion declara un conjunto vacio de ejercicios" / "El pedido de re-evaluacion declara a la vez un area del curso y un conjunto de ejercicios: no se puede determinar el alcance" / "Se consulto al juez por el ejercicio '{quizId}', que ya tenia veredicto registrado y no pertenece al conjunto declarado" (condicion prohibida) / "Los identificadores {ids} del conjunto declarado no corresponden a ningun ejercicio del curso" (aviso: la corrida continua con el resto)
+
+</details>
+
+<a id="F-QINST-R019"></a>
+### Rule[F-QINST-R019] - El conjunto se enumera en el pedido o se lee de un origen externo; un origen ilegible no es un conjunto vacio
+**Severity**: major | **Validation**: VALIDATED
+
+> El conjunto de ejercicios de [F-QINST-R018](#F-QINST-R018) se declara de dos
+> formas: **enumerado dentro del propio pedido**, cuando son pocos y se escriben a
+> mano, o **apuntando a un origen externo** del que el sistema lee la enumeracion,
+> cuando son demasiados para escribirlos. Tres invariantes:
+> 1. **Las dos formas declaran el mismo conjunto, y un conjunto es un conjunto.**
+>    Todo lo que exige [F-QINST-R018](#F-QINST-R018) vale igual por cualquiera de
+>    las dos vias, y dos corridas con el mismo conjunto declarado por vias distintas
+>    son indistinguibles. Un ejercicio declarado mas de una vez cuenta **una**: ni se
+>    consulta dos veces ni gasta dos veces el tope ([F-QINST-R006](#F-QINST-R006)).
+> 2. **Un origen que no se puede leer rechaza el pedido con causa propia.** El
+>    rechazo es el que ya fija [F-QINST-R018](#F-QINST-R018) —visible y sin emitir
+>    ninguna consulta— pero **declara que el origen no se pudo leer y lo nombra**.
+>    Nunca se presenta como conjunto vacio y nunca degrada a "no se declaro ningun
+>    conjunto": un origen declarado y no leido jamas deja correr la corrida.
+> 3. **Un origen legible del que no sale ningun identificador es un conjunto
+>    vacio**, y se rechaza como tal, con el desenlace y la causa que ya fija
+>    [F-QINST-R018](#F-QINST-R018).
+
+<details><summary>Detalle</summary>
+
+**Por que hace falta decir esto.** [F-QINST-R018](#F-QINST-R018) fija que el
+conjunto se declara en el pedido y deliberadamente no dice **como**. El caso que la
+motivo son 966 ejercicios: enumerados a mano son unos 24.000 caracteres, que nadie
+escribe y ningun pedido transporta comodo. Sin una forma de apuntar a un origen que
+ya tiene la lista armada, la regla anterior queda correcta e inutilizable
+justamente para el caso que la justifico. Y a la inversa: obligar a un origen
+externo para volver a juzgar tres ejercicios convierte un pedido de una linea en un
+tramite. Por eso son dos formas y no una.
+
+**Por que "no se pudo leer" y "vacio" tienen que verse distinto.** Los dos rechazan
+la corrida sin gastar, asi que el desenlace se parece; lo que no se parece es **el
+arreglo**. "No se pudo leer el origen" se corrige apuntando bien; "el conjunto esta
+vacio" se corrige rehaciendo la seleccion, que suele estar mas arriba —en la
+consulta o el tablero que armo la lista—. Presentarlos igual manda a revisar el
+lugar equivocado, y ese es el error caro: quien cree que su seleccion no devolvio
+nada empieza a dudar de los datos cuando lo unico que paso es que el origen no
+estaba donde el pedido decia.
+
+| Borde | Desenlace | Por que |
+|---|---|---|
+| El origen declarado no se puede leer: no esta donde el pedido dice, o el sistema no consigue leerlo | Pedido rechazado sin ninguna consulta, declarando que el origen no se pudo leer y nombrandolo | El conjunto **nunca se conocio**. Cualquier otra lectura —cero ejercicios, o "no se declaro conjunto"— afirma algo sobre una seleccion que el sistema no llego a ver |
+| El origen se lee y no aporta ningun identificador | Pedido rechazado por conjunto vacio ([F-QINST-R018](#F-QINST-R018)) | Aca **si** se conoce la seleccion, y dice "nada". Es exactamente el caso que R018 ya resolvio, y darle un desenlace propio seria duplicar esa regla y arriesgar que las dos se contradigan |
+| El mismo ejercicio declarado dos o mas veces | Cuenta una sola vez; ni error ni aviso | Una lista de cientos se arma pegando y concatenando, y los repetidos son su ruido normal. Rechazar por eso dejaria inservible cualquier lista larga —el mismo criterio con el que [F-QINST-R018](#F-QINST-R018) tolera los identificadores que no corresponden a ningun ejercicio— y consultar dos veces gastaria tope contra un veredicto recien emitido, que es lo que [F-QINST-R008](#F-QINST-R008) prohibe |
+| Separadores de mas, espacios alrededor de un identificador, entradas en blanco | Se descartan al armar el conjunto y no cuentan como identificadores que no corresponden a ningun ejercicio | Mismo criterio que la fila anterior: es ruido de armado, no seleccion. Si tras descartarlo no queda ningun identificador, el conjunto es vacio y cae en la segunda fila |
+| Las dos formas declaradas a la vez [ASSUMPTION] | Pedido rechazado sin ninguna consulta, declarando esa causa | Union y "una gana" son dos lecturas distintas del mismo pedido y nada dice cual se quiso. Es la misma familia que los dos alcances a la vez de [F-QINST-R018](#F-QINST-R018): entre adivinar con la plata del usuario y rechazar, rechazar |
+
+**Precedente.** El sistema ya resolvio este mismo problema en otro pedido: un
+contexto de correccion provisto por quien pide la revision se acepta escrito en
+linea o desde un origen externo, precisamente porque hay contenidos que no entran
+escritos a mano ([F-REVCTX-R001](../2026-05-09.01_revise-correction-context-override/REQUIREMENT.md#F-REVCTX-R001)).
+Esta regla adopta esa misma dualidad y agrega lo que aquella no legisla: que ocurre
+cuando el origen esta declarado y no se puede leer.
+
+**Lo que esta regla no fija.** No fija con que palabras se escribe cada forma en el
+pedido, ni de que clase es el origen externo mas alla de que quien pide la corrida
+pueda nombrarlo y el sistema leerlo. Lo verificable son las tres invariantes: mismo
+conjunto por las dos vias, rechazo con causa propia y distinguible, y ningun camino
+por el que un origen no leido termine en una corrida.
+
+**Criterio de aceptacion**: sobre un curso con veredictos ya registrados, (a) el
+mismo conjunto de M ejercicios, declarado una vez enumerado en el pedido y otra vez
+desde un origen externo, produce dos corridas indistinguibles: las mismas M
+consultas, todas por ejercicios del conjunto; (b) un conjunto que declara N
+identificadores distintos con repeticiones produce exactamente N consultas y consume
+N del tope; (c) declarando un origen que no se puede leer, la corrida se rechaza
+antes de emitir ninguna consulta y el rechazo nombra ese origen y dice que no se
+pudo leer; (d) declarando un origen legible del que no sale ningun identificador, la
+corrida se rechaza por conjunto vacio; (e) los desenlaces de (c) y (d) son
+distinguibles entre si, y en ninguno de los dos la corrida sigue adelante: ni
+auditoria normal, ni re-evaluacion por area, ni re-evaluacion del curso entero.
+
+**Error**: "No se pudo leer el origen '{origen}' declarado para el conjunto de ejercicios a re-evaluar" / "El pedido de re-evaluacion declara a la vez los ejercicios y un origen del que leerlos: no se puede determinar el conjunto" / "Un origen declarado y no leido produjo el mismo desenlace que un conjunto vacio" (condicion prohibida) / "Un origen declarado y no leido se ignoro y la corrida siguio adelante" (condicion prohibida)
+
+</details>
+
 ## Contexto
 
 La auditoria de ContentAudit mide hoy propiedades **calculables** del contenido:
@@ -1018,7 +1225,11 @@ todavia no se miraron".
   - Identidad del veredicto por contenido juzgado; la version del juez como
     procedencia registrada y declarada, y tratamiento de la version que no pudo
     derivarse de la definicion del juez.
-  - Re-evaluacion explicita, unico mecanismo por el que un veredicto se rehace.
+  - Re-evaluacion explicita, unico mecanismo por el que un veredicto se rehace, y
+    las dos formas de acotarla: un area del curso o un conjunto de ejercicios
+    declarado por quien pide la corrida. Ese conjunto se enumera en el pedido o se
+    lee de un origen externo que el pedido nombra, y un origen que no se puede leer
+    se rechaza con causa propia, distinta de la del conjunto vacio.
   - La incorporacion de los ejercicios que incumplen al plan de refinamiento como
     tareas priorizables, listables y filtrables por su tipo de diagnostico.
 - **Fuera de alcance**:
@@ -1187,6 +1398,63 @@ journeys:
         action: "Los veredictos de la version anterior del juez se siguen reutilizando y puntuando: ningun ejercicio ya evaluado queda pendiente, el juez no recibe consultas por ellos, y la cobertura declara cuantos veredictos aporta cada version"
         gate: [F-QINST-R005, F-QINST-R010]
         result: success
+```
+
+### Journey[F-QINST-J004] - Re-evaluar un conjunto de ejercicios declarado en el pedido
+**Validation**: AUTO_VALIDATED
+
+Cubre la segunda forma de acotar la re-evaluacion explicita: el conjunto de
+ejercicios que declara quien pide la corrida. Recorre los cinco desenlaces que
+distinguen la regla —el conjunto cubierto entero, el conjunto mas grande que el
+tope, los identificadores que no corresponden a ningun ejercicio, el ejercicio del
+conjunto que nunca fue juzgado y el pedido que no se puede interpretar—. Cubre R018,
+con sus interacciones con R005, R006 y R008.
+
+```yaml
+journeys:
+  - id: F-QINST-J004
+    name: Re-evaluar un conjunto de ejercicios declarado en el pedido
+    flow:
+      - id: pedir_reevaluacion_del_conjunto
+        action: "El usuario pide la auditoria de un curso cuyos ejercicios ya tienen veredicto registrado y declara en el pedido el conjunto de ejercicios que quiere volver a juzgar"
+        outcomes:
+          - when: "El conjunto declara ejercicios del curso y el tope de consultas de la corrida alcanza para todos"
+            then: reevalua_el_conjunto
+          - when: "El conjunto declara mas ejercicios que el tope de consultas de la corrida"
+            then: reevalua_hasta_el_tope
+          - when: "Parte de los identificadores declarados no corresponde a ningun ejercicio del curso"
+            then: informa_los_no_correspondidos
+          - when: "El conjunto declara un ejercicio que existe y nunca fue juzgado"
+            then: juzga_el_nunca_juzgado
+          - when: "El conjunto declarado esta vacio"
+            then: pedido_rechazado
+          - when: "El pedido declara a la vez un conjunto de ejercicios y un area del curso"
+            then: pedido_rechazado
+
+      - id: reevalua_el_conjunto
+        action: "El juez vuelve a juzgar exactamente los ejercicios del conjunto y ninguno mas: los ejercicios con veredicto ajenos al conjunto se reutilizan sin consulta, los veredictos anteriores siguen consultables y el informe pasa a puntuar los nuevos"
+        gate: [F-QINST-R018, F-QINST-R008]
+        result: success
+
+      - id: reevalua_hasta_el_tope
+        action: "La corrida gasta el tope de consultas en ejercicios del conjunto y termina sin error; los ejercicios del conjunto que el tope no alcanzo conservan su veredicto anterior, se siguen puntuando y no figuran como pendientes"
+        gate: [F-QINST-R018, F-QINST-R006]
+        result: success
+
+      - id: informa_los_no_correspondidos
+        action: "La corrida vuelve a juzgar los ejercicios del conjunto que si corresponden, informa explicitamente los identificadores que no corresponden a ninguno y termina sin error; ningun recuento de cobertura incluye a esos identificadores"
+        gate: [F-QINST-R018, F-QINST-R005]
+        result: success
+
+      - id: juzga_el_nunca_juzgado
+        action: "El ejercicio se consulta al juez y recibe puntaje y diagnostico como cualquier ejercicio evaluado, sin error ni tratamiento especial por no haber tenido veredicto"
+        gate: [F-QINST-R018]
+        result: success
+
+      - id: pedido_rechazado
+        action: "El pedido se rechaza de forma visible antes de emitir ninguna consulta: el juez no recibe ninguna, ningun veredicto registrado se rehace y, en particular, no se re-evalua el curso entero"
+        gate: [F-QINST-R018]
+        result: failure
 ```
 
 ## Open Questions
@@ -1394,10 +1662,12 @@ manos de la arquitectura.
   incremental resistente a interrupcion, distincion entre resultado definitivo y
   falla transitoria, y convivencia y reuso de resultados de versiones distintas del
   evaluador con la version como procedencia registrada. Este analisis es su primer
-  consumidor. Citada por [F-QINST-R005](#F-QINST-R005),
+  consumidor. Establece ademas que el recorte del alcance de una re-evaluacion lo
+  define el consumidor —esta capacidad solo garantiza que volver a evaluar uno no
+  arrastre a los demas—. Citada por [F-QINST-R005](#F-QINST-R005),
   [F-QINST-R006](#F-QINST-R006), [F-QINST-R007](#F-QINST-R007),
   [F-QINST-R008](#F-QINST-R008), [F-QINST-R010](#F-QINST-R010),
-  [F-QINST-R013](#F-QINST-R013) y el Contexto.
+  [F-QINST-R013](#F-QINST-R013), [F-QINST-R018](#F-QINST-R018) y el Contexto.
 - **FEAT-RPRES** — Establece que corregir un ejercicio cambia su contenido pero no
   su identificador; es la razon por la que la identidad del veredicto es la huella
   del contenido juzgado. Citada por [F-QINST-R009](#F-QINST-R009) y el Contexto.
@@ -1433,3 +1703,8 @@ manos de la arquitectura.
 - **FEAT-QSENT** — Define las partes de la oracion de un ejercicio (texto fijo y
   hueco) y las opciones aceptadas de cada hueco, que son el contenido que el juez
   necesita completo. Citada por [DOUBT-QUIZ-COMPLETO](#DOUBT-QUIZ-COMPLETO).
+- **FEAT-REVCTX** — Precedente de un dato que quien pide una corrida puede entregar
+  de dos formas equivalentes —escrito en linea o desde un origen externo— porque hay
+  contenidos que no entran escritos a mano. No legisla que ocurre cuando el origen
+  no se puede leer, que es lo que agrega [F-QINST-R019](#F-QINST-R019). Citada por
+  [F-QINST-R019](#F-QINST-R019).

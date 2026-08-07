@@ -74,7 +74,7 @@ public class FQinstJ002JourneyTest {
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
         // Tope de 1 consulta nueva por corrida (F-QINST-R006)
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(1, false, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(1, false, null, null);
 
         AuditNode quizA = buildQuizNode("qa");
         AuditNode quizB = buildQuizNode("qb");
@@ -147,7 +147,7 @@ public class FQinstJ002JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(1, false, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(1, false, null, null);
 
         AuditNode quizA = buildQuizNode("qa");
         AuditNode quizB = buildQuizNode("qb");
@@ -212,7 +212,7 @@ public class FQinstJ002JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
 
         AuditNode quizA = buildQuizNode("qa");
         AuditNode quizB = buildQuizNode("qb");
@@ -280,7 +280,7 @@ public class FQinstJ002JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
 
         AuditNode quizA = buildQuizNode("qa");
         AuditNode quizB = buildQuizNode("qb");

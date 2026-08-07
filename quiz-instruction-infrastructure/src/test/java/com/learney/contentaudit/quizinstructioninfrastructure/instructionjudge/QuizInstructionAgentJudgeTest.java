@@ -14,6 +14,8 @@ import static org.mockito.Mockito.when;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderClass;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
@@ -48,8 +50,8 @@ public class QuizInstructionAgentJudgeTest {
      * tratamiento del veredicto, no el enrutamiento, asi que la factory entrega un
      * modelo mudo y el proveedor queda fijo.
      */
-    private static final JudgeProviderResolved PROVIDER =
-            new JudgeProviderResolved("claude-cli", JudgeProviderClass.LOCAL_SESSION);
+    private static final LlmProviderResolved PROVIDER =
+            new LlmProviderResolved("claude-cli", LlmProviderClass.LOCAL_SESSION);
 
     private static final JudgeChatModelFactory CHAT_MODEL_FACTORY =
             (config, provider) -> mock(ChatModel.class);

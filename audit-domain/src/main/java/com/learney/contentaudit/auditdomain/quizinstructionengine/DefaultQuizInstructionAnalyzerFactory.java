@@ -1,6 +1,8 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 
+import com.learney.contentaudit.auditdomain.AmbiguousReevaluationScopeException;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.EmptyReevaluationSetException;
 import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
@@ -9,6 +11,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -40,7 +43,30 @@ public class DefaultQuizInstructionAnalyzerFactory implements EvaluationAnalyzer
         // default budget instead of leaving the analyzer without one.
         EvaluationRunPolicy effectivePolicy = policy != null
                 ? policy
-                : new EvaluationRunPolicy(config.getDefaultMaxNewEvaluations(), false, null);
+                : new EvaluationRunPolicy(config.getDefaultMaxNewEvaluations(), false, null, null);
+
+        // F-QINST-R018 inv.3: a request that cannot be interpreted is rejected here,
+        // BEFORE opening the session -- this is the only call of the whole traversal
+        // that DefaultAuditRunner does not wrap in catch(RuntimeException) for
+        // F-QINST-R007, so a rejection from onQuiz would be silently swallowed.
+        Set<String> declaredSet = effectivePolicy.getReevaluationSubjectIds();
+        if (declaredSet != null) {
+            if (effectivePolicy.isReevaluate()) {
+                // A declared set and a course-area/whole-course re-evaluation at once:
+                // intersection and union differ by orders of magnitude and either could
+                // be empty -- choosing one would be guessing with the user's money.
+                String declaredScope = effectivePolicy.getReevaluationScope() != null
+                        ? effectivePolicy.getReevaluationScope()
+                        : "todo el curso";
+                throw new AmbiguousReevaluationScopeException(analyzerName(), declaredScope);
+            }
+            if (declaredSet.isEmpty()) {
+                // An empty declared set is never read as "the whole course" -- that
+                // would turn a failed selection into a full re-evaluation, exactly the
+                // surprise bill F-QINST-R006/R010 exist to prevent.
+                throw new EmptyReevaluationSetException(analyzerName());
+            }
+        }
 
         // The session only honors the budget (F-EVCOST-R003); reevaluate/reevaluationScope
         // are the analyzer's own vocabulary (F-EVCOST-R008) and never reach the session.

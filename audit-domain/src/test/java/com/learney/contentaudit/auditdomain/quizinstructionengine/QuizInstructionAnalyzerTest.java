@@ -29,6 +29,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -60,11 +61,17 @@ public class QuizInstructionAnalyzerTest {
     }
 
     private EvaluationRunPolicy normalPolicy(int maxNewEvaluations) {
-        return new EvaluationRunPolicy(maxNewEvaluations, false, null);
+        return new EvaluationRunPolicy(maxNewEvaluations, false, null, null);
     }
 
     private EvaluationRunPolicy reevaluatePolicy(int maxNewEvaluations, String scope) {
-        return new EvaluationRunPolicy(maxNewEvaluations, true, scope);
+        return new EvaluationRunPolicy(maxNewEvaluations, true, scope, null);
+    }
+
+    // Conjunto de ejercicios declarado en el pedido (F-QINST-R018): excluyente con
+    // reevaluate/reevaluationScope -- un conjunto declarado ES el pedido de re-evaluacion.
+    private EvaluationRunPolicy declaredSetPolicy(int maxNewEvaluations, Set<String> reevaluationSubjectIds) {
+        return new EvaluationRunPolicy(maxNewEvaluations, false, null, reevaluationSubjectIds);
     }
 
     private AuditNode buildCourseNode() {
@@ -1003,5 +1010,209 @@ public class QuizInstructionAnalyzerTest {
         assertEquals(declared.getCoverage().getWithResult(), sumOfCountsByVersion,
                 "La suma de los recuentos por version debe cerrar contra con-veredicto: la segunda "
                         + "suma que exige R005");
+    }
+
+    @Test
+    @DisplayName("should query the judge for every quiz of the declared set and for no quiz outside it, whatever verdict the outsiders already have")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R018")
+    public void shouldQueryTheJudgeForEveryQuizOfTheDeclaredSetAndForNoQuizOutsideItWhateverVerdictTheOutsidersAlreadyHave() {
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        EvaluationRunPolicy policy = declaredSetPolicy(500, Set.of("q1"));
+
+        AuditNode inDeclaredSet = buildQuizNode(buildQuiz("q1"));
+        // Ajeno al conjunto, pero con veredicto vigente: se reutiliza, no se consulta
+        AuditNode outsideWithVerdict = buildQuizNode(buildQuiz("q2"));
+        // Ajeno al conjunto y SIN ningun veredicto: tampoco se consulta (R018 no amplia el tope)
+        AuditNode outsideWithoutVerdict = buildQuizNode(buildQuiz("q3"));
+        EvaluationSubject subjInSet = new EvaluationSubject("q1", Map.of());
+        EvaluationSubject subjOutsideWithVerdict = new EvaluationSubject("q2", Map.of());
+        EvaluationSubject subjOutsideWithoutVerdict = new EvaluationSubject("q3", Map.of());
+        when(subjectBuilder.build(inDeclaredSet)).thenReturn(subjInSet);
+        when(subjectBuilder.build(outsideWithVerdict)).thenReturn(subjOutsideWithVerdict);
+        when(subjectBuilder.build(outsideWithoutVerdict)).thenReturn(subjOutsideWithoutVerdict);
+
+        when(scopeMatcher.decide(inDeclaredSet, policy)).thenReturn(QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION);
+        when(scopeMatcher.decide(outsideWithVerdict, policy)).thenReturn(QuizInstructionReevaluationDecision.OUTSIDE_DECLARED_SET);
+        when(scopeMatcher.decide(outsideWithoutVerdict, policy)).thenReturn(QuizInstructionReevaluationDecision.OUTSIDE_DECLARED_SET);
+
+        QuizInstructionVerdict newVerdict = new QuizInstructionVerdict();
+        when(session.resolvePreferringNew(subjInSet)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", "v1"));
+        when(verdictReader.read("payload-new")).thenReturn(newVerdict);
+        when(scorer.score(newVerdict)).thenReturn(1.0);
+
+        QuizInstructionVerdict reusedVerdict = new QuizInstructionVerdict();
+        when(session.resolveWithoutConsulting(subjOutsideWithVerdict)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-old", "v1"));
+        when(verdictReader.read("payload-old")).thenReturn(reusedVerdict);
+        when(scorer.score(reusedVerdict)).thenReturn(0.6);
+
+        when(session.resolveWithoutConsulting(subjOutsideWithoutVerdict)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        analyzer.onQuiz(inDeclaredSet);
+        analyzer.onQuiz(outsideWithVerdict);
+        analyzer.onQuiz(outsideWithoutVerdict);
+
+        verify(session, times(1)).resolvePreferringNew(subjInSet);
+        verify(session).resolveWithoutConsulting(subjOutsideWithVerdict);
+        verify(session).resolveWithoutConsulting(subjOutsideWithoutVerdict);
+        verify(session, never()).resolve(any());
+        verify(session, never()).resolveForced(any());
+
+        assertFalse(inDeclaredSet.getScores().isEmpty(),
+                "R018: the quiz of the declared set must be judged again and scored on the new verdict");
+        assertFalse(outsideWithVerdict.getScores().isEmpty(),
+                "R018: a quiz outside the set that already had a verdict keeps scoring from it, reused without a new consultation");
+        assertTrue(outsideWithoutVerdict.getScores().isEmpty(),
+                "R018: a quiz outside the set without any verdict stays without score too -- whatever verdict the "
+                + "outsiders already have, none of them triggers a new consultation");
+    }
+
+    @Test
+    @DisplayName("should keep the score and the diagnosis of a quiz of the declared set the budget did not reach, instead of leaving it pending")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R018")
+    public void shouldKeepTheScoreAndTheDiagnosisOfAQuizOfTheDeclaredSetTheBudgetDidNotReachInsteadOfLeavingItPending() {
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        // Conjunto de 2 ejercicios, tope de la corrida menor que el conjunto (R018 inv.2)
+        EvaluationRunPolicy policy = declaredSetPolicy(1, Set.of("q1", "q2"));
+
+        AuditNode beyondBudget = buildQuizNode(buildQuiz("q2"));
+        EvaluationSubject subject = new EvaluationSubject("q2", Map.of());
+        when(subjectBuilder.build(beyondBudget)).thenReturn(subject);
+        when(scopeMatcher.decide(beyondBudget, policy)).thenReturn(QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION);
+
+        // El tope de la corrida ya se agoto en otro ejercicio del conjunto: la sesion resuelve
+        // "prefiriendo nuevo" pero cae al veredicto anterior en vez de dejarlo pendiente (R018 inv.2)
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict();
+        when(session.resolvePreferringNew(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "previous-payload", "v1"));
+        when(verdictReader.read("previous-payload")).thenReturn(verdict);
+        when(scorer.score(verdict)).thenReturn(1.0);
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        analyzer.onQuiz(beyondBudget);
+
+        verify(session).resolvePreferringNew(subject);
+        verify(session, never()).resolve(any());
+        verify(session, never()).resolveForced(any());
+        verify(session, never()).resolveWithoutConsulting(any());
+
+        assertFalse(beyondBudget.getScores().isEmpty(),
+                "R018: a quiz of the declared set the budget did not reach must keep scoring from its previous verdict, not be left pending");
+        QuizInstructionDiagnosis diagnosis = ((QuizDiagnoses) beyondBudget.getDiagnoses())
+                .getQuizInstructionDiagnosis()
+                .orElseThrow(() -> new AssertionError("R018: the quiz must keep its previous diagnosis instead of being left pending"));
+        assertTrue(diagnosis.isReusedFromPreviousRun(),
+                "R018: a quiz of the declared set the budget did not reach keeps its PREVIOUS verdict, not a fresh one");
+    }
+
+    @Test
+    @DisplayName("should declare as unmatched every id of the declared set that no quiz of the course corresponded to")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R018")
+    public void shouldDeclareAsUnmatchedEveryIdOfTheDeclaredSetThatNoQuizOfTheCourseCorrespondedTo() {
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        // El conjunto declara "q1" (existe en el curso) y "ghost-id" (no corresponde a ningun ejercicio)
+        EvaluationRunPolicy policy = declaredSetPolicy(500, Set.of("q1", "ghost-id"));
+
+        AuditNode matchedNode = buildQuizNode(buildQuiz("q1"));
+        EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
+        when(subjectBuilder.build(matchedNode)).thenReturn(subject);
+        when(scopeMatcher.decide(matchedNode, policy)).thenReturn(QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION);
+
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict();
+        when(session.resolvePreferringNew(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1"));
+        when(verdictReader.read("payload")).thenReturn(verdict);
+        when(scorer.score(verdict)).thenReturn(1.0);
+
+        // "ghost-id" nunca corresponde a un AuditNode real: el curso solo alcanza a "q1"
+        EvaluationCoverage coverage = new EvaluationCoverage(1, 1, 1, 0, 0, 0);
+        when(session.coverage()).thenReturn(coverage);
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        analyzer.onQuiz(matchedNode);
+        AuditNode courseNode = buildCourseNode();
+        analyzer.onCourseComplete(courseNode);
+
+        QuizInstructionCoverageDiagnosis declared = ((CourseDiagnoses) courseNode.getDiagnoses())
+                .getQuizInstructionCoverage()
+                .orElseThrow(() -> new AssertionError("R018: coverage must be declared even when the declared set has unmatched ids"));
+
+        assertEquals(List.of("ghost-id"), declared.getUnmatchedReevaluationIds(),
+                "R018: an id of the declared set that no quiz of the course corresponded to must be reported, "
+                + "and the id that did match a real quiz must not appear alongside it");
+    }
+
+    @Test
+    @DisplayName("should keep the reached total and the coverage sums closed when the declared set carries ids that match no quiz of the course")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R018")
+    public void shouldKeepTheReachedTotalAndTheCoverageSumsClosedWhenTheDeclaredSetCarriesIdsThatMatchNoQuizOfTheCourse() {
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        // El conjunto declara "q1" (existe) y DOS ids que no corresponden a ningun ejercicio del curso
+        EvaluationRunPolicy policy = declaredSetPolicy(500, Set.of("q1", "ghost-a", "ghost-b"));
+
+        AuditNode inDeclaredSet = buildQuizNode(buildQuiz("q1"));
+        AuditNode outsideDeclaredSet = buildQuizNode(buildQuiz("q2"));
+        EvaluationSubject subj1 = new EvaluationSubject("q1", Map.of());
+        EvaluationSubject subj2 = new EvaluationSubject("q2", Map.of());
+        when(subjectBuilder.build(inDeclaredSet)).thenReturn(subj1);
+        when(subjectBuilder.build(outsideDeclaredSet)).thenReturn(subj2);
+        when(scopeMatcher.decide(inDeclaredSet, policy)).thenReturn(QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION);
+        when(scopeMatcher.decide(outsideDeclaredSet, policy)).thenReturn(QuizInstructionReevaluationDecision.OUTSIDE_DECLARED_SET);
+
+        QuizInstructionVerdict newVerdict = new QuizInstructionVerdict();
+        when(session.resolvePreferringNew(subj1)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", "v1"));
+        when(verdictReader.read("payload-new")).thenReturn(newVerdict);
+        when(scorer.score(newVerdict)).thenReturn(1.0);
+
+        QuizInstructionVerdict reusedVerdict = new QuizInstructionVerdict();
+        when(session.resolveWithoutConsulting(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-old", "v1"));
+        when(verdictReader.read("payload-old")).thenReturn(reusedVerdict);
+        when(scorer.score(reusedVerdict)).thenReturn(0.6);
+
+        // El curso solo tiene 2 ejercicios reales: la cobertura no debe crecer por los 2 ids fantasma del conjunto
+        EvaluationCoverage coverage = new EvaluationCoverage(2, 2, 1, 1, 0, 0);
+        when(session.coverage()).thenReturn(coverage);
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        analyzer.onQuiz(inDeclaredSet);
+        analyzer.onQuiz(outsideDeclaredSet);
+        AuditNode courseNode = buildCourseNode();
+        analyzer.onCourseComplete(courseNode);
+
+        QuizInstructionCoverageDiagnosis declared = ((CourseDiagnoses) courseNode.getDiagnoses())
+                .getQuizInstructionCoverage()
+                .orElseThrow(() -> new AssertionError("R018: coverage must be declared"));
+
+        assertEquals(2, declared.getCoverage().getReached(),
+                "R018: the reached total must equal the real quizzes of the course (F-QINST-R014), unaffected by "
+                + "the 2 unmatched ids of the declared set");
+        assertEquals(declared.getCoverage().getReached(),
+                declared.getCoverage().getWithResult() + declared.getCoverage().getPending() + declared.getCoverage().getFailed(),
+                "R018: with-result + pending + failed must still close against reached (F-QINST-R005) with a declared set in play");
+        assertEquals(declared.getCoverage().getWithResult(),
+                declared.getCoverage().getEvaluatedInRun() + declared.getCoverage().getReused(),
+                "R018: with-result must still decompose into evaluated-in-run + reused (F-QINST-R005) with a declared set in play");
+        assertEquals(2, declared.getUnmatchedReevaluationIds().size(),
+                "R018: both ids of the declared set that matched no quiz must be reported, separately from the coverage counts");
+        assertTrue(declared.getUnmatchedReevaluationIds().containsAll(List.of("ghost-a", "ghost-b")),
+                "R018: both unmatched ids must be reported, whatever their order");
     }
 }

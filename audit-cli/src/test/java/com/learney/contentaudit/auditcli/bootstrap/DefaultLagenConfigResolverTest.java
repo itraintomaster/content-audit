@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLlmProviderResolver;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
 import java.time.Duration;
 import java.util.HashMap;
@@ -35,7 +36,11 @@ public class DefaultLagenConfigResolverTest {
 
     @BeforeEach
     void setUp() {
-        resolver = new DefaultLagenConfigResolver();
+        // ARCH-LAGEN-R015: the resolver now judges the endpoint requirement against the
+        // shared provider criterion instead of requiring it unconditionally; every
+        // fixture in this file declares a REMOTE_SERVICE-class provider ("lmstudio") with
+        // an explicit endpoint, so the real resolver reproduces the prior behavior exactly.
+        resolver = new DefaultLagenConfigResolver(new DefaultLlmProviderResolver());
     }
 
     private static Map<String, String> fullEnv() {
