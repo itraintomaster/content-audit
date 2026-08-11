@@ -737,7 +737,7 @@
   },
   "title" : "Adjetivos predicativos",
   "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "El pájaro está vivo.",
+  "translation" : "El pájaro está vivo en su jaula temprano esta mañana.",
   "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -770,13 +770,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "living" ]
+      "options" : [ "alive" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(alive / living).",
+      "text" : "(alive / living) in its cage early this morning.",
       "options" : null
     } ],
-    "sentences" : [ "The bird is living." ]
+    "sentences" : [ "The bird is alive in its cage early this morning." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Adjetivos predicativos",
   "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Todas las ovejas siguen respirando.",
+  "translation" : "Todas las ovejas del campo siguen vivas.",
   "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -921,18 +921,18 @@
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "All the sheep are still",
+      "text" : "All the sheep in the field are still",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "breathing" ]
+      "options" : [ "alive" ]
     }, {
       "kind" : "TEXT",
       "text" : "(alive / living).",
       "options" : null
     } ],
-    "sentences" : [ "All the sheep are still breathing." ]
+    "sentences" : [ "All the sheep in the field are still alive." ]
   }
 }, {
   "_id" : {

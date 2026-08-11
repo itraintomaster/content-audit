@@ -245,7 +245,7 @@
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Can you request your father",
+      "text" : "Can you ask your father",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -256,7 +256,7 @@
       "text" : "some help?",
       "options" : null
     } ],
-    "sentences" : [ "Can you request your father for some help?" ]
+    "sentences" : [ "Can you ask your father for some help?" ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Verbos con persona",
   "instructions" : "Completar las oraciones con la preposición correcta. Puede haber varias respuestas correctas.",
-  "translation" : "Mucha gente sufre de enfermedades del corazón.",
+  "translation" : "Mucha gente sufre a menudo de enfermedades del corazón.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -661,18 +661,18 @@
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Many people suffer",
+      "text" : "Many people often suffer",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "of|from" ]
+      "options" : [ "from" ]
     }, {
       "kind" : "TEXT",
       "text" : "heart disease.",
       "options" : null
     } ],
-    "sentences" : [ "Many people suffer of heart disease.", "Many people suffer from heart disease." ]
+    "sentences" : [ "Many people often suffer from heart disease." ]
   }
 }, {
   "_id" : {
@@ -770,13 +770,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "for" ]
+      "options" : [ "of|about" ]
     }, {
       "kind" : "TEXT",
       "text" : "a luxury vacation.",
       "options" : null
     } ],
-    "sentences" : [ "They had dreamed for a luxury vacation." ]
+    "sentences" : [ "They had dreamed of a luxury vacation.", "They had dreamed about a luxury vacation." ]
   }
 }, {
   "_id" : {

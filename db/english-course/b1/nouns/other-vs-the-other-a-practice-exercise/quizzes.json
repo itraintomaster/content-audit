@@ -529,7 +529,7 @@
   },
   "title" : "Con o sin artículo",
   "instructions" : "Escribe $other$ si es posible. De lo contrario, escribe $the other$.",
-  "translation" : "Prefiero el otro gato.",
+  "translation" : "Prefiero el otro gato a este.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -565,10 +565,10 @@
       "options" : [ "the other" ]
     }, {
       "kind" : "TEXT",
-      "text" : "cat better.",
+      "text" : "cat to this one.",
       "options" : null
     } ],
-    "sentences" : [ "I prefer the other cat better." ]
+    "sentences" : [ "I prefer the other cat to this one." ]
   }
 }, {
   "_id" : {

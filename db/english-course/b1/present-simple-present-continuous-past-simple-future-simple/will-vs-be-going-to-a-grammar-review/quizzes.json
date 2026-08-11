@@ -9,7 +9,7 @@
   },
   "title" : "Decisión o predicción",
   "instructions" : "Escoge $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Suposición: estos vasos se van a romper.",
+  "translation" : "Suposición: estos vasos se están cayendo. Se van a romper.",
   "theoryId" : "",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -37,7 +37,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Guess: These glasses",
+      "text" : "Guess: These glasses are falling. They",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -48,7 +48,7 @@
       "text" : "(break).",
       "options" : null
     } ],
-    "sentences" : [ "Guess: These glasses are going to break." ]
+    "sentences" : [ "Guess: These glasses are falling. They are going to break." ]
   }
 }, {
   "_id" : {
@@ -198,13 +198,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "is going to lose" ]
+      "options" : [ "will lose" ]
     }, {
       "kind" : "TEXT",
       "text" : "(lose).",
       "options" : null
     } ],
-    "sentences" : [ "Guess: The basketball team is going to lose." ]
+    "sentences" : [ "Guess: The basketball team will lose." ]
   }
 }, {
   "_id" : {
@@ -614,13 +614,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "are going to be" ]
+      "options" : [ "will be" ]
     }, {
       "kind" : "TEXT",
       "text" : "(be) happy.",
       "options" : null
     } ],
-    "sentences" : [ "Guess: The students are going to be happy." ]
+    "sentences" : [ "Guess: The students will be happy." ]
   }
 }, {
   "_id" : {

@@ -305,10 +305,10 @@
       "options" : [ "should have studied" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(have) well the lesson.",
+      "text" : "(study) the lesson well.",
       "options" : null
     } ],
-    "sentences" : [ "The child didn't know the answer. He should have studied well the lesson." ]
+    "sentences" : [ "The child didn't know the answer. He should have studied the lesson well." ]
   }
 }, {
   "_id" : {
@@ -406,13 +406,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "should have ridden" ]
+      "options" : [ "should have taken" ]
     }, {
       "kind" : "TEXT",
       "text" : "(take) the subway.",
       "options" : null
     } ],
-    "sentences" : [ "We were late for the class. We should have ridden the subway." ]
+    "sentences" : [ "We were late for the class. We should have taken the subway." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Arrepentimientos",
   "instructions" : "Crea una oración usando $should(n't) + have + past participle$.",
-  "translation" : "Debería haberme quedado en casa esta mañana.",
+  "translation" : "Debería haber ido a casa esta mañana.",
   "theoryId" : "",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -510,13 +510,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "should have stayed" ]
+      "options" : [ "should have gone" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(go) at home this morning.",
+      "text" : "(go) home this morning.",
       "options" : null
     } ],
-    "sentences" : [ "I feel terrible. I should have stayed at home this morning." ]
+    "sentences" : [ "I feel terrible. I should have gone home this morning." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Arrepentimientos",
   "instructions" : "Crea una oración usando $should(n't) + have + past participle$.",
-  "translation" : "Ella no debería haber andado en bicicleta tan descuidadamente.",
+  "translation" : "Ella no debería haber conducido tan descuidadamente.",
   "theoryId" : "",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -562,13 +562,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "shouldn't have cycled" ]
+      "options" : [ "shouldn't have driven" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / drive) so carelessly.",
       "options" : null
     } ],
-    "sentences" : [ "She crashed the bike. She shouldn't have cycled so carelessly." ]
+    "sentences" : [ "She crashed the bike. She shouldn't have driven so carelessly." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Arrepentimientos",
   "instructions" : "Crea una oración usando $should(n't) + have + past participle$.",
-  "translation" : "No deberías haberle gritado.",
+  "translation" : "No deberías haber discutido con ella.",
   "theoryId" : "",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -614,13 +614,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "shouldn't have shouted" ]
+      "options" : [ "shouldn't have argued" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / argue) at her.",
       "options" : null
     } ],
-    "sentences" : [ "Laura is mad. You shouldn't have shouted at her." ]
+    "sentences" : [ "Laura is mad. You shouldn't have argued at her." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Arrepentimientos",
   "instructions" : "Crea una oración usando $should(n't) + have + past participle$.",
-  "translation" : "Tengo muchas tareas. Debería haberlas empezado ayer.",
+  "translation" : "Tengo muchas tareas. Debería haberlas hecho ayer.",
   "theoryId" : "",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -666,13 +666,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "should have started" ]
+      "options" : [ "should have done" ]
     }, {
       "kind" : "TEXT",
       "text" : "(do) them yesterday.",
       "options" : null
     } ],
-    "sentences" : [ "I have a lot of tasks. I should have started them yesterday." ]
+    "sentences" : [ "I have a lot of tasks. I should have done them yesterday." ]
   }
 }, {
   "_id" : {
@@ -721,7 +721,7 @@
       "options" : [ "should have brought" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(go) an umbrella.",
+      "text" : "(bring) an umbrella.",
       "options" : null
     } ],
     "sentences" : [ "It was a cloudy day. You should have brought an umbrella." ]
@@ -893,7 +893,7 @@
   },
   "title" : "Arrepentimientos",
   "instructions" : "Crea una oración usando $should(n't) + have + past participle$.",
-  "translation" : "Ella debería haber agarrado una tabla de cortar.",
+  "translation" : "Ella debería haber usado una tabla de cortar.",
   "theoryId" : "",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -926,13 +926,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "should have grabbed" ]
+      "options" : [ "should have used" ]
     }, {
       "kind" : "TEXT",
       "text" : "(use) a cutting board.",
       "options" : null
     } ],
-    "sentences" : [ "She cut her hand. She should have grabbed a cutting board." ]
+    "sentences" : [ "She cut her hand. She should have used a cutting board." ]
   }
 }, {
   "_id" : {
@@ -981,7 +981,7 @@
       "options" : [ "should have drunk" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(wear) water before.",
+      "text" : "(drink) water before.",
       "options" : null
     } ],
     "sentences" : [ "They were thirsty. They should have drunk water before." ]
@@ -1033,7 +1033,7 @@
       "options" : [ "should have booked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(go) the tickets earlier.",
+      "text" : "(book) the tickets earlier.",
       "options" : null
     } ],
     "sentences" : [ "He enjoyed the premiere. He should have booked the tickets earlier." ]

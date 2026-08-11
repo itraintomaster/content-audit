@@ -37,7 +37,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The actors practiced the play a lot but,",
+      "text" : "The actors practiced the play a lot, but",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -48,7 +48,7 @@
       "text" : "the beginning, they made some errors.",
       "options" : null
     } ],
-    "sentences" : [ "The actors practiced the play a lot but, in the beginning, they made some errors." ]
+    "sentences" : [ "The actors practiced the play a lot, but in the beginning, they made some errors." ]
   }
 }, {
   "_id" : {
@@ -837,7 +837,7 @@
   },
   "title" : "$start$ o $beginning$",
   "instructions" : "Completa con $in$ o $at$.",
-  "translation" : "Buscó sus llaves toda la mañana y, al principio, eligió tomar el autobús al trabajo.",
+  "translation" : "Buscó sus llaves toda la mañana y, al comienzo de su búsqueda, eligió tomar el autobús al trabajo.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -870,13 +870,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "in" ]
+      "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the beginning, she chose to take the bus to work.",
+      "text" : "the beginning of her search, she chose to take the bus to work.",
       "options" : null
     } ],
-    "sentences" : [ "She searched for her keys all morning and, in the beginning, she chose to take the bus to work." ]
+    "sentences" : [ "She searched for her keys all morning and, at the beginning of her search, she chose to take the bus to work." ]
   }
 }, {
   "_id" : {

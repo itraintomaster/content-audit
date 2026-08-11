@@ -9,7 +9,7 @@
   },
   "title" : "Formas predicativas",
   "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Parecía indispuesto.",
+  "translation" : "Parecía indispuesto después de faltar tres días al trabajo.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -45,10 +45,10 @@
       "options" : [ "unwell" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(ill / unwell).",
+      "text" : "(elder / unwell) after missing three days of work.",
       "options" : null
     } ],
-    "sentences" : [ "He seemed unwell." ]
+    "sentences" : [ "He seemed unwell after missing three days of work." ]
   }
 }, {
   "_id" : {
@@ -201,7 +201,7 @@
       "options" : [ "okay" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(okay / alright) with the suggestion.",
+      "text" : "(okay / asleep) with the suggestion.",
       "options" : null
     } ],
     "sentences" : [ "The women seemed okay with the suggestion." ]
@@ -321,7 +321,7 @@
   },
   "title" : "Formas predicativas",
   "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Él recogió al gato enfermo.",
+  "translation" : "Él recogió al gato enfermo con mucho cuidado.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -354,13 +354,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "ill" ]
+      "options" : [ "unwell" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(ill / unwell) cat.",
+      "text" : "(ill / unwell) cat very carefully.",
       "options" : null
     } ],
-    "sentences" : [ "He picked up the ill cat." ]
+    "sentences" : [ "He picked up the unwell cat very carefully." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Formas predicativas",
   "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Ella estaba triste.",
+  "translation" : "No estaba sola, pero estaba triste.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -401,7 +401,7 @@
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She was",
+      "text" : "She was not lonely, but she was",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -412,7 +412,7 @@
       "text" : "(sad / lonely).",
       "options" : null
     } ],
-    "sentences" : [ "She was sad." ]
+    "sentences" : [ "She was not lonely, but she was sad." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Formas predicativas",
   "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Él parece estar en forma.",
+  "translation" : "Él parece estar en condiciones para competir en la carrera de mañana.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -461,10 +461,10 @@
       "options" : [ "fit" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(fit / healthy).",
+      "text" : "(fit / healthy) to compete in tomorrow's race.",
       "options" : null
     } ],
-    "sentences" : [ "He appears fit." ]
+    "sentences" : [ "He appears fit to compete in tomorrow's race." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Formas predicativas",
   "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "El gato estaba triste.",
+  "translation" : "El gato no estaba solo, pero estaba triste.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -765,7 +765,7 @@
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The cat was",
+      "text" : "The cat was not alone, but it was",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -776,7 +776,7 @@
       "text" : "(sad / lonely).",
       "options" : null
     } ],
-    "sentences" : [ "The cat was sad." ]
+    "sentences" : [ "The cat was not alone, but it was sad." ]
   }
 }, {
   "_id" : {

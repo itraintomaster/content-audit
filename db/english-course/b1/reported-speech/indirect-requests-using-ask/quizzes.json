@@ -317,7 +317,7 @@
   },
   "title" : "Pedidos con $ask$",
   "instructions" : "Transforma el discurso directo a $reported requests$. Siempre comienza con $she asked me$.",
-  "translation" : "Me pidió que le pidiera prestado su coche.",
+  "translation" : "Me pidió que le prestara mi coche.",
   "theoryId" : "b1.10.Reported_Requests_with_Ask",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -345,18 +345,18 @@
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Would you mind borrowing me your car?",
+      "text" : "Would you mind lending me your car?",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "She asked me to borrow her car." ]
+      "options" : [ "She asked me to lend her my car." ]
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "She asked me to borrow her car." ]
+    "sentences" : [ "She asked me to lend her my car." ]
   }
 }, {
   "_id" : {
@@ -662,13 +662,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "She asked me to open the door." ]
+      "options" : [ "She asked me to open the window." ]
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "She asked me to open the door." ]
+    "sentences" : [ "She asked me to open the window." ]
   }
 }, {
   "_id" : {

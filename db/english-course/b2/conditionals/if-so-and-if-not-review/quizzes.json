@@ -61,7 +61,7 @@
   },
   "title" : "$If so$ e $if not$: repaso",
   "instructions" : "Elige $If so$ o $If not$.",
-  "translation" : "Si no",
+  "translation" : "Si es así",
   "theoryId" : "b2.12.Words_Instead_of_If",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -94,13 +94,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "If not" ]
+      "options" : [ "If so" ]
     }, {
       "kind" : "TEXT",
       "text" : ", will he study harder next time?",
       "options" : null
     } ],
-    "sentences" : [ "Did he fail the test? If not, will he study harder next time?" ]
+    "sentences" : [ "Did he fail the test? If so , will he study harder next time?" ]
   }
 }, {
   "_id" : {
