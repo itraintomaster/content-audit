@@ -7,6 +7,10 @@ import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionCompl
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectView;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectViewFactory;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.QuizInstructionCorrectionContext;
@@ -36,15 +40,16 @@ import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 /**
- * F-QICOR-R001..R006, R009: the QUIZ_INSTRUCTION dispatch target. Order of
- * operations per journey F-QICOR-J001: revalidate the original with the exact
- * validation that flagged it (R009) -- if it already complies, the diagnosis
- * has gone stale and no correction is attempted at all -- then loop the
- * strategy up to {@code maxAttempts} times, deriving and assessing a candidate
- * each time, feeding the previous attempt's failed verdicts back in (R006 /
- * DOUBT-REINTENTOS). The first candidate the catalog accepts becomes the
- * proposal; exhausting every attempt without one is an explicit failure
- * (R006), never a silent identity proposal.
+ * F-QICOR-R001..R006, R009, R010: the QUIZ_INSTRUCTION dispatch target. Order
+ * of operations per journey F-QICOR-J001: revalidate the original with the
+ * exact validation that flagged it (R009) -- if it already complies, the
+ * diagnosis has gone stale and no correction is attempted at all -- then loop
+ * the strategy up to {@code maxAttempts} times, deriving a candidate,
+ * restoring any empty part of the enunciado the derivation could not
+ * round-trip (R010), and assessing it, feeding the previous attempt's failed
+ * verdicts back in (R006 / DOUBT-REINTENTOS). The first candidate the catalog
+ * accepts becomes the proposal; exhausting every attempt without one is an
+ * explicit failure (R006), never a silent identity proposal.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -152,6 +157,18 @@ class QuizInstructionReviser implements Reviser {
                         "unexpected derivation error: " + e.getMessage());
             }
 
+            // F-QICOR-R010: an empty part of the original's enunciado -- fixed text
+            // contributing zero characters -- never survives the round trip through the
+            // quiz-sentence text a candidate travels as (FEAT-QSENT parser/serializer,
+            // left untouched here): it leaves nothing to parse back. This is the assembly
+            // of what this reviser proposes and, once approved, applies to the course, so
+            // it is the only place left to restore it. It never blocked the candidate above
+            // (ScopedEditCriterion already looks past empty parts, F-QICOR-R003), so
+            // restoring it here cannot turn an otherwise-accepted candidate into a rejected
+            // one, and it is scoped to this reviser only -- other correction kinds that also
+            // travel a quiz as text are FEAT-RPRES's concern, not this feature's.
+            elementAfter = withOriginalEmptyPartsRestored(before, elementAfter);
+
             CandidateAssessmentInput input = new CandidateAssessmentInput(
                     task.getNodeId(),
                     qic.getSourceAuditId(),
@@ -209,6 +226,74 @@ class QuizInstructionReviser implements Reviser {
     @Override
     public String reviserKind() {
         return REVISER_NAME;
+    }
+
+    // F-QICOR-R010, second half: an empty part the original had, that the candidate's
+    // derived form no longer carries, is restored at its original border position (leading
+    // or trailing -- R010's own measurement found it is always one or the other, never
+    // between two parts with text). Returns elementAfter unchanged whenever there is
+    // nothing to restore, so a candidate that already matches the original's structure
+    // never gets rebuilt for no reason.
+    private CourseElementSnapshot withOriginalEmptyPartsRestored(CourseElementSnapshot before,
+            CourseElementSnapshot elementAfter) {
+        QuizTemplateEntity beforeQuiz = before != null ? before.getQuiz() : null;
+        QuizTemplateEntity afterQuiz = elementAfter != null ? elementAfter.getQuiz() : null;
+        if (beforeQuiz == null || afterQuiz == null
+                || beforeQuiz.getForm() == null || afterQuiz.getForm() == null) {
+            return elementAfter;
+        }
+
+        List<SentencePartEntity> originalParts = beforeQuiz.getForm().getSentenceParts();
+        List<SentencePartEntity> candidateParts = afterQuiz.getForm().getSentenceParts();
+        if (originalParts == null || candidateParts == null) {
+            return elementAfter;
+        }
+
+        int leadingEmptyCount = 0;
+        while (leadingEmptyCount < originalParts.size()
+                && isEmptyTextPart(originalParts.get(leadingEmptyCount))) {
+            leadingEmptyCount++;
+        }
+        int trailingEmptyCount = 0;
+        while (trailingEmptyCount < originalParts.size() - leadingEmptyCount
+                && isEmptyTextPart(originalParts.get(originalParts.size() - 1 - trailingEmptyCount))) {
+            trailingEmptyCount++;
+        }
+        if (leadingEmptyCount == 0 && trailingEmptyCount == 0) {
+            return elementAfter;
+        }
+
+        List<SentencePartEntity> reconciledParts =
+                new ArrayList<>(candidateParts.size() + leadingEmptyCount + trailingEmptyCount);
+        reconciledParts.addAll(originalParts.subList(0, leadingEmptyCount));
+        reconciledParts.addAll(candidateParts);
+        reconciledParts.addAll(
+                originalParts.subList(originalParts.size() - trailingEmptyCount, originalParts.size()));
+
+        FormEntity candidateForm = afterQuiz.getForm();
+        FormEntity reconciledForm = new FormEntity(candidateForm.getKind(), candidateForm.getIncidence(),
+                candidateForm.getLabel(), candidateForm.getName(), reconciledParts);
+
+        QuizTemplateEntity reconciledQuiz = new QuizTemplateEntity(
+                afterQuiz.getId(), afterQuiz.getOidId(), afterQuiz.getKind(), afterQuiz.getKnowledgeId(),
+                afterQuiz.getTitle(), afterQuiz.getInstructions(), afterQuiz.getTranslation(),
+                afterQuiz.getTheoryId(), afterQuiz.getTopicName(), reconciledForm,
+                afterQuiz.getDifficulty(), afterQuiz.getRetries(), afterQuiz.getNoScoreRetries(),
+                afterQuiz.getCode(), afterQuiz.getAudioUrl(), afterQuiz.getImageUrl(),
+                afterQuiz.getAnswerAudioUrl(), afterQuiz.getAnswerImageUrl(), afterQuiz.getMiniTheory(),
+                afterQuiz.getSuccessMessage(), afterQuiz.getSentences());
+
+        return new CourseElementSnapshot(elementAfter.getNodeTarget(), elementAfter.getNodeId(),
+                reconciledQuiz, elementAfter.getKnowledge());
+    }
+
+    // F-QICOR-R010: same "empty part" definition ScopedEditCriterion uses -- only a TEXT
+    // part with zero characters counts; a CLOZE part's blank text field is a structural
+    // convention for "no literal text, just a gap", not the absence of content this rule
+    // means.
+    private boolean isEmptyTextPart(SentencePartEntity part) {
+        return part != null && part.getKind() == SentencePartKind.TEXT
+                && (part.getText() == null || part.getText().isBlank());
     }
 
     private List<String> signalledFragmentsOf(List<InstructionViolation> violations) {

@@ -101,7 +101,8 @@ import org.mockito.ArgumentCaptor;
  * path-1: la revalidacion previa (R009) declara que el original ya cumple -> diagnostico
  *         caido, un desenlace de EXITO (no un fracaso): no se genera ningun candidato.
  * path-2: el original sigue incumpliendo, el candidato pasa los criterios (R004, R005) y la
- *         propuesta se aprueba -> el curso queda con el ejercicio corregido (R001, R003, R007).
+ *         propuesta se aprueba -> el curso queda con el ejercicio corregido (R001, R003, R007),
+ *         conservando la parte vacia del enunciado que el candidato no trajo (R010).
  * path-3: el original sigue incumpliendo, el candidato pasa los criterios, pero el operador
  *         rechaza la propuesta -> el curso no cambia (R007).
  * path-4: el original sigue incumpliendo y, agotados los intentos, ningun candidato pasa el
@@ -245,6 +246,33 @@ public class FQicorJ001JourneyTest {
     /** The elementBefore snapshot: the quiz as it currently exists in the course. */
     private CourseElementSnapshot buildElementBefore() {
         FormEntity form = new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("walks")),
+                new SentencePartEntity(SentencePartKind.TEXT, "(walk) to school every day.", null)
+        ));
+        QuizTemplateEntity quiz = new QuizTemplateEntity(
+                QUIZ_ID, QUIZ_ID, "CLOZE", KNOWLEDGE_ID,
+                KNOWLEDGE_TITLE, "",
+                "Ella camina a la escuela todos los dias.",
+                "basics.02.PastSimple", TOPIC_LABEL,
+                form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
+                List.of("She walks to school every day."));
+        return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
+    }
+
+    /**
+     * path-2 only (F-QICOR-R010): the same quiz as {@link #buildElementBefore()}, with one extra
+     * empty leading TEXT part — zero characters, contributes nothing to the rendered/parsed quiz
+     * sentence — prepended. Because it renders to nothing, {@link #AFTER_QUIZ_SENTENCE} (parsed
+     * back into three parts: "She", the gap, the trailing cue+text) already looks exactly like a
+     * candidate that came back without it: no other fixture in this path needs to change, only
+     * the original's part COUNT and the presence of the empty part at position 0. Kept local to
+     * this path so paths 1/3/4 keep using the shared buildElementBefore() (three parts, none
+     * empty) untouched.
+     */
+    private CourseElementSnapshot buildElementBeforeWithEmptyLeadingPart() {
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(
+                new SentencePartEntity(SentencePartKind.TEXT, "", null),
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("walks")),
                 new SentencePartEntity(SentencePartKind.TEXT, "(walk) to school every day.", null)
@@ -445,7 +473,7 @@ public class FQicorJ001JourneyTest {
 
     // -----------------------------------------------------------------------
     // path-2: sigue incumpliendo, candidato pasa los criterios, se aprueba -> success
-    // Gates: F-QICOR-R001, R003, R004, R005, R007, R009
+    // Gates: F-QICOR-R001, R003, R004, R005, R007, R009, R010
     // -----------------------------------------------------------------------
 
     @Test
@@ -465,7 +493,9 @@ public class FQicorJ001JourneyTest {
 
         AuditReport auditReport = buildAuditReport();
         RefinementPlan plan = buildPlan();
-        CourseElementSnapshot elementBefore = buildElementBefore();
+        // F-QICOR-R010: the original has an empty leading TEXT part; the candidate the generator
+        // returns below parses to only three parts, without it.
+        CourseElementSnapshot elementBefore = buildElementBeforeWithEmptyLeadingPart();
         CourseEntity course = mock(CourseEntity.class);
         CourseEntity updatedCourse = mock(CourseEntity.class);
 
@@ -523,6 +553,35 @@ public class FQicorJ001JourneyTest {
 
         verify(planStore).save(any(RefinementPlan.class));
         verify(courseRepository).save(any(CourseEntity.class), eq(COURSE_PATH));
+
+        // R010: this path mocks the write boundary (elementLocator/courseRepository), so it
+        // cannot observe a JSON round-trip — what it CAN observe, and what R010 requires here, is
+        // the quiz handed to that boundary. elementBefore has an empty leading TEXT part
+        // (position 0); the candidate the generator returned parses to only three parts, without
+        // it. The quiz delivered to elementLocator.replace(...) — the object that becomes what
+        // courseRepository.save(...) persists — must still carry all four parts, the empty one
+        // back in its original position.
+        ArgumentCaptor<CourseElementSnapshot> elementAfterCaptor =
+                ArgumentCaptor.forClass(CourseElementSnapshot.class);
+        verify(elementLocator).replace(eq(course), elementAfterCaptor.capture());
+        List<SentencePartEntity> deliveredParts =
+                elementAfterCaptor.getValue().getQuiz().getForm().getSentenceParts();
+
+        assertEquals(4, deliveredParts.size(),
+                "R010: the empty part the original had must not be lost when the candidate came "
+                        + "back without it");
+        assertEquals(SentencePartKind.TEXT, deliveredParts.get(0).getKind(),
+                "R010: the conserved part must be back in its original position, the first");
+        assertEquals("", deliveredParts.get(0).getText(),
+                "R010: the conserved part must still be empty");
+        assertEquals("She", deliveredParts.get(1).getText(),
+                "R010: conserving the empty part must not shift the parts that follow it");
+        assertEquals(SentencePartKind.CLOZE, deliveredParts.get(2).getKind(),
+                "the corrected gap must still be the third part, right where the original had it");
+        assertEquals(List.of("walked"), deliveredParts.get(2).getOptions(),
+                "the gap keeps the candidate's correction — R010 does not undo R001/R005");
+        assertEquals("(walk) to school every day.", deliveredParts.get(3).getText(),
+                "the trailing part no violation signalled stays identical (R003)");
     }
 
     // -----------------------------------------------------------------------

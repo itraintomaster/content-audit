@@ -47,6 +47,76 @@ public class ScopedEditCriterionTest {
                 "", "", List.of("She has eaten breakfast and then goes to school already."));
     }
 
+    // Same shape as quizWithParts, with the Spanish translation exposed as a parameter:
+    // needed by the tests where original and candidate disagree on the translation while
+    // sharing sentence parts (F-QICOR-R003 — "la traduccion... acompaña a la oracion
+    // cuando esta cambia legitimamente").
+    private static QuizTemplateEntity quizWithPartsAndTranslation(List<SentencePartEntity> sentenceParts,
+            String translation) {
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
+        return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1", "Breakfast routine",
+                "Complete with the correct verb form", translation,
+                "milestone.1.routines", "Daily Routines", form, 0.0, 0.0, 0.0, "", "", "", "", "",
+                "", "", List.of("She has eaten breakfast and then goes to school already."));
+    }
+
+    // Fixture for R003's own acceptance criterion (b), reused verbatim: "Why [gap]?" — the
+    // whole accepted answer for the gap is the phrase a violation quotes as evidence
+    // ("are you running"); correcting it to "are they walking" changes subject and verb
+    // together and forces a legitimate change of the Spanish translation with it. The
+    // change travels through a CLOZE option, never a TEXT part — on purpose, see the test
+    // that consumes this fixture.
+    private static List<SentencePartEntity> questionParts(String gapOption) {
+        return List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "Why ", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(gapOption)),
+                new SentencePartEntity(SentencePartKind.TEXT, "?", null));
+    }
+
+    private static QuizTemplateEntity questionQuiz(List<SentencePartEntity> sentenceParts, String translation,
+            String plainSentence) {
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
+        return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1", "Present continuous questions",
+                "Complete with the correct verb form", translation,
+                "milestone.2.continuous", "Present Continuous", form, 0.0, 0.0, 0.0, "", "", "", "", "",
+                "", "", List.of(plainSentence));
+    }
+
+    // Fixture from F-QICOR-R010's own worked example: an empty leading TEXT part — it
+    // contributes zero characters — in front of a gap whose accepted answer contradicts its
+    // own cue "(I / need)", and a trailing cue+text part no violation touches. The empty part
+    // sits FIRST on purpose, mirroring the real exercise the rule quotes
+    // (a1/present-simple/mixed-practice-with-the-present-simple-forms-2): an implementation
+    // that filters empty parts out of one side of the comparison but still walks the other
+    // side by raw (unfiltered) index misaligns right there — original[0] (empty TEXT) would
+    // get compared against candidate[0] (CLOZE) — whereas an empty part at the end would let
+    // that same bug slip through undetected, since the overlapping prefix would still line up.
+    private static List<SentencePartEntity> partsWithLeadingEmpty(String gapOption) {
+        return List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(gapOption)),
+                new SentencePartEntity(SentencePartKind.TEXT, "(I / need) a pen?", null));
+    }
+
+    // Same sentence, without the leading empty part: what a candidate looks like once it
+    // travels through the quiz-sentence text form and back (F-QICOR-R010) — the empty part
+    // leaves nothing in that text, so it never round-trips.
+    private static List<SentencePartEntity> partsWithoutTheEmptyLead(String gapOption, String trailingText) {
+        return List.of(
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(gapOption)),
+                new SentencePartEntity(SentencePartKind.TEXT, trailingText, null));
+    }
+
+    private static QuizTemplateEntity yesNoQuestionQuiz(List<SentencePartEntity> sentenceParts, String translation,
+            String plainSentence) {
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
+        return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1",
+                "Mixed practice with the present simple forms",
+                "Complete with the correct auxiliary form", translation,
+                "milestone.3.presentsimple", "Present Simple", form, 0.0, 0.0, 0.0, "", "", "", "", "",
+                "", "", List.of(plainSentence));
+    }
+
     private static CourseElementSnapshot snapshot(QuizTemplateEntity quiz) {
         return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-1", quiz, null);
     }
@@ -113,6 +183,124 @@ public class ScopedEditCriterionTest {
         QuizTemplateEntity original = quizWithParts(parts("has eaten", " breakfast and then ", "goes"));
         QuizTemplateEntity candidate = quizWithParts(parts("ate", " breakfast and then ", "goes"));
         CandidateAssessmentInput assessmentInput = input(original, candidate, List.of());
+
+        CriterionVerdict verdict = criterion.evaluate(assessmentInput);
+
+        assertEquals(CriterionOutcome.FAILED, verdict.getOutcome());
+    }
+
+    @Test
+    @DisplayName("should pass a candidate that changed the accepted answer a violation signalled and moved the Spanish translation with it")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R003")
+    public void shouldPassACandidateThatChangedTheAcceptedAnswerAViolationSignalledAndMovedTheSpanishTranslationWithIt(
+            ) {
+        QuizTemplateEntity original = questionQuiz(questionParts("are you running"),
+                "¿Por qué estás corriendo?", "Why are you running?");
+        QuizTemplateEntity candidate = questionQuiz(questionParts("are they walking"),
+                "¿Por qué están caminando?", "Why are they walking?");
+        CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("are you running"));
+
+        CriterionVerdict verdict = criterion.evaluate(assessmentInput);
+
+        assertEquals(CorrectionCriterion.SCOPED_EDIT, verdict.getCriterion());
+        assertEquals(CriterionOutcome.PASSED, verdict.getOutcome());
+    }
+
+    @Test
+    @DisplayName("should fail a candidate that left every part, gap and accepted option identical and still rewrote the Spanish translation")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R003")
+    public void shouldFailACandidateThatLeftEveryPartGapAndAcceptedOptionIdenticalAndStillRewroteTheSpanishTranslation(
+            ) {
+        QuizTemplateEntity original = questionQuiz(questionParts("are you running"),
+                "¿Por qué estás corriendo?", "Why are you running?");
+        QuizTemplateEntity candidate = questionQuiz(questionParts("are you running"),
+                "¿Por qué están caminando?", "Why are you running?");
+        CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("are you running"));
+
+        CriterionVerdict verdict = criterion.evaluate(assessmentInput);
+
+        assertEquals(CriterionOutcome.FAILED, verdict.getOutcome());
+    }
+
+    @Test
+    @DisplayName("should fail a candidate that changed the Spanish translation and also rewrote a part no violation signalled")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R003")
+    public void shouldFailACandidateThatChangedTheSpanishTranslationAndAlsoRewroteAPartNoViolationSignalled(
+            ) {
+        QuizTemplateEntity original = quizWithPartsAndTranslation(
+                parts("has eaten", " breakfast and then ", "goes"), "Ella desayuna y luego va a la escuela.");
+        QuizTemplateEntity candidate = quizWithPartsAndTranslation(
+                parts("has eaten", " breakfast, and afterward ", "goes"), "Ella desayuna y despues va a la escuela.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("has eaten"));
+
+        CriterionVerdict verdict = criterion.evaluate(assessmentInput);
+
+        assertEquals(CriterionOutcome.FAILED, verdict.getOutcome());
+    }
+
+    @Test
+    @DisplayName("should pass a candidate that came back without the empty part the original had and changed only the accepted answer a violation signalled")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R010")
+    public void shouldPassACandidateThatCameBackWithoutTheEmptyPartTheOriginalHadAndChangedOnlyTheAcceptedAnswerAViolationSignalled(
+            ) {
+        QuizTemplateEntity original = yesNoQuestionQuiz(
+                partsWithLeadingEmpty("Do I want"), "¿Quiero un bolígrafo?", "Do I want a pen?");
+        QuizTemplateEntity candidate = yesNoQuestionQuiz(
+                partsWithoutTheEmptyLead("Do I need", "(I / need) a pen?"), "¿Necesito un bolígrafo?",
+                "Do I need a pen?");
+        CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("Do I want"));
+
+        CriterionVerdict verdict = criterion.evaluate(assessmentInput);
+
+        assertEquals(CorrectionCriterion.SCOPED_EDIT, verdict.getCriterion());
+        assertEquals(CriterionOutcome.PASSED, verdict.getOutcome());
+    }
+
+    @Test
+    @DisplayName("should fail a candidate that came back without the empty part the original had and also rewrote a part no violation signalled")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R010")
+    public void shouldFailACandidateThatCameBackWithoutTheEmptyPartTheOriginalHadAndAlsoRewroteAPartNoViolationSignalled(
+            ) {
+        // Same domain as the sibling exercise F-QICOR-R010 itself cites as already living in the
+        // course without an empty part ("[Do I need] + (I / need) a mobile?") — reused here as
+        // the part the candidate rewrites even though no violation signalled it, so a PASSED
+        // verdict could only come from an implementation that skips the part-by-part walk once
+        // the part-count difference is fully explained by the missing empty part.
+        QuizTemplateEntity original = yesNoQuestionQuiz(
+                partsWithLeadingEmpty("Do I want"), "¿Quiero un bolígrafo?", "Do I want a pen?");
+        QuizTemplateEntity candidate = yesNoQuestionQuiz(
+                partsWithoutTheEmptyLead("Do I need", "(I / need) a mobile?"), "¿Quiero un bolígrafo?",
+                "Do I need a mobile?");
+        CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("Do I want"));
+
+        CriterionVerdict verdict = criterion.evaluate(assessmentInput);
+
+        assertEquals(CriterionOutcome.FAILED, verdict.getOutcome());
+    }
+
+    @Test
+    @DisplayName("should fail a candidate that came back without the empty part the original had and rewrote the Spanish translation while every part with text stayed identical")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R010")
+    public void shouldFailACandidateThatCameBackWithoutTheEmptyPartTheOriginalHadAndRewroteTheSpanishTranslationWhileEveryPartWithTextStayedIdentical(
+            ) {
+        // Losing the empty part is not a change (F-QICOR-R010), so the sentence the candidate
+        // returns is — for F-QICOR-R003 purposes — identical to the original: same gap option,
+        // same trailing text. A translation that moved anyway is moving alone, exactly what R003
+        // still forbids; an implementation that early-returns PASSED as soon as it recognizes
+        // "count differs only by the empty part" — before reaching the existing translation
+        // check — would miss this.
+        QuizTemplateEntity original = yesNoQuestionQuiz(
+                partsWithLeadingEmpty("Do I want"), "¿Quiero un bolígrafo?", "Do I want a pen?");
+        QuizTemplateEntity candidate = yesNoQuestionQuiz(
+                partsWithoutTheEmptyLead("Do I want", "(I / need) a pen?"), "¿Necesito un bolígrafo?",
+                "Do I want a pen?");
+        CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("Do I want"));
 
         CriterionVerdict verdict = criterion.evaluate(assessmentInput);
 

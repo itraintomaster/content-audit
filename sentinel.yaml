@@ -13257,6 +13257,37 @@ modules:
         traceability:
           feature: FEAT-QICOR
           rule: F-QICOR-R003
+      - name: should pass a candidate that changed the accepted answer a violation
+          signalled and moved the Spanish translation with it
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R003
+      - name: "should fail a candidate that left every part, gap and accepted option\
+          \ identical and still rewrote the Spanish translation"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R003
+      - name: should fail a candidate that changed the Spanish translation and also
+          rewrote a part no violation signalled
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R003
+      - name: should pass a candidate that came back without the empty part the original
+          had and changed only the accepted answer a violation signalled
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R010
+      - name: should fail a candidate that came back without the empty part the original
+          had and also rewrote a part no violation signalled
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R010
+      - name: should fail a candidate that came back without the empty part the original
+          had and rewrote the Spanish translation while every part with text stayed
+          identical
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R010
       implements:
       - CandidateCriterionEvaluator
     - name: LengthInRangeCriterion

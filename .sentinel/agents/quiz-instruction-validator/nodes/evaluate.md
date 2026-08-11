@@ -35,13 +35,36 @@ pedagógico dado.
    KIND:texto:opciones|KIND:texto:opciones|
    ```
 
-   Cada parte termina en `|`. Dentro de cada parte, los DOS PUNTOS SON
-   SEPARADORES DE CAMPO, no texto del ejercicio. `TEXT:Mary:|` es una parte de
-   tipo `TEXT` cuyo texto es `Mary` — **no** `Mary:`. En una parte `CLOZE` el
-   texto suele ser `null` y las opciones aceptadas van separadas por comas.
+   Cada parte termina en `|`. En una parte `CLOZE` el texto suele ser `null` y
+   las opciones aceptadas van separadas por comas.
    Nunca cites un delimitador como si fuera contenido: si vas a marcar un
    defecto de puntuación, primero asegurate de que esa puntuación esté DENTRO
    de un campo y no sea la que separa los campos.
+
+   **Los dos puntos que delimitan son el PRIMERO y el ÚLTIMO de la parte.**
+   Todos los que quedan en el medio son texto del ejercicio. `TEXT:Mary:|` tiene
+   dos: la parte es de tipo `TEXT` y su texto es `Mary` — no `Mary:`. Pero
+   `TEXT:Guess: You:|` tiene tres, y el del medio es contenido: el texto de esa
+   parte es `Guess: You`, entera. Lo mismo con `TEXT:First: If we:|`
+   (texto `First: If we`) o `TEXT:Normal request: I want a glass of water.:|`.
+   Nunca reportes que "falta el sujeto" o que "la parte no aporta el texto"
+   porque cortaste en un dos puntos del medio: la etiqueta y lo que sigue van
+   juntos.
+
+   **La barra `|` dentro de una opción separa variantes aceptadas.** El curso la
+   usa para guardar dos formas igual de válidas de la misma respuesta:
+   `CLOZE::to|with` acepta `to` **y** `with`; `CLOZE::'s going to|is going to`
+   acepta la contraída y la plena. No es una parte mal formada, no es un
+   segmento sin tipo, y no es un defecto de serialización: es la convención,
+   y aparece en 907 ejercicios del curso.
+   - Partí la opción por `|` y tratá cada trozo como **una respuesta aceptada
+     más**, exactamente igual que si vinieran separadas por coma.
+   - Nunca levantes `INVALID_ANSWER_RECONSTRUCTION` ni "opción sin tipo ni
+     campos" por una barra dentro de una opción.
+   - Sí es defecto cuando al partir por `|` alguno de los trozos **no es una
+     respuesta completa** —`from March to` / `until` / `till August` deja dos
+     fragmentos colgados—. Ahí el problema es que partieron una frase, no que
+     usaron la barra.
 
    **(b) Objeto JSON.** Puede venir como objeto, como JSON serializado en un
    string, o como un string que contiene otra serialización. Decodificá hasta
@@ -101,10 +124,45 @@ esa respuesta es lo único que se juzga.
     Peter / cook / very badly these days. [Peter is cooking very badly these days.]
     →   Peter is cooking very badly these days.
 
+### No todo paréntesis es un cue: algunos SON la consigna del ítem
+
+Los de (a) son cues de conjugación: adentro hay un verbo en forma base y/o un
+sujeto, sueltos, a veces con `/` o `not /`. Esos se descartan.
+
+**Un paréntesis que contiene prosa —una oración, una indicación, una aclaración
+de contexto— no es un cue: es la consigna de ESE ítem, y hay que leerla y
+juzgar contra ella.**
+
+    (Emphasise that it will be finished.)     (the glass is close to you)
+    (UK)          (present simple)            (I'm holding the object.)
+
+Se distinguen sin esfuerzo: un cue son una o dos palabras sueltas en forma base;
+una consigna de ítem es texto que se entiende solo.
+
+**Y su ausencia también informa.** Cuando la consigna del knowledge es
+condicional —«usá A para tal cosa; **si no**, usá B»— el paréntesis es lo que
+activa la rama A. Si el ítem **no** lo trae, la respuesta correcta es B, y
+marcarlo es inventar una exigencia que el ejercicio no hace:
+
+    "Usa future perfect para remarcar que algo terminará; si no, usa will."
+
+    He / prepare dinner by nine. (Emphasise that it will be finished.)
+        → He'll have prepared dinner by nine.      cumple
+
+    He / leave the cabin before the storm arrives tonight.
+        → He'll leave the cabin before the storm arrives tonight.   TAMBIEN cumple
+
+En el segundo no hay nada que pedirle remarcar. Que la oración hable de un
+momento futuro —`by nine`, `before…`— **no** activa por sí solo la rama A: la
+activa el paréntesis. No deduzcas la exigencia del contenido de la oración
+cuando la consigna la ató a una marca explícita.
+
 ### Reglas operativas
 
 - **Descartá el enunciado y juzgá lo que queda.** Si te llega `form.sentences`,
-  la confirmación es directa: el enunciado no aparece ahí.
+  la confirmación es directa: el enunciado no aparece ahí. Ojo: descartar vale
+  para los cues de conjugación y las alternativas, **no** para un paréntesis en
+  prosa, que es consigna del ítem y se lee.
 - **Si un hueco contiene una oración completa, esa oración ES la respuesta.**
   Todo `TEXT` a su alrededor es enunciado. No lo concatenes: concatenar produce
   una duplicación que no existe en el ejercicio real.

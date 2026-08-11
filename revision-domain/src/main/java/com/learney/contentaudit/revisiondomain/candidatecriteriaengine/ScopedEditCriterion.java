@@ -2,12 +2,14 @@ package com.learney.contentaudit.revisiondomain.candidatecriteriaengine;
 
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessmentInput;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateCriterionEvaluator;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
@@ -18,6 +20,20 @@ import javax.annotation.processing.Generated;
  * back character-for-character identical. Deterministic, part-by-part
  * comparison of the original and the candidate: a part is allowed to differ
  * only when its before or after text/options overlap a signalled fragment.
+ * The Spanish translation is exempt from that comparison — fidelity is judged
+ * by a criterion of its own, against the proposed sentence
+ * (F-QICOR-R004 criterion 4) — except that it must stay identical whenever the
+ * proposed sentence (every part, gap and accepted option) did not change at
+ * all: it is not allowed to change on its own.
+ *
+ * <p>F-QICOR-R010: an <em>empty part</em> — fixed text contributing zero
+ * characters — is not content, so it is filtered out of both the original and
+ * the candidate before the size check and the part-by-part walk below. Never
+ * as a shortcut that skips that walk: the filtered lists are compared exactly
+ * like any other pair of part lists, so a part-count difference the empty
+ * parts do not fully explain still fails here, and a candidate that rewrites
+ * an unsignalled part still fails on that part even once the counts already
+ * match with the empty parts set aside.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -44,27 +60,34 @@ class ScopedEditCriterion implements CandidateCriterionEvaluator {
                 ? input.getSignalledFragments()
                 : List.of();
 
-        if (!Objects.equals(originalQuiz.getTranslation(), candidateQuiz.getTranslation())
-                && !isChangeSignalled(originalQuiz.getTranslation(), candidateQuiz.getTranslation(),
-                        signalled)) {
-            return new CriterionVerdict(criterion(), CriterionOutcome.FAILED,
-                    "La traduccion cambio sin que ninguna violacion la señalara");
-        }
-
-        List<SentencePartEntity> originalParts = originalQuiz.getForm() != null
+        List<SentencePartEntity> originalPartsRaw = originalQuiz.getForm() != null
                 ? originalQuiz.getForm().getSentenceParts()
                 : null;
-        List<SentencePartEntity> candidateParts = candidateQuiz.getForm() != null
+        List<SentencePartEntity> candidatePartsRaw = candidateQuiz.getForm() != null
                 ? candidateQuiz.getForm().getSentenceParts()
                 : null;
-        int originalSize = originalParts != null ? originalParts.size() : 0;
-        int candidateSize = candidateParts != null ? candidateParts.size() : 0;
+
+        // F-QICOR-R010: empty parts are not content, so whether the candidate brought one
+        // back never decides whether it is proposed. Filtered out of both sides before
+        // anything else so the size check and the walk below never see them.
+        List<SentencePartEntity> originalParts = withoutEmptyTextParts(originalPartsRaw);
+        List<SentencePartEntity> candidateParts = withoutEmptyTextParts(candidatePartsRaw);
+        int originalSize = originalParts.size();
+        int candidateSize = candidateParts.size();
         if (originalSize != candidateSize) {
+            int originalRawSize = originalPartsRaw != null ? originalPartsRaw.size() : 0;
+            int candidateRawSize = candidatePartsRaw != null ? candidatePartsRaw.size() : 0;
             return new CriterionVerdict(criterion(), CriterionOutcome.FAILED,
-                    "El candidato cambio la cantidad de partes del ejercicio (" + originalSize
-                            + " -> " + candidateSize + ")");
+                    "El candidato cambio la cantidad de partes del ejercicio (" + originalRawSize
+                            + " -> " + candidateRawSize + ")");
         }
 
+        // Tracks whether the proposed sentence (parts, gaps and accepted options) differs
+        // from the original at all, signalled or not. Computed as a byproduct of the part
+        // loop below — never as a shortcut that would skip it — because the translation
+        // check after the loop must never bypass the collateral-change check the loop
+        // performs on every part.
+        boolean sentenceChanged = false;
         for (int i = 0; i < originalSize; i++) {
             SentencePartEntity originalPart = originalParts.get(i);
             SentencePartEntity candidatePart = candidateParts.get(i);
@@ -74,6 +97,7 @@ class ScopedEditCriterion implements CandidateCriterionEvaluator {
             if (!textChanged && !optionsChanged) {
                 continue;
             }
+            sentenceChanged = true;
             boolean textSignalled = isChangeSignalled(
                     originalPart.getText(), candidatePart.getText(), signalled);
             boolean optionsSignalledFlag = optionsSignalled(
@@ -87,8 +111,45 @@ class ScopedEditCriterion implements CandidateCriterionEvaluator {
                             + candidatePart.getText() + "'");
         }
 
+        // F-QICOR-R003: the translation is out of scope for the signalled-fragment check —
+        // it is judged for fidelity by its own criterion against the proposed sentence
+        // (F-QICOR-R004 criterion 4) — but it is not allowed to change on its own: only
+        // fail it here when the sentence it is supposed to be translating stayed identical.
+        boolean translationChanged =
+                !Objects.equals(originalQuiz.getTranslation(), candidateQuiz.getTranslation());
+        if (translationChanged && !sentenceChanged) {
+            return new CriterionVerdict(criterion(), CriterionOutcome.FAILED,
+                    "La traduccion cambio sin que la oracion propuesta cambiara");
+        }
+
         return new CriterionVerdict(criterion(), CriterionOutcome.PASSED,
                 "El cambio se limita a lo que las violaciones señalan");
+    }
+
+    // F-QICOR-R010: strips empty parts before any comparison happens. Returns a fresh list
+    // (never the input, which may be null) so callers can safely index and size() it like
+    // any other part list.
+    private List<SentencePartEntity> withoutEmptyTextParts(List<SentencePartEntity> parts) {
+        if (parts == null) {
+            return List.of();
+        }
+        List<SentencePartEntity> filtered = new ArrayList<>(parts.size());
+        for (SentencePartEntity part : parts) {
+            if (!isEmptyTextPart(part)) {
+                filtered.add(part);
+            }
+        }
+        return filtered;
+    }
+
+    // F-QICOR-R010: only a TEXT part ("fixed text") with zero characters is "empty" in the
+    // rule's sense. A CLOZE part's own text field is conventionally blank too — its content
+    // lives in its accepted options, not in `text` — but that is a structural convention for
+    // representing a gap, not "no content at all", so CLOZE parts are never filtered here
+    // regardless of their text field.
+    private boolean isEmptyTextPart(SentencePartEntity part) {
+        return part != null && part.getKind() == SentencePartKind.TEXT
+                && (part.getText() == null || part.getText().isBlank());
     }
 
     private boolean isChangeSignalled(String before, String after, List<String> signalledFragments) {

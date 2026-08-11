@@ -1466,8 +1466,8 @@ del servicio |
 ### FEAT-QICOR: Correccion del incumplimiento de consigna de un ejercicio [F-QICOR]
 
 > **Que**: Una tarea de incumplimiento de consigna se convierte en una correccion
-propuesta del ejercicio —minima, que no empeora lo que ya estaba bien y que
-cumple la consigna— revisable y aprobable con el mismo flujo que las demas.
+propuesta del ejercicio —minima, dirigida por la violacion y que cumple la
+consigna— revisable y aprobable con el mismo flujo que las demas.
 
 **Por que**: Hoy el incumplimiento se detecta, se puntua y llega al plan como
 tarea, pero ahi se detiene: no hay forma de pedirle al sistema que proponga como
@@ -1481,12 +1481,18 @@ correccion que aprobar.
 | F-QICOR-R001 | Una tarea de incumplimiento de consigna produce una correccion propuesta y revisable | critical | La revision de la tarea de incumplimiento de consigna del ejercicio '{quizId}' no produjo ninguna correccion |
 | F-QICOR-R002 | La correccion se prepara sobre las violaciones señaladas, con su evidencia | critical | La correccion del ejercicio '{quizId}' se preparo sin las violaciones que registro su diagnostico de consigna |
 | F-QICOR-R003 | Corregir no es reescribir: el cambio se limita a lo que la violacion señala | critical | La correccion del ejercicio '{quizId}' modifico contenido que ninguna violacion de su consigna señala |
-| F-QICOR-R004 | No empeorar: el ejercicio corregido conserva todo lo que ya cumplia | critical | La correccion propuesta para el ejercicio '{quizId}' reprueba el criterio '{criterio}' que el ejercicio original cumplia |
+| F-QICOR-R004 | No empeorar: el catalogo de criterios con el que se juzga al ejercicio corregido | critical | El ejercicio corregido de '{quizId}' se propuso sin haberse sometido al criterio '{criterio}' |
 | F-QICOR-R005 | El resultado cumple la consigna, verificado con el mismo criterio que detecto el incumplimiento | critical | Se propuso para el ejercicio '{quizId}' una correccion que sigue incumpliendo su consigna |
-| F-QICOR-R006 | No lograr una correccion aceptable es un desenlace explicito, no un silencio ni una propuesta peor | critical | No se logro una correccion aceptable para el ejercicio '{quizId}': reprobaron {criterios} |
+| F-QICOR-R006 | No lograr una correccion queda para el unico caso en que no hay nada que entregar | critical | No se logro una correccion aceptable para el ejercicio '{quizId}': ningun candidato resulto entregable ({criterios}) |
 | F-QICOR-R007 | Aprobar deja el ejercicio corregido en el curso; rechazar no cambia nada | critical | Se aprobo la correccion de consigna del ejercicio '{quizId}' y el curso conserva su contenido anterior |
 | F-QICOR-R008 | Cada corrida acota cuantas correcciones intenta y declara lo que quedo sin corregir | major | - |
 | F-QICOR-R009 | Antes de corregir se revalida el original; si ya cumple, no se corrige nada | critical | Se corrigio el ejercicio '{quizId}' a partir de un diagnostico de consigna que la validacion vigente ya no sostiene |
+| F-QICOR-R010 | Una parte vacia del enunciado no es contenido: ni bloquea la correccion ni se pierde al aprobarla | critical | El ejercicio '{quizId}' perdio al aplicar su correccion una parte vacia del enunciado que el original tenia |
+| F-QICOR-R011 | La longitud se mide y se declara, pero no rechaza una correccion | critical | Se propuso para el ejercicio '{quizId}' una correccion fuera del rango de longitud de su nivel sin declararlo |
+| F-QICOR-R012 | El lazo de intentos lo conduce quien corrige, y al agotarlo entrega su mejor candidato | critical | La correccion del ejercicio '{quizId}' agoto sus intentos y descarto el mejor candidato que habia producido |
+| F-QICOR-R013 | Cual es el mejor candidato: primero si sirve, despues cuanto conserva, la longitud al final | critical | Se entrego para el ejercicio '{quizId}' un candidato peor que otro que la misma correccion habia producido |
+| F-QICOR-R014 | Lo que se entrega sin cumplir todo se entrega diciendolo | critical | Se propuso para el ejercicio '{quizId}' una correccion que no cumple el criterio '{criterio}' sin declararlo |
+| F-QICOR-R015 | Los criterios se consultan, no se reimplementan | critical | El candidato del ejercicio '{quizId}' se juzgo con una medicion distinta de la que aplica el sistema |
 
 **User Journeys:**
 

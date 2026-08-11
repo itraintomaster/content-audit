@@ -1,4 +1,4 @@
-generatedAt: 2026-08-06T15:45:25.726556Z
+generatedAt: 2026-08-11T12:16:26.734266Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -4265,130 +4265,122 @@ features:
       module: audit-cli
       implementation: GetCmd
   - ruleId: F-QINST-R018
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should reject the run request that declares an empty set of quizzes,\
         \ before opening the evaluation session"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultQuizInstructionAnalyzerFactory
     - name: "should reject the run request that declares a set of quizzes together\
         \ with a course area, before opening the evaluation session"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultQuizInstructionAnalyzerFactory
     - name: "should query the judge for every quiz of the declared set and for no\
         \ quiz outside it, whatever verdict the outsiders already have"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: QuizInstructionAnalyzer
     - name: "should keep the score and the diagnosis of a quiz of the declared set\
         \ the budget did not reach, instead of leaving it pending"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: QuizInstructionAnalyzer
     - name: should declare as unmatched every id of the declared set that no quiz
         of the course corresponded to
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: QuizInstructionAnalyzer
     - name: should keep the reached total and the coverage sums closed when the declared
         set carries ids that match no quiz of the course
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: QuizInstructionAnalyzer
     - name: should decide a new judgement for every quiz of the declared set and a
         reuse without consulting for every quiz outside it
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultQuizInstructionScopeMatcher
     - name: "should carry into the instruction run policy the set of quizzes the user\
         \ declared, as the only re evaluation scope of the run"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
     - name: should reuse the registered result without consulting the evaluator and
         without spending the run budget when the content is resolved without consulting
       implemented: true
-      passing: false
-      failureMessage: "java.lang.UnsupportedOperationException: Not implemented yet\n\
-        \tat com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSession.resolveWithoutConsulting(DefaultEvaluationSe..."
+      passing: true
       module: evaluation-ledger-domain
       implementation: DefaultEvaluationSession
     - name: should leave the content pending without consulting the evaluator when
         it is resolved without consulting and nothing is registered for it
       implemented: true
-      passing: false
-      failureMessage: "java.lang.UnsupportedOperationException: Not implemented yet\n\
-        \tat com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSession.resolveWithoutConsulting(DefaultEvaluationSe..."
+      passing: true
       module: evaluation-ledger-domain
       implementation: DefaultEvaluationSession
     - name: should consult the evaluator for content that already has a registered
         result when a new evaluation is preferred for it
       implemented: true
-      passing: false
-      failureMessage: "java.lang.UnsupportedOperationException: Not implemented yet\n\
-        \tat com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSession.resolvePreferringNew(DefaultEvaluationSessio..."
+      passing: true
       module: evaluation-ledger-domain
       implementation: DefaultEvaluationSession
     - name: should keep the registered result instead of leaving the content pending
         when a new evaluation is preferred and the budget is already exhausted
       implemented: true
-      passing: false
-      failureMessage: "java.lang.UnsupportedOperationException: Not implemented yet\n\
-        \tat com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSession.resolvePreferringNew(DefaultEvaluationSessio..."
+      passing: true
       module: evaluation-ledger-domain
       implementation: DefaultEvaluationSession
   - ruleId: F-QINST-R019
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should not run the audit at all, and should report the origin it could\
         \ not read, when the request names an unreadable origin for the set of quizzes"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: AnalyzeCmd
     - name: should resolve the same set of quiz ids whether they are enumerated in
         the request or read from the origin the request names
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultReevaluationQuizSetResolver
     - name: should count a quiz id declared more than once as a single id of the set
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultReevaluationQuizSetResolver
     - name: "should discard the surplus separators, the spaces around each id and\
         \ the blank entries instead of keeping them as ids"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultReevaluationQuizSetResolver
     - name: "should reject the request naming the origin it could not read, instead\
         \ of returning an empty set"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultReevaluationQuizSetResolver
     - name: "should return an empty set when the origin it read carries no id at all,\
         \ leaving the rejection to the run request"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultReevaluationQuizSetResolver
     - name: should reject the request that enumerates ids and names an origin to read
         them from at the same time
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultReevaluationQuizSetResolver
   journeysCoverage:
@@ -4519,60 +4511,60 @@ features:
         module: audit-application
         implementation: FQinstJ003JourneyTest
   - journeyId: F-QINST-J004
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_elConjuntoDeclaraEjerciciosDelCursoYElTopeDeConsultasDeLaCorridaAlcanzaParaTodos_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-application
         implementation: FQinstJ004JourneyTest
     - pathId: path-2
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_elConjuntoDeclaraMasEjerciciosQueElTopeDeConsultasDeLaCorrida_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-application
         implementation: FQinstJ004JourneyTest
     - pathId: path-3
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path3_parteDeLosIdentificadoresDeclaradosNoCorrespondeANingunEjercicioDelCurso_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-application
         implementation: FQinstJ004JourneyTest
     - pathId: path-4
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path4_elConjuntoDeclaraUnEjercicioQueExisteYNuncaFueJuzgado_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-application
         implementation: FQinstJ004JourneyTest
     - pathId: path-5
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path5_elConjuntoDeclaradoEstaVacio_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-application
         implementation: FQinstJ004JourneyTest
     - pathId: path-6
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path6_elPedidoDeclaraALaVezUnConjuntoDeEjerciciosYUnAreaDelCurso_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-application
         implementation: FQinstJ004JourneyTest
   quality:
@@ -4613,14 +4605,14 @@ features:
       branchCoveragePct: 52
       blendPct: 58
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 51
+      killed: 27
+      survived: 17
+      noCoverage: 7
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 52
+      testStrengthPct: 61
     crap:
       totalMethods: 173
       hotspots: 10
@@ -4702,11 +4694,12 @@ features:
         cyclomatic: 13
         lineCoveragePct: 51
         crap: 32.882681
-    healthScore: 39
+    healthScore: 63
     verdict: WARNED
     violations:
     - lineCoverage 65% < 70%
     - branchCoverage 52% < 60%
+    - mutationScore 52% < 60%
     - crapHotspots 10 > 5
 - id: FEAT-INCEXP
   state: IMPLEMENTED
@@ -5784,6 +5777,24 @@ features:
       passing: true
       module: revision-domain
       implementation: ScopedEditCriterion
+    - name: should pass a candidate that changed the accepted answer a violation signalled
+        and moved the Spanish translation with it
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: ScopedEditCriterion
+    - name: "should fail a candidate that left every part, gap and accepted option\
+        \ identical and still rewrote the Spanish translation"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: ScopedEditCriterion
+    - name: should fail a candidate that changed the Spanish translation and also
+        rewrote a part no violation signalled
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: ScopedEditCriterion
   - ruleId: F-QICOR-R004
     state: PASSING
     tests:
@@ -6007,9 +6018,41 @@ features:
       passing: true
       module: revision-domain
       implementation: DefaultQuizInstructionCorrectionRunner
+  - ruleId: F-QICOR-R010
+    state: PASSING
+    tests:
+    - name: should pass a candidate that came back without the empty part the original
+        had and changed only the accepted answer a violation signalled
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: ScopedEditCriterion
+    - name: should fail a candidate that came back without the empty part the original
+        had and also rewrote a part no violation signalled
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: ScopedEditCriterion
+    - name: should fail a candidate that came back without the empty part the original
+        had and rewrote the Spanish translation while every part with text stayed
+        identical
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: ScopedEditCriterion
+  - ruleId: F-QICOR-R011
+    state: NO_TESTS
+  - ruleId: F-QICOR-R012
+    state: NO_TESTS
+  - ruleId: F-QICOR-R013
+    state: NO_TESTS
+  - ruleId: F-QICOR-R014
+    state: NO_TESTS
+  - ruleId: F-QICOR-R015
+    state: NO_TESTS
   journeysCoverage:
   - journeyId: F-QICOR-J001
-    state: PASSING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
@@ -6022,29 +6065,29 @@ features:
         implementation: FQicorJ001JourneyTest
     - pathId: path-2
       result: success
-      state: PASSING
+      state: DECLARED
       tests:
-      - name: path2_laValidacionVigenteConfirmaQueElEjercicioOriginalSigueIncumpliendoSuConsigna_elEjercicioCorregidoPasaLosCincoCriteriosDeNoRegresionYLaValidacionDeConsignaDeclaraQueAhoraCumple_laPropuestaSeAprueba_success
-        implemented: true
-        passing: true
+      - name: path2_laValidacionVigenteConfirmaQueElEjercicioOriginalSigueIncumpliendoSuConsigna_elCandidatoEntregadoCumpleSuConsignaYConstituyeUnCambioRealSobreElOriginalAunqueHayaQuedadoFueraDelRangoDeLongitudDeSuNivelORepruebeAlgunOtroCriterioDelCatalogo_laPropuestaSeAprueba_success
+        implemented: false
+        passing: false
         module: audit-cli
         implementation: FQicorJ001JourneyTest
     - pathId: path-3
       result: failure
-      state: PASSING
+      state: DECLARED
       tests:
-      - name: path3_laValidacionVigenteConfirmaQueElEjercicioOriginalSigueIncumpliendoSuConsigna_elEjercicioCorregidoPasaLosCincoCriteriosDeNoRegresionYLaValidacionDeConsignaDeclaraQueAhoraCumple_elOperadorRechazaLaPropuesta_failure
-        implemented: true
-        passing: true
+      - name: path3_laValidacionVigenteConfirmaQueElEjercicioOriginalSigueIncumpliendoSuConsigna_elCandidatoEntregadoCumpleSuConsignaYConstituyeUnCambioRealSobreElOriginalAunqueHayaQuedadoFueraDelRangoDeLongitudDeSuNivelORepruebeAlgunOtroCriterioDelCatalogo_elOperadorRechazaLaPropuesta_failure
+        implemented: false
+        passing: false
         module: audit-cli
         implementation: FQicorJ001JourneyTest
     - pathId: path-4
       result: failure
-      state: PASSING
+      state: DECLARED
       tests:
-      - name: path4_laValidacionVigenteConfirmaQueElEjercicioOriginalSigueIncumpliendoSuConsigna_agotadosLosIntentosNingunEjercicioCorregidoPasaTodosLosCriterios_failure
-        implemented: true
-        passing: true
+      - name: path4_laValidacionVigenteConfirmaQueElEjercicioOriginalSigueIncumpliendoSuConsigna_agotadosLosIntentosNingunCandidatoCumplioSuConsignaNiConstituyoUnCambioRealNoHayNadaEntregable_failure
+        implemented: false
+        passing: false
         module: audit-cli
         implementation: FQicorJ001JourneyTest
   - journeyId: F-QICOR-J002
@@ -6403,14 +6446,14 @@ features:
       branchCoveragePct: 48
       blendPct: 49
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 64
+      killed: 31
+      survived: 25
+      noCoverage: 8
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 48
+      testStrengthPct: 55
     crap:
       totalMethods: 23
       hotspots: 1
@@ -6429,11 +6472,12 @@ features:
         cyclomatic: 8
         lineCoveragePct: 0
         crap: 72.0
-    healthScore: 39
+    healthScore: 60
     verdict: WARNED
     violations:
     - lineCoverage 50% < 70%
     - branchCoverage 48% < 60%
+    - mutationScore 48% < 60%
 - id: FEAT-NLP
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
@@ -31939,7 +31983,7 @@ elements:
         verdict = QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "Cumple la consigna", List.of(), List.of())
         quizDiagnosis = QuizInstructionDiagnosis(verdict, 1.0, false)
         coverage = EvaluationCoverage(1, 1, 1, 0, 0, 0)
-        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, "v1", List.of())
+        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, "v1", List.of(), null)
         quizInstructionAnalyzer = mock(ContentAnalyzer.class)
         quizInstructionFactory = mock(EvaluationAnalyzerFactory.class)
         runner = DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine, List.of(), scoreAggregator, List.of(quizInstructionFactory))
@@ -32069,7 +32113,7 @@ elements:
       given:
         quizInstructionFactory = mock(EvaluationAnalyzerFactory.class)
         runner = DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine, List.of(), scoreAggregator, List.of(quizInstructionFactory))
-        policy = EvaluationRunPolicy(200, false, null)
+        policy = EvaluationRunPolicy(200, false, null, null)
         request = AuditRunRequest(null, null, Map.of("quiz-instruction", policy))
 
       mock:
@@ -32109,7 +32153,7 @@ elements:
       when:
         sut.thenAnswer(invocation -> {
           EvaluationRunPolicy policy = invocation.getArgument(0);
-          EvaluationRunPolicy effectivePolicy = policy != null ? policy : new EvaluationRunPolicy(500, false, null);
+          EvaluationRunPolicy effectivePolicy = policy != null ? policy : new EvaluationRunPolicy(500, false, null, null);
           EvaluationSession session = sessionFactory.open(quizInstructionBudgetFrom(effectivePolicy), evaluator);
           return quizInstructionSessionBackedAnalyzer(session, effectivePolicy);
       })
@@ -32133,7 +32177,7 @@ elements:
         evaluator = FakeQuizInstructionEvaluator(EVALUATOR_ID, "v1")
         quizInstructionFactory = mock(EvaluationAnalyzerFactory.class)
         runner = DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine, List.of(), scoreAggregator, List.of(quizInstructionFactory))
-        cappedPolicy = EvaluationRunPolicy(2, false, null)
+        cappedPolicy = EvaluationRunPolicy(2, false, null, null)
         request = AuditRunRequest(null, null, Map.of(ANALYZER_NAME, cappedPolicy))
 
       mock:
@@ -32168,7 +32212,7 @@ elements:
         currentKey = EvaluationKey(EVALUATOR_ID, fingerprint)
         quizInstructionFactory = mock(EvaluationAnalyzerFactory.class)
         runner = DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine, List.of(), scoreAggregator, List.of(quizInstructionFactory))
-        reevaluationPolicy = EvaluationRunPolicy(500, true, null)
+        reevaluationPolicy = EvaluationRunPolicy(500, true, null, null)
         request = AuditRunRequest(null, null, Map.of(ANALYZER_NAME, reevaluationPolicy))
 
       mock:
@@ -35372,7 +35416,7 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, ignored -> null)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, ignored -> null, mock(ReevaluationQuizSetResolver.class))
         errCapture = ByteArrayOutputStream()
         originalErr = System.err
         errOutput = errCapture.toString()
@@ -35395,7 +35439,7 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class))
         errCapture = ByteArrayOutputStream()
         originalErr = System.err
         errOutput = errCapture.toString()
@@ -35424,7 +35468,7 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class))
         outCapture = ByteArrayOutputStream()
         originalOut = System.out
         output = outCapture.toString()
@@ -35458,7 +35502,7 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class))
         outCapture = ByteArrayOutputStream()
         originalOut = System.out
         output = outCapture.toString()
@@ -35491,7 +35535,7 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class))
         originalOut = System.out
 
       mock:
@@ -35518,7 +35562,7 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class))
         errCapture = ByteArrayOutputStream()
         originalErr = System.err
         errOutput = errCapture.toString()
@@ -35547,8 +35591,8 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
-        options = AnalyzeOptions("text", null, null, null, null, List.of("quiz-instruction"), false, null, null)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class))
+        options = AnalyzeOptions("text", null, null, null, null, List.of("quiz-instruction"), false, null, null, null)
         originalOut = System.out
         captor = ArgumentCaptor.forClass(AuditRunRequest.class)
         request = captor.getValue()
@@ -35582,8 +35626,8 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
-        options = AnalyzeOptions("text", null, null, null, null, null, false, 250, null)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class))
+        options = AnalyzeOptions("text", null, null, null, null, null, false, 250, null, null)
         originalOut = System.out
         captor = ArgumentCaptor.forClass(AuditRunRequest.class)
         request = captor.getValue()
@@ -35619,8 +35663,8 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
-        options = AnalyzeOptions("text", null, null, null, null, null, false, null, "knowledge:K-042")
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class))
+        options = AnalyzeOptions("text", null, null, null, null, null, false, null, "knowledge:K-042", null)
         originalOut = System.out
         captor = ArgumentCaptor.forClass(AuditRunRequest.class)
         request = captor.getValue()
@@ -35657,8 +35701,8 @@ elements:
         auditReportStore = mock(AuditReportStore.class)
         drillDownResolver = DefaultDrillDownResolver()
         detailedFormatters = HashMap<>()
-        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve)
-        options = AnalyzeOptions("text", null, null, null, null, null, false, null, null)
+        sut = AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer, rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore, CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class))
+        options = AnalyzeOptions("text", null, null, null, null, null, false, null, null, null)
         originalOut = System.out
         captor = ArgumentCaptor.forClass(AuditRunRequest.class)
         request = captor.getValue()
@@ -40564,7 +40608,7 @@ elements:
 
       given:
         coverage = EvaluationCoverage(1060, 156, 52, 104, 811, 93)
-        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, "judge-v1", List.of())
+        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, "judge-v1", List.of(), null)
         courseDiagnoses = mock(CourseDiagnoses.class)
         courseNode = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("quiz-instruction", 0.62), Map.of(), courseDiagnoses)
         formatter = QuizInstructionDetailedFormatter()
@@ -40616,7 +40660,7 @@ elements:
       given:
         coverage = EvaluationCoverage(742, 610, 88, 522, 120, 12)
         judgeVersion = "qij-8f3d1c-2026.07"
-        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, judgeVersion, List.of())
+        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, judgeVersion, List.of(), null)
         courseDiagnoses = mock(CourseDiagnoses.class)
         courseNode = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("quiz-instruction", 0.48), Map.of(), courseDiagnoses)
         formatter = QuizInstructionDetailedFormatter()
@@ -40638,7 +40682,7 @@ elements:
         judgeVersionOlder = "qij-aaa111"
         judgeVersionNewer = "qij-bbb222"
         verdictsByJudgeVersion = List.of(new JudgeVersionVerdictCount(judgeVersionOlder, 47), new JudgeVersionVerdictCount(judgeVersionNewer, 253))
-        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, judgeVersionNewer, verdictsByJudgeVersion)
+        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, judgeVersionNewer, verdictsByJudgeVersion, null)
         courseDiagnoses = mock(CourseDiagnoses.class)
         courseNode = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("quiz-instruction", 0.55), Map.of(), courseDiagnoses)
         formatter = QuizInstructionDetailedFormatter()
@@ -40661,10 +40705,10 @@ elements:
       given:
         coverage = EvaluationCoverage(200, 180, 0, 180, 15, 5)
         verdictsByJudgeVersion = List.of(new JudgeVersionVerdictCount("qij-old999", 180))
-        coverageDiagnosisWithVersion = QuizInstructionCoverageDiagnosis(coverage, "qij-old999", verdictsByJudgeVersion)
+        coverageDiagnosisWithVersion = QuizInstructionCoverageDiagnosis(coverage, "qij-old999", verdictsByJudgeVersion, null)
         courseDiagnosesWithVersion = mock(CourseDiagnoses.class)
         courseNodeWithVersion = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("quiz-instruction", 0.4), Map.of(), courseDiagnosesWithVersion)
-        coverageDiagnosisNoVersion = QuizInstructionCoverageDiagnosis(coverage, null, verdictsByJudgeVersion)
+        coverageDiagnosisNoVersion = QuizInstructionCoverageDiagnosis(coverage, null, verdictsByJudgeVersion, null)
         courseDiagnosesNoVersion = mock(CourseDiagnoses.class)
         courseNodeNoVersion = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("quiz-instruction", 0.4), Map.of(), courseDiagnosesNoVersion)
         formatter = QuizInstructionDetailedFormatter()
@@ -41280,7 +41324,7 @@ elements:
         resolvedFromOrigin = resolver.resolve(null, origin.toString())
 
       when:
-        sut.writeString(origin, "Q-101,Q-202,Q-303")
+        sut.writeString(origin, "Q-101\nQ-202\nQ-303")
 
       then:
         resolvedFromEnumeration == expected
@@ -41300,10 +41344,16 @@ elements:
 
       given:
         noisyEnumeration = "  , Q-1 ,, Q-2 ,,, Q-3,  ,"
-        resolved = resolver.resolve(noisyEnumeration, null)
+        resolvedFromEnumeration = resolver.resolve(noisyEnumeration, null)
+        origin = tempDir.resolve("noisy-quiz-ids.txt")
+        resolvedFromOrigin = resolver.resolve(null, origin.toString())
+
+      when:
+        sut.writeString(origin, "\n  Q-1  \n\nQ-2\n   \n  Q-3  \n")
 
       then:
-        resolved == Set.of("Q-1", "Q-2", "Q-3")
+        resolvedFromEnumeration == Set.of("Q-1", "Q-2", "Q-3")
+        resolvedFromOrigin == Set.of("Q-1", "Q-2", "Q-3")
     - |
       test: "should reject the request naming the origin it could not read, instead of returning an empty set"
       trace: FEAT-QINST / F-QINST-R019
@@ -51303,6 +51353,31 @@ elements:
         signalled no fragment at all
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/candidatecriteriaengine/ScopedEditCriterionTest.java
+    - name: should pass a candidate that changed the accepted answer a violation signalled
+        and moved the Spanish translation with it
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/candidatecriteriaengine/ScopedEditCriterionTest.java
+    - name: "should fail a candidate that left every part, gap and accepted option\
+        \ identical and still rewrote the Spanish translation"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/candidatecriteriaengine/ScopedEditCriterionTest.java
+    - name: should fail a candidate that changed the Spanish translation and also
+        rewrote a part no violation signalled
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/candidatecriteriaengine/ScopedEditCriterionTest.java
+    - name: should pass a candidate that came back without the empty part the original
+        had and changed only the accepted answer a violation signalled
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/candidatecriteriaengine/ScopedEditCriterionTest.java
+    - name: should fail a candidate that came back without the empty part the original
+        had and also rewrote a part no violation signalled
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/candidatecriteriaengine/ScopedEditCriterionTest.java
+    - name: should fail a candidate that came back without the empty part the original
+        had and rewrote the Spanish translation while every part with text stayed
+        identical
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/candidatecriteriaengine/ScopedEditCriterionTest.java
     testCleanViews:
     - |
       test: "should pass a candidate that changed only the part a violation signalled and returned every other part character for character"
@@ -51349,6 +51424,80 @@ elements:
         original = quizWithParts(parts("has eaten", " breakfast and then ", "goes"))
         candidate = quizWithParts(parts("ate", " breakfast and then ", "goes"))
         assessmentInput = input(original, candidate, List.of())
+        verdict = criterion.evaluate(assessmentInput)
+
+      then:
+        verdict.getOutcome() == CriterionOutcome.FAILED
+    - |
+      test: "should pass a candidate that changed the accepted answer a violation signalled and moved the Spanish translation with it"
+      trace: FEAT-QICOR / F-QICOR-R003
+
+      given:
+        original = questionQuiz(questionParts("are you running"), "¿Por qué estás corriendo?", "Why are you running?")
+        candidate = questionQuiz(questionParts("are they walking"), "¿Por qué están caminando?", "Why are they walking?")
+        assessmentInput = input(original, candidate, List.of("are you running"))
+        verdict = criterion.evaluate(assessmentInput)
+
+      then:
+        verdict.getCriterion() == CorrectionCriterion.SCOPED_EDIT
+        verdict.getOutcome() == CriterionOutcome.PASSED
+    - |
+      test: "should fail a candidate that left every part, gap and accepted option identical and still rewrote the Spanish translation"
+      trace: FEAT-QICOR / F-QICOR-R003
+
+      given:
+        original = questionQuiz(questionParts("are you running"), "¿Por qué estás corriendo?", "Why are you running?")
+        candidate = questionQuiz(questionParts("are you running"), "¿Por qué están caminando?", "Why are you running?")
+        assessmentInput = input(original, candidate, List.of("are you running"))
+        verdict = criterion.evaluate(assessmentInput)
+
+      then:
+        verdict.getOutcome() == CriterionOutcome.FAILED
+    - |
+      test: "should fail a candidate that changed the Spanish translation and also rewrote a part no violation signalled"
+      trace: FEAT-QICOR / F-QICOR-R003
+
+      given:
+        original = quizWithPartsAndTranslation(parts("has eaten", " breakfast and then ", "goes"), "Ella desayuna y luego va a la escuela.")
+        candidate = quizWithPartsAndTranslation(parts("has eaten", " breakfast, and afterward ", "goes"), "Ella desayuna y despues va a la escuela.")
+        assessmentInput = input(original, candidate, List.of("has eaten"))
+        verdict = criterion.evaluate(assessmentInput)
+
+      then:
+        verdict.getOutcome() == CriterionOutcome.FAILED
+    - |
+      test: "should pass a candidate that came back without the empty part the original had and changed only the accepted answer a violation signalled"
+      trace: FEAT-QICOR / F-QICOR-R010
+
+      given:
+        original = yesNoQuestionQuiz(partsWithLeadingEmpty("Do I want"), "¿Quiero un bolígrafo?", "Do I want a pen?")
+        candidate = yesNoQuestionQuiz(partsWithoutTheEmptyLead("Do I need", "(I / need) a pen?"), "¿Necesito un bolígrafo?", "Do I need a pen?")
+        assessmentInput = input(original, candidate, List.of("Do I want"))
+        verdict = criterion.evaluate(assessmentInput)
+
+      then:
+        verdict.getCriterion() == CorrectionCriterion.SCOPED_EDIT
+        verdict.getOutcome() == CriterionOutcome.PASSED
+    - |
+      test: "should fail a candidate that came back without the empty part the original had and also rewrote a part no violation signalled"
+      trace: FEAT-QICOR / F-QICOR-R010
+
+      given:
+        original = yesNoQuestionQuiz(partsWithLeadingEmpty("Do I want"), "¿Quiero un bolígrafo?", "Do I want a pen?")
+        candidate = yesNoQuestionQuiz(partsWithoutTheEmptyLead("Do I need", "(I / need) a mobile?"), "¿Quiero un bolígrafo?", "Do I need a mobile?")
+        assessmentInput = input(original, candidate, List.of("Do I want"))
+        verdict = criterion.evaluate(assessmentInput)
+
+      then:
+        verdict.getOutcome() == CriterionOutcome.FAILED
+    - |
+      test: "should fail a candidate that came back without the empty part the original had and rewrote the Spanish translation while every part with text stayed identical"
+      trace: FEAT-QICOR / F-QICOR-R010
+
+      given:
+        original = yesNoQuestionQuiz(partsWithLeadingEmpty("Do I want"), "¿Quiero un bolígrafo?", "Do I want a pen?")
+        candidate = yesNoQuestionQuiz(partsWithoutTheEmptyLead("Do I want", "(I / need) a pen?"), "¿Necesito un bolígrafo?", "Do I want a pen?")
+        assessmentInput = input(original, candidate, List.of("Do I want"))
         verdict = criterion.evaluate(assessmentInput)
 
       then:
@@ -53190,14 +53339,14 @@ elements:
       branchCoveragePct: 9
       blendPct: 18
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 158
+      killed: 48
+      survived: 29
+      noCoverage: 81
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 30
+      testStrengthPct: 62
     crap:
       totalMethods: 93
       hotspots: 6
@@ -53251,11 +53400,12 @@ elements:
         cyclomatic: 6
         lineCoveragePct: 0
         crap: 42.0
-    healthScore: 28
+    healthScore: 42
     verdict: WARNED
     violations:
     - lineCoverage 28% < 70%
     - branchCoverage 9% < 60%
+    - mutationScore 30% < 60%
     - crapHotspots 6 > 5
 - module: evaluation-ledger-infrastructure
   status: EXISTS
@@ -54268,8 +54418,8 @@ elements:
     violations:
     - branchCoverage 46% < 60%
 testSummary:
-  total: 1285
-  passing: 1268
+  total: 1291
+  passing: 1274
   failing: 0
   notImplemented: 17
 qualitySummary:
@@ -54291,14 +54441,14 @@ qualitySummary:
     branchCoveragePct: 38
     blendPct: 46
   mutation:
-    totalMutants: 0
-    killed: 0
-    survived: 0
-    noCoverage: 0
+    totalMutants: 158
+    killed: 48
+    survived: 29
+    noCoverage: 81
     timedOut: 0
     other: 0
-    mutationScorePct: 0
-    testStrengthPct: 0
+    mutationScorePct: 30
+    testStrengthPct: 62
   crap:
     totalMethods: 3633
     hotspots: 215
@@ -54380,11 +54530,12 @@ qualitySummary:
       cyclomatic: 18
       lineCoveragePct: 0
       crap: 342.0
-  healthScore: 37
+  healthScore: 50
   verdict: WARNED
   violations:
   - lineCoverage 55% < 70%
   - branchCoverage 38% < 60%
+  - mutationScore 30% < 60%
   - crapHotspots 215 > 5
 patterns:
 - id: declared-1

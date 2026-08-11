@@ -1,0 +1,31 @@
+code: FEAT-QICOR
+description: |
+  Cobertura de la clausula de traduccion de F-QICOR-R003, reformulada el 2026-08-09.
+  La traduccion salio del alcance de la edicion acotada y quedo con un unico juez
+  (F-QICOR-R004 criterio 4); R003 solo le exige que no cambie sola. Tres tests sobre
+  ScopedEditCriterion: el caso que hoy reprueba (traduccion que acompaña a una respuesta
+  señalada), el candado (traduccion que cambia sola con la oracion identica) y la garantia
+  de que la exencion de la traduccion no arrastra consigo un cambio no señalado.
+  Los 4 handwrittenTests ya declarados sobre ScopedEditCriterion siguen validos y no se tocan.
+modules:
+- name: revision-domain
+  packages:
+  - name: candidatecriteriaengine
+    implementations:
+    - name: ScopedEditCriterion
+      handwrittenTests:
+      - name: should pass a candidate that changed the accepted answer a violation
+          signalled and moved the Spanish translation with it
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R003
+      - name: "should fail a candidate that left every part, gap and accepted option\
+          \ identical and still rewrote the Spanish translation"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R003
+      - name: should fail a candidate that changed the Spanish translation and also
+          rewrote a part no violation signalled
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R003
