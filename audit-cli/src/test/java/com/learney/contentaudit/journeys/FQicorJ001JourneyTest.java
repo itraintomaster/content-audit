@@ -1,6 +1,7 @@
 package com.learney.contentaudit.journeys;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -66,6 +67,7 @@ import com.learney.contentaudit.revisiondomain.RevisionVerdict;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessment;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessmentInput;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessor;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateLengthMeasurement;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
@@ -105,9 +107,10 @@ import org.mockito.ArgumentCaptor;
  *         conservando la parte vacia del enunciado que el candidato no trajo (R010).
  * path-3: el original sigue incumpliendo, el candidato pasa los criterios, pero el operador
  *         rechaza la propuesta -> el curso no cambia (R007).
- * path-4: el original sigue incumpliendo y, agotados los intentos, ningun candidato pasa el
- *         catalogo de criterios -> desenlace explicito de fracaso, con los criterios
- *         reprobados nombrados (R006).
+ * path-4: el original sigue incumpliendo y, agotados los intentos, ningun candidato llego a
+ *         cumplir su consigna -> desenlace explicito de fracaso, con los criterios reprobados
+ *         nombrados y la longitud excluida de esa lista (R006, R011): desde R012 reprobar
+ *         cualquier otro criterio del catalogo ya no alcanza para llegar a este desenlace.
  *
  * Tests en memoria: construyen un AuditReport programaticamente (course -> milestone -> topic
  * -> knowledge -> quiz), wirean el RevisionEngine real via DefaultRevisionEngineFactory,
@@ -343,7 +346,8 @@ public class FQicorJ001JourneyTest {
                         + "presente, no en pasado.",
                 InstructionSeverity.MAJOR,
                 List.of(),
-                AUDIT_ID);
+                AUDIT_ID,
+                PLAN_ID);
     }
 
     private CorrectionContextResolver<CorrectionContext> buildContextResolver() {
@@ -501,20 +505,24 @@ public class FQicorJ001JourneyTest {
 
         when(complianceChecker.revalidate(any(QuizInstructionSubjectView.class))).thenReturn(stillViolatingResult());
 
-        CandidateAssessment acceptedAssessment = new CandidateAssessment(true, List.of(
+        List<CriterionVerdict> allPassedVerdicts = List.of(
                 new CriterionVerdict(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.PASSED, null),
                 new CriterionVerdict(CorrectionCriterion.LENGTH_IN_RANGE, CriterionOutcome.PASSED, null),
                 new CriterionVerdict(CorrectionCriterion.LEVEL_VOCABULARY, CriterionOutcome.PASSED, null),
                 new CriterionVerdict(CorrectionCriterion.DISTINCTNESS, CriterionOutcome.PASSED, null),
                 new CriterionVerdict(CorrectionCriterion.FAITHFUL_TRANSLATION, CriterionOutcome.PASSED, null),
                 new CriterionVerdict(CorrectionCriterion.SOLVABLE_SAME_KIND, CriterionOutcome.PASSED, null),
-                new CriterionVerdict(CorrectionCriterion.INSTRUCTION_COMPLIANCE, CriterionOutcome.PASSED, null)));
+                new CriterionVerdict(CorrectionCriterion.INSTRUCTION_COMPLIANCE, CriterionOutcome.PASSED, null));
+        CandidateAssessment acceptedAssessment = new CandidateAssessment(
+                allPassedVerdicts, true, true, 5, List.of(),
+                new CandidateLengthMeasurement(9, 6, 10, true, true), "eligible|5");
         when(candidateAssessor.assess(any(CandidateAssessmentInput.class))).thenReturn(acceptedAssessment);
 
         QuizInstructionCandidateGenerator happyGenerator = request ->
                 new QuizInstructionGeneratorResponse(AFTER_QUIZ_SENTENCE,
                         "Ella caminaba a la escuela todos los dias.",
-                        "Cambio el tiempo verbal de la respuesta aceptada a pasado simple.");
+                        "Cambio el tiempo verbal de la respuesta aceptada a pasado simple.",
+                        List.of(), 1);
 
         when(planStore.load(PLAN_ID)).thenReturn(Optional.of(plan));
         when(auditReportStore.load(AUDIT_ID)).thenReturn(Optional.of(auditReport));
@@ -611,14 +619,18 @@ public class FQicorJ001JourneyTest {
 
         when(complianceChecker.revalidate(any(QuizInstructionSubjectView.class))).thenReturn(stillViolatingResult());
 
-        CandidateAssessment acceptedAssessment = new CandidateAssessment(true, List.of(
-                new CriterionVerdict(CorrectionCriterion.INSTRUCTION_COMPLIANCE, CriterionOutcome.PASSED, null)));
+        CandidateAssessment acceptedAssessment = new CandidateAssessment(
+                List.of(new CriterionVerdict(CorrectionCriterion.INSTRUCTION_COMPLIANCE,
+                        CriterionOutcome.PASSED, null)),
+                true, true, 0, List.of(),
+                new CandidateLengthMeasurement(8, 6, 10, true, true), "eligible");
         when(candidateAssessor.assess(any(CandidateAssessmentInput.class))).thenReturn(acceptedAssessment);
 
         QuizInstructionCandidateGenerator happyGenerator = request ->
                 new QuizInstructionGeneratorResponse(AFTER_QUIZ_SENTENCE,
                         "Ella caminaba a la escuela todos los dias.",
-                        "Cambio el tiempo verbal de la respuesta aceptada a pasado simple.");
+                        "Cambio el tiempo verbal de la respuesta aceptada a pasado simple.",
+                        List.of(), 1);
 
         List<RevisionArtifact> savedArtifacts = new ArrayList<>();
         when(artifactStore.save(any(RevisionArtifact.class))).thenAnswer(inv -> {
@@ -674,8 +686,10 @@ public class FQicorJ001JourneyTest {
     }
 
     // -----------------------------------------------------------------------
-    // path-4: sigue incumpliendo, agotados los intentos ningun candidato pasa -> failure
-    // Gate: F-QICOR-R006
+    // path-4: sigue incumpliendo y, agotados los intentos, ningun candidato llego a cumplir su
+    // consigna -> failure. Reprobar la longitud -- o cualquier otro criterio del catalogo -- ya
+    // no alcanza para este desenlace (R012); la longitud tampoco puede nombrarse como causa (R011).
+    // Gates: F-QICOR-R006, F-QICOR-R011
     // -----------------------------------------------------------------------
 
     @Test
@@ -700,17 +714,41 @@ public class FQicorJ001JourneyTest {
 
         when(complianceChecker.revalidate(any(QuizInstructionSubjectView.class))).thenReturn(stillViolatingResult());
 
-        CandidateAssessment rejectedAssessment = new CandidateAssessment(false, List.of(
+        // R006/R012: the only remaining path to "correccion no lograda" is that no candidate ever
+        // resulted entregable -- here, none complied with its consigna (R005), so none ever became
+        // eligible (R013(c)) no matter how many other criteria it passed. The candidate is ALSO out
+        // of its level's length range, so the assertion below that the length is never named is a
+        // genuine check of R011(c)/R006(c), not one that passes merely because length never failed.
+        CriterionVerdict complianceFailure = new CriterionVerdict(CorrectionCriterion.INSTRUCTION_COMPLIANCE,
+                CriterionOutcome.FAILED,
+                "La respuesta sigue sin estar en pasado simple: 'has walked' es preterito perfecto "
+                        + "compuesto, no pasado simple.");
+        List<CriterionVerdict> verdictsWithComplianceFailure = List.of(
                 new CriterionVerdict(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.PASSED, null),
-                new CriterionVerdict(CorrectionCriterion.LENGTH_IN_RANGE, CriterionOutcome.FAILED,
-                        "La oracion corregida cae fuera del rango de longitud objetivo del nivel A2.")));
-        when(candidateAssessor.assess(any(CandidateAssessmentInput.class))).thenReturn(rejectedAssessment);
+                new CriterionVerdict(CorrectionCriterion.LENGTH_IN_RANGE, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.LEVEL_VOCABULARY, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.DISTINCTNESS, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.FAITHFUL_TRANSLATION, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.SOLVABLE_SAME_KIND, CriterionOutcome.PASSED, null),
+                complianceFailure);
+        CandidateAssessment neverCompliantAssessment = new CandidateAssessment(
+                verdictsWithComplianceFailure,
+                false,
+                true,
+                5,
+                List.of(complianceFailure),
+                new CandidateLengthMeasurement(14, 6, 10, false, true),
+                "not-eligible");
+        when(candidateAssessor.assess(any(CandidateAssessmentInput.class))).thenReturn(neverCompliantAssessment);
 
-        QuizInstructionCandidateGenerator alwaysFailingGenerator = request ->
+        QuizInstructionCandidateGenerator neverCompliantGenerator = request ->
                 new QuizInstructionGeneratorResponse(
-                        "She ____ [walked] (walk) to school every single day of the entire long working week.",
-                        "Ella caminaba a la escuela todos los dias enteros de la semana laboral completa.",
-                        "Intento de correccion.");
+                        "She ____ [has walked] (walk) to school every day.",
+                        "Ella ha caminado a la escuela todos los dias.",
+                        "Intento de correccion: la respuesta paso a preterito perfecto compuesto, "
+                                + "todavia no a pasado simple.",
+                        verdictsWithComplianceFailure,
+                        3);
 
         when(planStore.load(PLAN_ID)).thenReturn(Optional.of(plan));
         when(auditReportStore.load(AUDIT_ID)).thenReturn(Optional.of(auditReport));
@@ -720,7 +758,7 @@ public class FQicorJ001JourneyTest {
 
         RevisionEngineConfig config = buildConfig(
                 ApprovalMode.AUTO, planStore, auditReportStore, artifactStore, courseRepository, elementLocator,
-                complianceChecker, candidateAssessor, alwaysFailingGenerator);
+                complianceChecker, candidateAssessor, neverCompliantGenerator);
         RevisionEngine engine = new DefaultRevisionEngineFactory().create(config);
 
         // ── Act ───────────────────────────────────────────────────────────────────
@@ -728,12 +766,17 @@ public class FQicorJ001JourneyTest {
 
         // ── Assert: failure — NO_ACCEPTABLE_CANDIDATE, naming the failed criterion (R006) ──
         assertEquals(RevisionOutcomeKind.NO_ACCEPTABLE_CANDIDATE, outcome.getKind(),
-                "path-4: exhausting the attempts without an acceptable candidate must yield "
-                        + "NO_ACCEPTABLE_CANDIDATE (R006)");
+                "path-4: exhausting the attempts without a candidate that complied with its "
+                        + "consigna must yield NO_ACCEPTABLE_CANDIDATE (R006)");
         assertNull(outcome.getArtifact(), "R006: no proposal must be left pending for this task");
         assertNotNull(outcome.getErrorMessage(), "R006: the failure must be reported explicitly, not silently");
-        assertTrue(outcome.getErrorMessage().contains("LENGTH_IN_RANGE"),
-                "R006: the failure must name at least the criterion that failed");
+        assertTrue(outcome.getErrorMessage().contains("INSTRUCTION_COMPLIANCE"),
+                "R006: the failure must name at least the criterion that kept every candidate from "
+                        + "ever being entregable");
+        assertFalse(outcome.getErrorMessage().contains("LENGTH_IN_RANGE"),
+                "R006/R011: the length must never be named among the criteria this desenlace "
+                        + "reports, even though the same candidate also measured outside its "
+                        + "level's target range");
 
         verify(artifactStore, never()).save(any(RevisionArtifact.class));
         verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));

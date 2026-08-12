@@ -1,0 +1,15 @@
+code: FEAT-QICOR
+modules:
+- name: revision-domain
+  packages:
+  - name: candidatecriteriaengine
+    implementations:
+    - name: DefaultCandidateAssessor
+      handwrittenTests:
+      - name: "should submit the candidate to the whole catalog and hand back one\
+          \ verdict per criterion, instead of stopping at the first failing one"
+        _change: delete
+      - name: should evaluate every criterion before deciding
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004

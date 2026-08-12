@@ -73,7 +73,7 @@ public class FRevaprJ005JourneyTest {
         return new RevisionProposal(
                 proposalId, "task-j005", planId, "audit-j005",
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, "quiz-j005",
-                snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now(), null);
+                snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now(), null, null, null);
     }
 
     private RevisionArtifact buildArtifact(String proposalId, String planId, RevisionVerdict verdict) {

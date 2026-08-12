@@ -1,0 +1,117 @@
+code: FEAT-QICOR
+description: |
+  Cobertura de F-QICOR-R016 (sentido en el mundo real, segundo criterio absoluto) y de
+  los cambios que trajo a R006, R011, R013, R014 y R015.
+
+  El reparto sigue las tres superficies distintas en que el veto se observa, porque el
+  fallo puede entrar por cualquiera de ellas por separado:
+
+  (1) ELEGIBILIDAD (DefaultCandidateAssessor). Es donde el veto nace. Un candidato con el
+      sentido reprobado deja de competir aunque cumpla su consigna y los cinco criterios
+      de no-empeoramiento -el caso real 'Does she drink meat?'- y un NOT_EVALUABLE sobre
+      un absoluto lo deja fuera IGUAL que un FAILED: aprobar por omision es exactamente
+      el modo de falla que R016 vino a cerrar. Ahi mismo viven las tres consecuencias
+      aritmeticas que se rompen sin que nadie se entere: el sentido no suma en
+      satisfiedCriteria (R013), aparece en unmetCriteria SOLO sobre un candidato no
+      elegible -que es lo que sostiene por construccion la asimetria de R014 (f) y a la
+      vez permite que R006 lo nombre-, y se devuelve siempre entre los veredictos de la
+      consulta (R015 (a)), que es el mecanismo que convierte el veto en un reintento en
+      vez de una tarea perdida.
+
+  (2) ORDEN (DefaultCandidateRanking). R013 (h) es el reparto que motivo la regla:
+      'Does she drink meat?' pierde contra 'Does she drink milk?' aunque el primero sea
+      el unico que respeto la edicion acotada. NO se propone un segundo test de
+      precedence(): el test de R013 ya existente la fija por igualdad exacta contra una
+      lista de cinco, asi que agregar el sentido al orden ya rompe hoy.
+
+  (3) ENTREGA (QuizInstructionReviser). Las dos filas de la tabla de R016: el que
+      respeta la marca y afirma un imposible no se propone nunca; el que cambio 'meat'
+      por 'milk' -y por eso reprueba la edicion acotada- si se propone. Y el desenlace:
+      agotados los intentos sin ningun candidato con sentido, la correccion termina no
+      lograda NOMBRANDO ese criterio (R006 (d)), que es el tercer motivo que R006 gano.
+
+  (4) CONSTRUCCION DEL CATALOGO (DefaultCandidateCriteriaFactory, hoy con cero tests).
+      Un absoluto sin evaluador no puede degradarse a criterio ausente: eso seria aprobar
+      por omision sobre todos los candidatos de la corrida. El test no verifica que 'algo
+      falla' sino que se puede saber QUE falta -la excepcion nombra el criterio-, porque
+      el modo de falla contrario ya se pago caro en este proyecto: un juez no disponible
+      por configuracion y una corrida reportando exito sin haber evaluado nada.
+
+  La asimetria de R011 queda fijada por sus dos puntas en un solo test: la longitud fuera
+  de rango no impide competir, el sinsentido si.
+modules:
+- name: revision-domain
+  packages:
+  - name: candidatecriteriaengine
+    implementations:
+    - name: DefaultCandidateAssessor
+      handwrittenTests:
+      - name: "should keep out of the competition a candidate that describes something\
+          \ that cannot happen in the real world, even though it complies with its\
+          \ instruction and satisfies every other criterion of the catalog"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R016
+      - name: "should keep out of the competition a candidate whose real-world sense\
+          \ could not be evaluated, instead of letting it compete as if it had passed"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R016
+      - name: "should not count the real-world sense among the criteria a candidate\
+          \ satisfies, since every candidate that competes meets it and it could never\
+          \ break a tie"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: "should let a candidate whose length fell outside the range of its level\
+          \ compete, and keep out the one whose real-world sense was reproached"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      - name: "should carry the real-world sense among the unmet criteria only of\
+          \ a candidate that does not compete, and never of one that does"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: "should hand back a verdict for the real-world sense together with the\
+          \ rest of the catalog, so whoever corrects sees the veto while it still\
+          \ has attempts left"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+    - name: DefaultCandidateRanking
+      handwrittenTests:
+      - name: should rank the candidate that describes something impossible below
+          the one that describes something possible but changed more than the violation
+          signalled
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+    - name: DefaultCandidateCriteriaFactory
+      handwrittenTests:
+      - name: "should refuse to build the catalog naming the real-world sense as the\
+          \ absolute criterion left without an evaluator, instead of judging candidates\
+          \ as if it had passed"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R016
+  - name: engine
+    implementations:
+    - name: QuizInstructionReviser
+      handwrittenTests:
+      - name: "should leave no proposal for a candidate that describes something that\
+          \ cannot happen in the real world, even though it complies with its instruction\
+          \ and satisfies every other criterion"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R016
+      - name: should propose the candidate that describes something that can happen
+          in the real world even though it changed more than the violation signalled
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R016
+      - name: should name the real-world sense among the failed criteria it reports
+          when no candidate described something that could happen
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006

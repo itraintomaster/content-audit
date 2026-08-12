@@ -59,7 +59,7 @@ public class FileSystemRevisionArtifactStoreTest {
                 "bypass: identity revision",
                 "bypass",
                 Instant.parse("2026-04-18T10:00:00Z")
-        , null);
+        , null, null, null);
         return new RevisionArtifact(
                 proposal,
                 RevisionVerdict.APPROVED,
@@ -95,7 +95,7 @@ public class FileSystemRevisionArtifactStoreTest {
                 "bypass: identity revision",
                 "human",
                 Instant.parse("2026-04-20T10:00:00Z")
-        , null);
+        , null, null, null);
         return new RevisionArtifact(
                 proposal,
                 RevisionVerdict.PENDING_APPROVAL,
@@ -131,7 +131,7 @@ public class FileSystemRevisionArtifactStoreTest {
                 "bypass: identity revision",
                 "human",
                 Instant.parse("2026-04-20T10:00:00Z")
-        , null);
+        , null, null, null);
         return new RevisionArtifact(
                 proposal,
                 RevisionVerdict.REJECTED,

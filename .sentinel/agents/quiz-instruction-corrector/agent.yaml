@@ -11,30 +11,44 @@ description: |
 
   Flujo:
 
-      generate (llm_call: construye el candidato mínimo)
+      generate (llm_call: construye el candidato)
         ──▶ gate_candidate (gate: forma del candidate.json; failed reintenta)
-        ──▶ emit (script: artifact correctionCandidate)
+        ──▶ assess (script: consulta el catálogo vía `content-audit assess-candidate`)
+        ──▶ tally (script: conserva el mejor visto)
+        ──▶ route_verdict ──▶ emit           (cumple todo)
+                          ──▶ generate       (reintenta)
+      generate --exhausted--▶ emit           (entrega el champion)
 
-  **Este grafo NO evalúa su propio candidato.** El catálogo de criterios
+  **Este grafo no evalúa por su cuenta: consulta.** El catálogo de criterios
   (longitud, léxico, distinción, traducción, resolubilidad, cumplimiento de
-  consigna) vive en Java, detrás de CandidateCriterionEvaluator, y el lazo de
-  reintentos lo conduce el assessor: cuando un criterio reprueba, Java vuelve a
-  lanzar este grafo con `previousVerdicts` poblado. Un generador que se evaluara
-  a sí mismo sería el candidato corrigiéndose solo.
+  consigna) sigue viviendo en Java, detrás de CandidateCriterionEvaluator, y
+  `assess` lo consulta con `content-audit assess-candidate` (F-QICOR-R015).
+  Reimplementar un criterio acá sería tener el catálogo dos veces, que es el
+  defecto que F-QICOR-R004 nombra como el peor posible.
 
-  Por eso el grafo es corto y no tiene lazo propio: su única responsabilidad es
-  producir un candidato bien formado a partir de lo que le señalaron.
+  **El lazo sí es propio** (F-QICOR-R012): el sistema pide la corrección una
+  sola vez y manda el tope de intentos hacia adentro. Este grafo genera, mide,
+  conserva el mejor visto y decide si vuelve a intentar. Al agotar los
+  intentos entrega ese mejor en vez de no entregar nada (F-QICOR-R013).
+
+  El motivo es medido: sobre las 519 tareas del curso, 162 quedaron sin
+  corregir y 159 de ellas tenían tres candidatos producidos, juzgados y
+  descartados. Los 318 reintentos rescataron cero.
 kind: agent
 strategy: graph
 initial_node: generate
 budgets:
-  # Pase limpio son 3 nodos. El único lazo es gate_candidate ↔ generate,
-  # acotado por max_attempts de generate (3). 12 deja margen sin permitir
-  # que un modelo que nunca emite JSON válido gire indefinidamente.
-  max_iterations: 12
+  # Pase limpio son 6 nodos. Hay dos lazos hacia generate: el de forma
+  # (gate_candidate) y el de criterios (route_verdict), los dos acotados por
+  # max_attempts de generate. 30 deja margen para el peor caso sin permitir
+  # que un modelo que nunca converge gire indefinidamente.
+  max_iterations: 30
 nodes:
   - ./nodes/generate.md
   - ./nodes/gate_candidate.md
+  - ./nodes/assess.md
+  - ./nodes/tally.md
+  - ./nodes/route_verdict.md
   - ./nodes/emit.md
 goal:
   required_artifacts:
@@ -55,6 +69,7 @@ dependencies:
   - violations              # lo señalado: restricción + evidencia + explicación
   - verdictReason           # la razón decisiva del juez, en una frase
   - siblingQuizzes          # los otros ejercicios del knowledge (uno por línea)
-  # Estado del reintento, provisto por el assessor de Java:
-  - previousVerdicts        # criterios reprobados en el intento anterior (puede ser "")
-  - attempt                 # 1 en el primer intento
+  # R015: `assess` los necesita para pedirle al sistema la evaluación del
+  # candidato sin que el ejercicio original viaje por el agente y vuelva.
+  - planId
+  - maxAttempts             # el tope lo fija la corrida (R012), no el grafo

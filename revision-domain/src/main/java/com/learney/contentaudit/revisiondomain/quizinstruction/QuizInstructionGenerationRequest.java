@@ -1,8 +1,6 @@
 package com.learney.contentaudit.revisiondomain.quizinstruction;
 
 import com.learney.contentaudit.refinerdomain.QuizInstructionCorrectionContext;
-import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
-import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -13,18 +11,15 @@ import javax.annotation.processing.Generated;
 public class QuizInstructionGenerationRequest {
     private QuizInstructionCorrectionContext context;
 
-    private List<CriterionVerdict> previousVerdicts;
-
-    private int attempt;
+    private int maxAttempts;
 
     public QuizInstructionGenerationRequest() {
     }
 
     public QuizInstructionGenerationRequest(QuizInstructionCorrectionContext context,
-            List<CriterionVerdict> previousVerdicts, int attempt) {
+            int maxAttempts) {
         this.context = context;
-        this.previousVerdicts = previousVerdicts;
-        this.attempt = attempt;
+        this.maxAttempts = maxAttempts;
     }
 
     public QuizInstructionCorrectionContext getContext() {
@@ -35,20 +30,12 @@ public class QuizInstructionGenerationRequest {
         this.context = context;
     }
 
-    public List<CriterionVerdict> getPreviousVerdicts() {
-        return this.previousVerdicts;
+    public int getMaxAttempts() {
+        return this.maxAttempts;
     }
 
-    public void setPreviousVerdicts(List<CriterionVerdict> previousVerdicts) {
-        this.previousVerdicts = previousVerdicts;
-    }
-
-    public int getAttempt() {
-        return this.attempt;
-    }
-
-    public void setAttempt(int attempt) {
-        this.attempt = attempt;
+    public void setMaxAttempts(int maxAttempts) {
+        this.maxAttempts = maxAttempts;
     }
 
     @Override
@@ -57,12 +44,11 @@ public class QuizInstructionGenerationRequest {
         if (o == null || getClass() != o.getClass()) return false;
         QuizInstructionGenerationRequest that = (QuizInstructionGenerationRequest) o;
         return Objects.equals(this.context, that.context)
-                    && Objects.equals(this.previousVerdicts, that.previousVerdicts)
-                    && Objects.equals(this.attempt, that.attempt);
+                    && Objects.equals(this.maxAttempts, that.maxAttempts);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(context, previousVerdicts, attempt);
+        return Objects.hash(context, maxAttempts);
     }
 }

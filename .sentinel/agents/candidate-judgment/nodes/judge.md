@@ -54,6 +54,26 @@ el mismo tipo de ejercicio?
 - Reprueba también si el candidato se quedó sin hueco cuando el original tenía,
   o si el hueco quedó pidiendo algo que la consigna no enseña.
 
+**`REAL_WORLD_SENSE`** — ¿lo que dice la oración puede pasar en el mundo real?
+
+- Leé el candidato **con el hueco ya resuelto**, como lo lee el alumno después de
+  completarlo. Si el hueco acepta varias respuestas, leelo una vez por cada una:
+  alcanza con que **una sola** produzca un imposible para reprobar.
+- Reprueba si lo que la oración afirma o pregunta no puede pasar: un verbo que no
+  admite ese objeto (*drink meat*, *drive a book*), una propiedad que la cosa no
+  puede tener, una combinación que ningún hablante diría en serio.
+- **No** reprueba por ser corta, artificial, trivial o descontextualizada. Los
+  ejercicios de idioma son así y está bien: *The cat is on the table* pasa.
+  Tampoco por ficción, humor o hipérbole que un hablante usaría igual —
+  *My dog speaks French* es raro pero decible.
+- La vara es una sola: ¿alguien podría decir esto en serio y ser entendido?
+- **El caso del cue es el que importa.** Cuando el enunciado trae un cue que
+  indica qué verbo conjugar, el candidato tiene que tener sentido **con ese
+  verbo**. Si respetar el cue vuelve absurda la oración, lo correcto era cambiar
+  el resto de la oración —`meat` por `milk`—, no forzar el absurdo. Un candidato
+  que fuerza el absurdo para respetar el cue **reprueba**, aunque no haya tocado
+  nada más que lo señalado.
+
 ## El formato del ejercicio
 
 Los corchetes marcan lo que el alumno completa. Los paréntesis son **cues**:
@@ -66,9 +86,16 @@ resolubilidad: es la pista que vuelve inferible la respuesta.
 ## Cuando no podés juzgar
 
 Si te falta algo imprescindible —el candidato llegó vacío, el criterio no es
-ninguno de los dos, la traducción no vino— el veredicto es `NOT_EVALUABLE` y
+ninguno de los tres, la traducción no vino— el veredicto es `NOT_EVALUABLE` y
 explicás qué falta. **No adivines y no reprueben por las dudas**: reprobar es
 afirmar que el candidato empeoró algo, y "no pude mirarlo" no es eso.
+
+Cuidado con una asimetría de `REAL_WORLD_SENSE`: ahí `NOT_EVALUABLE` **no** es
+neutro. Es un criterio absoluto, y un veredicto que no sea `PASSED` saca al
+candidato de la competencia igual que reprobarlo. Eso no cambia la regla de
+arriba —seguís sin adivinar—, pero sí quiere decir que "no pude mirarlo" tiene
+costo: usalo solo cuando de verdad no llegó lo que necesitabas para leer la
+oración, no como salida cómoda ante una oración rara pero decible.
 
 ## Salida
 

@@ -160,6 +160,13 @@ class DefaultRevisionEngine implements RevisionEngine {
                 // own), so it is stamped here -- same fix, same reason as
                 // LemmaAbsenceCorrectionContext above.
                 qic.setSourceAuditId(plan.getSourceAuditId());
+                // F-QICOR-R015: the quiz-instruction-corrector graph's assess node needs the
+                // plan id to call "content-audit assess-candidate --plan <planId> --task
+                // <taskId> ..." without the original quiz travelling through the agent and
+                // back. Same gap, same fix, same reason as sourceAuditId immediately above:
+                // the resolver only ever sees the AuditReport, never the plan that dispatched
+                // the task, so it cannot know planId on its own either.
+                qic.setPlanId(planId);
             }
         }
 

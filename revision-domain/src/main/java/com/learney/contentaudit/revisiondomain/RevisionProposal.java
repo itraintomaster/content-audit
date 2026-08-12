@@ -2,7 +2,10 @@ package com.learney.contentaudit.revisiondomain;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateLengthMeasurement;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
 import java.time.Instant;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -37,13 +40,18 @@ public class RevisionProposal {
 
     private StrategyId strategyId;
 
+    private List<CriterionVerdict> unmetCriteria;
+
+    private CandidateLengthMeasurement lengthMeasurement;
+
     public RevisionProposal() {
     }
 
     public RevisionProposal(String proposalId, String taskId, String planId, String sourceAuditId,
             DiagnosisKind diagnosisKind, AuditTarget nodeTarget, String nodeId,
             CourseElementSnapshot elementBefore, CourseElementSnapshot elementAfter,
-            String rationale, String reviserKind, Instant createdAt, StrategyId strategyId) {
+            String rationale, String reviserKind, Instant createdAt, StrategyId strategyId,
+            List<CriterionVerdict> unmetCriteria, CandidateLengthMeasurement lengthMeasurement) {
         this.proposalId = proposalId;
         this.taskId = taskId;
         this.planId = planId;
@@ -57,6 +65,8 @@ public class RevisionProposal {
         this.reviserKind = reviserKind;
         this.createdAt = createdAt;
         this.strategyId = strategyId;
+        this.unmetCriteria = unmetCriteria;
+        this.lengthMeasurement = lengthMeasurement;
     }
 
     public String getProposalId() {
@@ -163,6 +173,22 @@ public class RevisionProposal {
         this.strategyId = strategyId;
     }
 
+    public List<CriterionVerdict> getUnmetCriteria() {
+        return this.unmetCriteria;
+    }
+
+    public void setUnmetCriteria(List<CriterionVerdict> unmetCriteria) {
+        this.unmetCriteria = unmetCriteria;
+    }
+
+    public CandidateLengthMeasurement getLengthMeasurement() {
+        return this.lengthMeasurement;
+    }
+
+    public void setLengthMeasurement(CandidateLengthMeasurement lengthMeasurement) {
+        this.lengthMeasurement = lengthMeasurement;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -180,11 +206,13 @@ public class RevisionProposal {
                     && Objects.equals(this.rationale, that.rationale)
                     && Objects.equals(this.reviserKind, that.reviserKind)
                     && Objects.equals(this.createdAt, that.createdAt)
-                    && Objects.equals(this.strategyId, that.strategyId);
+                    && Objects.equals(this.strategyId, that.strategyId)
+                    && Objects.equals(this.unmetCriteria, that.unmetCriteria)
+                    && Objects.equals(this.lengthMeasurement, that.lengthMeasurement);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(proposalId, taskId, planId, sourceAuditId, diagnosisKind, nodeTarget, nodeId, elementBefore, elementAfter, rationale, reviserKind, createdAt, strategyId);
+        return Objects.hash(proposalId, taskId, planId, sourceAuditId, diagnosisKind, nodeTarget, nodeId, elementBefore, elementAfter, rationale, reviserKind, createdAt, strategyId, unmetCriteria, lengthMeasurement);
     }
 }

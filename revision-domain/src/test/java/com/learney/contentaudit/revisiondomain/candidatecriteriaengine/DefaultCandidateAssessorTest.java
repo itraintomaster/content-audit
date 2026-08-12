@@ -3,7 +3,9 @@ package com.learney.contentaudit.revisiondomain.candidatecriteriaengine;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -17,13 +19,17 @@ import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessment;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessmentInput;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateCriterionEvaluator;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateLengthMeasurement;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateLengthMeter;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateRanking;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -34,144 +40,432 @@ import org.junit.jupiter.api.Test;
 )
 public class DefaultCandidateAssessorTest {
 
-    private CandidateCriterionEvaluator scopedEditEvaluator;
-    private CandidateCriterionEvaluator lengthEvaluator;
-    private CandidateCriterionEvaluator vocabularyEvaluator;
-    private CandidateAssessmentInput assessmentInput;
+    private static final CandidateLengthMeasurement IN_RANGE_LENGTH =
+            new CandidateLengthMeasurement(8, 6, 10, true, true);
+    private static final CandidateLengthMeasurement OUT_OF_RANGE_LENGTH =
+            new CandidateLengthMeasurement(13, 6, 10, false, true);
 
-    @BeforeEach
-    void setUp() {
-        scopedEditEvaluator = mock(CandidateCriterionEvaluator.class);
-        lengthEvaluator = mock(CandidateCriterionEvaluator.class);
-        vocabularyEvaluator = mock(CandidateCriterionEvaluator.class);
-        when(scopedEditEvaluator.criterion()).thenReturn(CorrectionCriterion.SCOPED_EDIT);
-        when(lengthEvaluator.criterion()).thenReturn(CorrectionCriterion.LENGTH_IN_RANGE);
-        when(vocabularyEvaluator.criterion()).thenReturn(CorrectionCriterion.LEVEL_VOCABULARY);
-        assessmentInput = buildInput();
-    }
+    // The five criteria F-QICOR-R004/R003 actually count towards satisfiedCriteria.
+    // INSTRUCTION_COMPLIANCE (F-QICOR-R005) gates eligibility instead of adding to the
+    // count, and LENGTH_IN_RANGE (F-QICOR-R011) never adds either.
+    private static final List<CorrectionCriterion> CATALOG_CRITERIA = List.of(
+            CorrectionCriterion.SCOPED_EDIT,
+            CorrectionCriterion.LEVEL_VOCABULARY,
+            CorrectionCriterion.DISTINCTNESS,
+            CorrectionCriterion.FAITHFUL_TRANSLATION,
+            CorrectionCriterion.SOLVABLE_SAME_KIND);
 
-    private static QuizTemplateEntity quiz() {
+    private static QuizTemplateEntity quiz(String clozeOption, String sentenceText) {
         List<SentencePartEntity> sentenceParts = List.of(
                 new SentencePartEntity(SentencePartKind.TEXT, "She ", null),
-                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("ate")),
-                new SentencePartEntity(SentencePartKind.TEXT, " breakfast every morning.", null));
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(clozeOption)),
+                new SentencePartEntity(SentencePartKind.TEXT, " (eat) breakfast every morning.", null));
         FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
         return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1", "Daily routines",
-                "Complete with the past simple form", "Ella desayuno todas las mañanas.",
+                "Complete with the present simple form", "Ella desayuna todas las mañanas.",
                 "milestone.1.routines", "Daily Routines", form, 0.0, 0.0, 0.0, "", "", "", "", "",
-                "", "", List.of("She ate breakfast every morning."));
+                "", "", List.of(sentenceText));
     }
 
-    private static CandidateAssessmentInput buildInput() {
-        QuizTemplateEntity quiz = quiz();
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-1", quiz, null);
-        return new CandidateAssessmentInput("quiz-1", "audit-1", snapshot, snapshot, CefrLevel.A1,
-                "Daily Routines", "Past simple narration", "Complete with the past simple form", "A1",
-                SentenceMode.FILL, List.of(), List.of("eats"));
+    private static CourseElementSnapshot snapshot(QuizTemplateEntity quiz) {
+        return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-1", quiz, null);
+    }
+
+    private static CandidateAssessmentInput input(QuizTemplateEntity original, QuizTemplateEntity candidate) {
+        return new CandidateAssessmentInput("quiz-1", "audit-1", snapshot(original), snapshot(candidate),
+                CefrLevel.A1, "Daily Routines", "Present simple routines",
+                "Complete with the present simple form", "A1", SentenceMode.FILL, List.of(),
+                List.of("eats"));
+    }
+
+    private static CriterionVerdict verdict(CorrectionCriterion criterion, CriterionOutcome outcome, String detail) {
+        return new CriterionVerdict(criterion, outcome, detail);
     }
 
     private static CriterionVerdict passed(CorrectionCriterion criterion) {
-        return new CriterionVerdict(criterion, CriterionOutcome.PASSED, null);
+        return verdict(criterion, CriterionOutcome.PASSED, null);
+    }
+
+    private static List<CriterionVerdict> allCatalogCriteriaPassing() {
+        List<CriterionVerdict> verdicts = new ArrayList<>();
+        for (CorrectionCriterion criterion : CATALOG_CRITERIA) {
+            verdicts.add(passed(criterion));
+        }
+        return verdicts;
+    }
+
+    private static CriterionVerdict findByCriterion(List<CriterionVerdict> verdicts, CorrectionCriterion criterion) {
+        for (CriterionVerdict candidate : verdicts) {
+            if (candidate.getCriterion() == criterion) {
+                return candidate;
+            }
+        }
+        throw new AssertionError("No verdict found for " + criterion);
+    }
+
+    private static CandidateCriterionEvaluator evaluatorReturning(CriterionVerdict verdict) {
+        CandidateCriterionEvaluator evaluator = mock(CandidateCriterionEvaluator.class);
+        when(evaluator.criterion()).thenReturn(verdict.getCriterion());
+        when(evaluator.evaluate(any())).thenReturn(verdict);
+        return evaluator;
+    }
+
+    private static DefaultCandidateAssessor assessorFromMap(
+            Map<CorrectionCriterion, CandidateCriterionEvaluator> evaluatorsByCriterion,
+            CandidateLengthMeasurement lengthMeasurement) {
+        CandidateLengthMeter lengthMeter = mock(CandidateLengthMeter.class);
+        when(lengthMeter.measure(any())).thenReturn(lengthMeasurement);
+        CandidateRanking ranking = mock(CandidateRanking.class);
+        when(ranking.rankKey(any())).thenReturn("rank-key");
+        return new DefaultCandidateAssessor(evaluatorsByCriterion, lengthMeter, ranking);
+    }
+
+    // Builds a fully-registered assessor: the given verdicts for the five R003/R004
+    // criteria, the given verdict for the instruction (F-QICOR-R005), and a
+    // LENGTH_IN_RANGE verdict/lengthMeter measurement kept consistent with each other
+    // (F-QICOR-R011 (e)).
+    private static DefaultCandidateAssessor assessorFor(List<CriterionVerdict> nonLengthCatalogVerdicts,
+            CriterionVerdict instructionComplianceVerdict, CandidateLengthMeasurement lengthMeasurement) {
+        Map<CorrectionCriterion, CandidateCriterionEvaluator> evaluatorsByCriterion = new HashMap<>();
+        for (CriterionVerdict v : nonLengthCatalogVerdicts) {
+            evaluatorsByCriterion.put(v.getCriterion(), evaluatorReturning(v));
+        }
+        evaluatorsByCriterion.put(CorrectionCriterion.INSTRUCTION_COMPLIANCE,
+                evaluatorReturning(instructionComplianceVerdict));
+        evaluatorsByCriterion.put(CorrectionCriterion.LENGTH_IN_RANGE, evaluatorReturning(
+                verdict(CorrectionCriterion.LENGTH_IN_RANGE,
+                        lengthMeasurement.isInRange() ? CriterionOutcome.PASSED : CriterionOutcome.FAILED, null)));
+        return assessorFromMap(evaluatorsByCriterion, lengthMeasurement);
     }
 
     @Test
-    @DisplayName("should accept a candidate only when every criterion of the active catalog returned a passing verdict")
+    @DisplayName("should mark as not competing a candidate that complies with its instruction but is not a real change over the original")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R013")
+    public void shouldMarkAsNotCompetingACandidateThatCompliesWithItsInstructionButIsNotARealChangeOverTheOriginal(
+            ) {
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        // Character for character identical to the original: no violation, if any were
+        // ever signalled, actually changed anything.
+        QuizTemplateEntity identicalCandidate = quiz("eats", "She eats breakfast every morning.");
+        CandidateAssessmentInput assessmentInput = input(original, identicalCandidate);
+        DefaultCandidateAssessor assessor = assessorFor(allCatalogCriteriaPassing(),
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
+
+        CandidateAssessment assessment = assessor.assess(assessmentInput);
+
+        assertFalse(assessment.isRealChange());
+        assertFalse(assessment.isEligible());
+    }
+
+    @Test
+    @DisplayName("should keep a criterion that could not be evaluated distinguishable from one that was reproached among the unmet criteria it reports")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R014")
+    public void shouldKeepACriterionThatCouldNotBeEvaluatedDistinguishableFromOneThatWasReproachedAmongTheUnmetCriteriaItReports(
+            ) {
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        List<CriterionVerdict> verdicts = List.of(
+                passed(CorrectionCriterion.SCOPED_EDIT),
+                passed(CorrectionCriterion.LEVEL_VOCABULARY),
+                verdict(CorrectionCriterion.DISTINCTNESS, CriterionOutcome.NOT_EVALUABLE,
+                        "El comparador de distincion no respondio."),
+                verdict(CorrectionCriterion.FAITHFUL_TRANSLATION, CriterionOutcome.FAILED,
+                        "La traduccion ya no dice lo mismo que la oracion propuesta."),
+                passed(CorrectionCriterion.SOLVABLE_SAME_KIND));
+        DefaultCandidateAssessor assessor = assessorFor(verdicts,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
+
+        CandidateAssessment assessment = assessor.assess(assessmentInput);
+
+        List<CriterionVerdict> unmet = assessment.getUnmetCriteria();
+        assertEquals(CriterionOutcome.NOT_EVALUABLE,
+                findByCriterion(unmet, CorrectionCriterion.DISTINCTNESS).getOutcome());
+        assertEquals(CriterionOutcome.FAILED,
+                findByCriterion(unmet, CorrectionCriterion.FAITHFUL_TRANSLATION).getOutcome());
+    }
+
+    @Test
+    @DisplayName("should not let the length add to the number of criteria a candidate satisfies")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R011")
+    public void shouldNotLetTheLengthAddToTheNumberOfCriteriaACandidateSatisfies() {
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        QuizTemplateEntity candidate = quiz("has been eating",
+                "She has been eating breakfast every single morning without exception lately.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        // Every criterion the catalog actually counts is satisfied; only length — which
+        // never counts — fails.
+        DefaultCandidateAssessor assessor = assessorFor(allCatalogCriteriaPassing(),
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), OUT_OF_RANGE_LENGTH);
+
+        CandidateAssessment assessment = assessor.assess(assessmentInput);
+
+        assertEquals(5, assessment.getSatisfiedCriteria());
+        assertTrue(assessment.getUnmetCriteria().isEmpty());
+    }
+
+    @Test
+    @DisplayName("should submit the candidate to the whole catalog and hand back one verdict per criterion, instead of stopping at the first failing one")
     @Tag("FEAT-QICOR")
     @Tag("F-QICOR-R004")
-    public void shouldAcceptACandidateOnlyWhenEveryCriterionOfTheActiveCatalogReturnedAPassingVerdict(
+    public void shouldSubmitTheCandidateToTheWholeCatalogAndHandBackOneVerdictPerCriterionInsteadOfStoppingAtTheFirstFailingOne(
             ) {
-        when(scopedEditEvaluator.evaluate(assessmentInput)).thenReturn(passed(CorrectionCriterion.SCOPED_EDIT));
-        when(lengthEvaluator.evaluate(assessmentInput)).thenReturn(passed(CorrectionCriterion.LENGTH_IN_RANGE));
-        when(vocabularyEvaluator.evaluate(assessmentInput)).thenReturn(passed(CorrectionCriterion.LEVEL_VOCABULARY));
-        Map<CorrectionCriterion, CandidateCriterionEvaluator> registry = Map.of(
-                CorrectionCriterion.SCOPED_EDIT, scopedEditEvaluator,
-                CorrectionCriterion.LENGTH_IN_RANGE, lengthEvaluator,
-                CorrectionCriterion.LEVEL_VOCABULARY, vocabularyEvaluator);
-        DefaultCandidateAssessor assessor = new DefaultCandidateAssessor(registry);
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        QuizTemplateEntity candidate = quiz("ate", "She ate breakfast, and afterward also rewrote the rest.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        // The very first criterion evaluated fails; if the assessor stopped there, none
+        // of the other four would ever be asked.
+        Map<CorrectionCriterion, CandidateCriterionEvaluator> evaluatorsByCriterion = new HashMap<>();
+        evaluatorsByCriterion.put(CorrectionCriterion.SCOPED_EDIT, evaluatorReturning(
+                verdict(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.FAILED,
+                        "Cambio una parte que ninguna violacion señalo.")));
+        evaluatorsByCriterion.put(CorrectionCriterion.LEVEL_VOCABULARY,
+                evaluatorReturning(passed(CorrectionCriterion.LEVEL_VOCABULARY)));
+        evaluatorsByCriterion.put(CorrectionCriterion.DISTINCTNESS,
+                evaluatorReturning(passed(CorrectionCriterion.DISTINCTNESS)));
+        evaluatorsByCriterion.put(CorrectionCriterion.FAITHFUL_TRANSLATION,
+                evaluatorReturning(passed(CorrectionCriterion.FAITHFUL_TRANSLATION)));
+        evaluatorsByCriterion.put(CorrectionCriterion.SOLVABLE_SAME_KIND,
+                evaluatorReturning(passed(CorrectionCriterion.SOLVABLE_SAME_KIND)));
+        evaluatorsByCriterion.put(CorrectionCriterion.INSTRUCTION_COMPLIANCE,
+                evaluatorReturning(passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE)));
+        evaluatorsByCriterion.put(CorrectionCriterion.LENGTH_IN_RANGE,
+                evaluatorReturning(passed(CorrectionCriterion.LENGTH_IN_RANGE)));
+        DefaultCandidateAssessor assessor = assessorFromMap(evaluatorsByCriterion, IN_RANGE_LENGTH);
 
         CandidateAssessment assessment = assessor.assess(assessmentInput);
 
-        assertTrue(assessment.isAccepted());
-        assertEquals(3, assessment.getVerdicts().size());
-        assertTrue(assessment.getVerdicts().stream().allMatch(v -> v.getOutcome() == CriterionOutcome.PASSED));
+        for (CorrectionCriterion criterion : CATALOG_CRITERIA) {
+            verify(evaluatorsByCriterion.get(criterion)).evaluate(assessmentInput);
+        }
+        assertEquals(CriterionOutcome.FAILED,
+                findByCriterion(assessment.getVerdicts(), CorrectionCriterion.SCOPED_EDIT).getOutcome());
+        for (CorrectionCriterion stillEvaluated : List.of(CorrectionCriterion.LEVEL_VOCABULARY,
+                CorrectionCriterion.DISTINCTNESS, CorrectionCriterion.FAITHFUL_TRANSLATION,
+                CorrectionCriterion.SOLVABLE_SAME_KIND)) {
+            assertEquals(CriterionOutcome.PASSED,
+                    findByCriterion(assessment.getVerdicts(), stillEvaluated).getOutcome());
+        }
     }
 
     @Test
-    @DisplayName("should refuse a candidate as soon as one criterion returns a failing verdict, whichever criterion it is")
+    @DisplayName("should count a criterion that could not be evaluated as unmet when it ranks the candidate, so an unverified one cannot outrank a verified one")
     @Tag("FEAT-QICOR")
-    @Tag("F-QICOR-R004")
-    public void shouldRefuseACandidateAsSoonAsOneCriterionReturnsAFailingVerdictWhicheverCriterionItIs(
+    @Tag("F-QICOR-R013")
+    public void shouldCountACriterionThatCouldNotBeEvaluatedAsUnmetWhenItRanksTheCandidateSoAnUnverifiedOneCannotOutrankAVerifiedOne(
             ) {
-        when(scopedEditEvaluator.evaluate(assessmentInput)).thenReturn(passed(CorrectionCriterion.SCOPED_EDIT));
-        when(lengthEvaluator.evaluate(assessmentInput)).thenReturn(new CriterionVerdict(
-                CorrectionCriterion.LENGTH_IN_RANGE, CriterionOutcome.FAILED,
-                "12 tokens, fuera del rango 6-10 de A1"));
-        when(vocabularyEvaluator.evaluate(assessmentInput)).thenReturn(passed(CorrectionCriterion.LEVEL_VOCABULARY));
-        Map<CorrectionCriterion, CandidateCriterionEvaluator> registry = Map.of(
-                CorrectionCriterion.SCOPED_EDIT, scopedEditEvaluator,
-                CorrectionCriterion.LENGTH_IN_RANGE, lengthEvaluator,
-                CorrectionCriterion.LEVEL_VOCABULARY, vocabularyEvaluator);
-        DefaultCandidateAssessor assessor = new DefaultCandidateAssessor(registry);
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        // Same candidate submitted twice: once where the distinctness comparator could
+        // not respond, once where it answered and the criterion actually passed.
+        List<CriterionVerdict> withUnverifiedDistinctness = List.of(
+                passed(CorrectionCriterion.SCOPED_EDIT), passed(CorrectionCriterion.LEVEL_VOCABULARY),
+                verdict(CorrectionCriterion.DISTINCTNESS, CriterionOutcome.NOT_EVALUABLE,
+                        "El comparador de distincion no respondio."),
+                passed(CorrectionCriterion.FAITHFUL_TRANSLATION), passed(CorrectionCriterion.SOLVABLE_SAME_KIND));
+        List<CriterionVerdict> withVerifiedDistinctness = List.of(
+                passed(CorrectionCriterion.SCOPED_EDIT), passed(CorrectionCriterion.LEVEL_VOCABULARY),
+                passed(CorrectionCriterion.DISTINCTNESS),
+                passed(CorrectionCriterion.FAITHFUL_TRANSLATION), passed(CorrectionCriterion.SOLVABLE_SAME_KIND));
+        DefaultCandidateAssessor unverifiedAssessor = assessorFor(withUnverifiedDistinctness,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
+        DefaultCandidateAssessor verifiedAssessor = assessorFor(withVerifiedDistinctness,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
 
-        CandidateAssessment assessment = assessor.assess(assessmentInput);
+        CandidateAssessment unverified = unverifiedAssessor.assess(assessmentInput);
+        CandidateAssessment verified = verifiedAssessor.assess(assessmentInput);
 
-        assertFalse(assessment.isAccepted());
-        assertTrue(assessment.getVerdicts().stream()
-                .anyMatch(v -> v.getCriterion() == CorrectionCriterion.LENGTH_IN_RANGE
-                        && v.getOutcome() == CriterionOutcome.FAILED));
+        assertEquals(4, unverified.getSatisfiedCriteria());
+        assertEquals(5, verified.getSatisfiedCriteria());
+        assertTrue(unverified.getSatisfiedCriteria() < verified.getSatisfiedCriteria());
     }
 
     @Test
-    @DisplayName("should refuse a candidate whose criterion could not be evaluated, instead of letting an unverified candidate through")
+    @DisplayName("should carry in the assessment every criterion the candidate did not meet together with the reason it was reproached")
     @Tag("FEAT-QICOR")
-    @Tag("F-QICOR-R004")
-    public void shouldRefuseACandidateWhoseCriterionCouldNotBeEvaluatedInsteadOfLettingAnUnverifiedCandidateThrough(
+    @Tag("F-QICOR-R014")
+    public void shouldCarryInTheAssessmentEveryCriterionTheCandidateDidNotMeetTogetherWithTheReasonItWasReproached(
             ) {
-        when(scopedEditEvaluator.evaluate(assessmentInput)).thenReturn(passed(CorrectionCriterion.SCOPED_EDIT));
-        when(lengthEvaluator.evaluate(assessmentInput)).thenReturn(passed(CorrectionCriterion.LENGTH_IN_RANGE));
-        when(vocabularyEvaluator.evaluate(assessmentInput)).thenReturn(new CriterionVerdict(
-                CorrectionCriterion.LEVEL_VOCABULARY, CriterionOutcome.NOT_EVALUABLE,
-                "el analizador lexico no respondio"));
-        Map<CorrectionCriterion, CandidateCriterionEvaluator> registry = Map.of(
-                CorrectionCriterion.SCOPED_EDIT, scopedEditEvaluator,
-                CorrectionCriterion.LENGTH_IN_RANGE, lengthEvaluator,
-                CorrectionCriterion.LEVEL_VOCABULARY, vocabularyEvaluator);
-        DefaultCandidateAssessor assessor = new DefaultCandidateAssessor(registry);
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        QuizTemplateEntity candidate = quiz("ate", "She ate breakfast, and afterward also rewrote the rest.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        List<CriterionVerdict> verdicts = List.of(
+                verdict(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.FAILED,
+                        "Cambio una parte que ninguna violacion señalo."),
+                passed(CorrectionCriterion.LEVEL_VOCABULARY),
+                verdict(CorrectionCriterion.DISTINCTNESS, CriterionOutcome.FAILED,
+                        "Se confunde con otro ejercicio del mismo knowledge."),
+                passed(CorrectionCriterion.FAITHFUL_TRANSLATION), passed(CorrectionCriterion.SOLVABLE_SAME_KIND));
+        DefaultCandidateAssessor assessor = assessorFor(verdicts,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
 
         CandidateAssessment assessment = assessor.assess(assessmentInput);
 
-        assertFalse(assessment.isAccepted());
-        assertTrue(assessment.getVerdicts().stream()
-                .anyMatch(v -> v.getCriterion() == CorrectionCriterion.LEVEL_VOCABULARY
-                        && v.getOutcome() == CriterionOutcome.NOT_EVALUABLE));
+        List<CriterionVerdict> unmet = assessment.getUnmetCriteria();
+        assertEquals(2, unmet.size());
+        assertEquals("Cambio una parte que ninguna violacion señalo.",
+                findByCriterion(unmet, CorrectionCriterion.SCOPED_EDIT).getDetail());
+        assertEquals("Se confunde con otro ejercicio del mismo knowledge.",
+                findByCriterion(unmet, CorrectionCriterion.DISTINCTNESS).getDetail());
     }
 
     @Test
-    @DisplayName("should carry in the assessment the criterion that blocked the candidate together with the detail of why it failed")
+    @DisplayName("should keep out of the competition a candidate that describes something that cannot happen in the real world, even though it complies with its instruction and satisfies every other criterion of the catalog")
     @Tag("FEAT-QICOR")
-    @Tag("F-QICOR-R006")
-    public void shouldCarryInTheAssessmentTheCriterionThatBlockedTheCandidateTogetherWithTheDetailOfWhyItFailed(
-            ) {
-        String detail = "La oracion corregida tiene 14 tokens; el rango objetivo de A1 es 6-10.";
-        when(scopedEditEvaluator.evaluate(assessmentInput)).thenReturn(passed(CorrectionCriterion.SCOPED_EDIT));
-        when(lengthEvaluator.evaluate(assessmentInput)).thenReturn(new CriterionVerdict(
-                CorrectionCriterion.LENGTH_IN_RANGE, CriterionOutcome.FAILED, detail));
-        when(vocabularyEvaluator.evaluate(assessmentInput)).thenReturn(passed(CorrectionCriterion.LEVEL_VOCABULARY));
-        Map<CorrectionCriterion, CandidateCriterionEvaluator> registry = Map.of(
-                CorrectionCriterion.SCOPED_EDIT, scopedEditEvaluator,
-                CorrectionCriterion.LENGTH_IN_RANGE, lengthEvaluator,
-                CorrectionCriterion.LEVEL_VOCABULARY, vocabularyEvaluator);
-        DefaultCandidateAssessor assessor = new DefaultCandidateAssessor(registry);
+    @Tag("F-QICOR-R016")
+    public void shouldKeepOutOfTheCompetitionACandidateThatDescribesSomethingThatCannotHappenInTheRealWorldEvenThoughItCompliesWithItsInstructionAndSatisfiesEveryOtherCriterionOfTheCatalog() {
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        // Every criterion the catalog counts passes, and so does the instruction; only the
+        // real-world sense — a judgment criterion, not one of the five that count — reproaches.
+        List<CriterionVerdict> verdicts = allCatalogCriteriaPassing();
+        verdicts.add(verdict(CorrectionCriterion.REAL_WORLD_SENSE, CriterionOutcome.FAILED,
+                "Describe algo que no puede pasar en el mundo real."));
+        DefaultCandidateAssessor assessor = assessorFor(verdicts,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
 
         CandidateAssessment assessment = assessor.assess(assessmentInput);
 
-        assertFalse(assessment.isAccepted());
-        CriterionVerdict blocking = assessment.getVerdicts().stream()
-                .filter(v -> v.getCriterion() == CorrectionCriterion.LENGTH_IN_RANGE)
-                .findFirst()
-                .orElseThrow(() -> new AssertionError(
-                        "the assessment must carry a verdict for the criterion that blocked the candidate"));
-        assertEquals(CriterionOutcome.FAILED, blocking.getOutcome());
-        assertEquals(detail, blocking.getDetail());
+        assertEquals(5, assessment.getSatisfiedCriteria());
+        assertFalse(assessment.isEligible());
+    }
+
+    @Test
+    @DisplayName("should keep out of the competition a candidate whose real-world sense could not be evaluated, instead of letting it compete as if it had passed")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R016")
+    public void shouldKeepOutOfTheCompetitionACandidateWhoseRealworldSenseCouldNotBeEvaluatedInsteadOfLettingItCompeteAsIfItHadPassed() {
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        // Same candidate submitted twice: once where the real-world sense judge could not
+        // respond, once where it answered and the criterion actually passed.
+        List<CriterionVerdict> withUnevaluableSense = allCatalogCriteriaPassing();
+        withUnevaluableSense.add(verdict(CorrectionCriterion.REAL_WORLD_SENSE, CriterionOutcome.NOT_EVALUABLE,
+                "El juicio de sentido en el mundo real no respondio."));
+        List<CriterionVerdict> withPassedSense = allCatalogCriteriaPassing();
+        withPassedSense.add(passed(CorrectionCriterion.REAL_WORLD_SENSE));
+        DefaultCandidateAssessor unevaluableAssessor = assessorFor(withUnevaluableSense,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
+        DefaultCandidateAssessor passedSenseAssessor = assessorFor(withPassedSense,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
+
+        CandidateAssessment unevaluable = unevaluableAssessor.assess(assessmentInput);
+        CandidateAssessment withSensePassed = passedSenseAssessor.assess(assessmentInput);
+
+        assertFalse(unevaluable.isEligible());
+        assertTrue(withSensePassed.isEligible());
+    }
+
+    @Test
+    @DisplayName("should hand back a verdict for the real-world sense together with the rest of the catalog, so whoever corrects sees the veto while it still has attempts left")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R015")
+    public void shouldHandBackAVerdictForTheRealworldSenseTogetherWithTheRestOfTheCatalogSoWhoeverCorrectsSeesTheVetoWhileItStillHasAttemptsLeft() {
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        List<CriterionVerdict> verdicts = allCatalogCriteriaPassing();
+        verdicts.add(verdict(CorrectionCriterion.REAL_WORLD_SENSE, CriterionOutcome.FAILED,
+                "Describe algo que no puede pasar en el mundo real."));
+        DefaultCandidateAssessor assessor = assessorFor(verdicts,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
+
+        CandidateAssessment assessment = assessor.assess(assessmentInput);
+
+        // The veto travels in the very same response as the rest of the catalog, not apart
+        // from it — that is what lets whoever is still retrying see it before running out.
+        List<CriterionVerdict> allVerdicts = assessment.getVerdicts();
+        assertEquals(CriterionOutcome.FAILED,
+                findByCriterion(allVerdicts, CorrectionCriterion.REAL_WORLD_SENSE).getOutcome());
+        for (CorrectionCriterion stillReported : CATALOG_CRITERIA) {
+            assertEquals(CriterionOutcome.PASSED, findByCriterion(allVerdicts, stillReported).getOutcome());
+        }
+    }
+
+    @Test
+    @DisplayName("should not count the real-world sense among the criteria a candidate satisfies, since every candidate that competes meets it and it could never break a tie")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R013")
+    public void shouldNotCountTheRealworldSenseAmongTheCriteriaACandidateSatisfiesSinceEveryCandidateThatCompetesMeetsItAndItCouldNeverBreakATie(
+            ) {
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        // Every candidate that competes meets the real-world sense by construction (a FAILED
+        // or NOT_EVALUABLE one would not be eligible at all) — so counting it here would add
+        // the same unit to every competitor and never break a tie.
+        List<CriterionVerdict> verdicts = allCatalogCriteriaPassing();
+        verdicts.add(passed(CorrectionCriterion.REAL_WORLD_SENSE));
+        DefaultCandidateAssessor assessor = assessorFor(verdicts,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
+
+        CandidateAssessment assessment = assessor.assess(assessmentInput);
+
+        assertTrue(assessment.isEligible());
+        assertEquals(5, assessment.getSatisfiedCriteria());
+        assertTrue(assessment.getUnmetCriteria().isEmpty());
+    }
+
+    @Test
+    @DisplayName("should let a candidate whose length fell outside the range of its level compete, and keep out the one whose real-world sense was reproached")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R011")
+    public void shouldLetACandidateWhoseLengthFellOutsideTheRangeOfItsLevelCompeteAndKeepOutTheOneWhoseRealworldSenseWasReproached(
+            ) {
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        // The two extremes of the catalog, on the same assessor: length never vetoes, no
+        // matter how far out of range it measures; the real-world sense always does.
+        List<CriterionVerdict> outOfRangeButSensible = allCatalogCriteriaPassing();
+        outOfRangeButSensible.add(passed(CorrectionCriterion.REAL_WORLD_SENSE));
+        List<CriterionVerdict> inRangeButNonsensical = allCatalogCriteriaPassing();
+        inRangeButNonsensical.add(verdict(CorrectionCriterion.REAL_WORLD_SENSE, CriterionOutcome.FAILED,
+                "Describe algo que no puede pasar en el mundo real."));
+        DefaultCandidateAssessor outOfRangeAssessor = assessorFor(outOfRangeButSensible,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), OUT_OF_RANGE_LENGTH);
+        DefaultCandidateAssessor nonsensicalAssessor = assessorFor(inRangeButNonsensical,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
+
+        CandidateAssessment outOfRangeAssessment = outOfRangeAssessor.assess(assessmentInput);
+        CandidateAssessment nonsensicalAssessment = nonsensicalAssessor.assess(assessmentInput);
+
+        assertTrue(outOfRangeAssessment.isEligible());
+        assertFalse(nonsensicalAssessment.isEligible());
+    }
+
+    @Test
+    @DisplayName("should carry the real-world sense among the unmet criteria only of a candidate that does not compete, and never of one that does")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R014")
+    public void shouldCarryTheRealworldSenseAmongTheUnmetCriteriaOnlyOfACandidateThatDoesNotCompeteAndNeverOfOneThatDoes(
+            ) {
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        List<CriterionVerdict> nonsensical = allCatalogCriteriaPassing();
+        nonsensical.add(verdict(CorrectionCriterion.REAL_WORLD_SENSE, CriterionOutcome.FAILED,
+                "Describe algo que no puede pasar en el mundo real."));
+        List<CriterionVerdict> sensible = allCatalogCriteriaPassing();
+        sensible.add(passed(CorrectionCriterion.REAL_WORLD_SENSE));
+        DefaultCandidateAssessor nonCompetingAssessor = assessorFor(nonsensical,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
+        DefaultCandidateAssessor competingAssessor = assessorFor(sensible,
+                passed(CorrectionCriterion.INSTRUCTION_COMPLIANCE), IN_RANGE_LENGTH);
+
+        CandidateAssessment nonCompeting = nonCompetingAssessor.assess(assessmentInput);
+        CandidateAssessment competing = competingAssessor.assess(assessmentInput);
+
+        assertFalse(nonCompeting.isEligible());
+        assertEquals(CriterionOutcome.FAILED,
+                findByCriterion(nonCompeting.getUnmetCriteria(), CorrectionCriterion.REAL_WORLD_SENSE).getOutcome());
+        assertTrue(competing.isEligible());
+        assertTrue(competing.getUnmetCriteria().isEmpty());
     }
 }

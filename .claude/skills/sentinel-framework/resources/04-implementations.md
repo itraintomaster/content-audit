@@ -980,6 +980,18 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `refinementPlanStore` | `RefinementPlanStore` |
 | `runFormatter` | `QuizInstructionCorrectionRunFormatter` |
 
+#### AssessCandidateCmd (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** AssessCandidateCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `candidateAssessor` | `QuizInstructionCandidateAssessor` |
+
 #### TextReportFormatter (package: formatting)
 
 **Package:** `com.learney.contentaudit.auditcli.formatting`
@@ -1519,10 +1531,10 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 |------|------|
 | `strategyRegistry` | `QuizInstructionProposalStrategyRegistry` |
 | `deriver` | `LemmaAbsenceProposalDeriver` |
-| `assessor` | `CandidateAssessor` |
 | `complianceChecker` | `QuizInstructionComplianceChecker` |
 | `subjectViewFactory` | `QuizInstructionSubjectViewFactory` |
 | `config` | `QuizInstructionCorrectionConfig` |
+| `candidateAssessor` | `QuizInstructionCandidateAssessor` |
 
 #### DefaultQuizInstructionProposalStrategyRegistry (package: engine)
 
@@ -1556,6 +1568,30 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 **Package:** `com.learney.contentaudit.revisiondomain.engine`
 **Visibility:** internal
 **Implements:** QuizInstructionCorrectionRunnerFactory
+
+#### DefaultQuizInstructionCandidateAssessor (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** QuizInstructionCandidateAssessor
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `assessor` | `CandidateAssessor` |
+| `deriver` | `LemmaAbsenceProposalDeriver` |
+| `refinementPlanStore` | `RefinementPlanStore` |
+| `auditReportStore` | `AuditReportStore` |
+| `contextResolver` | `CorrectionContextResolver<CorrectionContext>` |
+| `courseRepository` | `CourseRepository` |
+| `elementLocator` | `CourseElementLocator` |
+
+#### DefaultQuizInstructionCandidateAssessorFactory (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** QuizInstructionCandidateAssessorFactory
 
 #### LemmaAbsenceMvpStrategy (package: lemmaabsence)
 
@@ -1718,6 +1754,8 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 | Name | Type |
 |------|------|
 | `evaluatorsByCriterion` | `Map<CorrectionCriterion,CandidateCriterionEvaluator>` |
+| `lengthMeter` | `CandidateLengthMeter` |
+| `ranking` | `CandidateRanking` |
 
 #### ScopedEditCriterion (package: candidatecriteriaengine)
 
@@ -1735,8 +1773,7 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 
 | Name | Type |
 |------|------|
-| `tokenizer` | `NlpTokenizer` |
-| `sentenceLengthConfig` | `SentenceLengthConfig` |
+| `lengthMeter` | `CandidateLengthMeter` |
 
 #### LevelVocabularyCriterion (package: candidatecriteriaengine)
 
@@ -1790,6 +1827,25 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 | Name | Type |
 |------|------|
 | `auditReportStore` | `AuditReportStore` |
+
+#### DefaultCandidateLengthMeter (package: candidatecriteriaengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteriaengine`
+**Visibility:** internal
+**Implements:** CandidateLengthMeter
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `tokenizer` | `NlpTokenizer` |
+| `sentenceLengthConfig` | `SentenceLengthConfig` |
+
+#### DefaultCandidateRanking (package: candidatecriteriaengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteriaengine`
+**Visibility:** internal
+**Implements:** CandidateRanking
 
 #### QuizInstructionAgentStrategy (package: quizinstruction)
 

@@ -3,12 +3,17 @@ package com.learney.contentaudit.revisioninfrastructure.quizinstructionagent;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionGeneratorResponse;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LlmGenerationFailureCategory;
 import com.sentinel.agents.framework.state.ArtifactPointer;
 import com.sentinel.agents.framework.state.RunState;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.processing.Generated;
 
@@ -20,13 +25,25 @@ import javax.annotation.processing.Generated;
  * <ul>
  *   <li>Artifact key: {@code "correctionCandidate"}</li>
  *   <li>Format: UTF-8 JSON -- {@code {"generated": bool, "quizSentence": string,
- *       "translation": string, "rationale": string, "reason": string}}</li>
+ *       "translation": string, "rationale": string, "reason": string,
+ *       "unmetCriteria": [{"criterion": string, "outcome": string, "detail":
+ *       string}, ...], "lengthMeasurement": {...}, "attempts": int,
+ *       "allCriteriaMet": bool}}</li>
  *   <li>{@code generated: false} means the generator exhausted its attempts
  *       without ever producing a well-formed candidate -- the graph deliberately
  *       does NOT fabricate one (its own emit.sh comment: a fabricated candidate
  *       would enter the criteria catalog as if it were a real proposal). This
  *       must translate into a generation failure here, never an empty
  *       candidate silently handed to the assessor.</li>
+ *   <li>{@code unmetCriteria} and {@code attempts} are read back verbatim into
+ *       {@link QuizInstructionGeneratorResponse#getVerdicts()} / {@link
+ *       QuizInstructionGeneratorResponse#getAttempts()} (F-QICOR-R012): the
+ *       champion the graph's own loop kept, together with what it did not
+ *       meet, not recomputed here. {@code lengthMeasurement} and {@code
+ *       allCriteriaMet} have no home on {@link QuizInstructionGeneratorResponse}
+ *       and are intentionally not read -- the reviser re-verifies the delivered
+ *       candidate independently instead of trusting the graph's self-report
+ *       (F-QICOR-R012/R005).</li>
  * </ul>
  */
 @Generated(
@@ -119,7 +136,38 @@ class DefaultQuizInstructionAgentCandidateParser implements QuizInstructionAgent
         return new QuizInstructionGeneratorResponse(
                 quizSentenceNode.asText(),
                 translationNode.asText(),
-                rationaleNode != null && rationaleNode.isTextual() ? rationaleNode.asText() : null);
+                rationaleNode != null && rationaleNode.isTextual() ? rationaleNode.asText() : null,
+                parseUnmetCriteria(root.get("unmetCriteria")),
+                root.path("attempts").asInt(0));
+    }
+
+    // F-QICOR-R012/R014: the champion's own unmet criteria, read back verbatim -- never
+    // recomputed here -- so the reviser's later re-verification has something to compare
+    // against, and so a criterion that could not be evaluated stays distinguishable from
+    // one that was reproached (F-QICOR-R014 (e)).
+    private static List<CriterionVerdict> parseUnmetCriteria(JsonNode unmetCriteriaNode) {
+        List<CriterionVerdict> verdicts = new ArrayList<>();
+        if (unmetCriteriaNode == null || !unmetCriteriaNode.isArray()) {
+            return verdicts;
+        }
+        for (JsonNode verdictNode : unmetCriteriaNode) {
+            String criterionText = verdictNode.path("criterion").asText(null);
+            String outcomeText = verdictNode.path("outcome").asText(null);
+            if (criterionText == null || outcomeText == null) {
+                continue;
+            }
+            CorrectionCriterion criterion;
+            CriterionOutcome outcome;
+            try {
+                criterion = CorrectionCriterion.valueOf(criterionText);
+                outcome = CriterionOutcome.valueOf(outcomeText);
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+            String detail = verdictNode.path("detail").asText(null);
+            verdicts.add(new CriterionVerdict(criterion, outcome, detail));
+        }
+        return verdicts;
     }
 
     private static String stripJsonFence(String text) {

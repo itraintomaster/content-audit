@@ -76,7 +76,7 @@ public class FPipreJ003JourneyTest {
                 snapshot, snapshot,
                 "strategy: lemma absence", "lemma-absence-mvp",
                 Instant.parse("2026-05-03T10:00:00Z"), null
-        );
+        , null, null);
 
         // Step 2 (intentar_preview): System attempts to compute the preview.
         //   Gate: R001 (preview computed once per proposal), R002 (what-if, no AuditReport persisted).
@@ -148,7 +148,7 @@ public class FPipreJ003JourneyTest {
                 snapshot, snapshot,
                 "strategy: lemma absence", "lemma-absence-mvp",
                 Instant.parse("2026-05-03T10:00:00Z"), null
-        );
+        , null, null);
 
         // Step 2 (intentar_preview): System attempts to compute the preview.
         //   Gate: R001 (compute called once), R002 (no AuditReport saved).

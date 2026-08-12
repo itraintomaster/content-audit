@@ -10,7 +10,10 @@ import com.learney.contentaudit.revisiondomain.QuizInstructionCorrectionRunner;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionOutcome;
 import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.RevisionProposal;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateLengthMeasurement;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCorrectionConfig;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCorrectionRunReport;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCorrectionRunRequest;
@@ -85,6 +88,8 @@ class DefaultQuizInstructionCorrectionRunner implements QuizInstructionCorrectio
         int notCorrected = 0;
         int diagnosisStale = 0;
         int failed = 0;
+        int proposedWithUnmetCriteria = 0;
+        int proposedOutOfLengthRange = 0;
         List<String> notAttempted = new ArrayList<>();
         List<QuizInstructionTaskOutcome> outcomes = new ArrayList<>();
         // F-QICOR / DOUBT-TAREA-CAIDA opcion B: a diagnosis-stale task is marked STALE
@@ -106,7 +111,7 @@ class DefaultQuizInstructionCorrectionRunner implements QuizInstructionCorrectio
             } catch (RuntimeException e) {
                 failed++;
                 outcomes.add(new QuizInstructionTaskOutcome(task.getId(), task.getNodeId(),
-                        QuizInstructionTaskOutcomeKind.FAILED, List.of(), e.getMessage(), null, 0));
+                        QuizInstructionTaskOutcomeKind.FAILED, List.of(), e.getMessage(), null, 0, null, false));
                 continue;
             }
 
@@ -114,30 +119,44 @@ class DefaultQuizInstructionCorrectionRunner implements QuizInstructionCorrectio
             if (kind == RevisionOutcomeKind.APPROVED_APPLIED
                     || kind == RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED) {
                 proposed++;
-                String proposalId = outcome.getArtifact() != null
-                        && outcome.getArtifact().getProposal() != null
-                        ? outcome.getArtifact().getProposal().getProposalId()
+                RevisionProposal resultProposal = outcome.getArtifact() != null
+                        ? outcome.getArtifact().getProposal()
                         : null;
+                String proposalId = resultProposal != null ? resultProposal.getProposalId() : null;
+                // F-QICOR-R014/R011: the proposal itself already carries what it did not meet
+                // and how it measured -- read back verbatim, never recomputed here.
+                List<CriterionVerdict> unmetCriteria =
+                        resultProposal != null ? resultProposal.getUnmetCriteria() : null;
+                CandidateLengthMeasurement lengthMeasurement =
+                        resultProposal != null ? resultProposal.getLengthMeasurement() : null;
+                boolean outOfLengthRange = lengthMeasurement != null && !lengthMeasurement.isInRange();
+                if (unmetCriteria != null && !unmetCriteria.isEmpty()) {
+                    proposedWithUnmetCriteria++;
+                }
+                if (outOfLengthRange) {
+                    proposedOutOfLengthRange++;
+                }
                 outcomes.add(new QuizInstructionTaskOutcome(task.getId(), task.getNodeId(),
-                        QuizInstructionTaskOutcomeKind.PROPOSED, List.of(), null, proposalId, 1));
+                        QuizInstructionTaskOutcomeKind.PROPOSED, List.of(), null, proposalId, 1,
+                        unmetCriteria, outOfLengthRange));
             } else if (kind == RevisionOutcomeKind.DIAGNOSIS_NOT_SUSTAINED) {
                 diagnosisStale++;
                 statusUpdates.put(task.getId(), RefinementTaskStatus.STALE);
                 outcomes.add(new QuizInstructionTaskOutcome(task.getId(), task.getNodeId(),
                         QuizInstructionTaskOutcomeKind.DIAGNOSIS_STALE, List.of(),
-                        outcome.getErrorMessage(), null, 0));
+                        outcome.getErrorMessage(), null, 0, null, false));
             } else if (kind == RevisionOutcomeKind.NO_ACCEPTABLE_CANDIDATE) {
                 notCorrected++;
                 List<CorrectionCriterion> failedCriteria =
                         parseFailedCriteria(outcome.getErrorMessage());
                 outcomes.add(new QuizInstructionTaskOutcome(task.getId(), task.getNodeId(),
                         QuizInstructionTaskOutcomeKind.NOT_CORRECTED, failedCriteria,
-                        outcome.getErrorMessage(), null, resolveMaxAttempts()));
+                        outcome.getErrorMessage(), null, resolveMaxAttempts(), null, false));
             } else {
                 failed++;
                 outcomes.add(new QuizInstructionTaskOutcome(task.getId(), task.getNodeId(),
                         QuizInstructionTaskOutcomeKind.FAILED, List.of(),
-                        outcome.getErrorMessage(), null, 0));
+                        outcome.getErrorMessage(), null, 0, null, false));
             }
         }
 
@@ -170,7 +189,9 @@ class DefaultQuizInstructionCorrectionRunner implements QuizInstructionCorrectio
                 diagnosisStale,
                 failed,
                 notAttempted,
-                outcomes);
+                outcomes,
+                proposedWithUnmetCriteria,
+                proposedOutOfLengthRange);
 
         String runId = runStore.save(report);
         report.setRunId(runId);

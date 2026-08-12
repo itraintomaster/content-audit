@@ -43,9 +43,12 @@ import com.learney.contentaudit.revisiondomain.StrategyId;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessment;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessmentInput;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessor;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateLengthMeasurement;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionBestCandidate;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCandidateAssessor;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCorrectionConfig;
 import java.util.List;
 import java.util.Optional;
@@ -97,7 +100,8 @@ public class QuizInstructionReviserTest {
                 "El ejercicio no cumple la consigna: la respuesta no esta en la forma correcta.",
                 InstructionSeverity.MAJOR,
                 List.of(),
-                "audit-qicor-1");
+                "audit-qicor-1",
+                "plan-qicor-1");
     }
 
     private static QuizTemplateEntity buildQuiz(String answer) {
@@ -160,6 +164,26 @@ public class QuizInstructionReviserTest {
                         "Cumple la consigna"));
     }
 
+    // Full 7-entry catalog verdicts (mirrors allPassed()) with exactly one criterion swapped to
+    // the given outcome/detail -- used by the R011/R012/R014 scenarios below where a single
+    // criterion is what makes the candidate interesting.
+    private static List<CriterionVerdict> verdictsWith(CorrectionCriterion criterion,
+            CriterionOutcome outcome, String detail) {
+        return allPassed().stream()
+                .map(v -> v.getCriterion() == criterion ? new CriterionVerdict(criterion, outcome, detail) : v)
+                .toList();
+    }
+
+    // Adds a REAL_WORLD_SENSE verdict (F-QICOR-R016) to a base catalog that does not carry one --
+    // allPassed()/verdictsWith() both predate R016 and only cover the original 7-entry catalog, so
+    // R016 scenarios extend a base list here instead of touching those two shared helpers.
+    private static List<CriterionVerdict> withRealWorldSense(List<CriterionVerdict> base,
+            CriterionVerdict realWorldSenseVerdict) {
+        List<CriterionVerdict> verdicts = new java.util.ArrayList<>(base);
+        verdicts.add(realWorldSenseVerdict);
+        return List.copyOf(verdicts);
+    }
+
     @Test
     @DisplayName("should propose a correction whose previous state is the quiz as it stands in the course and whose proposed state is a different quiz")
     @Tag("FEAT-QICOR")
@@ -170,9 +194,9 @@ public class QuizInstructionReviserTest {
         QuizInstructionProposalStrategyRegistry strategyRegistry =
                 mock(QuizInstructionProposalStrategyRegistry.class);
         LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
-        CandidateAssessor assessor = mock(CandidateAssessor.class);
         QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
         QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
         QuizInstructionCorrectionConfig config = buildConfig(3);
 
         RefinementTask task = buildTask();
@@ -190,18 +214,20 @@ public class QuizInstructionReviserTest {
 
         LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
                 "The cat ____ (run) fast.", "El gato corre rapido.");
-        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.eq(List.of()), Mockito.eq(1)))
-                .thenReturn(candidate);
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate, allPassed(), 1);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
 
         CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
                 buildQuiz("runs"), null);
         when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
 
-        when(assessor.assess(Mockito.any(CandidateAssessmentInput.class)))
-                .thenReturn(new CandidateAssessment(true, allPassed()));
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(allPassed(), true, true, 5, List.of(),
+                        new CandidateLengthMeasurement(9, 6, 10, true, true), "eligible|5"));
 
         QuizInstructionReviser reviser = new QuizInstructionReviser(
-                strategyRegistry, deriver, assessor, complianceChecker, subjectViewFactory, config);
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config, candidateAssessor);
 
         // Act
         RevisionProposal result = reviser.propose(task, context, before);
@@ -225,13 +251,13 @@ public class QuizInstructionReviserTest {
         QuizInstructionProposalStrategyRegistry strategyRegistry =
                 mock(QuizInstructionProposalStrategyRegistry.class);
         LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
-        CandidateAssessor assessor = mock(CandidateAssessor.class);
         QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
         QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
         QuizInstructionCorrectionConfig config = buildConfig(3);
 
         QuizInstructionReviser reviser = new QuizInstructionReviser(
-                strategyRegistry, deriver, assessor, complianceChecker, subjectViewFactory, config);
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config, candidateAssessor);
 
         // Act + Assert — claims QUIZ_INSTRUCTION so its tasks stop falling back to the identity
         // bypass reviser (R001)
@@ -248,192 +274,6 @@ public class QuizInstructionReviserTest {
     }
 
     @Test
-    @DisplayName("should leave no proposal and report the failure naming at least one failed criterion when the attempts were exhausted without an acceptable candidate")
-    @Tag("FEAT-QICOR")
-    @Tag("F-QICOR-R006")
-    public void shouldLeaveNoProposalAndReportTheFailureNamingAtLeastOneFailedCriterionWhenTheAttemptsWereExhaustedWithoutAnAcceptableCandidate(
-            ) {
-        // Arrange
-        QuizInstructionProposalStrategyRegistry strategyRegistry =
-                mock(QuizInstructionProposalStrategyRegistry.class);
-        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
-        CandidateAssessor assessor = mock(CandidateAssessor.class);
-        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
-        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
-        QuizInstructionCorrectionConfig config = buildConfig(2);
-
-        RefinementTask task = buildTask();
-        QuizInstructionCorrectionContext context = buildContext();
-        CourseElementSnapshot before = buildBefore();
-
-        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
-                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
-        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
-                .thenReturn(nonCompliant(context.getViolations()));
-
-        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
-        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
-        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
-
-        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
-                "The cat ____ (run) slow.", "El gato corre lento.");
-        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyList(), Mockito.anyInt()))
-                .thenReturn(candidate);
-
-        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
-                buildQuiz("runs"), null);
-        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
-
-        when(assessor.assess(Mockito.any(CandidateAssessmentInput.class))).thenReturn(new CandidateAssessment(
-                false,
-                List.of(new CriterionVerdict(CorrectionCriterion.LENGTH_IN_RANGE, CriterionOutcome.FAILED,
-                        "La correccion supera el rango de longitud del nivel A2"))));
-
-        QuizInstructionReviser reviser = new QuizInstructionReviser(
-                strategyRegistry, deriver, assessor, complianceChecker, subjectViewFactory, config);
-
-        // Act
-        NoAcceptableCandidateException ex = assertThrows(NoAcceptableCandidateException.class,
-                () -> reviser.propose(task, context, before),
-                "must throw and leave no proposal when every attempt fails a criterion (R006)");
-
-        // Assert
-        assertEquals(QUIZ_ID, ex.getQuizId());
-        assertEquals(TASK_ID, ex.getTaskId());
-        assertFalse(ex.getFailedCriteria().isEmpty(), "must name at least one failed criterion (R006)");
-        assertTrue(ex.getFailedCriteria().contains(CorrectionCriterion.LENGTH_IN_RANGE),
-                "must name the criterion that actually failed (R006)");
-    }
-
-    @Test
-    @DisplayName("should discard the best candidate it produced instead of proposing one that failed a criterion")
-    @Tag("FEAT-QICOR")
-    @Tag("F-QICOR-R006")
-    public void shouldDiscardTheBestCandidateItProducedInsteadOfProposingOneThatFailedACriterion() {
-        // Arrange — a single attempt whose candidate passes every criterion but one: the closest
-        // possible candidate to being accepted, yet still not acceptable. This is the deliberate
-        // break with the lemma-absence best-effort (R006).
-        QuizInstructionProposalStrategyRegistry strategyRegistry =
-                mock(QuizInstructionProposalStrategyRegistry.class);
-        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
-        CandidateAssessor assessor = mock(CandidateAssessor.class);
-        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
-        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
-        QuizInstructionCorrectionConfig config = buildConfig(1);
-
-        RefinementTask task = buildTask();
-        QuizInstructionCorrectionContext context = buildContext();
-        CourseElementSnapshot before = buildBefore();
-
-        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
-                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
-        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
-                .thenReturn(nonCompliant(context.getViolations()));
-
-        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
-        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
-        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
-
-        LemmaAbsenceQuizCandidate almostThere = new LemmaAbsenceQuizCandidate(
-                "The cat ____ (run) fast.", "El perro corre rapido.");
-        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.eq(List.of()), Mockito.eq(1)))
-                .thenReturn(almostThere);
-
-        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
-                buildQuiz("runs"), null);
-        when(deriver.derive(Mockito.eq(before), Mockito.eq(almostThere), Mockito.any())).thenReturn(after);
-
-        // Every criterion but one passes: the closest possible candidate to acceptance
-        List<CriterionVerdict> verdicts = List.of(
-                new CriterionVerdict(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.PASSED,
-                        "Solo cambio el hueco senalado"),
-                new CriterionVerdict(CorrectionCriterion.LENGTH_IN_RANGE, CriterionOutcome.PASSED,
-                        "Longitud sin cambios"),
-                new CriterionVerdict(CorrectionCriterion.LEVEL_VOCABULARY, CriterionOutcome.PASSED,
-                        "Sin vocabulario nuevo fuera de nivel"),
-                new CriterionVerdict(CorrectionCriterion.DISTINCTNESS, CriterionOutcome.PASSED,
-                        "No se confunde con los hermanos"),
-                new CriterionVerdict(CorrectionCriterion.FAITHFUL_TRANSLATION, CriterionOutcome.FAILED,
-                        "La traduccion cambio de gato a perro"),
-                new CriterionVerdict(CorrectionCriterion.SOLVABLE_SAME_KIND, CriterionOutcome.PASSED,
-                        "Resoluble y del mismo tipo"),
-                new CriterionVerdict(CorrectionCriterion.INSTRUCTION_COMPLIANCE, CriterionOutcome.PASSED,
-                        "Cumple la consigna"));
-        when(assessor.assess(Mockito.any(CandidateAssessmentInput.class)))
-                .thenReturn(new CandidateAssessment(false, verdicts));
-
-        QuizInstructionReviser reviser = new QuizInstructionReviser(
-                strategyRegistry, deriver, assessor, complianceChecker, subjectViewFactory, config);
-
-        // Act
-        NoAcceptableCandidateException ex = assertThrows(NoAcceptableCandidateException.class,
-                () -> reviser.propose(task, context, before),
-                "must discard the candidate and throw instead of proposing it, even though it failed "
-                        + "only one criterion (R006)");
-
-        // Assert — the single failed criterion is named, and nothing was silently proposed
-        assertEquals(1, ex.getFailedCriteria().size(),
-                "the closest candidate still counts as unacceptable: exactly its one failed criterion "
-                        + "is named (R006)");
-        assertTrue(ex.getFailedCriteria().contains(CorrectionCriterion.FAITHFUL_TRANSLATION));
-    }
-
-    @Test
-    @DisplayName("should stop generating candidates once the configured attempt limit is reached, instead of retrying indefinitely")
-    @Tag("FEAT-QICOR")
-    @Tag("F-QICOR-R006")
-    public void shouldStopGeneratingCandidatesOnceTheConfiguredAttemptLimitIsReachedInsteadOfRetryingIndefinitely(
-            ) {
-        // Arrange
-        QuizInstructionProposalStrategyRegistry strategyRegistry =
-                mock(QuizInstructionProposalStrategyRegistry.class);
-        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
-        CandidateAssessor assessor = mock(CandidateAssessor.class);
-        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
-        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
-        QuizInstructionCorrectionConfig config = buildConfig(3);
-
-        RefinementTask task = buildTask();
-        QuizInstructionCorrectionContext context = buildContext();
-        CourseElementSnapshot before = buildBefore();
-
-        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
-                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
-        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
-                .thenReturn(nonCompliant(context.getViolations()));
-
-        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
-        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
-        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
-
-        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
-                "The cat ____ (run) fast.", "El gato corre rapido.");
-        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyList(), Mockito.anyInt()))
-                .thenReturn(candidate);
-
-        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
-                buildQuiz("run"), null);
-        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
-
-        when(assessor.assess(Mockito.any(CandidateAssessmentInput.class))).thenReturn(new CandidateAssessment(
-                false,
-                List.of(new CriterionVerdict(CorrectionCriterion.LEVEL_VOCABULARY, CriterionOutcome.FAILED,
-                        "Introduce una palabra fuera de catalogo para A2"))));
-
-        QuizInstructionReviser reviser = new QuizInstructionReviser(
-                strategyRegistry, deriver, assessor, complianceChecker, subjectViewFactory, config);
-
-        // Act
-        assertThrows(NoAcceptableCandidateException.class, () -> reviser.propose(task, context, before));
-
-        // Assert — exactly maxAttempts (3) attempts were made: it stopped instead of retrying
-        // indefinitely (R006)
-        verify(strategy, times(3)).propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyList(),
-                Mockito.anyInt());
-        verify(assessor, times(3)).assess(Mockito.any(CandidateAssessmentInput.class));
-    }
-
-    @Test
     @DisplayName("should end the task as a fallen diagnosis without generating a single candidate when the current validation declares the original quiz already compliant")
     @Tag("FEAT-QICOR")
     @Tag("F-QICOR-R009")
@@ -443,9 +283,9 @@ public class QuizInstructionReviserTest {
         QuizInstructionProposalStrategyRegistry strategyRegistry =
                 mock(QuizInstructionProposalStrategyRegistry.class);
         LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
-        CandidateAssessor assessor = mock(CandidateAssessor.class);
         QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
         QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
         QuizInstructionCorrectionConfig config = buildConfig(3);
 
         RefinementTask task = buildTask();
@@ -458,7 +298,7 @@ public class QuizInstructionReviserTest {
                 .thenReturn(compliant());
 
         QuizInstructionReviser reviser = new QuizInstructionReviser(
-                strategyRegistry, deriver, assessor, complianceChecker, subjectViewFactory, config);
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config, candidateAssessor);
 
         // Act
         DiagnosisNotSustainedException ex = assertThrows(DiagnosisNotSustainedException.class,
@@ -473,7 +313,7 @@ public class QuizInstructionReviserTest {
         // No candidate was ever generated: the active strategy was never even consulted (R009)
         verify(strategyRegistry, never()).active();
         verify(deriver, never()).derive(Mockito.any(), Mockito.any(), Mockito.any());
-        verify(assessor, never()).assess(Mockito.any());
+        verify(candidateAssessor, never()).assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any());
         verify(complianceChecker).revalidate(Mockito.any(QuizInstructionSubjectView.class));
     }
 
@@ -487,9 +327,9 @@ public class QuizInstructionReviserTest {
         QuizInstructionProposalStrategyRegistry strategyRegistry =
                 mock(QuizInstructionProposalStrategyRegistry.class);
         LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
-        CandidateAssessor assessor = mock(CandidateAssessor.class);
         QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
         QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
         QuizInstructionCorrectionConfig config = buildConfig(3);
 
         RefinementTask task = buildTask();
@@ -507,18 +347,20 @@ public class QuizInstructionReviserTest {
 
         LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
                 "The cat ____ (run) fast.", "El gato corre rapido.");
-        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.eq(List.of()), Mockito.eq(1)))
-                .thenReturn(candidate);
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate, allPassed(), 1);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
 
         CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
                 buildQuiz("runs"), null);
         when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
 
-        when(assessor.assess(Mockito.any(CandidateAssessmentInput.class)))
-                .thenReturn(new CandidateAssessment(true, allPassed()));
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(allPassed(), true, true, 5, List.of(),
+                        new CandidateLengthMeasurement(9, 6, 10, true, true), "eligible|5"));
 
         QuizInstructionReviser reviser = new QuizInstructionReviser(
-                strategyRegistry, deriver, assessor, complianceChecker, subjectViewFactory, config);
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config, candidateAssessor);
 
         // Act
         RevisionProposal result = reviser.propose(task, context, before);
@@ -527,8 +369,991 @@ public class QuizInstructionReviserTest {
         assertNotNull(result);
         verify(complianceChecker).revalidate(Mockito.any(QuizInstructionSubjectView.class));
         verify(strategyRegistry).active();
-        verify(strategy).propose(Mockito.eq(task), Mockito.eq(context), Mockito.eq(List.of()), Mockito.eq(1));
+        verify(strategy).propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt());
         verify(deriver).derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any());
-        verify(assessor).assess(Mockito.any(CandidateAssessmentInput.class));
+        verify(candidateAssessor).assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any());
+    }
+
+    @Test
+    @DisplayName("should ask the correction for a candidate exactly once per task, even when the candidate it gets back failed a criterion of the catalog")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R012")
+    public void shouldAskTheCorrectionForACandidateExactlyOncePerTaskEvenWhenTheCandidateItGetsBackFailedACriterionOfTheCatalog() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        // The correction's own best candidate failed the scoped-edit criterion, but the request
+        // is still answered with exactly one QuizInstructionBestCandidate: the system never asks
+        // for a second one just because the first one reported a failure (R012).
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "The cat and the dog ____ (run) fast together.",
+                "El gato y el perro corren rapido juntos.");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate,
+                verdictsWith(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.FAILED,
+                        "Cambio ademas el sujeto de la oracion, que ninguna violacion señalaba"),
+                3);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("runs"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(
+                        verdictsWith(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.FAILED,
+                                "Cambio ademas el sujeto de la oracion, que ninguna violacion señalaba"),
+                        true, true, 5,
+                        List.of(new CriterionVerdict(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.FAILED,
+                                "Cambio ademas el sujeto de la oracion, que ninguna violacion señalaba")),
+                        new CandidateLengthMeasurement(9, 6, 10, true, true),
+                        "eligible|5"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config,
+                candidateAssessor);
+
+        // Act
+        RevisionProposal result = reviser.propose(task, context, before);
+
+        // Assert — exactly one correction request was emitted for this task, even though the
+        // candidate it got back failed a catalog criterion: the decision to retry is not the
+        // system's (R012)
+        assertNotNull(result);
+        verify(strategy, times(1)).propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt());
+    }
+
+    @Test
+    @DisplayName("should propose the best candidate the correction handed back even though it failed a criterion of the catalog, as long as it complies with its instruction")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R012")
+    public void shouldProposeTheBestCandidateTheCorrectionHandedBackEvenThoughItFailedACriterionOfTheCatalogAsLongAsItCompliesWithItsInstruction() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "The cat ____ (run) fast, unlike its usual pace.",
+                "El gato corre rapido, a diferencia de su ritmo habitual.");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate,
+                verdictsWith(CorrectionCriterion.DISTINCTNESS, CriterionOutcome.FAILED,
+                        "Se parece demasiado a otro ejercicio del mismo knowledge"),
+                2);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("runs"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        CriterionVerdict distinctnessFailure = new CriterionVerdict(CorrectionCriterion.DISTINCTNESS,
+                CriterionOutcome.FAILED, "Se parece demasiado a otro ejercicio del mismo knowledge");
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(
+                        verdictsWith(CorrectionCriterion.DISTINCTNESS, CriterionOutcome.FAILED,
+                                distinctnessFailure.getDetail()),
+                        true, true, 5, List.of(distinctnessFailure),
+                        new CandidateLengthMeasurement(9, 6, 10, true, true),
+                        "eligible|5"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config,
+                candidateAssessor);
+
+        // Act
+        RevisionProposal result = reviser.propose(task, context, before);
+
+        // Assert — a proposal IS produced from the best candidate the correction handed back,
+        // even though it failed distinctness, because it complies with its instruction (R012)
+        assertNotNull(result,
+                "must propose the best candidate seen even when it failed a catalog criterion (R012)");
+        assertEquals(after, result.getElementAfter());
+        assertTrue(result.getUnmetCriteria().contains(distinctnessFailure),
+                "the proposal must be built from the very candidate that failed distinctness, not a "
+                        + "clean one (R012)");
+    }
+
+    @Test
+    @DisplayName("should hand the attempt limit the run configured to the correction inside the single request it emits")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R012")
+    public void shouldHandTheAttemptLimitTheRunConfiguredToTheCorrectionInsideTheSingleRequestItEmits() {
+        // Arrange — a distinctive maxAttempts (5) so a hardcoded default could not pass by accident
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(5);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "The cat ____ (run) fast.", "El gato corre rapido.");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate, allPassed(), 1);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("runs"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(allPassed(), true, true, 6, List.of(),
+                        new CandidateLengthMeasurement(9, 6, 10, true, true), "eligible|6"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config,
+                candidateAssessor);
+
+        // Act
+        reviser.propose(task, context, before);
+
+        // Assert — the run's configured attempt limit (5) travels inside the single correction
+        // request the reviser emits (R012)
+        verify(strategy).propose(Mockito.eq(task), Mockito.eq(context), Mockito.eq(5));
+    }
+
+    @Test
+    @DisplayName("should verify by itself that the delivered candidate complies with its instruction instead of taking at its word the verdict the correction reported")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R012")
+    public void shouldVerifyByItselfThatTheDeliveredCandidateCompliesWithItsInstructionInsteadOfTakingAtItsWordTheVerdictTheCorrectionReported() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "The cat ____ (run) fast.", "El gato corre rapido.");
+        // The correction itself reports that its candidate complies with the instruction...
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate,
+                verdictsWith(CorrectionCriterion.INSTRUCTION_COMPLIANCE, CriterionOutcome.PASSED,
+                        "Cumple la consigna, segun la propia correccion"),
+                1);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("runs"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        // ...but the system's own assessment, consulted independently on the same candidate, finds
+        // that it does NOT actually comply
+        CriterionVerdict complianceFailure = new CriterionVerdict(CorrectionCriterion.INSTRUCTION_COMPLIANCE,
+                CriterionOutcome.FAILED, "La respuesta sigue sin conjugarse en tercera persona");
+        when(candidateAssessor.assess(Mockito.eq(context), Mockito.eq(before), Mockito.anyString(),
+                Mockito.anyString()))
+                .thenReturn(new CandidateAssessment(
+                        verdictsWith(CorrectionCriterion.INSTRUCTION_COMPLIANCE, CriterionOutcome.FAILED,
+                                complianceFailure.getDetail()),
+                        false, true, 5, List.of(complianceFailure),
+                        new CandidateLengthMeasurement(8, 6, 10, true, true), "not-eligible"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config,
+                candidateAssessor);
+
+        // Act
+        NoAcceptableCandidateException ex = assertThrows(NoAcceptableCandidateException.class,
+                () -> reviser.propose(task, context, before),
+                "must not take the correction's self-reported compliance at its word (R012, R005)");
+
+        // Assert — the reviser actually consulted its own candidateAssessor for this exact
+        // candidate, and its verdict — not the one the correction reported — decided the outcome
+        verify(candidateAssessor).assess(Mockito.eq(context), Mockito.eq(before), Mockito.anyString(),
+                Mockito.anyString());
+        assertTrue(ex.getFailedCriteria().contains(CorrectionCriterion.INSTRUCTION_COMPLIANCE),
+                "the system's own verdict, not the correction's self-report, must decide (R012, R005)");
+    }
+
+    @Test
+    @DisplayName("should name in the proposal the criteria the delivered quiz did not meet, each one with the reason it was reproached")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R014")
+    public void shouldNameInTheProposalTheCriteriaTheDeliveredQuizDidNotMeetEachOneWithTheReasonItWasReproached() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "The cat and its friend ____ (run) fast.", "El gato y su amigo corren rapido.");
+        CriterionVerdict scopedEditFailure = new CriterionVerdict(CorrectionCriterion.SCOPED_EDIT,
+                CriterionOutcome.FAILED, "Reescribio ademas el complemento, que ninguna violacion señalaba");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate,
+                List.of(scopedEditFailure), 2);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("runs"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(
+                        verdictsWith(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.FAILED,
+                                scopedEditFailure.getDetail()),
+                        true, true, 5, List.of(scopedEditFailure),
+                        new CandidateLengthMeasurement(9, 6, 10, true, true), "eligible|5"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config,
+                candidateAssessor);
+
+        // Act
+        RevisionProposal result = reviser.propose(task, context, before);
+
+        // Assert — the proposal names the criterion the delivered quiz did not meet, together with
+        // the exact reason it was reproached, not just its name (R014)
+        assertEquals(1, result.getUnmetCriteria().size());
+        assertEquals(scopedEditFailure, result.getUnmetCriteria().get(0),
+                "must carry both the criterion and the reason it was reproached, unchanged (R014)");
+    }
+
+    @Test
+    @DisplayName("should leave the proposal with no unmet criteria declared when the delivered candidate satisfied the whole catalog")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R014")
+    public void shouldLeaveTheProposalWithNoUnmetCriteriaDeclaredWhenTheDeliveredCandidateSatisfiedTheWholeCatalog() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "The cat ____ (run) fast.", "El gato corre rapido.");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate, allPassed(), 1);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("runs"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(allPassed(), true, true, 6, List.of(),
+                        new CandidateLengthMeasurement(9, 6, 10, true, true), "eligible|6"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config,
+                candidateAssessor);
+
+        // Act
+        RevisionProposal result = reviser.propose(task, context, before);
+
+        // Assert — a candidate that satisfied the whole catalog produces a proposal with no unmet
+        // criteria declared (R014)
+        assertNotNull(result.getUnmetCriteria());
+        assertTrue(result.getUnmetCriteria().isEmpty(),
+                "must declare no unmet criteria when the delivered candidate satisfied the whole "
+                        + "catalog (R014)");
+    }
+
+    @Test
+    @DisplayName("should never name the length among the unmet criteria of the proposal, even when the delivered quiz fell outside the range of its level")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R014")
+    public void shouldNeverNameTheLengthAmongTheUnmetCriteriaOfTheProposalEvenWhenTheDeliveredQuizFellOutsideTheRangeOfItsLevel() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        // Fell outside its target range AND additionally clashes with a sibling quiz — two
+        // independent reasons the corrected quiz is imperfect, only one of which may ever be
+        // named among the unmet criteria.
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "The cat and the dog and the bird ____ (run) fast together in the park.",
+                "El gato, el perro y el pajaro corren rapido juntos en el parque.");
+        CriterionVerdict distinctnessFailure = new CriterionVerdict(CorrectionCriterion.DISTINCTNESS,
+                CriterionOutcome.FAILED, "Se parece a un ejercicio hermano del mismo knowledge");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate,
+                List.of(distinctnessFailure), 1);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("runs"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        CandidateLengthMeasurement outOfRange = new CandidateLengthMeasurement(14, 6, 10, false, true);
+        List<CriterionVerdict> verdicts = verdictsWith(CorrectionCriterion.DISTINCTNESS,
+                CriterionOutcome.FAILED, distinctnessFailure.getDetail());
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(verdicts, true, true, 5, List.of(distinctnessFailure),
+                        outOfRange, "eligible|5"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config,
+                candidateAssessor);
+
+        // Act
+        RevisionProposal result = reviser.propose(task, context, before);
+
+        // Assert — the length never appears among the proposal's unmet criteria, even though the
+        // delivered quiz genuinely fell outside its level's range; it has its own declaration
+        // (R011) and the other criterion that actually failed is still named (R014)
+        assertFalse(result.getUnmetCriteria().stream()
+                        .anyMatch(v -> v.getCriterion() == CorrectionCriterion.LENGTH_IN_RANGE),
+                "the length must never be named among the unmet criteria of the proposal (R014, R011)");
+        assertTrue(result.getUnmetCriteria().contains(distinctnessFailure),
+                "the criterion that actually failed must still be named (R014)");
+        assertFalse(result.getLengthMeasurement().isInRange(),
+                "the scenario must genuinely have the quiz fall outside its target range (R011)");
+    }
+
+    @Test
+    @DisplayName("should propose a correction whose only failing criterion is that its length fell outside the target range of its level")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R011")
+    public void shouldProposeACorrectionWhoseOnlyFailingCriterionIsThatItsLengthFellOutsideTheTargetRangeOfItsLevel() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        // Passes criteria 2 to 5 and complies with its instruction; its only failure is that the
+        // corrected quiz measures outside the A2 target range (R011).
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "The cat and the dog and the bird are running fast together in the park.",
+                "El gato, el perro y el pajaro estan corriendo rapido juntos en el parque.");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate, allPassed(), 1);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("are running"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        CandidateLengthMeasurement outOfRange = new CandidateLengthMeasurement(13, 6, 10, false, true);
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(allPassed(), true, true, 6, List.of(), outOfRange,
+                        "eligible|6"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config,
+                candidateAssessor);
+
+        // Act
+        RevisionProposal result = reviser.propose(task, context, before);
+
+        // Assert — a candidate whose only failure is falling outside its target length range is
+        // still proposed, not discarded (R011)
+        assertNotNull(result,
+                "a candidate whose only failure is its length must still be proposed (R011)");
+        assertEquals(before, result.getElementBefore());
+        assertNotEquals(result.getElementBefore(), result.getElementAfter());
+    }
+
+    @Test
+    @DisplayName("should declare on the proposal the tokens measured for the delivered quiz and the target range of its level")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R011")
+    public void shouldDeclareOnTheProposalTheTokensMeasuredForTheDeliveredQuizAndTheTargetRangeOfItsLevel() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "The cat and the dog and the bird are running fast together in the park.",
+                "El gato, el perro y el pajaro estan corriendo rapido juntos en el parque.");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate, allPassed(), 1);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("are running"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        // 13 tokens measured against the A2 target range of 6..10 -- same measurement the
+        // sentence-length analyzer would apply (R011 (e))
+        CandidateLengthMeasurement outOfRange = new CandidateLengthMeasurement(13, 6, 10, false, true);
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(allPassed(), true, true, 6, List.of(), outOfRange,
+                        "eligible|6"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config,
+                candidateAssessor);
+
+        // Act
+        RevisionProposal result = reviser.propose(task, context, before);
+
+        // Assert — the proposal declares the exact tokens measured for the delivered quiz and the
+        // target range of its level, so the operator can see it without opening the exercise (R011)
+        assertNotNull(result.getLengthMeasurement());
+        assertEquals(13, result.getLengthMeasurement().getTokens());
+        assertEquals(6, result.getLengthMeasurement().getTargetMin());
+        assertEquals(10, result.getLengthMeasurement().getTargetMax());
+        assertFalse(result.getLengthMeasurement().isInRange());
+    }
+
+    @Test
+    @DisplayName("should leave no proposal and name at least one failed criterion when no candidate the correction produced complied with its instruction")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R006")
+    public void shouldLeaveNoProposalAndNameAtLeastOneFailedCriterionWhenNoCandidateTheCorrectionProducedCompliedWithItsInstruction() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        // The correction exhausted its 3 attempts and its best candidate still breaches the
+        // instruction: the answer is still not conjugated in third person (R006, R005).
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "The cat ____ (run) fast, every single day.", "El gato corre rapido, todos los dias.");
+        CriterionVerdict complianceFailure = new CriterionVerdict(CorrectionCriterion.INSTRUCTION_COMPLIANCE,
+                CriterionOutcome.FAILED, "La respuesta sigue sin conjugarse en tercera persona");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate,
+                verdictsWith(CorrectionCriterion.INSTRUCTION_COMPLIANCE, CriterionOutcome.FAILED,
+                        complianceFailure.getDetail()),
+                3);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("run"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(
+                        verdictsWith(CorrectionCriterion.INSTRUCTION_COMPLIANCE, CriterionOutcome.FAILED,
+                                complianceFailure.getDetail()),
+                        false, true, 5, List.of(complianceFailure),
+                        new CandidateLengthMeasurement(9, 6, 10, true, true), "not-eligible"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config, candidateAssessor);
+
+        // Act
+        NoAcceptableCandidateException ex = assertThrows(NoAcceptableCandidateException.class,
+                () -> reviser.propose(task, context, before),
+                "must leave no proposal when no candidate the correction produced complied with its "
+                        + "instruction (R006)");
+
+        // Assert — the failure is reported explicitly, naming at least one failed criterion (R006 (a))
+        assertFalse(ex.getFailedCriteria().isEmpty(),
+                "must name at least one failed criterion when no candidate turned out to be "
+                        + "deliverable (R006)");
+        assertTrue(ex.getFailedCriteria().contains(CorrectionCriterion.INSTRUCTION_COMPLIANCE),
+                "the criterion that made every candidate undeliverable must be named (R006)");
+        assertEquals(QUIZ_ID, ex.getQuizId());
+        assertEquals(TASK_ID, ex.getTaskId());
+    }
+
+    @Test
+    @DisplayName("should leave no proposal when the candidate the correction handed back was not a real change over the quiz that stands in the course")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R006")
+    public void shouldLeaveNoProposalWhenTheCandidateTheCorrectionHandedBackWasNotARealChangeOverTheQuizThatStandsInTheCourse() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        // After exhausting its attempts, the correction's best candidate is literally the same
+        // sentence and translation the quiz already has in the course -- nothing to propose,
+        // independent of whether the catalog itself has any complaint (R010, R013).
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                context.getQuizSentence(), context.getTranslation());
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate, allPassed(), 3);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("run"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        // The catalog itself has nothing to reproach -- what disqualifies this candidate is that it
+        // never actually changed anything (realChange=false), a condition independent of the
+        // catalog criteria (R010, R013).
+        when(candidateAssessor.assess(Mockito.eq(context), Mockito.eq(before), Mockito.eq(candidate.getQuizSentence()),
+                Mockito.eq(candidate.getTranslation())))
+                .thenReturn(new CandidateAssessment(allPassed(), false, false, 5, List.of(),
+                        new CandidateLengthMeasurement(9, 6, 10, true, true), "not-eligible"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config, candidateAssessor);
+
+        // Act
+        NoAcceptableCandidateException ex = assertThrows(NoAcceptableCandidateException.class,
+                () -> reviser.propose(task, context, before),
+                "must leave no proposal when the delivered candidate is not a real change over the "
+                        + "quiz that stands in the course (R006, R010)");
+
+        // Assert — no proposal was produced, and the candidateAssessor was consulted with the exact
+        // candidate text that turned out to be identical to what already stands in the course
+        assertEquals(QUIZ_ID, ex.getQuizId());
+        assertEquals(TASK_ID, ex.getTaskId());
+        verify(candidateAssessor).assess(Mockito.eq(context), Mockito.eq(before),
+                Mockito.eq(candidate.getQuizSentence()), Mockito.eq(candidate.getTranslation()));
+    }
+
+    @Test
+    @DisplayName("should never name the length among the failed criteria it reports when no candidate turned out to be deliverable")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R006")
+    public void shouldNeverNameTheLengthAmongTheFailedCriteriaItReportsWhenNoCandidateTurnedOutToBeDeliverable() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        // Its best candidate still breaches the instruction AND additionally landed outside its
+        // level's target range -- two independent reasons the candidate is imperfect, only one of
+        // which may ever be named among the failed criteria of a correction not achieved.
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "The cat and the dog and the bird ____ (run) fast together in the park every morning.",
+                "El gato, el perro y el pajaro corren rapido juntos en el parque todas las mañanas.");
+        CriterionVerdict complianceFailure = new CriterionVerdict(CorrectionCriterion.INSTRUCTION_COMPLIANCE,
+                CriterionOutcome.FAILED, "La respuesta sigue sin conjugarse en tercera persona");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate,
+                verdictsWith(CorrectionCriterion.INSTRUCTION_COMPLIANCE, CriterionOutcome.FAILED,
+                        complianceFailure.getDetail()),
+                3);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("run"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        CandidateLengthMeasurement outOfRange = new CandidateLengthMeasurement(16, 6, 10, false, true);
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(
+                        verdictsWith(CorrectionCriterion.INSTRUCTION_COMPLIANCE, CriterionOutcome.FAILED,
+                                complianceFailure.getDetail()),
+                        false, true, 5, List.of(complianceFailure), outOfRange, "not-eligible"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config, candidateAssessor);
+
+        // Act
+        NoAcceptableCandidateException ex = assertThrows(NoAcceptableCandidateException.class,
+                () -> reviser.propose(task, context, before),
+                "must leave no proposal when no candidate turned out to be deliverable (R006)");
+
+        // Assert — the length never appears among the failed criteria of a correction not achieved,
+        // even though the candidate genuinely fell outside its level's target range; the criterion
+        // that actually blocked delivery is still named (R006, R011)
+        assertFalse(ex.getFailedCriteria().contains(CorrectionCriterion.LENGTH_IN_RANGE),
+                "the length must never be named among the failed criteria of a correction not "
+                        + "achieved (R006, R011)");
+        assertTrue(ex.getFailedCriteria().contains(CorrectionCriterion.INSTRUCTION_COMPLIANCE),
+                "the criterion that actually blocked delivery must still be named (R006)");
+    }
+
+    @Test
+    @DisplayName("should leave no proposal for a candidate that describes something that cannot happen in the real world, even though it complies with its instruction and satisfies every other criterion")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R016")
+    public void shouldLeaveNoProposalForACandidateThatDescribesSomethingThatCannotHappenInTheRealWorldEvenThoughItCompliesWithItsInstructionAndSatisfiesEveryOtherCriterion() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        // Grammatically impeccable, respects the marked verb ("she / drink") and complies with its
+        // instruction -- and still nobody drinks meat (F-QICOR-R016, the real task-876 case).
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "Does she drink meat?", "¿Ella bebe carne?");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate, allPassed(), 1);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("drink"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        // Every other criterion of the catalog genuinely passes -- the consigna, the five that no
+        // longer veto, and the length -- and only the real-world sense fails: the veto is not a
+        // symptom of anything else being wrong (R016 (a)).
+        CriterionVerdict senseFailure = new CriterionVerdict(CorrectionCriterion.REAL_WORLD_SENSE,
+                CriterionOutcome.FAILED, "Nadie toma carne: la oracion no describe algo que pueda pasar");
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(withRealWorldSense(allPassed(), senseFailure),
+                        false, true, 5, List.of(senseFailure),
+                        new CandidateLengthMeasurement(9, 6, 10, true, true), "not-eligible"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config, candidateAssessor);
+
+        // Act
+        NoAcceptableCandidateException ex = assertThrows(NoAcceptableCandidateException.class,
+                () -> reviser.propose(task, context, before),
+                "a candidate that describes something impossible must never be delivered, no matter "
+                        + "what else it satisfies (R016)");
+
+        // Assert -- the real-world sense is the ONLY reason reported: everything else genuinely
+        // passed, and the candidate was still refused (R016 (a))
+        assertEquals(List.of(CorrectionCriterion.REAL_WORLD_SENSE), ex.getFailedCriteria(),
+                "satisfying every other criterion of the catalog must not save a candidate that "
+                        + "fails the real-world sense (R016)");
+        assertEquals(QUIZ_ID, ex.getQuizId());
+        assertEquals(TASK_ID, ex.getTaskId());
+    }
+
+    @Test
+    @DisplayName("should propose the candidate that describes something that can happen in the real world even though it changed more than the violation signalled")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R016")
+    public void shouldProposeTheCandidateThatDescribesSomethingThatCanHappenInTheRealWorldEvenThoughItChangedMoreThanTheViolationSignalled() {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        // Respecting the marked verb ("she / drink") made "meat" absurd, so the correction changed
+        // it to "milk" instead -- a part no violation signalled (F-QICOR-R016, real task-876 case).
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "Does she drink milk?", "¿Ella bebe leche?");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate, allPassed(), 1);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("drink"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        // Reprueba la edicion acotada por el cambio no señalado, pero describe algo que puede pasar
+        // en el mundo real -- el sentido, no la edicion acotada, es lo que decide si compite
+        // (F-QICOR-R016 (b), F-QICOR-R013 (h)).
+        CriterionVerdict scopedEditFailure = new CriterionVerdict(CorrectionCriterion.SCOPED_EDIT,
+                CriterionOutcome.FAILED, "Cambio 'meat' por 'milk', que ninguna violacion señalaba");
+        List<CriterionVerdict> verdicts = withRealWorldSense(
+                verdictsWith(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.FAILED,
+                        scopedEditFailure.getDetail()),
+                new CriterionVerdict(CorrectionCriterion.REAL_WORLD_SENSE, CriterionOutcome.PASSED,
+                        "Alguien toma leche"));
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(verdicts, true, true, 4, List.of(scopedEditFailure),
+                        new CandidateLengthMeasurement(9, 6, 10, true, true), "eligible|4"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config,
+                candidateAssessor);
+
+        // Act
+        RevisionProposal result = reviser.propose(task, context, before);
+
+        // Assert -- proposed and delivered because it has real-world sense, even though it
+        // reproaches scoped edit for the very change that gave it that sense (R016 (b))
+        assertNotNull(result,
+                "a candidate with real-world sense must be proposed even when it changed more than "
+                        + "the violation signalled (R016)");
+        assertEquals(after, result.getElementAfter());
+        assertTrue(result.getUnmetCriteria().contains(scopedEditFailure),
+                "the scoped-edit reproach must travel declared with the proposal, not block it "
+                        + "(R016, R012)");
+        assertFalse(result.getUnmetCriteria().stream()
+                        .anyMatch(v -> v.getCriterion() == CorrectionCriterion.REAL_WORLD_SENSE),
+                "the real-world sense passed for this candidate; it is what let the proposal "
+                        + "through despite the unrelated scoped-edit reproach (R016)");
+    }
+
+    @Test
+    @DisplayName("should name the real-world sense among the failed criteria it reports when no candidate described something that could happen")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R006")
+    public void shouldNameTheRealworldSenseAmongTheFailedCriteriaItReportsWhenNoCandidateDescribedSomethingThatCouldHappen(
+            ) {
+        // Arrange
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+        QuizInstructionCorrectionConfig config = buildConfig(3);
+
+        RefinementTask task = buildTask();
+        QuizInstructionCorrectionContext context = buildContext();
+        CourseElementSnapshot before = buildBefore();
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(before.getQuiz()));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(nonCompliant(context.getViolations()));
+
+        QuizInstructionProposalStrategy strategy = mock(QuizInstructionProposalStrategy.class);
+        when(strategy.id()).thenReturn(new StrategyId("quiz-instruction-agent", "1.0.0", "llm:anthropic"));
+        when(strategyRegistry.active()).thenReturn(Optional.of(strategy));
+
+        // The correction exhausted its 3 attempts and its best candidate still describes something
+        // that cannot happen: a book cannot be driven (F-QICOR-R016's own example table).
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "He ____ (drive) a book.", "El maneja un libro.");
+        CriterionVerdict senseFailure = new CriterionVerdict(CorrectionCriterion.REAL_WORLD_SENSE,
+                CriterionOutcome.FAILED, "Un libro no se conduce");
+        QuizInstructionBestCandidate bestCandidate = new QuizInstructionBestCandidate(candidate,
+                withRealWorldSense(allPassed(), senseFailure), 3);
+        when(strategy.propose(Mockito.eq(task), Mockito.eq(context), Mockito.anyInt()))
+                .thenReturn(bestCandidate);
+
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
+                buildQuiz("drives"), null);
+        when(deriver.derive(Mockito.eq(before), Mockito.eq(candidate), Mockito.any())).thenReturn(after);
+
+        when(candidateAssessor.assess(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(new CandidateAssessment(withRealWorldSense(allPassed(), senseFailure),
+                        false, true, 5, List.of(senseFailure),
+                        new CandidateLengthMeasurement(9, 6, 10, true, true), "not-eligible"));
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, config, candidateAssessor);
+
+        // Act
+        NoAcceptableCandidateException ex = assertThrows(NoAcceptableCandidateException.class,
+                () -> reviser.propose(task, context, before),
+                "must leave no proposal when no candidate described something that could happen "
+                        + "(R006, R016)");
+
+        // Assert -- the failure is reported explicitly, naming the real-world sense (R006 (d))
+        assertFalse(ex.getFailedCriteria().isEmpty(),
+                "must name at least one failed criterion when no candidate described something "
+                        + "that could happen (R006)");
+        assertTrue(ex.getFailedCriteria().contains(CorrectionCriterion.REAL_WORLD_SENSE),
+                "the real-world sense is the criterion that made every candidate undeliverable and "
+                        + "must be named (R006 (d), R016)");
+        assertEquals(QUIZ_ID, ex.getQuizId());
+        assertEquals(TASK_ID, ex.getTaskId());
     }
 }

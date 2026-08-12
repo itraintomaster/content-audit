@@ -19,5 +19,7 @@ public enum CorrectionCriterion {
 
     SOLVABLE_SAME_KIND,
 
-    INSTRUCTION_COMPLIANCE
+    INSTRUCTION_COMPLIANCE,
+
+    REAL_WORLD_SENSE
 }

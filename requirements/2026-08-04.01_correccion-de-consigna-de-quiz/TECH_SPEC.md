@@ -895,3 +895,477 @@ modules:
 **El criterio de calidad vive en dos lugares.** `FAITHFUL_TRANSLATION` y `SOLVABLE_SAME_KIND` se evaluan via `AgentCandidateJudgmentEvaluator`, y lo mismo se juzga hoy en el nodo `eval_quality` del grafo `.sentinel/agents/lemma-absence-agent`. Es el defecto que se uso para descartar dejar todo el lazo en el grafo, y se acepta por una sola razon: migrar lemma-absence es alcance ajeno y una feature nueva no puede romper una vieja. Se cancela cuando lemma-absence consuma `CandidateCriterionEvaluator`, y el puerto se diseño neutro para que eso sea una migracion y no un rediseño.
 
 **El carrier y el deriver tienen nombres que mienten.** `LemmaAbsenceQuizCandidate` es el par quizSentence/traduccion y `LemmaAbsenceProposalDeriver` lo convierte en un snapshot respetando el `sentenceMode`; ninguno tiene nada propio de la ausencia de lema. Renombrarlos toca 25 archivos Java cuyos cuerpos escritos a mano el smart-merge no reescribe, y la traceability de sus tests pertenece a FEAT-LAPS, asi que el renombre completo va en un patch de esa feature.
+
+---
+
+# Tramo 2026-08-11 — El lazo cambia de dueño (R012–R015)
+
+> **Que cambio y por que hay un tramo nuevo.** El diseño de arriba puso el lazo
+> candidato → criterios → reintento **del lado del sistema**, y cada criterio con
+> poder de veto. La primera corrida real sobre el plan entero midio lo que eso
+> costaba: de 162 tareas sin corregir, **159 tenian tres candidatos producidos,
+> juzgados y tirados**; los **318 reintentos rescataron cero tareas** y las 125
+> propuestas exitosas salieron **todas al primer intento**. La decision del usuario
+> —*"tenemos que tener la misma forma de hacer las cosas"*— alinea esta correccion
+> con la generacion por ausencia de lema: quien corrige conduce su lazo, conserva su
+> mejor candidato y al agotar los intentos lo **entrega**, diciendo lo que no cumple.
+> Con eso el desenlace "sin corregir" pasa de 159 a 2.
+
+## Cambiar el contrato de correccion: una solicitud, el mejor candidato de vuelta
+
+El lazo se va a donde estan los candidatos porque **el mejor solo puede conservarlo
+quien los tiene**: un lazo por fuera ve un candidato por vez y decide si lo acepta o
+lo tira, y para elegir "el mejor de los tres" alguien tiene que recordar los tres.
+Ademas el lazo de afuera solo sabe pedir otro candidato desde cero, mientras que quien
+corrige puede partir de lo que ya escribio y tocar unicamente lo que el reproche
+señala — que es lo que F-QICOR-R003 le pide de todas formas. El puerto deja entonces de
+devolver *un* candidato y pasa a devolver *el mejor candidato mas su evaluacion*, para
+que el sistema pueda declarar lo incumplido sin haber visto los intentos.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    interfaces:
+      - name: QuizInstructionProposalStrategy
+        _change: modify
+        sealed: false
+        exposes:
+          - signature: "propose(RefinementTask task, QuizInstructionCorrectionContext context, List<CriterionVerdict> previousVerdicts, int attempt): LemmaAbsenceQuizCandidate"
+            _change: delete
+          - signature: "propose(RefinementTask task, QuizInstructionCorrectionContext context, int maxAttempts): QuizInstructionBestCandidate"
+            _change: add
+    packages:
+      - name: quizinstruction
+        _change: modify
+        models:
+          - name: QuizInstructionBestCandidate
+            _change: add
+            type: record
+            visibility: public
+            fields:
+              - { name: candidate, type: LemmaAbsenceQuizCandidate }
+              - { name: reportedVerdicts, type: "List<CriterionVerdict>" }
+              - { name: attempts, type: int }
+```
+
+## Pasar el tope de intentos hacia adentro y traer de vuelta lo que el lazo midio
+
+`maxAttempts` viaja ahora **dentro** de la unica solicitud en vez de gobernar un bucle
+de este lado. Que el numero lo fije la corrida y no quien corrige es lo que mantiene el
+gasto acotado y previsible: sin un maximo declarado por fuera, una tarea dificil podria
+intentar indefinidamente. En sentido inverso, `previousVerdicts`/`attempt` dejan de
+tener sentido —eran el estado del lazo externo— y la respuesta gana los veredictos que
+quien corrige obtuvo consultando el catalogo del sistema, mas cuantos intentos gasto.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: quizinstruction
+        _change: modify
+        models:
+          - name: QuizInstructionGenerationRequest
+            _change: modify
+            fields:
+              - { name: previousVerdicts, _change: delete }
+              - { name: attempt, _change: delete }
+              - { name: maxAttempts, type: int, _change: add }
+          - name: QuizInstructionGeneratorResponse
+            _change: modify
+            fields:
+              - { name: verdicts, type: "List<CriterionVerdict>", _change: add }
+              - { name: attempts, type: int, _change: add }
+          - name: QuizInstructionCorrectionConfig
+            _change: modify
+            fields:
+              - { name: maxAttempts, type: Integer, _change: modify }
+```
+
+## Convertir el catalogo de veto en orden, sin inventar un veredicto nuevo
+
+La pregunta de fondo era como se expresa un criterio que **se mide, ordena y no veta**.
+La respuesta es que el vocabulario de veredictos no cambia: `PASSED`/`FAILED`/
+`NOT_EVALUABLE` siguen describiendo *que paso al medir*, que es ortogonal a *que
+consecuencia tiene*. Inventar un cuarto valor ("reprobo pero no bloquea") habria metido
+la politica adentro de la medicion y obligado a cada evaluador a saber si su criterio
+decide — exactamente el acoplamiento que el puerto neutro evito. Lo que se reescribe es
+la **consecuencia**, que vivia en las descripciones y ahora vive en la evaluacion.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: candidatecriteria
+        _change: modify
+        visibility: public
+        models:
+          - name: CriterionOutcome
+            _change: modify
+            type: enum
+            fields:
+              - { name: PASSED, _change: modify }
+              - { name: FAILED, _change: modify }
+              - { name: NOT_EVALUABLE, _change: modify }
+          - name: CorrectionCriterion
+            _change: modify
+            type: enum
+            fields:
+              - { name: LENGTH_IN_RANGE, _change: modify }
+              - { name: INSTRUCTION_COMPLIANCE, _change: modify }
+```
+
+## Dar a la evaluacion la forma que el orden necesita
+
+`accepted` era la pregunta vieja —¿lo acepto?— y se cae con el veto. En su lugar la
+evaluacion pasa a responder las preguntas del orden de F-QICOR-R013: si el candidato
+**compite** (`eligible` = cumple su consigna y es un cambio real; un candidato que no
+cumple no es un candidato peor, no es un candidato), **cuanto conserva**
+(`satisfiedCriteria`, sin contar la longitud, que nunca suma), **que le falta**
+(`unmetCriteria`, que es literalmente lo que la propuesta declara) y **cuanto mide**
+(`lengthMeasurement`). `realChange` se expone aparte de `eligible` para que las dos
+mitades de la elegibilidad se observen por separado en vez de colapsar en un booleano
+que no dice cual fallo.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: candidatecriteria
+        _change: modify
+        models:
+          - name: CandidateAssessment
+            _change: modify
+            type: record
+            fields:
+              - { name: accepted, _change: delete }
+              - { name: verdicts, type: "List<CriterionVerdict>", _change: modify }
+              - { name: eligible, type: boolean, _change: add }
+              - { name: realChange, type: boolean, _change: add }
+              - { name: satisfiedCriteria, type: int, _change: add }
+              - { name: unmetCriteria, type: "List<CriterionVerdict>", _change: add }
+              - { name: lengthMeasurement, type: CandidateLengthMeasurement, _change: add }
+              - { name: rankKey, type: String, _change: add }
+```
+
+## Publicar el orden como una clave comparable, no como una regla que hay que copiar
+
+El campeon lo conserva quien corrige, asi que el orden tiene que ser consumible desde
+afuera — y si se lo deja escrito en el grafo, F-QICOR-R013 se queda sin superficie
+Java que un test pueda referenciar, que es la vara con la que se decidio todo el diseño
+anterior. `rankKey` resuelve las dos cosas: la regla vive una sola vez en Java, con su
+test propio, y quien corrige la consume comparando **dos strings**. `better` existe
+para que el desempate final de R013 (g) —gana el primero visto— sea una decision Java
+testeable ("reemplaza al campeon solo ante clave estrictamente mayor") y no una
+convencion que el grafo podria implementar al reves sin que nadie lo note.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: candidatecriteria
+        _change: modify
+        interfaces:
+          - name: CandidateRanking
+            _change: add
+            stereotype: service
+            visibility: public
+            exposes:
+              - signature: "rankKey(CandidateAssessment assessment): String"
+              - signature: "better(String incumbentRankKey, String challengerRankKey): boolean"
+              - signature: "precedence(): List<CorrectionCriterion>"
+      - name: candidatecriteriaengine
+        _change: modify
+        visibility: internal
+        implementations:
+          - name: DefaultCandidateRanking
+            _change: add
+            implements: ["CandidateRanking"]
+```
+
+## Medir la longitud una sola vez, para el veredicto y para la declaracion
+
+F-QICOR-R011 obliga a **declarar** la longitud medida y el rango del nivel en la
+propuesta, y F-QICOR-R015 (b) exige que esa declaracion coincida con lo que dira el
+analizador de longitud. Con la medicion enterrada adentro de `LengthInRangeCriterion`
+solo salia un `detail` en texto libre: o los numeros no llegaban a la propuesta, o se
+median por segunda vez en otro lado — que es el defecto que la regla existe para
+impedir, un nivel mas adentro. El medidor se separa como puerto propio, el criterio
+pasa a **traducir la medicion a veredicto** en vez de producirla, y la evaluacion
+arrastra la misma medicion estructurada que despues se declara.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: candidatecriteria
+        _change: modify
+        models:
+          - name: CandidateLengthMeasurement
+            _change: add
+            type: record
+            visibility: public
+            fields:
+              - { name: tokens, type: int }
+              - { name: targetMin, type: int }
+              - { name: targetMax, type: int }
+              - { name: inRange, type: boolean }
+              - { name: measured, type: boolean }
+        interfaces:
+          - name: CandidateLengthMeter
+            _change: add
+            stereotype: port
+            visibility: public
+            exposes:
+              - signature: "measure(CandidateAssessmentInput input): CandidateLengthMeasurement"
+      - name: candidatecriteriaengine
+        _change: modify
+        implementations:
+          - name: DefaultCandidateLengthMeter
+            _change: add
+            implements: ["CandidateLengthMeter"]
+            requiresInject:
+              - { name: tokenizer, type: NlpTokenizer }
+              - { name: sentenceLengthConfig, type: SentenceLengthConfig }
+          - name: LengthInRangeCriterion
+            _change: modify
+            implements: ["CandidateCriterionEvaluator"]
+            requiresInject:
+              - { name: tokenizer, _change: delete }
+              - { name: sentenceLengthConfig, _change: delete }
+              - { name: lengthMeter, type: CandidateLengthMeter, _change: add }
+```
+
+## Evaluar el catalogo entero por candidato, porque un orden necesita contar
+
+El assessor cortaba al primer veredicto no-`PASSED`. Con el veto eso alcanzaba; con un
+orden no: `satisfiedCriteria` es la primera clave de F-QICOR-R013 y un catalogo
+evaluado a medias no permite contarlo. El costo es real y se acepta a ojos abiertos —
+un candidato que reprueba el primer criterio ahora paga igual los de juicio— y se
+compra a cambio de las 234 consultas de reintento que la corrida medida tiro a la
+basura. El catalogo activo reducido sigue siendo la valvula: un criterio sin evaluador
+registrado sale del catalogo en vez de aprobar por omision.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: candidatecriteriaengine
+        _change: modify
+        implementations:
+          - name: DefaultCandidateAssessor
+            _change: modify
+            implements: ["CandidateAssessor"]
+            requiresInject:
+              - { name: evaluatorsByCriterion, type: "Map<CorrectionCriterion,CandidateCriterionEvaluator>" }
+              - { name: lengthMeter, type: CandidateLengthMeter, _change: add }
+              - { name: ranking, type: CandidateRanking, _change: add }
+```
+
+## Declarar en la propuesta lo que el ejercicio entregado no cumple
+
+Entregar el mejor candidato solo es defendible si viaja con el reproche a la vista:
+descartarlo protegia al curso a costa de no corregir nada, y entregarlo en silencio
+seria peor, porque el operador aprobaria creyendo que aprueba una correccion limpia.
+La declaracion va en `RevisionProposal` —no en el reporte de la corrida— porque tiene
+que verse **antes** de aprobar, y se parte en dos campos a proposito: la longitud
+nunca entra en la lista de criterios incumplidos, tiene su propia declaracion con la
+medicion. Los dos campos son nulos/vacios para propuestas de otros diagnosticos, con
+el mismo precedente que `strategyId`.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    models:
+      - name: RevisionProposal
+        _change: modify
+        fields:
+          - { name: unmetCriteria, type: "List<CriterionVerdict>", _change: add }
+          - { name: lengthMeasurement, type: CandidateLengthMeasurement, _change: add }
+```
+
+## Contar en la corrida las propuestas con reproches, sin agregar un quinto desenlace
+
+El recuento es lo que vuelve **revisable** la concesion: si mañana casi todas las
+propuestas llegaran con criterios sin cumplir, lo que hay que mirar es quien corrige y
+no la regla, y sin el recuento nadie se enteraria. Son dos contadores y no uno porque
+la longitud se retiro del veto por un argumento propio y merece su propio termometro.
+El detalle por tarea se agrega para que los contadores sean **auditables** en vez de
+pedirle al lector que les crea, y ninguno de los dos abre un desenlace nuevo: R008
+sigue con sus cuatro.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: quizinstruction
+        _change: modify
+        models:
+          - name: QuizInstructionTaskOutcome
+            _change: modify
+            fields:
+              - { name: failedCriteria, type: "List<CorrectionCriterion>", _change: modify }
+              - { name: unmetCriteria, type: "List<CriterionVerdict>", _change: add }
+              - { name: outOfLengthRange, type: boolean, _change: add }
+          - name: QuizInstructionCorrectionRunReport
+            _change: modify
+            fields:
+              - { name: proposedWithUnmetCriteria, type: int, _change: add }
+              - { name: proposedOutOfLengthRange, type: int, _change: add }
+```
+
+## Acotar el fracaso a "no habia nada que entregar"
+
+`NO_ACCEPTABLE_CANDIDATE` y `NOT_CORRECTED` significaban "ningun candidato paso el
+catalogo". Ahora significan lo unico que quedo: **ningun candidato resulto
+entregable** — o ninguno cumplio su consigna, o ninguno fue un cambio real. El cambio
+es de descripcion y no de forma a proposito: los dos desenlaces siguen existiendo, con
+su recuento separado y su lista de criterios reprobados, porque callarse sigue estando
+prohibido. Lo que se achica es su poblacion: 159 tareas pasan a ser 2.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    models:
+      - name: RevisionOutcomeKind
+        _change: modify
+        type: enum
+        fields:
+          - { name: NO_ACCEPTABLE_CANDIDATE, _change: modify }
+    packages:
+      - name: quizinstruction
+        _change: modify
+        models:
+          - name: QuizInstructionTaskOutcomeKind
+            _change: modify
+            type: enum
+            fields:
+              - { name: NOT_CORRECTED, _change: modify }
+```
+
+## Un unico punto donde se arma el pedido de evaluacion
+
+Esta es la pieza que sostiene F-QICOR-R015 (c) —"los criterios incumplidos que declara
+la propuesta son exactamente los que la consulta devuelve"—. Si el subcomando armara
+su propio `CandidateAssessmentInput`, el catalogo seguiria existiendo una vez pero el
+**pedido** existiria dos, y bastaria con que uno poblara `signalledFragments` distinto
+para que la consulta y la propuesta discreparan sin que nada lo detecte. El seam vive
+en el paquete de la SPI de consigna y no en `candidatecriteria` porque ese puerto se
+diseño deliberadamente neutro: es el adaptador el que sabe traducir un contexto de
+correccion a un pedido de evaluacion. El reviser deja de inyectar el catalogo neutro y
+pasa por el mismo objeto que responde la consulta.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: quizinstruction
+        _change: modify
+        interfaces:
+          - name: QuizInstructionCandidateAssessor
+            _change: add
+            stereotype: service
+            visibility: public
+            exposes:
+              - signature: "assess(QuizInstructionCorrectionContext context, CourseElementSnapshot original, String candidateQuizSentence, String candidateTranslation): CandidateAssessment"
+          - name: QuizInstructionCandidateAssessorFactory
+            _change: add
+            stereotype: factory
+            visibility: public
+            exposes:
+              - signature: "create(CandidateAssessor assessor, LemmaAbsenceProposalDeriver deriver): QuizInstructionCandidateAssessor"
+      - name: engine
+        _change: modify
+        visibility: internal
+        implementations:
+          - name: DefaultQuizInstructionCandidateAssessor
+            _change: add
+            implements: ["QuizInstructionCandidateAssessor"]
+            requiresInject:
+              - { name: assessor, type: CandidateAssessor }
+              - { name: deriver, type: LemmaAbsenceProposalDeriver }
+          - name: DefaultQuizInstructionCandidateAssessorFactory
+            _change: add
+            visibility: public
+            implements: ["QuizInstructionCandidateAssessorFactory"]
+          - name: QuizInstructionReviser
+            _change: modify
+            implements: ["Reviser"]
+            requiresInject:
+              - { name: assessor, _change: delete }
+              - { name: candidateAssessor, type: QuizInstructionCandidateAssessor, _change: add }
+```
+
+## Exponer el catalogo como subcomando, para que se consulte en vez de copiarse
+
+Sin este subcomando, mover el lazo significa que quien corrige estime por su cuenta si
+entra en rango o si introdujo una palabra de otro nivel: elegiria su campeon con una
+regla de medir y el sistema lo juzgaria con otra, que es el defecto que F-QICOR-R004
+nombra como el peor posible. El precedente exacto ya existe —`eval_length.sh` sube
+hasta `audit-cli.sh` y llama `content-audit tokens` para reusar el tokenizador de la
+auditoria—, y esto es su equivalente para el catalogo completo. Recibe `--plan/--task`
+en vez del ejercicio original porque **nada del original viaja por el agente y vuelve**:
+el snapshot se toma del curso con el mismo locator que usa el motor, asi que la
+comparacion de edicion acotada mide contra lo que hay, con sus partes vacias incluidas.
+El comando no mide nada por su cuenta: resuelve, y delega en el seam.
+
+```architecture
+modules:
+  - name: audit-cli
+    _change: modify
+    interfaces:
+      - name: AssessCandidateCommand
+        _change: add
+        stereotype: port
+        sealed: true
+        exposes:
+          - signature: "assessCandidate(String planId, String taskId, String candidateQuizSentence, String candidateTranslation, String coursePath, String format): Integer"
+    packages:
+      - name: commands
+        _change: modify
+        visibility: internal
+        implementations:
+          - name: AssessCandidateCmd
+            _change: add
+            implements: ["AssessCandidateCommand"]
+            externalImplements: ["java.util.concurrent.Callable<Integer>"]
+            requiresInject:
+              - { name: refinementPlanStore, type: RefinementPlanStore }
+              - { name: auditReportStore, type: AuditReportStore }
+              - { name: correctionContextResolver, type: CorrectionContextResolver }
+              - { name: courseRepository, type: CourseRepository }
+              - { name: elementLocator, type: CourseElementLocator }
+              - { name: candidateAssessor, type: QuizInstructionCandidateAssessor }
+```
+
+## Lo que este tramo deja afuera a proposito
+
+**El grafo `quiz-instruction-corrector` no se toca desde el patch.** Sus nodos nuevos
+—consultar, comparar campeones, decidir si reintenta— son datos en `.sentinel/agents/`,
+no arquitectura; el patch le abre la puerta (`maxAttempts` hacia adentro, veredictos
+hacia afuera, subcomando para consultar) y el cableado queda para desarrollo.
+
+**No se decide DOUBT-REVERIFICACION.** El diseño deja las dos opciones abiertas como
+decision de cableado y no de contrato: el sistema evalua al campeon entregado con el
+mismo assessor, y que los evaluadores de juicio esten o no registrados en el catalogo
+activo es lo que elige entre "rehacer todo" y "tomar del corrector lo caro". Ninguna de
+las dos ramas necesita otro patch.
+
+**No se toca `DefaultQuizInstructionSubjectBuilder`.** Ni `serializeParts` ni
+`serializeQuiz`: su salida es el contenido sobre el que se calcula la huella de los
+~13 000 veredictos del ledger, y este tramo no tiene ninguna razon para moverla.
+
+**No se declaran `handwrittenTests`.** Los tres tests que F-QICOR-R012 deja sin
+sustento —el que afirma que el reviser descarta su mejor candidato, el que afirma que
+el lazo es del sistema y el que afirma que el assessor rechaza al primer no-PASSED—
+tienen que darse vuelta o borrarse, y eso es trabajo de `@qa-tester`, no de este patch.

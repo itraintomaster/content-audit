@@ -1,0 +1,52 @@
+code: FEAT-QICOR
+description: |
+  Reformula la cobertura de F-QICOR-R006, que el tramo del 2026-08-11 reescribio entero.
+  Los dos tests que la cubrian afirman el desenlace CONTRARIO al que las reglas vigentes
+  exigen: ambos usan LENGTH_IN_RANGE como unico criterio reprobado y esperan
+  NOT_CORRECTED, lo que R006 (c) y R011 (c) prohiben expresamente ("la longitud fuera de
+  rango nunca figura entre los criterios reprobados de este desenlace"). El del runner
+  ademas COMPILA, asi que se pondria verde blindando lo prohibido, y contradice de frente
+  al test de R011 que vive en esa misma clase.
+
+  Ademas sus nombres afirman lo que F-QICOR-R012 derogo: "agotados los intentos sin un
+  candidato aceptable" ya no deja sin propuesta — entrega el champion. El unico desenlace
+  sin correccion que queda vivo es "ningun candidato resulto entregable": ninguno cumplio
+  su consigna o ninguno fue un cambio real.
+modules:
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: QuizInstructionReviser
+      handwrittenTests:
+      - name: should leave no proposal and report the failure naming at least one
+          failed criterion when the attempts were exhausted without an acceptable
+          candidate
+        _change: delete
+      - name: should leave no proposal and name at least one failed criterion when
+          no candidate the correction produced complied with its instruction
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
+      - name: should leave no proposal when the candidate the correction handed back
+          was not a real change over the quiz that stands in the course
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
+      - name: should never name the length among the failed criteria it reports when
+          no candidate turned out to be deliverable
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
+    - name: DefaultQuizInstructionCorrectionRunner
+      handwrittenTests:
+      - name: "should report a task whose every candidate failed as a correction not\
+          \ achieved, naming the criteria that failed, and leave the task available\
+          \ for another run"
+        _change: delete
+      - name: "should report a task where no candidate turned out to be deliverable\
+          \ as a correction not achieved, naming the criteria that failed, and leave\
+          \ the task available for another run"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006

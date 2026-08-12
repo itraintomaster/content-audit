@@ -1,0 +1,57 @@
+code: FEAT-QICOR
+description: |
+  Renombra 4 handwrittenTests cuyo nombre afirmaba lo contrario de la regla a la que
+  ahora tracean, y de paso alinea el @Tag del .java (el generador no reescribe anotaciones
+  de metodos existentes; un nombre nuevo produce un metodo nuevo con el tag correcto).
+
+  1-2. DefaultCandidateAssessor: "refuse" y "blocked" son vocabulario que F-QICOR-R012
+       retiro — un criterio NOT_EVALUABLE cuenta como no cumplido para el orden (R013 (f))
+       y lo incumplido se DECLARA con su motivo (R014), no bloquea.
+  3-4. LengthInRangeCriterion: desde este tramo el criterio ya no mide (mide
+       DefaultCandidateLengthMeter); traduce medicion a veredicto.
+
+  Los 4 cuerpos habia que reescribirlos igual: los dos del assessor llaman
+  assessment.isAccepted() (campo eliminado) y los dos del criterio llaman
+  new LengthInRangeCriterion(tokenizer, sentenceLengthConfig) (constructor cambiado).
+modules:
+- name: revision-domain
+  packages:
+  - name: candidatecriteriaengine
+    implementations:
+    - name: DefaultCandidateAssessor
+      handwrittenTests:
+      - name: "should refuse a candidate whose criterion could not be evaluated, instead\
+          \ of letting an unverified candidate through"
+        _change: delete
+      - name: should carry in the assessment the criterion that blocked the candidate
+          together with the detail of why it failed
+        _change: delete
+      - name: "should count a criterion that could not be evaluated as unmet when\
+          \ it ranks the candidate, so an unverified one cannot outrank a verified\
+          \ one"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: should carry in the assessment every criterion the candidate did not
+          meet together with the reason it was reproached
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+    - name: LengthInRangeCriterion
+      handwrittenTests:
+      - name: should fail a candidate whose corrected sentence falls outside the token
+          range its CEFR level targets
+        _change: delete
+      - name: "should measure the candidate with the same tokenizer and the same level\
+          \ range the audit applies, and pass it when the count lands inside"
+        _change: delete
+      - name: should turn a measurement that falls outside the target range of the
+          level into a failing verdict
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      - name: should turn a measurement that lands inside the target range of the
+          level into a passing verdict
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011

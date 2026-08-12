@@ -146,7 +146,7 @@ class DispatchingReviser implements Reviser {
                 "lemma-absence strategy: " + strategyId.getName() + " v" + strategyId.getVersion(),
                 strategyId.getName(), // reviserKind = strategy name (F-LAPS-R005)
                 now,
-                strategyId
+                strategyId, null, null
         );
     }
 

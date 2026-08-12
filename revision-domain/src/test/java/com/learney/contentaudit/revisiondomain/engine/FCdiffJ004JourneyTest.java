@@ -118,7 +118,7 @@ public class FCdiffJ004JourneyTest {
                 null, AuditTarget.QUIZ, nodeId,
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
-                "r", "auto", Instant.now(), null);
+                "r", "auto", Instant.now(), null, null, null);
         return new RevisionArtifact(prop, RevisionVerdict.APPROVED, null, null, Instant.now(), null, null, null);
     }
 

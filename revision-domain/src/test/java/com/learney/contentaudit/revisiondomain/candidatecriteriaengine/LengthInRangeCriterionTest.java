@@ -1,16 +1,12 @@
 package com.learney.contentaudit.revisiondomain.candidatecriteriaengine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.CefrLevel;
-import com.learney.contentaudit.auditdomain.NlpTokenizer;
-import com.learney.contentaudit.auditdomain.SentenceLengthConfig;
-import com.learney.contentaudit.auditdomain.TargetRange;
 import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentenceMode;
@@ -18,11 +14,12 @@ import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessmentInput;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateLengthMeasurement;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateLengthMeter;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,15 +32,13 @@ import org.junit.jupiter.api.Test;
 )
 public class LengthInRangeCriterionTest {
 
-    private NlpTokenizer tokenizer;
-    private SentenceLengthConfig sentenceLengthConfig;
+    private CandidateLengthMeter lengthMeter;
     private LengthInRangeCriterion criterion;
 
     @BeforeEach
     void setUp() {
-        tokenizer = mock(NlpTokenizer.class);
-        sentenceLengthConfig = mock(SentenceLengthConfig.class);
-        criterion = new LengthInRangeCriterion(tokenizer, sentenceLengthConfig);
+        lengthMeter = mock(CandidateLengthMeter.class);
+        criterion = new LengthInRangeCriterion(lengthMeter);
     }
 
     // A single-gap exercise with a cue the student sees but which is not part of the
@@ -73,40 +68,41 @@ public class LengthInRangeCriterionTest {
     }
 
     @Test
-    @DisplayName("should fail a candidate whose corrected sentence falls outside the token range its CEFR level targets")
+    @DisplayName("should turn a measurement that falls outside the target range of the level into a failing verdict")
     @Tag("FEAT-QICOR")
-    @Tag("F-QICOR-R004")
-    public void shouldFailACandidateWhoseCorrectedSentenceFallsOutsideTheTokenRangeItsCEFRLevelTargets(
-            ) {
+    @Tag("F-QICOR-R011")
+    public void shouldTurnAMeasurementThatFallsOutsideTheTargetRangeOfTheLevelIntoAFailingVerdict() {
         QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
-        QuizTemplateEntity candidate = quiz("has been eating", "She has been eating breakfast every single morning without fail.");
-        when(tokenizer.countTokens(anyString())).thenReturn(14);
-        when(tokenizer.tokenize(anyString())).thenReturn(List.of("t1", "t2", "t3", "t4", "t5", "t6", "t7",
-                "t8", "t9", "t10", "t11", "t12", "t13", "t14"));
-        when(sentenceLengthConfig.getTargetRange(CefrLevel.A1)).thenReturn(Optional.of(new TargetRange(CefrLevel.A1, 6, 10)));
+        QuizTemplateEntity candidate = quiz("has been eating",
+                "She has been eating breakfast every single morning without exception lately.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        // Same measurement the audit's own analyzer would produce for this candidate:
+        // 13 tokens against a 6-10 target range for A1 (F-QICOR-R011 (e)).
+        CandidateLengthMeasurement outOfRange = new CandidateLengthMeasurement(13, 6, 10, false, true);
+        when(lengthMeter.measure(assessmentInput)).thenReturn(outOfRange);
 
-        CriterionVerdict verdict = criterion.evaluate(input(original, candidate));
+        CriterionVerdict verdict = criterion.evaluate(assessmentInput);
 
+        verify(lengthMeter).measure(assessmentInput);
         assertEquals(CorrectionCriterion.LENGTH_IN_RANGE, verdict.getCriterion());
         assertEquals(CriterionOutcome.FAILED, verdict.getOutcome());
     }
 
     @Test
-    @DisplayName("should measure the candidate with the same tokenizer and the same level range the audit applies, and pass it when the count lands inside")
+    @DisplayName("should turn a measurement that lands inside the target range of the level into a passing verdict")
     @Tag("FEAT-QICOR")
-    @Tag("F-QICOR-R004")
-    public void shouldMeasureTheCandidateWithTheSameTokenizerAndTheSameLevelRangeTheAuditAppliesAndPassItWhenTheCountLandsInside(
-            ) {
+    @Tag("F-QICOR-R011")
+    public void shouldTurnAMeasurementThatLandsInsideTheTargetRangeOfTheLevelIntoAPassingVerdict() {
         QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
         QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
-        when(tokenizer.countTokens(anyString())).thenReturn(8);
-        when(tokenizer.tokenize(anyString())).thenReturn(
-                List.of("t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8"));
-        when(sentenceLengthConfig.getTargetRange(CefrLevel.A1)).thenReturn(Optional.of(new TargetRange(CefrLevel.A1, 6, 10)));
+        CandidateAssessmentInput assessmentInput = input(original, candidate);
+        CandidateLengthMeasurement inRange = new CandidateLengthMeasurement(6, 6, 10, true, true);
+        when(lengthMeter.measure(assessmentInput)).thenReturn(inRange);
 
-        CriterionVerdict verdict = criterion.evaluate(input(original, candidate));
+        CriterionVerdict verdict = criterion.evaluate(assessmentInput);
 
+        verify(lengthMeter).measure(assessmentInput);
+        assertEquals(CorrectionCriterion.LENGTH_IN_RANGE, verdict.getCriterion());
         assertEquals(CriterionOutcome.PASSED, verdict.getOutcome());
-        verify(sentenceLengthConfig).getTargetRange(CefrLevel.A1);
     }
 }

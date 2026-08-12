@@ -146,7 +146,7 @@ public class FCdiffJ003JourneyTest {
                 null, AuditTarget.KNOWLEDGE, KNOWLEDGE_ID,
                 new CourseElementSnapshot(AuditTarget.KNOWLEDGE, KNOWLEDGE_ID, null, null),
                 new CourseElementSnapshot(AuditTarget.KNOWLEDGE, KNOWLEDGE_ID, null, null),
-                "r", "auto", Instant.now(), null);
+                "r", "auto", Instant.now(), null, null, null);
         return new RevisionArtifact(proposal, RevisionVerdict.APPROVED, null, null, Instant.now(), null, null, null);
     }
 

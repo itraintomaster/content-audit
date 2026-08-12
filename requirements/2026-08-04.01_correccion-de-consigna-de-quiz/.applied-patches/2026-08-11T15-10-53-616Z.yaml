@@ -1,0 +1,181 @@
+code: FEAT-QICOR
+description: "FEAT-QICOR, dos escalaciones de cableado de R015. (1) planId entra al\
+  \ contexto de correccion, simetrico con sourceAuditId, que es el unico carrier que\
+  \ llega al reviser, a la estrategia y al adaptador del grafo. (2) la resolucion\
+  \ plan/tarea/contexto/original se muda del comando CLI al seam de evaluacion, que\
+  \ vive donde el locator es alcanzable: el composition root nunca ve un CourseElementLocator\
+  \ y este patch no abre el que hay."
+modules:
+- name: refiner-domain
+  models:
+  - name: QuizInstructionCorrectionContext
+    type: record
+    fields:
+    - name: planId
+      type: String
+      description: "Plan del que salio la tarea. Mitad simetrica de sourceAuditId\
+        \ y se estampa por el mismo camino y por el mismo motivo: quien resuelve el\
+        \ contexto ve el AuditReport y la tarea, pero no el plan, asi que lo estampa\
+        \ el motor de revision despues de resolver. Existe porque la consulta de criterios\
+        \ (F-QICOR-R015) se pide por plan+tarea, que es como el ejercicio ORIGINAL\
+        \ no viaja por el agente y vuelve; sin planId quien corrige no puede consultar\
+        \ el catalogo y tendria que estimar por su cuenta, que es exactamente lo que\
+        \ R015 vino a impedir. Va en el contexto y no en la solicitud de generacion\
+        \ porque el contexto es el unico carrier que alcanza al reviser, a la estrategia\
+        \ y al adaptador del grafo: RefinementTask no lleva plan y Reviser.propose\
+        \ tampoco lo recibe, asi que cualquier otra ubicacion obligaria a enhebrar\
+        \ un parametro nuevo por un puerto compartido por todos los revisers."
+      _change: add
+    _change: modify
+  _change: modify
+- name: revision-domain
+  packages:
+  - name: quizinstruction
+    visibility: public
+    models:
+    - name: QuizInstructionCandidateAssessorConfig
+      type: record
+      fields:
+      - name: assessor
+        type: CandidateAssessor
+        description: "El catalogo neutro, ya cableado con sus evaluadores."
+      - name: deriver
+        type: LemmaAbsenceProposalDeriver
+        description: El MISMO deriver con el que el reviser construye elementAfter.
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        description: "Resuelve el plan y, dentro de el, la tarea consultada."
+      - name: auditReportStore
+        type: AuditReportStore
+        description: Trae el analisis del que salio la tarea; entrada del resolver
+          de contexto.
+      - name: contextResolver
+        type: CorrectionContextResolver<CorrectionContext>
+        description: El MISMO resolver que usa el motor de revision. Que la consulta
+          y la correccion resuelvan el contexto por el mismo puerto es lo que sostiene
+          F-QICOR-R015 (c).
+      - name: courseRepository
+        type: CourseRepository
+        description: Carga el curso para tomar el ejercicio ORIGINAL tal como esta
+          hoy.
+      - name: elementLocator
+        type: CourseElementLocator
+        description: "Nullable, y en el uso normal viene nulo: la factory construye\
+          \ el locator por defecto adentro del modulo, que es exactamente como el\
+          \ composition root lo obtiene hoy para el motor de revision — nunca lo ve.\
+          \ Existe como campo por la misma razon que en RevisionEngineConfig: para\
+          \ que un test pueda sustituirlo sin abrir la clase."
+      visibility: public
+      _change: add
+    - name: CandidateAssessmentUnavailableException
+      type: exception
+      fields:
+      - name: taskId
+        type: String
+      - name: reason
+        type: String
+        description: "Plan inexistente, tarea ausente del plan, contexto no resoluble\
+          \ o ejercicio no encontrado en el curso."
+      message: "No se pudo evaluar el candidato de la tarea '%s': %s"
+      visibility: public
+      _change: add
+      extends: RuntimeException
+    interfaces:
+    - name: QuizInstructionCandidateAssessor
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "assessTask(String planId, String taskId, Path coursePath, String\
+          \ candidateQuizSentence, String candidateTranslation): CandidateAssessment"
+        _change: add
+      visibility: public
+      _change: modify
+    - name: QuizInstructionCandidateAssessorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(CandidateAssessor assessor, LemmaAbsenceProposalDeriver\
+          \ deriver): QuizInstructionCandidateAssessor"
+        _change: delete
+      - signature: "create(QuizInstructionCandidateAssessorConfig config): QuizInstructionCandidateAssessor"
+        _change: add
+      visibility: public
+      _change: modify
+    _change: modify
+  - name: engine
+    visibility: internal
+    implementations:
+    - name: DefaultQuizInstructionCandidateAssessor
+      requiresInject:
+      - name: assessor
+        type: CandidateAssessor
+        description: El catalogo neutro. Este objeto no juzga; arma el pedido de evaluacion
+          desde el contexto de correccion y delega.
+      - name: deriver
+        type: LemmaAbsenceProposalDeriver
+        description: "El MISMO deriver con el que el reviser construye elementAfter,\
+          \ para que lo medido sea exactamente lo que se propondria."
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        description: Resuelve plan y tarea cuando la consulta entra por assessTask.
+        _change: add
+      - name: auditReportStore
+        type: AuditReportStore
+        description: Carga el analisis que alimenta al resolver de contexto.
+        _change: add
+      - name: contextResolver
+        type: CorrectionContextResolver<CorrectionContext>
+        description: "Reproduce el paso 2 del motor de revision con el mismo puerto,\
+          \ para que la consulta no pueda resolver distinto de la correccion."
+        _change: add
+      - name: courseRepository
+        type: CourseRepository
+        description: Reproduce el paso 3 del motor de revision.
+        _change: add
+      - name: elementLocator
+        type: CourseElementLocator
+        description: "Toma el snapshot REAL del ejercicio original. No se reconstruye\
+          \ desde el DSL, porque eso perderia las partes vacias del enunciado y la\
+          \ edicion acotada mediria otra cosa (F-QICOR-R010). Lo inyecta la factory,\
+          \ que lo construye adentro del modulo."
+        _change: add
+      implements:
+      - QuizInstructionCandidateAssessor
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: commands
+    visibility: internal
+    implementations:
+    - name: AssessCandidateCmd
+      requiresInject:
+      - name: refinementPlanStore
+        _change: delete
+      - name: auditReportStore
+        _change: delete
+      - name: correctionContextResolver
+        _change: delete
+      - name: courseRepository
+        _change: delete
+      - name: elementLocator
+        _change: delete
+      - name: candidateAssessor
+        type: QuizInstructionCandidateAssessor
+        description: "Unica dependencia del comando. Resolver plan, tarea, contexto\
+          \ y original se movio adentro del seam: aca obligaba al composition root\
+          \ a construir un CourseElementLocator, cuya unica implementacion es package-private\
+          \ a proposito — Main pasa null y la factory la construye adentro. El comando\
+          \ quedaba ademas repitiendo los pasos 2 y 3 del motor de revision, que es\
+          \ la clase de duplicacion que F-QICOR-R015 (c) no tolera. Ahora hace lo\
+          \ unico que le toca: leer los argumentos, delegar y renderizar."
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - AssessCandidateCommand
+      _change: modify
+    _change: modify
+  _change: modify

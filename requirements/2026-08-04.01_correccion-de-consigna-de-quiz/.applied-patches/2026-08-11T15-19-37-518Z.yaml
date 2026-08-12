@@ -1,0 +1,90 @@
+code: FEAT-QICOR
+description: |
+  Cobertura del cambio de diseno que devolvio la resolucion (plan, tarea, contexto,
+  original) desde AssessCandidateCmd hacia el seam QuizInstructionCandidateAssessor.
+
+  Lo nuevo se concentra en DefaultQuizInstructionCandidateAssessor.assessTask, que hoy
+  es un stub sin cobertura:
+
+  (1) La CONVERGENCIA: assessTask entrega al catalogo el MISMO pedido de evaluacion que
+      assess. Es lo que vuelve estructural la garantia de F-QICOR-R015 (c) — si assessTask
+      armara un CandidateAssessmentInput paralelo, la consulta del grafo y la declaracion
+      de la propuesta podrian divergir sin que nada lo note.
+
+  (2) Las SEIS ramas de resolucion que pueden fallar, cada una en su propio puerto y cada
+      una capaz de fallar abierta por separado: plan inexistente, tarea ausente del plan,
+      analisis no cargable, contexto no resoluble, ejercicio no encontrado en el curso, y
+      tarea que no es de incumplimiento de consigna. Ninguna puede devolver un veredicto:
+      un reproche que nadie midio es exactamente lo que F-QICOR-R015 prohibe ("se juzgo
+      con una medicion distinta de la que aplica el sistema"), y aguas abajo contamina el
+      orden (F-QICOR-R013) y la declaracion (F-QICOR-R014).
+
+  (3) El re-alojo del test que perdio superficie: "el original sale del curso, no del DSL"
+      ya no es observable en AssessCandidateCmd —el comando no tiene locator ni repositorio
+      de curso— y se muda al assessor, donde el locator ahora vive. El ejemplo de
+      F-QICOR-R010 (la parte vacia que el DSL no puede representar) viaja con el.
+
+  (4) A cambio, AssessCandidateCmd gana lo que SI le quedo observable en la frontera que
+      lee assess.sh: que una consulta indisponible sale como fallo y no como veredicto.
+modules:
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: DefaultQuizInstructionCandidateAssessor
+      handwrittenTests:
+      - name: should hand the catalog the same assessment request whether the consultation
+          came in with the task alone or with its context and original already resolved
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: "should take the original quiz from the course through the locator,\
+          \ instead of rebuilding it from the candidate text or from the sentence\
+          \ the context carries"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should report that the candidate could not be assessed rather than return
+          a verdict when the plan named in the consultation does not exist
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should report that the candidate could not be assessed rather than return
+          a verdict when the task is not among the tasks of the plan
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should report that the candidate could not be assessed rather than return
+          a verdict when the analysis the plan came from can no longer be loaded
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should report that the candidate could not be assessed rather than return
+          a verdict when the correction context of the task cannot be resolved
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should report that the candidate could not be assessed rather than return
+          a verdict when the quiz of the task is not in the course
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should report that the candidate could not be assessed rather than return
+          a verdict when the task consulted was not opened for instruction non-compliance
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: AssessCandidateCmd
+      handwrittenTests:
+      - name: "should take the original quiz from the course with the same locator\
+          \ the correction uses, instead of rebuilding it from what the caller sent"
+        _change: delete
+      - name: "should report the consultation as failed with a non-zero exit status,\
+          \ instead of printing verdicts, when the candidate could not be assessed"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015

@@ -1,5 +1,7 @@
 package com.learney.contentaudit.revisiondomain.quizinstruction;
 
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -14,14 +16,20 @@ public class QuizInstructionGeneratorResponse {
 
     private String rationale;
 
+    private List<CriterionVerdict> verdicts;
+
+    private int attempts;
+
     public QuizInstructionGeneratorResponse() {
     }
 
     public QuizInstructionGeneratorResponse(String quizSentence, String translation,
-            String rationale) {
+            String rationale, List<CriterionVerdict> verdicts, int attempts) {
         this.quizSentence = quizSentence;
         this.translation = translation;
         this.rationale = rationale;
+        this.verdicts = verdicts;
+        this.attempts = attempts;
     }
 
     public String getQuizSentence() {
@@ -48,6 +56,22 @@ public class QuizInstructionGeneratorResponse {
         this.rationale = rationale;
     }
 
+    public List<CriterionVerdict> getVerdicts() {
+        return this.verdicts;
+    }
+
+    public void setVerdicts(List<CriterionVerdict> verdicts) {
+        this.verdicts = verdicts;
+    }
+
+    public int getAttempts() {
+        return this.attempts;
+    }
+
+    public void setAttempts(int attempts) {
+        this.attempts = attempts;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,11 +79,13 @@ public class QuizInstructionGeneratorResponse {
         QuizInstructionGeneratorResponse that = (QuizInstructionGeneratorResponse) o;
         return Objects.equals(this.quizSentence, that.quizSentence)
                     && Objects.equals(this.translation, that.translation)
-                    && Objects.equals(this.rationale, that.rationale);
+                    && Objects.equals(this.rationale, that.rationale)
+                    && Objects.equals(this.verdicts, that.verdicts)
+                    && Objects.equals(this.attempts, that.attempts);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(quizSentence, translation, rationale);
+        return Objects.hash(quizSentence, translation, rationale, verdicts, attempts);
     }
 }

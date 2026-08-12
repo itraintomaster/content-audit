@@ -1,7 +1,9 @@
 package com.learney.contentaudit.revisiondomain.engine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -15,10 +17,15 @@ import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionOutcome;
 import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.RevisionProposal;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateLengthMeasurement;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCorrectionConfig;
 import com.learney.contentaudit.revisiondomain.QuizInstructionCorrectionRunStore;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCorrectionRunReport;
@@ -54,6 +61,20 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
 
     private static QuizInstructionCorrectionRunRequest request(Integer maxCorrections) {
         return new QuizInstructionCorrectionRunRequest(PLAN_ID, Paths.get("course.json"), maxCorrections);
+    }
+
+    // A PENDING_APPROVAL_PERSISTED outcome carrying a real proposal, so the run report can read
+    // its unmetCriteria (F-QICOR-R014) and lengthMeasurement (F-QICOR-R011) the same way it reads
+    // proposalId today.
+    private static RevisionOutcome proposedOutcome(String taskId, List<CriterionVerdict> unmetCriteria,
+            CandidateLengthMeasurement lengthMeasurement) {
+        RevisionProposal proposal = new RevisionProposal("proposal-" + taskId, taskId, PLAN_ID,
+                "audit-qicor-1", DiagnosisKind.QUIZ_INSTRUCTION, AuditTarget.QUIZ, "quiz-" + taskId,
+                null, null, null, "quiz-instruction", Instant.now(), null, unmetCriteria,
+                lengthMeasurement);
+        RevisionArtifact artifact = new RevisionArtifact(proposal, null, null,
+                RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, null, null, null, null);
+        return new RevisionOutcome(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, artifact, null);
     }
 
     @Test
@@ -196,7 +217,8 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
         RevisionOutcome proposed = new RevisionOutcome(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED,
                 null, null);
         RevisionOutcome notCorrected = new RevisionOutcome(RevisionOutcomeKind.NO_ACCEPTABLE_CANDIDATE, null,
-                "No se logro una correccion aceptable para el ejercicio 'quiz-t2': reprobaron [LENGTH_IN_RANGE]");
+                "No se logro una correccion aceptable para el ejercicio 'quiz-t2': reprobaron "
+                        + "[INSTRUCTION_COMPLIANCE]");
         RevisionOutcome diagnosisStale = new RevisionOutcome(RevisionOutcomeKind.DIAGNOSIS_NOT_SUSTAINED, null,
                 "El diagnostico de consigna del ejercicio 'quiz-t3' ya no se sostiene: la validacion "
                         + "vigente declara que cumple");
@@ -303,50 +325,6 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
     }
 
     @Test
-    @DisplayName("should report a task whose every candidate failed as a correction not achieved, naming the criteria that failed, and leave the task available for another run")
-    @Tag("FEAT-QICOR")
-    @Tag("F-QICOR-R006")
-    public void shouldReportATaskWhoseEveryCandidateFailedAsACorrectionNotAchievedNamingTheCriteriaThatFailedAndLeaveTheTaskAvailableForAnotherRun(
-            ) {
-        // Arrange — a single eligible task whose correction exhausted every attempt without an
-        // acceptable candidate
-        RevisionEngine revisionEngine = mock(RevisionEngine.class);
-        RefinementPlanStore refinementPlanStore = mock(RefinementPlanStore.class);
-        QuizInstructionCorrectionRunStore runStore = mock(QuizInstructionCorrectionRunStore.class);
-        QuizInstructionCorrectionConfig config = new QuizInstructionCorrectionConfig(3, 20);
-
-        RefinementTask notCorrectedTask = task("t-nc", 1, DiagnosisKind.QUIZ_INSTRUCTION);
-        when(refinementPlanStore.load(PLAN_ID)).thenReturn(Optional.of(plan(List.of(notCorrectedTask))));
-
-        RevisionOutcome notCorrected = new RevisionOutcome(RevisionOutcomeKind.NO_ACCEPTABLE_CANDIDATE, null,
-                "No se logro una correccion aceptable para el ejercicio 'quiz-t-nc': reprobaron [LENGTH_IN_RANGE]");
-        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.eq("t-nc"), Mockito.any(), Mockito.any()))
-                .thenReturn(notCorrected);
-
-        DefaultQuizInstructionCorrectionRunner runner = new DefaultQuizInstructionCorrectionRunner(
-                revisionEngine, refinementPlanStore, runStore, config);
-
-        // Act
-        QuizInstructionCorrectionRunReport report = runner.run(request(20));
-
-        // Assert
-        assertEquals(1, report.getNotCorrected());
-        assertEquals(0, report.getProposed());
-        assertEquals(0, report.getDiagnosisStale());
-        assertTrue(report.getNotAttempted().isEmpty(), "the task was attempted, not left out (R006)");
-
-        QuizInstructionTaskOutcome outcome = report.getOutcomes().stream()
-                .filter(o -> o.getTaskId().equals("t-nc"))
-                .findFirst()
-                .orElseThrow(() -> new AssertionError("expected an outcome for task t-nc"));
-        assertEquals(QuizInstructionTaskOutcomeKind.NOT_CORRECTED, outcome.getKind());
-        assertTrue(outcome.getFailedCriteria() != null && !outcome.getFailedCriteria().isEmpty(),
-                "a correction not achieved must name at least one failed criterion (R006)");
-        assertTrue(outcome.getFailedCriteria().contains(CorrectionCriterion.LENGTH_IN_RANGE),
-                "must name the criterion that actually failed (R006)");
-    }
-
-    @Test
     @DisplayName("should report a task whose diagnosis no longer holds with no failed criterion and no generation attempt, in a count apart from the corrections not achieved")
     @Tag("FEAT-QICOR")
     @Tag("F-QICOR-R009")
@@ -386,5 +364,242 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
         assertTrue(outcome.getFailedCriteria() == null || outcome.getFailedCriteria().isEmpty(),
                 "a fallen diagnosis has no failed criterion to name (R009)");
         assertEquals(0, outcome.getAttempts(), "a fallen diagnosis spent no generation attempt (R009)");
+    }
+
+    @Test
+    @DisplayName("should count how many of the corrections it proposed arrived with at least one unmet criterion, without adding a fifth outcome")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R014")
+    public void shouldCountHowManyOfTheCorrectionsItProposedArrivedWithAtLeastOneUnmetCriterionWithoutAddingAFifthOutcome() {
+        // Arrange — 3 eligible tasks, all proposed: two arrive with an unmet criterion, one is clean
+        RevisionEngine revisionEngine = mock(RevisionEngine.class);
+        RefinementPlanStore refinementPlanStore = mock(RefinementPlanStore.class);
+        QuizInstructionCorrectionRunStore runStore = mock(QuizInstructionCorrectionRunStore.class);
+        QuizInstructionCorrectionConfig config = new QuizInstructionCorrectionConfig(3, 20);
+
+        List<RefinementTask> tasks = List.of(
+                task("t1", 1, DiagnosisKind.QUIZ_INSTRUCTION),
+                task("t2", 2, DiagnosisKind.QUIZ_INSTRUCTION),
+                task("t3", 3, DiagnosisKind.QUIZ_INSTRUCTION));
+        when(refinementPlanStore.load(PLAN_ID)).thenReturn(Optional.of(plan(tasks)));
+
+        CandidateLengthMeasurement inRange = new CandidateLengthMeasurement(8, 6, 10, true, true);
+        RevisionOutcome withUnmet1 = proposedOutcome("t1",
+                List.of(new CriterionVerdict(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.FAILED,
+                        "Cambio una parte que ninguna violacion senalaba")),
+                inRange);
+        RevisionOutcome clean = proposedOutcome("t2", List.of(), inRange);
+        RevisionOutcome withUnmet2 = proposedOutcome("t3",
+                List.of(new CriterionVerdict(CorrectionCriterion.DISTINCTNESS, CriterionOutcome.FAILED,
+                        "Se parece a un ejercicio hermano")),
+                inRange);
+        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.eq("t1"), Mockito.any(), Mockito.any()))
+                .thenReturn(withUnmet1);
+        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.eq("t2"), Mockito.any(), Mockito.any()))
+                .thenReturn(clean);
+        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.eq("t3"), Mockito.any(), Mockito.any()))
+                .thenReturn(withUnmet2);
+
+        DefaultQuizInstructionCorrectionRunner runner = new DefaultQuizInstructionCorrectionRunner(
+                revisionEngine, refinementPlanStore, runStore, config);
+
+        // Act
+        QuizInstructionCorrectionRunReport report = runner.run(request(3));
+
+        // Assert — all 3 are still counted as proposed (no fifth outcome), and exactly 2 of them are
+        // additionally counted as having arrived with an unmet criterion (R014)
+        assertEquals(3, report.getProposed(), "an unmet criterion does not turn a proposal into a "
+                + "different outcome (R014)");
+        assertEquals(2, report.getProposedWithUnmetCriteria(),
+                "must count exactly the proposals that arrived with at least one unmet criterion (R014)");
+    }
+
+    @Test
+    @DisplayName("should carry the unmet criteria of every proposed correction in its per-task outcome, so its count can be checked against them")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R014")
+    public void shouldCarryTheUnmetCriteriaOfEveryProposedCorrectionInItsPertaskOutcomeSoItsCountCanBeCheckedAgainstThem() {
+        // Arrange — 2 eligible tasks, both proposed, each with a different unmet criterion
+        RevisionEngine revisionEngine = mock(RevisionEngine.class);
+        RefinementPlanStore refinementPlanStore = mock(RefinementPlanStore.class);
+        QuizInstructionCorrectionRunStore runStore = mock(QuizInstructionCorrectionRunStore.class);
+        QuizInstructionCorrectionConfig config = new QuizInstructionCorrectionConfig(3, 20);
+
+        List<RefinementTask> tasks = List.of(
+                task("t1", 1, DiagnosisKind.QUIZ_INSTRUCTION),
+                task("t2", 2, DiagnosisKind.QUIZ_INSTRUCTION));
+        when(refinementPlanStore.load(PLAN_ID)).thenReturn(Optional.of(plan(tasks)));
+
+        CandidateLengthMeasurement inRange = new CandidateLengthMeasurement(8, 6, 10, true, true);
+        CriterionVerdict scopedEditFailure = new CriterionVerdict(CorrectionCriterion.SCOPED_EDIT,
+                CriterionOutcome.FAILED, "Cambio una parte que ninguna violacion senalaba");
+        CriterionVerdict vocabularyFailure = new CriterionVerdict(CorrectionCriterion.LEVEL_VOCABULARY,
+                CriterionOutcome.FAILED, "Introduce una palabra fuera de nivel");
+        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.eq("t1"), Mockito.any(), Mockito.any()))
+                .thenReturn(proposedOutcome("t1", List.of(scopedEditFailure), inRange));
+        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.eq("t2"), Mockito.any(), Mockito.any()))
+                .thenReturn(proposedOutcome("t2", List.of(vocabularyFailure), inRange));
+
+        DefaultQuizInstructionCorrectionRunner runner = new DefaultQuizInstructionCorrectionRunner(
+                revisionEngine, refinementPlanStore, runStore, config);
+
+        // Act
+        QuizInstructionCorrectionRunReport report = runner.run(request(2));
+
+        // Assert — each per-task outcome carries the exact unmet criteria its proposal had, so the
+        // report-level count is checkable against them rather than tracked separately (R014)
+        QuizInstructionTaskOutcome outcome1 = report.getOutcomes().stream()
+                .filter(o -> o.getTaskId().equals("t1")).findFirst()
+                .orElseThrow(() -> new AssertionError("expected an outcome for task t1"));
+        QuizInstructionTaskOutcome outcome2 = report.getOutcomes().stream()
+                .filter(o -> o.getTaskId().equals("t2")).findFirst()
+                .orElseThrow(() -> new AssertionError("expected an outcome for task t2"));
+        assertEquals(List.of(scopedEditFailure), outcome1.getUnmetCriteria());
+        assertEquals(List.of(vocabularyFailure), outcome2.getUnmetCriteria());
+
+        long tasksWithUnmetCriteria = report.getOutcomes().stream()
+                .filter(o -> o.getUnmetCriteria() != null && !o.getUnmetCriteria().isEmpty())
+                .count();
+        assertEquals(report.getProposedWithUnmetCriteria(), tasksWithUnmetCriteria,
+                "the report-level count must reconcile against the per-task unmet criteria (R014)");
+    }
+
+    @Test
+    @DisplayName("should never name the length among the failed criteria of a correction it reports as not achieved")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R011")
+    public void shouldNeverNameTheLengthAmongTheFailedCriteriaOfACorrectionItReportsAsNotAchieved() {
+        // Arrange — a single eligible task whose correction was not achieved because the only
+        // criteria it could not satisfy were the scoped edit and distinctness -- never the length,
+        // which stopped being able to block a correction (F-QICOR-R011)
+        RevisionEngine revisionEngine = mock(RevisionEngine.class);
+        RefinementPlanStore refinementPlanStore = mock(RefinementPlanStore.class);
+        QuizInstructionCorrectionRunStore runStore = mock(QuizInstructionCorrectionRunStore.class);
+        QuizInstructionCorrectionConfig config = new QuizInstructionCorrectionConfig(3, 20);
+
+        RefinementTask notCorrectedTask = task("t-nc", 1, DiagnosisKind.QUIZ_INSTRUCTION);
+        when(refinementPlanStore.load(PLAN_ID)).thenReturn(Optional.of(plan(List.of(notCorrectedTask))));
+
+        RevisionOutcome notCorrected = new RevisionOutcome(RevisionOutcomeKind.NO_ACCEPTABLE_CANDIDATE, null,
+                "No se logro una correccion aceptable para el ejercicio 'quiz-t-nc': reprobaron "
+                        + "[SCOPED_EDIT, DISTINCTNESS]");
+        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.eq("t-nc"), Mockito.any(), Mockito.any()))
+                .thenReturn(notCorrected);
+
+        DefaultQuizInstructionCorrectionRunner runner = new DefaultQuizInstructionCorrectionRunner(
+                revisionEngine, refinementPlanStore, runStore, config);
+
+        // Act
+        QuizInstructionCorrectionRunReport report = runner.run(request(20));
+
+        // Assert
+        QuizInstructionTaskOutcome outcome = report.getOutcomes().stream()
+                .filter(o -> o.getTaskId().equals("t-nc"))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("expected an outcome for task t-nc"));
+        assertEquals(QuizInstructionTaskOutcomeKind.NOT_CORRECTED, outcome.getKind());
+        assertTrue(outcome.getFailedCriteria().containsAll(
+                        List.of(CorrectionCriterion.SCOPED_EDIT, CorrectionCriterion.DISTINCTNESS)),
+                "must still name the criteria that actually failed (R006)");
+        assertFalse(outcome.getFailedCriteria().contains(CorrectionCriterion.LENGTH_IN_RANGE),
+                "the length must never be named among the failed criteria of a correction not "
+                        + "achieved (R011)");
+    }
+
+    @Test
+    @DisplayName("should count how many of the corrections it proposed landed outside the target range of their level, apart from the count of those with unmet criteria")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R011")
+    public void shouldCountHowManyOfTheCorrectionsItProposedLandedOutsideTheTargetRangeOfTheirLevelApartFromTheCountOfThoseWithUnmetCriteria() {
+        // Arrange — 3 eligible tasks, all proposed, so the two declarations do not coincide:
+        // t1 is out of range only, t2 has an unmet criterion but is in range, t3 is both out of
+        // range AND has an unmet criterion (F-QICOR-R011, F-QICOR-R014)
+        RevisionEngine revisionEngine = mock(RevisionEngine.class);
+        RefinementPlanStore refinementPlanStore = mock(RefinementPlanStore.class);
+        QuizInstructionCorrectionRunStore runStore = mock(QuizInstructionCorrectionRunStore.class);
+        QuizInstructionCorrectionConfig config = new QuizInstructionCorrectionConfig(3, 20);
+
+        List<RefinementTask> tasks = List.of(
+                task("t1", 1, DiagnosisKind.QUIZ_INSTRUCTION),
+                task("t2", 2, DiagnosisKind.QUIZ_INSTRUCTION),
+                task("t3", 3, DiagnosisKind.QUIZ_INSTRUCTION));
+        when(refinementPlanStore.load(PLAN_ID)).thenReturn(Optional.of(plan(tasks)));
+
+        CandidateLengthMeasurement outOfRange = new CandidateLengthMeasurement(13, 6, 10, false, true);
+        CandidateLengthMeasurement inRange = new CandidateLengthMeasurement(8, 6, 10, true, true);
+        CriterionVerdict vocabularyFailure = new CriterionVerdict(CorrectionCriterion.LEVEL_VOCABULARY,
+                CriterionOutcome.FAILED, "Introduce una palabra fuera de nivel");
+        CriterionVerdict distinctnessFailure = new CriterionVerdict(CorrectionCriterion.DISTINCTNESS,
+                CriterionOutcome.FAILED, "Se parece a un ejercicio hermano");
+        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.eq("t1"), Mockito.any(), Mockito.any()))
+                .thenReturn(proposedOutcome("t1", List.of(), outOfRange));
+        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.eq("t2"), Mockito.any(), Mockito.any()))
+                .thenReturn(proposedOutcome("t2", List.of(vocabularyFailure), inRange));
+        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.eq("t3"), Mockito.any(), Mockito.any()))
+                .thenReturn(proposedOutcome("t3", List.of(distinctnessFailure), outOfRange));
+
+        DefaultQuizInstructionCorrectionRunner runner = new DefaultQuizInstructionCorrectionRunner(
+                revisionEngine, refinementPlanStore, runStore, config);
+
+        // Act
+        QuizInstructionCorrectionRunReport report = runner.run(request(3));
+
+        // Assert — the two counters are independent: t1 counts only toward out-of-range, t2 counts
+        // only toward unmet criteria, and t3 counts toward both (R011, R014)
+        assertEquals(3, report.getProposed());
+        assertEquals(2, report.getProposedOutOfLengthRange(),
+                "must count exactly the proposals that landed outside their level's target range "
+                        + "(R011)");
+        assertEquals(2, report.getProposedWithUnmetCriteria(),
+                "the out-of-range count must not be conflated with the unmet-criteria count (R014)");
+    }
+
+    @Test
+    @DisplayName("should report a task where no candidate turned out to be deliverable as a correction not achieved, naming the criteria that failed, and leave the task available for another run")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R006")
+    public void shouldReportATaskWhereNoCandidateTurnedOutToBeDeliverableAsACorrectionNotAchievedNamingTheCriteriaThatFailedAndLeaveTheTaskAvailableForAnotherRun() {
+        // Arrange — a single eligible task whose correction exhausted its attempts without a single
+        // candidate that complied with its instruction, so no candidate turned out to be
+        // deliverable (F-QICOR-R006)
+        RevisionEngine revisionEngine = mock(RevisionEngine.class);
+        RefinementPlanStore refinementPlanStore = mock(RefinementPlanStore.class);
+        QuizInstructionCorrectionRunStore runStore = mock(QuizInstructionCorrectionRunStore.class);
+        QuizInstructionCorrectionConfig config = new QuizInstructionCorrectionConfig(3, 20);
+
+        RefinementTask notDeliverableTask = task("t-nd", 1, DiagnosisKind.QUIZ_INSTRUCTION);
+        when(refinementPlanStore.load(PLAN_ID)).thenReturn(Optional.of(plan(List.of(notDeliverableTask))));
+
+        RevisionOutcome notCorrected = new RevisionOutcome(RevisionOutcomeKind.NO_ACCEPTABLE_CANDIDATE, null,
+                "No se logro una correccion aceptable para el ejercicio 'quiz-t-nd': reprobaron "
+                        + "[INSTRUCTION_COMPLIANCE]");
+        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.eq("t-nd"), Mockito.any(), Mockito.any()))
+                .thenReturn(notCorrected);
+
+        DefaultQuizInstructionCorrectionRunner runner = new DefaultQuizInstructionCorrectionRunner(
+                revisionEngine, refinementPlanStore, runStore, config);
+
+        // Act
+        QuizInstructionCorrectionRunReport report = runner.run(request(20));
+
+        // Assert — counted as a correction not achieved, distinct from a proposal or a fallen
+        // diagnosis (R006)
+        assertEquals(1, report.getNotCorrected(),
+                "a task with no deliverable candidate must be counted as a correction not achieved "
+                        + "(R006)");
+        assertEquals(0, report.getProposed());
+        assertEquals(0, report.getDiagnosisStale());
+
+        QuizInstructionTaskOutcome outcome = report.getOutcomes().stream()
+                .filter(o -> o.getTaskId().equals("t-nd"))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("expected an outcome for task t-nd"));
+        assertEquals(QuizInstructionTaskOutcomeKind.NOT_CORRECTED, outcome.getKind());
+        assertTrue(outcome.getFailedCriteria().contains(CorrectionCriterion.INSTRUCTION_COMPLIANCE),
+                "must name at least one criterion that failed when no candidate turned out to be "
+                        + "deliverable (R006)");
+        assertNull(outcome.getProposalId(),
+                "no proposal is pending for a task with no deliverable candidate, so it remains "
+                        + "available for another run (R006)");
     }
 }

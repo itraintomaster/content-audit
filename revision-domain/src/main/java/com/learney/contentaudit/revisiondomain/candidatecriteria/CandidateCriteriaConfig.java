@@ -35,6 +35,8 @@ public class CandidateCriteriaConfig {
 
     private AuditReportStore auditReportStore;
 
+    private CandidateCriterionEvaluator realWorldSenseEvaluator;
+
     public CandidateCriteriaConfig() {
     }
 
@@ -44,7 +46,8 @@ public class CandidateCriteriaConfig {
             QuizInstructionSubjectViewFactory subjectViewFactory,
             List<CandidateCriterionEvaluator> judgmentEvaluators, Double siblingSimilarityThreshold,
             Double courseSimilarityThreshold, Boolean courseWideDistinctness,
-            AuditReportStore auditReportStore) {
+            AuditReportStore auditReportStore,
+            CandidateCriterionEvaluator realWorldSenseEvaluator) {
         this.tokenizer = tokenizer;
         this.sentenceLengthConfig = sentenceLengthConfig;
         this.lexicalEvaluator = lexicalEvaluator;
@@ -55,6 +58,7 @@ public class CandidateCriteriaConfig {
         this.courseSimilarityThreshold = courseSimilarityThreshold;
         this.courseWideDistinctness = courseWideDistinctness;
         this.auditReportStore = auditReportStore;
+        this.realWorldSenseEvaluator = realWorldSenseEvaluator;
     }
 
     public NlpTokenizer getTokenizer() {
@@ -137,6 +141,14 @@ public class CandidateCriteriaConfig {
         this.auditReportStore = auditReportStore;
     }
 
+    public CandidateCriterionEvaluator getRealWorldSenseEvaluator() {
+        return this.realWorldSenseEvaluator;
+    }
+
+    public void setRealWorldSenseEvaluator(CandidateCriterionEvaluator realWorldSenseEvaluator) {
+        this.realWorldSenseEvaluator = realWorldSenseEvaluator;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -151,11 +163,12 @@ public class CandidateCriteriaConfig {
                     && Objects.equals(this.siblingSimilarityThreshold, that.siblingSimilarityThreshold)
                     && Objects.equals(this.courseSimilarityThreshold, that.courseSimilarityThreshold)
                     && Objects.equals(this.courseWideDistinctness, that.courseWideDistinctness)
-                    && Objects.equals(this.auditReportStore, that.auditReportStore);
+                    && Objects.equals(this.auditReportStore, that.auditReportStore)
+                    && Objects.equals(this.realWorldSenseEvaluator, that.realWorldSenseEvaluator);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tokenizer, sentenceLengthConfig, lexicalEvaluator, complianceChecker, subjectViewFactory, judgmentEvaluators, siblingSimilarityThreshold, courseSimilarityThreshold, courseWideDistinctness, auditReportStore);
+        return Objects.hash(tokenizer, sentenceLengthConfig, lexicalEvaluator, complianceChecker, subjectViewFactory, judgmentEvaluators, siblingSimilarityThreshold, courseSimilarityThreshold, courseWideDistinctness, auditReportStore, realWorldSenseEvaluator);
     }
 }

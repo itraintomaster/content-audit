@@ -45,6 +45,8 @@ public class QuizInstructionCorrectionContext implements CorrectionContext {
 
     private String sourceAuditId;
 
+    private String planId;
+
     public QuizInstructionCorrectionContext() {
     }
 
@@ -53,7 +55,7 @@ public class QuizInstructionCorrectionContext implements CorrectionContext {
             String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel,
             String cefrLevelLabel, SentenceMode sentenceMode, List<InstructionViolation> violations,
             String verdictReason, InstructionSeverity severity, List<String> siblingQuizSentences,
-            String sourceAuditId) {
+            String sourceAuditId, String planId) {
         this.taskId = taskId;
         this.nodeId = nodeId;
         this.quizSentence = quizSentence;
@@ -70,6 +72,7 @@ public class QuizInstructionCorrectionContext implements CorrectionContext {
         this.severity = severity;
         this.siblingQuizSentences = siblingQuizSentences;
         this.sourceAuditId = sourceAuditId;
+        this.planId = planId;
     }
 
     public String getTaskId() {
@@ -200,6 +203,14 @@ public class QuizInstructionCorrectionContext implements CorrectionContext {
         this.sourceAuditId = sourceAuditId;
     }
 
+    public String getPlanId() {
+        return this.planId;
+    }
+
+    public void setPlanId(String planId) {
+        this.planId = planId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -220,11 +231,12 @@ public class QuizInstructionCorrectionContext implements CorrectionContext {
                     && Objects.equals(this.verdictReason, that.verdictReason)
                     && Objects.equals(this.severity, that.severity)
                     && Objects.equals(this.siblingQuizSentences, that.siblingQuizSentences)
-                    && Objects.equals(this.sourceAuditId, that.sourceAuditId);
+                    && Objects.equals(this.sourceAuditId, that.sourceAuditId)
+                    && Objects.equals(this.planId, that.planId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, nodeId, quizSentence, translation, sentence, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, cefrLevelLabel, sentenceMode, violations, verdictReason, severity, siblingQuizSentences, sourceAuditId);
+        return Objects.hash(taskId, nodeId, quizSentence, translation, sentence, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, cefrLevelLabel, sentenceMode, violations, verdictReason, severity, siblingQuizSentences, sourceAuditId, planId);
     }
 }

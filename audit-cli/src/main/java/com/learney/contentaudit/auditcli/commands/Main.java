@@ -82,6 +82,9 @@ import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCa
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCorrectionConfig;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionGeneratorResponse;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionAgentStrategy;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCandidateAssessor;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCandidateAssessorConfig;
+import com.learney.contentaudit.revisiondomain.engine.DefaultQuizInstructionCandidateAssessorFactory;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessor;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateCriteriaConfig;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateCriterionEvaluator;
@@ -593,8 +596,10 @@ class Main {
         // ----------------------------------------------------------------
         // Step 7c: FEAT-QICOR wiring — candidate criteria catalog, the same
         // quiz-instruction compliance checker the judge uses (R005/R009), the
-        // correction candidate generator, and the two judgment criteria
-        // (FAITHFUL_TRANSLATION, SOLVABLE_SAME_KIND).
+        // correction candidate generator, and the three judgment criteria:
+        // FAITHFUL_TRANSLATION / SOLVABLE_SAME_KIND (non-vetoing, feed
+        // judgmentEvaluators) and REAL_WORLD_SENSE (F-QICOR-R016 — absolute,
+        // vetoing, its own mandatory CandidateCriteriaConfig slot).
         // ----------------------------------------------------------------
         com.learney.contentaudit.auditdomain.lexicalflags.SentenceLexicalEvaluator sentenceLexicalEvaluator =
                 new com.learney.contentaudit.auditdomain.lexicalflags.DefaultSentenceLexicalEvaluator(
@@ -616,16 +621,21 @@ class Main {
         QuizInstructionCandidateGenerator quizInstructionGenerator;
         String quizInstructionProviderId;
         List<CandidateCriterionEvaluator> judgmentEvaluators;
+        CandidateCriterionEvaluator realWorldSenseEvaluator;
 
         if (lagenMode == LagenMode.CANNED) {
             quizInstructionGenerator = request -> new QuizInstructionGeneratorResponse(
                     request.getContext() != null ? request.getContext().getQuizSentence() : "",
                     request.getContext() != null ? request.getContext().getTranslation() : "",
-                    "canned: sin cambios");
+                    "canned: sin cambios", null, 0);
             quizInstructionProviderId = "canned:fixed";
             judgmentEvaluators = List.of(
                     cannedPassingJudgmentEvaluator(CorrectionCriterion.FAITHFUL_TRANSLATION),
                     cannedPassingJudgmentEvaluator(CorrectionCriterion.SOLVABLE_SAME_KIND));
+            // F-QICOR-R016: absolute criterion, own mandatory slot — never part of
+            // judgmentEvaluators. Canned mode follows the same precedent as the other
+            // two: always PASSED, no LLM contact.
+            realWorldSenseEvaluator = cannedPassingJudgmentEvaluator(CorrectionCriterion.REAL_WORLD_SENSE);
         } else {
             // F-LAGEN-R014 precedent: config resolution failures defer to the moment the
             // correction actually runs, exactly like LAPS/knowledge-title above, so other
@@ -655,6 +665,10 @@ class Main {
                                 quizInstructionLagenConfig, CorrectionCriterion.FAITHFUL_TRANSLATION),
                         candidateJudgmentEvaluatorFactory.create(
                                 quizInstructionLagenConfig, CorrectionCriterion.SOLVABLE_SAME_KIND));
+                // F-QICOR-R016: same factory, indexed by criterion — different, mandatory
+                // slot (absolute, vetoing; never part of judgmentEvaluators).
+                realWorldSenseEvaluator = candidateJudgmentEvaluatorFactory.create(
+                        quizInstructionLagenConfig, CorrectionCriterion.REAL_WORLD_SENSE);
             } else {
                 final String deferredMsg = quizInstructionLagenSetupError;
                 quizInstructionGenerator = request -> {
@@ -664,10 +678,18 @@ class Main {
                             "INVALID_CONFIG: " + deferredMsg);
                 };
                 quizInstructionProviderId = "lagen:misconfigured";
-                // Without a resolvable LLM config, the two judgment criteria simply do not
-                // enter the active catalog (CandidateCriteriaConfig.judgmentEvaluators doc);
-                // the deterministic criteria and INSTRUCTION_COMPLIANCE still run.
+                // Without a resolvable LLM config, the two non-vetoing judgment criteria
+                // simply do not enter the active catalog (CandidateCriteriaConfig.judgmentEvaluators
+                // doc); the deterministic criteria and INSTRUCTION_COMPLIANCE still run.
                 judgmentEvaluators = List.of();
+                // F-QICOR-R016's slot is mandatory and the criterion is absolute: it can
+                // NEVER be left approving-by-default here the way the empty list above lets
+                // the two non-vetoing criteria quietly disappear. With no resolvable judge,
+                // report NOT_EVALUABLE naming this setup failure so every candidate stays
+                // ineligible and the run ends in "correction not achieved" naming
+                // REAL_WORLD_SENSE — never an unjudged sentence written to the course.
+                realWorldSenseEvaluator = notEvaluableJudgmentEvaluator(
+                        CorrectionCriterion.REAL_WORLD_SENSE, deferredMsg);
             }
         }
 
@@ -691,7 +713,7 @@ class Main {
                 null,
                 null,
                 null,
-                auditReportStore);
+                auditReportStore, realWorldSenseEvaluator);
         CandidateAssessor candidateAssessor =
                 new DefaultCandidateCriteriaFactory().create(candidateCriteriaConfig);
 
@@ -740,6 +762,29 @@ class Main {
                 quizInstructionCorrectionRunner, refinementPlanStore,
                 quizInstructionCorrectionRunFormatter);
 
+        // assess-candidate — F-QICOR-R015: consults the candidate-criteria catalog over a
+        // candidate quiz sentence that never went through a proposal. Built from the exact
+        // same seven collaborators as revisionEngineConfig above (candidateAssessor,
+        // proposalDeriver, refinementPlanStore, auditReportStore, correctionContextResolver,
+        // courseRepository), with elementLocator left null so the factory builds its own
+        // DefaultCourseElementLocator internally (package-private on purpose — same pattern
+        // as ConsolidatedViewBuilderConfig below), so the consultation and the correction
+        // engine's own re-verification of a delivered candidate (F-QICOR-R012) can never
+        // disagree about what a candidate measures.
+        QuizInstructionCandidateAssessorConfig quizInstructionCandidateAssessorConfig =
+                new QuizInstructionCandidateAssessorConfig(
+                        candidateAssessor,
+                        proposalDeriver,
+                        refinementPlanStore,
+                        auditReportStore,
+                        correctionContextResolver,
+                        (CourseRepository) courseRepository,
+                        null); // factory creates DefaultCourseElementLocator internally (package-private)
+        QuizInstructionCandidateAssessor quizInstructionCandidateAssessor =
+                new DefaultQuizInstructionCandidateAssessorFactory()
+                        .create(quizInstructionCandidateAssessorConfig);
+        AssessCandidateCmd assessCandidateCmd = new AssessCandidateCmd(quizInstructionCandidateAssessor);
+
         ProposalDecisionService proposalDecisionService;
         try {
             proposalDecisionService =
@@ -779,6 +824,11 @@ class Main {
         // QUIZ_INSTRUCTION corrections over a plan. Its own verb, always explicit —
         // never triggered by "analyze" or by a plain "revise task <id>".
         cmd.addSubcommand("revise-instructions", new picocli.CommandLine(reviseInstructionsCmd));
+
+        // assess-candidate — F-QICOR-R015: consult the candidate-criteria catalog over a
+        // candidate quiz sentence without proposing it. Invoked by
+        // .sentinel/agents/quiz-instruction-corrector/scripts/assess.sh once per attempt.
+        cmd.addSubcommand("assess-candidate", new picocli.CommandLine(assessCandidateCmd));
 
         // approve / reject — only available when ProposalDecisionService could be constructed
         if (proposalDecisionService != null) {
@@ -893,6 +943,33 @@ class Main {
                     com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessmentInput input) {
                 return new CriterionVerdict(criterion, CriterionOutcome.PASSED,
                         "canned: siempre aprueba");
+            }
+        };
+    }
+
+    /**
+     * F-QICOR-R016 fallback for {@code CandidateCriteriaConfig.realWorldSenseEvaluator} when no
+     * LLM judge configuration is resolvable (the {@code quizInstructionLagenSetupError != null}
+     * branch above). REAL_WORLD_SENSE is absolute and its slot is mandatory: it can never be left
+     * null (the factory rejects the whole catalog with AbsoluteCriterionEvaluatorMissingException
+     * instead) and it must never approve by omission the way an empty {@code judgmentEvaluators}
+     * lets the two non-vetoing criteria quietly disappear. Always NOT_EVALUABLE, carrying the
+     * setup failure as its reason, so a run without a working judge ends in "correction not
+     * achieved" naming REAL_WORLD_SENSE instead of writing an unjudged sentence to the course.
+     */
+    private static CandidateCriterionEvaluator notEvaluableJudgmentEvaluator(
+            CorrectionCriterion criterion, String reason) {
+        return new CandidateCriterionEvaluator() {
+            @Override
+            public CorrectionCriterion criterion() {
+                return criterion;
+            }
+
+            @Override
+            public CriterionVerdict evaluate(
+                    com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessmentInput input) {
+                return new CriterionVerdict(criterion, CriterionOutcome.NOT_EVALUABLE,
+                        "sin juez configurado: " + reason);
             }
         };
     }

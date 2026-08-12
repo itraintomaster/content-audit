@@ -91,7 +91,7 @@ public class DefaultProposalDecisionServiceTest {
                 proposalId, taskId, planId, "audit-001",
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, "quiz-001",
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        , null);
+        , null, null, null);
     }
 
     private RevisionArtifact buildArtifact(String proposalId, String taskId, String planId,
@@ -126,7 +126,7 @@ public class DefaultProposalDecisionServiceTest {
                 proposalId, taskId, planId, "audit-001",
                 DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, AuditTarget.KNOWLEDGE, knowledgeId,
                 before, after, "knowledge-title-length: shorten label", "knowledge-title-agent", Instant.now(), null
-        );
+        , null, null);
     }
 
     private RevisionArtifact buildKnowledgeArtifact(String proposalId, String taskId, String planId,
@@ -936,7 +936,7 @@ public class DefaultProposalDecisionServiceTest {
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, quizId,
                 elementBefore, elementAfter, "lemma-absence: replace out-of-level word",
                 "lemma-absence-mvp", Instant.now(), null
-        );
+        , null, null);
         RevisionArtifact artifact = new RevisionArtifact(proposal, RevisionVerdict.PENDING_APPROVAL,
                 null, null, null, null, null, null);
         RefinementPlan plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING);

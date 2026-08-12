@@ -1493,6 +1493,7 @@ correccion que aprobar.
 | F-QICOR-R013 | Cual es el mejor candidato: primero si sirve, despues cuanto conserva, la longitud al final | critical | Se entrego para el ejercicio '{quizId}' un candidato peor que otro que la misma correccion habia producido |
 | F-QICOR-R014 | Lo que se entrega sin cumplir todo se entrega diciendolo | critical | Se propuso para el ejercicio '{quizId}' una correccion que no cumple el criterio '{criterio}' sin declararlo |
 | F-QICOR-R015 | Los criterios se consultan, no se reimplementan | critical | El candidato del ejercicio '{quizId}' se juzgo con una medicion distinta de la que aplica el sistema |
+| F-QICOR-R016 | El ejercicio corregido tiene que describir algo que pueda pasar en el mundo real | critical | Se propuso para el ejercicio '{quizId}' una correccion que describe algo que no puede pasar en el mundo real |
 
 **User Journeys:**
 

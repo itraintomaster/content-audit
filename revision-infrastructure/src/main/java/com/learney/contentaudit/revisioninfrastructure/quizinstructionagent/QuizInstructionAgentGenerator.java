@@ -3,8 +3,6 @@ package com.learney.contentaudit.revisioninfrastructure.quizinstructionagent;
 import com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation;
 import com.learney.contentaudit.refinerdomain.QuizInstructionCorrectionContext;
 import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
-import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome;
-import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCandidateGenerator;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionGenerationRequest;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionGeneratorResponse;
@@ -26,6 +24,11 @@ import javax.annotation.processing.Generated;
  * shape: launcher / candidate parser / error classifier / config), minus the
  * suggested-lemmas tool -- this graph has none (its own description: "no tiene
  * lazo propio" and no {@code dependencies} tool entry).
+ *
+ * <p>F-QICOR-R012: the graph now conducts its OWN retry loop -- generate,
+ * gate, assess, tally, decide whether to retry -- and hands back the
+ * champion, so this adapter launches it exactly once per {@link
+ * QuizInstructionGenerationRequest} and no longer drives any loop of its own.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -63,8 +66,9 @@ class QuizInstructionAgentGenerator implements QuizInstructionCandidateGenerator
      *   violations            — one per line: "restriccion | evidencia | explicacion"
      *   verdictReason         — context.getVerdictReason()
      *   siblingQuizzes        — sibling quizSentences, one per line (or "")
-     *   previousVerdicts      — failed criteria from the previous attempt, one per line (or "")
-     *   attempt               — String.valueOf(request.getAttempt())
+     *   planId                — context.getPlanId() (or ""), stamped by DefaultRevisionEngine
+     *                           / assessTask's own callers -- see QuizInstructionCorrectionContext
+     *   maxAttempts           — String.valueOf(request.getMaxAttempts()) (F-QICOR-R012)
      * </pre>
      */
     static final String AGENT_NAME = "quiz-instruction-corrector";
@@ -150,8 +154,18 @@ class QuizInstructionAgentGenerator implements QuizInstructionCandidateGenerator
             inputs.put("siblingQuizzes", formatLines(context.getSiblingQuizSentences()));
         }
 
-        inputs.put("previousVerdicts", formatPreviousVerdicts(request.getPreviousVerdicts()));
-        inputs.put("attempt", String.valueOf(request.getAttempt()));
+        // F-QICOR-R015: the graph's `assess` node needs the plan id to call
+        // `content-audit assess-candidate --plan <planId> --task <taskId> ...` without the
+        // original quiz travelling through the agent and back (see assess.sh).
+        // QuizInstructionCorrectionContext.planId is stamped by DefaultRevisionEngine right
+        // after resolving the context (mirrors the identical, already-established pattern
+        // for sourceAuditId), so it is simply flattened here -- never guessed. A context
+        // whose planId was never stamped (context == null, or a context resolved outside
+        // that path) sends the field empty rather than a fabricated value, so assess.sh's
+        // own "faltan planId/taskId" fallback (an infrastructure failure, never a fabricated
+        // verdict) is what actually happens instead of a silently wrong one.
+        inputs.put("planId", context != null ? orEmpty(context.getPlanId()) : "");
+        inputs.put("maxAttempts", String.valueOf(request.getMaxAttempts()));
 
         return inputs;
     }
@@ -163,16 +177,6 @@ class QuizInstructionAgentGenerator implements QuizInstructionCandidateGenerator
         return violations.stream()
                 .map(v -> "- " + orEmpty(v.getConstraint()) + " | evidencia: \""
                         + orEmpty(v.getEvidence()) + "\" | " + orEmpty(v.getExplanation()))
-                .collect(Collectors.joining("\n"));
-    }
-
-    private static String formatPreviousVerdicts(List<CriterionVerdict> previousVerdicts) {
-        if (previousVerdicts == null || previousVerdicts.isEmpty()) {
-            return "";
-        }
-        return previousVerdicts.stream()
-                .filter(v -> v.getOutcome() != CriterionOutcome.PASSED)
-                .map(v -> "- " + v.getCriterion() + " (" + v.getOutcome() + "): " + orEmpty(v.getDetail()))
                 .collect(Collectors.joining("\n"));
     }
 

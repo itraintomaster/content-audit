@@ -5,9 +5,15 @@ description: |
   veredicto {criterion, outcome, detail} como artifact `criterionVerdict`.
 
   Es el backend declarativo de CandidateCriterionEvaluator para los criterios
-  que son juicio y no medición: hoy FAITHFUL_TRANSLATION y SOLVABLE_SAME_KIND.
-  Los otros cuatro (SCOPED_EDIT, LENGTH_IN_RANGE, LEVEL_VOCABULARY,
-  DISTINCTNESS) son deterministas y se miden en Java, no acá.
+  que son juicio y no medición: hoy FAITHFUL_TRANSLATION, SOLVABLE_SAME_KIND y
+  REAL_WORLD_SENSE. Los otros cuatro (SCOPED_EDIT, LENGTH_IN_RANGE,
+  LEVEL_VOCABULARY, DISTINCTNESS) son deterministas y se miden en Java, no acá.
+
+  REAL_WORLD_SENSE (F-QICOR-R016) no se parece a los otros dos: es **absoluto**.
+  Un veredicto que no sea PASSED —incluido NOT_EVALUABLE— no baja al candidato
+  en el orden, lo saca de la competencia. Por eso su evaluador entra por un slot
+  propio y obligatorio del carrier de configuración y no por la lista opcional:
+  un criterio que veta y se puede apagar por omisión no es absoluto.
 
   **Deliberadamente neutro respecto de qué corrección lo invoca.** No menciona
   violaciones de consigna, ni tareas, ni diagnósticos: habla de un original y un
@@ -15,6 +21,12 @@ description: |
   adoptarlo después como migración y no como rediseño — hoy juzga lo mismo en el
   nodo `eval_quality` de `.sentinel/agents/lemma-absence-agent`, y esa
   duplicación es deuda conocida.
+
+  Una advertencia sobre esa migración futura: allá el criterio equivalente
+  (Pragmatismo, F-LASAG-R007 criterio 4) **puntúa y no bloquea**, y tiene que
+  seguir así — decisión explícita del usuario. Lo que veta es de ESTE catálogo,
+  porque acá se edita un ejercicio que ya funcionaba y allá se genera uno contra
+  la nada. Adoptar este grafo en lemas ausentes no debe arrastrar el veto.
 
   **Es un grafo aparte del generador, y eso es a propósito.** Si el mismo grafo
   generara y evaluara, el candidato se estaría corrigiendo a sí mismo.
@@ -41,7 +53,7 @@ goal:
   required_nodes_done:
     - emit
 dependencies:
-  - criterion               # FAITHFUL_TRANSLATION | SOLVABLE_SAME_KIND
+  - criterion               # FAITHFUL_TRANSLATION | SOLVABLE_SAME_KIND | REAL_WORLD_SENSE
   - cefrLevel
   - knowledgeTitle
   - knowledgeInstructions

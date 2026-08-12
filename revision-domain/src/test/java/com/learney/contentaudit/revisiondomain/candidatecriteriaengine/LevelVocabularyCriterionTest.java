@@ -2,6 +2,7 @@ package com.learney.contentaudit.revisiondomain.candidatecriteriaengine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -171,5 +172,56 @@ public class LevelVocabularyCriterionTest {
         CriterionVerdict verdict = criterion.evaluate(input(original, candidate, List.of("bus")));
 
         assertEquals(CriterionOutcome.PASSED, verdict.getOutcome());
+    }
+
+    @Test
+    @DisplayName("should judge the level vocabulary with the same lexical evaluator the audit applies, instead of an approximation of it")
+    @Tag("FEAT-QICOR")
+    @Tag("F-QICOR-R015")
+    public void shouldJudgeTheLevelVocabularyWithTheSameLexicalEvaluatorTheAuditAppliesInsteadOfAnApproximationOfIt() {
+        // Deliberately NOT the class-level LEVEL constant (A1) the other three tests share: if the
+        // criterion judged vocabulary against a level of its own instead of the one this candidate is
+        // actually being measured against, this test would still pass with A1 by coincidence.
+        CefrLevel level = CefrLevel.B1;
+        String originalSentence = "He works in the city centre.";
+        String candidateSentence = "He commutes in the city centre.";
+        List<SentencePartEntity> originalParts = List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "He ", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("works")),
+                new SentencePartEntity(SentencePartKind.TEXT, " in the city centre.", null));
+        List<SentencePartEntity> candidateParts = List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "He ", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("commutes")),
+                new SentencePartEntity(SentencePartKind.TEXT, " in the city centre.", null));
+        QuizTemplateEntity original = quiz(originalParts, originalSentence);
+        QuizTemplateEntity candidate = quiz(candidateParts, candidateSentence);
+
+        List<NlpToken> originalTokens = List.of(new NlpToken("works", "work", "VERB", 500, false, false));
+        List<NlpToken> candidateTokens = List.of(new NlpToken("commutes", "commute", "VERB", 2400, false, false));
+        when(tokenizer.analyzeTokens(originalSentence)).thenReturn(originalTokens);
+        when(tokenizer.analyzeTokens(candidateSentence)).thenReturn(candidateTokens);
+        when(lexicalEvaluator.evaluate(originalTokens, level))
+                .thenReturn(new SentenceLexicalFlags(List.of(), List.of()));
+        when(lexicalEvaluator.evaluate(candidateTokens, level))
+                .thenReturn(new SentenceLexicalFlags(List.of(), List.of()));
+
+        // Built by hand instead of via the input(...) helper, which hardcodes the shared A1 LEVEL
+        // constant — this scenario needs a level of its own to be a meaningful parity check.
+        CandidateAssessmentInput customInput = new CandidateAssessmentInput(
+                "quiz-1", "audit-1", snapshot(original), snapshot(candidate), level,
+                "Daily Routines", "Verb forms", "Complete with the correct verb", "B1",
+                SentenceMode.FILL, List.of(), List.of("works"));
+
+        CriterionVerdict verdict = criterion.evaluate(customInput);
+
+        assertEquals(CorrectionCriterion.LEVEL_VOCABULARY, verdict.getCriterion());
+        // F-QICOR-R015(b): the vocabulary verdict must coincide with "el analisis lexico" — i.e. use
+        // the SAME NlpTokenizer + SentenceLexicalEvaluator ports the audit itself uses, fed the exact
+        // sentence text and the exact CEFR level this input carried, never a criterion-local
+        // approximation of vocabulary fitness.
+        verify(tokenizer).analyzeTokens(originalSentence);
+        verify(tokenizer).analyzeTokens(candidateSentence);
+        verify(lexicalEvaluator).evaluate(originalTokens, level);
+        verify(lexicalEvaluator).evaluate(candidateTokens, level);
     }
 }

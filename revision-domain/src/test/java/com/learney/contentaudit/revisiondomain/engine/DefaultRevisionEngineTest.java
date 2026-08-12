@@ -124,7 +124,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-123456", taskId, planId, auditId,
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        , null);
+        , null, null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
@@ -178,7 +178,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-123456", taskId, planId, auditId,
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        , null);
+        , null, null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.REJECTED);
@@ -232,7 +232,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-789012", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        , null);
+        , null, null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
@@ -296,7 +296,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-345678", taskId, planId, auditId,
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        , null);
+        , null, null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
@@ -351,7 +351,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-100800", taskId, planId, auditId,
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        , null);
+        , null, null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.PENDING_APPROVAL);
@@ -409,7 +409,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-100900", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity revision", "bypass", Instant.now()
-        , null);
+        , null, null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.PENDING_APPROVAL);
@@ -513,7 +513,7 @@ public class DefaultRevisionEngineTest {
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(),
                 null
-        );
+        , null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
@@ -578,7 +578,7 @@ public class DefaultRevisionEngineTest {
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(),
                 null
-        );
+        , null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.PENDING_APPROVAL);
@@ -644,7 +644,7 @@ public class DefaultRevisionEngineTest {
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(),
                 null
-        );
+        , null, null);
 
         // In human mode: initial verdict is PENDING_APPROVAL
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
@@ -726,7 +726,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-r002a", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(), null
-        );
+        , null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
@@ -791,7 +791,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-r002b", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(), null
-        );
+        , null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
@@ -943,7 +943,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-r005", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(), null
-        );
+        , null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
@@ -1009,7 +1009,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-r006", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(), null
-        );
+        , null, null);
 
         // Human validator emits PENDING_APPROVAL
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
@@ -1078,7 +1078,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-r007ov", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp", Instant.now(), null
-        );
+        , null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
@@ -1142,7 +1142,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-r007der", taskId, planId, auditId,
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "bypass: identity", "bypass", Instant.now(), null
-        );
+        , null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
@@ -1224,7 +1224,7 @@ public class DefaultRevisionEngineTest {
                 taskId + "-123456", taskId, planId, auditId,
                 DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, AuditTarget.KNOWLEDGE, nodeId,
                 before, after, "knowledge-title-agent proposal", "knowledge-title-agent", Instant.now()
-        , null);
+        , null, null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.REJECTED);

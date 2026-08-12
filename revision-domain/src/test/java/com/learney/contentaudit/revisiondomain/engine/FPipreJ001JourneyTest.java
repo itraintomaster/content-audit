@@ -116,7 +116,7 @@ public class FPipreJ001JourneyTest {
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp",
                 Instant.now(), null
-        );
+        , null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.PENDING_APPROVAL);
@@ -198,7 +198,7 @@ public class FPipreJ001JourneyTest {
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
                 snapshot, snapshot, "strategy: lemma absence", "lemma-absence-mvp",
                 Instant.now(), null
-        );
+        , null, null);
 
         RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
         when(validatorResult.verdict()).thenReturn(RevisionVerdict.PENDING_APPROVAL);

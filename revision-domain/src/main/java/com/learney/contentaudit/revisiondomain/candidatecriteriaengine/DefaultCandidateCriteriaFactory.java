@@ -1,10 +1,13 @@
 package com.learney.contentaudit.revisiondomain.candidatecriteriaengine;
 
+import com.learney.contentaudit.revisiondomain.candidatecriteria.AbsoluteCriterionEvaluatorMissingException;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessor;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateCriteriaConfig;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateCriteriaDefaults;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateCriteriaFactory;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateCriterionEvaluator;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateLengthMeter;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateRanking;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CourseQuizCorpus;
 import java.util.LinkedHashMap;
@@ -28,11 +31,26 @@ public class DefaultCandidateCriteriaFactory implements CandidateCriteriaFactory
 
     @Override
     public CandidateAssessor create(CandidateCriteriaConfig config) {
+        // F-QICOR-R016: REAL_WORLD_SENSE is the second absolute criterion, wired through its
+        // own mandatory config slot exactly like complianceChecker is for INSTRUCTION_COMPLIANCE
+        // -- neither of the two vetoing criteria may be left to quietly fall out of the active
+        // catalog. Fail loud and NAMED here, before anything else is built, instead of an NPE
+        // three layers into the assessment loop or a whole run that reports success without
+        // having evaluated anything (the failure mode this project already paid for once).
+        CandidateCriterionEvaluator realWorldSenseEvaluator = config.getRealWorldSenseEvaluator();
+        if (realWorldSenseEvaluator == null) {
+            throw new AbsoluteCriterionEvaluatorMissingException(CorrectionCriterion.REAL_WORLD_SENSE);
+        }
+
         Map<CorrectionCriterion, CandidateCriterionEvaluator> evaluators = new LinkedHashMap<>();
 
+        // F-QICOR-R011/R015: the measurement lives once, in the meter -- LengthInRangeCriterion
+        // and the proposal's own declaration both read off the exact same object.
+        CandidateLengthMeter lengthMeter =
+                new DefaultCandidateLengthMeter(config.getTokenizer(), config.getSentenceLengthConfig());
+
         evaluators.put(CorrectionCriterion.SCOPED_EDIT, new ScopedEditCriterion());
-        evaluators.put(CorrectionCriterion.LENGTH_IN_RANGE,
-                new LengthInRangeCriterion(config.getTokenizer(), config.getSentenceLengthConfig()));
+        evaluators.put(CorrectionCriterion.LENGTH_IN_RANGE, new LengthInRangeCriterion(lengthMeter));
         evaluators.put(CorrectionCriterion.LEVEL_VOCABULARY,
                 new LevelVocabularyCriterion(config.getLexicalEvaluator(), config.getTokenizer()));
 
@@ -62,7 +80,9 @@ public class DefaultCandidateCriteriaFactory implements CandidateCriteriaFactory
 
         evaluators.put(CorrectionCriterion.INSTRUCTION_COMPLIANCE, new InstructionComplianceCriterion(
                 config.getComplianceChecker(), config.getSubjectViewFactory()));
+        evaluators.put(CorrectionCriterion.REAL_WORLD_SENSE, realWorldSenseEvaluator);
 
-        return new DefaultCandidateAssessor(evaluators);
+        CandidateRanking ranking = new DefaultCandidateRanking();
+        return new DefaultCandidateAssessor(evaluators, lengthMeter, ranking);
     }
 }

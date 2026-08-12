@@ -1,6 +1,7 @@
 package com.learney.contentaudit.journeys;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -61,6 +62,7 @@ import com.learney.contentaudit.revisiondomain.RevisionValidator;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessment;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessmentInput;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessor;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateLengthMeasurement;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
@@ -311,7 +313,8 @@ public class FQicorJ002JourneyTest {
                         + "presente, no en pasado.",
                 InstructionSeverity.MAJOR,
                 List.of(),
-                AUDIT_ID);
+                AUDIT_ID,
+                PLAN_ID);
     }
 
     private CorrectionContextResolver<CorrectionContext> buildContextResolver() {
@@ -471,12 +474,38 @@ public class FQicorJ002JourneyTest {
         when(complianceChecker.revalidate(argThat(view -> view != null && QUIZ_C_ID.equals(view.getSubjectRef()))))
                 .thenReturn(staleResult());
 
-        // A's candidate passes every criterion; B's candidate always fails LENGTH_IN_RANGE.
-        CandidateAssessment acceptedAssessment = new CandidateAssessment(true, List.of(
-                new CriterionVerdict(CorrectionCriterion.INSTRUCTION_COMPLIANCE, CriterionOutcome.PASSED, null)));
-        CandidateAssessment rejectedAssessment = new CandidateAssessment(false, List.of(
-                new CriterionVerdict(CorrectionCriterion.LENGTH_IN_RANGE, CriterionOutcome.FAILED,
-                        "La oracion corregida cae fuera del rango de longitud objetivo del nivel A2.")));
+        // A's candidate passes every criterion. B's candidate never resulted entregable: since
+        // R012, reproving any single catalog criterion (like length) no longer blocks a delivery,
+        // so the only way left for B to end as "correccion no lograda" is that it never complied
+        // with its own consigna (R005/R006/R013(c)). B's candidate is ALSO out of its level's
+        // length range, so the assertion below that the length is never named among its failed
+        // criteria is a genuine check of R011(c)/R006(c), not one that passes only because length
+        // never failed.
+        List<CriterionVerdict> allPassedForA = List.of(
+                new CriterionVerdict(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.LENGTH_IN_RANGE, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.LEVEL_VOCABULARY, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.DISTINCTNESS, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.FAITHFUL_TRANSLATION, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.SOLVABLE_SAME_KIND, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.INSTRUCTION_COMPLIANCE, CriterionOutcome.PASSED, null));
+        CandidateAssessment acceptedAssessment = new CandidateAssessment(
+                allPassedForA, true, true, 5, List.of(),
+                new CandidateLengthMeasurement(9, 6, 10, true, true), "eligible|5");
+
+        CriterionVerdict bComplianceFailure = new CriterionVerdict(CorrectionCriterion.INSTRUCTION_COMPLIANCE,
+                CriterionOutcome.FAILED, "La respuesta sigue sin estar en pasado simple.");
+        List<CriterionVerdict> bVerdicts = List.of(
+                new CriterionVerdict(CorrectionCriterion.SCOPED_EDIT, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.LENGTH_IN_RANGE, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.LEVEL_VOCABULARY, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.DISTINCTNESS, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.FAITHFUL_TRANSLATION, CriterionOutcome.PASSED, null),
+                new CriterionVerdict(CorrectionCriterion.SOLVABLE_SAME_KIND, CriterionOutcome.PASSED, null),
+                bComplianceFailure);
+        CandidateAssessment rejectedAssessment = new CandidateAssessment(
+                bVerdicts, false, true, 5, List.of(bComplianceFailure),
+                new CandidateLengthMeasurement(14, 6, 10, false, true), "not-eligible");
         when(candidateAssessor.assess(argThat(input -> input != null && QUIZ_A_ID.equals(input.getSubjectRef()))))
                 .thenReturn(acceptedAssessment);
         when(candidateAssessor.assess(argThat(input -> input != null && QUIZ_B_ID.equals(input.getSubjectRef()))))
@@ -486,7 +515,9 @@ public class FQicorJ002JourneyTest {
                 new QuizInstructionGeneratorResponse(
                         "She ____ [walked] (walk) to school every day.",
                         "Ella caminaba a la escuela todos los dias.",
-                        "Cambio el tiempo verbal de la respuesta aceptada a pasado simple.");
+                        "Cambio el tiempo verbal de la respuesta aceptada a pasado simple.",
+                        List.of(),
+                        1);
 
         when(planStore.load(PLAN_ID)).thenReturn(Optional.of(plan));
         when(auditReportStore.load(AUDIT_ID)).thenReturn(Optional.of(auditReport));
@@ -532,9 +563,15 @@ public class FQicorJ002JourneyTest {
 
         QuizInstructionTaskOutcome outcomeB = outcomesByTask.get(TASK_B_ID);
         assertEquals(QuizInstructionTaskOutcomeKind.NOT_CORRECTED, outcomeB.getKind(),
-                "R006: a candidate that never passes the catalog must be reported as not corrected");
-        assertTrue(outcomeB.getFailedCriteria().contains(CorrectionCriterion.LENGTH_IN_RANGE),
-                "R006: a correction not achieved must name the criterion that failed");
+                "R006: a candidate that never complied with its consigna must be reported as not "
+                        + "corrected, even though it passed every other criterion");
+        assertTrue(outcomeB.getFailedCriteria().contains(CorrectionCriterion.INSTRUCTION_COMPLIANCE),
+                "R006: a correction not achieved must name the criterion that kept the candidate "
+                        + "from ever being entregable");
+        assertFalse(outcomeB.getFailedCriteria().contains(CorrectionCriterion.LENGTH_IN_RANGE),
+                "R006/R011: the length must never be named among the failed criteria of a "
+                        + "correction not achieved, even though this same candidate also measured "
+                        + "outside its level's target range");
 
         QuizInstructionTaskOutcome outcomeC = outcomesByTask.get(TASK_C_ID);
         assertEquals(QuizInstructionTaskOutcomeKind.DIAGNOSIS_STALE, outcomeC.getKind(),

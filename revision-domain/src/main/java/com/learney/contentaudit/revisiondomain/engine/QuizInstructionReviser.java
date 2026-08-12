@@ -1,6 +1,5 @@
 package com.learney.contentaudit.revisiondomain.engine;
 
-import com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionComplianceChecker;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionComplianceResult;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionComplianceStatus;
@@ -22,16 +21,17 @@ import com.learney.contentaudit.revisiondomain.LemmaAbsenceQuizCandidate;
 import com.learney.contentaudit.revisiondomain.NoAcceptableCandidateException;
 import com.learney.contentaudit.revisiondomain.ProposalDerivationException;
 import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
+import com.learney.contentaudit.revisiondomain.QuizInstructionProposalStrategy;
 import com.learney.contentaudit.revisiondomain.QuizInstructionProposalStrategyRegistry;
 import com.learney.contentaudit.revisiondomain.Reviser;
 import com.learney.contentaudit.revisiondomain.RevisionProposal;
 import com.learney.contentaudit.revisiondomain.StrategyId;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessment;
-import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessmentInput;
-import com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessor;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
-import com.learney.contentaudit.revisiondomain.QuizInstructionProposalStrategy;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionBestCandidate;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCandidateAssessor;
 import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCorrectionConfig;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -40,15 +40,20 @@ import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 /**
- * F-QICOR-R001..R006, R009, R010: the QUIZ_INSTRUCTION dispatch target. Order
+ * F-QICOR-R001..R006, R009..R015: the QUIZ_INSTRUCTION dispatch target. Order
  * of operations per journey F-QICOR-J001: revalidate the original with the
  * exact validation that flagged it (R009) -- if it already complies, the
- * diagnosis has gone stale and no correction is attempted at all -- then loop
- * the strategy up to {@code maxAttempts} times, deriving a candidate,
- * restoring any empty part of the enunciado the derivation could not
- * round-trip (R010), and assessing it, feeding the previous attempt's failed
- * verdicts back in (R006 / DOUBT-REINTENTOS). The first candidate the catalog
- * accepts becomes the proposal; exhausting every attempt without one is an
+ * diagnosis has gone stale and no correction is attempted at all -- then emit
+ * exactly ONE correction request, handing the run's configured attempt limit
+ * inward (R012): the loop, the champion and the retry decision live on the
+ * correction's side from here on, not here. The system does not take the
+ * correction's self-reported compliance at its word: it independently
+ * verifies the delivered candidate through the very same object F-QICOR-R015
+ * exposes for consultation (R005, the one absolute criterion). A candidate
+ * that is eligible -- complies with its instruction and is a real change over
+ * the original -- is proposed even if it reproved some other criterion of the
+ * catalog, declaring what it did not meet (R014) and how its length measured
+ * (R011); exhausting the single request without an eligible candidate is an
  * explicit failure (R006), never a silent identity proposal.
  */
 @Generated(
@@ -65,25 +70,24 @@ class QuizInstructionReviser implements Reviser {
 
     private final LemmaAbsenceProposalDeriver deriver;
 
-    private final CandidateAssessor assessor;
-
     private final QuizInstructionComplianceChecker complianceChecker;
 
     private final QuizInstructionSubjectViewFactory subjectViewFactory;
 
     private final QuizInstructionCorrectionConfig config;
 
+    private final QuizInstructionCandidateAssessor candidateAssessor;
+
     public QuizInstructionReviser(QuizInstructionProposalStrategyRegistry strategyRegistry,
-            LemmaAbsenceProposalDeriver deriver, CandidateAssessor assessor,
-            QuizInstructionComplianceChecker complianceChecker,
-            QuizInstructionSubjectViewFactory subjectViewFactory,
-            QuizInstructionCorrectionConfig config) {
+            LemmaAbsenceProposalDeriver deriver, QuizInstructionComplianceChecker complianceChecker,
+            QuizInstructionSubjectViewFactory subjectViewFactory, QuizInstructionCorrectionConfig config,
+            QuizInstructionCandidateAssessor candidateAssessor) {
         this.strategyRegistry = strategyRegistry;
         this.deriver = deriver;
-        this.assessor = assessor;
         this.complianceChecker = complianceChecker;
         this.subjectViewFactory = subjectViewFactory;
         this.config = config;
+        this.candidateAssessor = candidateAssessor;
     }
 
     @Override
@@ -129,93 +133,88 @@ class QuizInstructionReviser implements Reviser {
                 ? configuredMaxAttempts
                 : DEFAULT_MAX_ATTEMPTS;
 
-        List<String> signalledFragments = signalledFragmentsOf(qic.getViolations());
-
-        List<CriterionVerdict> previousVerdicts = List.of();
-        List<CorrectionCriterion> lastFailedCriteria = List.of();
-        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
-            LemmaAbsenceQuizCandidate candidate;
-            try {
-                candidate = strategy.propose(task, qic, previousVerdicts, attempt);
-            } catch (ProposalStrategyFailedException e) {
-                throw e;
-            } catch (RuntimeException e) {
-                throw new ProposalStrategyFailedException(
-                        strategy.id().getName(), task.getId(), e.getMessage());
-            }
-
-            CourseElementSnapshot elementAfter;
-            try {
-                elementAfter = deriver.derive(before, candidate, qic.getSentenceMode());
-            } catch (ProposalDerivationException e) {
-                throw new ProposalStrategyFailedException(
-                        strategy.id().getName(), task.getId(),
-                        "derivation failed: " + e.getReason());
-            } catch (RuntimeException e) {
-                throw new ProposalStrategyFailedException(
-                        strategy.id().getName(), task.getId(),
-                        "unexpected derivation error: " + e.getMessage());
-            }
-
-            // F-QICOR-R010: an empty part of the original's enunciado -- fixed text
-            // contributing zero characters -- never survives the round trip through the
-            // quiz-sentence text a candidate travels as (FEAT-QSENT parser/serializer,
-            // left untouched here): it leaves nothing to parse back. This is the assembly
-            // of what this reviser proposes and, once approved, applies to the course, so
-            // it is the only place left to restore it. It never blocked the candidate above
-            // (ScopedEditCriterion already looks past empty parts, F-QICOR-R003), so
-            // restoring it here cannot turn an otherwise-accepted candidate into a rejected
-            // one, and it is scoped to this reviser only -- other correction kinds that also
-            // travel a quiz as text are FEAT-RPRES's concern, not this feature's.
-            elementAfter = withOriginalEmptyPartsRestored(before, elementAfter);
-
-            CandidateAssessmentInput input = new CandidateAssessmentInput(
-                    task.getNodeId(),
-                    qic.getSourceAuditId(),
-                    before,
-                    elementAfter,
-                    qic.getCefrLevel(),
-                    qic.getTopicLabel(),
-                    qic.getKnowledgeTitle(),
-                    qic.getKnowledgeInstructions(),
-                    qic.getCefrLevelLabel(),
-                    qic.getSentenceMode(),
-                    qic.getSiblingQuizSentences(),
-                    signalledFragments);
-
-            CandidateAssessment assessment = assessor.assess(input);
-            previousVerdicts = assessment.getVerdicts() != null
-                    ? assessment.getVerdicts()
-                    : List.of();
-
-            if (assessment.isAccepted()) {
-                StrategyId strategyId = strategy.id();
-                Instant now = Instant.now();
-                String proposalId = task.getId() + "-" + now.toEpochMilli();
-                return new RevisionProposal(
-                        proposalId,
-                        task.getId(),
-                        "pending",            // planId overwritten by DefaultRevisionEngine
-                        "pending",            // sourceAuditId overwritten by DefaultRevisionEngine
-                        task.getDiagnosisKind(),
-                        task.getNodeTarget(),
-                        task.getNodeId(),
-                        before,
-                        elementAfter,
-                        "quiz-instruction strategy: " + strategyId.getName() + " v"
-                                + strategyId.getVersion(),
-                        strategyId.getName(),
-                        now,
-                        strategyId);
-            }
-
-            lastFailedCriteria = failedCriteriaOf(previousVerdicts);
+        // R012: exactly ONE correction request per task. The loop, the champion it kept
+        // and the decision to retry all happened on the correction's side, inside this
+        // single call -- the system never asks for a second candidate just because the
+        // first one reported a failure.
+        QuizInstructionBestCandidate bestCandidate;
+        try {
+            bestCandidate = strategy.propose(task, qic, maxAttempts);
+        } catch (ProposalStrategyFailedException e) {
+            throw e;
+        } catch (RuntimeException e) {
+            throw new ProposalStrategyFailedException(
+                    strategy.id().getName(), task.getId(), e.getMessage());
         }
 
-        // R006: attempts exhausted, no candidate ever passed the catalog. No proposal,
-        // no course write -- the caller (DefaultQuizInstructionCorrectionRunner) turns
-        // this into the explicit NOT_CORRECTED outcome, naming the failed criteria.
-        throw new NoAcceptableCandidateException(task.getNodeId(), lastFailedCriteria, task.getId());
+        LemmaAbsenceQuizCandidate candidate = bestCandidate.getCandidate();
+
+        // R012/R005: the correction's own self-reported verdicts (bestCandidate's) are
+        // never taken at their word. The system verifies the DELIVERED candidate itself,
+        // through the very same object the F-QICOR-R015 consultation exposes -- the one
+        // absolute criterion, cumplir la consigna, is never trusted secondhand.
+        CandidateAssessment assessment = candidateAssessor.assess(
+                qic, before,
+                candidate != null ? candidate.getQuizSentence() : null,
+                candidate != null ? candidate.getTranslation() : null);
+
+        if (!assessment.isEligible()) {
+            // R006/R013(c): a candidate that does not comply with its instruction, or is
+            // not a real change over the original, never competes and is never
+            // entregable -- no proposal, no course write, whatever else it got right.
+            throw new NoAcceptableCandidateException(
+                    task.getNodeId(), failedCriteriaOf(assessment.getUnmetCriteria()), task.getId());
+        }
+
+        CourseElementSnapshot elementAfter;
+        try {
+            elementAfter = deriver.derive(before, candidate, qic.getSentenceMode());
+        } catch (ProposalDerivationException e) {
+            throw new ProposalStrategyFailedException(
+                    strategy.id().getName(), task.getId(),
+                    "derivation failed: " + e.getReason());
+        } catch (RuntimeException e) {
+            throw new ProposalStrategyFailedException(
+                    strategy.id().getName(), task.getId(),
+                    "unexpected derivation error: " + e.getMessage());
+        }
+
+        // F-QICOR-R010: an empty part of the original's enunciado -- fixed text
+        // contributing zero characters -- never survives the round trip through the
+        // quiz-sentence text a candidate travels as (FEAT-QSENT parser/serializer,
+        // left untouched here): it leaves nothing to parse back. This is the assembly
+        // of what this reviser proposes and, once approved, applies to the course, so
+        // it is the only place left to restore it. It never blocked the candidate above
+        // (ScopedEditCriterion already looks past empty parts, F-QICOR-R003), so
+        // restoring it here cannot turn an otherwise-eligible candidate into an
+        // ineligible one, and it is scoped to this reviser only -- other correction
+        // kinds that also travel a quiz as text are FEAT-RPRES's concern, not this
+        // feature's.
+        elementAfter = withOriginalEmptyPartsRestored(before, elementAfter);
+
+        // R012/R014/R011: the champion is proposed even when it reproved some criterion
+        // of the catalog -- what changed is that the reprobation is DECLARED on the
+        // proposal instead of discarding the candidate.
+        StrategyId strategyId = strategy.id();
+        Instant now = Instant.now();
+        String proposalId = task.getId() + "-" + now.toEpochMilli();
+        return new RevisionProposal(
+                proposalId,
+                task.getId(),
+                "pending",            // planId overwritten by DefaultRevisionEngine
+                "pending",            // sourceAuditId overwritten by DefaultRevisionEngine
+                task.getDiagnosisKind(),
+                task.getNodeTarget(),
+                task.getNodeId(),
+                before,
+                elementAfter,
+                "quiz-instruction strategy: " + strategyId.getName() + " v"
+                        + strategyId.getVersion(),
+                strategyId.getName(),
+                now,
+                strategyId,
+                assessment.getUnmetCriteria(),
+                assessment.getLengthMeasurement());
     }
 
     @Override
@@ -296,26 +295,16 @@ class QuizInstructionReviser implements Reviser {
                 && (part.getText() == null || part.getText().isBlank());
     }
 
-    private List<String> signalledFragmentsOf(List<InstructionViolation> violations) {
-        List<String> fragments = new ArrayList<>();
-        if (violations == null) {
-            return fragments;
-        }
-        for (InstructionViolation violation : violations) {
-            if (violation.getEvidence() != null && !violation.getEvidence().isBlank()) {
-                fragments.add(violation.getEvidence());
-            }
-        }
-        return fragments;
-    }
-
-    private List<CorrectionCriterion> failedCriteriaOf(List<CriterionVerdict> verdicts) {
+    // R006/R012: the criteria named in a rejection are exactly the ones the system's own
+    // re-verification (candidateAssessor) reported as unmet -- never the length
+    // (F-QICOR-R011: DefaultCandidateAssessor never puts it in unmetCriteria).
+    private List<CorrectionCriterion> failedCriteriaOf(List<CriterionVerdict> unmetCriteria) {
         List<CorrectionCriterion> failed = new ArrayList<>();
-        if (verdicts == null) {
+        if (unmetCriteria == null) {
             return failed;
         }
-        for (CriterionVerdict verdict : verdicts) {
-            if (verdict.getOutcome() != com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome.PASSED) {
+        for (CriterionVerdict verdict : unmetCriteria) {
+            if (verdict.getOutcome() != CriterionOutcome.PASSED) {
                 failed.add(verdict.getCriterion());
             }
         }

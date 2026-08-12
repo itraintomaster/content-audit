@@ -78,17 +78,38 @@ def resolve_run_dir():
     return matches[0] if len(matches) == 1 else None
 
 
-run_dir = resolve_run_dir()
-candidate = None
-if run_dir is not None:
-    validated_path = run_dir / "validated-candidate.json"
+def read(run_dir, name):
+    if run_dir is None:
+        return None
     try:
-        with validated_path.open("r", encoding="utf-8") as handle:
+        with (run_dir / name).open("r", encoding="utf-8") as handle:
             parsed = json.load(handle)
-        if isinstance(parsed, dict):
-            candidate = parsed
+        return parsed if isinstance(parsed, dict) else None
     except (OSError, json.JSONDecodeError):
-        candidate = None
+        return None
+
+
+run_dir = resolve_run_dir()
+
+# F-QICOR-R013: se entrega el MEJOR candidato visto, no el último. Cuando
+# route_verdict llega acá porque el candidato cumplió todo, ese candidato ES el
+# champion (tally lo acaba de snapshotear). Cuando se llega por el edge
+# `exhausted` de generate, el champion es el mejor de los intentos que hubo.
+# Preferirlo siempre evita que la salida dependa de por dónde se entró.
+candidate = read(run_dir, "champion.json")
+assessment = read(run_dir, "champion_assessment.json") or {}
+meta = read(run_dir, "champion_meta.json") or {}
+
+# Sin champion NO se cae al último candidato generado: uno que no cumple su
+# consigna reabre el mismo diagnóstico y le quema al operador una revisión
+# (R005/R013). Se declara que no hubo nada entregable, y ya.
+
+attempts = 0
+try:
+    with (run_dir / "attempts.jsonl").open("r", encoding="utf-8") as handle:
+        attempts = sum(1 for line in handle if line.strip())
+except (OSError, TypeError, AttributeError):
+    attempts = 0
 
 if candidate is not None:
     artifact = {
@@ -97,6 +118,12 @@ if candidate is not None:
         "translation": candidate.get("translation", ""),
         "rationale": candidate.get("rationale", ""),
         "reason": "",
+        # R014: lo que el campeón NO cumplió viaja con él. Entregarlo sin decirlo
+        # es lo único que la regla sigue prohibiendo.
+        "unmetCriteria": assessment.get("unmetCriteria") or [],
+        "lengthMeasurement": assessment.get("lengthMeasurement") or {},
+        "attempts": attempts,
+        "allCriteriaMet": bool(meta.get("allCriteriaMet")),
     }
 else:
     # generate agotó sus intentos sin producir JSON válido. NO se fabrica un
@@ -109,7 +136,12 @@ else:
         "quizSentence": "",
         "translation": "",
         "rationale": "",
-        "reason": "El generador agotó sus intentos sin emitir un candidato bien formado.",
+        "reason": "Ningun candidato resulto entregable: o no se emitio JSON valido, "
+                  "o ninguno cumplio la consigna ni constituyo un cambio real.",
+        "unmetCriteria": [],
+        "lengthMeasurement": {},
+        "attempts": attempts,
+        "allCriteriaMet": False,
     }
 
 content = json.dumps(artifact, ensure_ascii=False, separators=(",", ":"))

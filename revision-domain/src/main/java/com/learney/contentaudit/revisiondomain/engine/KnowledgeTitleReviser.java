@@ -100,7 +100,7 @@ class KnowledgeTitleReviser implements Reviser {
                 "knowledge-title strategy: " + strategyId.getName() + " v" + strategyId.getVersion(),
                 strategyId.getName(),
                 now,
-                strategyId);
+                strategyId, null, null);
     }
 
     @Override

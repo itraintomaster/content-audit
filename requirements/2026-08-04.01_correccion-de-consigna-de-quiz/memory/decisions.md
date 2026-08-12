@@ -131,3 +131,139 @@
 
 2026-08-11 — analyst — Tres dudas nuevas: DOUBT-CRITERIO-ABSOLUTO (A: solo la consigna), DOUBT-ORDEN-DESEMPATE (A: orden por daño al alumno), DOUBT-REVERIFICACION (A: el sistema rehace los criterios deterministas —gratis— y toma del corrector los de juicio). DOUBT-SIN-CORRECCION queda **RESOLVED opcion B** (se propone con los criterios reprobados a la vista, SIN marcarla como no apta) y DOUBT-REINTENTOS se reformula: el numero sigue abierto pero el lazo ya tiene dueño.
   why: el orden de precedencia y el reparto de la re-verificacion son inferencias mias, no decisiones del usuario, y hay que poder revisarlas. Ojo con DOUBT-REINTENTOS: el dato "ningun reintento rescato nada" se produjo con un lazo que volvia a pedir DESDE CERO; un reintento que parte del candidato anterior no es el mismo experimento, asi que no alcanza para bajar el tope a 1.
+
+2026-08-11 — architect — El lazo se va al grafo pero el ORDEN no: R013 se expresa como
+  `rankKey` (clave total comparable como string) + `CandidateRanking.better`.
+  why: el campeón lo conserva quien corrige, así que el orden tiene que ser consumible
+  desde afuera; escrito en bash, R013 queda sin superficie Java testeable — la misma vara
+  con la que se decidió la Opción A del 2026-08-04. Con rankKey la regla vive una vez, con
+  test propio, y el grafo compara dos strings.
+
+2026-08-11 — architect — `CriterionOutcome` NO gana un cuarto valor. El veredicto describe
+  qué pasó al medir; la consecuencia se mudó a `CandidateAssessment`.
+  why: un valor "reprobó pero no bloquea" metía política adentro de la medición y obligaba a
+  cada evaluador a saber si su criterio decide — el acoplamiento que el puerto neutro evitó.
+
+2026-08-11 — architect — R015 se apoya en un seam nuevo (`QuizInstructionCandidateAssessor`),
+  no sólo en el subcomando: es el único lugar donde se arma el `CandidateAssessmentInput`.
+  why: sin él el catálogo existe una vez pero el PEDIDO existe dos; basta que uno pueble
+  `signalledFragments` distinto para que R015(c) se rompa sin que nada lo detecte. El
+  subcomando recibe --plan/--task y toma el original del curso: nada del original viaja por
+  el agente y vuelve.
+
+2026-08-11 — architect — La medición de longitud se extrae a `CandidateLengthMeter` y el
+  criterio pasa a traducir medición→veredicto.
+  why: R011(b) obliga a declarar tokens+rango en la propuesta y R015(b) a que coincida con el
+  analizador. Con la medición enterrada en el criterio sólo salía un `detail` de texto libre:
+  o los números no llegaban, o se medían dos veces — el defecto que la regla vino a impedir.
+
+2026-08-11 — architect — DOUBT-REVERIFICACION queda sin decidir por diseño: es cableado
+  (qué evaluadores de juicio se registran en el catálogo activo), no contrato.
+  why: las dos ramas funcionan con el mismo assessor y ninguna necesita otro patch.
+
+2026-08-11 — qa-tester — Un fixture puede dejar un test SIN SUSTENTO aunque su nombre y su tag esten bien. Los dos tests de F-QICOR-R006 usaban `LENGTH_IN_RANGE` como unico criterio reprobado y esperaban NOT_CORRECTED — exactamente lo que R006 (c) y R011 (c) prohiben. Se reformulan los dos: el desenlace sin correccion solo se prueba con "ningun candidato cumplio su consigna" o "ninguno fue un cambio real".
+  why: el del runner **compilaba** —nada de su firma cambio en el tramo— asi que se habria puesto verde blindando la conducta prohibida, y contradiciendo de frente al test de R011 que vive en esa misma clase ("never name the length among the failed criteria"). Un test roto se nota; un test verde que afirma lo contrario de la regla, no. Regla de trabajo que queda: cuando una regla se reescribe, revisar los FIXTURES de sus tests, no solo los nombres y los tags — y desconfiar especialmente de los que siguen compilando.
+
+2026-08-11 — qa-tester — El renombre es tambien el mecanismo para forzar la reescritura de un CUERPO cuyo fixture quedo invalido, no solo para arreglar el nombre o el `@Tag`.
+  why: `sentinel generate` nunca sobrescribe un metodo existente, asi que re-taggear o cambiar la intencion sin cambiar el nombre deja el cuerpo viejo intacto. Con nombre nuevo sale un stub nuevo y el viejo queda huerfano, visible y borrable.
+
+2026-08-11 — developer — `QuizInstructionReviser` pierde el campo viejo `assessor: CandidateAssessor`; NO se conserva junto al nuevo `candidateAssessor`. Constructor final: 6 args (strategyRegistry, deriver, complianceChecker, subjectViewFactory, config, candidateAssessor).
+  why: sentinel.yaml es inequivoco — la description de `candidateAssessor` dice literal "Reemplaza la inyeccion directa del catalogo neutro", y `requiresInject` solo declara 6 entradas. El merge aditivo de `sentinel generate` habia dejado los 7 params en el `.java` real (el viejo nunca se borra solo), pero eso es la deriva ya documentada el mismo dia, no una segunda fuente de verdad. Consecuencia no anticipada por el pedido original: los 9 handwrittenTests YA ESCRITOS de R011/R012/R014 tambien instanciaban con el `.java` real de 7 args (`assessor` mockeado y sin usar) porque se escribieron contra ESE estado transitorio; se migraron con el mismo criterio que los 4 protegidos — quitar el mock `assessor` y el argumento, sin tocar ninguna asercion.
+
+2026-08-11 — developer — `DefaultRevisionEngineFactory` arma `QuizInstructionCandidateAssessor` con `new DefaultQuizInstructionCandidateAssessor(config.getCandidateAssessor(), config.getLemmaAbsenceProposalDeriver())` DENTRO del factory, sin agregar ningun campo a `RevisionEngineConfig`.
+  why: `DefaultQuizInstructionCandidateAssessor` es package-private y vive en el mismo paquete `engine` que el factory — no hace falta exponerlo. `RevisionEngineConfig.candidateAssessor: CandidateAssessor` (el catalogo neutro, sin cambios de firma) y `lemmaAbsenceProposalDeriver` ya estaban declarados y wireados por Main.java; reusarlos ahi adentro evita declarar una dependencia nueva en sentinel.yaml solo para pasar el mismo objeto un nivel mas abajo. Confirmado contra FQicorJ001JourneyTest: `config.setCandidateAssessor(mock)` sigue siendo el mock que responde `assess(any(CandidateAssessmentInput.class))` — la firma de `CandidateAssessor` no cambio, solo la de `CandidateAssessment` que devuelve.
+
+2026-08-11 — developer — `DefaultCandidateAssessor.assess()`: `unmetCriteria` incluye `INSTRUCTION_COMPLIANCE` cuando reprueba (necesario para que `NoAcceptableCandidateException`/R006 puedan nombrarlo), pero NUNCA `LENGTH_IN_RANGE` (R011). `satisfiedCriteria` (int) cuenta solo el catalogo de 5 (SCOPED_EDIT, LEVEL_VOCABULARY, DISTINCTNESS, FAITHFUL_TRANSLATION, SOLVABLE_SAME_KIND) — ni INSTRUCTION_COMPLIANCE ni LENGTH_IN_RANGE suman.
+  why: `INSTRUCTION_COMPLIANCE` es el gate de `eligible`, no un miembro del catalogo de "no empeorar" (R004 lo dice expreso) — por eso no cuenta en `satisfiedCriteria` — pero SI es un criterio con nombre y motivo que el operador necesita ver cuando es la unica razon de que nada resulto entregable (R006 "nombrando al menos un criterio reprobado"); excluirlo de `unmetCriteria` habria dejado a R006 sin nada que nombrar en el caso mas comun (candidato `eligible=false` solo por consigna).
+
+2026-08-11 — developer — `DefaultCandidateRanking.rankKey()`: string de ancho fijo, MSB-primero — 1 char eligible, 1 digito satisfiedCriteria (0-9), 5 bits de precedencia (SOLVABLE_SAME_KIND primero, 1=cumplido), 1 bit inRange. `better(a, b) := b > a` (comparacion de string estricta, identica a la de `tally.sh`).
+  why: la cantidad tiene que dominar sobre la precedencia (R013 "por que cuenta primero la cantidad y despues la precedencia") — un bitmask de precedencia puro NO alcanza porque un candidato que solo cumple el criterio de mayor precedencia puede superar numericamente a uno que cumple 4 de menor precedencia; hace falta el digito de cantidad como segmento MAS significativo, separado y antes. Verificado a mano contra los 7 casos de `DefaultCandidateRankingTest` (incluidos los 2 que citan la decision del usuario) antes de implementar — los 7 corrieron en verde sin ajustes posteriores.
+
+2026-08-11 — developer — ESCALACION 1 (missing_field): `QuizInstructionCorrectionContext` no tiene `planId`, y ningun otro objeto que llegue a `QuizInstructionAgentGenerator`/`QuizInstructionAgentStrategy`/`QuizInstructionReviser` lo tiene tampoco (ni `RefinementTask`, ni `QuizInstructionGenerationRequest`). El grafo `quiz-instruction-corrector` declara `planId` entre sus `dependencies` (lo necesita `assess.sh` para llamar `content-audit assess-candidate --plan <id> --task <id>`), pero no hay ningun canal para poblarlo hoy.
+  why: `sourceAuditId` tiene EXACTAMENTE el mismo problema y ya esta resuelto — `QuizInstructionContextResolver` lo deja null a proposito y `DefaultRevisionEngine.revise()` lo estampa despues (`qic.setSourceAuditId(plan.getSourceAuditId())`, linea ~156-163), porque el resolver solo ve el `AuditReport`, que no carga su propio id, y el motor si tiene `planId` disponible en ese mismo punto (es el primer parametro de `revise(planId, taskId, coursePath, override)`). La correccion simetrica es un campo `planId` en `QuizInstructionCorrectionContext` + una linea `qic.setPlanId(planId)` junto a la de `sourceAuditId` — pero agregar el campo es sentinel.yaml, no mio. Mientras tanto `QuizInstructionAgentGenerator.buildInputs()` manda `"planId": ""` (nunca inventado) — `assess.sh` ya tiene manejo explicito para planId/taskId vacios (falla "no se pudo consultar el catalogo", candidato marcado inelegible, NUNCA un veredicto fabricado), asi que el peor caso es una corrida que agota intentos sin champion, no un dato falso.
+
+2026-08-11 — developer — ESCALACION 2 (boundary_violation / missing_dependency): `AssessCandidateCmd` (audit-cli) declara `CourseElementLocator elementLocator` en su `requiresInject`, pero `DefaultCourseElementLocator` (revision-domain.engine) es la UNICA implementacion y es package-private — Main.java no puede construir una instancia. NO wireado en Main.java por esta razon; la clase esta completa e implementada (`AssessCandidateCmdTest` 2/2 verde probandola con mocks), pero el subcomando `assess-candidate` queda inalcanzable desde la CLI hasta que se resuelva.
+  why: es la PRIMERA vez que algo fuera de `revision-domain` necesita `CourseElementLocator` de forma directa — todo lo demas (incluido `ConsolidatedViewBuilderConfig`, que tambien lo necesita) pasa `null` y deja que un factory INTERNO al modulo (`DefaultRevisionEngineFactory`, tambien en el paquete `engine`) lo construya puertas adentro; `AssessCandidateCmd` no es una factory, es la implementacion final, asi que ese patron no le sirve. Arreglo sugerido: `visibility: "public"` en `DefaultCourseElementLocator` (no tiene `requiresInject`, constructor trivial) — o un `CourseElementLocatorFactory` nuevo, mismo patron que `PreservationFactory`.
+
+2026-08-11 — architect — `planId` va en `QuizInstructionCorrectionContext` y no en el
+  request ni como parámetro: es el ÚNICO carrier que alcanza al reviser, a la estrategia
+  y al adaptador del grafo.
+  why: verificado — RefinementTask no tiene planId (7 campos) y Reviser.propose(task,
+  context, before) tampoco lo recibe. Cualquier otra ubicación obliga a enhebrar un
+  parámetro nuevo por un puerto compartido por todos los revisers. La simetría con
+  sourceAuditId es consecuencia, no el argumento.
+
+2026-08-11 — architect — RECHAZADO abrir `DefaultCourseElementLocator`. La resolución
+  plan/tarea/contexto/original se muda de `AssessCandidateCmd` al seam (`assessTask`).
+  why: Main.java:852 pasa `null` y la factory lo construye adentro — el composition root
+  NUNCA ve un locator, por diseño. Abrirlo habría perforado esa encapsulación para
+  sostener un error mío anterior: el comando repetía los pasos 2 y 3 de
+  DefaultRevisionEngine. Con la resolución en el seam, assessTask delega en assess y la
+  garantía de R015(c) pasa de disciplina a estructural. Costo aceptado: AssessCandidateCmd
+  y sus 2 tests verdes se re-alojan.
+
+2026-08-11 — architect — `CandidateAssessmentUnavailableException` como tipo propio.
+  why: quien corrige tiene que separar "no se pudo evaluar" de "evalué y reprobó"; tratar
+  una caída de infra como veredicto negativo fabrica un reproche que nadie midió y
+  contamina el orden (R013) y la declaración (R014). Formaliza la mitigación que el
+  developer ya había puesto a mano en assess.sh.
+
+2026-08-11 — architect — TECH_SPEC.md NO se regeneró: aplicado el patch consolidado, los
+  30 fences previos dejan de validar contra el architectural_patch.yaml chico.
+  why: el CLI valida antes de escribir, así que el intento fue inocuo, pero sobrescribir
+  habría tirado 68 KB de narrativa. Pendiente: re-proponer consolidado no-aplicable y
+  regenerar, que es la forma establecida el 2026-08-04.
+
+2026-08-11 — qa-tester — El test "el original sale del curso y no del DSL" NO es re-fixture:
+  cambia de dueño. Se BORRA de `AssessCandidateCmd` y renace en
+  `DefaultQuizInstructionCandidateAssessor`. El otro de la pareja ("un veredicto por
+  criterio, con motivo cuando reprueba") SI es re-fixture puro y conserva su declaracion.
+  why: con el seam mockeado el comando ya no puede observar de donde salio el original —
+  perdio `elementLocator` y `courseRepository`. Re-fixturearlo ahi solo permitiria afirmar
+  "delega sin resolver", que es un claim distinto y mas debil, y dejaria el claim original
+  —incluido el ejemplo de F-QICOR-R010, la parte vacia que el DSL no puede representar— sin
+  ninguna casa. El render de veredictos, en cambio, sigue siendo observable en el comando.
+
+2026-08-11 — qa-tester — Las 6 ramas de resolucion de `assessTask` NO colapsan en un solo
+  test, aunque las 6 emitan la misma señal (`CandidateAssessmentUnavailableException`).
+  why: la asercion es la misma pero cada rama es un puerto distinto que puede fallar
+  ABIERTO por su cuenta — `Optional.get()` → NoSuchElementException, NPE, o el peor caso,
+  seguir con null y fabricar un veredicto. Lo que si colapsa es el MOTIVO: `reason` es un
+  String libre y ningun criterio de R015 lo constriñe, asi que ningun test asierta su texto
+  (seria asertar implementacion). La señal compartida es parte del claim: quien corrige
+  tiene que poder tratar "no se pudo evaluar" de forma uniforme.
+
+2026-08-11 — qa-tester — Los 6 casos de resolucion se anclan en R015, no en R013/R014.
+  why: R013 (f) y R014 (e) hablan de un CRITERIO que no se pudo evaluar dentro de una
+  evaluacion que si ocurrio; aca no hay criterio ninguno porque la consulta no llego a
+  armarse. Quien constriñe es R015: su (a) define la consulta "junto a su original y su
+  contexto" y su Error dice literal "se juzgo con una medicion distinta de la que aplica el
+  sistema" — devolver veredictos sin haber resuelto original ni contexto es juzgar sin
+  ninguna medicion. R013/R014 son la CONSECUENCIA que cita el architect (se contamina el
+  orden y la declaracion), no la regla verificada.
+
+2026-08-11 — developer — CIERRE de R015. `DefaultQuizInstructionCandidateAssessor.assessTask()` estampa `sourceAuditId`/`planId` sobre el context recien resuelto (mismo patron que `DefaultRevisionEngine.revise()`) ANTES de delegar en `assess()`.
+  why: el resolver real (`QuizInstructionContextResolver`) siempre deja esos dos campos en null — por diseño, el mismo motivo documentado para `DefaultRevisionEngine` (el resolver solo ve el `AuditReport`, nunca el id bajo el que se cargo ni el plan que despacho la tarea). Sin el estampado, `CandidateAssessmentInput.sourceAuditId` (que el criterio de distincion usa para atar la comparacion al mismo analisis, F-QICOR-R004 criterio 3) habria llegado null en toda consulta real via `assess-candidate`/el grafo — invisible en la suite existente porque los 10 handwrittenTests de `DefaultQuizInstructionCandidateAssessorTest` mockean `contextResolver` para devolver contexts ya pre-poblados a mano. No es un cambio de contrato (ninguna firma se toco) — es completar la implementacion de un metodo que hasta ahora era `UnsupportedOperationException`.
+  Ademas: `DefaultQuizInstructionCandidateAssessorFactory` y `DefaultRevisionEngineFactory` seguian con `new DefaultQuizInstructionCandidateAssessor(assessor, deriver)` (2 args, la firma de cuando el seam solo tenia `assess()`) contra el constructor real de 7 — corregidas ambas para pasar los 7 colaboradores; `DefaultRevisionEngineFactory` reordena la resolucion de `elementLocator` para reusar la misma instancia en el reviser y en el assessor. `AssessCandidateCmd` colapsado al constructor de 1 arg que `sentinel.yaml` ya declaraba, wireado en `Main.java` como subcomando `assess-candidate`. `QuizInstructionAgentGenerator.buildInputs()` aplana `context.getPlanId()`, retirado el `""` provisorio.
+  Verificado: reactor completo 1646/1646 tests verdes, `sentinel verify` OK, `content-audit assess-candidate --help` responde exit 0.
+
+2026-08-11 — analyst — **F-QICOR-R016 nueva**: el ejercicio corregido, leido con el hueco resuelto, tiene que describir algo que pueda pasar en el mundo real. **BLOQUEANTE por decision explicita del usuario** — segundo criterio absoluto de la feature junto con R005. Entra al catalogo de R004 como criterio 6, pero NO al orden de desempate de R013: es condicion para **competir** (junto a "cumple su consigna" y "es un cambio real"), no un escalon del orden.
+  why: `Does she drink meat?` (task-876, plan 2026-08-09T22-30-12) cumplia los 5 criterios de no-empeoramiento + consigna + edicion acotada y se escribio al curso; hubo que revertirla a mano. Cada criterio se cumple LOCALMENTE y ninguno miraba la oracion entera. Tres hechos sostienen el veto: (1) no hay otro carril — ninguna medicion de la auditoria detecta el sinsentido, a diferencia de la longitud, que tiene su propio analizador y su propia tarea; (2) vetar cuesta un reintento y no una tarea — el mismo ejercicio corregido 4 veces produjo 3 salidas buenas (`drink milk`, `drink water`, `drink milk`), o sea que quien corrige ya encuentra la salida y lo que faltaba era el rechazo que lo hace reintentar; (3) la doctrina de R012 (entregar declarando) falla aca porque lo aprobado distraidamente no cuesta trabajo extra sino contenido falso.
+
+2026-08-11 — analyst — El sentido NO entra en el orden de precedencia de R013 (sigue teniendo 6 renglones: los 5 de no-empeoramiento + longitud ultima).
+  why: dos razones que se suman. (a) Misma que la consigna: si fuera el primer renglon del orden, un imposible podria ganar cuando ningun otro cumple nada. (b) Aritmetica: como TODO candidato que compite lo cumple, contarlo en `satisfiedCriteria` sumaria la misma unidad a todos y no desempataria jamas — o sea que el catalogo que CUENTA sigue teniendo 5 miembros y ninguna fixture existente de `CandidateAssessment` cambia por esto.
+
+2026-08-11 — analyst — Interaccion R016 × R003 (edicion acotada), resuelta sin tocar R003: si respetar la marca del hueco vuelve absurda la oracion, lo correcto es cambiar el resto (`meat`→`milk`), y ese candidato **reprueba la edicion acotada** — se entrega igual con el reproche declarado (R012/R014). Reparto: `drink meat` cumple R003 y reprueba R016 → no compite; `drink milk` reprueba R003 y cumple R016 → compite y se entrega.
+  why: R003 ya preveia literalmente este caso ("cuando la correccion no logra resolver la violacion sin tocar el resto, lo que corresponde es que ese candidato repruebe este criterio y se vuelva a intentar"), asi que no hizo falta relajarla. Y es el orden de R013 funcionando: la edicion acotada esta anteultima porque su daño lo paga el operador (lee mas texto), el sinsentido lo paga el alumno.
+
+2026-08-11 — analyst — La asimetria longitud (informa) vs sentido (veta) es deliberada y quedo escrita en R011 con tabla propia. NO se propaga a la correccion de lemas ausentes: alli el criterio equivalente (Pragmatismo, F-LASAG-R007 criterio 4) sigue siendo **deseable**, por decision explicita del usuario.
+  why: alli el ejercicio se genera contra la nada (rechazar devuelve la nada); aca se edita uno que ya funcionaba (rechazar devuelve el ejercicio anterior, bueno en todo salvo su consigna). El precio de rechazar es opuesto en cada lado, asi que la misma exigencia toma clasificaciones opuestas sin contradiccion.
+
+2026-08-11 — qa-tester — El test de la excepcion por evaluador absoluto faltante se ancla en **R016**, no en R004.
+  why: R004 tolera que el catalogo activo se reduzca —`judgmentEvaluators` vacia es aceptable "justamente porque ninguno de ellos decide"—, asi que su (f) "seis veredictos" no es un absoluto y no puede sostener el test. Lo que NO admite ausencia es el criterio que veta: R016 dice que de un ejercicio del que nadie pudo decir si puede pasar no se escribe nada al curso, y un catalogo construido sin ese evaluador convierte eso en aprobar por omision sobre TODA la corrida. La mitad "nombra el criterio que falta" es diagnosticabilidad y no esta en el texto de ninguna regla — queda anotada como duda para el usuario en vez de forzada a un tag.
+
+2026-08-11 — qa-tester — R014 (f) no recibe test propio en el reviser; su cobertura honesta es el test de `unmetCriteria` en el assessor.
+  why: la garantia es por construccion (lo emitido siempre es elegible, y un elegible tiene el sentido en PASSED). Un test en el reviser solo podria montar un `CandidateAssessment` incoherente —elegible y con el sentido entre los incumplidos— y eso empujaria al developer a agregar el filtro defensivo que el architect descarto expresamente ("se sostiene por construccion y no por un filtro"). Lo observable y no vacuo es el acoplamiento en el assessor: el sentido figura en `unmetCriteria` solo cuando `eligible` es false — la misma pieza que ademas habilita que R006 lo nombre.
+
+2026-08-11 — qa-tester — La asimetria longitud/sentido va en UN test y no en dos.
+  why: separadas, cada punta se lee como un caso mas de su propia regla y la relacion queda solo en la prosa de R011; juntas sobre el mismo assessor, el test falla si alguien le devuelve poder de veto a la longitud o se lo quita al sentido, que son los dos movimientos que R011 y R016 prohiben en direcciones opuestas.

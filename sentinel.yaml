@@ -4815,6 +4815,20 @@ modules:
       type: String
       description: Analisis del que se derivo el contexto. Liviano; ata la comparacion
         de distincion al mismo analisis fuente de la tarea.
+    - name: planId
+      type: String
+      description: "Plan del que salio la tarea. Mitad simetrica de sourceAuditId\
+        \ y se estampa por el mismo camino y por el mismo motivo: quien resuelve el\
+        \ contexto ve el AuditReport y la tarea, pero no el plan, asi que lo estampa\
+        \ el motor de revision despues de resolver. Existe porque la consulta de criterios\
+        \ (F-QICOR-R015) se pide por plan+tarea, que es como el ejercicio ORIGINAL\
+        \ no viaja por el agente y vuelve; sin planId quien corrige no puede consultar\
+        \ el catalogo y tendria que estimar por su cuenta, que es exactamente lo que\
+        \ R015 vino a impedir. Va en el contexto y no en la solicitud de generacion\
+        \ porque el contexto es el unico carrier que alcanza al reviser, a la estrategia\
+        \ y al adaptador del grafo: RefinementTask no lleva plan y Reviser.propose\
+        \ tampoco lo recibe, asi que cualquier otra ubicacion obligaria a enhebrar\
+        \ un parametro nuevo por un puerto compartido por todos los revisers."
     visibility: public
     implements:
     - CorrectionContext
@@ -5302,9 +5316,6 @@ modules:
       type: KnowledgeTitleContextResolver
     - name: quizInstructionResolver
       type: QuizInstructionContextResolver
-      description: Cierra el hueco principal de la feature. Hoy no hay ningun resolver
-        registrado para QUIZ_INSTRUCTION y la revision cae al comportamiento de identidad
-        (F-REVBYP-R004).
     visibility: public
     handwrittenTests:
     - name: should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH
@@ -7166,6 +7177,12 @@ modules:
     exposes:
     - signature: "reviseInstructions(String planId, Integer maxCorrections, String\
         \ coursePath): Integer"
+  - name: AssessCandidateCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "assessCandidate(String planId, String taskId, String candidateQuizSentence,\
+        \ String candidateTranslation, String coursePath, String format): Integer"
   patterns:
   - type: Strategy
     implementations:
@@ -8479,6 +8496,34 @@ modules:
       - java.util.concurrent.Callable<Integer>
       implements:
       - ReviseInstructionsCommand
+    - name: AssessCandidateCmd
+      requiresInject:
+      - name: candidateAssessor
+        type: QuizInstructionCandidateAssessor
+        description: "Unica dependencia del comando. Resolver plan, tarea, contexto\
+          \ y original se movio adentro del seam: aca obligaba al composition root\
+          \ a construir un CourseElementLocator, cuya unica implementacion es package-private\
+          \ a proposito — Main pasa null y la factory la construye adentro. El comando\
+          \ quedaba ademas repitiendo los pasos 2 y 3 del motor de revision, que es\
+          \ la clase de duplicacion que F-QICOR-R015 (c) no tolera. Ahora hace lo\
+          \ unico que le toca: leer los argumentos, delegar y renderizar."
+      types:
+      - Component
+      handwrittenTests:
+      - name: "should return one verdict per criterion of the catalog for the candidate\
+          \ consulted, with its reason when the verdict is negative"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: "should report the consultation as failed with a non-zero exit status,\
+          \ instead of printing verdicts, when the candidate could not be assessed"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - AssessCandidateCommand
   - name: formatting
     description: "Internal formatting infrastructure — report transformers, view models,\
       \ formatters, drill-down resolution, and proposal/preview rendering."
@@ -9996,8 +10041,12 @@ modules:
       description: |
         La revalidacion previa declaro que el ejercicio original ya cumple su consigna, asi que no se genero ningun candidato y no se corrigio nada (F-QICOR-R009). NO es un fracaso: no se intento y no reprobo nada, el problema simplemente ya no existe. Se mantiene separado de NO_ACCEPTABLE_CANDIDATE porque el operador reacciona de forma opuesta ante los dos — uno es trabajo que se evaporo, el otro es trabajo que hay que hacer a mano.
     - name: NO_ACCEPTABLE_CANDIDATE
-      description: |
-        Se agotaron los intentos y ningun candidato paso el catalogo de criterios (F-QICOR-R006). Hubo gasto y hay criterios reprobados que informar. No se persiste artefacto, no se toca el curso y la tarea sigue disponible.
+      description: "Agotados los intentos, NINGUN candidato resulto entregable: ninguno\
+        \ cumplio su consigna (F-QICOR-R005) o ninguno constituyo un cambio real sobre\
+        \ el original (F-QICOR-R010). Desde F-QICOR-R012 este desenlace ya NO se alcanza\
+        \ por reprobar cualquier otro criterio del catalogo — ese candidato se entrega\
+        \ igual, declarando lo que no cumplio. No se persiste artefacto, no se toca\
+        \ el curso y la tarea sigue disponible."
   - name: CourseElementSnapshot
     type: record
     fields:
@@ -10058,6 +10107,22 @@ modules:
       description: Identity of the strategy that produced this proposal (F-LAPS-R005);
         null when produced by the bypass reviser for non-LEMMA_ABSENCE diagnostics
         (FEAT-REVBYP).
+    - name: unmetCriteria
+      type: List<CriterionVerdict>
+      description: "Criterios del catalogo que el ejercicio ENTREGADO no cumple, cada\
+        \ uno con su motivo y con su outcome (FAILED vs NOT_EVALUABLE) intacto, para\
+        \ que quien revisa vea la diferencia entre \"reprobo\" y \"no se pudo verificar\"\
+        \ (F-QICOR-R014, criterio de aceptacion (e)). Vacia cuando el candidato cumplio\
+        \ todo. NUNCA contiene LENGTH_IN_RANGE: la longitud tiene declaracion propia\
+        \ en lengthMeasurement (F-QICOR-R011, F-QICOR-R014 (c)). Es la mitad que vuelve\
+        \ aceptable haber retirado el veto — entregar sin declarar sigue prohibido.\
+        \ Vacia tambien para propuestas de otros diagnosticos, que no tienen catalogo."
+    - name: lengthMeasurement
+      type: CandidateLengthMeasurement
+      description: "Longitud medida del ejercicio propuesto y rango objetivo de su\
+        \ nivel, con la MISMA medicion de la auditoria (F-QICOR-R011 (b) y (e)). Viaja\
+        \ con la propuesta para que se vea sin abrir el ejercicio. Null en propuestas\
+        \ de diagnosticos que no miden longitud de candidato (bypass, knowledge-title)."
   - name: RevisionArtifact
     type: record
     fields:
@@ -10532,7 +10597,7 @@ modules:
     - signature: "id(): StrategyId"
     - signature: "handles(DiagnosisKind kind): boolean"
     - signature: "propose(RefinementTask task, QuizInstructionCorrectionContext context,\
-        \ List<CriterionVerdict> previousVerdicts, int attempt): LemmaAbsenceQuizCandidate"
+        \ int maxAttempts): QuizInstructionBestCandidate"
     visibility: public
   - name: QuizInstructionProposalStrategyRegistry
     stereotype: service
@@ -11684,14 +11749,23 @@ modules:
         type: QuizInstructionProposalStrategyRegistry
       - name: deriver
         type: LemmaAbsenceProposalDeriver
-      - name: assessor
-        type: CandidateAssessor
       - name: complianceChecker
         type: QuizInstructionComplianceChecker
+        description: Sigue siendo del sistema la revalidacion del ORIGINAL antes de
+          gastar (F-QICOR-R009).
       - name: subjectViewFactory
         type: QuizInstructionSubjectViewFactory
       - name: config
         type: QuizInstructionCorrectionConfig
+      - name: candidateAssessor
+        type: QuizInstructionCandidateAssessor
+        description: "Reemplaza la inyeccion directa del catalogo neutro. El reviser\
+          \ ya no conduce el lazo ni arma el pedido de evaluacion: emite UNA solicitud\
+          \ de correccion (F-QICOR-R012), y sobre el candidato que le devuelven pide\
+          \ UNA evaluacion por el mismo objeto que responde la consulta de F-QICOR-R015.\
+          \ Que sea el mismo objeto es lo que vuelve estructural —y no disciplina—\
+          \ que lo declarado en la propuesta coincida con lo que la consulta devuelve\
+          \ (F-QICOR-R015 (c))."
       handwrittenTests:
       - name: should propose a correction whose previous state is the quiz as it stands
           in the course and whose proposed state is a different quiz
@@ -11703,22 +11777,6 @@ modules:
         traceability:
           feature: FEAT-QICOR
           rule: F-QICOR-R001
-      - name: should leave no proposal and report the failure naming at least one
-          failed criterion when the attempts were exhausted without an acceptable
-          candidate
-        traceability:
-          feature: FEAT-QICOR
-          rule: F-QICOR-R006
-      - name: should discard the best candidate it produced instead of proposing one
-          that failed a criterion
-        traceability:
-          feature: FEAT-QICOR
-          rule: F-QICOR-R006
-      - name: "should stop generating candidates once the configured attempt limit\
-          \ is reached, instead of retrying indefinitely"
-        traceability:
-          feature: FEAT-QICOR
-          rule: F-QICOR-R006
       - name: should end the task as a fallen diagnosis without generating a single
           candidate when the current validation declares the original quiz already
           compliant
@@ -11730,6 +11788,83 @@ modules:
         traceability:
           feature: FEAT-QICOR
           rule: F-QICOR-R009
+      - name: "should ask the correction for a candidate exactly once per task, even\
+          \ when the candidate it gets back failed a criterion of the catalog"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R012
+      - name: "should propose the best candidate the correction handed back even though\
+          \ it failed a criterion of the catalog, as long as it complies with its\
+          \ instruction"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R012
+      - name: should hand the attempt limit the run configured to the correction inside
+          the single request it emits
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R012
+      - name: should verify by itself that the delivered candidate complies with its
+          instruction instead of taking at its word the verdict the correction reported
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R012
+      - name: "should name in the proposal the criteria the delivered quiz did not\
+          \ meet, each one with the reason it was reproached"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: should leave the proposal with no unmet criteria declared when the delivered
+          candidate satisfied the whole catalog
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: "should never name the length among the unmet criteria of the proposal,\
+          \ even when the delivered quiz fell outside the range of its level"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: should propose a correction whose only failing criterion is that its
+          length fell outside the target range of its level
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      - name: should declare on the proposal the tokens measured for the delivered
+          quiz and the target range of its level
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      - name: should leave no proposal and name at least one failed criterion when
+          no candidate the correction produced complied with its instruction
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
+      - name: should leave no proposal when the candidate the correction handed back
+          was not a real change over the quiz that stands in the course
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
+      - name: should never name the length among the failed criteria it reports when
+          no candidate turned out to be deliverable
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
+      - name: "should leave no proposal for a candidate that describes something that\
+          \ cannot happen in the real world, even though it complies with its instruction\
+          \ and satisfies every other criterion"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R016
+      - name: should propose the candidate that describes something that can happen
+          in the real world even though it changed more than the violation signalled
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R016
+      - name: should name the real-world sense among the failed criteria it reports
+          when no candidate described something that could happen
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
       implements:
       - Reviser
     - name: DefaultQuizInstructionProposalStrategyRegistry
@@ -11781,24 +11916,132 @@ modules:
         traceability:
           feature: FEAT-QICOR
           rule: F-QICOR-R008
-      - name: "should report a task whose every candidate failed as a correction not\
-          \ achieved, naming the criteria that failed, and leave the task available\
-          \ for another run"
-        traceability:
-          feature: FEAT-QICOR
-          rule: F-QICOR-R006
       - name: "should report a task whose diagnosis no longer holds with no failed\
           \ criterion and no generation attempt, in a count apart from the corrections\
           \ not achieved"
         traceability:
           feature: FEAT-QICOR
           rule: F-QICOR-R009
+      - name: "should count how many of the corrections it proposed arrived with at\
+          \ least one unmet criterion, without adding a fifth outcome"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: "should carry the unmet criteria of every proposed correction in its\
+          \ per-task outcome, so its count can be checked against them"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: should never name the length among the failed criteria of a correction
+          it reports as not achieved
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      - name: "should count how many of the corrections it proposed landed outside\
+          \ the target range of their level, apart from the count of those with unmet\
+          \ criteria"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      - name: "should report a task where no candidate turned out to be deliverable\
+          \ as a correction not achieved, naming the criteria that failed, and leave\
+          \ the task available for another run"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R006
       implements:
       - QuizInstructionCorrectionRunner
     - name: DefaultQuizInstructionCorrectionRunnerFactory
       visibility: public
       implements:
       - QuizInstructionCorrectionRunnerFactory
+    - name: DefaultQuizInstructionCandidateAssessor
+      requiresInject:
+      - name: assessor
+        type: CandidateAssessor
+        description: El catalogo neutro. Este objeto no juzga; arma el pedido de evaluacion
+          desde el contexto de correccion y delega.
+      - name: deriver
+        type: LemmaAbsenceProposalDeriver
+        description: "El MISMO deriver con el que el reviser construye elementAfter,\
+          \ para que lo medido sea exactamente lo que se propondria."
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        description: Resuelve plan y tarea cuando la consulta entra por assessTask.
+      - name: auditReportStore
+        type: AuditReportStore
+        description: Carga el analisis que alimenta al resolver de contexto.
+      - name: contextResolver
+        type: CorrectionContextResolver<CorrectionContext>
+        description: "Reproduce el paso 2 del motor de revision con el mismo puerto,\
+          \ para que la consulta no pueda resolver distinto de la correccion."
+      - name: courseRepository
+        type: CourseRepository
+        description: Reproduce el paso 3 del motor de revision.
+      - name: elementLocator
+        type: CourseElementLocator
+        description: "Toma el snapshot REAL del ejercicio original. No se reconstruye\
+          \ desde el DSL, porque eso perderia las partes vacias del enunciado y la\
+          \ edicion acotada mediria otra cosa (F-QICOR-R010). Lo inyecta la factory,\
+          \ que lo construye adentro del modulo."
+      handwrittenTests:
+      - name: "should build the assessment request out of the correction context,\
+          \ carrying into it the fragments the diagnosis signalled"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: "should derive the candidate snapshot with the same deriver that builds\
+          \ the proposed state, so what gets judged is exactly what would be proposed"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should hand the catalog the same assessment request whether the consultation
+          came in with the task alone or with its context and original already resolved
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: "should take the original quiz from the course through the locator,\
+          \ instead of rebuilding it from the candidate text or from the sentence\
+          \ the context carries"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should report that the candidate could not be assessed rather than return
+          a verdict when the plan named in the consultation does not exist
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should report that the candidate could not be assessed rather than return
+          a verdict when the task is not among the tasks of the plan
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should report that the candidate could not be assessed rather than return
+          a verdict when the analysis the plan came from can no longer be loaded
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should report that the candidate could not be assessed rather than return
+          a verdict when the correction context of the task cannot be resolved
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should report that the candidate could not be assessed rather than return
+          a verdict when the quiz of the task is not in the course
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should report that the candidate could not be assessed rather than return
+          a verdict when the task consulted was not opened for instruction non-compliance
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      implements:
+      - QuizInstructionCandidateAssessor
+    - name: DefaultQuizInstructionCandidateAssessorFactory
+      visibility: public
+      implements:
+      - QuizInstructionCandidateAssessorFactory
   - name: lemmaabsence
     description: "Proposal-strategy SPI for LEMMA_ABSENCE. Public so the composition\
       \ root and revision-infrastructure can both instantiate strategies and the canned\
@@ -12999,8 +13242,14 @@ modules:
       implements:
       - PreservationFactory
   - name: candidatecriteria
-    description: |
-      Catalogo de criterios que un ejercicio candidato debe cumplir para poder proponerse, y el veredicto por criterio. DELIBERADAMENTE NEUTRO: el puerto no menciona violaciones, ni tarea, ni diagnostico — habla de un original y un candidato. Esa neutralidad no es elegancia. La fidelidad de traduccion y la resolubilidad ya se juzgan hoy en el nodo eval_quality del grafo de lemma-absence, asi que el criterio vive en dos lugares hasta que lemma-absence adopte este puerto; diseñarlo neutro ahora es lo que vuelve esa adopcion una migracion y no un rediseño.
+    description: "Catalogo de criterios con el que se juzga un ejercicio candidato,\
+      \ el veredicto por criterio, la medicion de longitud y el ORDEN del que sale\
+      \ el mejor candidato. DELIBERADAMENTE NEUTRO: el puerto no menciona violaciones,\
+      \ ni tarea, ni diagnostico — habla de un original y un candidato. Desde F-QICOR-R012\
+      \ el catalogo dejo de VETAR y pasa a ORDENAR: ningun criterio impide entregar\
+      \ al mejor candidato (el unico absoluto, cumplir la consigna, se expresa como\
+      \ elegibilidad y no como veto de criterio). El paquete existe una sola vez y\
+      \ del lado del sistema; quien corrige lo consulta (F-QICOR-R015) en vez de reimplementarlo."
     visibility: public
     models:
     - name: CorrectionCriterion
@@ -13011,7 +13260,10 @@ modules:
           vuelve identico (F-QICOR-R003).
       - name: LENGTH_IN_RANGE
         description: "Longitud dentro del rango objetivo del nivel, medida con el\
-          \ mismo criterio de la auditoria (F-QICOR-R004 criterio 1)."
+          \ mismo criterio de la auditoria (F-QICOR-R004 criterio 1). NO decide y\
+          \ NO suma: no empuja a reintentar, no cuenta en satisfiedCriteria, no entra\
+          \ en unmetCriteria y solo desempata cuando todo lo demas empato (F-QICOR-R011,\
+          \ F-QICOR-R013). Lo que se declara de ella es la medicion, no el reproche."
       - name: LEVEL_VOCABULARY
         description: No introduce palabras mal ubicadas ni fuera de catalogo que el
           original no tuviera ya. Los flags preexistentes no bloquean (F-QICOR-R004
@@ -13026,21 +13278,50 @@ modules:
         description: Sigue siendo resoluble y conserva el tipo de ejercicio del original
           (F-QICOR-R004 criterio 5). Criterio de juicio.
       - name: INSTRUCTION_COMPLIANCE
-        description: El ejercicio corregido cumple su consigna segun la misma validacion
-          que detecto el incumplimiento (F-QICOR-R005). Unico valor propio de la correccion
-          de consigna; los demas aplican a cualquier correccion de ejercicio.
+        description: "El ejercicio corregido cumple su consigna segun la misma validacion\
+          \ que detecto el incumplimiento (F-QICOR-R005). UNICO criterio absoluto\
+          \ de la feature: no es una cosa que la correccion no deba empeorar, es lo\
+          \ que la correccion vino a hacer. No participa del orden como un criterio\
+          \ mas — es condicion para COMPETIR (CandidateAssessment.eligible), asi que\
+          \ un candidato que no lo cumple no se entrega aunque cumpla todos los demas\
+          \ (F-QICOR-R013 (c))."
+      - name: REAL_WORLD_SENSE
+        description: "Leido con el hueco YA RESUELTO -como lo lee el alumno-, el ejercicio\
+          \ corregido describe algo que puede pasar en el mundo real (F-QICOR-R004\
+          \ criterio 6, F-QICOR-R016). Criterio de juicio y SEGUNDO ABSOLUTO de la\
+          \ feature: su veredicto negativo no baja al candidato en el orden, lo saca\
+          \ de la competencia. Un outcome distinto de PASSED -incluido NOT_EVALUABLE-\
+          \ deja eligible en false y ese candidato no se entrega nunca, cumpla lo\
+          \ que cumpla. Por eso NO suma en satisfiedCriteria y NO entra en la precedencia\
+          \ de F-QICOR-R013, que conserva exactamente sus mismos renglones: como todo\
+          \ candidato que compite lo cumple, contarlo le sumaria la misma unidad a\
+          \ todos y no desempataria jamas. Se devuelve siempre en verdicts (F-QICOR-R015\
+          \ (a)) y solo puede figurar entre los criterios sin cumplir de un candidato\
+          \ NO elegible: de ahi que jamas aparezca en la lista que declara una propuesta\
+          \ emitida (F-QICOR-R014 (f)) y que si pueda nombrar el desenlace de correccion\
+          \ no lograda (F-QICOR-R006, F-QICOR-R016 (d)). El veto es de ESTE catalogo:\
+          \ en la correccion por ausencia de lema el criterio equivalente es deseable\
+          \ y no bloquea (F-LASAG-R007 criterio 4), por decision explicita del usuario,\
+          \ porque alli el ejercicio se genera contra la nada y aca se edita uno que\
+          \ ya funcionaba."
       visibility: public
     - name: CriterionOutcome
       type: enum
       fields:
       - name: PASSED
+        description: El criterio se evaluo y el candidato lo cumple.
       - name: FAILED
-        description: El criterio se evaluo y el candidato lo reprobo. Bloquea la propuesta
-          y se nombra en el fallo (F-QICOR-R006).
+        description: "El criterio se evaluo y el candidato lo reprobo. Ya NO bloquea\
+          \ la propuesta (F-QICOR-R012): empuja a quien corrige a reintentar, baja\
+          \ al candidato en el orden (F-QICOR-R013) y se declara en la propuesta si\
+          \ igual se entrega (F-QICOR-R014)."
       - name: NOT_EVALUABLE
         description: "El criterio no se pudo evaluar (evaluador caido, medicion no\
-          \ disponible). Bloquea igual —no se propone lo que no se pudo verificar—\
-          \ pero es un desenlace distinto de reprobar, y se informa como tal."
+          \ disponible). Cuenta como NO cumplido para el orden — un candidato del\
+          \ que no se sabe si conserva el vocabulario del nivel no puede ganarle a\
+          \ uno del que se sabe que si (F-QICOR-R013 (f))— y se declara distinguido\
+          \ de FAILED, para que el operador vea la diferencia entre \"reprobo\" y\
+          \ \"no se pudo verificar\" (F-QICOR-R014 (e))."
       visibility: public
     - name: CriterionVerdict
       type: record
@@ -13095,14 +13376,62 @@ modules:
     - name: CandidateAssessment
       type: record
       fields:
-      - name: accepted
-        type: boolean
-        description: Verdadero solo si todos los criterios del catalogo dieron PASSED.
       - name: verdicts
         type: List<CriterionVerdict>
-        description: "Un veredicto por criterio evaluado, en orden de evaluacion.\
-          \ El primero no-PASSED corta la evaluacion, asi que la lista tambien dice\
-          \ hasta donde se llego."
+        description: "Un veredicto por CADA criterio del catalogo activo. Ya no hay\
+          \ corte al primer no-PASSED: el orden de F-QICOR-R013 necesita saber cuantos\
+          \ criterios cumple un candidato, y un catalogo evaluado a medias no permite\
+          \ contarlos."
+      - name: eligible
+        type: boolean
+        description: "Si el candidato COMPITE por ser el mejor. Son TRES condiciones\
+          \ desde F-QICOR-R016, y las tres son absolutas: cumple su consigna (INSTRUCTION_COMPLIANCE=PASSED,\
+          \ F-QICOR-R005), describe algo que puede pasar en el mundo real (REAL_WORLD_SENSE=PASSED,\
+          \ F-QICOR-R016) y constituye un cambio real sobre el original (F-QICOR-R001,\
+          \ F-QICOR-R010). Un NOT_EVALUABLE en cualquiera de los dos criterios de\
+          \ juicio absolutos deja al candidato fuera igual que un FAILED: la lectura\
+          \ prudente es la misma en los dos casos (F-QICOR-R013). Un candidato no\
+          \ elegible no es un candidato peor, no es un candidato: por eso los absolutos\
+          \ son condicion para competir y no escalones del orden, que conserva sus\
+          \ seis renglones."
+      - name: realChange
+        type: boolean
+        description: "Si el candidato difiere del original en algo mas que partes\
+          \ vacias del enunciado (F-QICOR-R001, F-QICOR-R010 (c)). Se expone aparte\
+          \ de eligible para que las dos mitades de la elegibilidad se puedan observar\
+          \ por separado."
+      - name: satisfiedCriteria
+        type: int
+        description: "Cuantos criterios del catalogo activo dieron PASSED, EXCLUIDA\
+          \ la longitud, que nunca suma (F-QICOR-R011). Es la primera clave del orden:\
+          \ la medida honesta de cuanto conserva un candidato (F-QICOR-R013)."
+      - name: unmetCriteria
+        type: List<CriterionVerdict>
+        description: "Subconjunto de verdicts con outcome distinto de PASSED, EXCLUIDA\
+          \ la longitud. Es exactamente lo que la propuesta declara (F-QICOR-R014)\
+          \ y exactamente lo que devuelve la consulta de F-QICOR-R015 (c) -la misma\
+          \ lista, no dos opiniones-. Los dos criterios absolutos solo pueden aparecer\
+          \ aca sobre un candidato NO elegible, que por definicion no se entrega:\
+          \ de ahi que la asimetria de F-QICOR-R014 (f) -ninguna propuesta emitida\
+          \ nombra jamas la consigna ni el sentido, aunque la consulta separada si\
+          \ los devuelva en verdicts- se sostenga por construccion y no por un filtro,\
+          \ y de ahi que el desenlace de correccion no lograda si pueda nombrarlos\
+          \ (F-QICOR-R006)."
+      - name: lengthMeasurement
+        type: CandidateLengthMeasurement
+        description: "Longitud medida y rango del nivel. Viaja en la evaluacion aunque\
+          \ la longitud no decida, porque lo que se retiro es el veto, no la medicion\
+          \ (F-QICOR-R011)."
+      - name: rankKey
+        type: String
+        description: "Clave de orden TOTAL de F-QICOR-R013, monotona y comparable\
+          \ como string: mayor es mejor. Codifica, en este orden, elegibilidad, cantidad\
+          \ de criterios cumplidos, precedencia fija entre los que distinguen (resolubilidad\
+          \ > traduccion fiel > vocabulario > distincion > edicion acotada) y por\
+          \ ultimo la longitud. Existe para que quien corrige pueda conservar su mejor\
+          \ candidato entre intentos SIN reimplementar el orden: compara dos strings.\
+          \ El desempate final \"gana el primero visto\" se obtiene reemplazando al\
+          \ campeon solo ante clave ESTRICTAMENTE mayor (CandidateRanking.better)."
       visibility: public
     - name: QuizSimilarity
       type: record
@@ -13138,9 +13467,13 @@ modules:
           que el reviser arma la del original.
       - name: judgmentEvaluators
         type: List<CandidateCriterionEvaluator>
-        description: "Evaluadores de criterios de juicio (traduccion fiel, resolubilidad)\
-          \ aportados por la infraestructura. Vacia significa que esos criterios no\
-          \ se evaluan y el catalogo activo se reduce."
+        description: "Evaluadores de los criterios de juicio que NO vetan -traduccion\
+          \ fiel, resolubilidad- aportados por la infraestructura. Vacia significa\
+          \ que esos criterios no se evaluan y el catalogo activo se reduce, lo que\
+          \ sigue siendo aceptable justamente porque ninguno de ellos decide: reprobarlos\
+          \ baja al candidato en el orden y se declara (F-QICOR-R013, F-QICOR-R014).\
+          \ El sentido en el mundo real NO entra por aca aunque sea de la misma familia\
+          \ y lo produzca la misma factory: ver realWorldSenseEvaluator."
       - name: siblingSimilarityThreshold
         type: Double
         description: Umbral de confusion con los hermanos del knowledge. Nullable;
@@ -13157,6 +13490,25 @@ modules:
         type: AuditReportStore
         description: |
           Fuente de los ejercicios contra los que se compara la distincion. Reemplaza al campo quizCorpus, que pedia a la composition root una instancia de CourseQuizCorpus cuya unica implementacion vive package-private dentro del paquete interno candidatecriteriaengine: el carrier exigia un tipo inalcanzable para quien tiene que llenarlo. Abrir esa implementacion habria perforado el paquete interno sobre el que se apoya el seam del catalogo, asi que se invierte la direccion — el carrier pide el puerto que la composition root ya tiene cableado (AuditReportStore) y la factory construye el corpus adentro, donde el criterio sigue recibiendolo por inyeccion sin que nadie afuera vea la clase.
+      - name: realWorldSenseEvaluator
+        type: CandidateCriterionEvaluator
+        description: "Evaluador del criterio REAL_WORLD_SENSE (F-QICOR-R016). Campo\
+          \ propio y OBLIGATORIO, exactamente como complianceChecker para el otro\
+          \ absoluto (F-QICOR-R005): los dos criterios que vetan entran por un slot\
+          \ que no se puede omitir, y que los dos absolutos quedaran desparejos era\
+          \ la anomalia. No viaja en judgmentEvaluators aunque lo produzca la MISMA\
+          \ CandidateJudgmentEvaluatorFactory indexada por criterio y el mismo grafo\
+          \ -no hay camino nuevo, solo un slot distinto-: un criterio que veta y que\
+          \ se apaga si alguien olvida una linea no es absoluto, y el modo de falla\
+          \ ya se pago en este proyecto (un evaluador no disponible por configuracion\
+          \ y una corrida que reporto exito sin haber evaluado nada). Un nulo aca\
+          \ lo rechaza la factory con AbsoluteCriterionEvaluatorMissingException nombrando\
+          \ el criterio que falta, en vez de caer en un NPE tres capas adentro del\
+          \ lazo. Cuando el runtime de juicio no esta disponible, lo que corresponde\
+          \ poner aca es un evaluador que devuelva NOT_EVALUABLE, NUNCA uno que apruebe\
+          \ por omision: F-QICOR-R016 ya fija la consecuencia -de un ejercicio del\
+          \ que nadie pudo decir si puede pasar no se escribe nada al curso- y el\
+          \ desenlace queda nombrado en failedCriteria en vez de silencioso."
       visibility: public
     - name: CandidateCriteriaDefaults
       type: record
@@ -13168,6 +13520,43 @@ modules:
       - name: courseWideDistinctness
         type: boolean
       visibility: public
+    - name: CandidateLengthMeasurement
+      type: record
+      fields:
+      - name: tokens
+        type: int
+        description: "Tokens de la oracion propuesta, contados con el MISMO tokenizador\
+          \ de la auditoria. Cero y sin sentido cuando measured=false."
+      - name: targetMin
+        type: int
+        description: "Extremo inferior del rango objetivo del nivel (misma SentenceLengthConfig\
+          \ que aplica el analizador de longitud, F-SLEN-R002)."
+      - name: targetMax
+        type: int
+        description: Extremo superior del rango objetivo del nivel.
+      - name: inRange
+        type: boolean
+        description: Si tokens cae dentro del rango objetivo del nivel.
+      - name: measured
+        type: boolean
+        description: "Falso cuando la medicion no se pudo obtener (tokenizador caido,\
+          \ nivel sin rango). Existe para no mentir con ceros: una declaracion de\
+          \ longitud hecha sobre una medicion ausente seria peor que ninguna (F-QICOR-R011)."
+      visibility: public
+    - name: AbsoluteCriterionEvaluatorMissingException
+      type: exception
+      fields:
+      - name: criterion
+        type: CorrectionCriterion
+        description: "El criterio absoluto que quedo sin evaluador. La construccion\
+          \ del catalogo falla fuerte y NOMBRADA en vez de dejar que la ausencia se\
+          \ descubra tres capas adentro o se disuelva en una corrida entera de NOT_CORRECTED\
+          \ muda. Un criterio que veta no admite ausencia: si no se lo puede evaluar\
+          \ hay que decirlo, no seguir (F-QICOR-R016)."
+      message: "No se puede construir el catalogo de criterios: falta el evaluador\
+        \ del criterio absoluto '%s'"
+      visibility: public
+      extends: RuntimeException
     interfaces:
     - name: CandidateCriterionEvaluator
       stereotype: port
@@ -13196,6 +13585,20 @@ modules:
       exposes:
       - signature: "create(CandidateCriteriaConfig config): CandidateAssessor"
       visibility: public
+    - name: CandidateLengthMeter
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "measure(CandidateAssessmentInput input): CandidateLengthMeasurement"
+      visibility: public
+    - name: CandidateRanking
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "rankKey(CandidateAssessment assessment): String"
+      - signature: "better(String incumbentRankKey, String challengerRankKey): boolean"
+      - signature: "precedence(): List<CorrectionCriterion>"
+      visibility: public
   - name: candidatecriteriaengine
     description: Motor del catalogo de criterios. Solo la factory es publica; cada
       criterio es package-private y se alcanza unicamente por el assessor. Los criterios
@@ -13205,35 +13608,98 @@ modules:
     implementations:
     - name: DefaultCandidateCriteriaFactory
       visibility: public
+      handwrittenTests:
+      - name: "should refuse to build the catalog naming the real-world sense as the\
+          \ absolute criterion left without an evaluator, instead of judging candidates\
+          \ as if it had passed"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R016
       implements:
       - CandidateCriteriaFactory
     - name: DefaultCandidateAssessor
       requiresInject:
       - name: evaluatorsByCriterion
         type: "Map<CorrectionCriterion,CandidateCriterionEvaluator>"
-        description: Registro por clave. Un criterio sin evaluador registrado sale
-          del catalogo activo en vez de aprobar por omision.
+        description: "Registro por clave. Un criterio sin evaluador registrado sale\
+          \ del catalogo activo en vez de aprobar por omision. Se evalua el catalogo\
+          \ ENTERO por candidato: sin corte al primer no-PASSED no habria como contar\
+          \ cuantos cumple (F-QICOR-R013)."
+      - name: lengthMeter
+        type: CandidateLengthMeter
+        description: "La medicion estructurada que la evaluacion arrastra y la propuesta\
+          \ declara. El mismo objeto que consume LengthInRangeCriterion, para que\
+          \ el veredicto y la declaracion no puedan discrepar (F-QICOR-R011 (e))."
+      - name: ranking
+        type: CandidateRanking
+        description: "Estampa rankKey sobre la evaluacion, para que la consulta de\
+          \ F-QICOR-R015 devuelva en una sola respuesta todo lo que quien corrige\
+          \ necesita para elegir."
       handwrittenTests:
-      - name: should accept a candidate only when every criterion of the active catalog
-          returned a passing verdict
+      - name: should mark as not competing a candidate that complies with its instruction
+          but is not a real change over the original
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: should keep a criterion that could not be evaluated distinguishable
+          from one that was reproached among the unmet criteria it reports
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: should not let the length add to the number of criteria a candidate
+          satisfies
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      - name: "should submit the candidate to the whole catalog and hand back one\
+          \ verdict per criterion, instead of stopping at the first failing one"
         traceability:
           feature: FEAT-QICOR
           rule: F-QICOR-R004
-      - name: "should refuse a candidate as soon as one criterion returns a failing\
-          \ verdict, whichever criterion it is"
+      - name: "should count a criterion that could not be evaluated as unmet when\
+          \ it ranks the candidate, so an unverified one cannot outrank a verified\
+          \ one"
         traceability:
           feature: FEAT-QICOR
-          rule: F-QICOR-R004
-      - name: "should refuse a candidate whose criterion could not be evaluated, instead\
-          \ of letting an unverified candidate through"
+          rule: F-QICOR-R013
+      - name: should carry in the assessment every criterion the candidate did not
+          meet together with the reason it was reproached
         traceability:
           feature: FEAT-QICOR
-          rule: F-QICOR-R004
-      - name: should carry in the assessment the criterion that blocked the candidate
-          together with the detail of why it failed
+          rule: F-QICOR-R014
+      - name: "should keep out of the competition a candidate that describes something\
+          \ that cannot happen in the real world, even though it complies with its\
+          \ instruction and satisfies every other criterion of the catalog"
         traceability:
           feature: FEAT-QICOR
-          rule: F-QICOR-R006
+          rule: F-QICOR-R016
+      - name: "should keep out of the competition a candidate whose real-world sense\
+          \ could not be evaluated, instead of letting it compete as if it had passed"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R016
+      - name: "should not count the real-world sense among the criteria a candidate\
+          \ satisfies, since every candidate that competes meets it and it could never\
+          \ break a tie"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: "should let a candidate whose length fell outside the range of its level\
+          \ compete, and keep out the one whose real-world sense was reproached"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      - name: "should carry the real-world sense among the unmet criteria only of\
+          \ a candidate that does not compete, and never of one that does"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: "should hand back a verdict for the real-world sense together with the\
+          \ rest of the catalog, so whoever corrects sees the veto while it still\
+          \ has attempts left"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
       implements:
       - CandidateAssessor
     - name: ScopedEditCriterion
@@ -13292,21 +13758,23 @@ modules:
       - CandidateCriterionEvaluator
     - name: LengthInRangeCriterion
       requiresInject:
-      - name: tokenizer
-        type: NlpTokenizer
-      - name: sentenceLengthConfig
-        type: SentenceLengthConfig
+      - name: lengthMeter
+        type: CandidateLengthMeter
+        description: "El criterio deja de medir por su cuenta y traduce la medicion\
+          \ a veredicto. Una sola definicion de cuantos tokens y cual era el rango,\
+          \ compartida con la declaracion de la propuesta (F-QICOR-R011, F-QICOR-R015\
+          \ (b))."
       handwrittenTests:
-      - name: should fail a candidate whose corrected sentence falls outside the token
-          range its CEFR level targets
+      - name: should turn a measurement that falls outside the target range of the
+          level into a failing verdict
         traceability:
           feature: FEAT-QICOR
-          rule: F-QICOR-R004
-      - name: "should measure the candidate with the same tokenizer and the same level\
-          \ range the audit applies, and pass it when the count lands inside"
+          rule: F-QICOR-R011
+      - name: should turn a measurement that lands inside the target range of the
+          level into a passing verdict
         traceability:
           feature: FEAT-QICOR
-          rule: F-QICOR-R004
+          rule: F-QICOR-R011
       implements:
       - CandidateCriterionEvaluator
     - name: LevelVocabularyCriterion
@@ -13331,6 +13799,11 @@ modules:
         traceability:
           feature: FEAT-QICOR
           rule: F-QICOR-R004
+      - name: "should judge the level vocabulary with the same lexical evaluator the\
+          \ audit applies, instead of an approximation of it"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
       implements:
       - CandidateCriterionEvaluator
     - name: DistinctnessCriterion
@@ -13396,6 +13869,79 @@ modules:
         type: AuditReportStore
       implements:
       - CourseQuizCorpus
+    - name: DefaultCandidateLengthMeter
+      requiresInject:
+      - name: tokenizer
+        type: NlpTokenizer
+        description: "El mismo tokenizador de la auditoria. Medicion real, no aproximacion."
+      - name: sentenceLengthConfig
+        type: SentenceLengthConfig
+        description: El mismo rango objetivo por nivel que aplica el analizador de
+          longitud (F-SLEN-R002).
+      handwrittenTests:
+      - name: should count the tokens of the candidate with the same tokenizer the
+          audit uses and report the target range its level declares
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should mark as in range a token count that lands inside the target of
+          its level and as out of range one that does not
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      - name: should report the measurement as not obtained instead of reporting zero
+          tokens when the level declares no target range
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      implements:
+      - CandidateLengthMeter
+    - name: DefaultCandidateRanking
+      handwrittenTests:
+      - name: should rank above the candidate that satisfies more criteria of the
+          catalog
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: should break a tie between candidates that satisfy the same number of
+          criteria in favour of the one that satisfies the criterion of higher precedence
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: should declare the precedence of the criteria from the one whose failure
+          harms the student most down to the one that only costs the operator a longer
+          read
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: "should rank a candidate that does not compete below every candidate\
+          \ that does, however many criteria it satisfies"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: should let the length decide only between two candidates that satisfy
+          exactly the same criteria
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: should rank an out-of-range candidate that stays solvable above an in-range
+          one that does not
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: "should keep the incumbent champion when the challenger ranks equal,\
+          \ so the candidate seen first is the one delivered"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: should rank the candidate that describes something impossible below
+          the one that describes something possible but changed more than the violation
+          signalled
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      implements:
+      - CandidateRanking
   - name: quizinstruction
     description: |
       SPI de la correccion de consigna. Espejo de los packages lemmaabsence y knowledgetitle: aloja el puerto del generador de candidatos, sus carriers, la estrategia que delega en el puerto, las perillas de la correccion y el vocabulario de la corrida acotada. Publico para que la composition root y revision-infrastructure instancien generador y estrategia y los pasen al builder del registry.
@@ -13412,27 +13958,37 @@ modules:
         type: String
         description: "Explicacion breve de que se cambio y por que. Nullable; informativa,\
           \ no participa de ningun criterio."
+      - name: verdicts
+        type: List<CriterionVerdict>
+        description: "Veredicto por criterio que quien corrige obtuvo para el candidato\
+          \ que entrega, consultando el catalogo del sistema (F-QICOR-R015) y no una\
+          \ regla de medir propia. Vacia cuando no consulto o no pudo."
+      - name: attempts
+        type: int
+        description: Cuantos intentos consumio el lazo interno antes de entregar este
+          candidato (F-QICOR-R012 (c)).
       visibility: public
     - name: QuizInstructionGenerationRequest
       type: record
       fields:
       - name: context
         type: QuizInstructionCorrectionContext
-      - name: previousVerdicts
-        type: List<CriterionVerdict>
-        description: Que reprobo el intento anterior y por que. Vacia en el primer
-          intento.
-      - name: attempt
+      - name: maxAttempts
         type: int
-        description: "Numero de intento, empezando en 1."
+        description: "Tope de intentos que la CORRIDA le fija a quien corrige (F-QICOR-R012).\
+          \ Viaja hacia adentro porque el lazo ahora vive del otro lado: sin un maximo\
+          \ declarado por fuera, una tarea dificil podria intentar indefinidamente."
       visibility: public
     - name: QuizInstructionCorrectionConfig
       type: record
       fields:
       - name: maxAttempts
         type: Integer
-        description: "Intentos por tarea antes de declarar que no se logro (DOUBT-REINTENTOS,\
-          \ opcion A). Nullable; la factory sustituye con el default 3."
+        description: "Tope de intentos por tarea. Desde F-QICOR-R012 ya no gobierna\
+          \ un lazo de este lado: se le pasa a quien corrige dentro de la unica solicitud\
+          \ de correccion (QuizInstructionGenerationRequest.maxAttempts). Que el numero\
+          \ lo fije la corrida y no quien corrige es lo que mantiene el gasto acotado.\
+          \ Nullable; la factory sustituye con el default 3 (DOUBT-REINTENTOS)."
       - name: maxCorrectionsPerRun
         type: Integer
         description: "Tope de tareas que una corrida TOCA, no solo de las que corrige:\
@@ -13466,8 +14022,12 @@ modules:
       - name: PROPOSED
         description: Se logro una correccion aceptable y quedo una propuesta revisable.
       - name: NOT_CORRECTED
-        description: "Se intento, se gasto, y ningun candidato paso los criterios.\
-          \ Hay criterios reprobados que informar (F-QICOR-R006)."
+        description: "Se intento, se gasto, y NINGUN candidato resulto entregable.\
+          \ Son TRES caminos desde F-QICOR-R016: ninguno cumplio su consigna (F-QICOR-R005),\
+          \ ninguno describio algo que pueda pasar en el mundo real (F-QICOR-R016\
+          \ (d)) o ninguno fue un cambio real (F-QICOR-R006, reescrita por F-QICOR-R012).\
+          \ Reprobar un criterio que NO veta ya no lleva aca: ese candidato termina\
+          \ en PROPOSED con lo incumplido declarado."
       - name: DIAGNOSIS_STALE
         description: "La revalidacion previa declaro que el ejercicio ya cumple, asi\
           \ que no se genero candidato alguno (F-QICOR-R009). Hubo un gasto minimo\
@@ -13494,9 +14054,13 @@ modules:
         type: QuizInstructionTaskOutcomeKind
       - name: failedCriteria
         type: List<CorrectionCriterion>
-        description: "Criterios reprobados. Poblada en NOT_CORRECTED; vacia en los\
-          \ demas desenlaces, incluido DIAGNOSIS_STALE, donde no reprobo ninguno porque\
-          \ no hubo candidato."
+        description: "Criterios reprobados por los candidatos que no resultaron entregables.\
+          \ Poblada solo en NOT_CORRECTED. Desde F-QICOR-R012 los unicos que pueden\
+          \ nombrarse a solas aca son los que VETAN: INSTRUCTION_COMPLIANCE (F-QICOR-R005)\
+          \ y REAL_WORLD_SENSE (F-QICOR-R016 (d)) -si el candidato cumplia los dos,\
+          \ se entrego con lo demas declarado-. Ningun otro criterio de F-QICOR-R004\
+          \ puede figurar a solas, y la longitud no puede figurar NUNCA (F-QICOR-R011,\
+          \ F-QICOR-R006 (c))."
       - name: detail
         type: String
       - name: proposalId
@@ -13507,6 +14071,16 @@ modules:
         description: "Cuantos intentos de generacion consumio la tarea. Cero en NOT_ATTEMPTED\
           \ y tambien en DIAGNOSIS_STALE, que es lo que hace verificable que un diagnostico\
           \ caido no gasto ninguna correccion."
+      - name: unmetCriteria
+        type: List<CriterionVerdict>
+        description: "Criterios sin cumplir del candidato ENTREGADO, con motivo y\
+          \ con FAILED distinguido de NOT_EVALUABLE. Poblada en PROPOSED; vacia cuando\
+          \ el candidato cumplio todo. Es lo que vuelve auditable el recuento de la\
+          \ corrida en vez de pedir que se le crea (F-QICOR-R014)."
+      - name: outOfLengthRange
+        type: boolean
+        description: Si el ejercicio propuesto quedo fuera del rango de longitud de
+          su nivel (F-QICOR-R011). Falso en los desenlaces sin propuesta.
       visibility: public
     - name: QuizInstructionCorrectionRunReport
       type: record
@@ -13549,13 +14123,105 @@ modules:
           \ contadas. Siguen disponibles para la corrida siguiente."
       - name: outcomes
         type: List<QuizInstructionTaskOutcome>
+      - name: proposedWithUnmetCriteria
+        type: int
+        description: "Cuantas de las correcciones PROPUESTAS llegaron con al menos\
+          \ un criterio sin cumplir (F-QICOR-R014 (d)). No es un quinto desenlace:\
+          \ es un atributo de las propuestas, y es lo que vuelve revisable haber retirado\
+          \ el veto — si mañana casi todas llegaran asi, lo que hay que mirar es quien\
+          \ corrige, no la regla."
+      - name: proposedOutOfLengthRange
+        type: int
+        description: Cuantas de las correcciones PROPUESTAS quedaron fuera del rango
+          de longitud de su nivel (F-QICOR-R011 (d)). Recuento separado del anterior
+          porque la longitud tiene declaracion propia y no entra en la lista de criterios
+          incumplidos.
       visibility: public
+    - name: QuizInstructionBestCandidate
+      type: record
+      fields:
+      - name: candidate
+        type: LemmaAbsenceQuizCandidate
+        description: "El MEJOR candidato que quien corrige vio en todo su lazo (F-QICOR-R012,\
+          \ F-QICOR-R013). Null cuando no produjo ninguno — que es distinto de haber\
+          \ producido uno que no cumple."
+      - name: reportedVerdicts
+        type: List<CriterionVerdict>
+        description: "Lo que quien corrige midio para ese candidato, consultando el\
+          \ catalogo del sistema. El sistema no lo toma de palabra en lo que es absoluto:\
+          \ la consigna se verifica de este lado (F-QICOR-R005, F-QICOR-R012)."
+      - name: attempts
+        type: int
+        description: Intentos consumidos dentro de la unica solicitud de correccion
+          emitida para la tarea.
+      visibility: public
+    - name: QuizInstructionCandidateAssessorConfig
+      type: record
+      fields:
+      - name: assessor
+        type: CandidateAssessor
+        description: "El catalogo neutro, ya cableado con sus evaluadores."
+      - name: deriver
+        type: LemmaAbsenceProposalDeriver
+        description: El MISMO deriver con el que el reviser construye elementAfter.
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        description: "Resuelve el plan y, dentro de el, la tarea consultada."
+      - name: auditReportStore
+        type: AuditReportStore
+        description: Trae el analisis del que salio la tarea; entrada del resolver
+          de contexto.
+      - name: contextResolver
+        type: CorrectionContextResolver<CorrectionContext>
+        description: El MISMO resolver que usa el motor de revision. Que la consulta
+          y la correccion resuelvan el contexto por el mismo puerto es lo que sostiene
+          F-QICOR-R015 (c).
+      - name: courseRepository
+        type: CourseRepository
+        description: Carga el curso para tomar el ejercicio ORIGINAL tal como esta
+          hoy.
+      - name: elementLocator
+        type: CourseElementLocator
+        description: "Nullable, y en el uso normal viene nulo: la factory construye\
+          \ el locator por defecto adentro del modulo, que es exactamente como el\
+          \ composition root lo obtiene hoy para el motor de revision — nunca lo ve.\
+          \ Existe como campo por la misma razon que en RevisionEngineConfig: para\
+          \ que un test pueda sustituirlo sin abrir la clase."
+      visibility: public
+    - name: CandidateAssessmentUnavailableException
+      type: exception
+      fields:
+      - name: taskId
+        type: String
+      - name: reason
+        type: String
+        description: "Plan inexistente, tarea ausente del plan, contexto no resoluble\
+          \ o ejercicio no encontrado en el curso."
+      message: "No se pudo evaluar el candidato de la tarea '%s': %s"
+      visibility: public
+      extends: RuntimeException
     interfaces:
     - name: QuizInstructionCandidateGenerator
       stereotype: port
       sealed: false
       exposes:
       - signature: "generate(QuizInstructionGenerationRequest request): QuizInstructionGeneratorResponse"
+      visibility: public
+    - name: QuizInstructionCandidateAssessor
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "assess(QuizInstructionCorrectionContext context, CourseElementSnapshot\
+          \ original, String candidateQuizSentence, String candidateTranslation):\
+          \ CandidateAssessment"
+      - signature: "assessTask(String planId, String taskId, Path coursePath, String\
+          \ candidateQuizSentence, String candidateTranslation): CandidateAssessment"
+      visibility: public
+    - name: QuizInstructionCandidateAssessorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(QuizInstructionCandidateAssessorConfig config): QuizInstructionCandidateAssessor"
       visibility: public
     implementations:
     - name: QuizInstructionAgentStrategy
@@ -14007,9 +14673,21 @@ modules:
         type: LagenConfig
       - name: projectRoot
         type: Path
+      handwrittenTests:
+      - name: "should pass the attempt limit it was given to the agent that drives\
+          \ the correction loop, instead of looping on its own"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R012
       implements:
       - QuizInstructionCandidateGenerator
     - name: DefaultQuizInstructionAgentCandidateParser
+      handwrittenTests:
+      - name: should read back the verdicts the correction measured for the candidate
+          it hands over and how many attempts it spent
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R012
       implements:
       - QuizInstructionAgentCandidateParser
     - name: DefaultQuizInstructionAgentErrorClassifier

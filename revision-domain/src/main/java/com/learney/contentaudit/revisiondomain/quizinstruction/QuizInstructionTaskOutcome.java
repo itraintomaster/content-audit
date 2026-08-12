@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.quizinstruction;
 
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCriterion;
+import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
@@ -24,12 +25,17 @@ public class QuizInstructionTaskOutcome {
 
     private int attempts;
 
+    private List<CriterionVerdict> unmetCriteria;
+
+    private boolean outOfLengthRange;
+
     public QuizInstructionTaskOutcome() {
     }
 
     public QuizInstructionTaskOutcome(String taskId, String nodeId,
             QuizInstructionTaskOutcomeKind kind, List<CorrectionCriterion> failedCriteria,
-            String detail, String proposalId, int attempts) {
+            String detail, String proposalId, int attempts, List<CriterionVerdict> unmetCriteria,
+            boolean outOfLengthRange) {
         this.taskId = taskId;
         this.nodeId = nodeId;
         this.kind = kind;
@@ -37,6 +43,8 @@ public class QuizInstructionTaskOutcome {
         this.detail = detail;
         this.proposalId = proposalId;
         this.attempts = attempts;
+        this.unmetCriteria = unmetCriteria;
+        this.outOfLengthRange = outOfLengthRange;
     }
 
     public String getTaskId() {
@@ -95,6 +103,22 @@ public class QuizInstructionTaskOutcome {
         this.attempts = attempts;
     }
 
+    public List<CriterionVerdict> getUnmetCriteria() {
+        return this.unmetCriteria;
+    }
+
+    public void setUnmetCriteria(List<CriterionVerdict> unmetCriteria) {
+        this.unmetCriteria = unmetCriteria;
+    }
+
+    public boolean isOutOfLengthRange() {
+        return this.outOfLengthRange;
+    }
+
+    public void setOutOfLengthRange(boolean outOfLengthRange) {
+        this.outOfLengthRange = outOfLengthRange;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -106,11 +130,13 @@ public class QuizInstructionTaskOutcome {
                     && Objects.equals(this.failedCriteria, that.failedCriteria)
                     && Objects.equals(this.detail, that.detail)
                     && Objects.equals(this.proposalId, that.proposalId)
-                    && Objects.equals(this.attempts, that.attempts);
+                    && Objects.equals(this.attempts, that.attempts)
+                    && Objects.equals(this.unmetCriteria, that.unmetCriteria)
+                    && Objects.equals(this.outOfLengthRange, that.outOfLengthRange);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, nodeId, kind, failedCriteria, detail, proposalId, attempts);
+        return Objects.hash(taskId, nodeId, kind, failedCriteria, detail, proposalId, attempts, unmetCriteria, outOfLengthRange);
     }
 }

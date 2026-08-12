@@ -28,10 +28,11 @@ Las reglas se leen en cinco tramos:
   lo que no aporta un solo caracter ni la bloquea ni se pierde al aprobarla.
 - **Antes de tocar nada** (R009): el diagnostico se revalida contra el criterio
   vigente, y si ya no se sostiene la tarea se cierra sin corregir nada.
-- **Con que se juzga la correccion** (R004, R005, R011, R015): el catalogo de
+- **Con que se juzga la correccion** (R004, R005, R011, R015, R016): el catalogo de
   criterios y la regla de medir, que es la misma de la auditoria y se puede
-  consultar. Cumplir la consigna es lo unico absoluto; la longitud se mide y se
-  declara, pero no decide nada.
+  consultar. Dos cosas son absolutas —cumplir la consigna y describir algo que pueda
+  pasar en el mundo real—; la longitud, en el extremo opuesto, se mide y se declara
+  pero no decide nada.
 - **Quien intenta, cuantas veces y que se entrega** (R012, R013, R014, R006): el
   lazo lo conduce quien corrige, al agotarlo entrega el mejor candidato que vio,
   lo que ese candidato no cumplio se declara, y "no se logro" queda para el unico
@@ -238,13 +239,14 @@ partes con texto son identicas salvo la señalada, **no** reprueba esta regla
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > El ejercicio corregido se somete a un catalogo fijo de criterios, cada uno con su
-> propio veredicto y su propio motivo. Reprobar uno **empuja a intentar de nuevo y
-> baja al candidato en el orden** del que sale el mejor
-> ([F-QICOR-R013](#F-QICOR-R013)); ninguno de estos cinco, ni todos juntos, impide
+> propio veredicto y su propio motivo. **Cinco de ellos no vetan**: reprobar uno
+> **empuja a intentar de nuevo y baja al candidato en el orden** del que sale el mejor
+> ([F-QICOR-R013](#F-QICOR-R013)); ninguno de esos cinco, ni todos juntos, impide
 > entregar al mejor candidato cuando los intentos se agotan
 > ([F-QICOR-R012](#F-QICOR-R012)) — lo que si exige es que lo reprobado se declare
 > ([F-QICOR-R014](#F-QICOR-R014)). El criterio 1 va mas lejos todavia: se mide, se
-> informa y **ni siquiera cuenta** ([F-QICOR-R011](#F-QICOR-R011)):
+> informa y **ni siquiera cuenta** ([F-QICOR-R011](#F-QICOR-R011)). El **sexto si
+> veta**, y por eso se enuncia en su propia regla ([F-QICOR-R016](#F-QICOR-R016)):
 > 1. **Longitud dentro del rango objetivo de su nivel**, medida con el mismo
 >    criterio de longitud que aplica la auditoria. **No decide**: un candidato
 >    cuya unica falla es esta se propone igual, declarando que quedo fuera de
@@ -258,15 +260,24 @@ partes con texto son identicas salvo la señalada, **no** reprueba esta regla
 >    juzga la traduccion; [F-QICOR-R003](#F-QICOR-R003) no opina sobre ella.
 > 5. **Sigue siendo resoluble** por el alumno y conserva el tipo de ejercicio del
 >    original.
+> 6. **Sentido en el mundo real**: leido con el hueco ya resuelto, el ejercicio
+>    corregido describe algo que **puede pasar**. **Veta**: un candidato que lo
+>    reprueba no compite ni se entrega nunca, y por eso es el unico criterio del
+>    catalogo que jamas aparece entre los incumplidos de una propuesta emitida
+>    ([F-QICOR-R016](#F-QICOR-R016)).
 
 <details><summary>Detalle</summary>
 
-**Por que una sola regla y no cinco.** Los cinco criterios enuncian una unica
-exigencia —que la correccion no cobre su arreglo empeorando otra cosa— y se
+**Por que una sola regla y no cinco.** Los cinco primeros criterios enuncian una
+unica exigencia —que la correccion no cobre su arreglo empeorando otra cosa— y se
 observan de la misma forma: sometiendo el ejercicio corregido a cada criterio y
 mirando su veredicto. Separarlos en cinco reglas repetiria cinco veces el mismo
-enunciado cambiando el sustantivo. Lo que si es propio de cada uno es **como se
-verifica**:
+enunciado cambiando el sustantivo. El **criterio 6 no comparte ninguna de las dos
+cosas**: no mide que la correccion no empeore algo sino que el resultado **sea** un
+ejercicio, y su veredicto negativo no baja al candidato en el orden sino que lo saca
+de la competencia. Por eso —y solo por eso— vive en su propia regla
+([F-QICOR-R016](#F-QICOR-R016)) en lugar de ser un renglon mas de esta. Lo que si es
+propio de cada criterio es **como se verifica**:
 
 | Criterio | Como se verifica |
 |---|---|
@@ -275,6 +286,7 @@ verifica**:
 | 3. Distincion | Comparacion contra los demas ejercicios; ver [DOUBT-DISTINCION-ALCANCE](#DOUBT-DISTINCION-ALCANCE) |
 | 4. Traduccion fiel | Juicio sobre el par **propuesto** (oracion propuesta / traduccion propuesta): lo que decide es si dicen lo mismo, no si la traduccion cambio. Una que quedo diciendo lo que decia la oracion **anterior** reprueba |
 | 5. Resoluble y del mismo tipo | Juicio sobre el ejercicio propuesto completo |
+| 6. Sentido en el mundo real | Juicio sobre el ejercicio propuesto **leido con el hueco resuelto**, que es como lo lee el alumno. Unico criterio del catalogo que veta ([F-QICOR-R016](#F-QICOR-R016)) |
 
 **Que los criterios 1 y 2 se verifiquen con la medicion real de la auditoria, y
 no con una aproximacion, no es un detalle.** Una correccion aprobada con una
@@ -307,19 +319,25 @@ unicamente por longitud, **75 partian de un ejercicio que ya estaba fuera de
 rango**. La medicion sigue haciendose y sigue informandose; lo que se retiro es su
 poder de veto ([F-QICOR-R011](#F-QICOR-R011)).
 
-**Que queda de este catalogo ahora que ninguno de sus criterios veta.** Queda todo
-menos el veto, que era la parte que no funcionaba. Los cinco criterios siguen
-midiendose sobre cada candidato, siguen siendo el motivo por el que quien corrige
-vuelve a intentar, y siguen decidiendo **cual** de los candidatos vistos se
+**Que queda de este catalogo ahora que sus cinco criterios de no-empeoramiento no
+vetan.** Queda todo menos el veto, que era la parte que no funcionaba. Los cinco
+siguen midiendose sobre cada candidato, siguen siendo el motivo por el que quien
+corrige vuelve a intentar, y siguen decidiendo **cual** de los candidatos vistos se
 entrega ([F-QICOR-R013](#F-QICOR-R013)). Lo que ya no hacen es tirar el trabajo:
 cuando el mejor candidato reprueba alguno, se entrega igual y lo reprobado se
 nombra en la propuesta ([F-QICOR-R014](#F-QICOR-R014)), y el que decide con esa
 informacion a la vista es el operador. Es un cambio de destinatario, no de
 exigencia: antes el veredicto negativo terminaba en un descarte que nadie veia;
-ahora termina en una advertencia que alguien lee. Lo que **si** sigue siendo
-absoluto es cumplir la consigna ([F-QICOR-R005](#F-QICOR-R005)), que no pertenece
-a este catalogo: no es una cosa que la correccion no deba empeorar, es lo que la
-correccion vino a hacer.
+ahora termina en una advertencia que alguien lee.
+
+**Lo que si es absoluto, y por que son dos cosas y no una.** Cumplir la consigna
+([F-QICOR-R005](#F-QICOR-R005)) no pertenece a este catalogo: no es una cosa que la
+correccion no deba empeorar, es lo que la correccion vino a hacer. Tener sentido en
+el mundo real ([F-QICOR-R016](#F-QICOR-R016)) si pertenece —se le mide a cada
+candidato como a los demas y se consulta igual ([F-QICOR-R015](#F-QICOR-R015))— pero
+comparte con la consigna la misma clase de exigencia: no describe un ejercicio peor,
+describe algo que no es un ejercicio. Los dos son condiciones para competir
+([F-QICOR-R013](#F-QICOR-R013)), no escalones del orden.
 
 **El criterio 4 es el unico juez de la traduccion.** Como
 [F-QICOR-R003](#F-QICOR-R003) no opina sobre ella —la traduccion no es una parte
@@ -350,7 +368,10 @@ candidato que reprueba cualquiera de los criterios 2 a 5 no se propone y se vuel
 a intentar ([F-QICOR-R012](#F-QICOR-R012)); (e) un candidato que corrige la
 respuesta de `are you eating` a `are you drinking` y conserva la traduccion `¿Qué
 estás comiendo?` recibe veredicto negativo del criterio 4, y el mismo candidato con
-la traduccion `¿Qué estás bebiendo?` lo pasa.
+la traduccion `¿Qué estás bebiendo?` lo pasa; (f) sometido un candidato al catalogo
+se obtienen **seis** veredictos, uno por criterio, y el del criterio 6 es negativo
+para `Does she drink meat?` y positivo para `Does she drink milk?` sobre el mismo
+ejercicio original ([F-QICOR-R016](#F-QICOR-R016)).
 
 **Error**: "El ejercicio corregido de '{quizId}' se propuso sin haberse sometido al criterio '{criterio}'"
 
@@ -363,16 +384,20 @@ la traduccion `¿Qué estás bebiendo?` lo pasa.
 > Antes de proponerse, el ejercicio corregido se somete a la **misma validacion
 > de consigna** que produjo el incumplimiento, y solo se propone si esta declara
 > que cumple. No alcanza con que las violaciones parezcan atendidas: la
-> correccion no puede pasar y despues fallar la auditoria. Es el **unico criterio
-> absoluto** de toda la feature: la entrega del mejor candidato
+> correccion no puede pasar y despues fallar la auditoria. Es **uno de los dos
+> criterios absolutos** de la feature —el otro es tener sentido en el mundo real
+> ([F-QICOR-R016](#F-QICOR-R016))—: la entrega del mejor candidato
 > ([F-QICOR-R012](#F-QICOR-R012)) no lo alcanza, y un candidato que no lo cumple
 > no compite por ser el mejor ([F-QICOR-R013](#F-QICOR-R013)).
 
 <details><summary>Detalle</summary>
 
-**Por que este si y los demas no.** Los criterios de
+**Por que este si y los demas no.** Los cinco criterios de no-empeoramiento de
 [F-QICOR-R004](#F-QICOR-R004) miden lo que la correccion **no debe empeorar**;
-este mide si la correccion **hizo lo que vino a hacer**. Un ejercicio corregido
+este mide si la correccion **hizo lo que vino a hacer**, y el sexto de aquel
+catalogo mide si lo que salio **es** un ejercicio
+([F-QICOR-R016](#F-QICOR-R016)). Los dos ultimos son los que no admiten grados, y
+por el mismo motivo: no describen una correccion imperfecta. Un ejercicio corregido
 que sigue incumpliendo su consigna no es una correccion imperfecta: no es una
 correccion. Entregarlo tendria las dos consecuencias que la feature entera existe
 para evitar —el operador aprueba un cambio que no resuelve nada, y la auditoria
@@ -430,7 +455,8 @@ como mejor candidato, y la tarea termina como correccion no lograda
 
 > Una tarea termina como **correccion no lograda** cuando, agotados los intentos,
 > **ningun candidato resulto entregable**: ninguno cumplio su consigna
-> ([F-QICOR-R005](#F-QICOR-R005)) o ninguno constituyo un cambio real sobre el
+> ([F-QICOR-R005](#F-QICOR-R005)), ninguno describio algo que pueda pasar en el mundo
+> real ([F-QICOR-R016](#F-QICOR-R016)) o ninguno constituyo un cambio real sobre el
 > original ([F-QICOR-R010](#F-QICOR-R010)). En ese caso el sistema informa
 > explicitamente el fallo y **nombra los criterios que reprobaron**; el ejercicio
 > del curso no cambia y la tarea queda disponible. Reprobar cualquier **otro**
@@ -476,9 +502,11 @@ si — y es, ademas, la señal mas util que produce este desenlace, porque cuand
 repite sobre varios ejercicios del mismo knowledge lo que hay que mirar es la
 consigna ([DOUBT-CONSIGNA-CULPABLE](#DOUBT-CONSIGNA-CULPABLE)). Lo que **nunca**
 puede nombrar es la longitud ([F-QICOR-R011](#F-QICOR-R011)), y desde
-[F-QICOR-R012](#F-QICOR-R012) tampoco puede nombrar a solas a ninguno de los otros
-criterios de [F-QICOR-R004](#F-QICOR-R004): si el ejercicio cumplia su consigna,
-ese candidato se entrego.
+[F-QICOR-R012](#F-QICOR-R012) tampoco puede nombrar a solas a ninguno de los cinco
+criterios de no-empeoramiento de [F-QICOR-R004](#F-QICOR-R004): si el ejercicio
+cumplia su consigna y tenia sentido, ese candidato se entrego. Los unicos dos
+nombres que este desenlace puede llevar a solas son, entonces, los de los criterios
+absolutos: la consigna incumplida y el sentido reprobado.
 
 **Cuanto queda de este desenlace.** La misma corrida lo anticipa con precision: de
 las 159 tareas que terminaron sin correccion tras agotar sus tres intentos,
@@ -487,6 +515,14 @@ longitud, 71 edicion acotada, 4 resolubilidad, 3 vocabulario, 1 distincion— y 
 **2** reprobaron el cumplimiento de la consigna. Este desenlace pasa de ser el mas
 frecuente de la corrida a ser el mas raro, y eso es lo que se buscaba: que "no se
 logro" quiera decir de verdad que no hay nada que ofrecer.
+
+A esos casos se suman ahora los que reprueban el sentido
+([F-QICOR-R016](#F-QICOR-R016)), que la corrida medida no podia contar porque el
+criterio no existia. El unico dato disponible los acota: el mismo ejercicio corregido
+cuatro veces produjo **tres** salidas con sentido y una sin el, de modo que lo
+esperable es que el criterio consuma reintentos y no tareas. Si resultara al reves
+—si empezaran a acumularse tareas perdidas nombrando unicamente el sentido— lo que
+hay que mirar es [DOUBT-SENTIDO-PREEXISTENTE](#DOUBT-SENTIDO-PREEXISTENTE).
 
 Esta regla cubre el caso en que la correccion **se intento y no alcanzo**. Una
 interrupcion antes de intentarlo —el servicio no responde, se agota el tiempo de
@@ -509,10 +545,12 @@ reacciona de forma opuesta.
 cumpla su consigna, la revision termina informando el fallo y nombrando al menos un
 criterio reprobado, no queda ninguna propuesta pendiente para esa tarea, el
 ejercicio del curso es identico al original, y la tarea sigue disponible; (b) una
-tarea cuyo mejor candidato cumple su consigna y reprueba otros criterios **no**
-termina en este desenlace, sino en propuesta ([F-QICOR-R012](#F-QICOR-R012));
-(c) la longitud fuera de rango nunca figura entre los criterios reprobados de este
-desenlace.
+tarea cuyo mejor candidato cumple su consigna, tiene sentido y reprueba otros
+criterios **no** termina en este desenlace, sino en propuesta
+([F-QICOR-R012](#F-QICOR-R012)); (c) la longitud fuera de rango nunca figura entre
+los criterios reprobados de este desenlace; (d) agotados los intentos sin que ningun
+candidato describa algo que pueda pasar en el mundo real, la tarea termina tambien en
+este desenlace y nombra ese criterio ([F-QICOR-R016](#F-QICOR-R016)).
 
 **Error**: "No se logro una correccion aceptable para el ejercicio '{quizId}': ningun candidato resulto entregable ({criterios})"
 
@@ -662,7 +700,7 @@ Sin esta regla la cadena entera se ejecuta y ningun control la detiene:
 | [F-QICOR-R005](#F-QICOR-R005) pregunta "¿el corregido cumple?" | Responde que si — **siempre cumplio** |
 | La propuesta se emite | El operador aprueba una reescritura que nadie necesitaba |
 
-El daño no es solo el gasto: cada uno de los cinco criterios de
+El daño no es solo el gasto: cada uno de los criterios de
 [F-QICOR-R004](#F-QICOR-R004) se pone en riesgo sin ninguna razon, sobre un
 ejercicio que no tenia nada que arreglar.
 
@@ -957,13 +995,13 @@ sigue midiendo con la medicion real de la auditoria, por la misma razon de siemp
 siguiente otra—. Y no autoriza a alargar la oracion mas alla de lo que la violacion
 señala ([F-QICOR-R003](#F-QICOR-R003) sigue intacta).
 
-**Que quedo de propio de esta regla ahora que ningun criterio rechaza.** Desde
-[F-QICOR-R012](#F-QICOR-R012) ninguno de los criterios de
-[F-QICOR-R004](#F-QICOR-R004) impide por si solo entregar al mejor candidato, asi
-que "no rechaza" dejo de distinguir a la longitud. Lo que la sigue distinguiendo
-son dos cosas, y son las que esta regla conserva:
+**Que quedo de propio de esta regla frente a los criterios que no vetan.** Desde
+[F-QICOR-R012](#F-QICOR-R012) ninguno de los **cinco criterios de no-empeoramiento**
+de [F-QICOR-R004](#F-QICOR-R004) impide por si solo entregar al mejor candidato, asi
+que frente a ellos "no rechaza" dejo de distinguir a la longitud. Lo que la sigue
+distinguiendo son dos cosas, y son las que esta regla conserva:
 
-| | La longitud | Los demas criterios del catalogo |
+| | La longitud | Los cinco criterios de no-empeoramiento |
 |---|---|---|
 | ¿Empuja a reintentar? | No | Si |
 | ¿Cuenta para elegir al mejor candidato? | No: solo desempata al final, cuando todo lo demas empato ([F-QICOR-R013](#F-QICOR-R013)) | Si |
@@ -979,7 +1017,27 @@ natural. Un desempate que solo se consulta cuando dos candidatos son
 cosas: no dispara un solo reintento y no puede ganarle a nada, porque solo se
 pregunta cuando no hay nada mas que preguntar.
 
-**Criterio de aceptacion**: (a) un candidato que pasa los criterios 2 a 5 y cumple
+**La asimetria con el sentido es deliberada.** La longitud y el sentido
+([F-QICOR-R016](#F-QICOR-R016)) son los dos extremos del catalogo —una no cuenta
+para nada, el otro veta— y conviene ver por que ese reparto no es contradictorio
+sino la misma decision aplicada a dos hechos distintos:
+
+| | La longitud fuera de rango | El ejercicio que afirma un imposible |
+|---|---|---|
+| Que ve el alumno | Un ejercicio resoluble con unos tokens de mas: aprende igual | Una oracion que no puede pasar: no hay nada que aprender de ella, y si algo aprende es falso |
+| El original ya estaba asi | Si: en **75 de los 78** casos medidos el ejercicio original ya estaba fuera de rango, asi que el veto exigia arreglar de paso un defecto viejo | No: el original `Does she eat meat?` tenia sentido; el sinsentido lo **introdujo** la correccion |
+| Hay otro carril que lo arregle | Si: el [Analizador de longitud](glossary:Analizador de longitud) le abre su propia tarea, con su propio corrector | No: ninguna medicion de la auditoria detecta que un ejercicio afirme un imposible. Si esta correccion no lo frena, entra al curso y se queda |
+| Cuanto costo vetar | 78 tareas perdidas y 234 consultas de reintento que **no rescataron ninguna** | Un reintento: el mismo ejercicio corregido cuatro veces produjo **tres** salidas con sentido y una sin el |
+
+La regla que ordena las dos filas es la misma de siempre —*es mas importante que el
+ejercicio este bien escrito que si entra en el rango*—. Lo que cambia es de que lado
+cae cada criterio: la longitud castigaba un defecto que el original ya traia y que
+otro mecanismo sabe arreglar, y el sentido frena un defecto que la correccion crea y
+que **nadie mas** va a ver. Esta regla, entonces, no se debilita con
+[F-QICOR-R016](#F-QICOR-R016): las dos dicen que la calidad del ejercicio manda sobre
+la metrica.
+
+**Criterio de aceptacion**: (a) un candidato que pasa los criterios 2 a 6 y cumple
 su consigna, y cuya unica falla es quedar fuera del rango de longitud de su nivel,
 **se propone**; (b) esa propuesta declara la longitud medida y el rango objetivo del
 nivel, de modo que se vea sin abrir el ejercicio; (c) ninguna tarea termina como
@@ -1054,7 +1112,7 @@ quien corrige no lo convierte en juez de si mismo:
 |---|---|
 | El catalogo de criterios y su medicion | Quien corrige los **consulta**, no los reimplementa ([F-QICOR-R015](#F-QICOR-R015)) |
 | La revalidacion del diagnostico antes de empezar | Decide si hay algo que corregir, y eso se resuelve antes de pedir nada ([F-QICOR-R009](#F-QICOR-R009)) |
-| La verificacion de que lo entregado cumple la consigna | Es el unico criterio absoluto y no se toma de palabra ([F-QICOR-R005](#F-QICOR-R005)) |
+| La verificacion de que lo entregado cumple la consigna | Es uno de los dos criterios absolutos ([F-QICOR-R016](#F-QICOR-R016) es el otro) y el unico que ademas no se toma de palabra ([F-QICOR-R005](#F-QICOR-R005)) |
 | El tope de tareas de la corrida | Acota el gasto, y cuenta tareas ([F-QICOR-R008](#F-QICOR-R008)) |
 | Declarar lo que el candidato entregado no cumplio | Entregar no es esconder ([F-QICOR-R014](#F-QICOR-R014)) |
 
@@ -1079,7 +1137,8 @@ criterio del catalogo, el sistema **no emite una segunda solicitud de correccion
 la decision de reintentar no es suya; (b) agotados los intentos sin ningun candidato
 que cumpla todos los criterios, la tarea termina en **propuesta** con el mejor
 candidato visto, siempre que ese candidato cumpla su consigna
-([F-QICOR-R005](#F-QICOR-R005)); (c) el maximo de intentos es configurable y ninguna
+([F-QICOR-R005](#F-QICOR-R005)) y describa algo que pueda pasar en el mundo real
+([F-QICOR-R016](#F-QICOR-R016)); (c) el maximo de intentos es configurable y ninguna
 tarea consume mas intentos que ese maximo; (d) el desenlace de una tarea no depende
 de cuantos intentos se hayan consumido: si el mejor candidato aparecio en el primer
 intento y ninguno posterior lo supero, se entrega ese.
@@ -1093,11 +1152,13 @@ intento y ninguno posterior lo supero, se entrega ese.
 **Severity**: critical | **Validation**: VALIDATED
 
 > "Mejor" no es una impresion: es un orden fijo. **Compite** unicamente el candidato
-> que cumple su consigna ([F-QICOR-R005](#F-QICOR-R005)) y que constituye un cambio
+> que cumple su consigna ([F-QICOR-R005](#F-QICOR-R005)), que describe algo que puede
+> pasar en el mundo real ([F-QICOR-R016](#F-QICOR-R016)) y que constituye un cambio
 > real sobre el original ([F-QICOR-R001](#F-QICOR-R001),
-> [F-QICOR-R010](#F-QICOR-R010)); el que no corrige lo que vino a corregir no es
-> candidato a nada. Entre los que compiten gana el que **cumple mas criterios** del
-> catalogo; a igualdad, el que cumple el de **mayor precedencia** entre los que los
+> [F-QICOR-R010](#F-QICOR-R010)); el que no corrige lo que vino a corregir —o el que
+> lo corrige inventando un imposible— no es candidato a nada. Entre los que compiten
+> gana el que **cumple mas criterios** de los cinco que no vetan; a igualdad, el que
+> cumple el de **mayor precedencia** entre los que los
 > distinguen —resolubilidad, traduccion fiel, vocabulario del nivel, distincion,
 > edicion acotada, en ese orden—; y solo si todo lo anterior empata desempata la
 > **longitud**, que va ultima y nunca suma ([F-QICOR-R011](#F-QICOR-R011)). Si aun
@@ -1112,6 +1173,17 @@ que no arregla el problema que lo origino. No es un candidato peor: no es un
 candidato. La misma condicion alcanza al cambio real: un candidato identico al
 original no compite, porque aprobarlo no cambiaria nada
 ([F-QICOR-R010](#F-QICOR-R010) lo enuncia para el caso de la parte vacia).
+
+**Por que el sentido tampoco es un escalon del orden**, aun perteneciendo al catalogo
+de [F-QICOR-R004](#F-QICOR-R004). Por dos razones que se suman. La primera es la de
+la consigna: si el sentido fuera el primer renglon del orden, un ejercicio que afirma
+un imposible podria ganar cuando ningun otro cumpla nada, y lo que se escribiria al
+curso seria una oracion de la que el alumno no puede aprender nada
+([F-QICOR-R016](#F-QICOR-R016)). La segunda es aritmetica: como **todo candidato que
+compite lo cumple**, contarlo entre los criterios satisfechos le sumaria la misma
+unidad a todos y no desempataria jamas. Por eso el orden conserva sus seis renglones
+—los cinco de no-empeoramiento mas la longitud— y el sentido no figura en el: no
+ordena, filtra.
 
 **El orden de precedencia, y de donde sale** [ASSUMPTION]. La decision de fondo la
 fijo el usuario —*un ejercicio bien escrito fuera de rango vale mas que uno mal
@@ -1150,9 +1222,12 @@ entregan el mismo — y evita premiar el gasto.
 sino la unica lectura prudente: un candidato del que no se sabe si conserva el
 vocabulario del nivel no puede ganarle a uno del que se sabe que si. Y se declara
 como tal ([F-QICOR-R014](#F-QICOR-R014)), para que el operador vea la diferencia
-entre "reprobo" y "no se pudo verificar". La consigna es la excepcion de siempre:
-si no se pudo obtener su veredicto, el candidato no compite
-([F-QICOR-R005](#F-QICOR-R005)).
+entre "reprobo" y "no se pudo verificar". Las dos condiciones para competir son la
+excepcion de siempre: si no se pudo obtener el veredicto de la consigna o el del
+sentido, el candidato **no compite** ([F-QICOR-R005](#F-QICOR-R005),
+[F-QICOR-R016](#F-QICOR-R016)). La lectura prudente es la misma en los dos casos, y
+mas evidente en el segundo: de un ejercicio del que nadie pudo decir si describe algo
+posible no se escribe nada al curso.
 
 **Criterio de aceptacion**: (a) entre dos candidatos que cumplen su consigna, uno
 que cumple cuatro criterios del catalogo y otro que cumple tres, se entrega el de
@@ -1164,7 +1239,11 @@ dos candidatos que cumplen exactamente los mismos criterios, uno dentro y otro f
 del rango de longitud, se entrega el que quedo dentro; (e) un candidato dentro de
 rango que reprueba la resolubilidad pierde contra uno fuera de rango que la cumple;
 (f) un criterio que no se pudo evaluar cuenta como no cumplido para el orden;
-(g) entre dos candidatos que empatan en todo, se entrega el que se vio primero.
+(g) entre dos candidatos que empatan en todo, se entrega el que se vio primero;
+(h) un candidato que describe algo que no puede pasar en el mundo real —`Does she
+drink meat?`— no se entrega aunque cumpla su consigna y todos los criterios del
+catalogo, y pierde incluso contra un candidato con sentido —`Does she drink milk?`—
+que reprueba la edicion acotada ([F-QICOR-R016](#F-QICOR-R016)).
 
 **Error**: "Se entrego para el ejercicio '{quizId}' un candidato peor que otro que la misma correccion habia producido"
 
@@ -1180,7 +1259,11 @@ rango que reprueba la resolubilidad pierde contra uno fuera de rango que la cump
 > revisa lo vea **antes** de aprobarla; y la corrida **cuenta cuantas de sus
 > propuestas llegaron asi**. Lo que [F-QICOR-R012](#F-QICOR-R012) retiro es el veto,
 > no la informacion. La longitud no entra en esa lista: tiene su propia declaracion
-> y su propio recuento ([F-QICOR-R011](#F-QICOR-R011)).
+> y su propio recuento ([F-QICOR-R011](#F-QICOR-R011)). Tampoco entran los dos
+> criterios absolutos —cumplir la consigna ([F-QICOR-R005](#F-QICOR-R005)) y el
+> sentido en el mundo real ([F-QICOR-R016](#F-QICOR-R016))—, y por el motivo
+> contrario: un candidato que reprueba cualquiera de los dos no se entrega, asi que
+> nunca hay nada que declarar sobre ellos.
 
 <details><summary>Detalle</summary>
 
@@ -1196,6 +1279,19 @@ vetar ([F-QICOR-R011](#F-QICOR-R011)): se retira el veto y se paga con visibilid
 |---|---|
 | En la propuesta | Que criterios no cumplio el ejercicio entregado, con el motivo de cada uno y si el veredicto fue negativo o no se pudo obtener |
 | En el reporte de la corrida | Cuantas de las correcciones propuestas llegaron con criterios sin cumplir |
+
+**Los tres criterios que nunca aparecen en la lista, y sus dos motivos distintos.**
+
+| Criterio ausente de la lista | Por que |
+|---|---|
+| Longitud fuera de rango | Se declara aparte, con la medicion y el rango, y se cuenta aparte ([F-QICOR-R011](#F-QICOR-R011)) |
+| Cumplimiento de la consigna | Todo lo que se entrega lo cumple: un candidato que no, no se entrega ([F-QICOR-R005](#F-QICOR-R005)) |
+| Sentido en el mundo real | Idem: un candidato que lo reprueba no compite ([F-QICOR-R016](#F-QICOR-R016)) |
+
+La diferencia importa para leer una propuesta. Que la longitud no figure quiere decir
+"esto se mide en otro renglon"; que la consigna y el sentido no figuren quiere decir
+"esto se cumplio, sin excepcion". Una propuesta con la lista vacia no es una propuesta
+sobre la que no se sepa nada: es una que cumplio los seis criterios y su consigna.
 
 **El recuento es lo que vuelve revisable la concesion.** Si resultara que casi todas
 las propuestas llegan con criterios sin cumplir, lo que hay que mirar es quien
@@ -1226,7 +1322,9 @@ aparece en esa lista, y aparece en su declaracion propia
 ([F-QICOR-R011](#F-QICOR-R011)); (d) el reporte de la corrida declara cuantas de sus
 correcciones propuestas llegaron con al menos un criterio sin cumplir, sin agregar un
 desenlace nuevo; (e) un criterio que no se pudo evaluar se declara distinguiendolo de
-uno que reprobo.
+uno que reprobo; (f) el sentido en el mundo real nunca aparece en esa lista, porque
+un candidato que lo reprueba no llega a proponerse
+([F-QICOR-R016](#F-QICOR-R016)).
 
 **Error**: "Se propuso para el ejercicio '{quizId}' una correccion que no cumple el criterio '{criterio}' sin declararlo"
 
@@ -1272,13 +1370,23 @@ que quien corrige necesita saber para decidir si su candidato sirve
 ([F-QICOR-R005](#F-QICOR-R005)) — y consultarlo no lo encarece dos veces, porque el
 veredicto queda registrado bajo la huella del contenido juzgado.
 
+**Incluye tambien el sentido en el mundo real**
+([F-QICOR-R016](#F-QICOR-R016)), y ahi la consulta hace su trabajo mas importante. Es
+un criterio del catalogo como los demas, pero su veredicto negativo tiene la
+consecuencia mas cara de todas: el candidato queda fuera de competencia. Que quien
+corrige lo vea **mientras** todavia le quedan intentos es lo que convierte ese veto en
+un reintento en lugar de una tarea perdida — y hay evidencia de que alcanza: el mismo
+ejercicio corregido cuatro veces produjo tres salidas con sentido. Sin la consulta, el
+sinsentido se descubriria recien al final, cuando ya no queda intento para arreglarlo.
+
 **Que NO decide esta regla.** No decide si el sistema vuelve a evaluar por su cuenta
 el candidato entregado antes de proponerlo; eso es
 [DOUBT-REVERIFICACION](#DOUBT-REVERIFICACION). Lo que fija es que exista una sola
 definicion de cada criterio y una sola medicion, este quien este preguntando.
 
 **Criterio de aceptacion**: (a) consultado un ejercicio candidato junto a su original
-y su contexto, se obtiene un veredicto por cada criterio del catalogo, con motivo
+y su contexto, se obtiene un veredicto por cada criterio del catalogo —los seis,
+incluido el sentido— mas el del cumplimiento de la consigna, con motivo
 cuando el veredicto es negativo; (b) el veredicto de longitud de esa consulta
 coincide con el del analizador de longitud sobre el mismo ejercicio —mismo conteo,
 mismo rango de nivel— y el de vocabulario con el del analisis lexico; (c) los
@@ -1286,6 +1394,174 @@ criterios incumplidos que declara la propuesta emitida son exactamente los que l
 consulta devuelve para ese mismo ejercicio ([F-QICOR-R014](#F-QICOR-R014)).
 
 **Error**: "El candidato del ejercicio '{quizId}' se juzgo con una medicion distinta de la que aplica el sistema"
+
+</details>
+
+<a id="F-QICOR-R016"></a>
+### Rule[F-QICOR-R016] - El ejercicio corregido tiene que describir algo que pueda pasar en el mundo real
+**Severity**: critical | **Validation**: VALIDATED
+
+> Leido con el hueco **ya resuelto** —como lo lee el alumno despues de completarlo—,
+> el ejercicio corregido tiene que describir algo que **pueda pasar en el mundo
+> real**. `Does she drink meat?` es una oracion gramaticalmente impecable, cumple su
+> consigna y respeta la marca del enunciado, y aun asi no es un ejercicio: nadie toma
+> carne. Es el **segundo criterio absoluto** de la feature, junto con cumplir la
+> consigna ([F-QICOR-R005](#F-QICOR-R005)): un candidato que lo reprueba **no compite**
+> ([F-QICOR-R013](#F-QICOR-R013)) y no se entrega nunca, cumpla lo que cumpla. Lo que
+> **no** reprueba es ser corto, artificial, trivial o descontextualizado —los
+> ejercicios de idioma son asi y esta bien—. La vara es si alguien podria decirlo en
+> serio y ser entendido.
+
+<details><summary>Detalle</summary>
+
+**El defecto que la motiva ya ocurrio, y se escribio al curso.** Ejercicio `task-876`
+del plan `2026-08-09T22-30-12`. El diagnostico era exacto: la respuesta aceptada usaba
+`eat` mientras la marca del enunciado exigia conjugar `drink`.
+
+| | Enunciado | Traduccion |
+|---|---|---|
+| Original | hueco `[Does she eat]` + marca `(she / drink)` + `meat?` | `¿Ella come carne?` |
+| Entregado | hueco `[Does she drink]` + marca `(she / drink)` + `meat?` → `Does she drink meat?` | `¿Ella bebe carne?` |
+
+La correccion resolvio exactamente lo que la violacion señalaba y produjo una oracion
+imposible. Se propuso, se aprobo, se escribio al curso y hubo que revertirla a mano.
+
+**Paso todo lo que el sistema le sabia preguntar, y nada de eso era la pregunta.**
+
+| Criterio | Veredicto sobre `Does she drink meat?` |
+|---|---|
+| Cumple la consigna ([F-QICOR-R005](#F-QICOR-R005)) | Cumple: la respuesta ya conjuga el verbo de la marca |
+| 1. Longitud en rango | Cumple: mismo largo que el original |
+| 2. Vocabulario del nivel | Cumple: `drink` y `meat` son del nivel, y ninguno es nuevo |
+| 3. Distincion | Cumple: no se confunde con sus hermanos |
+| 4. Traduccion fiel | Cumple: `¿Ella bebe carne?` dice exactamente lo que dice la oracion |
+| 5. Resoluble y del mismo tipo | Cumple: se resuelve igual que antes y es el mismo tipo de ejercicio |
+| Edicion acotada ([F-QICOR-R003](#F-QICOR-R003)) | Cumple: solo cambio el texto que la violacion señalaba |
+
+Cada criterio se cumple **localmente**: cada uno mira una propiedad del ejercicio y
+todas estan bien. Ninguno mira la oracion entera y pregunta si puede pasar. Lo que
+esta regla cierra no es un criterio demasiado indulgente: es un criterio que
+**faltaba**.
+
+**El caso de la marca del enunciado es el que importa.** Cuando el enunciado trae una
+marca que indica que verbo hay que conjugar —`(she / drink)`—, el ejercicio corregido
+tiene que tener sentido **con ese verbo**. Si respetar la marca vuelve absurda la
+oracion, lo correcto es **cambiar el resto de la oracion** —`meat` por `milk`— y no
+forzar el absurdo. Un ejercicio que fuerza el absurdo para respetar la marca no cumple
+esta regla.
+
+Eso tiene una consecuencia sobre la edicion acotada que conviene decir explicita, para
+que nadie la lea como una contradiccion: cambiar `meat` por `milk` toca una parte que
+**ninguna violacion señala**, asi que ese candidato reprueba
+[F-QICOR-R003](#F-QICOR-R003). Es exactamente el caso que aquella regla ya previo —"cuando
+la correccion no logra resolver la violacion sin tocar el resto, lo que corresponde es
+que ese candidato repruebe este criterio y se vuelva a intentar"— y desde
+[F-QICOR-R012](#F-QICOR-R012) reprobarlo ya no lo descarta: se entrega con el reproche
+declarado ([F-QICOR-R014](#F-QICOR-R014)), y el operador ve que la correccion cambio
+mas de lo señalado, que es verdad y vale la pena ver.
+
+| Candidato | Edicion acotada | Sentido | Que le pasa |
+|---|---|---|---|
+| `Does she drink meat?` | Cumple | **Reprueba** | No compite: no se entrega nunca |
+| `Does she drink milk?` | **Reprueba** | Cumple | Compite y se entrega, declarando la edicion no acotada |
+
+Es el orden de [F-QICOR-R013](#F-QICOR-R013) funcionando como se escribio: la edicion
+acotada esta anteultima porque su daño lo paga el **operador** —tiene que leer mas
+texto del que pidio—, mientras que el sinsentido lo paga el **alumno**.
+
+**Que NO reprueba este criterio.** La pregunta que decide es una sola: ¿un hablante
+podria decirlo en serio y ser entendido, o se detendria a corregirlo? Nada mas que
+eso. En particular no reprueba por:
+
+- **Ser corto, artificial, trivial o descontextualizado.** Un ejercicio de idioma es
+  una oracion suelta sin historia detras: asi funcionan, y esta bien.
+- **Ser improbable.** La vara es lo posible, no lo frecuente.
+- **Ficcion o humor que un hablante usaria igual.** Lo que reprueba es la oracion
+  ante la cual un hablante se detiene a decir "eso no se puede decir", no la que
+  usaria en un cuento o en broma y su interlocutor entenderia sin corregirlo.
+
+| Ejemplo | Veredicto | Por que |
+|---|---|---|
+| `Does she drink milk?` | Cumple | Alguien toma leche |
+| `Does she drink water?` | Cumple | Idem |
+| `The cat is on the table` | Cumple | Trivial y descontextualizado, y aun asi describe algo que pasa todos los dias |
+| `Does she drink meat?` | Reprueba | Nadie toma carne |
+| `He is driving a book` | Reprueba | Un libro no se conduce |
+
+**Si el hueco admite varias respuestas aceptadas, la exigencia vale para cada una.**
+El alumno puede completar con cualquiera de ellas, asi que cualquiera de ellas es el
+ejercicio que va a leer: basta que una produzca un imposible para que el criterio
+repruebe.
+
+**Por que veta, justo cuando el sistema le retiro el veto a todo lo demas.** No es una
+marcha atras sobre [F-QICOR-R012](#F-QICOR-R012) sino su limite, y se apoya en tres
+hechos:
+
+1. **No hay otro carril.** Un corregido fuera de rango abre otra tarea, con su propio
+   corrector ([F-QICOR-R011](#F-QICOR-R011)); un corregido que afirma un imposible no
+   abre nada, porque **ninguna medicion de la auditoria lo detecta**. Si esta
+   correccion no lo frena, entra al curso y se queda.
+2. **Vetar cuesta un reintento, no una tarea.** El mismo ejercicio `task-876` se
+   corrigio cuatro veces: las otras tres entregaron `Does she drink milk?`, `Does she
+   drink water?` y `Does she drink milk?`, todas correctas. Quien corrige **encuentra
+   la salida buena la mayoria de las veces**; lo que faltaba era que el sistema
+   rechazara la mala para que volviera a intentar. Es el reverso exacto del dato que
+   desarmo el veto de la longitud, donde 234 consultas de reintento no rescataron ni
+   una tarea.
+3. **Declarar en vez de vetar no alcanza aca.** Entregar diciendo "este ejercicio
+   afirma algo imposible" deja al operador como unica barrera de algo que **no es un
+   ejercicio**; y a diferencia de una propuesta con churn, lo que se aprueba
+   distraidamente aca no da mas trabajo: enseña algo falso. Ver
+   [DOUBT-SENTIDO-BLOQUEANTE](#DOUBT-SENTIDO-BLOQUEANTE).
+
+La comparacion completa con la longitud —el otro extremo del catalogo— esta en
+[F-QICOR-R011](#F-QICOR-R011), y las dos reglas dicen lo mismo desde sus dos puntas:
+**la calidad del ejercicio manda sobre la metrica**.
+
+**Por que aca veta y en la correccion de vocabulario no.** Alli el mismo criterio
+existe y es **deseable**: puntua y no bloquea
+([F-LASAG-R007](../2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md#F-LASAG-R007),
+criterio 4). Se queda como esta, por decision explicita, y esta regla no lo alcanza. Los
+dos casos no son el mismo: alli el ejercicio se **genera** donde no habia nada y compite
+contra la nada ([F-LASAG-R009](../2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md#F-LASAG-R009)),
+asi que uno flojo sigue siendo mejor que ninguno; aca se **edita** uno que ya
+funcionaba —el original `Does she eat meat?` tenia sentido— y el resultado se escribe
+encima. Rechazar alli devuelve la nada; rechazar aca devuelve el ejercicio anterior,
+que era bueno en todo salvo en su consigna.
+
+**Quien lo mide, y que pasa si no se pudo medir.** Es un criterio de juicio, como la
+traduccion fiel y la resolubilidad, y se consulta junto con el resto del catalogo
+([F-QICOR-R015](#F-QICOR-R015)) — que es lo que permite que quien corrige lo vea
+mientras todavia le quedan intentos. Si el veredicto **no se pudo obtener**, el
+candidato no compite, igual que con la consigna ([F-QICOR-R013](#F-QICOR-R013)): de un
+ejercicio del que nadie pudo decir si puede pasar no se escribe nada al curso. Que el
+sistema ademas lo rehaga por su cuenta antes de proponer lo decide
+[DOUBT-REVERIFICACION](#DOUBT-REVERIFICACION), no esta regla.
+
+**Que NO decide esta regla.** No juzga al ejercicio **original**: lo que exige es que
+lo que se escriba al curso pueda pasar. Si un original ya afirmaba un imposible fuera
+del fragmento que la violacion señala, esta regla puede dejar esa tarea sin correccion
+posible — ver [DOUBT-SENTIDO-PREEXISTENTE](#DOUBT-SENTIDO-PREEXISTENTE). Y alcanza
+unicamente a **esta** correccion.
+
+**Criterio de aceptacion**, partiendo del ejercicio real —hueco `[Does she eat]`, marca
+`(she / drink)`, resto `meat?`, traduccion `¿Ella come carne?`—: (a) un candidato `Does
+she drink meat?` con traduccion `¿Ella bebe carne?` **no se entrega**, aunque cumpla su
+consigna y los cinco criterios de no-empeoramiento del catalogo, el de longitud
+incluido;
+(b) un candidato `Does she drink milk?` con traduccion `¿Ella bebe leche?` **si** se
+entrega, aunque repruebe la edicion acotada por haber cambiado `meat` por `milk`, y la
+propuesta declara ese reproche ([F-QICOR-R014](#F-QICOR-R014)); (c) un candidato `The
+cat is on the table` no reprueba este criterio por ser trivial ni por estar
+descontextualizado; (d) agotados los intentos sin ningun candidato que describa algo
+posible, la tarea termina como correccion no lograda nombrando este criterio, el
+ejercicio del curso queda identico y la tarea sigue disponible
+([F-QICOR-R006](#F-QICOR-R006)); (e) este criterio nunca figura entre los criterios
+incumplidos que declara una propuesta emitida ([F-QICOR-R014](#F-QICOR-R014)); (f) un
+candidato cuyo hueco admite dos respuestas aceptadas, una que produce una oracion
+posible y otra que produce un imposible, reprueba este criterio.
+
+**Error**: "Se propuso para el ejercicio '{quizId}' una correccion que describe algo que no puede pasar en el mundo real"
 
 </details>
 
@@ -1501,13 +1777,57 @@ Eso obliga a decir tres cosas mas, y las tres estan escritas:
   resuelve la consulta lexica de una oracion
   ([FEAT-CLEX](../2026-07-22.01_consulta-lexica-de-oracion-por-cli/REQUIREMENT.md)).
 
-Queda un solo criterio absoluto, y no pertenece al catalogo de "no empeorar":
+Queda entonces un criterio absoluto, y no pertenece al catalogo de "no empeorar":
 **cumplir la consigna** ([F-QICOR-R005](#F-QICOR-R005)). Un corregido fuera de
 rango abre otro diagnostico, con su propio carril; uno que sigue incumpliendo
 reabre el mismo que lo origino y le hace perder al operador una revision para
 nada. Por eso "no se logro una correccion" sobrevive, pero acotado a lo que el
 nombre dice: no habia nada que entregar ([F-QICOR-R006](#F-QICOR-R006)). Sobre la
-corrida medida, ese desenlace pasa de 159 tareas a **2**.
+corrida medida, ese desenlace pasa de 159 tareas a **2**. Poco despues se le sumo un
+segundo absoluto, por un motivo distinto y con evidencia propia — es la seccion que
+sigue.
+
+### Una oracion imposible no es un ejercicio
+
+El ejercicio `task-876` pedia conjugar `drink` —la marca del enunciado decia `(she /
+drink)`— y su respuesta aceptada usaba `eat`: `Does she eat meat?`, `¿Ella come
+carne?`. La correccion resolvio el desajuste exactamente donde estaba y entrego `Does
+she drink meat?`, `¿Ella bebe carne?`. Se propuso, se aprobo, se escribio al curso y
+hubo que revertirla a mano.
+
+Lo inquietante no es que haya pasado, sino **por donde paso**. Ese candidato cumplia
+todo: la traduccion era fiel a la oracion nueva, la edicion quedo acotada a lo
+señalado, la consigna paso a cumplirse, el vocabulario era del nivel, se distinguia de
+sus hermanos, entraba en el rango de longitud y seguia siendo resoluble y del mismo
+tipo. Cada criterio se cumple **localmente**, y ninguno mira la oracion entera para
+preguntar lo unico que sobraba preguntar: si eso puede pasar. Nadie toma carne.
+
+La otra mitad del dato es la que decide que hacer. El mismo ejercicio se corrigio
+cuatro veces y las otras tres entregaron `Does she drink milk?`, `Does she drink
+water?` y `Does she drink milk?`, todas correctas. Quien corrige **encuentra la salida
+buena la mayoria de las veces**; lo que faltaba era que el sistema rechazara la mala
+para que volviera a intentar. Por eso este criterio veta y no se limita a declarar
+([F-QICOR-R016](#F-QICOR-R016)): vetar cuesta un reintento, no una tarea — el reverso
+exacto del dato que desarmo el veto de la longitud, donde 234 reintentos no rescataron
+ninguna.
+
+La asimetria con la longitud es deliberada y conviene tenerla escrita: un ejercicio
+fuera de rango sigue siendo un ejercicio —el alumno lo resuelve y aprende— y ademas
+tiene otro carril que lo arregla; uno que afirma un imposible no es un ejercicio y
+**ningun analizador de la auditoria lo detecta**, asi que si esta correccion no lo
+frena, entra al curso y se queda. Las dos reglas dicen lo mismo desde sus dos puntas:
+la calidad del ejercicio manda sobre la metrica. Y hay una consecuencia practica que
+no hay que leer como contradiccion: cuando respetar la marca vuelve absurda la oracion,
+lo correcto es cambiar el resto —`meat` por `milk`—, aunque eso repruebe la edicion
+acotada ([F-QICOR-R003](#F-QICOR-R003)) y se entregue con ese reproche a la vista. Un
+cambio de mas que el operador lee vale mucho menos que un imposible que el alumno
+estudia.
+
+Este criterio existe tambien en la correccion de vocabulario, donde es **deseable** y
+no bloquea ([F-LASAG-R007](../2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md#F-LASAG-R007),
+criterio 4). Se queda como esta: alli el ejercicio se genera donde no habia nada y
+compite contra la nada, asi que rechazar devuelve la nada; aca se edita uno que ya
+funcionaba, y rechazar devuelve el ejercicio anterior.
 
 ### El diagnostico puede haber envejecido
 
@@ -1562,6 +1882,9 @@ correccion sirvio— y su costo es una consulta por ejercicio corregido.
     propio de la tarea cuyo diagnostico ya no se sostiene.
   - Los criterios que el ejercicio corregido debe seguir cumpliendo y la
     verificacion de que efectivamente pasa a cumplir su consigna.
+  - La exigencia de que el ejercicio corregido, leido con el hueco resuelto,
+    describa algo que pueda pasar en el mundo real, y el descarte de todo candidato
+    que no la cumpla ([F-QICOR-R016](#F-QICOR-R016)).
   - La posibilidad de consultar esos criterios sobre un ejercicio candidato, con la
     misma medicion, sin tener que pedir una correccion.
   - El lazo de intentos del lado de quien corrige, con su maximo configurable, y la
@@ -1588,6 +1911,12 @@ correccion sirvio— y su costo es una consulta por ejercicio corregido.
     problema es la consigna y no el ejercicio, la correccion que corresponde es
     otra ([FEAT-KTLR](../2026-07-06.01_revisar-knowledge-title-length-con-agente/REQUIREMENT.md));
     ver [DOUBT-CONSIGNA-CULPABLE](#DOUBT-CONSIGNA-CULPABLE).
+  - **Buscar en el curso los ejercicios que afirman un imposible.** Esta feature
+    exige que el ejercicio **corregido** describa algo posible
+    ([F-QICOR-R016](#F-QICOR-R016)) y descarta al candidato que no; no recorre el
+    curso en busca de ejercicios imposibles ni abre tareas por ese motivo. Hoy no
+    existe ninguna medicion de la auditoria que lo detecte, y esta feature no la
+    crea.
   - **Corregir varios ejercicios de un knowledge de forma coordinada** para que
     no se parezcan entre si. Cada tarea se corrige por separado; la distincion se
     verifica contra el estado del curso, no se planifica en conjunto.
@@ -1606,7 +1935,7 @@ correccion sirvio— y su costo es una consulta por ejercicio corregido.
 Cubre el flujo principal de punta a punta: preparar la correccion con las
 violaciones, revalidar el diagnostico, pedir la correccion una sola vez, recibir el
 mejor candidato con su evaluacion, y decidir. Cubre R001, R002, R003, R004, R005,
-R006, R007, R009, R010, R011, R012, R013 y R014.
+R006, R007, R009, R010, R011, R012, R013, R014 y R016.
 
 ```yaml
 journeys:
@@ -1638,11 +1967,11 @@ journeys:
 
       - id: obtener_candidato
         action: "El sistema pide la correccion una sola vez; quien corrige produce candidatos dirigidos por las violaciones, los juzga con los criterios del sistema, decide por su cuenta si reintenta hasta el maximo configurado, y entrega el mejor candidato que vio"
-        gate: [F-QICOR-R004, F-QICOR-R012, F-QICOR-R013, F-QICOR-R015]
+        gate: [F-QICOR-R004, F-QICOR-R012, F-QICOR-R013, F-QICOR-R015, F-QICOR-R016]
         outcomes:
-          - when: "El candidato entregado cumple su consigna y constituye un cambio real sobre el original, aunque haya quedado fuera del rango de longitud de su nivel o repruebe algun otro criterio del catalogo"
+          - when: "El candidato entregado cumple su consigna, describe algo que puede pasar en el mundo real y constituye un cambio real sobre el original, aunque haya quedado fuera del rango de longitud de su nivel o repruebe algun criterio de no-empeoramiento del catalogo"
             then: verificar_consigna
-          - when: "Agotados los intentos, ningun candidato cumplio su consigna ni constituyo un cambio real: no hay nada entregable"
+          - when: "Agotados los intentos, ningun candidato resulto entregable: ninguno cumplio su consigna, ninguno describio algo que pueda pasar en el mundo real o ninguno constituyo un cambio real"
             then: sin_correccion
 
       - id: verificar_consigna
@@ -1753,8 +2082,9 @@ descartaba antes —inventa una cuarta categoria de revision— y porque, entreg
 el reproche a la vista, no agrega nada que el operador no pueda ya hacer rechazando.
 El riesgo de la aprobacion distraida es real y se acepta a cambio de las 157
 correcciones; lo que lo hace tolerable es que el reproche sea visible antes de
-aprobar y que la consigna siga siendo absoluta
-([F-QICOR-R005](#F-QICOR-R005)) — nunca se propone algo que no corrige el problema.
+aprobar y que queden dos criterios absolutos —la consigna
+([F-QICOR-R005](#F-QICOR-R005)) y el sentido ([F-QICOR-R016](#F-QICOR-R016))—: nunca
+se propone algo que no corrige el problema, ni algo que no podria pasar.
 
 <a id="DOUBT-REINTENTOS"></a>
 ### Doubt[DOUBT-REINTENTOS] - Cuantos intentos consume una tarea antes de entregar lo mejor que tenga?
@@ -2103,38 +2433,110 @@ natural y **no requiere cambiar ninguna regla** de este documento; conviene
 decidirla recien cuando exista una razon positiva para normalizar, que hoy no hay.
 
 <a id="DOUBT-CRITERIO-ABSOLUTO"></a>
-### Doubt[DOUBT-CRITERIO-ABSOLUTO] - Que criterio, si alguno, sigue pudiendo impedir una entrega?
+### Doubt[DOUBT-CRITERIO-ABSOLUTO] - Que otro criterio, si alguno, deberia impedir una entrega?
 **Status**: OPEN
 
-[F-QICOR-R012](#F-QICOR-R012) entrega el mejor candidato aunque repruebe criterios,
-y [F-QICOR-R005](#F-QICOR-R005) queda como el unico absoluto. Es defendible que
-algun otro tambien lo sea: hay criterios cuyo incumplimiento **rompe el ejercicio
-para el alumno**, no solo lo empeora.
+[F-QICOR-R012](#F-QICOR-R012) entrega el mejor candidato aunque repruebe criterios.
+Los absolutos son hoy **dos**: cumplir la consigna ([F-QICOR-R005](#F-QICOR-R005)) y
+describir algo que pueda pasar ([F-QICOR-R016](#F-QICOR-R016), decidido
+explicitamente). Sigue siendo defendible que algun criterio **de no-empeoramiento**
+tambien lo sea: hay incumplimientos que **rompen el ejercicio para el alumno**, no
+solo lo empeoran.
 
-- [x] Opcion A: **Solo el cumplimiento de la consigna.** Lo demas se entrega
-  declarado y el operador decide. Es la lectura fiel de la decision tomada, y la
-  medicion la respalda: de los 159 candidatos descartados, 149 lo fueron por
-  longitud o edicion acotada —ninguno de los dos daña al alumno— y solo 5 por
-  resolubilidad o traduccion. A cambio, un ejercicio irresoluble puede llegar a la
-  bandeja del operador.
+- [x] Opcion A: **Solo los dos ya fijados.** Lo demas se entrega declarado y el
+  operador decide. Es la lectura fiel de las decisiones tomadas, y la medicion la
+  respalda: de los 159 candidatos descartados, 149 lo fueron por longitud o edicion
+  acotada —ninguno de los dos daña al alumno— y solo 5 por resolubilidad o
+  traduccion. A cambio, un ejercicio irresoluble puede llegar a la bandeja del
+  operador.
 - [ ] Opcion B: **Ninguno.** Se entrega siempre el mejor candidato, tambien cuando
-  sigue incumpliendo la consigna. Maximiza lo entregado; a cambio propone cambios
-  que no resuelven el problema que los origino y devuelve la misma tarea al plan en
-  la auditoria siguiente — el desenlace que [F-QICOR-R005](#F-QICOR-R005) existe
-  para impedir.
-- [ ] Opcion C: **La consigna, la resolubilidad y la traduccion fiel.** Los tres
+  sigue incumpliendo la consigna o afirma un imposible. Maximiza lo entregado; a
+  cambio propone cambios que no resuelven el problema que los origino —el desenlace
+  que [F-QICOR-R005](#F-QICOR-R005) existe para impedir— y deja entrar al curso
+  ejercicios de los que no se puede aprender nada
+  ([F-QICOR-R016](#F-QICOR-R016)).
+- [ ] Opcion C: **Se suman la resolubilidad y la traduccion fiel.** Los otros dos
   cuyo incumplimiento le llega al alumno como un ejercicio inservible o
   contradictorio. Protege mejor el curso; a cambio devuelve el descarte —y su costo—
   para un puñado de casos, y obliga a defender por que la distincion o el
   vocabulario no estan en esa lista.
 
-**Answer**: Pendiente. Se especifica la **Opcion A** [ASSUMPTION] por fidelidad a la
-decision tomada y porque el volumen que la Opcion C recuperaria es minimo —5 tareas
-sobre 305— frente al costo de reintroducir el descarte. Conviene revisarla con el
-primer recuento de [F-QICOR-R014](#F-QICOR-R014): si aparecen propuestas entregadas
-que reprueban resolubilidad o traduccion fiel con alguna frecuencia, la Opcion C pasa
-a valer la pena, y es un cambio chico —mover dos criterios de la lista que ordena a
-la lista que impide—.
+**Answer**: Pendiente. Se especifica la **Opcion A** [ASSUMPTION] porque el volumen
+que la Opcion C recuperaria es minimo —5 tareas sobre 305— frente al costo de
+reintroducir el descarte. Lo que cambio desde que se escribio esta duda es que ya
+existe el precedente de como se mueve un criterio de la lista que **ordena** a la que
+**impide**, y con que evidencia se hace: el sentido lo hizo con un defecto medido, un
+carril inexistente y un veto barato ([DOUBT-SENTIDO-BLOQUEANTE](#DOUBT-SENTIDO-BLOQUEANTE)).
+Conviene revisar esta duda con el primer recuento de
+[F-QICOR-R014](#F-QICOR-R014) y contra esa misma vara: si aparecen propuestas
+entregadas que reprueban resolubilidad o traduccion fiel con alguna frecuencia, la
+Opcion C pasa a valer la pena.
+
+<a id="DOUBT-SENTIDO-BLOQUEANTE"></a>
+### Doubt[DOUBT-SENTIDO-BLOQUEANTE] - Que peso tiene que un ejercicio corregido afirme algo imposible?
+**Status**: RESOLVED (2026-08-11)
+
+`Does she drink meat?` cumplio todos los criterios del catalogo, se propuso, se aprobo
+y se escribio al curso. Habia que decidir con que fuerza entra el sentido al catalogo,
+justo despues de que [F-QICOR-R012](#F-QICOR-R012) le retirara el veto a todo lo demas.
+
+- [ ] Opcion A: **Deseable, como en la correccion de vocabulario.** Puntua y no
+  bloquea ([F-LASAG-R007](../2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md#F-LASAG-R007),
+  criterio 4). Es la conducta que el resto del sistema ya tiene y no cuesta ninguna
+  tarea; a cambio, el caso medido —un imposible aprobado y escrito al curso— vuelve a
+  pasar exactamente igual.
+- [x] Opcion B: **Absoluto: el candidato que lo reprueba no compite.** Ningun
+  imposible llega a la bandeja del operador; a cambio, una tarea cuyos candidatos
+  fueran todos absurdos termina sin correccion.
+- [ ] Opcion C: **Un criterio mas del catalogo**: empuja a reintentar, baja al
+  candidato en el orden y, si es el mejor, se entrega declarando que afirma un
+  imposible. Es la doctrina de [F-QICOR-R012](#F-QICOR-R012) aplicada tal cual; a
+  cambio deja al operador como unica barrera de algo que no es un ejercicio, y basta
+  una aprobacion distraida para que el curso enseñe algo falso.
+
+**Answer**: **Opcion B**, decidida explicitamente. Tres hechos la sostienen y estan en
+[F-QICOR-R016](#F-QICOR-R016): (1) no hay otro carril —a diferencia de la longitud,
+ninguna medicion de la auditoria detecta que un ejercicio afirme un imposible, asi que
+lo que pasa se queda—; (2) vetar cuesta un reintento y no una tarea: el mismo ejercicio
+corregido cuatro veces produjo **tres** salidas con sentido, o sea que quien corrige ya
+encuentra la salida buena y lo que faltaba era el rechazo que lo hace volver a
+intentar; (3) la Opcion C, que es la doctrina vigente para todo lo demas, falla aca
+porque lo que se aprueba distraidamente no cuesta trabajo extra sino contenido falso en
+el curso. La Opcion A se descarta **para esta correccion y solo para esta**: alli el
+ejercicio se genera contra la nada y aca se edita uno que ya funcionaba, de modo que
+rechazar tiene precios opuestos en cada lado. La asimetria con la longitud, que va en
+la direccion contraria, se explica en [F-QICOR-R011](#F-QICOR-R011).
+
+<a id="DOUBT-SENTIDO-PREEXISTENTE"></a>
+### Doubt[DOUBT-SENTIDO-PREEXISTENTE] - Que pasa si el ejercicio original ya afirmaba un imposible?
+**Status**: OPEN
+
+[F-QICOR-R016](#F-QICOR-R016) juzga al ejercicio **corregido**, sin mirar de donde
+salio el absurdo. En el caso medido el absurdo lo introdujo la correccion —el original
+`Does she eat meat?` tenia sentido—, pero nada garantiza que siempre sea asi: si un
+original ya afirmaba un imposible en un fragmento que ninguna violacion señala, ningun
+candidato puede arreglarlo sin reprobar la edicion acotada, y si el absurdo sobrevive,
+tampoco puede entregarse. La tarea queda sin correccion posible.
+
+- [x] Opcion A: **Absoluto sobre el ejercicio corregido**, venga de donde venga el
+  absurdo. Lo que se escribe al curso siempre puede pasar, y se verifica mirando una
+  sola oracion; a cambio, un original ya absurdo puede volver incorregible su tarea —
+  la misma forma de trampa que costo 78 tareas con la longitud y 192 con la parte
+  vacia.
+- [ ] Opcion B: **No regresivo**: reprueba solo si el original tenia sentido y el
+  candidato no. Es la doctrina que [F-QICOR-R004](#F-QICOR-R004) ya aplica al
+  vocabulario —"los flags preexistentes no bloquean"— y ninguna tarea se vuelve
+  incorregible; a cambio deja entrar al curso un imposible que ya estaba, y obliga a
+  juzgar dos oraciones en lugar de una.
+
+**Answer**: Pendiente. Se especifica la **Opcion A** [ASSUMPTION] porque es lo que el
+enunciado exige hoy y porque no hay ningun dato que muestre que el caso preexistente
+exista siquiera: el unico absurdo observado lo produjo la correccion. La medicion que
+decide ya esta pedida sin trabajo extra — [F-QICOR-R006](#F-QICOR-R006) obliga a
+nombrar los criterios reprobados de cada tarea perdida, asi que basta contar cuantas
+terminan nombrando **unicamente** el sentido. Si aparecen en volumen, la Opcion B es el
+cambio chico que las destraba; si no aparecen, la Opcion A no le esta costando nada al
+plan.
 
 <a id="DOUBT-ORDEN-DESEMPATE"></a>
 ### Doubt[DOUBT-ORDEN-DESEMPATE] - El orden de precedencia entre criterios es el correcto?
@@ -2176,8 +2578,8 @@ toma como esta o la rehace antes de declararla en la propuesta
 
 - [x] Opcion A: **Se rehacen los criterios que no cuestan una consulta** —longitud,
   vocabulario, edicion acotada, distincion— y se toma de la evaluacion recibida el
-  veredicto de los que si la cuestan —traduccion fiel, resolubilidad—. El
-  cumplimiento de la consigna lo verifica siempre el sistema
+  veredicto de los que si la cuestan —traduccion fiel, resolubilidad, sentido en el
+  mundo real—. El cumplimiento de la consigna lo verifica siempre el sistema
   ([F-QICOR-R005](#F-QICOR-R005)) y no se paga dos veces gracias a la huella del
   contenido. Lo declarado es entonces medicion propia donde es gratis serlo.
 - [ ] Opcion B: **Se toma entera la evaluacion recibida.** Lo mas barato y lo mas
@@ -2194,7 +2596,13 @@ declaracion de [F-QICOR-R014](#F-QICOR-R014) anclada en la medicion del sistema 
 los cuatro criterios deterministas, que son ademas los que la auditoria siguiente va
 a volver a medir. Ninguna de las tres opciones cambia el enunciado de una regla de
 este documento: las tres declaran lo mismo, y lo que cambia es de quien es la
-medicion que respalda la declaracion.
+medicion que respalda la declaracion. Queda una asimetria anotada: el **sentido**
+([F-QICOR-R016](#F-QICOR-R016)) es el unico criterio absoluto cuyo veredicto se toma
+de la evaluacion recibida, mientras que el otro absoluto —la consigna— se rehace
+siempre. Es defendible porque quien corrige lo juzgo con el criterio del sistema
+([F-QICOR-R015](#F-QICOR-R015)) y porque rehacerlo cuesta una consulta pagada por
+tarea; si alguna vez llegara al curso un imposible pese al criterio, la correccion
+mas barata es rehacer **ese** veredicto y no toda la evaluacion.
 
 ## References
 
@@ -2228,11 +2636,19 @@ medicion que respalda la declaracion.
   deliberadamente de ese mejor-esfuerzo —alli el ejercicio emitido es nuevo y
   compite contra la nada, aca compite contra uno que ya funcionaba—; el argumento
   sobrevive como razon para **declarar** lo que el candidato no cumple
-  ([F-QICOR-R014](#F-QICOR-R014)), no para descartarlo. Citada por
+  ([F-QICOR-R014](#F-QICOR-R014)), no para descartarlo. En su catalogo vive ademas el
+  criterio equivalente al del sentido —el [Pragmatismo](glossary:Pragmatismo), criterio 4 de
+  [F-LASAG-R007](../2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md#F-LASAG-R007)—
+  con la clasificacion **opuesta**: alli es deseable, puntua y no bloquea. La
+  diferencia es deliberada y **no se propaga en ninguna direccion**; el porque esta en
+  [F-QICOR-R016](#F-QICOR-R016), y es el mismo argumento de siempre leido al reves:
+  rechazar cuesta la nada cuando el ejercicio se genera y cuesta un reintento cuando se
+  edita uno que ya funcionaba. Citada por
   [F-QICOR-R003](#F-QICOR-R003), [F-QICOR-R004](#F-QICOR-R004),
   [F-QICOR-R006](#F-QICOR-R006), [F-QICOR-R012](#F-QICOR-R012),
-  [F-QICOR-R013](#F-QICOR-R013), [DOUBT-REINTENTOS](#DOUBT-REINTENTOS) y el
-  Contexto.
+  [F-QICOR-R013](#F-QICOR-R013), [F-QICOR-R016](#F-QICOR-R016),
+  [DOUBT-REINTENTOS](#DOUBT-REINTENTOS),
+  [DOUBT-SENTIDO-BLOQUEANTE](#DOUBT-SENTIDO-BLOQUEANTE) y el Contexto.
 - **FEAT-REVBYP** (`2026-04-17.01_refiner-revision-bypass`) — Establece el
   comportamiento de identidad al que hoy cae la revision de una tarea de
   incumplimiento de consigna: la propuesta existe y no cambia nada. Es el estado

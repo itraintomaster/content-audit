@@ -171,7 +171,7 @@ public class QuizInstructionContextResolver implements CorrectionContextResolver
                 // string id it was loaded under. Left null here and stamped by
                 // DefaultRevisionEngine from the plan's sourceAuditId, mirroring the
                 // identical gap/fix already established for LemmaAbsenceCorrectionContext.
-                null);
+                null, null);
 
         return Optional.of(context);
     }

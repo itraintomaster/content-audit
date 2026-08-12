@@ -3,8 +3,7 @@ package com.learney.contentaudit.revisiondomain;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.QuizInstructionCorrectionContext;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
-import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
-import java.util.List;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionBestCandidate;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -16,6 +15,6 @@ public interface QuizInstructionProposalStrategy {
 
     boolean handles(DiagnosisKind kind);
 
-    LemmaAbsenceQuizCandidate propose(RefinementTask task, QuizInstructionCorrectionContext context,
-            List<CriterionVerdict> previousVerdicts, int attempt);
+    QuizInstructionBestCandidate propose(RefinementTask task,
+            QuizInstructionCorrectionContext context, int maxAttempts);
 }

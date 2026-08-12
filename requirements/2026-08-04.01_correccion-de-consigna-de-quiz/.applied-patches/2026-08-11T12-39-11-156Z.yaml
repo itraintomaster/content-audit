@@ -1,0 +1,255 @@
+code: FEAT-QICOR
+description: |
+  Cobertura del tramo 2026-08-11 (el lazo cambia de dueno): F-QICOR-R012, R013, R014,
+  R015 y la R011 que quedo sin un solo test directo. Solo handwrittenTests.
+
+  Da vuelta los tests que el tramo dejo sin sustento: el reviser ya no descarta su mejor
+  candidato ni conduce el lazo, y el assessor ya no corta al primer no-PASSED (ni tiene
+  un "accepted" que consultar). Re-tag de los que cambian de dueno sin morir y de los
+  dos de longitud que seguian colgados de R004.
+modules:
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: QuizInstructionReviser
+      handwrittenTests:
+      - name: should discard the best candidate it produced instead of proposing one
+          that failed a criterion
+        _change: delete
+      - name: "should stop generating candidates once the configured attempt limit\
+          \ is reached, instead of retrying indefinitely"
+        _change: delete
+      - name: "should ask the correction for a candidate exactly once per task, even\
+          \ when the candidate it gets back failed a criterion of the catalog"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R012
+      - name: "should propose the best candidate the correction handed back even though\
+          \ it failed a criterion of the catalog, as long as it complies with its\
+          \ instruction"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R012
+      - name: should hand the attempt limit the run configured to the correction inside
+          the single request it emits
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R012
+      - name: should verify by itself that the delivered candidate complies with its
+          instruction instead of taking at its word the verdict the correction reported
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R012
+      - name: "should name in the proposal the criteria the delivered quiz did not\
+          \ meet, each one with the reason it was reproached"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: should leave the proposal with no unmet criteria declared when the delivered
+          candidate satisfied the whole catalog
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: "should never name the length among the unmet criteria of the proposal,\
+          \ even when the delivered quiz fell outside the range of its level"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: should propose a correction whose only failing criterion is that its
+          length fell outside the target range of its level
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      - name: should declare on the proposal the tokens measured for the delivered
+          quiz and the target range of its level
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+    - name: DefaultQuizInstructionCandidateAssessor
+      handwrittenTests:
+      - name: "should build the assessment request out of the correction context,\
+          \ carrying into it the fragments the diagnosis signalled"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: "should derive the candidate snapshot with the same deriver that builds\
+          \ the proposed state, so what gets judged is exactly what would be proposed"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+    - name: DefaultQuizInstructionCorrectionRunner
+      handwrittenTests:
+      - name: "should count how many of the corrections it proposed arrived with at\
+          \ least one unmet criterion, without adding a fifth outcome"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: "should carry the unmet criteria of every proposed correction in its\
+          \ per-task outcome, so its count can be checked against them"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: should never name the length among the failed criteria of a correction
+          it reports as not achieved
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      - name: "should count how many of the corrections it proposed landed outside\
+          \ the target range of their level, apart from the count of those with unmet\
+          \ criteria"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+  - name: candidatecriteriaengine
+    implementations:
+    - name: DefaultCandidateAssessor
+      handwrittenTests:
+      - name: should accept a candidate only when every criterion of the active catalog
+          returned a passing verdict
+        _change: delete
+      - name: "should refuse a candidate as soon as one criterion returns a failing\
+          \ verdict, whichever criterion it is"
+        _change: delete
+      - name: "should refuse a candidate whose criterion could not be evaluated, instead\
+          \ of letting an unverified candidate through"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+        _change: modify
+      - name: should carry in the assessment the criterion that blocked the candidate
+          together with the detail of why it failed
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+        _change: modify
+      - name: "should return a verdict for every criterion of the active catalog,\
+          \ without stopping at the first one that returns a failing verdict"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004
+      - name: should mark as not competing a candidate that complies with its instruction
+          but is not a real change over the original
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: should keep a criterion that could not be evaluated distinguishable
+          from one that was reproached among the unmet criteria it reports
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R014
+      - name: should not let the length add to the number of criteria a candidate
+          satisfies
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+    - name: DefaultCandidateRanking
+      handwrittenTests:
+      - name: should rank above the candidate that satisfies more criteria of the
+          catalog
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: should break a tie between candidates that satisfy the same number of
+          criteria in favour of the one that satisfies the criterion of higher precedence
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: should declare the precedence of the criteria from the one whose failure
+          harms the student most down to the one that only costs the operator a longer
+          read
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: "should rank a candidate that does not compete below every candidate\
+          \ that does, however many criteria it satisfies"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: should let the length decide only between two candidates that satisfy
+          exactly the same criteria
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: should rank an out-of-range candidate that stays solvable above an in-range
+          one that does not
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+      - name: "should keep the incumbent champion when the challenger ranks equal,\
+          \ so the candidate seen first is the one delivered"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R013
+    - name: DefaultCandidateLengthMeter
+      handwrittenTests:
+      - name: should count the tokens of the candidate with the same tokenizer the
+          audit uses and report the target range its level declares
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: should mark as in range a token count that lands inside the target of
+          its level and as out of range one that does not
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+      - name: should report the measurement as not obtained instead of reporting zero
+          tokens when the level declares no target range
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+    - name: LengthInRangeCriterion
+      handwrittenTests:
+      - name: should fail a candidate whose corrected sentence falls outside the token
+          range its CEFR level targets
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+        _change: modify
+      - name: "should measure the candidate with the same tokenizer and the same level\
+          \ range the audit applies, and pass it when the count lands inside"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R011
+        _change: modify
+    - name: LevelVocabularyCriterion
+      handwrittenTests:
+      - name: "should judge the level vocabulary with the same lexical evaluator the\
+          \ audit applies, instead of an approximation of it"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+- name: revision-infrastructure
+  packages:
+  - name: quizinstructionagent
+    implementations:
+    - name: QuizInstructionAgentGenerator
+      handwrittenTests:
+      - name: "should pass the attempt limit it was given to the agent that drives\
+          \ the correction loop, instead of looping on its own"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R012
+    - name: DefaultQuizInstructionAgentCandidateParser
+      handwrittenTests:
+      - name: should read back the verdicts the correction measured for the candidate
+          it hands over and how many attempts it spent
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R012
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: AssessCandidateCmd
+      handwrittenTests:
+      - name: "should return one verdict per criterion of the catalog for the candidate\
+          \ consulted, with its reason when the verdict is negative"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015
+      - name: "should take the original quiz from the course with the same locator\
+          \ the correction uses, instead of rebuilding it from what the caller sent"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R015

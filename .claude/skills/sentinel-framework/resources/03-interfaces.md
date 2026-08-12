@@ -736,6 +736,14 @@ Examples:
 |--------|--------|
 | `reviseInstructions(String planId, Integer maxCorrections, String coursePath): Integer` | (none) |
 
+#### AssessCandidateCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `assessCandidate(String planId, String taskId, String candidateQuizSentence, String candidateTranslation, String coursePath, String format): Integer` | (none) |
+
 #### EphemeralPlanRenderer (package: commands)
 
 **Package:** `com.learney.contentaudit.auditcli.commands`
@@ -1124,7 +1132,7 @@ Examples:
 |--------|--------|
 | `id(): StrategyId` | (none) |
 | `handles(DiagnosisKind kind): boolean` | (none) |
-| `propose(RefinementTask task, QuizInstructionCorrectionContext context, List<CriterionVerdict> previousVerdicts, int attempt): LemmaAbsenceQuizCandidate` | (none) |
+| `propose(RefinementTask task, QuizInstructionCorrectionContext context, int maxAttempts): QuizInstructionBestCandidate` | (none) |
 
 #### QuizInstructionProposalStrategyRegistry [SEALED] (service)
 
@@ -1322,6 +1330,26 @@ Examples:
 |--------|--------|
 | `create(CandidateCriteriaConfig config): CandidateAssessor` | (none) |
 
+#### CandidateLengthMeter (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `measure(CandidateAssessmentInput input): CandidateLengthMeasurement` | (none) |
+
+#### CandidateRanking (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `rankKey(CandidateAssessment assessment): String` | (none) |
+| `better(String incumbentRankKey, String challengerRankKey): boolean` | (none) |
+| `precedence(): List<CorrectionCriterion>` | (none) |
+
 #### QuizInstructionCandidateGenerator (package: quizinstruction)
 
 **Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
@@ -1330,6 +1358,25 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `generate(QuizInstructionGenerationRequest request): QuizInstructionGeneratorResponse` | (none) |
+
+#### QuizInstructionCandidateAssessor (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `assess(QuizInstructionCorrectionContext context, CourseElementSnapshot original, String candidateQuizSentence, String candidateTranslation): CandidateAssessment` | (none) |
+| `assessTask(String planId, String taskId, Path coursePath, String candidateQuizSentence, String candidateTranslation): CandidateAssessment` | (none) |
+
+#### QuizInstructionCandidateAssessorFactory (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(QuizInstructionCandidateAssessorConfig config): QuizInstructionCandidateAssessor` | (none) |
 
 ### Module: revision-infrastructure
 

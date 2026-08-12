@@ -1,0 +1,146 @@
+code: FEAT-QICOR
+description: "F-QICOR-R016: el sentido en el mundo real entra al catalogo como sexto\
+  \ criterio y segundo absoluto de la feature. Veta por elegibilidad (no por el orden),\
+  \ y su evaluador entra por un slot propio y OBLIGATORIO del carrier de configuracion,\
+  \ porque un criterio que veta y se puede apagar por omision no es absoluto."
+modules:
+- name: revision-domain
+  packages:
+  - name: candidatecriteria
+    models:
+    - name: CorrectionCriterion
+      type: enum
+      fields:
+      - name: REAL_WORLD_SENSE
+        description: "Leido con el hueco YA RESUELTO -como lo lee el alumno-, el ejercicio\
+          \ corregido describe algo que puede pasar en el mundo real (F-QICOR-R004\
+          \ criterio 6, F-QICOR-R016). Criterio de juicio y SEGUNDO ABSOLUTO de la\
+          \ feature: su veredicto negativo no baja al candidato en el orden, lo saca\
+          \ de la competencia. Un outcome distinto de PASSED -incluido NOT_EVALUABLE-\
+          \ deja eligible en false y ese candidato no se entrega nunca, cumpla lo\
+          \ que cumpla. Por eso NO suma en satisfiedCriteria y NO entra en la precedencia\
+          \ de F-QICOR-R013, que conserva exactamente sus mismos renglones: como todo\
+          \ candidato que compite lo cumple, contarlo le sumaria la misma unidad a\
+          \ todos y no desempataria jamas. Se devuelve siempre en verdicts (F-QICOR-R015\
+          \ (a)) y solo puede figurar entre los criterios sin cumplir de un candidato\
+          \ NO elegible: de ahi que jamas aparezca en la lista que declara una propuesta\
+          \ emitida (F-QICOR-R014 (f)) y que si pueda nombrar el desenlace de correccion\
+          \ no lograda (F-QICOR-R006, F-QICOR-R016 (d)). El veto es de ESTE catalogo:\
+          \ en la correccion por ausencia de lema el criterio equivalente es deseable\
+          \ y no bloquea (F-LASAG-R007 criterio 4), por decision explicita del usuario,\
+          \ porque alli el ejercicio se genera contra la nada y aca se edita uno que\
+          \ ya funcionaba."
+        _change: add
+      visibility: public
+      _change: modify
+    - name: CandidateCriteriaConfig
+      type: record
+      fields:
+      - name: judgmentEvaluators
+        type: List<CandidateCriterionEvaluator>
+        description: "Evaluadores de los criterios de juicio que NO vetan -traduccion\
+          \ fiel, resolubilidad- aportados por la infraestructura. Vacia significa\
+          \ que esos criterios no se evaluan y el catalogo activo se reduce, lo que\
+          \ sigue siendo aceptable justamente porque ninguno de ellos decide: reprobarlos\
+          \ baja al candidato en el orden y se declara (F-QICOR-R013, F-QICOR-R014).\
+          \ El sentido en el mundo real NO entra por aca aunque sea de la misma familia\
+          \ y lo produzca la misma factory: ver realWorldSenseEvaluator."
+        _change: modify
+      - name: realWorldSenseEvaluator
+        type: CandidateCriterionEvaluator
+        description: "Evaluador del criterio REAL_WORLD_SENSE (F-QICOR-R016). Campo\
+          \ propio y OBLIGATORIO, exactamente como complianceChecker para el otro\
+          \ absoluto (F-QICOR-R005): los dos criterios que vetan entran por un slot\
+          \ que no se puede omitir, y que los dos absolutos quedaran desparejos era\
+          \ la anomalia. No viaja en judgmentEvaluators aunque lo produzca la MISMA\
+          \ CandidateJudgmentEvaluatorFactory indexada por criterio y el mismo grafo\
+          \ -no hay camino nuevo, solo un slot distinto-: un criterio que veta y que\
+          \ se apaga si alguien olvida una linea no es absoluto, y el modo de falla\
+          \ ya se pago en este proyecto (un evaluador no disponible por configuracion\
+          \ y una corrida que reporto exito sin haber evaluado nada). Un nulo aca\
+          \ lo rechaza la factory con AbsoluteCriterionEvaluatorMissingException nombrando\
+          \ el criterio que falta, en vez de caer en un NPE tres capas adentro del\
+          \ lazo. Cuando el runtime de juicio no esta disponible, lo que corresponde\
+          \ poner aca es un evaluador que devuelva NOT_EVALUABLE, NUNCA uno que apruebe\
+          \ por omision: F-QICOR-R016 ya fija la consecuencia -de un ejercicio del\
+          \ que nadie pudo decir si puede pasar no se escribe nada al curso- y el\
+          \ desenlace queda nombrado en failedCriteria en vez de silencioso."
+        _change: add
+      _change: modify
+    - name: CandidateAssessment
+      type: record
+      fields:
+      - name: eligible
+        type: boolean
+        description: "Si el candidato COMPITE por ser el mejor. Son TRES condiciones\
+          \ desde F-QICOR-R016, y las tres son absolutas: cumple su consigna (INSTRUCTION_COMPLIANCE=PASSED,\
+          \ F-QICOR-R005), describe algo que puede pasar en el mundo real (REAL_WORLD_SENSE=PASSED,\
+          \ F-QICOR-R016) y constituye un cambio real sobre el original (F-QICOR-R001,\
+          \ F-QICOR-R010). Un NOT_EVALUABLE en cualquiera de los dos criterios de\
+          \ juicio absolutos deja al candidato fuera igual que un FAILED: la lectura\
+          \ prudente es la misma en los dos casos (F-QICOR-R013). Un candidato no\
+          \ elegible no es un candidato peor, no es un candidato: por eso los absolutos\
+          \ son condicion para competir y no escalones del orden, que conserva sus\
+          \ seis renglones."
+        _change: modify
+      - name: unmetCriteria
+        type: List<CriterionVerdict>
+        description: "Subconjunto de verdicts con outcome distinto de PASSED, EXCLUIDA\
+          \ la longitud. Es exactamente lo que la propuesta declara (F-QICOR-R014)\
+          \ y exactamente lo que devuelve la consulta de F-QICOR-R015 (c) -la misma\
+          \ lista, no dos opiniones-. Los dos criterios absolutos solo pueden aparecer\
+          \ aca sobre un candidato NO elegible, que por definicion no se entrega:\
+          \ de ahi que la asimetria de F-QICOR-R014 (f) -ninguna propuesta emitida\
+          \ nombra jamas la consigna ni el sentido, aunque la consulta separada si\
+          \ los devuelva en verdicts- se sostenga por construccion y no por un filtro,\
+          \ y de ahi que el desenlace de correccion no lograda si pueda nombrarlos\
+          \ (F-QICOR-R006)."
+        _change: modify
+      _change: modify
+    - name: AbsoluteCriterionEvaluatorMissingException
+      type: exception
+      fields:
+      - name: criterion
+        type: CorrectionCriterion
+        description: "El criterio absoluto que quedo sin evaluador. La construccion\
+          \ del catalogo falla fuerte y NOMBRADA en vez de dejar que la ausencia se\
+          \ descubra tres capas adentro o se disuelva en una corrida entera de NOT_CORRECTED\
+          \ muda. Un criterio que veta no admite ausencia: si no se lo puede evaluar\
+          \ hay que decirlo, no seguir (F-QICOR-R016)."
+      message: "No se puede construir el catalogo de criterios: falta el evaluador\
+        \ del criterio absoluto '%s'"
+      visibility: public
+      _change: add
+      extends: RuntimeException
+    _change: modify
+  - name: quizinstruction
+    models:
+    - name: QuizInstructionTaskOutcomeKind
+      type: enum
+      fields:
+      - name: NOT_CORRECTED
+        description: "Se intento, se gasto, y NINGUN candidato resulto entregable.\
+          \ Son TRES caminos desde F-QICOR-R016: ninguno cumplio su consigna (F-QICOR-R005),\
+          \ ninguno describio algo que pueda pasar en el mundo real (F-QICOR-R016\
+          \ (d)) o ninguno fue un cambio real (F-QICOR-R006, reescrita por F-QICOR-R012).\
+          \ Reprobar un criterio que NO veta ya no lleva aca: ese candidato termina\
+          \ en PROPOSED con lo incumplido declarado."
+        _change: modify
+      visibility: public
+      _change: modify
+    - name: QuizInstructionTaskOutcome
+      type: record
+      fields:
+      - name: failedCriteria
+        type: List<CorrectionCriterion>
+        description: "Criterios reprobados por los candidatos que no resultaron entregables.\
+          \ Poblada solo en NOT_CORRECTED. Desde F-QICOR-R012 los unicos que pueden\
+          \ nombrarse a solas aca son los que VETAN: INSTRUCTION_COMPLIANCE (F-QICOR-R005)\
+          \ y REAL_WORLD_SENSE (F-QICOR-R016 (d)) -si el candidato cumplia los dos,\
+          \ se entrego con lo demas declarado-. Ningun otro criterio de F-QICOR-R004\
+          \ puede figurar a solas, y la longitud no puede figurar NUNCA (F-QICOR-R011,\
+          \ F-QICOR-R006 (c))."
+        _change: modify
+      _change: modify
+    _change: modify
+  _change: modify

@@ -78,7 +78,7 @@ public class DefaultImpactPreviewComputerTest {
                 snapshot, snapshot,
                 "bypass: identity revision", "bypass", Instant.parse("2026-05-03T10:00:00Z"),
                 null
-        );
+        , null, null);
     }
 
     /**
@@ -672,7 +672,7 @@ public class DefaultImpactPreviewComputerTest {
                 snapshotBefore, snapshotAfter,
                 "strategy: improve lemma absence", "lemma-absence-mvp",
                 Instant.parse("2026-05-03T10:00:00Z"), null
-        );
+        , null, null);
 
         AuditNode quizBaseline = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.45), Map.of(), null);

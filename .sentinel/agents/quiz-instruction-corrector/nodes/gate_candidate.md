@@ -11,9 +11,9 @@ description: |
   vuelve a generate para una nueva emisión.
 
   Deliberadamente NO juzga la calidad del candidato: eso es el catálogo de
-  criterios de Java (F-QICOR-R004/R005). Este gate solo garantiza que el
-  adaptador tenga algo parseable que devolver.
+  criterios de Java, que `assess` consulta (F-QICOR-R004/R005/R015). Este gate
+  solo garantiza que haya algo parseable que medir.
 edges:
-  - { to: emit, when: passed }
+  - { to: assess, when: passed }
   - { to: generate, when: failed }
 ---

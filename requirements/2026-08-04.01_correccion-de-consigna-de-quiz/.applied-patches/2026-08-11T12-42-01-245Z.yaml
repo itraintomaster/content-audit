@@ -1,0 +1,21 @@
+code: FEAT-QICOR
+description: |
+  Renombra el test de F-QICOR-R004 sobre DefaultCandidateAssessor: con el nombre anterior
+  el generador no emitia el stub (colision de merge con el metodo existente
+  shouldAcceptACandidateOnlyWhenEveryCriterionOfTheActiveCatalog...). Mismo comportamiento
+  observable, sin la frase que colisiona.
+modules:
+- name: revision-domain
+  packages:
+  - name: candidatecriteriaengine
+    implementations:
+    - name: DefaultCandidateAssessor
+      handwrittenTests:
+      - name: "should return a verdict for every criterion of the active catalog,\
+          \ without stopping at the first one that returns a failing verdict"
+        _change: delete
+      - name: "should submit the candidate to the whole catalog and hand back one\
+          \ verdict per criterion, instead of stopping at the first failing one"
+        traceability:
+          feature: FEAT-QICOR
+          rule: F-QICOR-R004

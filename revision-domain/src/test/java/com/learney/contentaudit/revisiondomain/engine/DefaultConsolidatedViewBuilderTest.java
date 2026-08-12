@@ -126,7 +126,7 @@ public class DefaultConsolidatedViewBuilderTest {
                 null, AuditTarget.QUIZ, nodeId,
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
-                "rationale", "auto", Instant.now(), null);
+                "rationale", "auto", Instant.now(), null, null, null);
         return new RevisionArtifact(proposal, RevisionVerdict.APPROVED, null, null, Instant.now(), null, null, null);
     }
 
@@ -136,7 +136,7 @@ public class DefaultConsolidatedViewBuilderTest {
                 null, AuditTarget.QUIZ, nodeId,
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
-                "rationale", "auto", Instant.now(), null);
+                "rationale", "auto", Instant.now(), null, null, null);
         return new RevisionArtifact(proposal, RevisionVerdict.PENDING_APPROVAL, null, null, Instant.now(), null, null, null);
     }
 
@@ -146,7 +146,7 @@ public class DefaultConsolidatedViewBuilderTest {
                 null, AuditTarget.QUIZ, nodeId,
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
                 new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
-                "rationale", "auto", Instant.now(), null);
+                "rationale", "auto", Instant.now(), null, null, null);
         return new RevisionArtifact(proposal, RevisionVerdict.REJECTED, "no sirve", null, Instant.now(), null, null, null);
     }
 
@@ -1045,7 +1045,7 @@ public class DefaultConsolidatedViewBuilderTest {
                 null, AuditTarget.QUIZ, "quiz-r011e",
                 new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null, null),
                 new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null, null),
-                "r1", "auto", t1, null);
+                "r1", "auto", t1, null, null, null);
         RevisionArtifact approved1 = new RevisionArtifact(proposal1, RevisionVerdict.APPROVED,
                 null, null, t1, null, null, null);
 
@@ -1054,7 +1054,7 @@ public class DefaultConsolidatedViewBuilderTest {
                 null, AuditTarget.QUIZ, "quiz-r011e",
                 new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null, null),
                 new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null, null),
-                "r2", "auto", t2, null);
+                "r2", "auto", t2, null, null, null);
         RevisionArtifact approved2 = new RevisionArtifact(proposal2, RevisionVerdict.APPROVED,
                 null, null, t2, null, null, null);
 

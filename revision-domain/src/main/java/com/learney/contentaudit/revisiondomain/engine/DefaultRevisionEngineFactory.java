@@ -10,6 +10,7 @@ import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
 import com.learney.contentaudit.revisiondomain.RevisionEngineFactory;
 import com.learney.contentaudit.revisiondomain.RevisionValidator;
+import com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionCandidateAssessor;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.processing.Generated;
@@ -57,13 +58,33 @@ public class DefaultRevisionEngineFactory implements RevisionEngineFactory {
                         : new DefaultQuizInstructionProposalStrategyRegistry(
                                 new QuizInstructionProposalStrategyRegistryConfig(
                                         java.util.List.of(), null));
+        CourseElementLocator elementLocator = config.getElementLocator() != null
+                ? config.getElementLocator()
+                : new DefaultCourseElementLocator();
+
+        // F-QICOR-R012/R015: the reviser no longer takes the neutral catalog directly --
+        // it asks QuizInstructionCandidateAssessor, the same object the assess-candidate
+        // consultation uses (F-QICOR-R015 (c)), built here from the SAME seven collaborators
+        // this factory already has on hand for the engine itself -- the neutral
+        // CandidateAssessor, the LemmaAbsenceProposalDeriver, the plan/audit stores, the
+        // context resolver, the course repository and the very same elementLocator resolved
+        // above -- so what a candidate measures never disagrees no matter who is asking.
+        QuizInstructionCandidateAssessor quizInstructionCandidateAssessor =
+                new DefaultQuizInstructionCandidateAssessor(
+                        config.getCandidateAssessor(),
+                        config.getLemmaAbsenceProposalDeriver(),
+                        config.getRefinementPlanStore(),
+                        config.getAuditReportStore(),
+                        config.getContextResolver(),
+                        config.getCourseRepository(),
+                        elementLocator);
         revisers.put(DiagnosisKind.QUIZ_INSTRUCTION, new QuizInstructionReviser(
                 quizInstructionStrategyRegistry,
                 config.getLemmaAbsenceProposalDeriver(),
-                config.getCandidateAssessor(),
                 config.getQuizInstructionComplianceChecker(),
                 config.getQuizInstructionSubjectViewFactory(),
-                config.getQuizInstructionCorrectionConfig()));
+                config.getQuizInstructionCorrectionConfig(),
+                quizInstructionCandidateAssessor));
 
         DispatchingReviser dispatcher = new DispatchingReviser(
                 revisers,
@@ -74,10 +95,6 @@ public class DefaultRevisionEngineFactory implements RevisionEngineFactory {
         RevisionValidator validator = config.getValidator() != null
                 ? config.getValidator()
                 : new AutoApproveValidator();
-
-        CourseElementLocator elementLocator = config.getElementLocator() != null
-                ? config.getElementLocator()
-                : new DefaultCourseElementLocator();
 
         DefaultImpactPreviewComputer impactPreviewComputer = new DefaultImpactPreviewComputer(
                 config.getCourseMapper(),

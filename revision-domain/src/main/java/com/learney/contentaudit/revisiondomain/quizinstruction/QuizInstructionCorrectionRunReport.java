@@ -38,13 +38,18 @@ public class QuizInstructionCorrectionRunReport {
 
     private List<QuizInstructionTaskOutcome> outcomes;
 
+    private int proposedWithUnmetCriteria;
+
+    private int proposedOutOfLengthRange;
+
     public QuizInstructionCorrectionRunReport() {
     }
 
     public QuizInstructionCorrectionRunReport(String runId, String planId, String sourceAuditId,
             Instant startedAt, Instant finishedAt, int maxCorrections, int eligibleTasks,
             int attempted, int proposed, int notCorrected, int diagnosisStale, int failed,
-            List<String> notAttempted, List<QuizInstructionTaskOutcome> outcomes) {
+            List<String> notAttempted, List<QuizInstructionTaskOutcome> outcomes,
+            int proposedWithUnmetCriteria, int proposedOutOfLengthRange) {
         this.runId = runId;
         this.planId = planId;
         this.sourceAuditId = sourceAuditId;
@@ -59,6 +64,8 @@ public class QuizInstructionCorrectionRunReport {
         this.failed = failed;
         this.notAttempted = notAttempted;
         this.outcomes = outcomes;
+        this.proposedWithUnmetCriteria = proposedWithUnmetCriteria;
+        this.proposedOutOfLengthRange = proposedOutOfLengthRange;
     }
 
     public String getRunId() {
@@ -173,6 +180,22 @@ public class QuizInstructionCorrectionRunReport {
         this.outcomes = outcomes;
     }
 
+    public int getProposedWithUnmetCriteria() {
+        return this.proposedWithUnmetCriteria;
+    }
+
+    public void setProposedWithUnmetCriteria(int proposedWithUnmetCriteria) {
+        this.proposedWithUnmetCriteria = proposedWithUnmetCriteria;
+    }
+
+    public int getProposedOutOfLengthRange() {
+        return this.proposedOutOfLengthRange;
+    }
+
+    public void setProposedOutOfLengthRange(int proposedOutOfLengthRange) {
+        this.proposedOutOfLengthRange = proposedOutOfLengthRange;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -191,11 +214,13 @@ public class QuizInstructionCorrectionRunReport {
                     && Objects.equals(this.diagnosisStale, that.diagnosisStale)
                     && Objects.equals(this.failed, that.failed)
                     && Objects.equals(this.notAttempted, that.notAttempted)
-                    && Objects.equals(this.outcomes, that.outcomes);
+                    && Objects.equals(this.outcomes, that.outcomes)
+                    && Objects.equals(this.proposedWithUnmetCriteria, that.proposedWithUnmetCriteria)
+                    && Objects.equals(this.proposedOutOfLengthRange, that.proposedOutOfLengthRange);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(runId, planId, sourceAuditId, startedAt, finishedAt, maxCorrections, eligibleTasks, attempted, proposed, notCorrected, diagnosisStale, failed, notAttempted, outcomes);
+        return Objects.hash(runId, planId, sourceAuditId, startedAt, finishedAt, maxCorrections, eligibleTasks, attempted, proposed, notCorrected, diagnosisStale, failed, notAttempted, outcomes, proposedWithUnmetCriteria, proposedOutOfLengthRange);
     }
 }

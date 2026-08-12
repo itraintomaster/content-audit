@@ -1712,10 +1712,11 @@ new OutOfCatalogWordContext(String lemma, String observedPos, Integer frequencyR
 | `severity` | `InstructionSeverity` |  |
 | `siblingQuizSentences` | `List<String>` | Import `java.util.List` |
 | `sourceAuditId` | `String` |  |
+| `planId` | `String` |  |
 
 **Generated constructor:**
 ```java
-new QuizInstructionCorrectionContext(String taskId, String nodeId, String quizSentence, String translation, String sentence, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, String cefrLevelLabel, SentenceMode sentenceMode, List<InstructionViolation> violations, String verdictReason, InstructionSeverity severity, List<String> siblingQuizSentences, String sourceAuditId)
+new QuizInstructionCorrectionContext(String taskId, String nodeId, String quizSentence, String translation, String sentence, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, String cefrLevelLabel, SentenceMode sentenceMode, List<InstructionViolation> violations, String verdictReason, InstructionSeverity severity, List<String> siblingQuizSentences, String sourceAuditId, String planId)
 ```
 
 ### Module: audit-application
@@ -2224,10 +2225,12 @@ new CourseElementSnapshot(AuditTarget nodeTarget, String nodeId, QuizTemplateEnt
 | `reviserKind` | `String` |  |
 | `createdAt` | `Instant` |  |
 | `strategyId` | `StrategyId` |  |
+| `unmetCriteria` | `List<CriterionVerdict>` | Import `java.util.List` |
+| `lengthMeasurement` | `CandidateLengthMeasurement` |  |
 
 **Generated constructor:**
 ```java
-new RevisionProposal(String proposalId, String taskId, String planId, String sourceAuditId, DiagnosisKind diagnosisKind, AuditTarget nodeTarget, String nodeId, CourseElementSnapshot elementBefore, CourseElementSnapshot elementAfter, String rationale, String reviserKind, Instant createdAt, StrategyId strategyId)
+new RevisionProposal(String proposalId, String taskId, String planId, String sourceAuditId, DiagnosisKind diagnosisKind, AuditTarget nodeTarget, String nodeId, CourseElementSnapshot elementBefore, CourseElementSnapshot elementAfter, String rationale, String reviserKind, Instant createdAt, StrategyId strategyId, List<CriterionVerdict> unmetCriteria, CandidateLengthMeasurement lengthMeasurement)
 ```
 
 #### RevisionArtifact
@@ -2899,6 +2902,7 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `FAITHFUL_TRANSLATION` | `null` |
 | `SOLVABLE_SAME_KIND` | `null` |
 | `INSTRUCTION_COMPLIANCE` | `null` |
+| `REAL_WORLD_SENSE` | `null` |
 
 #### CriterionOutcome (package: candidatecriteria)
 
@@ -2953,8 +2957,13 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 
 | Field | Type |
 |-------|------|
-| `accepted` | `boolean` |
 | `verdicts` | `List<CriterionVerdict>` |
+| `eligible` | `boolean` |
+| `realChange` | `boolean` |
+| `satisfiedCriteria` | `int` |
+| `unmetCriteria` | `List<CriterionVerdict>` |
+| `lengthMeasurement` | `CandidateLengthMeasurement` |
+| `rankKey` | `String` |
 
 #### QuizSimilarity (package: candidatecriteria)
 
@@ -2986,6 +2995,7 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `courseSimilarityThreshold` | `Double` |
 | `courseWideDistinctness` | `Boolean` |
 | `auditReportStore` | `AuditReportStore` |
+| `realWorldSenseEvaluator` | `CandidateCriterionEvaluator` |
 
 #### CandidateCriteriaDefaults (package: candidatecriteria)
 
@@ -2999,6 +3009,30 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `courseSimilarityThreshold` | `double` |
 | `courseWideDistinctness` | `boolean` |
 
+#### CandidateLengthMeasurement (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `tokens` | `int` |
+| `targetMin` | `int` |
+| `targetMax` | `int` |
+| `inRange` | `boolean` |
+| `measured` | `boolean` |
+
+#### AbsoluteCriterionEvaluatorMissingException (package: candidatecriteria)
+
+**Package:** `com.learney.contentaudit.revisiondomain.candidatecriteria`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `criterion` | `CorrectionCriterion` |
+
 #### QuizInstructionGeneratorResponse (package: quizinstruction)
 
 **Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
@@ -3010,6 +3044,8 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `quizSentence` | `String` |
 | `translation` | `String` |
 | `rationale` | `String` |
+| `verdicts` | `List<CriterionVerdict>` |
+| `attempts` | `int` |
 
 #### QuizInstructionGenerationRequest (package: quizinstruction)
 
@@ -3020,8 +3056,7 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | Field | Type |
 |-------|------|
 | `context` | `QuizInstructionCorrectionContext` |
-| `previousVerdicts` | `List<CriterionVerdict>` |
-| `attempt` | `int` |
+| `maxAttempts` | `int` |
 
 #### QuizInstructionCorrectionConfig (package: quizinstruction)
 
@@ -3086,6 +3121,8 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `detail` | `String` |
 | `proposalId` | `String` |
 | `attempts` | `int` |
+| `unmetCriteria` | `List<CriterionVerdict>` |
+| `outOfLengthRange` | `boolean` |
 
 #### QuizInstructionCorrectionRunReport (package: quizinstruction)
 
@@ -3109,6 +3146,47 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `failed` | `int` |
 | `notAttempted` | `List<String>` |
 | `outcomes` | `List<QuizInstructionTaskOutcome>` |
+| `proposedWithUnmetCriteria` | `int` |
+| `proposedOutOfLengthRange` | `int` |
+
+#### QuizInstructionBestCandidate (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `candidate` | `LemmaAbsenceQuizCandidate` |
+| `reportedVerdicts` | `List<CriterionVerdict>` |
+| `attempts` | `int` |
+
+#### QuizInstructionCandidateAssessorConfig (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `assessor` | `CandidateAssessor` |
+| `deriver` | `LemmaAbsenceProposalDeriver` |
+| `refinementPlanStore` | `RefinementPlanStore` |
+| `auditReportStore` | `AuditReportStore` |
+| `contextResolver` | `CorrectionContextResolver<CorrectionContext>` |
+| `courseRepository` | `CourseRepository` |
+| `elementLocator` | `CourseElementLocator` |
+
+#### CandidateAssessmentUnavailableException (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.revisiondomain.quizinstruction`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `taskId` | `String` |
+| `reason` | `String` |
 
 ### Module: revision-infrastructure
 

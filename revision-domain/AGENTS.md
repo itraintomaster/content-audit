@@ -60,6 +60,8 @@ Domain module for the revision phase of the refinement pipeline. Consumes refine
 | reviserKind | `String` |
 | createdAt | `Instant` |
 | strategyId | `StrategyId` |
+| unmetCriteria | `List<CriterionVerdict>` |
+| lengthMeasurement | `CandidateLengthMeasurement` |
 
 ### RevisionArtifact (`record`)
 
@@ -377,7 +379,7 @@ Methods:
 
 - `id(): StrategyId`
 - `handles(DiagnosisKind kind): boolean`
-- `propose(RefinementTask task, QuizInstructionCorrectionContext context, List<CriterionVerdict> previousVerdicts, int attempt): LemmaAbsenceQuizCandidate`
+- `propose(RefinementTask task, QuizInstructionCorrectionContext context, int maxAttempts): QuizInstructionBestCandidate`
 
 ### QuizInstructionProposalStrategyRegistry (service) [sealed]
 
@@ -1305,6 +1307,7 @@ Methods:
 | severity | `InstructionSeverity` |
 | siblingQuizSentences | `List<String>` |
 | sourceAuditId | `String` |
+| planId | `String` |
 
 ### RefinerEngine (port)
 

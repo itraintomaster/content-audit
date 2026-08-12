@@ -116,7 +116,7 @@ public class DefaultPreservationRepairTest {
         return new RevisionProposal(
                 proposalId, "task-" + proposalId, "plan-" + proposalId, "audit-001",
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
-                before, after, "lexical correction", "lemma-absence", createdAt, null);
+                before, after, "lexical correction", "lemma-absence", createdAt, null, null, null);
     }
 
     private RevisionArtifact buildApprovedArtifact(RevisionProposal proposal, Instant decidedAt) {
