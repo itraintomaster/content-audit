@@ -13,9 +13,17 @@ import com.learney.contentaudit.revisiondomain.candidatecriteria.CorrectionCrite
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionOutcome;
 import com.learney.contentaudit.revisiondomain.candidatecriteria.CriterionVerdict;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.annotation.processing.Generated;
 
 /**
@@ -45,6 +53,23 @@ import javax.annotation.processing.Generated;
  * either absolute counts exactly like {@code FAILED} for eligibility -- the
  * prudent reading is the same in both cases (R013): "could not verify" is
  * never treated as "passed by omission".
+ *
+ * <p>Performance note (does not change any of the above): the catalog is
+ * still consulted whole and the returned verdicts are still exactly one per
+ * active criterion, in catalog order. What changes is WHEN each evaluator
+ * runs. The three judgment criteria backed by an LLM call over the network
+ * -- {@link CorrectionCriterion#FAITHFUL_TRANSLATION}, {@link
+ * CorrectionCriterion#SOLVABLE_SAME_KIND} and {@link
+ * CorrectionCriterion#REAL_WORLD_SENSE}, each a ~15s round trip -- are
+ * dispatched together instead of back-to-back, which is what used to put a
+ * batch of {@code assess-candidate} calls on the edge of the framework's
+ * per-node timeout. {@link CorrectionCriterion#INSTRUCTION_COMPLIANCE} is
+ * judge-backed too but its evaluator appends to the evaluation ledger (an
+ * append-only {@code .jsonl}); it is deliberately left serial, evaluated
+ * exactly once like before, because this class has no way to verify a
+ * concurrent write there is safe. Every other criterion is deterministic and
+ * cheap and stays serial as well -- concurrency would not measurably help
+ * there. See {@link #evaluateCatalog} for the mechanics.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -62,6 +87,17 @@ class DefaultCandidateAssessor implements CandidateAssessor {
             CorrectionCriterion.FAITHFUL_TRANSLATION,
             CorrectionCriterion.SOLVABLE_SAME_KIND);
 
+    // Performance only (see the class javadoc): the judgment criteria dispatched
+    // concurrently instead of back-to-back. Deliberately excludes
+    // INSTRUCTION_COMPLIANCE -- also judge-backed, but its evaluator writes to the
+    // evaluation ledger and is left serial for that reason alone.
+    private static final Set<CorrectionCriterion> CONCURRENT_CRITERIA = Set.of(
+            CorrectionCriterion.FAITHFUL_TRANSLATION,
+            CorrectionCriterion.SOLVABLE_SAME_KIND,
+            CorrectionCriterion.REAL_WORLD_SENSE);
+
+    private static final AtomicInteger JUDGE_THREAD_SEQ = new AtomicInteger();
+
     private final Map<CorrectionCriterion, CandidateCriterionEvaluator> evaluatorsByCriterion;
 
     private final CandidateLengthMeter lengthMeter;
@@ -77,11 +113,7 @@ class DefaultCandidateAssessor implements CandidateAssessor {
 
     @Override
     public CandidateAssessment assess(CandidateAssessmentInput input) {
-        List<CriterionVerdict> verdicts = new ArrayList<>();
-        for (CorrectionCriterion criterion : catalog()) {
-            CandidateCriterionEvaluator evaluator = evaluatorsByCriterion.get(criterion);
-            verdicts.add(evaluator.evaluate(input));
-        }
+        List<CriterionVerdict> verdicts = evaluateCatalog(input);
 
         boolean instructionCompliant = false;
         boolean realWorldSenseCompliant = false;
@@ -136,6 +168,97 @@ class DefaultCandidateAssessor implements CandidateAssessor {
                 verdicts, eligible, realChange, satisfiedCriteria, unmetCriteria, lengthMeasurement, null);
         assessment.setRankKey(ranking.rankKey(assessment));
         return assessment;
+    }
+
+    /**
+     * F-QICOR-R004: still submits the candidate to the WHOLE catalog, always --
+     * see the class javadoc for why. The only thing this method changes relative
+     * to a plain sequential loop is WHEN each evaluator runs: the concurrent
+     * judgment criteria ({@link #CONCURRENT_CRITERIA}) that are actually part of
+     * this catalog are dispatched to their own thread up front, the remaining
+     * (fast, deterministic, or ledger-writing) criteria are evaluated on the
+     * caller thread while those judges are in flight, and only then does this
+     * method wait for the judges to finish. The returned list is always
+     * rebuilt in catalog order from a lookup map -- never from arrival order --
+     * so no caller can ever observe a verdict out of place because its judge
+     * happened to answer first or last.
+     */
+    private List<CriterionVerdict> evaluateCatalog(CandidateAssessmentInput input) {
+        List<CorrectionCriterion> catalog = catalog();
+
+        List<CorrectionCriterion> concurrentCriteriaInCatalog = new ArrayList<>();
+        for (CorrectionCriterion criterion : catalog) {
+            if (CONCURRENT_CRITERIA.contains(criterion)) {
+                concurrentCriteriaInCatalog.add(criterion);
+            }
+        }
+
+        Map<CorrectionCriterion, Future<CriterionVerdict>> pendingJudgments = new LinkedHashMap<>();
+        ExecutorService judgePool = concurrentCriteriaInCatalog.isEmpty()
+                ? null
+                : Executors.newFixedThreadPool(
+                        concurrentCriteriaInCatalog.size(), DefaultCandidateAssessor::newDaemonJudgeThread);
+        try {
+            for (CorrectionCriterion criterion : concurrentCriteriaInCatalog) {
+                CandidateCriterionEvaluator evaluator = evaluatorsByCriterion.get(criterion);
+                Callable<CriterionVerdict> task = () -> evaluator.evaluate(input);
+                pendingJudgments.put(criterion, judgePool.submit(task));
+            }
+
+            Map<CorrectionCriterion, CriterionVerdict> resolved = new LinkedHashMap<>();
+            for (CorrectionCriterion criterion : catalog) {
+                if (pendingJudgments.containsKey(criterion)) {
+                    // Dispatched above already; resolved below, after every serial criterion
+                    // had the chance to run on this thread while the judges are in flight.
+                    continue;
+                }
+                CandidateCriterionEvaluator evaluator = evaluatorsByCriterion.get(criterion);
+                resolved.put(criterion, evaluator.evaluate(input));
+            }
+            for (Map.Entry<CorrectionCriterion, Future<CriterionVerdict>> pending : pendingJudgments.entrySet()) {
+                resolved.put(pending.getKey(), await(pending.getKey(), pending.getValue()));
+            }
+
+            List<CriterionVerdict> verdicts = new ArrayList<>();
+            for (CorrectionCriterion criterion : catalog) {
+                verdicts.add(resolved.get(criterion));
+            }
+            return verdicts;
+        } finally {
+            // F-QICOR-R004/R015: the catalog is already fully resolved (or an exception is
+            // already propagating) by the time we get here -- this only reclaims the pool's
+            // threads so a CLI invocation never hangs on a leaked, non-daemon thread.
+            if (judgePool != null) {
+                judgePool.shutdown();
+            }
+        }
+    }
+
+    private static CriterionVerdict await(CorrectionCriterion criterion, Future<CriterionVerdict> future) {
+        try {
+            return future.get();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException(
+                    "Interrumpido esperando el veredicto del criterio " + criterion, e);
+        } catch (ExecutionException e) {
+            Throwable cause = e.getCause();
+            if (cause instanceof RuntimeException runtimeException) {
+                throw runtimeException;
+            }
+            if (cause instanceof Error error) {
+                throw error;
+            }
+            throw new IllegalStateException("No se pudo evaluar el criterio " + criterion, cause);
+        }
+    }
+
+    // Daemon so a leaked pool (shutdown() skipped by some future change, or an unexpected
+    // error before the finally block above) can never keep the CLI process alive on its own.
+    private static Thread newDaemonJudgeThread(Runnable runnable) {
+        Thread thread = new Thread(runnable, "candidate-judge-" + JUDGE_THREAD_SEQ.incrementAndGet());
+        thread.setDaemon(true);
+        return thread;
     }
 
     @Override
