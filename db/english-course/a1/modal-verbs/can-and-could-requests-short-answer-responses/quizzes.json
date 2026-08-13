@@ -165,7 +165,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la $short answer$ (respuesta corta).",
-  "translation" : "¿Puedes ayudarnos? No.",
+  "translation" : "¿Puedes ayudarnos? No, no puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -193,18 +193,18 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Can you help us?",
+      "text" : "Can you help us? No,",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "No" ]
+      "options" : [ "I can't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "Can you help us? No." ]
+    "sentences" : [ "Can you help us? No, I can't." ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la $short answer$ (respuesta corta).",
-  "translation" : "¿Puedes comprar pizza? Puedo.",
+  "translation" : "¿Puedes comprar pizza? Sí, puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -713,7 +713,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Can you buy pizza?",
+      "text" : "Can you buy pizza? Yes,",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -724,7 +724,7 @@
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "Can you buy pizza? I can." ]
+    "sentences" : [ "Can you buy pizza? Yes, I can." ]
   }
 }, {
   "_id" : {

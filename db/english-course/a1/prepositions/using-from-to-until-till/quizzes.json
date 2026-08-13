@@ -146,13 +146,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "from age 12 to|until|till age 18" ]
+      "options" : [ "from age 12 to age 18|until age 18|till age 18" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "I started playing guitar at age 12 and stopped at age 18.I played guitar from age 12 to.", "I started playing guitar at age 12 and stopped at age 18.I played guitar until.", "I started playing guitar at age 12 and stopped at age 18.I played guitar till age 18." ]
+    "sentences" : [ "I started playing guitar at age 12 and stopped at age 18.I played guitar from age 12 to age 18.", "I started playing guitar at age 12 and stopped at age 18.I played guitar until age 18.", "I started playing guitar at age 12 and stopped at age 18.I played guitar till age 18." ]
   }
 }, {
   "_id" : {
@@ -198,13 +198,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "from Friday to|until|till Sunday" ]
+      "options" : [ "from Friday to Sunday|until Sunday|till Sunday" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "He went to Italy on Friday and came back on Sunday.He was in Italy from Friday to.", "He went to Italy on Friday and came back on Sunday.He was in Italy until.", "He went to Italy on Friday and came back on Sunday.He was in Italy till Sunday." ]
+    "sentences" : [ "He went to Italy on Friday and came back on Sunday.He was in Italy from Friday to Sunday.", "He went to Italy on Friday and came back on Sunday.He was in Italy until Sunday.", "He went to Italy on Friday and came back on Sunday.He was in Italy till Sunday." ]
   }
 }, {
   "_id" : {
@@ -510,12 +510,12 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "from March to|until|till August" ]
+      "options" : [ "from March to August|until August|till August" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "They will study in March and leave in August.They will study from March to.", "They will study in March and leave in August.They will study until.", "They will study in March and leave in August.They will study till August." ]
+    "sentences" : [ "They will study in March and leave in August.They will study from March to August.", "They will study in March and leave in August.They will study until August.", "They will study in March and leave in August.They will study till August." ]
   }
 } ]
