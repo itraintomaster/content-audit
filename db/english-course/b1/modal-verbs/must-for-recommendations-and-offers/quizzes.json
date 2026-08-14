@@ -633,7 +633,7 @@
   },
   "title" : "Recomendación firme",
   "instructions" : "Transforma las oraciones para que incluyan la palabra $must$.",
-  "translation" : "Debes venir a la fiesta.",
+  "translation" : "Debes venir al concierto.",
   "theoryId" : "b1.11.Must_for_Recommendations_and_Offers",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -661,18 +661,18 @@
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Please assist to the concert.",
+      "text" : "Please come to the concert.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "You must come to the party." ]
+      "options" : [ "You must come to the concert." ]
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "You must come to the party." ]
+    "sentences" : [ "You must come to the concert." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Recomendación firme",
   "instructions" : "Transforma las oraciones para que incluyan la palabra $must$.",
-  "translation" : "Debes visitar ese museo.",
+  "translation" : "Debes explorar esa catedral.",
   "theoryId" : "b1.11.Must_for_Recommendations_and_Offers",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -770,13 +770,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "You must visit that museum." ]
+      "options" : [ "You must explore that cathedral." ]
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "You must visit that museum." ]
+    "sentences" : [ "You must explore that cathedral." ]
   }
 }, {
   "_id" : {

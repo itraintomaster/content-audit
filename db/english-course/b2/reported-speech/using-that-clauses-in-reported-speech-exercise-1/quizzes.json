@@ -733,7 +733,7 @@
   },
   "title" : "Declaraciones",
   "instructions" : "Transforma a $reported speech$. Usa $that$ + $clause$ con $backshifting$.",
-  "translation" : "Se rió de que no bailaría.",
+  "translation" : "Ella dijo entre risas que no bailaría.",
   "theoryId" : "b2.08.Reporting_Verbs_with_that",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -761,18 +761,18 @@
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "“I won't dance” (she laughed)",
+      "text" : "\"I won't dance\" (she said with a laugh)",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "She laughed that she wouldn't dance." ]
+      "options" : [ "She said with a laugh that she wouldn't dance." ]
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "She laughed that she wouldn't dance." ]
+    "sentences" : [ "\"I won't dance\" She said with a laugh that she wouldn't dance." ]
   }
 }, {
   "_id" : {
