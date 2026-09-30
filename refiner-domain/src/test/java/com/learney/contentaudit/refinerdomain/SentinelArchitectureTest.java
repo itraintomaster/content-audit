@@ -123,6 +123,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: QuizInstructionCorrectionContext - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.refinerdomain.UnconvertedScoreCount");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: UnconvertedScoreCount - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.refinerdomain.RefinerEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RefinerEngine - " + e.getMessage());

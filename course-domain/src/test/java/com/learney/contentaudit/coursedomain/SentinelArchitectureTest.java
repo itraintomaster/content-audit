@@ -103,6 +103,21 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: SentenceMode - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.coursedomain.FormKind");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FormKind - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MultipleChoiceItemEntity - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.coursedomain.MultipleChoiceEntity");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MultipleChoiceEntity - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.coursedomain.CourseRepository");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: CourseRepository - " + e.getMessage());

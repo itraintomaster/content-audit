@@ -63,11 +63,11 @@ public class AgentCandidateJudgmentEvaluatorTest {
      */
     private static QuizTemplateEntity quizTemplate(String id, String translation,
             List<SentencePartEntity> sentenceParts, List<String> sentences) {
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts, null, null);
         return new QuizTemplateEntity(
                 id, id, "CLOZE", "knowledge-1", "Present Perfect", "Complete with present perfect",
                 translation, "1.1.theory", "Verb Tenses", form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
-                sentences);
+                sentences, null);
     }
 
     private static CourseElementSnapshot quizSnapshot(String quizId, String translation,

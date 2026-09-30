@@ -62,7 +62,7 @@ public class LexisCmdTest {
     public void shouldReturnLexicalFlagsForALooseSentenceAndLevelWithoutRequiringAStoredCourseOrMutatingState(
             ) {
         String quizSentence = "He ____ [sips] (sip) a lot of tea.";
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of());
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of(), null, null);
         String canonicalSentence = "He sips a lot of tea.";
         List<NlpToken> tokens = List.of(new NlpToken("sips", "sip", "VERB", 1200, false, false));
         SentenceLexicalFlags flags = new SentenceLexicalFlags(
@@ -98,7 +98,7 @@ public class LexisCmdTest {
     @Tag("F-CLEX-R002")
     public void shouldAnalyzeTheCanonicalFilledSentenceInFILLMode() {
         String quizSentence = "He ____ [sips] (sip) a lot of tea.";
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of());
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of(), null, null);
         // FILL: the canonical sentence is the COMPLETE sentence with the gap filled in.
         String canonicalFilled = "He sips a lot of tea.";
         List<NlpToken> tokens = List.of(new NlpToken("sips", "sip", "VERB", 1200, false, false));
@@ -128,7 +128,7 @@ public class LexisCmdTest {
         // Real fixture from F-SMODE-R003/R004: source scaffold "You should watch the DVD.",
         // REWRITE answer "Watch the DVD." — the canonical REWRITE sentence is the answer ONLY.
         String quizSentence = "You should watch the DVD. ____ [Watch the DVD.]";
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of());
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of(), null, null);
         String canonicalAnswerOnly = "Watch the DVD.";
         List<NlpToken> tokens = List.of(new NlpToken("watch", "watch", "VERB", 300, false, false));
 
@@ -188,7 +188,7 @@ public class LexisCmdTest {
     @Tag("F-CLEX-R007")
     public void shouldRejectWithAClearValidationWhenTheCEFRLevelIsInvalid() {
         String quizSentence = "He ____ [sips] (sip) a lot of tea.";
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of());
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of(), null, null);
         // These stubs may or may not be reached depending on whether level validation happens
         // before or after DSL parsing; mark lenient so an unreached stub does not fail the test.
         lenient().when(quizSentenceConverter.parse(quizSentence)).thenReturn(form);

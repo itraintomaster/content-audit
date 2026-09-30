@@ -11,6 +11,7 @@ import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.coursedomain.FormKind;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntities;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
@@ -192,7 +193,8 @@ class DefaultRevisionEngine implements RevisionEngine {
         // and so any generative model, runs. Nothing is written but the plan: the task becomes
         // SKIPPED so batch runs stop spending a slot on it. Same idiom as the STALE transition
         // for DIAGNOSIS_NOT_SUSTAINED below.
-        if (snapshot.getQuiz() != null && snapshot.getQuiz().formKind() == FormKind.MULTIPLE_CHOICE) {
+        if (snapshot.getQuiz() != null
+                && QuizTemplateEntities.formKind(snapshot.getQuiz()) == FormKind.MULTIPLE_CHOICE) {
             task.setStatus(RefinementTaskStatus.SKIPPED);
             List<RefinementTask> skippedTasks = new ArrayList<>(plan.getTasks());
             int skippedTaskIndex = skippedTasks.indexOf(task);

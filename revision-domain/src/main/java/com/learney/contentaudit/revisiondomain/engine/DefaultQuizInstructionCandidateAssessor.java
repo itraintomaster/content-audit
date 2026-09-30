@@ -4,6 +4,7 @@ import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.coursedomain.FormKind;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntities;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
@@ -169,7 +170,8 @@ public DefaultQuizInstructionCandidateAssessor(CandidateAssessor assessor, Lemma
         // The same refusal as revise and approve: a multiple-choice quiz is measured but never
         // corrected, so there is no candidate of it to judge -- and judging one would read the
         // gap's answer off the original's correct option, not off the candidate.
-        if (original.getQuiz() != null && original.getQuiz().formKind() == FormKind.MULTIPLE_CHOICE) {
+        if (original.getQuiz() != null
+                && QuizTemplateEntities.formKind(original.getQuiz()) == FormKind.MULTIPLE_CHOICE) {
             throw new CandidateAssessmentUnavailableException(taskId,
                     "el ejercicio es de opcion multiple: content-audit lo mide pero no lo corrige");
         }

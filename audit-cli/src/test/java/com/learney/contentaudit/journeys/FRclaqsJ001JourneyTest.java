@@ -191,7 +191,7 @@ public class FRclaqsJ001JourneyTest {
                 List.of(), "quiz-j001-001", "Quiz 1", "Q001",
                 "Ella necesita negociar el contrato antes del viernes",
                 List.of(plainSentence),
-                stampedDsl, null, null);  // quizSentence stamped at mapping time (R002)
+                stampedDsl, null, null, null);  // quizSentence stamped at mapping time (R002)
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Affirmative sentences in the present simple",
@@ -279,7 +279,7 @@ public class FRclaqsJ001JourneyTest {
                 List.of(), "quiz-j001-002-other", "Other Quiz", "Q002b",
                 "Ella sings.",
                 List.of("She sings."),
-                "She sings.", null, null);
+                "She sings.", null, null, null);
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Music",
@@ -337,7 +337,7 @@ public class FRclaqsJ001JourneyTest {
                 List.of(), "quiz-j001-003-other-id", "A different quiz", "Q003b",
                 "A diferente.",
                 List.of("A different."),
-                "A different.", null, null);
+                "A different.", null, null, null);
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Grammar",

@@ -29,3 +29,10 @@ Current state, last action, next step. Newest entries on top.
   diseño de @architect. Después, @qa-tester.
   Glosario: promover «Hallazgo», «Gravedad», «Familia de analizadores» y «Tema» (= knowledge) cuando José apruebe; no
   se tocó domain-glossary.yaml para no chocar con los paquetes en paralelo.
+
+2026-09-30 — qa-tester — Diseño de pruebas de FEAT-HALL: 101 handwrittenTests en 35 implementaciones, las 15 reglas con prueba, ninguna portada (ningún test existente verifica una regla del contrato, que no está en el código). J001 y J002 en audit-cli, `com.learney.contentaudit.auditcli.commands` (4 + 2 caminos). `patch propose` 16 altas, 36 cambios, 1 baja, 0 conflictos; `tech-spec write` 18 fences; `patch validate` OK contra el sentinel.yaml de hoy y contra el de después de 0.2.
+  why: el permiso le negó al qa-tester escribir en esta carpeta; lo escribió José el 30/9 corriendo el script del qa-tester (propose con fusión, domainLinks restaurados, --replace y tech-spec), idéntico byte a byte a lo ensayado.
+
+2026-09-30 — qa-tester — Simulación en memoria (librería del jar) de aplicar 0.2 y después 0.3: sin conflictos (0.2: 3/26/0/0; 0.3 encima: 16/38/1/0), y generate no aborta (DefinitionValidator, traza y ubicación OK). Con el parche del arquitecto solo, abortaba por J001 y J002 sin testModule. Los generadores corren sin excepción: 25 modelos, 4 interfaces, 10 implementaciones, 13 clases de test y 5 journeys nuevos; 101 + 34 stubs, ninguno salteado por tags.
+
+2026-09-30 — qa-tester — Próximo paso: aplicar 0.2, después este parche sin --as (trae estructura), y generate. @test-writer escribe las 101 y los 6 caminos; los números salen del análisis 2026-09-30T11-54-02. Adaptar los cuerpos que rompe el cambio de estructura (26 `new DefaultAuditRunner`, 8 `new IAuditEngine`, 2 `new DefaultRefinerEngine`, 25 usos de EvaluationAnalyzerFactory en tests) y la prueba común de FileSystemAuditReportStoreTest que afirma el promedio viejo (choca con R010). Para el analista: extender R012 al tope pedido con un nombre desconocido, y el caso real de R001 da 0,8 (el ejemplo dice 0,75).

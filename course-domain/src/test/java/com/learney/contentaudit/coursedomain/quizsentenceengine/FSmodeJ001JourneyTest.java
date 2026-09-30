@@ -31,7 +31,7 @@ public class FSmodeJ001JourneyTest {
     // ── helpers ──────────────────────────────────────────────────────────────
 
     private static FormEntity form(SentencePartEntity... parts) {
-        return new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(parts));
+        return new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(parts), null, null);
     }
 
     private static SentencePartEntity text(String t) {

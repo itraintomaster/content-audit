@@ -129,10 +129,11 @@ new AuditableMilestone(List<AuditableTopic> topics, String id, String label, Str
 | `quizSentence` | `String` |  |
 | `instructions` | `String` |  |
 | `sentenceParts` | `List<SentencePartEntity>` | Import `java.util.List` |
+| `multipleChoice` | `MultipleChoiceEntity` |  |
 
 **Generated constructor:**
 ```java
-new AuditableQuiz(List<NlpToken> tokens, String id, String label, String code, String translation, List<String> sentences, String quizSentence, String instructions, List<SentencePartEntity> sentenceParts)
+new AuditableQuiz(List<NlpToken> tokens, String id, String label, String code, String translation, List<String> sentences, String quizSentence, String instructions, List<SentencePartEntity> sentenceParts, MultipleChoiceEntity multipleChoice)
 ```
 
 #### CefrLevel
@@ -217,10 +218,18 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 | `name` | `String` |  |
 | `description` | `String` |  |
 | `target` | `AuditTarget` |  |
+| `question` | `String` |  |
+| `reads` | `String` |  |
+| `rules` | `List<AnalyzerRuleCard>` | Import `java.util.List` |
+| `goal` | `String` |  |
+| `family` | `AnalyzerFamily` |  |
+| `evaluatedTargets` | `List<AuditTarget>` | Import `java.util.List` |
+| `resolutions` | `List<FindingResolution>` | Import `java.util.List` |
+| `cost` | `AnalysisCost` |  |
 
 **Generated constructor:**
 ```java
-new AnalyzerDescriptor(String name, String description, AuditTarget target)
+new AnalyzerDescriptor(String name, String description, AuditTarget target, String question, String reads, List<AnalyzerRuleCard> rules, String goal, AnalyzerFamily family, List<AuditTarget> evaluatedTargets, List<FindingResolution> resolutions, AnalysisCost cost)
 ```
 
 #### AuditNode
@@ -237,10 +246,13 @@ new AnalyzerDescriptor(String name, String description, AuditTarget target)
 | `scores` | `Map<String,Double>` |  |
 | `metadata` | `Map<String,Object>` |  |
 | `diagnoses` | `NodeDiagnoses` |  |
+| `findings` | `List<Finding>` | Import `java.util.List` |
+| `numbers` | `ContextNumbers` |  |
+| `unevaluatedBy` | `List<String>` | Import `java.util.List` |
 
 **Generated constructor:**
 ```java
-new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List<AuditNode> children, Map<String,Double> scores, Map<String,Object> metadata, NodeDiagnoses diagnoses)
+new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List<AuditNode> children, Map<String,Double> scores, Map<String,Object> metadata, NodeDiagnoses diagnoses, List<Finding> findings, ContextNumbers numbers, List<String> unevaluatedBy)
 ```
 
 #### SentenceLengthDiagnosis
@@ -1082,6 +1094,7 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | `title` | `String` |
 | `instructions` | `String` |
 | `sentenceParts` | `List<SentencePartEntity>` |
+| `multipleChoice` | `MultipleChoiceEntity` |
 
 #### QuizInstructionComplianceStatus (package: quizinstruction)
 
@@ -1121,6 +1134,305 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | `AREA_REEVALUATION` | `null` |
 | `DECLARED_SET_REEVALUATION` | `null` |
 | `OUTSIDE_DECLARED_SET` | `null` |
+
+#### Finding (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `analyzer` | `String` |
+| `rule` | `String` |
+| `node` | `FindingNodeRef` |
+| `severity` | `FindingSeverity` |
+| `evidence` | `FindingEvidence` |
+| `resolution` | `FindingResolution` |
+| `cost` | `AnalysisCost` |
+| `identity` | `FindingIdentity` |
+
+#### FindingDraft (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `rule` | `String` |
+| `marker` | `String` |
+| `severity` | `FindingSeverity` |
+| `resolution` | `FindingResolution` |
+| `evidence` | `FindingEvidence` |
+
+#### FindingNodeRef (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `target` | `AuditTarget` |
+| `nodeId` | `String` |
+| `label` | `String` |
+
+#### FindingEvidence (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `examined` | `List<EvidencePart>` |
+| `observation` | `String` |
+| `relatedNodes` | `List<FindingNodeRef>` |
+
+#### EvidencePart (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `label` | `String` |
+| `text` | `String` |
+
+#### FindingIdentity (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `key` | `String` |
+| `marker` | `String` |
+
+#### FindingSeverity (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `BLOCKING` | `null` |
+| `HIGH` | `null` |
+| `MEDIUM` | `null` |
+| `LOW` | `null` |
+
+#### FindingResolution (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `RULE` | `null` |
+| `PANEL` | `null` |
+| `RANK_ONLY` | `null` |
+
+#### AnalysisCost (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `INSTANT` | `null` |
+| `LOCAL_MODEL` | `null` |
+| `PAID_MODEL` | `null` |
+
+#### FindingContractViolationException (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `analyzerName` | `String` |
+| `nodeId` | `String` |
+| `detail` | `String` |
+
+#### AnalyzerFamily (package: catalog)
+
+**Package:** `com.learney.contentaudit.auditdomain.catalog`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `ERRORS` | `null` |
+| `VOCABULARY` | `null` |
+
+#### AnalyzerRuleCard (package: catalog)
+
+**Package:** `com.learney.contentaudit.auditdomain.catalog`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `id` | `String` |
+| `description` | `String` |
+| `cost` | `AnalysisCost` |
+
+#### AnalyzerPlanBinding (package: catalog)
+
+**Package:** `com.learney.contentaudit.auditdomain.catalog`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `taskKind` | `String` |
+| `taskTargets` | `List<AuditTarget>` |
+
+#### AnalyzerRunSelection (package: catalog)
+
+**Package:** `com.learney.contentaudit.auditdomain.catalog`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `analyzers` | `List<String>` |
+| `policies` | `Map<String,EvaluationRunPolicy>` |
+
+#### UnknownAnalyzerException (package: catalog)
+
+**Package:** `com.learney.contentaudit.auditdomain.catalog`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `analyzerName` | `String` |
+
+#### InvalidAnalyzerCardException (package: catalog)
+
+**Package:** `com.learney.contentaudit.auditdomain.catalog`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `analyzerName` | `String` |
+| `detail` | `String` |
+
+#### ContextNumbers (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `vocabularyScore` | `Double` |
+| `analyzerScores` | `List<AnalyzerScore>` |
+| `errors` | `ErrorCounts` |
+
+#### AnalyzerScore (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `analyzer` | `String` |
+| `family` | `AnalyzerFamily` |
+| `score` | `Double` |
+| `subMetrics` | `List<SubMetricScore>` |
+
+#### SubMetricScore (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `name` | `String` |
+| `score` | `double` |
+
+#### ErrorCounts (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `quizzes` | `int` |
+| `withAnyError` | `int` |
+| `anyErrorShare` | `double` |
+| `bySeverity` | `SeverityCounts` |
+| `notFullyEvaluated` | `int` |
+| `analyzers` | `List<AnalyzerErrorCounts>` |
+
+#### AnalyzerErrorCounts (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `analyzer` | `String` |
+| `reached` | `int` |
+| `evaluated` | `int` |
+| `notEvaluated` | `int` |
+| `withError` | `int` |
+| `errorShare` | `double` |
+| `marked` | `int` |
+
+#### SeverityCounts (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `blocking` | `int` |
+| `high` | `int` |
+| `medium` | `int` |
+| `low` | `int` |
+
+#### AuditDigest (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `auditId` | `String` |
+| `root` | `DigestNode` |
+
+#### DigestNode (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `nodeId` | `String` |
+| `target` | `AuditTarget` |
+| `label` | `String` |
+| `numbers` | `ContextNumbers` |
+| `findings` | `List<Finding>` |
+| `unevaluatedBy` | `List<String>` |
+| `children` | `List<DigestNode>` |
 
 ### Module: course-domain
 
@@ -1293,10 +1605,11 @@ new KnowledgeEntity(String id, String code, NodeKind kind, String label, String 
 | `miniTheory` | `String` |  |
 | `successMessage` | `String` |  |
 | `sentences` | `List<String>` | Import `java.util.List` |
+| `unmodeledFields` | `Map<String,Object>` |  |
 
 **Generated constructor:**
 ```java
-new QuizTemplateEntity(String id, String oidId, String kind, String knowledgeId, String title, String instructions, String translation, String theoryId, String topicName, FormEntity form, double difficulty, double retries, double noScoreRetries, String code, String audioUrl, String imageUrl, String answerAudioUrl, String answerImageUrl, String miniTheory, String successMessage, List<String> sentences)
+new QuizTemplateEntity(String id, String oidId, String kind, String knowledgeId, String title, String instructions, String translation, String theoryId, String topicName, FormEntity form, double difficulty, double retries, double noScoreRetries, String code, String audioUrl, String imageUrl, String answerAudioUrl, String answerImageUrl, String miniTheory, String successMessage, List<String> sentences, Map<String,Object> unmodeledFields)
 ```
 
 #### FormEntity
@@ -1311,10 +1624,12 @@ new QuizTemplateEntity(String id, String oidId, String kind, String knowledgeId,
 | `label` | `String` |  |
 | `name` | `String` |  |
 | `sentenceParts` | `List<SentencePartEntity>` | Import `java.util.List` |
+| `multipleChoice` | `MultipleChoiceEntity` |  |
+| `unmodeledFields` | `Map<String,Object>` |  |
 
 **Generated constructor:**
 ```java
-new FormEntity(String kind, double incidence, String label, String name, List<SentencePartEntity> sentenceParts)
+new FormEntity(String kind, double incidence, String label, String name, List<SentencePartEntity> sentenceParts, MultipleChoiceEntity multipleChoice, Map<String,Object> unmodeledFields)
 ```
 
 #### SentencePartEntity
@@ -1363,6 +1678,53 @@ new CourseValidationException(String path, String detail)
 **Generated constructor:**
 ```java
 new SentenceMode(null REWRITE, null FILL)
+```
+
+#### FormKind
+
+**Package:** `com.learney.contentaudit.coursedomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `CLOZE` | `null` |  |
+| `MULTIPLE_CHOICE` | `null` |  |
+| `OTHER` | `null` |  |
+
+**Generated constructor:**
+```java
+new FormKind(null CLOZE, null MULTIPLE_CHOICE, null OTHER)
+```
+
+#### MultipleChoiceItemEntity
+
+**Package:** `com.learney.contentaudit.coursedomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `id` | `String` |  |
+| `incidence` | `double` |  |
+| `label` | `String` |  |
+
+**Generated constructor:**
+```java
+new MultipleChoiceItemEntity(String id, double incidence, String label)
+```
+
+#### MultipleChoiceEntity
+
+**Package:** `com.learney.contentaudit.coursedomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `selection` | `String` |  |
+| `items` | `List<MultipleChoiceItemEntity>` | Import `java.util.List` |
+
+**Generated constructor:**
+```java
+new MultipleChoiceEntity(String selection, List<MultipleChoiceItemEntity> items)
 ```
 
 #### QuizSentenceSerializationException (package: quizsentence)
@@ -1719,6 +2081,22 @@ new OutOfCatalogWordContext(String lemma, String observedPos, Integer frequencyR
 new QuizInstructionCorrectionContext(String taskId, String nodeId, String quizSentence, String translation, String sentence, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, String cefrLevelLabel, SentenceMode sentenceMode, List<InstructionViolation> violations, String verdictReason, InstructionSeverity severity, List<String> siblingQuizSentences, String sourceAuditId, String planId)
 ```
 
+#### UnconvertedScoreCount
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `analyzer` | `String` |  |
+| `nodeCount` | `int` |  |
+| `reason` | `String` |  |
+
+**Generated constructor:**
+```java
+new UnconvertedScoreCount(String analyzer, int nodeCount, String reason)
+```
+
 ### Module: audit-application
 
 #### AuditRunRequest
@@ -1837,10 +2215,11 @@ new SuggestedLemmasFilter(Optional<Integer> limit, Optional<String> partOfSpeech
 | `instructionBudget` | `Integer` |  |
 | `reevaluateInstructions` | `String` |  |
 | `reevaluateInstructionQuizIds` | `Set<String>` |  |
+| `analyzerBudgets` | `Map<String,Integer>` |  |
 
 **Generated constructor:**
 ```java
-new AnalyzeOptions(String format, String level, String topic, String knowledge, List<String> analyzers, List<String> excludeAnalyzers, boolean detailed, Integer instructionBudget, String reevaluateInstructions, Set<String> reevaluateInstructionQuizIds)
+new AnalyzeOptions(String format, String level, String topic, String knowledge, List<String> analyzers, List<String> excludeAnalyzers, boolean detailed, Integer instructionBudget, String reevaluateInstructions, Set<String> reevaluateInstructionQuizIds, Map<String,Integer> analyzerBudgets)
 ```
 
 #### ReportViewModel (package: formatting)
@@ -2182,10 +2561,11 @@ new RevisionVerdict(null APPROVED, null REJECTED, null PENDING_APPROVAL)
 | `OVERRIDE_NOT_APPLICABLE` | `null` |  |
 | `DIAGNOSIS_NOT_SUSTAINED` | `null` |  |
 | `NO_ACCEPTABLE_CANDIDATE` | `null` |  |
+| `MULTIPLE_CHOICE_UNSUPPORTED` | `null` |  |
 
 **Generated constructor:**
 ```java
-new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND, null PENDING_APPROVAL_PERSISTED, null ALREADY_PENDING_DECISION, null NO_ACTIVE_STRATEGY, null STRATEGY_FAILED, null OVERRIDE_INVALID, null OVERRIDE_NOT_APPLICABLE, null DIAGNOSIS_NOT_SUSTAINED, null NO_ACCEPTABLE_CANDIDATE)
+new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND, null PENDING_APPROVAL_PERSISTED, null ALREADY_PENDING_DECISION, null NO_ACTIVE_STRATEGY, null STRATEGY_FAILED, null OVERRIDE_INVALID, null OVERRIDE_NOT_APPLICABLE, null DIAGNOSIS_NOT_SUSTAINED, null NO_ACCEPTABLE_CANDIDATE, null MULTIPLE_CHOICE_UNSUPPORTED)
 ```
 
 #### CourseElementSnapshot
@@ -2332,10 +2712,11 @@ new ApprovalMode(null AUTO, null HUMAN)
 | `NOT_FOUND` | `null` |  |
 | `ALREADY_DECIDED` | `null` |  |
 | `PRESERVATION_VIOLATED` | `null` |  |
+| `MULTIPLE_CHOICE_UNSUPPORTED` | `null` |  |
 
 **Generated constructor:**
 ```java
-new ProposalDecisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NOT_FOUND, null ALREADY_DECIDED, null PRESERVATION_VIOLATED)
+new ProposalDecisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NOT_FOUND, null ALREADY_DECIDED, null PRESERVATION_VIOLATED, null MULTIPLE_CHOICE_UNSUPPORTED)
 ```
 
 #### ProposalDecisionOutcome
@@ -3105,6 +3486,7 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `DIAGNOSIS_STALE` | `null` |
 | `NOT_ATTEMPTED` | `null` |
 | `FAILED` | `null` |
+| `MULTIPLE_CHOICE_UNSUPPORTED` | `null` |
 
 #### QuizInstructionTaskOutcome (package: quizinstruction)
 
@@ -3148,6 +3530,7 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `outcomes` | `List<QuizInstructionTaskOutcome>` |
 | `proposedWithUnmetCriteria` | `int` |
 | `proposedOutOfLengthRange` | `int` |
+| `multipleChoiceUnsupported` | `int` |
 
 #### QuizInstructionBestCandidate (package: quizinstruction)
 

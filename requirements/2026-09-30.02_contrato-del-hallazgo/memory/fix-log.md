@@ -16,3 +16,8 @@ symptom read this before trying new approaches. Newest entries on top.
 
 2026-09-30 — analyst — Una línea de prosa que empieza con «+ » se renderiza como viñeta: la cuenta del 73,9 % se partió así y se reacomodó.
   why: al cortar párrafos largos a mano, revisar que ninguna línea empiece con «+», «-» o «1.».
+
+2026-09-30 — qa-tester — `patch propose` sin --replace fusiona con PatchMerger, que al tocar una implementación descarta sus `domainLinks` y `glossarySuggestions` (mergeImplementations pasa null). Aquí DefaultRefinerEngine perdía «Tarea de corrección / produces»: se devolvió desde el parche del arquitecto y se reescribió con `--replace`. Reportado a Sentinel: `~/projects/sentinel/.bugs/2026-09-30-08-patch-merger-descarta-domainlinks.md`.
+  why: propose no avisa; se ve sólo comparando el parche fusionado con el de HEAD.
+
+2026-09-30 — qa-tester — Un fence de TECH_SPEC que sólo trae `features:` falla en `tech-spec write` («no architectural content»); hay que sumarle un módulo del parche con `_change: modify`, como hizo 0.2.

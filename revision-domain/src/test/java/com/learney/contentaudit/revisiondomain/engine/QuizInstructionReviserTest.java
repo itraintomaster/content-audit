@@ -108,14 +108,14 @@ public class QuizInstructionReviserTest {
         FormEntity form = new FormEntity("FILL", 1.0, null, null, List.of(
                 new SentencePartEntity(SentencePartKind.TEXT, "The cat ", List.of()),
                 new SentencePartEntity(SentencePartKind.CLOZE, answer, List.of(answer)),
-                new SentencePartEntity(SentencePartKind.TEXT, " fast.", List.of())));
+                new SentencePartEntity(SentencePartKind.TEXT, " fast.", List.of())), null, null);
         return new QuizTemplateEntity(
                 QUIZ_ID, "oid-qicor-1", "fill-in-the-blank", "know-qicor-1",
                 "Present Simple Third Person Singular",
                 "Completa la oracion con el verbo en presente simple, tercera persona.",
                 "El gato corre rapido.",
                 "theory-1", "Verb Tenses", form, 0.5, 0.0, 0.0, "code-qicor-1",
-                null, null, null, null, null, null, List.of("The cat run fast."));
+                null, null, null, null, null, null, List.of("The cat run fast."), null);
     }
 
     private static CourseElementSnapshot buildBefore() {
@@ -124,7 +124,7 @@ public class QuizInstructionReviserTest {
 
     private static QuizInstructionSubjectView subjectView(QuizTemplateEntity quiz) {
         return new QuizInstructionSubjectView(QUIZ_ID, "A2", "Verb Tenses", quiz.getTitle(),
-                quiz.getInstructions(), quiz.getForm().getSentenceParts());
+                quiz.getInstructions(), quiz.getForm().getSentenceParts(), null);
     }
 
     private static QuizInstructionCorrectionConfig buildConfig(int maxAttempts) {

@@ -109,4 +109,12 @@ public class DefaultListIdentityRegistryTest {
         assertEquals(List.of("type", "bandName", "levelName"), fieldNames,
                 "La clave de identidad de ImprovementDirective debe ser ['type', 'bandName', 'levelName']");
     }
+
+    @Test
+    @DisplayName("should identify a finding within a list by its analyzer, its rule and what it marks, so that snapshots are compared by identity and not by position")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R014")
+    public void shouldIdentifyAFindingWithinAListByItsAnalyzerItsRuleAndWhatItMarksSoThatSnapshotsAreComparedByIdentityAndNotByPosition() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

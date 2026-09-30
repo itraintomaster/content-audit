@@ -61,7 +61,7 @@ public class FSmodeJ002JourneyTest {
         FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of(
                 new SentencePartEntity(SentencePartKind.TEXT, "You should watch the DVD.", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("Watch the DVD."))
-        ));
+        ), null, null);
         QuizTemplateEntity quiz = new QuizTemplateEntity(
                 "quiz-dvd-001",                // id
                 "quiz-dvd-001",                // oidId
@@ -85,7 +85,7 @@ public class FSmodeJ002JourneyTest {
                 "",                            // successMessage
                 // sentences[0]: frase canónica pre-computada = solo la respuesta (REWRITE)
                 // "You should watch the DVD." queda excluida (F-SMODE-R004)
-                List.of("Watch the DVD.")
+                List.of("Watch the DVD."), null
         );
         return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-001", quiz, null);
     }

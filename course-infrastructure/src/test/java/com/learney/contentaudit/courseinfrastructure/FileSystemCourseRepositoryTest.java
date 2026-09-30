@@ -15,9 +15,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import java.net.URISyntaxException;
+import java.util.LinkedHashMap;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -148,6 +155,45 @@ public class FileSystemCourseRepositoryTest {
 
     private void writeJson(Path file, Object obj) throws IOException {
         mapper.writerWithDefaultPrettyPrinter().writeValue(file.toFile(), obj);
+    }
+
+    // -------------------------------------------------------------------------
+    // FEAT-OPMUL: fixtures/multiple-choice-course holds two real quizzes of the 2026-09-29
+    // production backup, in the writer's format: a MULTIPLE_CHOICE one (items, selection,
+    // formCloze, formAntesDeRevisar and two backup instructions) and a CLOZE one with two backup
+    // fields of its own.
+    // -------------------------------------------------------------------------
+
+    private static final String CLOZE_ID = "67fab6d59930102295341fa5";
+
+    private final FileSystemCourseRepository repository =
+            new FileSystemCourseRepository(new CourseValidatorImpl());
+
+    private static Path fixture() throws URISyntaxException {
+        return Path.of(FileSystemCourseRepositoryTest.class
+                .getResource("/fixtures/multiple-choice-course").toURI());
+    }
+
+    private static Path copyFixture(Path target) throws IOException, URISyntaxException {
+        Path source = fixture();
+        try (Stream<Path> paths = Files.walk(source)) {
+            for (Path path : (Iterable<Path>) paths::iterator) {
+                Path destination = target.resolve(source.relativize(path).toString());
+                if (Files.isDirectory(path)) {
+                    Files.createDirectories(destination);
+                } else {
+                    Files.copy(path, destination);
+                }
+            }
+        }
+        return target;
+    }
+
+    private static QuizTemplateEntity quiz(CourseEntity course, String id) {
+        KnowledgeEntity knowledge = course.getRoot().getMilestones().get(0).getTopics().get(0)
+                .getKnowledges().get(0);
+        return knowledge.getQuizTemplates().stream().filter(q -> id.equals(q.getId())).findFirst()
+                .orElseThrow();
     }
 
     // =========================================================================
@@ -497,5 +543,102 @@ public class FileSystemCourseRepositoryTest {
                 "quiz2: posicion 0 debe ser 'She dances well.'");
         assertEquals(sentencesQuiz2.get(1), quizRecargado2.getSentences().get(1),
                 "quiz2: posicion 1 debe ser 'She dances good.'");
+    }
+
+    @Test
+    @DisplayName("should write every file of a course with multiple choice quizzes back byte for byte when it is loaded and saved without changes")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R001")
+    public void shouldWriteEveryFileOfACourseWithMultipleChoiceQuizzesBackByteForByteWhenItIsLoadedAndSavedWithoutChanges(
+            @TempDir Path target) throws Exception {
+        Path saved = target.resolve("multiple-choice-course");
+        repository.save(repository.load(fixture()), saved);
+
+        Path source = fixture();
+        try (Stream<Path> paths = Files.walk(source)) {
+            for (Path path : (Iterable<Path>) paths::iterator) {
+                if (Files.isRegularFile(path)) {
+                    Path written = saved.resolve(source.relativize(path).toString());
+                    assertArrayEquals(Files.readAllBytes(path), Files.readAllBytes(written),
+                            "byte difference in " + source.relativize(path));
+                }
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("should keep selection and items on a form that is not multiple choice as data it does not interpret, with their value, when saving")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R002")
+    public void shouldKeepSelectionAndItemsOnAFormThatIsNotMultipleChoiceAsDataItDoesNotInterpretWithTheirValueWhenSaving(
+            @TempDir Path work) throws Exception {
+        Path course = copyFixture(work.resolve("course"));
+        CourseEntity loaded = repository.load(course);
+        FormEntity clozeForm = quiz(loaded, CLOZE_ID).getForm();
+        Map<String, Object> stray = new LinkedHashMap<>();
+        stray.put("selection", "SINGLE");
+        stray.put("items", List.of(Map.of("id", "at", "incidence", Map.of("$numberDouble", "1.0"),
+                "label", "at")));
+        clozeForm.setUnmodeledFields(stray);
+        repository.save(loaded, course);
+
+        FormEntity reloaded = quiz(repository.load(course), CLOZE_ID).getForm();
+        assertNull(reloaded.getMultipleChoice());
+        assertEquals(stray, reloaded.getUnmodeledFields());
+    }
+
+    @Test
+    @DisplayName("should write back the quiz and form data it does not interpret after the data it does, with their value and in their original order")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R002")
+    @SuppressWarnings("unchecked")
+    public void shouldWriteBackTheQuizAndFormDataItDoesNotInterpretAfterTheDataItDoesWithTheirValueAndInTheirOriginalOrder(
+            @TempDir Path work) throws Exception {
+        // The CLOZE quiz of the fixture already ends with two backup fields. Put more data the system
+        // does not interpret among the data it does: one key before everything at quiz level and one
+        // in the middle of the form.
+        Path course = copyFixture(work.resolve("course"));
+        Path quizzesFile = course.resolve("a1/topic/knowledge/quizzes.json");
+        List<Map<String, Object>> onDisk = mapper.readValue(quizzesFile.toFile(), List.class);
+        int clozeIndex = -1;
+        for (int i = 0; i < onDisk.size(); i++) {
+            if (CLOZE_ID.equals(onDisk.get(i).get("id"))) {
+                clozeIndex = i;
+            }
+        }
+        Map<String, Object> original = onDisk.get(clozeIndex);
+        Map<String, Object> mixedQuiz = new LinkedHashMap<>();
+        mixedQuiz.put("reviewNote", "kept first");
+        mixedQuiz.putAll(original);
+        Map<String, Object> originalForm = (Map<String, Object>) original.get("form");
+        Map<String, Object> mixedForm = new LinkedHashMap<>();
+        originalForm.forEach((key, value) -> {
+            mixedForm.put(key, value);
+            if (key.equals("kind")) {
+                mixedForm.put("layout", List.of("stacked", 2));
+            }
+        });
+        mixedQuiz.put("form", mixedForm);
+        onDisk.set(clozeIndex, mixedQuiz);
+        writeJson(quizzesFile, onDisk);
+
+        repository.save(repository.load(course), course);
+
+        List<Map<String, Object>> written = mapper.readValue(quizzesFile.toFile(), List.class);
+        Map<String, Object> quiz = written.stream().filter(q -> CLOZE_ID.equals(q.get("id")))
+                .findFirst().orElseThrow();
+        List<String> quizKeys = List.copyOf(quiz.keySet());
+        assertEquals(List.of("reviewNote", "instructionsAntesDeShortForms", "miniTheoryAntesDeShortForms"),
+                quizKeys.subList(quizKeys.size() - 3, quizKeys.size()),
+                "R002: the quiz data the system does not interpret goes last, in its original order: " + quizKeys);
+        assertEquals("kept first", quiz.get("reviewNote"));
+        assertEquals(original.get("instructionsAntesDeShortForms"), quiz.get("instructionsAntesDeShortForms"));
+        assertEquals(original.get("miniTheoryAntesDeShortForms"), quiz.get("miniTheoryAntesDeShortForms"));
+
+        Map<String, Object> form = (Map<String, Object>) quiz.get("form");
+        List<String> formKeys = List.copyOf(form.keySet());
+        assertEquals("layout", formKeys.get(formKeys.size() - 1),
+                "R002: the form data the system does not interpret goes after the data it does: " + formKeys);
+        assertEquals(List.of("stacked", 2), form.get("layout"));
     }
 }

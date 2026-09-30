@@ -20,6 +20,8 @@ Filesystem persistence adapters for audit reports, refinement plans, revision ar
 **Tests that must pass:**
 
 - should save an AuditReport and load it back with identical content
+- should list each saved analysis with the vocabulary score published on its course, 73,9 % for the 29/9 base, instead of 73,4 %, the average of its eleven course keys → FEAT-HALL/F-HALL-R010
+- should save with each analysis a digest without the course entities whose numbers, findings and unevaluated analyzers are copied from the report and not recomputed, and load it by the analysis id → FEAT-HALL/F-HALL-R010
 
 ### FileSystemRefinementPlanStore
 
@@ -156,6 +158,7 @@ The following models and interfaces are available from dependencies. You can use
 | quizSentence | `String` |
 | instructions | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
+| multipleChoice | `MultipleChoiceEntity` |
 
 ### CefrLevel (`enum`)
 
@@ -204,6 +207,14 @@ The following models and interfaces are available from dependencies. You can use
 | name | `String` |
 | description | `String` |
 | target | `AuditTarget` |
+| question | `String` |
+| reads | `String` |
+| rules | `List<AnalyzerRuleCard>` |
+| goal | `String` |
+| family | `AnalyzerFamily` |
+| evaluatedTargets | `List<AuditTarget>` |
+| resolutions | `List<FindingResolution>` |
+| cost | `AnalysisCost` |
 
 ### AuditNode (`record`)
 
@@ -216,6 +227,9 @@ The following models and interfaces are available from dependencies. You can use
 | scores | `Map<String,Double>` |
 | metadata | `Map<String,Object>` |
 | diagnoses | `NodeDiagnoses` |
+| findings | `List<Finding>` |
+| numbers | `ContextNumbers` |
+| unevaluatedBy | `List<String>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -279,6 +293,7 @@ The following models and interfaces are available from dependencies. You can use
 Methods:
 
 - `runAudit(AuditableCourse course): AuditReport`
+- `runAudit(AuditableCourse course, AnalyzerRunSelection selection): AuditReport` throws UnknownAnalyzerException
 
 ### ContentAnalyzer (port)
 
@@ -292,6 +307,7 @@ Methods:
 - `getName(): String`
 - `getTarget(): AuditTarget`
 - `getDescription(): String`
+- `findingsAt(AuditNode node): List<FindingDraft>`
 
 ### AnalysisResult (port)
 
@@ -446,6 +462,7 @@ Methods:
 - `load(String id): Optional<AuditReport>`
 - `loadLatest(): Optional<AuditReport>`
 - `list(): List<AuditReportSummary>`
+- `loadDigest(String id): Optional<AuditDigest>`
 
 ### CourseMapper (port)
 
@@ -479,13 +496,6 @@ Methods:
 
 - `getThreshold(): int`
 
-### EvaluationAnalyzerFactory (factory)
-
-Methods:
-
-- `create(EvaluationRunPolicy policy): ContentAnalyzer`
-- `analyzerName(): String`
-
 ### QuizInstructionVerdictReader (port)
 
 Methods:
@@ -498,6 +508,37 @@ Methods:
 
 - `getDefaultMaxNewEvaluations(): int`
 - `getScoreFor(InstructionSeverity severity): double`
+
+### AnalyzerProvider (factory)
+
+Methods:
+
+- `analyzerName(): String`
+- `describe(): AnalyzerDescriptor`
+- `create(EvaluationRunPolicy policy): ContentAnalyzer`
+- `planBinding(): Optional<AnalyzerPlanBinding>`
+- `config(): Optional<SelfDescribingConfig>`
+
+### AnalyzerCatalog (port)
+
+Methods:
+
+- `list(): List<AnalyzerDescriptor>`
+- `find(String analyzerName): Optional<AnalyzerDescriptor>`
+- `provider(String analyzerName): Optional<AnalyzerProvider>`
+- `planBinding(String analyzerName): Optional<AnalyzerPlanBinding>`
+
+### FindingCollector (port)
+
+Methods:
+
+- `collect(AuditNode root, ContentAnalyzer analyzer, AnalyzerDescriptor card): void` throws FindingContractViolationException
+
+### ContextNumbersCalculator (port)
+
+Methods:
+
+- `compute(AuditNode root, List<AnalyzerDescriptor> analyzers): void`
 
 ### From course-domain
 
@@ -613,6 +654,7 @@ Methods:
 | miniTheory | `String` |
 | successMessage | `String` |
 | sentences | `List<String>` |
+| unmodeledFields | `Map<String,Object>` |
 
 ### FormEntity (`record`)
 
@@ -623,6 +665,8 @@ Methods:
 | label | `String` |
 | name | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
+| multipleChoice | `MultipleChoiceEntity` |
+| unmodeledFields | `Map<String,Object>` |
 
 ### SentencePartEntity (`record`)
 
@@ -649,6 +693,29 @@ Methods:
 |-------|------|
 | REWRITE | `null` |
 | FILL | `null` |
+
+### FormKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| CLOZE | `null` |
+| MULTIPLE_CHOICE | `null` |
+| OTHER | `null` |
+
+### MultipleChoiceItemEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| incidence | `double` |
+| label | `String` |
+
+### MultipleChoiceEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| selection | `String` |
+| items | `List<MultipleChoiceItemEntity>` |
 
 ### CourseRepository (port)
 
@@ -990,12 +1057,21 @@ Methods:
 | sourceAuditId | `String` |
 | planId | `String` |
 
+### UnconvertedScoreCount (`record`)
+
+| Field | Type |
+|-------|------|
+| analyzer | `String` |
+| nodeCount | `int` |
+| reason | `String` |
+
 ### RefinerEngine (port)
 
 Methods:
 
 - `plan(AuditReport report, String auditId): RefinementPlan`
 - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
+- `unconvertedScores(AuditReport report): List<UnconvertedScoreCount>`
 
 ### RefinementPlanStore (port)
 
@@ -1063,6 +1139,7 @@ Methods:
 | OVERRIDE_NOT_APPLICABLE | `null` |
 | DIAGNOSIS_NOT_SUSTAINED | `null` |
 | NO_ACCEPTABLE_CANDIDATE | `null` |
+| MULTIPLE_CHOICE_UNSUPPORTED | `null` |
 
 ### CourseElementSnapshot (`record`)
 
@@ -1157,6 +1234,7 @@ Methods:
 | NOT_FOUND | `null` |
 | ALREADY_DECIDED | `null` |
 | PRESERVATION_VIOLATED | `null` |
+| MULTIPLE_CHOICE_UNSUPPORTED | `null` |
 
 ### ProposalDecisionOutcome (`record`)
 
