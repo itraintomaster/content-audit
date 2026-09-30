@@ -1,7 +1,7 @@
 ---
 patch: FEAT-OMVAL
 requirement: 2026-09-30.05_opcion-multiple-valida
-generated: 2026-09-30T18:30:00Z
+generated: 2026-09-30T19:05:00Z
 ---
 
 # Tech Spec: Opción múltiple válida (FEAT-OMVAL), paquete A de la ronda 1
@@ -227,3 +227,44 @@ nuevas reales. Lo que diga el juez se mide con el examen de C, no con éste.
 ## Lo que no se mueve
 multiple-choice-validity es de la familia de errores: el 73,9 % y los niveles (96,5 · 94,2 · 79,5 · 63,5) quedan
 iguales. No corrige ninguna opción múltiple (F-OPMUL-R006): los hallazgos declaran su resolución y esperan.
+
+## Declarar las 24 pruebas y ubicar el journey
+Las 24 son nuevas: no hay tests previos de estas reglas que portar. Con el criterio del qa-tester de la opción
+múltiple, sólo se declara lo que verifica una regla, y cada nombre lleva un caso real. Las cinco reglas quedan
+cubiertas (R001 3, R002 4, R003 7, R004 3, R005 7). De dónde sale cada una:
+
+- **Los casos del REQUIREMENT**: «___ a child? (He)», «___ golf is difficult to learn.», «___ excited man», «A: Can you
+  call Miss Green? B: No, ___ .», «He's an ___ amazing man.» y «It was an ___ wonderful experience.».
+- **El curso del 29/9** (últimos 4 del id): las dos incorrectas que son la misma respuesta, «'re going to» y «are going
+  to» en «Are you busy? If so, I ___ do it for you.» 26ef (Elegir la forma natural) y «'ve got to» y «have got to» en
+  «David ___ call his mother now. (must)» 2e0c (Obligación); el hueco después de «B:» en «A: What did you find? B: ___ ,
+  it was empty.» 2c5e; el artículo que no delata en «My brother is a ___ (good / well) driver.» 256a; y el ejercicio
+  limpio, «The performance was ___ awful.» 48f1, al que las pruebas de R001 le cambian el puntaje de una opción.
+- **Lo que depende de otros**: las gemelas por contracción usan la tabla del corrector nuevo, porque con la copia de
+  hoy sólo cuentan la mayúscula y los signos (A-15); dos pruebas usan el juez de C por su sesión (A-07); la del
+  ejercicio que el juez no vio, el campo «a medias» del contrato (A-08) y la opción A de DOUBT-OMVAL-JUEZ-A-MEDIAS,
+  abierta; la evidencia, el renderizador (A-01).
+- **No se declara**, porque ninguna regla lo pide, que la fábrica «sin juez» conteste NOT_AVAILABLE: su prueba es la de
+  la ficha, que tiene que declarar la regla del juez aunque no haya juez conectado.
+- **El journey** va a `audit-domain`, paquete `multiplechoicevalidity`. `generate` crearía `FOmvalJ001JourneyTest` con
+  6 caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: multiplechoicevalidity
+        _change: add
+        implementations:
+          - name: DefaultOptionRuleCheck
+            _change: add
+            handwrittenTests:
+              - name: "should report two incorrect options that are the same answer, as «'re going to» and «are going to» in «Are you busy? If so, I ___ do it for you.» of Elegir la forma natural"
+                traceability: { feature: FEAT-OMVAL, rule: F-OMVAL-R002 }
+features:
+  - id: FEAT-OMVAL
+    code: F-OMVAL
+    journeys:
+      - { id: F-OMVAL-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.multiplechoicevalidity }
+```

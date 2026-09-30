@@ -1,7 +1,7 @@
 ---
 patch: FEAT-PISTA
 requirement: 2026-09-30.03_pista-coherente
-generated: 2026-09-30T18:25:00Z
+generated: 2026-09-30T19:05:00Z
 ---
 
 # Tech Spec: Pista coherente (FEAT-PISTA), paquete A de la ronda 1
@@ -216,3 +216,44 @@ anotados y 21 de los 46.
 hint-coherence es de la familia de errores: el puntaje de vocabulario del curso (73,9 %) y de los niveles (96,5 · 94,2
 · 79,5 · 63,5) queda igual, y sus números van aparte, como ejercicios con error. El lematizador compartido no cambia,
 así que ningún analizador de vocabulario cambia de número.
+
+## Declarar las 28 pruebas y ubicar el journey
+Las 28 son nuevas: content-audit no tiene tests de estas reglas, así que no hay nada que portar. Con el criterio del
+qa-tester de la opción múltiple, sólo se declara lo que verifica una regla, y cada nombre lleva un caso real del curso.
+Las cinco reglas quedan cubiertas (R001 5, R002 11, R003 4, R004 2, R005 6). De dónde sale cada una:
+
+- **Los casos del REQUIREMENT** (con su id ahí): las verduras, «Who ___ (I / see)?», «What ___ (it / be)?», «___ (not /
+  dream) about her.», «This idea ___ (not / sound)…», «It ___ (be) soon.», «That was ___ (bad)…», «This sentence ___
+  (mean) 'hope'.», «You ___ (see) cats.» (1ec3) y los temas El posesivo y One y ones.
+- **El curso del 29/9** (`db/english-course`, sólo lectura; los últimos 4 del id, como en los casos de oro): «She
+  dances ___ (good / well).» 255d, «They ___ (swim) in the ocean» 3f4e, «She ___ (hate) broccoli…» 3f80, «She ___
+  (drink) juice…» 47e3, «(him) ___» 2420, «A: Am I wrong? B: No, you ___ .» 1f53, «She / assist you.» 37ba, «Polite
+  request: I want to eat some cake.» 24f7, «She ___ (live) there. (present simple)» 2069, «Where / you / going? (be
+  extra polite)» 3e0b y «My brother is a ___ (good / well) driver.» 256a.
+- **El umbral de tres cuartos** tiene su propia prueba: tres cuartos exactos alcanzan, y One y ones (12 de 20 huecos
+  para escribir con pista) queda sin hallazgo.
+- **Lo que depende de otros**: la evidencia, del renderizador del integrador (A-01); mandar a la mesa la palabra que no
+  está en la respuesta, de la opción A de DOUBT-PISTA-CUANDO-MESA, abierta; las dos del adaptador, de la tabla instalada
+  (A-16) si la leen en vez de un archivo de prueba. Que «'ve» cuente como auxiliar es lo que ata `isPastParticiple` a R002.
+- **El journey** va a `audit-domain`, paquete `hintcoherence`, junto al analizador y sus colaboradores package-private,
+  como los de F-QINST y F-LREC. `generate` crearía `FPistaJ001JourneyTest` con 3 caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: hintcoherence
+        _change: add
+        implementations:
+          - name: HintCoherenceAnalyzer
+            _change: add
+            handwrittenTests:
+              - name: "should take exactly three quarters of the topic as reaching the threshold and leave a topic below it without finding, as «I'd love ___ .» in One y ones, where 12 of 20 carry a hint"
+                traceability: { feature: FEAT-PISTA, rule: F-PISTA-R001 }
+features:
+  - id: FEAT-PISTA
+    code: F-PISTA
+    journeys:
+      - { id: F-PISTA-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.hintcoherence }
+```

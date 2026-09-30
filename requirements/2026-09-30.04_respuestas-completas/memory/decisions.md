@@ -5,6 +5,15 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-RESPC-J001 en audit-domain, paquete answercompleteness: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.
+2026-09-30 — qa-tester — Casos de oro: dos pruebas de DefaultCorrectorMatcher, columna «hoy» con la tabla vacía y «acepta» con la copia de la tabla nueva; fallan si copia y casos no coinciden.
+  why: los casos de Go (testdata/, 4 archivos, 153 casos hoy) no traen tabla: la tabla del corrector es código; los casos son el único contrato.
+2026-09-30 — qa-tester — Escalado al arquitecto: el corrector lee «'s»/«'d» con el contexto del hueco (antes y después, sin pistas) y CorrectorMatcher.accepts no lo recibe; sin eso fallan la prueba «acepta» y «is» por «'s» en «It ___ (be) hot inside.».
+2026-09-30 — qa-tester — «has trained» (clase «límite» de los casos de oro, 3061) lee R005 como: lo que el corrector nuevo sigue rechazando se agrega con «|». Para el analista: R005 no nombra los límites.
+2026-09-30 — qa-tester — Para el analista: R004 pone has got/has gotten en la lista cerrada y grafias.json de Go lo deja afuera (acepta falso); y formas-sin-apostrofo.json («dont» = «do not») no está en R001.
+2026-09-30 — qa-tester — Dos pruebas del detector siguen la recomendación de dudas abiertas: Contracciones no se saca por regla (DOUBT-RESPC-CONTRACCIONES) y la miniteoría que nombra sin pedir no es pedido (DOUBT-RESPC-DESCRIBE).
+2026-09-30 — qa-tester — No se declara que falte el archivo de la tabla: ninguna regla lo pide.
+
 2026-09-30 — architect — CorrectorMatcher (raíz de audit-domain) + paquete correctormatch: la comparación del corrector con su tabla, en
   un solo lugar; la usan RESPC, OMVAL, DATOS y DUPEX. canonicalForms es la primitiva (Datos necesita «contiene», Duplicados agrupa).
   why: José, una sola tabla (la de Go); cuatro reglas dicen «como el corrector».

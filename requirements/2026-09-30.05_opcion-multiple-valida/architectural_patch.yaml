@@ -7,7 +7,13 @@ description: "FEAT-OMVAL: multiple-choice-validity, el analizador de errores que
   \ analizador y el lugar del juez; el juez mismo lo diseña C. Diseñado contra el\
   \ modelo después de 0.2 (AuditableQuiz.multipleChoice, MultipleChoiceEntity) y 0.3\
   \ (AnalyzerProvider, findingsAt, FindingSeverity); usa la comparación del corrector\
-  \ del parche de FEAT-RESPC y el renderizador QuizStudentViewRenderer del integrador."
+  \ del parche de FEAT-RESPC y el renderizador QuizStudentViewRenderer del integrador.;\
+  \ qa-tester: traza las 5 reglas de FEAT-OMVAL a 24 handwrittenTests nuevas (no hay\
+  \ tests previos que portar), cada una con un caso real del curso, y ubica F-OMVAL-J001\
+  \ en audit-domain, paquete multiplechoicevalidity. Dependen del integrador y de\
+  \ C: el juez (A-07), el ejercicio a medias (A-08, DOUBT-OMVAL-JUEZ-A-MEDIAS) y la\
+  \ evidencia (A-01); las opciones gemelas por contraccion usan la tabla del corrector\
+  \ nuevo (A-15): con la copia de hoy solo cuentan mayuscula y signos."
 modules:
 - name: audit-domain
   interfaces:
@@ -174,6 +180,14 @@ modules:
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
       visibility: public
+      handwrittenTests:
+      - name: "should describe multiple-choice-validity with one card that asks «¿\
+          Hay una sola opción correcta, y ninguna se delata por la forma?», lists\
+          \ its four instant rules and the judge's rule and declares the paid model\
+          \ cost, the highest"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R005
       implements:
       - AnalyzerProvider
       _change: add
@@ -185,6 +199,64 @@ modules:
         type: MultipleChoiceJudgeSession
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
+      handwrittenTests:
+      - name: "should raise a blocking finding on an exercise with no valid option\
+          \ or with several, as «The performance was ___ awful.» with no option scoring"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R001
+      - name: "should send twin options to the panel, blocking when they look identical\
+          \ and one is correct, high when only their form differs from the correct\
+          \ one and low when both are incorrect, as «'ve got to» and «have got to»\
+          \ in «David ___ call his mother now. (must)»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R002
+      - name: "should rate the capital letter low when all options share their case\
+          \ and medium when only some do, and resolve it by one rule over all the\
+          \ options at once, as in «___ a child? (He)»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R003
+      - name: "should send the dash at the start of a sentence to the panel, as in\
+          \ «___ golf is difficult to learn.»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R003
+      - name: "should send the article that gives the answer away to the panel as\
+          \ medium, with the article and the options as evidence, as in «It was an\
+          \ ___ wonderful experience.»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R004
+      - name: "should never leave a finding of its own on a write-in exercise, as\
+          \ «They ___ (not / be) from Ireland.»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R005
+      - name: "should score 0 a multiple choice exercise with a finding and 1 one\
+          \ with a single correct option, distinct options and nothing that gives\
+          \ it away, as «The performance was ___ awful.»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R005
+      - name: "should identify each finding by its rule, its exercise and the option\
+          \ it marks, so two runs mark «very» in «He's an ___ amazing man.» the same"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R005
+      - name: "should keep counting the findings of its rules on an exercise the judge\
+          \ did not see and say that the judge did not see it, as «___ a child? (He)»\
+          \ with the judge pending"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R005
+      - name: "should turn an incorrect option the judge also finds valid into a finding\
+          \ for the panel, with the judge's explanation as evidence, as «very» if\
+          \ the judge found it valid in «The performance was ___ awful.»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R005
       implements:
       - ContentAnalyzer
       _change: add
@@ -192,11 +264,84 @@ modules:
       requiresInject:
       - name: correctorMatcher
         type: CorrectorMatcher
+      handwrittenTests:
+      - name: "should report an exercise where no option is worth the full score,\
+          \ as «The performance was ___ awful.» if «absolutely» lost its score"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R001
+      - name: "should report an exercise where two options score, as «The performance\
+          \ was ___ awful.» if «very» also scored"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R001
+      - name: "should report two incorrect options that are the same answer, as «\
+          're going to» and «are going to» in «Are you busy? If so, I ___ do it for\
+          \ you.» of Elegir la forma natural"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R002
+      - name: "should report two options that look identical when one of them is the\
+          \ correct one, as «absolutely» twice in «The performance was ___ awful.»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R002
+      - name: "should report an option that is the correct one in another form, as\
+          \ «will» next to the correct «'ll» in «Are you busy? If so, I ___ do it\
+          \ for you.»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R002
+      - name: "should report the options in lowercase when the gap opens the sentence,\
+          \ as «am i · are we · are you · is he · is it · is she» in «___ a child?\
+          \ (He)»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R003
+      - name: "should report a lowercase «i» in an option even when the gap does not\
+          \ open the sentence, as «i can't» in «A: Can you call Miss Green? B: No,\
+          \ ___ .»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R003
+      - name: "should take the gap after the «A:» or «B:» of a dialogue as opening\
+          \ the sentence, as «everything · nothing» in «A: What did you find? B: ___\
+          \ , it was empty.»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R003
+      - name: "should report the dash of putting nothing in a gap that opens the sentence,\
+          \ as «- · a» in «___ golf is difficult to learn.»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R003
+      - name: "should not take as opening a sentence a gap whose text does not end\
+          \ in a period, a question or an exclamation mark, as «___ excited man» in\
+          \ A o an"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R003
+      - name: "should report the option that does not fit the «a» or «an» before the\
+          \ gap, as «very» after «an» in «He's an ___ amazing man.»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R004
+      - name: "should find nothing when every option fits the article before the gap,\
+          \ as «good · well» after «a» in «My brother is a ___ (good / well) driver.»"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R004
       implements:
       - OptionRuleCheck
       _change: add
     - name: UnavailableMultipleChoiceJudgeFactory
       visibility: public
+      handwrittenTests:
+      - name: "should give the card the judge's rule with the paid model cost while\
+          \ no judge is connected, so multiple-choice-validity keeps a single card"
+        traceability:
+          feature: FEAT-OMVAL
+          rule: F-OMVAL-R005
       implements:
       - MultipleChoiceJudgeFactory
       _change: add
@@ -205,3 +350,8 @@ modules:
 features:
 - id: FEAT-OMVAL
   code: F-OMVAL
+  journeys:
+  - id: F-OMVAL-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.multiplechoicevalidity

@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — patch propose OK, fusionado con el parche del arquitecto (4 altas, 2 cambios, 0 conflictos); `patch validate` y `tech-spec write` OK, con -i contra el modelo después de 0.2 y 0.3. 21 handwrittenTests nuevas (0 portadas: no había tests de estas reglas), las 5 reglas [covered]; F-DATOS-J001 en audit-domain, paquete datacoherence. Simulación en memoria (scratchpad/qa-A/SimularQA.java): aterrizan las 21, `feature status` OK, generate crearía 5 caminos y 21 stubs en {Impl}Test nuevos, sin choques de nombre. Sin aplicar.
+  Next: integrador (A-01, A-02, A-03, A-16); José aplica sin --as; generate; @test-writer.
+  Ojo: con 0.3 aplicado, generate aborta por F-HALL-J001/J002 sin testModule (no es de A: los ubica el qa-tester de 0.3).
+
 2026-09-30 — architect — Parche (4 altas, 2 cambios, 0 conflictos) y TECH_SPEC (4 fragmentos) en exit 0; `patch validate` OK. Sin
   aplicar. Next: integrador (AuditableQuiz.answerAudioKey y el renderizador son ganchos); feature sync; @qa-tester.
 

@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-DATOS-J001 en audit-domain, paquete datacoherence: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.
+2026-09-30 — qa-tester — Para el arquitecto: R003 pide tomar igual la contraída y la larga; si data-coherence se lo deja a CorrectorMatcher, con la tabla de hoy «We are very excited.» (25ef) da hallazgo hasta que salga el corrector.
+2026-09-30 — qa-tester — Las pruebas de R004 usan la clave real A1.04.08.01 («Did he have dinner?», 221f), compartida o fuera del registro a propósito.
+
 2026-09-30 — architect — Dos puertos de sólo lectura en la raíz de audit-domain: AudioRecordingRegistry (db/grabaciones.json) y
   ProductionSentenceSource (db/quiz-templates.json, sólo _id y form.sentences); adaptadores en audit-infrastructure/exercisecopies.
   why: cambian por motivos distintos (la regrabación escribe el registro; la importación reemplaza la copia); el curso se sigue leyendo por CourseRepository.

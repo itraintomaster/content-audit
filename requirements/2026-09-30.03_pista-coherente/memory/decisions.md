@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-PISTA-J001 en audit-domain, paquete hintcoherence: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.
+2026-09-30 — qa-tester — Umbral: una prueba propia (tres cuartos exactos alcanzan; One y ones, 12 de 20, sin hallazgo).
+2026-09-30 — qa-tester — «bad» → «the best» a la mesa sigue la opción A de DOUBT-PISTA-CUANDO-MESA (abierta): si José elige otra, cambia esa prueba.
+2026-09-30 — qa-tester — isPastParticiple se traza a R002 (inv. 2): «'ve swum» y «has not cut» tienen auxiliar porque sigue un participio.
+
 2026-09-30 — architect — hint-coherence compara con AuditableQuiz.tokens (lemas del tokenizador compartido) más flexión regular y una
   tabla cerrada de formas irregulares (IrregularFormsCatalog, raíz de audit-domain; adaptador en vocabulary-infrastructure). No
   lematiza nada nuevo ni toca el lematizador compartido (DOUBT-PISTA-LEMATIZADOR).

@@ -8,7 +8,13 @@ description: "FEAT-RESPC: answer-completeness, el analizador de errores que arma
   s de 0.2 (FEAT-OPMUL) y 0.3 (FEAT-HALL): usa AnalyzerProvider, ContentAnalyzer.findingsAt,\
   \ FindingSeverity y AnalyzerDescriptor de 0.3, e inyecta el renderizador QuizStudentViewRenderer\
   \ que arma el integrador de la ronda 1 y la tabla de irregulares IrregularFormsCatalog\
-  \ que declara el parche de FEAT-PISTA."
+  \ que declara el parche de FEAT-PISTA.; qa-tester: traza las 7 reglas de FEAT-RESPC\
+  \ a 38 handwrittenTests nuevas (no hay tests previos que portar), cada una con un\
+  \ caso real del curso, y ubica F-RESPC-J001 en audit-domain, paquete answercompleteness.\
+  \ Dos corren los casos de oro del corrector de Go (testdata/ de be/domain/quiz/pkg/shared,\
+  \ rama claude/corrector-formas-equivalentes): fallan si la copia de content-audit\
+  \ y los casos de oro no coinciden. Dependen del integrador: la evidencia (A-01),\
+  \ la miniteoria (A-02, A-03) y la tabla y los casos copiados (A-15, A-16)."
 modules:
 - name: audit-domain
   interfaces:
@@ -115,6 +121,44 @@ modules:
       - name: table
         type: FormEquivalenceTable
       visibility: public
+      handwrittenTests:
+      - name: "should accept «cafe» where the accepted answer says «café» and take\
+          \ «everyday» as «every day», as the backend corrector does for «Don't run\
+          \ in the café.» and «The girls would cycle to school every day.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      - name: "should split the accepted answers on «|» and never on «/», so «has\
+          \ not cut | hasn't cut» accepts each form and «has not cut/hasn't cut» is\
+          \ a single form"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      - name: "should take «aren't», «are not» and «'re not» as three different forms\
+          \ with today's empty table, so «They ___ (not / be) from Ireland.» rejects\
+          \ «aren't»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      - name: "should take «aren't», «are not» and «'re not» as the same form with\
+          \ the new corrector's table, so «They ___ (not / be) from Ireland.» accepts\
+          \ «aren't»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      - name: "should decide every golden case of the backend corrector as its «hoy»\
+          \ column says with today's empty table, as «traveled» rejected for «She\
+          \ ___ (travel) to Europe.» answered «travelled»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      - name: "should decide every golden case of the backend corrector as its «acepta»\
+          \ column says with the copy of the new corrector's table, reading each gap\
+          \ with the sentence around it, as «is» for «It ___ (be) hot inside.» answered\
+          \ «'s»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
       implements:
       - CorrectorMatcher
       _change: add
@@ -231,6 +275,14 @@ modules:
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
       visibility: public
+      handwrittenTests:
+      - name: "should describe answer-completeness in the catalog as an errors analyzer\
+          \ that evaluates exercises, resolves by rule or at the panel and costs instant,\
+          \ asking «¿El corrector acepta todas las formas de la respuesta, y ninguna\
+          \ consigna pide una?»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R006
       implements:
       - AnalyzerProvider
       _change: add
@@ -244,6 +296,94 @@ modules:
         type: FormRequestDetector
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
+      handwrittenTests:
+      - name: "should report the long form the corrector rejects, as «do not eat»\
+          \ for «I ___ (not / eat) meat often.», which only accepts «don't eat»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R002
+      - name: "should report the missing form whatever the instructions ask, as «\
+          don't have» for «They ___ (not / have) many cars.» under «Usa $long forms$.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R002
+      - name: "should report «aren't» missing for «They ___ (not / be) from Ireland.»\
+          , which accepts «'re not» while its mini-theory teaches «aren't»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R003
+      - name: "should report «traveled» missing for «She ___ (travel) to Europe.»\
+          , which only accepts «travelled»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R004
+      - name: "should leave one finding per missing form, identified by the form,\
+          \ as «aren't» and «are not» for «They ___ (not / be) from Ireland.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R005
+      - name: "should rate high a missing form that the mini-theory or the statement\
+          \ shows, as «aren't» in «They ___ (not / be) from Ireland.», whose mini-theory\
+          \ says «Negativo: $isn't$, $aren't$.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R005
+      - name: "should rate low the long form missing in a short answer, as «is not»\
+          \ for «A: Is it hot today? B: No, it ___ .» answered «isn't»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R005
+      - name: "should rate medium any other missing form, as «do not eat» for «I ___\
+          \ (not / eat) meat often.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R005
+      - name: "should resolve by rule in the corrector, and not in the course, a missing\
+          \ form of a class the new corrector equates, leaving the first answer and\
+          \ its audio as they are, as «aren't» for «They ___ (not / be) from Ireland.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R005
+      - name: "should resolve by adding it after «|» a missing form the new corrector\
+          \ still rejects, as «has trained» if «He ___ (train) hard today.» only accepted\
+          \ «'s trained», a limit of the corrector"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R005
+      - name: "should stop reporting the forms the new corrector's table equates,\
+          \ reading the gap with the sentence around it, as «is» for «It ___ (be)\
+          \ hot inside.» answered «'s»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R005
+      - name: "should show as evidence the exercise as the student sees it, what it\
+          \ accepts and what is missing, as «They ___ (not / be) from Ireland. → acepta\
+          \ 're not; falta aren't»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R005
+      - name: "should leave multiple choice exercises without a finding of its own,\
+          \ as «___ a child? (He)»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R006
+      - name: "should score 0 an exercise with a finding and 1 an exercise whose forms\
+          \ are all accepted and whose instructions ask for none, as «You ___ (see)\
+          \ cats.» answered «see»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R006
+      - name: "should leave a low finding with the instructions and the phrase that\
+          \ asks, fixed by removing the request without touching the audio, as «Usa\
+          \ $short forms$ si es posible.» in «They ___ (not / be) from Ireland.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R007
+      - name: "should leave a finding on the mini-theory that asks for a form, naming\
+          \ the mini-theory in its identity, as for «It ___ (be) hot inside.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R007
       implements:
       - ContentAnalyzer
       _change: add
@@ -251,10 +391,93 @@ modules:
       requiresInject:
       - name: irregularForms
         type: IrregularFormsCatalog
+      handwrittenTests:
+      - name: "should generate the long form of a contracted negation and the contraction\
+          \ of a long one, as «do not eat» for «don't eat» in «I ___ (not / eat) meat\
+          \ often.» and «don't have» for «do not have» in «They ___ (not / have) many\
+          \ cars.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R002
+      - name: "should generate the contraction of an auxiliary attached to the subject,\
+          \ as «There's a house near the school.» for «There is a house near the school.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R002
+      - name: "should read «'s» as has before a past participle and as is otherwise,\
+          \ as «has hated» for «'s hated» in «She ___ (hate) broccoli for ages» and\
+          \ «is» for «'s» in «It ___ (be) hot inside.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R002
+      - name: "should generate the long form when the subject stays outside the gap\
+          \ or is a noun, as «am not» for «'m not» in «I ___ (not / be) forty.» and\
+          \ «Peter is reading a book.» for «Peter's reading a book.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R002
+      - name: "should put the not after the subject in the long form of a negative\
+          \ question, as «Does she not dance?» for «Doesn't she dance?» in Sorpresa\
+          \ inicial"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R002
+      - name: "should generate the other short negation of be, as «aren't» for «'re\
+          \ not» in «They ___ (not / be) from Ireland.» and «'s not» for «isn't» in\
+          \ «A: Is it hot today? B: No, it ___ .»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R003
+      - name: "should generate the other spelling of a word on the closed list, as\
+          \ «traveled» for «travelled» in «She ___ (travel) to Europe.» and «travelled»\
+          \ for «traveled» in «___ (you / ever / travel) to Ireland?»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R004
+      - name: "should generate «till» for «until» and «until» for «till», as «Why\
+          \ had she worked there till then?» for «Why had she worked there until then?»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R004
       implements:
       - EquivalentFormGenerator
       _change: add
     - name: DefaultFormRequestDetector
+      handwrittenTests:
+      - name: "should detect «Usa $short forms$ si es posible.» opening the instructions\
+          \ as a request for the short form that a rule can remove, as in «They ___\
+          \ (not / be) from Ireland.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R007
+      - name: "should detect «Usa $long forms$.» as a request for the long form, as\
+          \ in «They ___ (not / have) many cars.» of Negativas regulares"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R007
+      - name: "should detect the mini-theory that asks for a form, as «Elige $am$,\
+          \ $is$ o $are$ según el sujeto, y usa $short forms$.» of «It ___ (be) hot\
+          \ inside.»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R007
+      - name: "should not take «Escribe la respuesta corta.» as a request for a form,\
+          \ as in «Is it going to matter? No, it ___ .»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R007
+      - name: "should not take as a request a mini-theory that names a form without\
+          \ asking for it, as «La pregunta negativa arranca con el auxiliar en $short\
+          \ form$: $Doesn't she dance$?» of Sorpresa inicial"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R007
+      - name: "should mark as not removable by rule a request that is the lesson,\
+          \ as «Escribe la $short form$ de lo que está entre paréntesis.» of «You\
+          \ ___ (do not) work at the bank.» in Contracciones"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R007
       implements:
       - FormRequestDetector
       _change: add
@@ -275,6 +498,13 @@ modules:
       - name: tablePath
         type: Path
       visibility: public
+      handwrittenTests:
+      - name: "should read from the copy of the corrector's table its version, each\
+          \ contraction with all its long forms, as «'s» with is and has, and each\
+          \ group of equivalent words with its class, as travelled and traveled"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
       implements:
       - FormEquivalenceTableSource
       _change: add
@@ -283,3 +513,8 @@ modules:
 features:
 - id: FEAT-RESPC
   code: F-RESPC
+  journeys:
+  - id: F-RESPC-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.answercompleteness

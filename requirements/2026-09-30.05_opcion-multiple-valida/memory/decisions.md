@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-OMVAL-J001 en audit-domain, paquete multiplechoicevalidity: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.
+2026-09-30 — qa-tester — Las gemelas por contracción («'re going to»/«are going to», 26ef; «'ve got to»/«have got to», 2e0c) usan la tabla del corrector nuevo: con la de hoy sólo cuentan mayúscula y signos.
+2026-09-30 — qa-tester — La prueba del ejercicio que el juez no vio sigue la opción A de DOUBT-OMVAL-JUEZ-A-MEDIAS (abierta) y el gancho A-08.
+2026-09-30 — qa-tester — No se declara que la fábrica «sin juez» conteste NOT_AVAILABLE (ninguna regla lo pide); su prueba es la de la ficha: la regla del juez aunque no haya juez.
+
 2026-09-30 — architect — El juez de C entra por MultipleChoiceJudgeFactory/Session (raíz de audit-domain, para que C implemente desde
   cualquier módulo): sesión por corrida con la política del analizador; judgeRule() da a la ficha la regla del juez con su id y costo.
   UnavailableMultipleChoiceJudgeFactory hasta que C conecte el suyo. La interfaz va a los ganchos (A-07) para reconciliar con C.

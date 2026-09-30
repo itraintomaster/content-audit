@@ -1,7 +1,7 @@
 ---
 patch: FEAT-RESPC
 requirement: 2026-09-30.04_respuestas-completas
-generated: 2026-09-30T18:20:00Z
+generated: 2026-09-30T19:05:00Z
 ---
 
 # Tech Spec: Respuestas completas (FEAT-RESPC), paquete A de la ronda 1
@@ -319,3 +319,52 @@ answer-completeness es de la familia de errores: no entra en el puntaje de vocab
 así que el curso sigue en 73,9 % y los niveles en 96,5 · 94,2 · 79,5 · 63,5; sus números van aparte, como ejercicios
 con error. No cambia ningún analizador existente ni el plan (sin `DiagnosisKind` nueva), y analizar no escribe el
 curso (F-HALL-R015).
+
+## Declarar las 38 pruebas y ubicar el journey
+Las 38 son nuevas: no hay tests previos de estas reglas que portar. Con el criterio del qa-tester de la opción
+múltiple, sólo se declara lo que verifica una regla, y cada nombre lleva un caso real. Las siete reglas quedan
+cubiertas (R001 7, R002 7, R003 2, R004 3, R005 8, R006 3, R007 8). De dónde sale cada una:
+
+- **Los casos del REQUIREMENT**: «They ___ (not / be) from Ireland.», que acepta «'re not» y enseña «aren't»; el
+  «café»; «I ___ (not / eat) meat often.»; «There is a house…»; «travelled», «traveled» y «until then».
+- **El curso del 29/9** (últimos 4 del id): «…cycle to school every day.» 4570; «Usa $long forms$.» en «They ___ (not /
+  have) many cars.» 1ed7; la miniteoría que pide, en «It ___ (be) hot inside.» 1fa5; «I ___ (not / be) forty.» 1fa8;
+  «Peter / read / a book.» 20d1; «Doesn't she dance?» 412c; «No, it ___ .» 1f5d y 26db; Contracciones 1f3b; «'s
+  hated» 3f80; «'s trained» 3061; «___ a child? (He)» 1e87; «You ___ (see) cats.» 1ec3. «Usa $short forms$ si es
+  posible.» es la consigna de 25ac.
+- **Los casos de oro del corrector.** Dos pruebas de `DefaultCorrectorMatcher` corren los casos de `testdata/` de
+  `be/domain/quiz/pkg/shared` (rama `claude/corrector-formas-equivalentes` de ittm, en construcción: hoy cuatro archivos
+  y 153 casos). Con la tabla vacía de hoy tiene que decidir lo que dice su columna «hoy»; con la copia de la tabla del
+  corrector nuevo, lo que dice «acepta». Fallan si la copia de content-audit y los casos de oro no coinciden.
+  Dependen de A-15, que no trae una tabla sino casos (la tabla del corrector es código Go, así que la copia de
+  content-audit es propia y los casos son el único contrato); de A-16, que tiene que copiar los cuatro archivos tal
+  cual; y del contexto del hueco: el corrector lee «'s» y «'d» por lo que sigue (antes y después, sin pistas), y
+  `CorrectorMatcher.accepts` no lo recibe.
+- **Lo demás que depende de otros**: la evidencia (A-01); la miniteoría (A-02, A-03) en la gravedad alta y en R007;
+  dos del detector siguen la recomendación de DOUBT-RESPC-CONTRACCIONES y DOUBT-RESPC-DESCRIBE, abiertas; «has trained»
+  lee R005 así: lo que el corrector nuevo sigue rechazando (su clase «límite») se agrega con «|».
+- **No se declara**, porque ninguna regla lo pide, que falte el archivo de la tabla sea un error.
+- **El journey** va a `audit-domain`, paquete `answercompleteness`. `generate` crearía `FRespcJ001JourneyTest` con 5
+  caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: correctormatch
+        _change: add
+        implementations:
+          - name: DefaultCorrectorMatcher
+            _change: add
+            handwrittenTests:
+              - name: "should decide every golden case of the backend corrector as its «hoy» column says with today's empty table, as «traveled» rejected for «She ___ (travel) to Europe.» answered «travelled»"
+                traceability: { feature: FEAT-RESPC, rule: F-RESPC-R001 }
+              - name: "should decide every golden case of the backend corrector as its «acepta» column says with the copy of the new corrector's table, reading each gap with the sentence around it, as «is» for «It ___ (be) hot inside.» answered «'s»"
+                traceability: { feature: FEAT-RESPC, rule: F-RESPC-R001 }
+features:
+  - id: FEAT-RESPC
+    code: F-RESPC
+    journeys:
+      - { id: F-RESPC-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.answercompleteness }
+```

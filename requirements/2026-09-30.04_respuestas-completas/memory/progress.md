@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — patch propose OK, fusionado con el parche del arquitecto (5 altas, 2 cambios, 0 conflictos); `patch validate` y `tech-spec write` OK, con -i contra el modelo después de 0.2 y 0.3. 38 handwrittenTests nuevas (0 portadas: no había tests de estas reglas), las 7 reglas [covered]; F-RESPC-J001 en audit-domain, paquete answercompleteness. Simulación en memoria (scratchpad/qa-A/SimularQA.java): aterrizan las 38, `feature status` OK, generate crearía 5 caminos y 38 stubs en {Impl}Test nuevos, sin choques de nombre. Sin aplicar.
+  Next: integrador (A-01, A-02, A-03, A-15, A-16); José aplica sin --as; generate; @test-writer.
+  Ojo: con 0.3 aplicado, generate aborta por F-HALL-J001/J002 sin testModule (no es de A: los ubica el qa-tester de 0.3).
+
 2026-09-30 — architect — Parche (5 altas, 2 cambios, 0 conflictos) y TECH_SPEC (7 fragmentos) en exit 0; `patch validate` OK contra el
   modelo después de 0.2 y 0.3. Ganchos en ittm docs/propuestas/tablero-corregir-sin-empeorar/ronda1/ganchos-A.md. Sin aplicar.
   Next: José contesta DOUBT-RESPC-CONTRACCIONES y DOUBT-RESPC-DESCRIBE; el integrador arma el parche de la ronda; feature sync; @qa-tester.

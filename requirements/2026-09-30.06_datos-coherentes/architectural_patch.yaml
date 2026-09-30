@@ -8,7 +8,11 @@ description: "FEAT-DATOS: data-coherence, el analizador de errores que compara l
   \ (db/quiz-templates.json, que deja el importador). Diseñado contra el modelo despué\
   s de 0.2 y 0.3; usa la comparación del corrector del parche de FEAT-RESPC y el renderizador\
   \ QuizStudentViewRenderer del integrador, que además arma la oración con la primera\
-  \ respuesta reusando QuizSentenceConverter."
+  \ respuesta reusando QuizSentenceConverter.; qa-tester: traza las 5 reglas de FEAT-DATOS\
+  \ a 21 handwrittenTests nuevas (no hay tests previos que portar), cada una con un\
+  \ caso real del curso, y ubica F-DATOS-J001 en audit-domain, paquete datacoherence.\
+  \ Dependen del integrador: la oracion armada y la evidencia (A-01), la clave de\
+  \ audio (A-02, A-03) y el registro de grabaciones instalado (A-16)."
 modules:
 - name: audit-domain
   interfaces:
@@ -147,6 +151,13 @@ modules:
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
       visibility: public
+      handwrittenTests:
+      - name: "should describe data-coherence in the catalog as an errors analyzer\
+          \ that evaluates exercises, resolves by rule or at the panel and costs instant,\
+          \ asking «¿Todas las copias del ejercicio dicen lo mismo?»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R005
       implements:
       - AnalyzerProvider
       _change: add
@@ -162,10 +173,110 @@ modules:
         type: SpokenTextBuilder
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
+      handwrittenTests:
+      - name: "should report the production copy's saved sentence that is not the\
+          \ exercise built with its first answer, as «The tree has not grown/hasn't\
+          \ grown yet.» for «The tree ___ (not / grow) yet.»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R001
+      - name: "should report a saved sentence of the tree that is not the exercise\
+          \ built with its first answer, fixed by rule rebuilding it from the parts,\
+          \ as «The tree has not grown/hasn't grown yet.» if the tree kept it"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R001
+      - name: "should not count spaces, punctuation or a rewrite saved as its answer\
+          \ alone as a difference, as «They 're late for the game.» and «Ana was teached\
+          \ a lesson by my brother.»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R001
+      - name: "should build the sentence of a multiple choice exercise with its correct\
+          \ option in the gap, as «I saw a man.» for «I saw ___ man (the listener\
+          \ doesn't know which man).»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R001
+      - name: "should raise a blocking finding on an accepted answer with «/», fixed\
+          \ by rule turning the slash into «|», as «has not cut/hasn't cut» for «\
+          He ___ (not / cut) himself.»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R002
+      - name: "should raise a medium finding on a recorded text that reads a slash,\
+          \ fixed by rule recording again with today's text, as «He has not cut/hasn't\
+          \ cut himself.»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R002
+      - name: "should not report the slash of a statement such as «a / an» by itself,\
+          \ but report it when the audio reads it, as in «Don't touch a / an ___ (asleep\
+          \ / resting) dog!»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R002
+      - name: "should send to the panel as medium a recorded text that says something\
+          \ else than the exercise today, as «Ana was taught a lesson» against «Ana\
+          \ was teached a lesson»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R003
+      - name: "should accept a recording that says another accepted answer or the\
+          \ long form of a contraction, as «We are very excited.» for «We ___ (be)\
+          \ very excited.» answered «'re»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R003
+      - name: "should accept a recording that contains what the exercise says or is\
+          \ contained in it, as «If not» for «Can you hear me clearly? ___ , I can\
+          \ speak louder.»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R003
+      - name: "should raise a low finding on an exercise without audio key, fixed\
+          \ by rule recording it with today's text, as «Are we eating soon?» in Planes\
+          \ y horarios"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R004
+      - name: "should report every exercise that shares its audio key with another\
+          \ once the whole course has been seen and before the scores are aggregated,\
+          \ as two exercises with the key A1.04.08.01"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R004
+      - name: "should raise a low finding on an exercise whose recording the registry\
+          \ does not know, as «Did he have dinner?» if A1.04.08.01 were not registered"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R004
+      - name: "should show as evidence the two copies that do not match with their\
+          \ text and name the copy in the identity, as «He ___ (not / cut) himself.\
+          \ → audio: He has not cut/hasn't cut himself.; hoy: He has not cut himself.»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R005
+      - name: "should score 0 an exercise with a finding and 1 an exercise whose three\
+          \ copies match, as «You ___ (see) cats.»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R005
       implements:
       - ContentAnalyzer
       _change: add
     - name: DefaultSpokenTextBuilder
+      handwrittenTests:
+      - name: "should say only the answer of B in a dialogue, without its label, as\
+          \ «No, you aren't.» for «A: Am I wrong? B: No, you ___ .»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R003
+      - name: "should say only the answer of a word form prompt, as «stopping» for\
+          \ «stop - ___»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R003
       implements:
       - SpokenTextBuilder
       _change: add
@@ -187,6 +298,18 @@ modules:
       - name: registryPath
         type: Path
       visibility: public
+      handwrittenTests:
+      - name: "should give for an audio key the text it was last recorded with and\
+          \ where that text came from, as «He has not cut/hasn't cut himself.» for\
+          \ A2.04.05.09"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R004
+      - name: "should give nothing for an audio key the registry does not know, as\
+          \ the empty key of «Are we eating soon?»"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R004
       implements:
       - AudioRecordingRegistry
       _change: add
@@ -195,6 +318,12 @@ modules:
       - name: exportPath
         type: Path
       visibility: public
+      handwrittenTests:
+      - name: "should read by quiz id the saved sentences of the production copy the\
+          \ importer leaves, as «The tree has not grown/hasn't grown yet.» for 67fab6d5993010229534287e"
+        traceability:
+          feature: FEAT-DATOS
+          rule: F-DATOS-R001
       implements:
       - ProductionSentenceSource
       _change: add
@@ -203,3 +332,8 @@ modules:
 features:
 - id: FEAT-DATOS
   code: F-DATOS
+  journeys:
+  - id: F-DATOS-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.datacoherence

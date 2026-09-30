@@ -1,7 +1,7 @@
 ---
 patch: FEAT-DATOS
 requirement: 2026-09-30.06_datos-coherentes
-generated: 2026-09-30T18:35:00Z
+generated: 2026-09-30T19:05:00Z
 ---
 
 # Tech Spec: Datos coherentes (FEAT-DATOS), paquete A de la ronda 1
@@ -210,3 +210,42 @@ analista encuentra los 39 y marca 9 más, todos reales. Metas: 9 de cada 10 en `
 ## Lo que no se mueve
 data-coherence es de la familia de errores: el 73,9 % y los niveles (96,5 · 94,2 · 79,5 · 63,5) quedan iguales. Sólo
 lee: ni el registro ni la copia de producción se escriben al analizar (F-HALL-R015).
+
+## Declarar las 21 pruebas y ubicar el journey
+Las 21 son nuevas: no hay tests previos de estas reglas que portar. Con el criterio del qa-tester de la opción
+múltiple, sólo se declara lo que verifica una regla, y cada nombre lleva un caso real. Las cinco reglas quedan
+cubiertas (R001 5, R002 3, R003 5, R004 5, R005 3). De dónde sale cada una:
+
+- **Los casos del REQUIREMENT**: «The tree has not grown/hasn't grown yet.» (287e, en la copia de producción), «He ___
+  (not / cut) himself.» (286c), «Don't touch a / an ___…» (489e), «Ana was teached a lesson…» (439d) y «Are we
+  eating soon?» (26ac, sin clave).
+- **El curso del 29/9** (últimos 4 del id): la guardada con espacio «They 're late for the game.» 1fb1; la opción
+  múltiple «I saw ___ man (…)» 2aae; «We ___ (be) very excited.» 25ef; «If not» en «Can you hear me clearly? ___ , I can
+  speak louder.» 3a69; el diálogo «A: Am I wrong? B: No, you ___ .» 1f53; «stop - ___» 1fc7; y la clave A1.04.08.01 de
+  «Did he have dinner?» 221f, que las pruebas de R004 comparten o sacan del registro.
+- **Lo que depende de otros**: la oración armada y la evidencia, el renderizador (A-01); todas las del audio, la clave
+  de audio en `AuditableQuiz` (A-02, A-03); las del adaptador del registro, `db/grabaciones.json` (A-16) si lo leen en
+  vez de un archivo de prueba. «We are very excited.» pasa con la tabla de hoy sólo si data-coherence iguala la
+  contraída y la larga por su cuenta, como pide R003; si se lo deja a `CorrectorMatcher`, espera la tabla nueva (A-15).
+- **El journey** va a `audit-domain`, paquete `datacoherence`, con el registro y la copia de producción como puertos
+  simulados. `generate` crearía `FDatosJ001JourneyTest` con 5 caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: datacoherence
+        _change: add
+        implementations:
+          - name: DataCoherenceAnalyzer
+            _change: add
+            handwrittenTests:
+              - name: "should raise a medium finding on a recorded text that reads a slash, fixed by rule recording again with today's text, as «He has not cut/hasn't cut himself.»"
+                traceability: { feature: FEAT-DATOS, rule: F-DATOS-R002 }
+features:
+  - id: FEAT-DATOS
+    code: F-DATOS
+    journeys:
+      - { id: F-DATOS-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.datacoherence }
+```

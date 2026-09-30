@@ -6,7 +6,13 @@ description: "FEAT-PISTA: hint-coherence, el analizador de errores que compara l
   \ Respuestas completas para saber si «'s» es is o has. No toca el lematizador compartido\
   \ (DOUBT-PISTA-LEMATIZADOR). Diseñado contra el modelo que queda después de 0.2\
   \ y 0.3 (AnalyzerProvider, ContentAnalyzer.findingsAt, FindingResolution) e inyecta\
-  \ el renderizador QuizStudentViewRenderer del integrador de la ronda 1."
+  \ el renderizador QuizStudentViewRenderer del integrador de la ronda 1.; qa-tester:\
+  \ traza las 5 reglas de FEAT-PISTA a 28 handwrittenTests nuevas (content-audit no\
+  \ tiene tests previos de estas reglas: no hay nada que portar), cada una con un\
+  \ caso real del curso, y ubica F-PISTA-J001 en audit-domain, paquete hintcoherence.\
+  \ Dependen del integrador: la evidencia (A-01, QuizStudentViewRenderer); la tabla\
+  \ instalada, si la prueba del adaptador la lee (A-16). La que manda a la mesa la\
+  \ palabra ausente sigue la opcion A de DOUBT-PISTA-CUANDO-MESA, abierta."
 modules:
 - name: audit-domain
   interfaces:
@@ -159,6 +165,13 @@ modules:
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
       visibility: public
+      handwrittenTests:
+      - name: "should describe hint-coherence in the catalog as an errors analyzer\
+          \ that evaluates exercises, resolves by rule or at the panel and costs instant,\
+          \ asking «¿La pista le anuncia al alumno lo que tiene que escribir?»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R005
       implements:
       - AnalyzerProvider
       _change: add
@@ -170,10 +183,87 @@ modules:
         type: HintAnswerCheck
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
+      handwrittenTests:
+      - name: "should raise a high finding on an exercise without hint when three\
+          \ quarters or more of its topic's exercises of the same shape carry one,\
+          \ as «I ___ a lot of vegetables.» among the 19 of 20 of Afirmativas regulares"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R001
+      - name: "should take exactly three quarters of the topic as reaching the threshold\
+          \ and leave a topic below it without finding, as «I'd love ___ .» in One\
+          \ y ones, where 12 of 20 carry a hint"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R001
+      - name: "should count hints only among exercises of the same shape, so the 20\
+          \ transformations without hint of El posesivo are not measured against its\
+          \ 20 hinted gaps"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R001
+      - name: "should neither count nor mark multiple choice exercises, as «My brother\
+          \ is a ___ (good / well) driver.» in ¿Good o well?"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R001
+      - name: "should raise a blocking finding with the hint and the answer as evidence\
+          \ when the hint names another verb than the answer, as «This idea ___ (not\
+          \ / sound) very good.» answered «does not»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R002
+      - name: "should raise a blocking finding when the subject of the hint is not\
+          \ the subject of the answer, as «What ___ (it / be)?» answered «is that»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R003
+      - name: "should score 0 an exercise with a finding and 1 an exercise whose hint\
+          \ announces its answer, as «You ___ (see) cats.» answered «see»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R005
+      - name: "should show as evidence the exercise as the student sees it, its answer\
+          \ and the line that names the fault, as «Who ___ (I / see)? → are you seeing:\
+          \ el sujeto I no es you»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R005
+      - name: "should identify each finding by its rule and the word it names, so\
+          \ two runs give «Who ___ (I / see)?» the same identity"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R005
       implements:
       - ContentAnalyzer
       _change: add
     - name: DefaultHintReader
+      handwrittenTests:
+      - name: "should tell a gap inside the sentence, as «She dances ___ (good / well).»\
+          , from an answer that is the whole sentence, as «Polite request: I want\
+          \ to eat some cake. ___»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R001
+      - name: "should not take as a hint a tense name, an instruction or a context\
+          \ note between parentheses, as «(present simple)» in «She ___ (live) there.\
+          \ (present simple)» or «(be extra polite)» in «Where / you / going? (be\
+          \ extra polite) ___»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R002
+      - name: "should read as the hint of an answer that is the whole sentence its\
+          \ statement of words separated by «/», as «She / assist you. ___» answered\
+          \ «She'd help you.»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R002
+      - name: "should never read as a hint the sentence to be transformed, as «I want\
+          \ to eat some cake.» in «Polite request: I want to eat some cake. ___» answered\
+          \ «Could I have some cake?»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R002
       implements:
       - HintReader
       _change: add
@@ -181,6 +271,76 @@ modules:
       requiresInject:
       - name: irregularForms
         type: IrregularFormsCatalog
+      handwrittenTests:
+      - name: "should find no issue when every hint word is in the answer as written,\
+          \ inflected or through its lemma, as «You ___ (see) cats.» answered «see»\
+          \ and «He ___ (not / cut) himself.» answered «has not cut»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R002
+      - name: "should report a hint word that is in the answer neither inflected nor\
+          \ through its lemma, as «mean» in «This sentence ___ (mean) 'hope'.» answered\
+          \ «implies»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R002
+      - name: "should recognize through the table of irregular forms the inflected\
+          \ forms the shared lemmatizer misses, as swum in «They ___ (swim) in the\
+          \ ocean» and hated in «She ___ (hate) broccoli for ages»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R002
+      - name: "should report a verb of the answer that is not an auxiliary and that\
+          \ the hint does not announce, as «rain» in «It ___ (be) soon.» answered\
+          \ «'s going to rain»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R002
+      - name: "should take the answer as one of the options of a choice hint instead\
+          \ of comparing it word by word, as «She dances ___ (good / well).» answered\
+          \ «well»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R002
+      - name: "should report a subject pronoun of the hint that is not the subject\
+          \ of the answer, as «I» in «Who ___ (I / see)?» answered «are you seeing»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R003
+      - name: "should report a subject pronoun that opens the answer when neither\
+          \ the hint nor the rest of the statement names it, as «___ (not / dream)\
+          \ about her.» answered «I haven't dreamt»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R003
+      - name: "should not take an empty it or there as an unannounced subject, as\
+          \ «(him) ___» answered «It's him.»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R003
+      - name: "should report a hint with «not» whose answer does not negate, as «\
+          He ___ (not / cut) himself.» answered «has cut»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R004
+      - name: "should not ask for «not» in the hint of a negative answer whose negation\
+          \ comes from the dialogue, as «A: Am I wrong? B: No, you ___ .» answered\
+          \ «aren't»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R004
+      - name: "should propose as the fix by rule the hint drawn from the first answer,\
+          \ with its base verb, its subject and its not, leaving the answer and its\
+          \ audio as they are, as «(you / see)» for «Who ___ (I / see)?»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R005
+      - name: "should send to the panel instead of fixing by rule a hint word that\
+          \ is not in the answer, as «bad» in «That was ___ (bad) holiday ever!» answered\
+          \ «the best»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R005
       implements:
       - HintAnswerCheck
       _change: add
@@ -200,6 +360,19 @@ modules:
       - name: catalogPath
         type: Path
       visibility: public
+      handwrittenTests:
+      - name: "should give from the closed table the irregular forms of a base word,\
+          \ as drank and drunk for drink, which «She ___ (drink) juice if the shop\
+          \ ___ (sell) it.» needs, and better, best and well for good"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R002
+      - name: "should say whether a word is a past participle, as swum and not swam,\
+          \ so that «'ve» in «They ___ (swim) in the ocean» answered «'ve swum» counts\
+          \ as an auxiliary"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R002
       implements:
       - IrregularFormsCatalog
       _change: add
@@ -208,3 +381,8 @@ modules:
 features:
 - id: FEAT-PISTA
   code: F-PISTA
+  journeys:
+  - id: F-PISTA-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.hintcoherence

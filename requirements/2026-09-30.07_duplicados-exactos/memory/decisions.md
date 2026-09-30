@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-DUPEX-J001 en audit-domain, paquete exactduplicates: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.
+2026-09-30 — qa-tester — Las 23: la prueba toma los 14 temas del curso del 29/9 con las copias (A1 17, A2 2, B1 4); la ausencia de marcas en los otros 399 la mide medir.py.
+2026-09-30 — qa-tester — Para el analista: en Práctica mixta queda 224b (posición 44 de 80) y la copia es 2260 (65); el ejemplo de R004 los nombra al revés.
+
 2026-09-30 — architect — La búsqueda es en onKnowledge, en el orden del curso: cada ejercicio contra los anteriores con
   CorrectorMatcher.sameAnswer; el primero que termina igual queda (estable entre corridas). Diagnóstico sólo en la copia.
 2026-09-30 — architect — El ejercicio terminado lo arma el renderizador del integrador (finishedSentence con FILL: texto entero, sin

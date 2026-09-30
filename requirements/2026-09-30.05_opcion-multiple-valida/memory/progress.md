@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — patch propose OK, fusionado con el parche del arquitecto (3 altas, 1 cambio, 0 conflictos); `patch validate` y `tech-spec write` OK, con -i contra el modelo después de 0.2 y 0.3. 24 handwrittenTests nuevas (0 portadas: no había tests de estas reglas), las 5 reglas [covered]; F-OMVAL-J001 en audit-domain, paquete multiplechoicevalidity. Simulación en memoria (scratchpad/qa-A/SimularQA.java): aterrizan las 24, `feature status` OK, generate crearía 6 caminos y 24 stubs en {Impl}Test nuevos, sin choques de nombre. Sin aplicar.
+  Next: integrador (A-01, A-07, A-08, A-15); José aplica sin --as; generate; @test-writer.
+  Ojo: con 0.3 aplicado, generate aborta por F-HALL-J001/J002 sin testModule (no es de A: los ubica el qa-tester de 0.3).
+
 2026-09-30 — architect — Parche (3 altas, 1 cambio, 0 conflictos) y TECH_SPEC (5 fragmentos) en exit 0; `patch validate` OK. Dos dudas
   nuevas en el REQUIREMENT (DOUBT-OMVAL-JUEZ-A-MEDIAS, DOUBT-OMVAL-CORRIDA-BASE). Next: José contesta; el orquestador reconcilia A-07 con C.
 
