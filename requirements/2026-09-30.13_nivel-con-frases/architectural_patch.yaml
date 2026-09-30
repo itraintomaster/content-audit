@@ -1,0 +1,357 @@
+code: FEAT-NIVFR
+description: "FEAT-NIVFR: analizador de errores off-level-words. Cuenta las palabras\
+  \ que el alumno de su nivel no puede conocer (dos niveles arriba, o fuera del EVP\
+  \ en la banda de descuento fuerte), leidas con el mismo puntuador lexico que lemma-absence\
+  \ y lexis, salvo lo que el tema ensena y lo que la traduccion repite. Un paquete\
+  \ publico con su diagnostico, su proveedor y la regla del tema, que comparte con\
+  \ el semaforo; el analizador queda package-private. Disenado contra el modelo de\
+  \ 0.2 y 0.3: AnalyzerProvider, FindingDraft y findingsAt vienen de FEAT-HALL. Lo\
+  \ compartido (slot en QuizDiagnoses, linea en Main, declaracion de cubierto en el\
+  \ plan) va en ronda1/ganchos-D.md.; qa-tester: traza las 7 reglas de FEAT-NIVFR\
+  \ a 37 handwrittenTests nuevos (ninguno portado: no hay codigo previo de off-level-words)\
+  \ en OffLevelWordsAnalyzer, DefaultTopicTeachingResolver, OffLevelWordsAnalyzerProvider,\
+  \ IAuditEngine, DefaultRefinerEngine y Main, y ubica F-NIVFR-J001 en audit-cli,\
+  \ paquete commands. Las que dependen de 0.2, 0.3 o de un gancho D-xx lo dicen en\
+  \ el TECH_SPEC."
+modules:
+- name: audit-domain
+  implementations:
+  - name: IAuditEngine
+    handwrittenTests:
+    - name: should give lemma-absence the same scores and typed diagnoses in every
+        node whether or not off-level-words runs in the same analysis
+      traceability:
+        feature: FEAT-NIVFR
+        rule: F-NIVFR-R006
+    - name: "should keep the vocabulary score of every node when off-level-words runs,\
+        \ 73.92% in the course and 96.54, 94.16, 79.45 and 63.51 from A1 to B2 on\
+        \ the published scores of the analysis of 29/9"
+      traceability:
+        feature: FEAT-NIVFR
+        rule: F-NIVFR-R006
+  packages:
+  - name: offlevelwords
+    description: "Palabras de otro nivel (FEAT-NIVFR). Contrato y portador publicos:\
+      \ el diagnostico de cada ejercicio, el proveedor que lo registra en el catalogo\
+      \ (FEAT-HALL) y la regla de lo que ensena un tema (F-NIVFR-R003), que el semaforo\
+      \ usa igual (F-SEMAF-R004). El analizador es package-private: solo lo construye\
+      \ su proveedor, una vez por corrida. Clientes: audit-cli (raiz de composicion)\
+      \ y refiner-domain (semaforo)."
+    visibility: public
+    models:
+    - name: OffLevelWordsDiagnosis
+      type: record
+      fields:
+      - name: level
+        type: CefrLevel
+        description: "Nivel del ejercicio: el de su milestone."
+      - name: words
+        type: List<OffLevelWord>
+        description: "Palabras que cuentan como error, en el orden de la oracion,\
+          \ sin repetir lema y categoria. Vacia si ninguna (puntaje 1)."
+      _change: add
+    - name: OffLevelWord
+      type: record
+      fields:
+      - name: lemma
+        type: String
+        description: Lema con que el puntuador lexico la resolvio (R042 incluida).
+      - name: pos
+        type: String
+        description: Categoria gramatical observada en la oracion.
+      - name: reason
+        type: OffLevelReason
+      - name: catalogLevel
+        type: CefrLevel
+        description: Nivel del catalogo EVP cuando reason es ABOVE_LEVEL; null cuando
+          esta fuera del EVP. Nunca se inventa (F-LABS-R038).
+      - name: frequencyRank
+        type: Integer
+        description: "Puesto COCA: el del catalogo si esta en el EVP, el del token\
+          \ si no; null sin puesto."
+      _change: add
+    - name: OffLevelReason
+      type: enum
+      fields:
+      - name: ABOVE_LEVEL
+        description: "Su nivel del catalogo esta dos o mas niveles arriba del ejercicio\
+          \ (C1 = 5, C2 = 6)."
+      - name: OUT_OF_CATALOG
+        description: No esta en el catalogo y cae en la banda de descuento fuerte
+          de F-LABS-R034 para el nivel del ejercicio.
+      _change: add
+    - name: TaughtWords
+      type: record
+      fields:
+      - name: knowledgeId
+        type: String
+      - name: titleTerms
+        type: List<String>
+        description: "Palabras de los terminos en ingles del titulo, los que van entre\
+          \ $, en minuscula; let's cuenta como let."
+      - name: frequentAnswers
+        type: List<String>
+        description: "Lemas que son parte de la respuesta de al menos 3 ejercicios\
+          \ del tema y del 20 % o mas de ellos. Respuesta: la del hueco o la opcion\
+          \ correcta de la opcion multiple (0.2), leida en los tokens del ejercicio."
+      _change: add
+    interfaces:
+    - name: TopicTeachingResolver
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "taughtWords(AuditNode knowledgeNode): TaughtWords"
+      _change: add
+    implementations:
+    - name: DefaultTopicTeachingResolver
+      visibility: public
+      handwrittenTests:
+      - name: "should take as taught the words of the English terms between dollar\
+          \ signs in the knowledge title, like 'invest' and 'time' in '$Invest time$\
+          \ + gerundio'"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R003
+      - name: should take 'let' as taught when a title term between dollar signs is
+          'Let's'
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R003
+      - name: "should take as taught a lemma that is part of the answer of at least\
+          \ 3 quizzes of the topic and of 20% or more of them, like 'sequence' in\
+          \ 'Orden o simultaneidad'"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R003
+      - name: "should not take as taught a lemma that is part of the answer of only\
+          \ 2 quizzes, even when they are half of the topic"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R003
+      - name: "should take as taught a lemma in the answer of 3 of the 15 quizzes\
+          \ of a topic but not of 3 of 16, which are less than 20%"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R003
+      - name: should read the answer of a multiple choice quiz as its correct option
+          and never as its distractors
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R003
+      - name: should not take as taught a word that only appears in the sentence outside
+          the answer
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R003
+      implements:
+      - TopicTeachingResolver
+      _change: add
+    - name: OffLevelWordsAnalyzerProvider
+      requiresInject:
+      - name: sentenceLexicalScorer
+        type: SentenceLexicalScorer
+        description: "El mismo puntuador de lemma-absence y lexis: paridad por construccion\
+          \ (F-NIVFR-R001 inv. 3)."
+      - name: lemmaAbsenceConfig
+        type: LemmaAbsenceConfig
+        description: Para reconocer la banda fuerte de fuera de catalogo (F-LABS-R034)
+          sin copiar sus numeros.
+      - name: topicTeachingResolver
+        type: TopicTeachingResolver
+      visibility: public
+      handwrittenTests:
+      - name: "should describe off-level-words in its card: whether there are words\
+          \ the student of the level cannot know, reading the finished sentence, the\
+          \ topic title and answers and the translation, errors family, quiz target,\
+          \ rule F-NIVFR-R002, goal 0, panel resolution and instant cost"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R007
+      - name: "should use the single name off-level-words for its card, the analyzer\
+          \ it creates and every finding of that analyzer"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R007
+      - name: "should declare no plan binding for off-level-words, so the plan opens\
+          \ no task of its own"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R006
+      stereotype: class
+      exposes:
+      - signature: "analyzerName(): String"
+      - signature: "describe(): AnalyzerDescriptor"
+      - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
+      - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
+      - signature: "config(): Optional<SelfDescribingConfig>"
+      _change: add
+    - name: OffLevelWordsAnalyzer
+      requiresInject:
+      - name: sentenceLexicalScorer
+        type: SentenceLexicalScorer
+      - name: lemmaAbsenceConfig
+        type: LemmaAbsenceConfig
+      - name: topicTeachingResolver
+        type: TopicTeachingResolver
+      visibility: internal
+      handwrittenTests:
+      - name: "should not mark 'live' (B1) in the A1 quiz 'She lives in London.',\
+          \ because the A1 EVP phrase 'live in/at' lowers its level as it does for\
+          \ lemma-absence"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R001
+      - name: "should not mark 'run' in an A1 quiz because of the B1 EVP phrase 'run\
+          \ out', since a phrase never raises the level of its lemma"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R001
+      - name: "should report 'reside' in an A1 quiz as out of the EVP with its COCA\
+          \ rank 5,333 and no catalog level, never an invented level"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R001
+      - name: should mark in 'She spread the warm blue quilt on the bed.' (A2) only
+          words that lexis also flags for that sentence at A2
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R001
+      - name: "should mark 'spread' and 'quilt', B2 words, in the A2 quiz 'She spread\
+          \ the warm blue quilt on the bed.', two levels above it"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should never mark a word only one level above the quiz, like 'let'\
+          \ (A2) in an A1 quiz"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should count C1 as level 5 and C2 as level 6, so a C1 word is marked\
+          \ in a B1 quiz but not in a B2 quiz, and a C2 word is marked in a B2 quiz"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should mark an out-of-catalog word only in the strong-discount band\
+          \ of the quiz level, like 'reside' (rank 5,333) in an A2 quiz but not in\
+          \ a B1 quiz"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should mark in an A1 quiz an out-of-catalog word ranked 3,001 or without\
+          \ rank but not one ranked 3,000, taking the band bounds from the lemma-absence\
+          \ configuration"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should not mark 'invest' (B2) in an A2 quiz of '$Invest time$ + gerundio',\
+          \ because its topic teaches it"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R003
+      - name: "should mark 'invest' (B2) in an A2 quiz of a topic that does not teach\
+          \ it, even though another topic of the course does"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R003
+      - name: should not mark 'sushi' in 'We make sushi and pizza.' because the translation
+          repeats it whole
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R004
+      - name: "should keep marking 'adore' when the translation only says 'adoran',\
+          \ because the word has to appear whole"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R004
+      - name: "should ignore accents when it compares with the translation, so an\
+          \ out-of-catalog 'canape' is not marked when the translation writes it with\
+          \ an accent"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R004
+      - name: "should keep marking a catalog word two levels above the quiz even when\
+          \ the translation repeats it, since the exception only covers words out\
+          \ of the EVP"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R004
+      - name: "should leave one finding per off-level word, of rule F-NIVFR-R002,\
+          \ medium severity, panel resolution and instant cost: two in 'She spread\
+          \ the warm blue quilt on the bed.' (A2)"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R005
+      - name: "should give as evidence the sentence, the word, its level or out of\
+          \ the EVP with its COCA rank, and the quiz level, like 'reside is out of\
+          \ the EVP (rank 5,333); the quiz is A1'"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R005
+      - name: "should score 1 a quiz without off-level words, leaving it no finding,\
+          \ and below 1 a quiz with at least one"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R005
+      - name: "should leave a single finding for a word repeated in the sentence,\
+          \ identified by its lemma and part of speech"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R005
+      - name: "should keep the quiz level and its off-level words in the typed diagnosis\
+          \ of the quiz, with the same data as its findings"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R005
+      - name: "should measure a multiple choice quiz like a CLOZE one, on the sentence\
+          \ lemma-absence measures with its correct option in the gap"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R005
+      - name: should write only the off-level-words score on the quizzes it evaluates
+          and never touch the score or diagnosis of another analyzer
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R006
+      implements:
+      - ContentAnalyzer
+      _change: add
+    allowedClients:
+    - audit-cli
+    - refiner-domain
+    _change: add
+  _change: modify
+- name: refiner-domain
+  implementations:
+  - name: DefaultRefinerEngine
+    handwrittenTests:
+    - name: "should open no task for an off-level-words score below 1 and declare\
+        \ it covered by the LEMMA_ABSENCE task of its quiz, never as an unconverted\
+        \ score"
+      traceability:
+        feature: FEAT-NIVFR
+        rule: F-NIVFR-R006
+    - name: "should plan the same 4,036 tasks for the analysis of 29/9 with and without\
+        \ off-level-words: SENTENCE_LENGTH 3,051, LEMMA_ABSENCE 950, KNOWLEDGE_INSTRUCTIONS_LENGTH\
+        \ 25, KNOWLEDGE_TITLE_LENGTH 6, COCA_BUCKETS 3 and LEMMA_RECURRENCE 1"
+      traceability:
+        feature: FEAT-NIVFR
+        rule: F-NIVFR-R006
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: Main
+      handwrittenTests:
+      - name: "should list off-level-words with its card in get analyzers, registered\
+          \ in the catalog right after lemma-absence"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R007
+features:
+- id: FEAT-NIVFR
+  code: F-NIVFR
+  journeys:
+  - id: F-NIVFR-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands

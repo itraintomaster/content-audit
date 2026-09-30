@@ -1,0 +1,340 @@
+code: FEAT-SEMAF
+description: "FEAT-SEMAF: semaforo de palabras por tema. Consulta de solo lectura\
+  \ sobre un analisis guardado que junta tres cosas que content-audit ya publica o\
+  \ ya calcula: el rojo es la consulta lexica (F-CLEX) al nivel del tema, el verde\
+  \ propio sale de la tabla de lemma-count (FEAT-POCOV, con el umbral de la banda\
+  \ de cada palabra) y el verde para sumar son las palabras sugeridas (F-SLEM/F-CSLATDC)\
+  \ sin las que el tema ya usa. La regla de lo que ensena el tema es la de off-level-words\
+  \ (FEAT-NIVFR). No es un analizador: sin ficha, puntaje, hallazgos ni tareas. El\
+  \ recurso de get y el cableado en Main son enganches (ronda1/ganchos-D.md).; qa-tester:\
+  \ traza las 7 reglas de FEAT-SEMAF a 32 handwrittenTests nuevos (ninguno portado:\
+  \ no hay codigo previo del semaforo) en DefaultTopicWordLightsQuery y GetCmd, y\
+  \ ubica F-SEMAF-J001 en audit-cli, paquete commands. Las que dependen de FEAT-NIVFR,\
+  \ FEAT-POCOV o de un gancho D-xx lo dicen en el TECH_SPEC."
+modules:
+- name: refiner-domain
+  packages:
+  - name: topicwords
+    description: "Semaforo de palabras por tema (FEAT-SEMAF). Lee un AuditReport ya\
+      \ guardado y no escribe nada: ni el informe, ni el plan, ni el curso (F-SEMAF-R007).\
+      \ Vive en refiner-domain porque el verde para sumar son las palabras sugeridas\
+      \ de este modulo; el rojo lo pide a la consulta lexica publica de audit-domain\
+      \ y la excepcion del tema, a off-level-words. Su unico cliente es la raiz de\
+      \ composicion (audit-cli)."
+    visibility: public
+    models:
+    - name: TopicWordLights
+      type: record
+      fields:
+      - name: auditId
+        type: String
+        description: "Analisis del que se leyo: el mismo analisis fuente que las sugeridas\
+          \ (F-CSLATDC-R015)."
+      - name: knowledgeId
+        type: String
+      - name: knowledgeLabel
+        type: String
+      - name: level
+        type: CefrLevel
+        description: "Nivel del tema: el de su milestone."
+      - name: words
+        type: List<TopicWord>
+        description: "Cada palabra de contenido de los ejercicios del tema, una vez\
+          \ por lema y categoria: rojas, verdes y neutras (F-SEMAF-R001)."
+      - name: toAdd
+        type: List<SuggestedLemma>
+        description: "Verde para sumar: las sugeridas del nivel del tema en su orden\
+          \ de seis grupos, con los mismos filtros, sin las palabras que el tema ya\
+          \ usa; el limite se aplica despues de sacarlas (F-SEMAF-R003). Nunca trae\
+          \ una roja (F-SEMAF-R007)."
+      _change: add
+    - name: TopicWord
+      type: record
+      fields:
+      - name: lemma
+        type: String
+      - name: pos
+        type: String
+      - name: level
+        type: CefrLevel
+        description: "El de la consulta lexica si la marca; si no, el que le asigna\
+          \ lemma-count. Null si no tiene nivel o esta fuera del EVP."
+      - name: outOfCatalog
+        type: boolean
+        description: "La consulta lexica la marca fuera del EVP: se muestra «fuera\
+          \ del EVP» con su puesto, nunca un nivel inventado."
+      - name: frequencyRank
+        type: Integer
+        description: "Puesto COCA: el del catalogo si esta en el EVP, el del token\
+          \ si esta fuera."
+      - name: sentenceCount
+        type: int
+        description: "Oraciones del curso donde aparece, contadas por lemma-count."
+      - name: threshold
+        type: Integer
+        description: "Umbral N de la palabra en lemma-count, el de su banda; null\
+          \ si lemma-count no le asigna nivel."
+      - name: light
+        type: WordLight
+      - name: greenState
+        type: GreenState
+        description: "Solo en las verdes: poco vista (1 a N-1) o escasa (N a 2N-1)."
+      - name: taughtByTopic
+        type: boolean
+        description: "La ensena el tema (F-SEMAF-R004): nunca es roja."
+      - name: offLevelError
+        type: Boolean
+        description: La roja es ademas un error de off-level-words en algun ejercicio
+          del tema. Null cuando el analisis no corrio off-level-words.
+      _change: add
+    - name: WordLight
+      type: enum
+      fields:
+      - name: GREEN
+        description: Del nivel del tema segun lemma-count y en menos de 2N oraciones
+          (F-SEMAF-R002).
+      - name: RED
+        description: La consulta lexica la marca para el nivel del tema y el tema
+          no la ensena (F-SEMAF-R005).
+      - name: NEUTRAL
+        description: Ni roja ni verde. Aparecer mucho nunca la hace roja (F-SEMAF-R006).
+      _change: add
+    - name: GreenState
+      type: enum
+      fields:
+      - name: UNDER_EXPOSED
+        description: "Poco vista: de 1 a N-1 oraciones. Coincide con un hallazgo de\
+          \ lemma-count en su nivel."
+      - name: SCARCE
+        description: "Escasa: de N a 2N-1 oraciones."
+      _change: add
+    - name: KnowledgeNotInAnalysisException
+      type: exception
+      fields:
+      - name: knowledgeId
+        type: String
+      message: Knowledge '%s' not found in the analysis.
+      _change: add
+      extends: RuntimeException
+    - name: LemmaCountDataMissingException
+      type: exception
+      fields:
+      - name: auditId
+        type: String
+      message: The analysis '%s' has no lemma-count data. Run 'content-audit analyze'
+        with lemma-count.
+      _change: add
+      extends: RuntimeException
+    interfaces:
+    - name: TopicWordLightsQuery
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "lightsFor(AuditReport report, String auditId, String knowledgeId,\
+          \ SuggestedLemmaQueryCriteria criteria): TopicWordLights"
+      _change: add
+    implementations:
+    - name: DefaultTopicWordLightsQuery
+      requiresInject:
+      - name: sentenceLexicalEvaluator
+        type: SentenceLexicalEvaluator
+        description: El rojo es exactamente lo que marca lexis para el nivel del tema
+          (F-CLEX-R006).
+      - name: suggestedLemmaQueryPort
+        type: SuggestedLemmaQueryPort
+        description: "El verde para sumar: la misma consulta que get suggested-lemmas,\
+          \ anclada a un ejercicio del tema."
+      - name: topicTeachingResolver
+        type: TopicTeachingResolver
+        description: "La excepcion del tema, la misma de off-level-words (F-NIVFR-R003)."
+      visibility: public
+      handwrittenTests:
+      - name: "should list each content word of the topic's quizzes once by lemma\
+          \ and part of speech, with its level, its course sentence count and its\
+          \ light"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R001
+      - name: "should show the level lexis gives to a word it flags, out of the EVP\
+          \ with its COCA rank for an out-of-catalog one, and otherwise the level\
+          \ lemma-count assigns"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R001
+      - name: "should show without level a word lemma-count cannot place, with its\
+          \ sentences from the unassigned list of lemma-count"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R001
+      - name: should reject a knowledge that is not in the analysis with 'Knowledge
+          <id> not found in the analysis.' and return no list
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R001
+      - name: should reject an analysis without lemma-count data with 'The analysis
+          <id> has no lemma-count data. Run content-audit analyze with lemma-count.'
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R001
+      - name: "should paint green a word lemma-count assigns to the topic's level\
+          \ that the course uses in fewer than 2N sentences, like 'lamp' (A2) in 4\
+          \ sentences with N 4"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R002
+      - name: "should mark a green word under-exposed in 1 to N-1 sentences and scarce\
+          \ in N to 2N-1, so with N 4 'rubber' in 3 sentences is under-exposed and\
+          \ 'lamp' in 4 is scarce"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R002
+      - name: "should not paint green a word of the topic's level used in 2N or more\
+          \ sentences, like 'vegetable' (A1) in 10 sentences with N 4"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R002
+      - name: should not paint green a word lemma-count assigns to a level other than
+          the topic's
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R002
+      - name: "should use the threshold of each word's band, so 'number' (A1) in 5\
+          \ sentences is green and under-exposed with bands 8, 6, 4 and 3 but scarce\
+          \ with 4 for every band"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R002
+      - name: "should never paint green a word lexis flags for the topic's level,\
+          \ even when lemma-count assigns it that level and few sentences"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R002
+      - name: should mark as under-exposed exactly the green words that lemma-count
+          leaves as findings in the topic's level
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R002
+      - name: "should offer to add the suggested words of the topic's level in the\
+          \ order of get suggested-lemmas for a task of that level, without the words\
+          \ the topic already uses"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R003
+      - name: "should apply the limit after removing the words the topic already uses,\
+          \ so asking for 10 returns 10 while enough remain"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R003
+      - name: "should give the same words to add as get suggested-lemmas with the\
+          \ same part-of-speech, regex and include-exposed filters"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R003
+      - name: should never paint red 'invest' (B2) in '$Invest time$ + gerundio' (A2)
+          and show it as taught by the topic
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R004
+      - name: "should never paint red 'sequence' and 'simultaneous' in 'Orden o simultaneidad'\
+          \ (B1), answers of at least 3 quizzes and 20% of the topic"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R004
+      - name: should take 'let' as taught by a topic whose title term between dollar
+          signs is 'Let's'
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R004
+      - name: "should paint red a word lexis flags as misplaced for the topic's level\
+          \ in any of its quizzes, like 'bench' (B2) in 'Posicion del adjetivo' (A2),\
+          \ with its catalog level"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R005
+      - name: "should paint red an out-of-catalog word lexis penalizes at the topic's\
+          \ level, shown out of the EVP with its COCA rank, like 'reside' in an A1\
+          \ topic"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R005
+      - name: should not paint red an out-of-catalog word that lexis does not penalize
+          at the topic's level
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R005
+      - name: "should paint red from the tokens each quiz carries in the report, even\
+          \ when the analysis did not run lemma-absence"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R005
+      - name: should say that a red word is also an off-level-words error when the
+          analysis has that finding in a quiz of the topic
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R005
+      - name: should leave the error mark without data and keep the light when the
+          analysis did not run off-level-words
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R005
+      - name: "should leave neutral a word of the topic's level that the course repeats\
+          \ in many sentences, like 'go' (A1) in more than 15"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R006
+      - name: "should not paint red a word of the topic's level that lemma-recurrence\
+          \ finds over-exposed, like 'oven' (B1) in a B1 topic, which returns every\
+          \ 8 words"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R006
+      - name: "should never offer to add a word that is red in the topic, even when\
+          \ it is a suggested word of the level"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R007
+      - name: "should add no score, finding, diagnosis or task to the report it reads"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R007
+      implements:
+      - TopicWordLightsQuery
+      _change: add
+    allowedClients:
+    - audit-cli
+    _change: add
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: "should print as JSON the word lights of a knowledge with get word-lights,\
+          \ read from the source analysis of the latest plan like get suggested-lemmas,\
+          \ or from the latest analysis when there is no plan"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R001
+      - name: should exit with code 1 and print the not-found message for a knowledge
+          that is not in the analysis
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R001
+      - name: "should reject --level for word-lights, since the level is the topic's"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R001
+      - name: "should leave the stored analysis of 29/9 and its plan byte for byte\
+          \ identical after get word-lights, at 73.92% and 4,036 tasks"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R007
+features:
+- id: FEAT-SEMAF
+  code: F-SEMAF
+  journeys:
+  - id: F-SEMAF-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands

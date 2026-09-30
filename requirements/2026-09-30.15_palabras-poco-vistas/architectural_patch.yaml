@@ -1,0 +1,354 @@
+code: FEAT-POCOV
+description: "FEAT-POCOV: lemma-count con umbral por banda de frecuencia y con hallazgos\
+  \ que solo ordenan. El umbral de cada palabra sale de una tabla de bandas por puesto\
+  \ COCA del catalogo EVP (configuracion: lista vacia = el umbral uniforme de hoy;\
+  \ recomendada 8/6/4/3). El resultado publica la tabla usada y una fila por palabra\
+  \ con su banda, su umbral y sus temas, que leen los hallazgos, el semaforo y las\
+  \ sugeridas. Sin tareas y sin cambiar los constructores de LemmaCountStats ni de\
+  \ LevelLemmaCountResult. findingsAt viene de FEAT-HALL (0.3); los cambios en las\
+  \ sugeridas y en las palabras escasas son enganches (ronda1/ganchos-D.md).; FEAT-POCOV:\
+  \ lemma-count con umbral por banda de frecuencia y con hallazgos que solo ordenan.\
+  \ El umbral de cada palabra sale de una tabla de cuatro bandas por puesto COCA del\
+  \ catalogo EVP (configuracion: «4 para todas» da exactamente lo de hoy; recomendada\
+  \ 8/6/4/3). El resultado publica la tabla usada y una fila por palabra con su banda,\
+  \ su umbral y sus temas, que leen los hallazgos, el semaforo y las sugeridas. Sin\
+  \ tareas y sin cambiar los constructores de LemmaCountStats ni de LevelLemmaCountResult.\
+  \ findingsAt viene de FEAT-HALL (0.3); los cambios en las sugeridas y en las palabras\
+  \ escasas son enganches (ronda1/ganchos-D.md).; qa-tester: traza las 7 reglas de\
+  \ FEAT-POCOV a 36 handwrittenTests nuevos (ninguno portado: los 23 de LCOUNT siguen\
+  \ trazados a sus reglas) en LemmaCountAnalyzer, EvpThenNlpLemmaCefrLevelResolver,\
+  \ LemmaCountAnalyzerProvider (de 0.3), IAuditEngine, DefaultLemmaCountConfigLoader,\
+  \ DefaultRefinerEngine, LemmaAbsenceContextResolver y LevelWideLemmaInventory, y\
+  \ ubica F-POCOV-J001 en audit-cli, paquete commands. Las que dependen de 0.3 o de\
+  \ un gancho D-xx lo dicen en el TECH_SPEC."
+modules:
+- name: audit-domain
+  models:
+  - name: LemmaCountBand
+    type: record
+    fields:
+    - name: name
+      type: String
+      description: "Nombre en pantalla: «las 1.000 más comunes», «hasta 2.000», «\
+        hasta 3.000», «más allá»."
+    - name: maxCocaRank
+      type: Integer
+      description: "Tope inclusive del puesto COCA. Null solo en la ultima banda,\
+        \ que toma todo puesto mayor y las palabras sin puesto."
+    - name: threshold
+      type: int
+      description: Oraciones distintas que pide cada palabra de la banda (N). Entero
+        positivo.
+    _change: add
+  interfaces:
+  - name: LemmaCountConfig
+    sealed: false
+    exposes:
+    - signature: "getBands(): List<LemmaCountBand>"
+      _change: add
+    _change: modify
+  implementations:
+  - name: IAuditEngine
+    handwrittenTests:
+    - name: "should publish a course vocabulary score of 73.92% and levels 96.54,\
+        \ 94.16, 79.45 and 63.51 with lemma-count at 4 for every band, next to the\
+        \ other six published scores of the analysis of 29/9"
+      traceability:
+        feature: FEAT-POCOV
+        rule: F-POCOV-R001
+    - name: "should publish a course vocabulary score of 73.86% and levels 96.02,\
+        \ 93.60, 78.87 and 63.86 with lemma-count at bands 8, 6, 4 and 3, next to\
+        \ the other six published scores of the analysis of 29/9"
+      traceability:
+        feature: FEAT-POCOV
+        rule: F-POCOV-R001
+  packages:
+  - name: lemmacount
+    visibility: internal
+    models:
+    - name: LemmaExposure
+      type: record
+      fields:
+      - name: lemmaAndPos
+        type: LemmaAndPos
+      - name: assignedLevel
+        type: CefrLevel
+        description: Nivel que le asigna lemma-count (F-LCOUNT-R009).
+      - name: count
+        type: int
+        description: Oraciones distintas del curso que lo contienen (F-LCOUNT-R004).
+      - name: cocaRank
+        type: Integer
+        description: "Puesto COCA del catalogo EVP para el lema y su categoria, el\
+          \ mismo que muestran las sugeridas; null sin puesto (F-POCOV-R001 inv. 3)."
+      - name: band
+        type: String
+        description: "Nombre de su banda por puesto COCA (F-POCOV-R004). Vacio solo\
+          \ con una configuracion sin bandas, que es la de las pruebas."
+      - name: threshold
+        type: int
+        description: "N que se le aplico: el de su banda, o el uniforme."
+      - name: score
+        type: double
+        description: "min(count / threshold, 1): el mismo que entra al puntaje de\
+          \ su nivel."
+      - name: knowledgeIds
+        type: List<String>
+        description: "Temas (knowledge) cuyos ejercicios la usan, en orden del curso\
+          \ (F-POCOV-R005)."
+      _change: add
+    - name: LemmaCountResult
+      type: record
+      fields:
+      - name: thresholdN
+        type: int
+        description: "Umbral de referencia: el uniforme de la configuracion (hoy 4).\
+          \ Con bandas, cada palabra usa el de su banda y lo informa en su LemmaExposure;\
+          \ este valor queda para quien todavia no lee la banda."
+        _change: modify
+      - name: bands
+        type: List<LemmaCountBand>
+        description: "Tabla de bandas que uso la corrida, con el umbral de cada una\
+          \ (F-POCOV-R006). Con «4 para todas» son las mismas cuatro bandas, todas\
+          \ con 4."
+        _change: add
+      - name: exposures
+        type: List<LemmaExposure>
+        description: "Una fila por lema con nivel asignado, ordenadas por nivel y,\
+          \ dentro de cada nivel, por banda (1.000, 2.000, 3.000, mas alla, sin puesto),\
+          \ oraciones ascendentes y puesto ascendente (F-POCOV-R004). Las poco vistas\
+          \ son las de score menor que 1."
+        _change: add
+      _change: modify
+    interfaces:
+    - name: LemmaCefrLevelResolver
+      sealed: false
+      exposes:
+      - signature: "resolveCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>"
+        _change: add
+      _change: modify
+    implementations:
+    - name: LemmaCountAnalyzer
+      handwrittenTests:
+      - name: "should score 'number' (A1, 5 sentences, among the 1,000 most common)\
+          \ 0.625 and mark it under-exposed with bands 8, 6, 4 and 3, and score it\
+          \ 1 with 4 for every band"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R001
+      - name: "should take a word's band from its COCA rank in the EVP catalog for\
+          \ its lemma and part of speech, so 'hop' read from 'hoped' asks for 3 sentences\
+          \ with rank 5,603 and not for 8 with the rank 413 of 'hope'"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R001
+      - name: should apply the threshold of the last band to a word without COCA rank
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R001
+      - name: "should give lemma-count A1 0.9388350, A2 0.7114198, B1 0.5251412, B2\
+          \ 0.3404948, C1 0.8333333, course 0.6698448 and 1,535 under-exposed words\
+          \ with 4 for every band, on the lemma table of the course of 29/9"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R001
+      - name: "should give lemma-count A1 0.9077670, A2 0.6782407, B1 0.4903013, B2\
+          \ 0.3612196, C1 0.8888889, course 0.6652835 and 1,616 under-exposed words\
+          \ with bands 8, 6, 4 and 3, on the lemma table of the course of 29/9"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R001
+      - name: "should leave in a level one finding per under-exposed word assigned\
+          \ to it, of rule F-POCOV-R003, low severity, only ordering and instant cost,\
+          \ like 'education' (B1) in 1 sentence of 4"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R003
+      - name: "should give as evidence the lemma, its part of speech, its sentences\
+          \ against N and its band, like 'education (B1): 1 sentence of 4; band of\
+          \ the 1,000 most common'"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R003
+      - name: should leave in the course one finding per level with score below 1
+          that counts its under-exposed words
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R003
+      - name: "should name the under-exposed word of C1, 'hop', in the course finding\
+          \ about C1, since C1 has no level node"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R003
+      - name: should leave no finding for an unassigned lemma nor in a level whose
+          score is 1
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R003
+      - name: "should identify each finding by lemma and part of speech, so a noun\
+          \ and a verb with the same lemma, both under-exposed in the level, leave\
+          \ two findings"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R003
+      - name: "should leave 1,534 level findings and 5 course findings with 4 for\
+          \ every band, and 1,615 and 5 with bands 8, 6, 4 and 3, on the lemma table\
+          \ of the course of 29/9"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R003
+      - name: "should publish each level's words by band, then by fewer sentences,\
+          \ then by ascending COCA rank, so a word of the 1,000 most common in 3 sentences\
+          \ comes before one of the 2,000 in 1 sentence"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R004
+      - name: "should put first in B1 feeling, political, research, human, education,\
+          \ sense and effect, all in one sentence, with 4 for every band on the lemma\
+          \ table of the course of 29/9"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R004
+      - name: "should keep each level's under-exposed list ordered by ascending sentences,\
+          \ as today"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R004
+      - name: "should name in each under-exposed word's finding the topics whose quizzes\
+          \ use it, in course order"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R005
+      - name: "should record in each word's row every knowledge whose quizzes use\
+          \ it, so a topic can read the under-exposed words of its level it uses"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R005
+      - name: "should not leave as under-exposed a word of the level that no quiz\
+          \ uses, which is the absent word of lemma-absence"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R005
+      - name: "should publish in its result the band table it used, with the threshold\
+          \ of each band"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R006
+    - name: EvpThenNlpLemmaCefrLevelResolver
+      handwrittenTests:
+      - name: "should resolve the COCA rank of a lemma and part of speech from the\
+          \ EVP catalog, the same rank the suggested words show"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R001
+      - name: should resolve no COCA rank for a lemma and part of speech the EVP catalog
+          does not have
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R001
+    - name: LemmaCountAnalyzerProvider
+      handwrittenTests:
+      - name: should declare no plan binding for lemma-count
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R002
+      - name: "should describe lemma-count in its card: whether each word of the level\
+          \ appears in enough sentences, reading the finished sentences of the whole\
+          \ course, vocabulary family, level and course targets, only ordering and\
+          \ instant cost"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R006
+      - name: "should state in its card goal the threshold of each band it uses, 8,\
+          \ 6, 4 and 3 with the recommended bands"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R006
+    _change: modify
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultLemmaCountConfig
+    requiresInject:
+    - name: bands
+      type: List<LemmaCountBand>
+      description: "Las cuatro bandas por puesto COCA con su umbral, validadas por\
+        \ el cargador: topes crecientes, la ultima sin tope, umbrales positivos. «\
+        4 para todas» = las cuatro con 4; recomendada = 8, 6, 4 y 3. Vacia solo en\
+        \ configuraciones de prueba: entonces toda palabra usa getThreshold()."
+      _change: add
+    _change: modify
+  - name: DefaultLemmaCountConfigLoader
+    handwrittenTests:
+    - name: should load '4' as four bands that all ask for 4 sentences
+      traceability:
+        feature: FEAT-POCOV
+        rule: F-POCOV-R001
+    - name: "should load '8/6/4/3' as the 1,000, 2,000 and 3,000 most common words\
+        \ and beyond, asking for 8, 6, 4 and 3 sentences"
+      traceability:
+        feature: FEAT-POCOV
+        rule: F-POCOV-R001
+    - name: should load four bands of 4 when no threshold is configured
+      traceability:
+        feature: FEAT-POCOV
+        rule: F-POCOV-R001
+    - name: "should reject a band threshold that is not a positive integer, like '8/0/4/3',\
+        \ as it rejects a uniform one"
+      traceability:
+        feature: FEAT-POCOV
+        rule: F-POCOV-R001
+  _change: modify
+- name: refiner-domain
+  implementations:
+  - name: DefaultRefinerEngine
+    handwrittenTests:
+    - name: "should open no task for lemma-count and keep the plan of the analysis\
+        \ of 29/9 at 4,036 tasks, with 4 for every band and with bands 8, 6, 4 and\
+        \ 3"
+      traceability:
+        feature: FEAT-POCOV
+        rule: F-POCOV-R002
+  - name: LemmaAbsenceContextResolver
+    handwrittenTests:
+    - name: "should mark 'number' (A1, 5 sentences) as an under-exposed suggested\
+        \ word with threshold 8 with bands 8, 6, 4 and 3, and as exposed but scarce\
+        \ with 4 for every band"
+      traceability:
+        feature: FEAT-POCOV
+        rule: F-POCOV-R007
+    - name: "should list a content word of the sentence as scarce when its sentences\
+        \ are under the threshold of its own band, and report that threshold with\
+        \ it"
+      traceability:
+        feature: FEAT-POCOV
+        rule: F-POCOV-R007
+    - name: should mark a word under-exposed for the suggestions if and only if lemma-count
+        leaves a finding for it in its level
+      traceability:
+        feature: FEAT-POCOV
+        rule: F-POCOV-R007
+    - name: "should give the same suggested words, tiers, thresholds and scarce words\
+        \ as today with 4 for every band"
+      traceability:
+        feature: FEAT-POCOV
+        rule: F-POCOV-R007
+  packages:
+  - name: lemmasuggestion
+    implementations:
+    - name: LevelWideLemmaInventory
+      handwrittenTests:
+      - name: "should report for each exposed word listed with include-exposed the\
+          \ threshold of its band, marking 'number' (A1, 5 sentences) under-exposed\
+          \ with bands 8, 6, 4 and 3"
+        traceability:
+          feature: FEAT-POCOV
+          rule: F-POCOV-R007
+features:
+- id: FEAT-POCOV
+  code: F-POCOV
+  journeys:
+  - id: F-POCOV-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
