@@ -125,7 +125,7 @@ public class FLapsJ005JourneyTest {
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella aprende palabras complicadas a diario.",
                 List.of("She learns complicated words daily."),
-                "She ____ [learns] (learn) complicated words daily.", null, null, null);
+                "She ____ [learns] (learn) complicated words daily.", null, null, null, null, null);
 
         AbsentLemma absent = new AbsentLemma(
                 new LemmaAndPos("complicated", "ADJ"), CefrLevel.B1,

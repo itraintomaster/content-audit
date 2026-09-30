@@ -132,7 +132,7 @@ public class FQinstJ004JourneyTest {
                 evaluator);
         DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
-        EvaluationRunPolicy setPolicy = new EvaluationRunPolicy(10, false, null, Set.of("quiz-in-set"));
+        EvaluationRunPolicy setPolicy = new EvaluationRunPolicy(10, false, null, Set.of("quiz-in-set"), null, null);
         AuditRunRequest request = new AuditRunRequest(null, null,
                 Map.of(quizInstructionFactory.analyzerName(), setPolicy));
         runner.runAudit(coursePath, request);
@@ -181,7 +181,7 @@ public class FQinstJ004JourneyTest {
         DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         // Budget of 2, smaller than the declared set of 3.
-        EvaluationRunPolicy setPolicy = new EvaluationRunPolicy(2, false, null, declaredSet);
+        EvaluationRunPolicy setPolicy = new EvaluationRunPolicy(2, false, null, declaredSet, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null,
                 Map.of(quizInstructionFactory.analyzerName(), setPolicy));
         AuditNode rootNode = runner.runAudit(coursePath, request).getRoot();
@@ -239,7 +239,7 @@ public class FQinstJ004JourneyTest {
         DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         Set<String> declaredSet = Set.of("quiz-1", "quiz-ghost-1", "quiz-ghost-2");
-        EvaluationRunPolicy setPolicy = new EvaluationRunPolicy(10, false, null, declaredSet);
+        EvaluationRunPolicy setPolicy = new EvaluationRunPolicy(10, false, null, declaredSet, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null,
                 Map.of(quizInstructionFactory.analyzerName(), setPolicy));
         AuditNode rootNode = runner.runAudit(coursePath, request).getRoot();
@@ -290,7 +290,7 @@ public class FQinstJ004JourneyTest {
                 evaluator);
         DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
-        EvaluationRunPolicy setPolicy = new EvaluationRunPolicy(10, false, null, Set.of("quiz-never-judged"));
+        EvaluationRunPolicy setPolicy = new EvaluationRunPolicy(10, false, null, Set.of("quiz-never-judged"), null, null);
         AuditRunRequest request = new AuditRunRequest(null, null,
                 Map.of(quizInstructionFactory.analyzerName(), setPolicy));
         AuditNode rootNode = runner.runAudit(coursePath, request).getRoot();
@@ -341,7 +341,7 @@ public class FQinstJ004JourneyTest {
         DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         // An explicitly empty set -- declared, and empty, which R018 never reads as "the whole course".
-        EvaluationRunPolicy emptySetPolicy = new EvaluationRunPolicy(10, false, null, Set.of());
+        EvaluationRunPolicy emptySetPolicy = new EvaluationRunPolicy(10, false, null, Set.of(), null, null);
         AuditRunRequest request = new AuditRunRequest(null, null,
                 Map.of(quizInstructionFactory.analyzerName(), emptySetPolicy));
 
@@ -389,7 +389,7 @@ public class FQinstJ004JourneyTest {
         DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         // A declared set of quizzes AND a course area (reevaluationScope) at the same time.
-        EvaluationRunPolicy ambiguousPolicy = new EvaluationRunPolicy(10, true, "knowledge-99", Set.of("quiz-1"));
+        EvaluationRunPolicy ambiguousPolicy = new EvaluationRunPolicy(10, true, "knowledge-99", Set.of("quiz-1"), null, null);
         AuditRunRequest request = new AuditRunRequest(null, null,
                 Map.of(quizInstructionFactory.analyzerName(), ambiguousPolicy));
 
@@ -428,7 +428,7 @@ public class FQinstJ004JourneyTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "Text unique to " + quizId, null));
         return new AuditableQuiz(tokens, quizId, "Label " + quizId, "code-" + quizId,
                 "Translation for " + quizId, List.of("Sentence unique to " + quizId + "."),
-                "Quiz sentence for " + quizId, "Instructions unique to " + quizId, sentenceParts, null);
+                "Quiz sentence for " + quizId, "Instructions unique to " + quizId, sentenceParts, null, null, null);
     }
 
     private static AuditNode findChild(AuditNode root, String quizId) {
@@ -482,7 +482,7 @@ public class FQinstJ004JourneyTest {
             ContentFingerprinter fingerprinter, Evaluator evaluator) {
         return new DefaultQuizInstructionAnalyzerFactory(
                 new DefaultEvaluationSessionFactory(ledger, fingerprinter), evaluator,
-                new FakeQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig());
+                new FakeQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(), null);
     }
 
     /** Deterministic fake fingerprinter: same content map always yields the same fingerprint. */

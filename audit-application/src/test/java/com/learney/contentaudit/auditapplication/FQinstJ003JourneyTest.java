@@ -211,7 +211,7 @@ public class FQinstJ003JourneyTest {
 
         DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
-        EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null, null);
+        EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null, null, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null, Map.of(ANALYZER_NAME, reevaluationPolicy));
         runner.runAudit(coursePath, request);
 
@@ -299,7 +299,7 @@ public class FQinstJ003JourneyTest {
 
     private static AuditableQuiz quizFor(String quizId) {
         return new AuditableQuiz(List.of(), quizId, "label", "code", null,
-                List.of("She is happy."), null, null, List.of(), null);
+                List.of("She is happy."), null, null, List.of(), null, null, null);
     }
 
     /**
@@ -329,7 +329,7 @@ public class FQinstJ003JourneyTest {
     /** The judge's provider under the name the report publishes, with the judge's real card. */
     private static AnalyzerProvider judgeProvider() {
         AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null, null,
-                mock(QuizInstructionConfig.class)).describe();
+                mock(QuizInstructionConfig.class), null).describe();
         AnalyzerProvider provider = mock(AnalyzerProvider.class);
         when(provider.analyzerName()).thenReturn(ANALYZER_NAME);
         when(provider.describe()).thenReturn(card);
@@ -348,7 +348,7 @@ public class FQinstJ003JourneyTest {
      * a null policy reaches EvaluationSession directly, which the real factory never does.
      */
     private static EvaluationRunPolicy withDefaultBudgetWhenAbsent(EvaluationRunPolicy policy) {
-        return policy != null ? policy : new EvaluationRunPolicy(DEFAULT_MAX_NEW_EVALUATIONS, false, null, null);
+        return policy != null ? policy : new EvaluationRunPolicy(DEFAULT_MAX_NEW_EVALUATIONS, false, null, null, null, null);
     }
 
     /**

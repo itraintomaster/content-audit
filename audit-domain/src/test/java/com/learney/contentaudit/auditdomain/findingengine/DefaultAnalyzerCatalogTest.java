@@ -218,7 +218,7 @@ public class DefaultAnalyzerCatalogTest {
                 new LemmaAbsenceAnalyzerProvider(evp, absence,
                         new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), absence)),
                 new LemmaCountAnalyzerProvider(evp, count),
-                new DefaultQuizInstructionAnalyzerFactory(null, null, null, Mockito.mock(QuizInstructionConfig.class)));
+                new DefaultQuizInstructionAnalyzerFactory(null, null, null, Mockito.mock(QuizInstructionConfig.class), null));
     }
 
     /** A complete card for an analyzer that does not exist yet, evaluating the quiz. */
@@ -226,7 +226,7 @@ public class DefaultAnalyzerCatalogTest {
         return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿Pregunta de " + name + "?",
                 "La oracion como la ve el alumno", new ArrayList<>(List.of(new AnalyzerRuleCard("rule-" + name,
                         "La regla de " + name, cost))), "Meta de " + name, family, List.of(AuditTarget.QUIZ),
-                List.of(FindingResolution.PANEL), cost);
+                List.of(FindingResolution.PANEL), cost, name);
     }
 
     static AnalyzerProvider providerOf(AnalyzerDescriptor card) {

@@ -98,7 +98,7 @@ public class GetCmdTest {
         SuggestedLemmaQueryPort suggestedLemmaQueryPort = mock(SuggestedLemmaQueryPort.class);
         cmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
                 correctionContextResolver, null, null, new DefaultCorrectionContextJsonMapper(),
-                suggestedLemmaQueryPort);
+                suggestedLemmaQueryPort, null, null, null);
         cmd.setRevisionArtifactStore(revisionArtifactStore);
         // GetCmd has a picocli @Option field 'formatName' that picocli normally populates.
         // When constructing directly in unit tests, we must inject a default value so the
@@ -3756,7 +3756,7 @@ public class GetCmdTest {
         GetCmd localCmd = new GetCmd(
                 auditReportStore, refinementPlanStore, analyzerRegistry,
                 correctionContextResolver, null, null,
-                new DefaultCorrectionContextJsonMapper(), suggestedLemmaQueryPort);
+                new DefaultCorrectionContextJsonMapper(), suggestedLemmaQueryPort, null, null, null);
         Field formatField = GetCmd.class.getDeclaredField("formatName");
         formatField.setAccessible(true);
         formatField.set(localCmd, "text");
@@ -4383,7 +4383,7 @@ public class GetCmdTest {
         // seven analyzers and the four COCA quarters). The analysis: the 29/9 course analyzed with the
         // seven classic analyzers and saved by the real store.
         AnalyzerCatalog catalog = Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger());
-        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir, null);
         Base299.Captured analyzed = Base299.run(Base299.analyzeCmd(Base299.runner(catalog), store),
                 Base299.COURSE.toString(), "--exclude-analyzers", "quiz-instruction", "-f", "raw");
         assertEquals(0, analyzed.exit(), analyzed.err());

@@ -202,7 +202,7 @@ public class FQicorJ002JourneyTest {
                 List.of(), quizId, "Past Simple Quiz " + quizId, "Q-" + quizId,
                 "Ella camina a la escuela todos los dias.",
                 List.of("She walks to school every day."),
-                BEFORE_QUIZ_SENTENCE, null, null, null);
+                BEFORE_QUIZ_SENTENCE, null, null, null, null, null);
 
         DefaultQuizDiagnoses quizDx = new DefaultQuizDiagnoses();
         quizDx.setQuizInstructionDiagnosis(new QuizInstructionDiagnosis(stillViolatingVerdict(), 40.0, false));

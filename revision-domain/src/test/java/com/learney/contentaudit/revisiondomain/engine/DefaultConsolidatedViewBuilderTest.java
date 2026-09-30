@@ -1307,11 +1307,11 @@ public class DefaultConsolidatedViewBuilderTest {
         AuditNode baselineQuiz = quizNode("q1", 14, 2);
         baselineQuiz.setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(0.61,
                 List.of(), new com.learney.contentaudit.auditdomain.contextnumbers.ErrorCounts(1, 1, 1.0,
-                        new com.learney.contentaudit.auditdomain.contextnumbers.SeverityCounts(0, 1, 0, 0), 0, List.of())));
+                        new com.learney.contentaudit.auditdomain.contextnumbers.SeverityCounts(0, 1, 0, 0), 0, List.of()), null));
         AuditNode consolidatedQuiz = quizNode("q1", 10, 0);
         consolidatedQuiz.setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(0.97,
                 List.of(), new com.learney.contentaudit.auditdomain.contextnumbers.ErrorCounts(1, 0, 0.0,
-                        new com.learney.contentaudit.auditdomain.contextnumbers.SeverityCounts(0, 0, 0, 0), 0, List.of())));
+                        new com.learney.contentaudit.auditdomain.contextnumbers.SeverityCounts(0, 0, 0, 0), 0, List.of()), null));
         stubActive(baselineQuiz);
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approvedArtifact("p1", "q1")));
         when(courseElementLocator.replace(any(), any())).thenAnswer(invocation -> invocation.getArgument(0));

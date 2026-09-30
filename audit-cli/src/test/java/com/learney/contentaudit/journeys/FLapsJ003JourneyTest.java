@@ -118,7 +118,7 @@ public class FLapsJ003JourneyTest {
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella hace cosas complicadas.",
                 List.of("She does complicated things."),
-                "She ____ [does] (do) complicated things.", null, null, null);
+                "She ____ [does] (do) complicated things.", null, null, null, null, null);
 
         AbsentLemma absent = new AbsentLemma(
                 new LemmaAndPos("complicated", "ADJ"), CefrLevel.B1,

@@ -125,7 +125,7 @@ public class FLapsJ002JourneyTest {
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella hace ejercicio avanzado cada manana.",
                 List.of("She does advanced exercise every morning."),
-                "She ____ [does] (do) advanced exercise every morning.", null, null, null);
+                "She ____ [does] (do) advanced exercise every morning.", null, null, null, null, null);
 
         AbsentLemma absent = new AbsentLemma(
                 new LemmaAndPos("advanced", "ADJ"), CefrLevel.B2,

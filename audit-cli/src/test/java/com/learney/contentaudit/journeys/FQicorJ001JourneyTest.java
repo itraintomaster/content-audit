@@ -228,7 +228,7 @@ public class FQicorJ001JourneyTest {
                 List.of(), QUIZ_ID, "Past Simple Quiz 1", "Q001",
                 "Ella camina a la escuela todos los dias.",
                 List.of("She walks to school every day."),
-                BEFORE_QUIZ_SENTENCE, null, null, null);
+                BEFORE_QUIZ_SENTENCE, null, null, null, null, null);
 
         AuditNode courseNode = buildCourseNode();
         AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone);

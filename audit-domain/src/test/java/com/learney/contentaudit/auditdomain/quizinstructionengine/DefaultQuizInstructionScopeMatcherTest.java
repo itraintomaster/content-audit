@@ -48,7 +48,7 @@ public class DefaultQuizInstructionScopeMatcherTest {
         AuditNode node = new AuditNode();
         node.setTarget(AuditTarget.QUIZ);
         node.setEntity(new AuditableQuiz(
-                List.of(), quizId, "Q", "Q", null, List.of("s"), null, "Instructions", List.of(), null));
+                List.of(), quizId, "Q", "Q", null, List.of("s"), null, "Instructions", List.of(), null, null, null));
         node.setParent(knowledgeNode);
         node.setChildren(new ArrayList<>());
         node.setScores(new LinkedHashMap<>());
@@ -101,7 +101,7 @@ public class DefaultQuizInstructionScopeMatcherTest {
         AuditNode quizOutsideDeclaredSet = buildQuizNodeUnder(knowledgeA, "quiz-a2");
 
         // Conjunto declarado en el pedido: excluyente con reevaluate/reevaluationScope (R018)
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, Set.of("quiz-a1"));
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, Set.of("quiz-a1"), null, null);
 
         Assertions.assertEquals(QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION,
                 sut.decide(quizInDeclaredSet, policy),

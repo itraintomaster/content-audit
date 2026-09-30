@@ -311,7 +311,7 @@ public class DefaultContextNumbersCalculatorTest {
         AuditNode knowledge = node(AuditTarget.KNOWLEDGE, new AuditableKnowledge(List.of(), "Be", "", true, "k1", "Be",
                 "K", null, null), topic);
         AuditNode quiz = node(AuditTarget.QUIZ, new AuditableQuiz(List.of(), "q1", "q1", "q1", null, List.of(), null,
-                null, null, null), knowledge);
+                null, null, null, null, null), knowledge);
         quiz.getScores().put("sentence-length", 0.8);
 
         calculator.compute(course.root, classicCards());
@@ -446,7 +446,7 @@ public class DefaultContextNumbersCalculatorTest {
 
         AuditNode quiz(AuditNode knowledge, String id) {
             return node(AuditTarget.QUIZ, new AuditableQuiz(List.of(), id, id, id, null, List.of(), null, null, null,
-                    null), knowledge);
+                    null, null, null), knowledge);
         }
 
         /** The generic aggregation of the engine: a parent without its own key averages its children. */

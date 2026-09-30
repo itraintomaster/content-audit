@@ -46,7 +46,7 @@ public class FQinstJ002JourneyTest {
         AuditNode node = new AuditNode();
         node.setTarget(AuditTarget.QUIZ);
         node.setEntity(new AuditableQuiz(List.of(), id, "label-" + id, null, null,
-                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of(), null));
+                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of(), null, null, null));
         node.setChildren(new ArrayList<>());
         node.setScores(new LinkedHashMap<>());
         node.setMetadata(new LinkedHashMap<>());
@@ -74,7 +74,7 @@ public class FQinstJ002JourneyTest {
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
         // Tope de 1 consulta nueva por corrida (F-QINST-R006)
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(1, false, null, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(1, false, null, null, null, null);
 
         AuditNode quizA = buildQuizNode("qa");
         AuditNode quizB = buildQuizNode("qb");
@@ -88,7 +88,7 @@ public class FQinstJ002JourneyTest {
         when(scorer.score(verdict)).thenReturn(1.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
-                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         // Nodo "primera_corrida"/"evaluar_pendientes" (gate F-QINST-R006): el curso no tiene
         // veredictos previos; el tope de la corrida (1) alcanza solo para qa
@@ -147,7 +147,7 @@ public class FQinstJ002JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(1, false, null, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(1, false, null, null, null, null);
 
         AuditNode quizA = buildQuizNode("qa");
         AuditNode quizB = buildQuizNode("qb");
@@ -161,7 +161,7 @@ public class FQinstJ002JourneyTest {
         when(scorer.score(verdict)).thenReturn(1.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
-                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         // Nodo "primera_corrida"/"evaluar_pendientes" (gate F-QINST-R006): el tope (1) alcanza
         // solo para qa
@@ -212,7 +212,7 @@ public class FQinstJ002JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null, null, null);
 
         AuditNode quizA = buildQuizNode("qa");
         AuditNode quizB = buildQuizNode("qb");
@@ -226,7 +226,7 @@ public class FQinstJ002JourneyTest {
         when(scorer.score(verdict)).thenReturn(1.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
-                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         // Nodo "primera_corrida"/"evaluar_pendientes" (gate F-QINST-R006): el servicio del juez
         // cae a mitad de corrida, despues de evaluar qa; qb queda sin veredicto
@@ -280,7 +280,7 @@ public class FQinstJ002JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null, null, null);
 
         AuditNode quizA = buildQuizNode("qa");
         AuditNode quizB = buildQuizNode("qb");
@@ -294,7 +294,7 @@ public class FQinstJ002JourneyTest {
         when(scorer.score(verdict)).thenReturn(1.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
-                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         // Nodo "primera_corrida"/"evaluar_pendientes" (gate F-QINST-R006): el servicio del juez
         // cae a mitad de corrida, despues de evaluar qa; qb queda fallido

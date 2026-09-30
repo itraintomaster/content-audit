@@ -740,16 +740,16 @@ public class DefaultImpactPreviewComputerTest {
         courseKeys.put("sentence-length", 0.8644799618316434);
         AuditReport base = twoLevelReport("course-299", "quiz-001", courseKeys, Map.of("sentence-length", 0.8));
         base.getRoot().setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(
-                0.7392339318685259, List.of(), null));
+                0.7392339318685259, List.of(), null, null));
         base.getRoot().getChildren().get(0).setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers
-                .ContextNumbers(0.8, List.of(), null));
+                .ContextNumbers(0.8, List.of(), null, null));
         Map<String, Double> simulatedKeys = new java.util.LinkedHashMap<>(courseKeys);
         simulatedKeys.put("sentence-length", 0.8645);
         AuditReport simulated = twoLevelReport("course-299", "quiz-001", simulatedKeys, Map.of("sentence-length", 1.0));
         simulated.getRoot().setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(
-                0.74, List.of(), null));
+                0.74, List.of(), null, null));
         simulated.getRoot().getChildren().get(0).setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers
-                .ContextNumbers(1.0, List.of(), null));
+                .ContextNumbers(1.0, List.of(), null, null));
         when(auditReportStore.loadLatest()).thenReturn(Optional.of(base));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
         when(elementLocator.replace(any(), any())).thenReturn(course);
@@ -773,6 +773,6 @@ public class DefaultImpactPreviewComputerTest {
 
     private static void publishVocabularyScore(AuditNode node, double score) {
         node.setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(
-                score, List.of(), null));
+                score, List.of(), null, null));
     }
 }

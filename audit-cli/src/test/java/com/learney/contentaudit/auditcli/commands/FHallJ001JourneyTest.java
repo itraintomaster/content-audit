@@ -164,7 +164,8 @@ public class FHallJ001JourneyTest {
 
         // === Node: leer_ejercicio ===
         // Gate: F-HALL-R001, F-HALL-R002, F-HALL-R003
-        assertEquals(List.of("sentence-length|length-out-of-range|" + VOCABULARY_QUIZ,
+        // F-RONDA1-R005 inv. 4: one token longer than its range is the rule for longer sentences.
+        assertEquals(List.of("sentence-length|longer-than-goal|" + VOCABULARY_QUIZ,
                 Base299.RuleStandIn.NAME + "|ranks-only|" + VOCABULARY_QUIZ), identities(quiz),
                 "R001: the finding of sentence-length, of the vocabulary family, and the one the rule only ranks");
         quiz.getFindings().forEach(finding -> assertSameShape(finding, quiz));
@@ -216,7 +217,8 @@ public class FHallJ001JourneyTest {
 
         // === Node: leer_ejercicio ===
         // Gate: F-HALL-R001, F-HALL-R002, F-HALL-R003
-        assertEquals(List.of("sentence-length|length-out-of-range|" + VOCABULARY_QUIZ,
+        // F-RONDA1-R005 inv. 4: one token longer than its range is the rule for longer sentences.
+        assertEquals(List.of("sentence-length|longer-than-goal|" + VOCABULARY_QUIZ,
                 Base299.RuleStandIn.NAME + "|ranks-only|" + VOCABULARY_QUIZ), identities(quiz),
                 "R001: the finding of sentence-length, of the vocabulary family, and the one the rule only ranks");
         quiz.getFindings().forEach(finding -> assertSameShape(finding, quiz));
@@ -282,7 +284,7 @@ public class FHallJ001JourneyTest {
         List<AnalyzerProvider> providers = new ArrayList<>(Base299.mainProviders(judge, new Base299.MapLedger()));
         providers.add(new Base299.RuleStandIn(Set.of(ERRORS_QUIZ), Set.of(VOCABULARY_QUIZ)));
         AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
-        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir, null);
         Base299.Captured output = Base299.run(Base299.analyzeCmd(Base299.runner(catalog), store), withJudge
                 ? new String[] {Base299.COURSE.toString(), "--budget", Base299.JUDGE + "=" + BUDGET}
                 : new String[] {Base299.COURSE.toString(), "--exclude-analyzers", Base299.JUDGE});

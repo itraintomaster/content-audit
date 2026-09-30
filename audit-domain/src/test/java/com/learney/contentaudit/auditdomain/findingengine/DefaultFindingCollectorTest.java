@@ -71,7 +71,9 @@ public class DefaultFindingCollectorTest {
         Assertions.assertEquals(1, livingRoom.getFindings().size(), "R001: the quiz below 1 has one finding");
         Finding finding = livingRoom.getFindings().get(0);
         Assertions.assertEquals("sentence-length", finding.getAnalyzer());
-        Assertions.assertEquals(card.getRules().get(0).getId(), finding.getRule());
+        // F-RONDA1-R005 inv. 4: 9 tokens against the 3 to 8 of A1 is the card's rule for longer sentences.
+        Assertions.assertEquals(card.getRules().get(1).getId(), finding.getRule());
+        Assertions.assertEquals("longer-than-goal", finding.getRule());
         Assertions.assertEquals(new FindingNodeRef(AuditTarget.QUIZ, LIVING_ROOM_ID, LIVING_ROOM), finding.getNode());
         Assertions.assertEquals(FindingSeverity.LOW, finding.getSeverity());
         Assertions.assertFalse(finding.getEvidence().getExamined().isEmpty());
@@ -430,7 +432,7 @@ public class DefaultFindingCollectorTest {
         for (int i = 0; i < tokenCount; i++) {
             tokens.add(new NlpToken("w" + i, "w" + i, "NOUN", 1, false, false));
         }
-        return new AuditableQuiz(tokens, id, sentence, "Q", null, List.of(sentence), null, null, null, null);
+        return new AuditableQuiz(tokens, id, sentence, "Q", null, List.of(sentence), null, null, null, null, null, null);
     }
 
     private static AuditNode node(AuditTarget target, com.learney.contentaudit.auditdomain.AuditableEntity entity,

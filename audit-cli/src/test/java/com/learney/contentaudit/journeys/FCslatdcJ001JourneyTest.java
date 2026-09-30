@@ -106,9 +106,9 @@ public class FCslatdcJ001JourneyTest {
             Class<?> getCmdClass = Class.forName("com.learney.contentaudit.auditcli.commands.GetCmd");
             Constructor<?> ctor = null;
             for (Constructor<?> c : getCmdClass.getDeclaredConstructors()) {
-                if (c.getParameterCount() == 8) { ctor = c; break; }
+                if (c.getParameterCount() == 11) { ctor = c; break; }
             }
-            if (ctor == null) throw new NoSuchMethodException("No 8-param constructor found in GetCmd");
+            if (ctor == null) throw new NoSuchMethodException("No 11-param constructor found in GetCmd");
             ctor.setAccessible(true);
             Object cmd = ctor.newInstance(
                     auditReportStore,
@@ -118,7 +118,10 @@ public class FCslatdcJ001JourneyTest {
                     impactPreviewStore,
                     impactPreviewFormatter,
                     null,   // correctionContextJsonMapper — not needed for suggested-lemmas path
-                    suggestedLemmaQueryPort);
+                    suggestedLemmaQueryPort,
+                    null,   // topicWordLightsQuery (FEAT-RONDA1) — not needed for suggested-lemmas path
+                    null,   // topicStudentViewQuery (FEAT-RONDA1)
+                    null);  // activeAnalysisSelectionStore (FEAT-RONDA1)
 
             // Inject revisionArtifactStore via setter
             Method setRevisionArtifactStore = getCmdClass.getDeclaredMethod(

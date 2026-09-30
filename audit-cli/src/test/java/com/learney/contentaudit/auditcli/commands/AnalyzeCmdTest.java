@@ -446,7 +446,7 @@ public class AnalyzeCmdTest {
                 CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                List.of("quiz-instruction"), false, null, null, null, null);
+                List.of("quiz-instruction"), false, null, null, null, null, null, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -498,7 +498,7 @@ public class AnalyzeCmdTest {
                 CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                null, false, 250, null, null, null);
+                null, false, 250, null, null, null, null, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -552,7 +552,7 @@ public class AnalyzeCmdTest {
                 CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                null, false, null, "knowledge:K-042", null, null);
+                null, false, null, "knowledge:K-042", null, null, null, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -609,7 +609,7 @@ public class AnalyzeCmdTest {
                 CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                null, false, null, null, null, null);
+                null, false, null, null, null, null, null, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -671,7 +671,7 @@ public class AnalyzeCmdTest {
 
         Set<String> declaredQuizIds = Set.of("Q-101", "Q-202", "Q-303");
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                null, false, null, null, declaredQuizIds, null);
+                null, false, null, null, declaredQuizIds, null, null, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -922,7 +922,7 @@ public class AnalyzeCmdTest {
         CourseToAuditableMapper mapper = mock(CourseToAuditableMapper.class);
         when(mapper.map(entity)).thenReturn(firstTheme);
         AnalyzerCatalog catalog = Base299.mainCatalog(judge, new FileSystemEvaluationLedger(workdir));
-        return Base299.analyzeCmd(Base299.runner(catalog, repository, mapper), new FileSystemAuditReportStore(workdir));
+        return Base299.analyzeCmd(Base299.runner(catalog, repository, mapper), new FileSystemAuditReportStore(workdir, null));
     }
 
     /** What the working directory already has: an analysis of the day before and the verdict it paid for. */
@@ -1006,7 +1006,7 @@ public class AnalyzeCmdTest {
         static AnalyzerProvider judge(FakeJudge judge, EvaluationLedger ledger) {
             return new DefaultQuizInstructionAnalyzerFactory(
                     new DefaultEvaluationSessionFactory(ledger, new Sha256ContentFingerprinter()), judge,
-                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig());
+                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(), null);
         }
 
         /** Main's eight providers, in its order. */
@@ -1051,7 +1051,7 @@ public class AnalyzeCmdTest {
         static GetCmd getCmd(AuditReportStore store, AnalyzerCatalog catalog) {
             GetCmd get = new GetCmd(store, mock(RefinementPlanStore.class), new DefaultAnalyzerRegistry(catalog),
                     mock(CorrectionContextResolver.class), null, null, new DefaultCorrectionContextJsonMapper(),
-                    mock(SuggestedLemmaQueryPort.class));
+                    mock(SuggestedLemmaQueryPort.class), null, null, null);
             get.setRevisionArtifactStore(mock(RevisionArtifactStore.class));
             return get;
         }
@@ -1373,7 +1373,7 @@ public class AnalyzeCmdTest {
                                 new AnalyzerRuleCard(RANKS, "El ejercicio baja en la lista, sin error",
                                         AnalysisCost.INSTANT)),
                         "Ningún ejercicio rompe la regla", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
-                        List.of(FindingResolution.RULE, FindingResolution.RANK_ONLY), AnalysisCost.INSTANT);
+                        List.of(FindingResolution.RULE, FindingResolution.RANK_ONLY), AnalysisCost.INSTANT, NAME);
             }
 
             @Override

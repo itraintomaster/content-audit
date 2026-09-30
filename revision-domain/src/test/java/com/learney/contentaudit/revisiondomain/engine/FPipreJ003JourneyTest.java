@@ -193,6 +193,6 @@ public class FPipreJ003JourneyTest {
 
     private static void publishVocabularyScore(AuditNode node, double score) {
         node.setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(
-                score, List.of(), null));
+                score, List.of(), null, null));
     }
 }

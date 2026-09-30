@@ -27,7 +27,7 @@ public class FLrecJ004JourneyTest {
     private LemmaStats buildLemmaStats(String lemma, String pos, int count,
                                        double meanInterval, double stdDevInterval,
                                        ExposureStatus status, List<Integer> positions) {
-        return new LemmaStats(lemma, pos, count, meanInterval, stdDevInterval, status, positions);
+        return new LemmaStats(lemma, pos, count, meanInterval, stdDevInterval, status, positions, 0, null, null, null);
     }
 
     @Test

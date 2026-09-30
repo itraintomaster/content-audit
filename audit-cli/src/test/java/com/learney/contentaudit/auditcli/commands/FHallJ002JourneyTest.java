@@ -58,7 +58,7 @@ public class FHallJ002JourneyTest {
         Map<String, String> courseFiles = Base299.hashes(course);
         Base299.FakeJudge judge = new Base299.FakeJudge();
         AnalyzerCatalog catalog = Base299.mainCatalog(judge, new Base299.MapLedger());
-        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir, null);
         AnalyzeCmd analyze = Base299.analyzeCmd(Base299.runner(catalog), store);
 
         // === Node: leer_catalogo ===
@@ -135,7 +135,7 @@ public class FHallJ002JourneyTest {
         Path workdir = tempDir.resolve("workdir");
         CourseRepository repository = spy(new FileSystemCourseRepository(new CourseValidatorImpl()));
         AnalyzerCatalog catalog = Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger());
-        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir, null);
         AnalyzeCmd analyze = Base299.analyzeCmd(Base299.runner(catalog, repository, Base299.mapper()), store);
 
         // === Node: leer_catalogo ===

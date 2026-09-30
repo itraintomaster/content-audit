@@ -72,7 +72,7 @@ public class FPipreJ002JourneyTest {
     void setUp() throws Exception {
         SuggestedLemmaQueryPort suggestedLemmaQueryPort = mock(SuggestedLemmaQueryPort.class);
         cmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
-                correctionContextResolver, null, null, null, suggestedLemmaQueryPort);
+                correctionContextResolver, null, null, null, suggestedLemmaQueryPort, null, null, null);
         cmd.setRevisionArtifactStore(revisionArtifactStore);
         try {
             Method setImpactPreviewStore = GetCmd.class.getDeclaredMethod(

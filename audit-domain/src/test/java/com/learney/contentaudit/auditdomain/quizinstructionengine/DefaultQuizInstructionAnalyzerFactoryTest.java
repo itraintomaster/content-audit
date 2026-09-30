@@ -107,7 +107,7 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
     @Tag("F-QINST-R018")
     public void shouldRejectTheRunRequestThatDeclaresAnEmptySetOfQuizzesBeforeOpeningTheEvaluationSession() {
         // Conjunto declarado y vacio: NO equivale a "todo el curso" -- se rechaza (R018 inv.3)
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, Set.of());
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, Set.of(), null, null);
 
         Assertions.assertThrows(EmptyReevaluationSetException.class, () -> sut.create(policy),
                 "R018: a run request that declares an empty set of quizzes must be rejected, not read as the whole course");
@@ -122,7 +122,7 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
     public void shouldRejectTheRunRequestThatDeclaresASetOfQuizzesTogetherWithACourseAreaBeforeOpeningTheEvaluationSession() {
         // Conjunto declarado Y area del curso a la vez: dos lecturas posibles (interseccion/union)
         // que difieren en ordenes de magnitud de gasto -- se rechaza sin adivinar (R018 inv.3)
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, true, "knowledge-a", Set.of("quiz-a1"));
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, true, "knowledge-a", Set.of("quiz-a1"), null, null);
 
         Assertions.assertThrows(AmbiguousReevaluationScopeException.class, () -> sut.create(policy),
                 "R018: a run request that declares both a set of quizzes and a course area at once must be rejected, "

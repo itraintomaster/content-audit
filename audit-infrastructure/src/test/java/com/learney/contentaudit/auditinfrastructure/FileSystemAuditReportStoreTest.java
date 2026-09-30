@@ -65,7 +65,7 @@ class FileSystemAuditReportStoreTest {
         // COURSE (entity=null) → MILESTONE → TOPIC → KNOWLEDGE → QUIZ
 
         // --- Quiz node (leaf) ---
-        AuditableQuiz quiz = new AuditableQuiz(List.of(new NlpToken("cat", "cat", "NOUN", 500, false, false)), "quiz-1", "Quiz One", "Q1", null, List.of("The cat sat on the mat."), "The cat sat on the mat.", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(new NlpToken("cat", "cat", "NOUN", 500, false, false)), "quiz-1", "Quiz One", "Q1", null, List.of("The cat sat on the mat."), "The cat sat on the mat.", null, null, null, null, null);
 
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
         SentenceLengthDiagnosis sentenceDiagnosis = new SentenceLengthDiagnosis(7, 5, 10, CefrLevel.A1, 0, 2);
@@ -154,7 +154,7 @@ class FileSystemAuditReportStoreTest {
         AuditReport original = new AuditReport(rootNode);
 
         // --- Save and load ---
-        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, null);
         String id = store.save(original);
 
         assertNotNull(id, "save() should return a non-null ID");
@@ -273,7 +273,7 @@ class FileSystemAuditReportStoreTest {
     @Test
     @DisplayName("should return empty Optional when loading a non-existent ID")
     void shouldReturnEmptyForMissingId(@TempDir Path tempDir) {
-        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, null);
         Optional<AuditReport> result = store.load("nonexistent-id");
         assertFalse(result.isPresent(), "load() should return empty for a missing ID");
     }
@@ -281,7 +281,7 @@ class FileSystemAuditReportStoreTest {
     @Test
     @DisplayName("should return empty Optional when loadLatest is called on an empty store")
     void shouldReturnEmptyForLatestWhenStoreIsEmpty(@TempDir Path tempDir) {
-        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, null);
         Optional<AuditReport> result = store.loadLatest();
         assertFalse(result.isPresent(), "loadLatest() should return empty when no reports exist");
     }
@@ -289,7 +289,7 @@ class FileSystemAuditReportStoreTest {
     @Test
     @DisplayName("should return an empty list when listing an empty store")
     void shouldReturnEmptyListWhenNoReportsExist(@TempDir Path tempDir) {
-        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, null);
         List<AuditReportSummary> summaries = store.list();
         assertNotNull(summaries);
         assertTrue(summaries.isEmpty(), "list() should return empty list when no reports exist");
@@ -298,7 +298,7 @@ class FileSystemAuditReportStoreTest {
     @Test
     @DisplayName("should list saved reports with correct summary information")
     void shouldListSavedReportsWithSummaries(@TempDir Path tempDir) {
-        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, null);
 
         Map<String, Double> scores = Map.of("sentence-length", 0.75);
         // Root node entity is null (COURSE level)
@@ -306,7 +306,7 @@ class FileSystemAuditReportStoreTest {
         // FEAT-HALL (F-HALL-R010): the summary shows the vocabulary score the engine published
         // on the course, as every report the engine produces carries it.
         root.setNumbers(new ContextNumbers(0.75,
-                List.of(new AnalyzerScore("sentence-length", AnalyzerFamily.VOCABULARY, 0.75, List.of())), null));
+                List.of(new AnalyzerScore("sentence-length", AnalyzerFamily.VOCABULARY, 0.75, List.of())), null, null));
         AuditReport report = new AuditReport(root);
 
         String id = store.save(report);
@@ -320,7 +320,7 @@ class FileSystemAuditReportStoreTest {
     @Test
     @DisplayName("should load the most recent report via loadLatest")
     void shouldLoadLatestReport(@TempDir Path tempDir) throws InterruptedException {
-        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, null);
 
         AuditNode root1 = new AuditNode(null, AuditTarget.COURSE, null, List.of(),
                 Map.of("sentence-length", 0.5), Map.of(), null);
@@ -346,7 +346,7 @@ class FileSystemAuditReportStoreTest {
             @TempDir Path tempDir) {
         // R010: the listing shows the number the engine published on the course -- 73,9 % on the
         // 29/9 base -- and not the 73,4 % of averaging its eleven course keys, quarters included.
-        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, null);
         Map<String, Double> courseKeys = new LinkedHashMap<>();
         courseKeys.put("coca-buckets-distribution", 0.7253788624322802);
         courseKeys.put("lemma-recurrence", 0.08);
@@ -360,7 +360,7 @@ class FileSystemAuditReportStoreTest {
         courseKeys.put("knowledge-instructions-length", 0.9546429877621389);
         courseKeys.put("sentence-length", 0.8644799618316434);
         AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, List.of(), courseKeys, Map.of(), null);
-        root.setNumbers(new ContextNumbers(0.7392339318685259, List.of(), null));
+        root.setNumbers(new ContextNumbers(0.7392339318685259, List.of(), null, null));
         String id = store.save(new AuditReport(root));
 
         List<AuditReportSummary> summaries = store.list();
@@ -381,10 +381,10 @@ class FileSystemAuditReportStoreTest {
             @TempDir Path tempDir) throws Exception {
         // R010: whoever draws reads the digest, not the 146 MB report: ids, labels, numbers,
         // findings and what was left unevaluated -- copied, never recomputed -- and no entity.
-        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, null);
         AuditableQuiz quiz = new AuditableQuiz(List.of(new NlpToken("wallet", "wallet", "NOUN", 9000, false, false)),
                 "67fab6d599301022953425b1", "Where is my wallet?", "Q1", "¿Dónde está mi billetera?",
-                List.of("Where is my wallet?"), "Where is my [wallet]?", "Completa", List.of(), null);
+                List.of("Where is my wallet?"), "Where is my [wallet]?", "Completa", List.of(), null, null, null);
         AuditNode quizNode = new AuditNode(quiz, AuditTarget.QUIZ, null, List.of(), Map.of("lemma-absence", 0.9),
                 Map.of(), null);
         Finding wallet = new Finding("lemma-absence", "misplaced-word", new FindingNodeRef(AuditTarget.QUIZ,
@@ -396,11 +396,11 @@ class FileSystemAuditReportStoreTest {
         quizNode.setUnevaluatedBy(List.of("quiz-instruction"));
         // Deliberately not what the scores would give: the digest copies, it never recomputes.
         ContextNumbers published = new ContextNumbers(0.123, List.of(), new ErrorCounts(1, 0, 0.0,
-                new SeverityCounts(0, 0, 0, 0), 1, List.of()));
+                new SeverityCounts(0, 0, 0, 0), 1, List.of()), null);
         quizNode.setNumbers(published);
         AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizNode), Map.of("lemma-absence", 0.9),
                 Map.of(), null);
-        root.setNumbers(new ContextNumbers(0.456, List.of(), null));
+        root.setNumbers(new ContextNumbers(0.456, List.of(), null, null));
         quizNode.setParent(root);
 
         String id = store.save(new AuditReport(root));

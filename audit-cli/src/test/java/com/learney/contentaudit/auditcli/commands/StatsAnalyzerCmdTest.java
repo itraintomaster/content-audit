@@ -82,7 +82,7 @@ public class StatsAnalyzerCmdTest {
 
         // The impl may check registry via listAnalyzers() or getAnalyzerConfig(); stub both
         AnalyzerDescriptor descriptor = new AnalyzerDescriptor(analyzerName,
-                "Checks sentence length", AuditTarget.KNOWLEDGE, null, null, null, null, null, null, null, null);
+                "Checks sentence length", AuditTarget.KNOWLEDGE, null, null, null, null, null, null, null, null, analyzerName);
         when(analyzerRegistry.listAnalyzers()).thenReturn(List.of(descriptor));
         when(analyzerRegistry.getAnalyzerConfig(analyzerName))
                 .thenReturn(java.util.Optional.of(Map.of("maxSentenceLength", 25)));
@@ -99,7 +99,7 @@ public class StatsAnalyzerCmdTest {
                 Collections.emptyMap(), Collections.emptyMap(), 10);
         when(analyzerStatsTransformer.transform(any(), anyString(), any())).thenReturn(statsView);
 
-        StatsAnalyzerCmd cmd = new StatsAnalyzerCmd(analyzerRegistry, analyzerStatsTransformer, auditRunner);
+        StatsAnalyzerCmd cmd = new StatsAnalyzerCmd(analyzerRegistry, analyzerStatsTransformer, auditRunner, java.util.Map.of());
 
         // Act
         int exitCode = cmd.showStats(analyzerName, coursePath);
@@ -119,7 +119,7 @@ public class StatsAnalyzerCmdTest {
         when(analyzerRegistry.getAnalyzerConfig(anyString()))
                 .thenReturn(java.util.Optional.empty());
 
-        StatsAnalyzerCmd cmd = new StatsAnalyzerCmd(analyzerRegistry, analyzerStatsTransformer, auditRunner);
+        StatsAnalyzerCmd cmd = new StatsAnalyzerCmd(analyzerRegistry, analyzerStatsTransformer, auditRunner, java.util.Map.of());
 
         // Act
         int exitCode = cmd.showStats("no-such-analyzer", "/tmp/fixture-course");
@@ -218,7 +218,7 @@ public class StatsAnalyzerCmdTest {
         assertEquals(0, analyzed.exit(), analyzed.err());
         assertEquals(3, judge.asked().size(), "the three verdicts analyze paid for");
         StatsAnalyzerCmd stats = new StatsAnalyzerCmd(new DefaultAnalyzerRegistry(catalog),
-                new DefaultAnalyzerStatsTransformer(), runner);
+                new DefaultAnalyzerStatsTransformer(), runner, java.util.Map.of());
 
         Base299.Captured run = Base299.run(stats, "analyzer", "quiz-instruction", Base299.COURSE.toString(), "-f", "json");
 
@@ -251,7 +251,7 @@ public class StatsAnalyzerCmdTest {
             return report;
         }).when(runner).runAudit(any(Path.class), any(AuditRunRequest.class));
         StatsAnalyzerCmd stats = new StatsAnalyzerCmd(new DefaultAnalyzerRegistry(catalog),
-                new DefaultAnalyzerStatsTransformer(), runner);
+                new DefaultAnalyzerStatsTransformer(), runner, java.util.Map.of());
 
         Base299.Captured run = Base299.run(stats, "analyzer", "coca-buckets-distribution", Base299.COURSE.toString(),
                 "-f", "json");

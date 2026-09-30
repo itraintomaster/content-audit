@@ -116,7 +116,7 @@ public class FLapsJ004JourneyTest {
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella utiliza vocabulario avanzado.",
                 List.of("She uses advanced vocabulary."),
-                "She ____ [uses] (use) advanced vocabulary.", null, null, null);
+                "She ____ [uses] (use) advanced vocabulary.", null, null, null, null, null);
 
         AbsentLemma absent = new AbsentLemma(
                 new LemmaAndPos("advanced", "ADJ"), CefrLevel.B2,

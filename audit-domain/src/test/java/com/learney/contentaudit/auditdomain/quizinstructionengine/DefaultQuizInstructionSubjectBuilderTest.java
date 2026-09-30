@@ -138,7 +138,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
 
     private static AuditableQuiz quiz(List<SentencePartEntity> parts) {
         return new AuditableQuiz(List.of(), "q1", "Be", "", null, List.of("She is English."), null,
-                "Elige la forma de be.", parts, null);
+                "Elige la forma de be.", parts, null, null, null);
     }
 
     /** am / is / are, in the order the student sees them, with {@code correct} marked. */
@@ -165,7 +165,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                 "k1", "Present Perfect", "PP", null, "Verb Tenses");
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "q1", "Present Perfect", "Q1", null, List.of("I have eaten"), null,
-                "Complete with present perfect", parts("have eaten", "'ve eaten"), null);
+                "Complete with present perfect", parts("have eaten", "'ve eaten"), null, null, null);
         AuditNode quizNode = quizNodeUnder("B1", knowledge, quiz);
 
         EvaluationSubject subject = sut.build(quizNode);
@@ -195,7 +195,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                 List.of(), "K", "Instructions", true, "knowledge-id-777", "K label", "K", null, "Topic X");
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "quiz-id-999", "Quiz label", "Q", null, List.of("sentence"), null,
-                "Instructions", parts("answer"), null);
+                "Instructions", parts("answer"), null, null, null);
         AuditNode quizNode = quizNodeUnder("A1", knowledge, quiz);
 
         EvaluationSubject subject = sut.build(quizNode);
@@ -215,10 +215,10 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                 List.of(), "K", "Instructions", true, "k1", "K label", "K", null, "Topic");
         AuditableQuiz quizOriginal = new AuditableQuiz(
                 List.of(), "q1", "Q", "Q", null, List.of("I have eaten"), null, "Instructions",
-                parts("have eaten"), null);
+                parts("have eaten"), null, null, null);
         AuditableQuiz quizChanged = new AuditableQuiz(
                 List.of(), "q1", "Q", "Q", null, List.of("I have eaten"), null, "Instructions",
-                parts("has eaten"), null);
+                parts("has eaten"), null, null, null);
 
         EvaluationSubject original = sut.build(quizNodeUnder("B1", knowledge, quizOriginal));
         EvaluationSubject changed = sut.build(quizNodeUnder("B1", knowledge, quizChanged));
@@ -234,9 +234,9 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     public void shouldProduceDifferentJudgedContentForEveryQuizOfAKnowledgeWhenTheKnowledgeInstructionsChange(
             ) {
         AuditableQuiz quiz1 = new AuditableQuiz(
-                List.of(), "q1", "Q1", "Q", null, List.of("s1"), null, "Original instructions", parts("a1"), null);
+                List.of(), "q1", "Q1", "Q", null, List.of("s1"), null, "Original instructions", parts("a1"), null, null, null);
         AuditableQuiz quiz2 = new AuditableQuiz(
-                List.of(), "q2", "Q2", "Q", null, List.of("s2"), null, "Original instructions", parts("a2"), null);
+                List.of(), "q2", "Q2", "Q", null, List.of("s2"), null, "Original instructions", parts("a2"), null, null, null);
 
         AuditableKnowledge originalKnowledge = new AuditableKnowledge(
                 List.of(quiz1, quiz2), "K", "Original instructions", true, "k1", "K label", "K", null, "Topic");
@@ -263,13 +263,13 @@ public class DefaultQuizInstructionSubjectBuilderTest {
         AuditableKnowledge knowledgeFirstPass = new AuditableKnowledge(
                 List.of(), "K", "Instructions", true, "k1", "K label", "K", null, "Topic");
         AuditableQuiz quizFirstPass = new AuditableQuiz(
-                List.of(), "q1", "Q", "Q", null, List.of("s"), null, "Instructions", parts("a"), null);
+                List.of(), "q1", "Q", "Q", null, List.of("s"), null, "Instructions", parts("a"), null, null, null);
 
         // Independently rebuilt entities with equal content, simulating reprocessing the same course.
         AuditableKnowledge knowledgeSecondPass = new AuditableKnowledge(
                 List.of(), "K", "Instructions", true, "k1", "K label", "K", null, "Topic");
         AuditableQuiz quizSecondPass = new AuditableQuiz(
-                List.of(), "q1", "Q", "Q", null, List.of("s"), null, "Instructions", parts("a"), null);
+                List.of(), "q1", "Q", "Q", null, List.of("s"), null, "Instructions", parts("a"), null, null, null);
 
         EvaluationSubject firstPass = sut.build(quizNodeUnder("B1", knowledgeFirstPass, quizFirstPass));
         EvaluationSubject secondPass = sut.build(quizNodeUnder("B1", knowledgeSecondPass, quizSecondPass));
@@ -288,7 +288,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                 List.of(), "Knowledge title", "Knowledge instructions", true, "k1", "Knowledge label", "K", null, "Topic");
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "q1", "Stale quiz label", "Q", null, List.of("s"), null,
-                "Stale quiz instructions", parts("a"), null);
+                "Stale quiz instructions", parts("a"), null, null, null);
 
         EvaluationSubject subject = sut.build(quizNodeUnder("B1", knowledge, quiz));
 
@@ -306,7 +306,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "K", null, true, "k1", "K label", "K", null, "Topic");
         AuditableQuiz quiz = new AuditableQuiz(
-                List.of(), "q1", "Q", "Q", null, List.of("s"), null, null, parts("a"), null);
+                List.of(), "q1", "Q", "Q", null, List.of("s"), null, null, parts("a"), null, null, null);
 
         EvaluationSubject subject = Assertions.assertDoesNotThrow(
                 () -> sut.build(quizNodeUnder("A1", knowledge, quiz)),
@@ -331,7 +331,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                 "k1", "Present Perfect", "PP", null, "Verb Tenses");
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "q1", "Present Perfect", "Q1", null, List.of("I have eaten"), null,
-                "Complete with present perfect", sentenceParts, null);
+                "Complete with present perfect", sentenceParts, null, null, null);
         AuditNode quizNode = quizNodeUnder("B1", knowledge, quiz);
 
         // Same underlying quiz, expressed as the standalone view a correction would build

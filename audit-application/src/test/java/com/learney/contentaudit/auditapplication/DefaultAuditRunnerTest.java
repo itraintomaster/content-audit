@@ -260,7 +260,7 @@ public class DefaultAuditRunnerTest {
         LevelLemmaCountResult levelResult = new LevelLemmaCountResult(
                 CefrLevel.A1, 0.5, 5, List.of());
         LemmaCountResult lemmaCountResult = new LemmaCountResult(
-                3, Optional.of(0.5), List.of(levelResult), List.of());
+                3, Optional.of(0.5), List.of(levelResult), List.of(), null, null);
         LemmaCountCourseDiagnosis lemmaCountCourseDiagnosis = new LemmaCountCourseDiagnosis(lemmaCountResult);
 
         DefaultCourseDiagnoses courseDiagnoses = new DefaultCourseDiagnoses();
@@ -335,7 +335,7 @@ public class DefaultAuditRunnerTest {
 
         // Also set course-level lemma-count on root
         LemmaCountCourseDiagnosis courseCountDiag = new LemmaCountCourseDiagnosis(
-                new LemmaCountResult(3, Optional.of(0.4), List.of(levelResult), List.of()));
+                new LemmaCountResult(3, Optional.of(0.4), List.of(levelResult), List.of(), null, null));
         DefaultCourseDiagnoses courseDiag = new DefaultCourseDiagnoses();
         courseDiag.setLemmaCountDiagnosis(courseCountDiag);
         rootNode.setDiagnoses(courseDiag);
@@ -416,7 +416,7 @@ public class DefaultAuditRunnerTest {
         QuizInstructionDiagnosis quizDiagnosis = new QuizInstructionDiagnosis(verdict, 1.0, false);
         EvaluationCoverage coverage = new EvaluationCoverage(1, 1, 1, 0, 0, 0);
         QuizInstructionCoverageDiagnosis coverageDiagnosis =
-                new QuizInstructionCoverageDiagnosis(coverage, "v1", List.of(), null);
+                new QuizInstructionCoverageDiagnosis(coverage, "v1", List.of(), null, null);
 
         ContentAnalyzer quizInstructionAnalyzer = mock(ContentAnalyzer.class);
         doAnswer(invocation -> {
@@ -578,7 +578,7 @@ public class DefaultAuditRunnerTest {
 
         DefaultAuditRunner runner = runnerWith(quizInstructionFactory);
 
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(200, false, null, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(200, false, null, null, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null, Map.of("quiz-instruction", policy));
 
         runner.runAudit(coursePath, request);
@@ -604,7 +604,7 @@ public class DefaultAuditRunnerTest {
         AnalyzerProvider quizInstructionFactory = judgeProvider();
         lenient().when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
             EvaluationRunPolicy policy = invocation.getArgument(0);
-            EvaluationRunPolicy effectivePolicy = policy != null ? policy : new EvaluationRunPolicy(500, false, null, null);
+            EvaluationRunPolicy effectivePolicy = policy != null ? policy : new EvaluationRunPolicy(500, false, null, null, null, null);
             EvaluationSession session = sessionFactory.open(quizInstructionBudgetFrom(effectivePolicy), evaluator);
             return quizInstructionSessionBackedAnalyzer(session, effectivePolicy);
         });
@@ -650,7 +650,7 @@ public class DefaultAuditRunnerTest {
 
         DefaultAuditRunner runner = runnerWith(quizInstructionFactory);
 
-        EvaluationRunPolicy cappedPolicy = new EvaluationRunPolicy(2, false, null, null);
+        EvaluationRunPolicy cappedPolicy = new EvaluationRunPolicy(2, false, null, null, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null, Map.of(ANALYZER_NAME, cappedPolicy));
         runner.runAudit(coursePath, request);
 
@@ -692,7 +692,7 @@ public class DefaultAuditRunnerTest {
 
         DefaultAuditRunner runner = runnerWith(quizInstructionFactory);
 
-        EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null, null);
+        EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null, null, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null, Map.of(ANALYZER_NAME, reevaluationPolicy));
         runner.runAudit(coursePath, request);
 
@@ -721,7 +721,7 @@ public class DefaultAuditRunnerTest {
     /** The judge's provider under the name the report publishes, with the judge's real card. */
     private static AnalyzerProvider judgeProvider() {
         AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null, null,
-                mock(QuizInstructionConfig.class)).describe();
+                mock(QuizInstructionConfig.class), null).describe();
         AnalyzerProvider provider = mock(AnalyzerProvider.class);
         lenient().when(provider.analyzerName()).thenReturn(ANALYZER_NAME);
         lenient().when(provider.describe()).thenReturn(card);
@@ -790,7 +790,7 @@ public class DefaultAuditRunnerTest {
         List<AuditableQuiz> quizzes = new ArrayList<>();
         for (String quizId : quizIds) {
             quizzes.add(new AuditableQuiz(List.of(), quizId, "label", "code", null,
-                    List.of("She is happy."), null, null, List.of(), null));
+                    List.of("She is happy."), null, null, List.of(), null, null, null));
         }
         AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Knowledge", "Instructions", true,
                 "k1", "Knowledge", "K1", null, "Topic");
@@ -812,7 +812,7 @@ public class DefaultAuditRunnerTest {
                 new LemmaRecurrenceAnalyzerProvider(mock(LemmaRecurrenceConfig.class)),
                 new LemmaAbsenceAnalyzerProvider(null, mock(LemmaAbsenceConfig.class), null),
                 new LemmaCountAnalyzerProvider(null, mock(LemmaCountConfig.class)),
-                new DefaultQuizInstructionAnalyzerFactory(null, null, null, mock(QuizInstructionConfig.class))));
+                new DefaultQuizInstructionAnalyzerFactory(null, null, null, mock(QuizInstructionConfig.class), null)));
     }
 
     // -----------------------------------------------------------------------
@@ -1087,7 +1087,8 @@ public class DefaultAuditRunnerTest {
             assertEquals(expectedScores, node.getScores(), "R013: the same score of each analyzer on " + id);
             assertEquals(new ArrayList<>(expectedScores.keySet()), new ArrayList<>(node.getScores().keySet()),
                     "and in the same order on " + id);
-            assertEquals(parse(json, expectedDiagnoses.get(i)), diagnosesTree(json, node),
+            JsonNode expectedTree = parse(json, expectedDiagnoses.get(i));
+            assertEquals(expectedTree, withoutNewEmptyFields(expectedTree, diagnosesTree(json, node)),
                     "R013: the same typed diagnoses on " + id);
         }
         assertEquals(new HashSet<>(List.of("sentence-length", "knowledge-title-length", "knowledge-instructions-length",
@@ -1146,7 +1147,7 @@ public class DefaultAuditRunnerTest {
                 : new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "Cumple", List.of(), List.of());
         return new DefaultQuizInstructionAnalyzerFactory(new DefaultEvaluationSessionFactory(
                 new FakeQuizInstructionEvaluationLedger(), new FakeQuizInstructionContentFingerprinter()), evaluator,
-                reader, new DefaultQuizInstructionConfig());
+                reader, new DefaultQuizInstructionConfig(), null);
     }
 
     private static void walkTree(AuditNode node, Consumer<AuditNode> action) {
@@ -1184,10 +1185,59 @@ public class DefaultAuditRunnerTest {
 
     private static JsonNode diagnosesTree(ObjectMapper json, AuditNode node) {
         try {
-            return json.readTree(json.writerFor(NodeDiagnoses.class).writeValueAsString(node.getDiagnoses()));
+            return withoutEmptyRoundOneSlots(
+                    json.readTree(json.writerFor(NodeDiagnoses.class).writeValueAsString(node.getDiagnoses())));
         } catch (IOException e) {
             throw new AssertionError(e);
         }
+    }
+
+    /**
+     * FEAT-RONDA1 added typed slots to the quiz and the course that no classic analyzer fills; the
+     * fixtures of 2026-09-30T11-54-02 predate them. Left empty they are not a diagnosis, so the
+     * comparison leaves them out.
+     */
+    private static final List<String> ROUND_ONE_SLOTS = List.of("hintCoherenceDiagnosis",
+            "answerCompletenessDiagnosis", "multipleChoiceValidityDiagnosis", "dataCoherenceDiagnosis",
+            "exactDuplicateDiagnosis", "translationSenseDiagnosis", "singleAnswerDiagnosis", "miniTheoryDiagnosis",
+            "offLevelWordsDiagnosis", "judgeCoverages", "lemmaRecurrenceDiagnosis");
+
+    /**
+     * FEAT-RONDA1 also added fields to the models the classics fill (the bands and the table per
+     * word of lemma-count, FEAT-POCOV), which they leave empty until their package builds them:
+     * a field the fixture does not have and that is empty is not a difference.
+     */
+    private static JsonNode withoutNewEmptyFields(JsonNode expected, JsonNode actual) {
+        if (actual instanceof com.fasterxml.jackson.databind.node.ObjectNode object && expected != null
+                && expected.isObject()) {
+            List<String> names = new ArrayList<>();
+            object.fieldNames().forEachRemaining(names::add);
+            for (String name : names) {
+                JsonNode value = object.get(name);
+                if (!expected.has(name) && (value.isNull() || (value.isArray() && value.isEmpty()))) {
+                    object.remove(name);
+                } else {
+                    withoutNewEmptyFields(expected.get(name), value);
+                }
+            }
+        } else if (actual != null && actual.isArray() && expected != null && expected.isArray()) {
+            for (int k = 0; k < actual.size() && k < expected.size(); k++) {
+                withoutNewEmptyFields(expected.get(k), actual.get(k));
+            }
+        }
+        return actual;
+    }
+
+    private static JsonNode withoutEmptyRoundOneSlots(JsonNode tree) {
+        if (tree instanceof com.fasterxml.jackson.databind.node.ObjectNode object) {
+            for (String slot : ROUND_ONE_SLOTS) {
+                JsonNode value = object.get(slot);
+                if (value != null && (value.isNull() || (value.isArray() && value.isEmpty()))) {
+                    object.remove(slot);
+                }
+            }
+        }
+        return tree;
     }
 
     @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "@type")
@@ -1256,7 +1306,7 @@ public class DefaultAuditRunnerTest {
         for (String quizId : quizIds) {
             quizzes.add(new AuditableQuiz(List.of(), quizId, "label", "code", null, List.of("She is " + quizId + "."),
                     null, null, List.of(new com.learney.contentaudit.coursedomain.SentencePartEntity(
-                            com.learney.contentaudit.coursedomain.SentencePartKind.TEXT, "She is " + quizId, null)), null));
+                            com.learney.contentaudit.coursedomain.SentencePartKind.TEXT, "She is " + quizId, null)), null, null, null));
         }
         AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Knowledge", "Instructions", true,
                 "k1", "Knowledge", "K1", null, "Topic");

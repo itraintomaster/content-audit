@@ -452,7 +452,7 @@ public class DefaultRefinerEngineTest {
                         org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.LemmaCountConfig.class)),
                 new com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory(
                         null, null, null,
-                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.QuizInstructionConfig.class))));
+                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.QuizInstructionConfig.class), null)));
     }
 
     /** The tree of the analysis 2026-09-30T11-54-02: every node, in preorder, with its scores. */
@@ -511,7 +511,7 @@ public class DefaultRefinerEngineTest {
     private static AnalyzerDescriptor errorsCard(String name) {
         return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿" + name + "?", "El ejercicio",
                 List.of(new AnalyzerRuleCard("rule-" + name, "La regla", AnalysisCost.INSTANT)), "Ningun error",
-                AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT);
+                AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, name);
     }
 
     private static AnalyzerProvider provider(AnalyzerDescriptor card, Optional<AnalyzerPlanBinding> binding) {

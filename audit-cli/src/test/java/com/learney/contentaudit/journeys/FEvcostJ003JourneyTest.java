@@ -88,7 +88,7 @@ public class FEvcostJ003JourneyTest {
         EvaluationResolution firstResolution = firstRun.resolve(subject);
         assertEquals(EvaluationResolutionKind.EVALUATED, firstResolution.getKind());
 
-        AuditReportStore reportStore = new FileSystemAuditReportStore(tempDir);
+        AuditReportStore reportStore = new FileSystemAuditReportStore(tempDir, null);
         String reportId = reportStore.save(new AuditReport(new AuditNode()));
         assertTrue(reportStore.load(reportId).isPresent(),
                 "Precondition: the analysis report exists before it gets deleted");
@@ -97,7 +97,7 @@ public class FEvcostJ003JourneyTest {
         Path reportsDir = tempDir.resolve(".content-audit").resolve("audits");
         deleteRecursively(reportsDir);
         assertFalse(Files.exists(reportsDir), "Precondition: the analysis reports must actually be gone");
-        AuditReportStore reportStoreAfterCleanup = new FileSystemAuditReportStore(tempDir);
+        AuditReportStore reportStoreAfterCleanup = new FileSystemAuditReportStore(tempDir, null);
         assertTrue(reportStoreAfterCleanup.list().isEmpty(),
                 "F-EVCOST-R007: no analysis report must remain listed after deletion");
 
@@ -145,7 +145,7 @@ public class FEvcostJ003JourneyTest {
         EvaluationResolution firstResolution = firstRun.resolve(subject);
         assertEquals(EvaluationResolutionKind.EVALUATED, firstResolution.getKind());
 
-        AuditReportStore reportStore = new FileSystemAuditReportStore(tempDir);
+        AuditReportStore reportStore = new FileSystemAuditReportStore(tempDir, null);
         String reportId = reportStore.save(new AuditReport(new AuditNode()));
         assertTrue(reportStore.load(reportId).isPresent(),
                 "Precondition: the analysis report exists before it gets deleted");
@@ -154,7 +154,7 @@ public class FEvcostJ003JourneyTest {
         Path reportsDir = tempDir.resolve(".content-audit").resolve("audits");
         deleteRecursively(reportsDir);
         assertFalse(Files.exists(reportsDir), "Precondition: the analysis reports must actually be gone");
-        AuditReportStore reportStoreAfterCleanup = new FileSystemAuditReportStore(tempDir);
+        AuditReportStore reportStoreAfterCleanup = new FileSystemAuditReportStore(tempDir, null);
         assertTrue(reportStoreAfterCleanup.list().isEmpty(),
                 "F-EVCOST-R007: no analysis report must remain listed after deletion");
 

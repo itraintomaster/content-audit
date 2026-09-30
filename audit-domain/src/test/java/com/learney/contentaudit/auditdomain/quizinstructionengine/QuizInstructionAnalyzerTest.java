@@ -55,7 +55,7 @@ public class QuizInstructionAnalyzerTest {
 
     private AuditableQuiz buildQuiz(String id) {
         return new AuditableQuiz(List.of(), id, "label-" + id, null, null,
-                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of(), null);
+                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of(), null, null, null);
     }
 
     private AuditNode buildQuizNode(AuditableQuiz quiz) {
@@ -69,17 +69,17 @@ public class QuizInstructionAnalyzerTest {
     }
 
     private EvaluationRunPolicy normalPolicy(int maxNewEvaluations) {
-        return new EvaluationRunPolicy(maxNewEvaluations, false, null, null);
+        return new EvaluationRunPolicy(maxNewEvaluations, false, null, null, null, null);
     }
 
     private EvaluationRunPolicy reevaluatePolicy(int maxNewEvaluations, String scope) {
-        return new EvaluationRunPolicy(maxNewEvaluations, true, scope, null);
+        return new EvaluationRunPolicy(maxNewEvaluations, true, scope, null, null, null);
     }
 
     // Conjunto de ejercicios declarado en el pedido (F-QINST-R018): excluyente con
     // reevaluate/reevaluationScope -- un conjunto declarado ES el pedido de re-evaluacion.
     private EvaluationRunPolicy declaredSetPolicy(int maxNewEvaluations, Set<String> reevaluationSubjectIds) {
-        return new EvaluationRunPolicy(maxNewEvaluations, false, null, reevaluationSubjectIds);
+        return new EvaluationRunPolicy(maxNewEvaluations, false, null, reevaluationSubjectIds, null, null);
     }
 
     private AuditNode buildCourseNode() {
@@ -121,7 +121,7 @@ public class QuizInstructionAnalyzerTest {
         when(verdictReader.read("payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(0.3);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(node);
 
         assertInstanceOf(QuizDiagnoses.class, node.getDiagnoses(),
@@ -172,7 +172,7 @@ public class QuizInstructionAnalyzerTest {
         when(verdictReader.read("payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(node);
 
         assertInstanceOf(QuizDiagnoses.class, node.getDiagnoses(),
@@ -212,7 +212,7 @@ public class QuizInstructionAnalyzerTest {
         when(verdictReader.read("payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(0.6);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(node);
 
         QuizInstructionDiagnosis diagnosis = ((QuizDiagnoses) node.getDiagnoses())
@@ -245,7 +245,7 @@ public class QuizInstructionAnalyzerTest {
         // El tope de la corrida se agoto para este ejercicio: queda pendiente (R004/R006)
         when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(node);
 
         assertTrue(node.getScores().isEmpty(),
@@ -274,7 +274,7 @@ public class QuizInstructionAnalyzerTest {
         // El juez no llego a pronunciarse sobre este ejercicio en esta corrida (R004/R007)
         when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(node);
 
         assertTrue(node.getScores().isEmpty(),
@@ -302,7 +302,7 @@ public class QuizInstructionAnalyzerTest {
         EvaluationCoverage coverage = new EvaluationCoverage(5, 3, 2, 1, 1, 1);
         when(session.coverage()).thenReturn(coverage);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         AuditNode courseNode = buildCourseNode();
         analyzer.onCourseComplete(courseNode);
 
@@ -337,7 +337,7 @@ public class QuizInstructionAnalyzerTest {
         EvaluationCoverage coverage = new EvaluationCoverage(10, 6, 4, 2, 3, 1);
         when(session.coverage()).thenReturn(coverage);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         AuditNode courseNode = buildCourseNode();
         analyzer.onCourseComplete(courseNode);
 
@@ -374,7 +374,7 @@ public class QuizInstructionAnalyzerTest {
         when(verdictReader.read("stored-payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(quizNode);
 
         QuizInstructionDiagnosis quizDiagnosis = ((QuizDiagnoses) quizNode.getDiagnoses())
@@ -423,7 +423,7 @@ public class QuizInstructionAnalyzerTest {
         // El segundo ejercicio excede el tope de la corrida: queda pendiente, sin error (R006)
         when(session.resolve(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         assertDoesNotThrow(() -> {
             analyzer.onQuiz(withinBudget);
@@ -459,7 +459,7 @@ public class QuizInstructionAnalyzerTest {
         when(zeroBudgetSession.resolve(zeroBudgetSubject))
                 .thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1"));
         QuizInstructionAnalyzer zeroBudgetAnalyzer = new QuizInstructionAnalyzer(
-                zeroBudgetSession, subjectBuilder, scorer, scopeMatcher, verdictReader, normalPolicy(0));
+                zeroBudgetSession, subjectBuilder, scorer, scopeMatcher, verdictReader, normalPolicy(0), null, null);
         zeroBudgetAnalyzer.onQuiz(zeroBudgetNode);
         assertFalse(zeroBudgetNode.getScores().isEmpty(),
                 "Un ejercicio ya evaluado se puntua aunque el tope de la corrida sea 0 (R006)");
@@ -473,7 +473,7 @@ public class QuizInstructionAnalyzerTest {
         when(highBudgetSession.resolve(highBudgetSubject))
                 .thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1"));
         QuizInstructionAnalyzer highBudgetAnalyzer = new QuizInstructionAnalyzer(
-                highBudgetSession, subjectBuilder, scorer, scopeMatcher, verdictReader, normalPolicy(500));
+                highBudgetSession, subjectBuilder, scorer, scopeMatcher, verdictReader, normalPolicy(500), null, null);
         highBudgetAnalyzer.onQuiz(highBudgetNode);
         assertFalse(highBudgetNode.getScores().isEmpty(),
                 "Un ejercicio ya evaluado se puntua sin importar cuan alto sea el tope (R006)");
@@ -507,7 +507,7 @@ public class QuizInstructionAnalyzerTest {
         // El servicio del juez cae a mitad de corrida: el resto se cuenta como fallido (R007)
         when(session.resolve(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         assertDoesNotThrow(() -> {
             analyzer.onQuiz(judgedBeforeFailure);
@@ -549,7 +549,7 @@ public class QuizInstructionAnalyzerTest {
         // El servicio del juez cae a mitad de corrida antes de alcanzar el segundo ejercicio (R007)
         when(session.resolve(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(judgedBeforeFailure);
         analyzer.onQuiz(notReachedAfterFailure);
 
@@ -590,7 +590,7 @@ public class QuizInstructionAnalyzerTest {
         when(verdictReader.read("stored-payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(0.6);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(node);
 
         assertEquals(0.6, node.getScores().values().iterator().next(), 0.0001,
@@ -623,7 +623,7 @@ public class QuizInstructionAnalyzerTest {
         when(verdictReader.read(anyString())).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(0.6);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         // Corrida 1: el tope (1) alcanza para qa; qb queda sin veredicto (pendiente)
         when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1"));
@@ -679,7 +679,7 @@ public class QuizInstructionAnalyzerTest {
         when(verdictReader.read("APPROVED-BY-PREVIOUS-VERSION")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(node);
 
         assertFalse(node.getScores().isEmpty(),
@@ -727,7 +727,7 @@ public class QuizInstructionAnalyzerTest {
         when(verdictReader.read("new-payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(node);
 
         verify(session).resolveForced(subject);
@@ -765,7 +765,7 @@ public class QuizInstructionAnalyzerTest {
         // ejercicio queda pendiente, igual que en una corrida ordinaria (R012)
         when(session.resolveForced(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(withinBudget);
         analyzer.onQuiz(beyondBudget);
 
@@ -795,7 +795,7 @@ public class QuizInstructionAnalyzerTest {
         // la sesion lo traduce como una resolucion FAILED, no como un juicio legitimo (R013)
         when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(node);
 
         assertTrue(node.getScores().isEmpty(),
@@ -823,7 +823,7 @@ public class QuizInstructionAnalyzerTest {
         when(subjectBuilder.build(firstRunNode)).thenReturn(subject);
         when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(firstRunNode);
         assertTrue(firstRunNode.getScores().isEmpty(), "La corrida anterior no dejo veredicto: salida invalida (R013)");
 
@@ -859,7 +859,7 @@ public class QuizInstructionAnalyzerTest {
         // Ejercicio cuyo knowledge no declara instrucciones (instructions=null): gramatica,
         // significado y resolubilidad se revisan igual, sin restricciones explicitas (R014)
         AuditableQuiz quizWithoutInstructions = new AuditableQuiz(List.of(), "q1", "label", null, null,
-                List.of("a sentence"), null, null, List.of(), null);
+                List.of("a sentence"), null, null, List.of(), null, null, null);
         AuditNode node = buildQuizNode(quizWithoutInstructions);
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(node)).thenReturn(subject);
@@ -868,7 +868,7 @@ public class QuizInstructionAnalyzerTest {
         when(verdictReader.read("payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(node);
 
         verify(subjectBuilder).build(node);
@@ -892,7 +892,7 @@ public class QuizInstructionAnalyzerTest {
         EvaluationCoverage coverage = new EvaluationCoverage(11487, 0, 0, 0, 11487, 0);
         when(session.coverage()).thenReturn(coverage);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         AuditNode courseNode = buildCourseNode();
         analyzer.onCourseComplete(courseNode);
 
@@ -919,7 +919,7 @@ public class QuizInstructionAnalyzerTest {
         // Version del juez vigente durante la corrida (R005)
         when(session.consultedEvaluatorVersion()).thenReturn(Optional.of("quiz-instruction-validator@sha256:v7"));
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         AuditNode courseNode = buildCourseNode();
         analyzer.onCourseComplete(courseNode);
 
@@ -978,7 +978,7 @@ public class QuizInstructionAnalyzerTest {
         when(verdictReader.read("payload-reused")).thenReturn(reusedVerdict);
         when(scorer.score(reusedVerdict)).thenReturn(1.0);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(evaluatedInThisRun);
         analyzer.onQuiz(reusedFromEarlierRun);
 
@@ -1060,7 +1060,7 @@ public class QuizInstructionAnalyzerTest {
 
         when(session.resolveWithoutConsulting(subjOutsideWithoutVerdict)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(inDeclaredSet);
         analyzer.onQuiz(outsideWithVerdict);
         analyzer.onQuiz(outsideWithoutVerdict);
@@ -1105,7 +1105,7 @@ public class QuizInstructionAnalyzerTest {
         when(verdictReader.read("previous-payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(beyondBudget);
 
         verify(session).resolvePreferringNew(subject);
@@ -1149,7 +1149,7 @@ public class QuizInstructionAnalyzerTest {
         EvaluationCoverage coverage = new EvaluationCoverage(1, 1, 1, 0, 0, 0);
         when(session.coverage()).thenReturn(coverage);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(matchedNode);
         AuditNode courseNode = buildCourseNode();
         analyzer.onCourseComplete(courseNode);
@@ -1199,7 +1199,7 @@ public class QuizInstructionAnalyzerTest {
         EvaluationCoverage coverage = new EvaluationCoverage(2, 2, 1, 1, 0, 0);
         when(session.coverage()).thenReturn(coverage);
 
-        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         analyzer.onQuiz(inDeclaredSet);
         analyzer.onQuiz(outsideDeclaredSet);
         AuditNode courseNode = buildCourseNode();
@@ -1374,7 +1374,7 @@ public class QuizInstructionAnalyzerTest {
         // R014: the codes of the violations are written by the model and are not stable, so the
         // judge leaves one finding per breaching quiz and its identity is analyzer, rule and quiz.
         AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null, null,
-                mock(QuizInstructionConfig.class)).describe();
+                mock(QuizInstructionConfig.class), null).describe();
         List<String> identities = new ArrayList<>();
         int run = 0;
         for (QuizInstructionVerdict verdict : List.of(
@@ -1435,7 +1435,7 @@ public class QuizInstructionAnalyzerTest {
         when(session.resolve(any())).thenReturn(new EvaluationResolution(kind, payload, judgeVersion));
         when(verdictReader.read("payload")).thenReturn(verdict);
         return new QuizInstructionAnalyzer(session, subjectBuilder, new DefaultQuizInstructionScorer(config),
-                mock(QuizInstructionScopeMatcher.class), verdictReader, normalPolicy(500));
+                mock(QuizInstructionScopeMatcher.class), verdictReader, normalPolicy(500), null, null);
     }
 
     @Test

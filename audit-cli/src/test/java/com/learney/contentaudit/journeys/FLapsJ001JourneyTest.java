@@ -215,7 +215,7 @@ public class FLapsJ001JourneyTest {
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella lee libros sobre temas avanzados.",
                 List.of("She reads books about advanced topics."),
-                BEFORE_QUIZ_SENTENCE, null, null, null);
+                BEFORE_QUIZ_SENTENCE, null, null, null, null, null);
 
         AuditNode courseNode = buildCourseNode();
         AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone);

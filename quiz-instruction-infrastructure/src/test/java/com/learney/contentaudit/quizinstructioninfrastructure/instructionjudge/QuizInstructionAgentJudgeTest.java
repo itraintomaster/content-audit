@@ -158,7 +158,7 @@ public class QuizInstructionAgentJudgeTest {
                 .thenReturn(runStateWithVerdictArtifact(CONSERVATIVE_INFRASTRUCTURE_VERDICT_JSON));
 
         QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver,
-                CHAT_MODEL_FACTORY, PROVIDER);
+                CHAT_MODEL_FACTORY, PROVIDER, null);
         EvaluationSubject subject = new EvaluationSubject("quiz-77", buildDeclaredInputs());
 
         EvaluationOutcome outcome = judge.evaluate(subject);
@@ -180,7 +180,7 @@ public class QuizInstructionAgentJudgeTest {
                 .thenReturn(runStateWithVerdictArtifact(GENUINE_NON_COMPLIANT_VERDICT_JSON));
 
         QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver,
-                CHAT_MODEL_FACTORY, PROVIDER);
+                CHAT_MODEL_FACTORY, PROVIDER, null);
         EvaluationSubject subject = new EvaluationSubject("quiz-77", buildDeclaredInputs());
 
         EvaluationOutcome outcome = judge.evaluate(subject);
@@ -207,7 +207,7 @@ public class QuizInstructionAgentJudgeTest {
                 .thenThrow(new RuntimeException("judge service timed out / credit exhausted"));
 
         QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver,
-                CHAT_MODEL_FACTORY, PROVIDER);
+                CHAT_MODEL_FACTORY, PROVIDER, null);
         EvaluationSubject subject = new EvaluationSubject("quiz-77", buildDeclaredInputs());
 
         EvaluationOutcome outcome = assertDoesNotThrow(() -> judge.evaluate(subject),
@@ -229,7 +229,7 @@ public class QuizInstructionAgentJudgeTest {
                 .thenReturn(runStateWithVerdictArtifact(GENUINE_NON_COMPLIANT_VERDICT_JSON));
 
         QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver,
-                CHAT_MODEL_FACTORY, PROVIDER);
+                CHAT_MODEL_FACTORY, PROVIDER, null);
         Map<String, String> declaredInputs = buildDeclaredInputs();
         EvaluationSubject subject = new EvaluationSubject("quiz-77", declaredInputs);
 

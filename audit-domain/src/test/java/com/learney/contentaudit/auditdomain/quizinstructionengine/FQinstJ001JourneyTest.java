@@ -49,7 +49,7 @@ public class FQinstJ001JourneyTest {
         AuditNode node = new AuditNode();
         node.setTarget(AuditTarget.QUIZ);
         node.setEntity(new AuditableQuiz(List.of(), "q1", "label", null, null,
-                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of(), null));
+                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of(), null, null, null));
         node.setChildren(new ArrayList<>());
         node.setScores(new LinkedHashMap<>());
         node.setMetadata(new LinkedHashMap<>());
@@ -65,7 +65,7 @@ public class FQinstJ001JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null, null, null);
 
         // Nodo "consultar_juez": el sistema entrega al juez el contenido completo del ejercicio
         AuditNode quizNode = buildQuizNode();
@@ -84,7 +84,7 @@ public class FQinstJ001JourneyTest {
         when(scorer.score(verdict)).thenReturn(1.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
-                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         // Nodo "cumple" (gate F-QINST-R002, F-QINST-R003): puntaje maximo + diagnostico sin
         // violaciones, con los controles realizados por el juez -> desenlace success
@@ -114,7 +114,7 @@ public class FQinstJ001JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null, null, null);
 
         // Nodo "consultar_juez": el sistema entrega al juez el contenido completo del ejercicio
         AuditNode quizNode = buildQuizNode();
@@ -132,7 +132,7 @@ public class FQinstJ001JourneyTest {
         when(scorer.score(verdict)).thenReturn(0.6);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
-                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         // Nodo "incumple_menor" (gate F-QINST-R002, F-QINST-R003): puntaje de severidad menor
         // + diagnostico con la violacion detectada, su restriccion, evidencia y explicacion
@@ -162,7 +162,7 @@ public class FQinstJ001JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null, null, null);
 
         // Nodo "consultar_juez": el sistema entrega al juez el contenido completo del ejercicio
         AuditNode quizNode = buildQuizNode();
@@ -180,7 +180,7 @@ public class FQinstJ001JourneyTest {
         when(scorer.score(verdict)).thenReturn(0.3);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
-                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         // Nodo "incumple_mayor" (gate F-QINST-R002, F-QINST-R003): puntaje de severidad mayor
         // + diagnostico con sus violaciones y evidencia
@@ -209,7 +209,7 @@ public class FQinstJ001JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null, null, null);
 
         // Nodo "consultar_juez": el sistema entrega al juez el contenido completo del ejercicio
         AuditNode quizNode = buildQuizNode();
@@ -227,7 +227,7 @@ public class FQinstJ001JourneyTest {
         when(scorer.score(verdict)).thenReturn(0.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
-                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         // Nodo "incumple_critico" (gate F-QINST-R002, F-QINST-R003): puntaje minimo
         // + diagnostico con sus violaciones y evidencia
@@ -257,7 +257,7 @@ public class FQinstJ001JourneyTest {
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null, null, null, null);
 
         // Nodo "consultar_juez": el sistema entrega al juez el contenido completo de un
         // ejercicio pendiente (nivel CEFR, topic, etiqueta e instrucciones del knowledge y el
@@ -271,7 +271,7 @@ public class FQinstJ001JourneyTest {
         when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
-                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         // Nodo "falla_del_juez" (gate F-QINST-R013): el ejercicio no recibe puntaje ni
         // diagnostico, no queda registrado ningun veredicto para el, y se cuenta como
