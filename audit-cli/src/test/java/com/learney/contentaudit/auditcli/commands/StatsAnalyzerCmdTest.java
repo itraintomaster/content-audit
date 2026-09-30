@@ -281,4 +281,12 @@ public class StatsAnalyzerCmdTest {
                 "R010: nested under it, the quarters of the 29/9 base");
         assertEquals(0.7253788624322802, course.getVocabularyScore(), "R009: the average of one analyzer, not of five keys");
     }
+
+    @Test
+    @DisplayName("should show with stats analyzer lemma-recurrence the data of each lemma and each level read from the course diagnosis of the report")
+    @Tag("FEAT-RECUR")
+    @Tag("F-RECUR-R003")
+    public void shouldShowWithStatsAnalyzerLemmarecurrenceTheDataOfEachLemmaAndEachLevelReadFromTheCourseDiagnosisOfTheReport() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

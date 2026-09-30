@@ -35,13 +35,15 @@ public class AnalyzerDescriptor {
 
     private AnalysisCost cost;
 
+    private String displayName;
+
     public AnalyzerDescriptor() {
     }
 
     public AnalyzerDescriptor(String name, String description, AuditTarget target, String question,
             String reads, List<AnalyzerRuleCard> rules, String goal, AnalyzerFamily family,
             List<AuditTarget> evaluatedTargets, List<FindingResolution> resolutions,
-            AnalysisCost cost) {
+            AnalysisCost cost, String displayName) {
         this.name = name;
         this.description = description;
         this.target = target;
@@ -53,6 +55,7 @@ public class AnalyzerDescriptor {
         this.evaluatedTargets = evaluatedTargets;
         this.resolutions = resolutions;
         this.cost = cost;
+        this.displayName = displayName;
     }
 
     public String getName() {
@@ -143,6 +146,14 @@ public class AnalyzerDescriptor {
         this.cost = cost;
     }
 
+    public String getDisplayName() {
+        return this.displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -158,11 +169,12 @@ public class AnalyzerDescriptor {
                     && Objects.equals(this.family, that.family)
                     && Objects.equals(this.evaluatedTargets, that.evaluatedTargets)
                     && Objects.equals(this.resolutions, that.resolutions)
-                    && Objects.equals(this.cost, that.cost);
+                    && Objects.equals(this.cost, that.cost)
+                    && Objects.equals(this.displayName, that.displayName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, target, question, reads, rules, goal, family, evaluatedTargets, resolutions, cost);
+        return Objects.hash(name, description, target, question, reads, rules, goal, family, evaluatedTargets, resolutions, cost, displayName);
     }
 }

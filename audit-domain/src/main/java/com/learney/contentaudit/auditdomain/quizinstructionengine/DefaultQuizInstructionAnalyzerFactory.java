@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
+import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -37,14 +38,15 @@ public class DefaultQuizInstructionAnalyzerFactory implements AnalyzerProvider {
 
     private final QuizInstructionConfig config;
 
-    public DefaultQuizInstructionAnalyzerFactory(EvaluationSessionFactory sessionFactory,
-            Evaluator evaluator, QuizInstructionVerdictReader verdictReader,
-            QuizInstructionConfig config) {
-        this.sessionFactory = sessionFactory;
-        this.evaluator = evaluator;
-        this.verdictReader = verdictReader;
-        this.config = config;
-    }
+private final JudgeRuntime runtime;
+
+public DefaultQuizInstructionAnalyzerFactory(EvaluationSessionFactory sessionFactory, Evaluator evaluator, QuizInstructionVerdictReader verdictReader, QuizInstructionConfig config, JudgeRuntime runtime) {
+    this.sessionFactory = sessionFactory;
+    this.evaluator = evaluator;
+    this.verdictReader = verdictReader;
+    this.config = config;
+    this.runtime = runtime;
+}
 
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
@@ -53,7 +55,7 @@ public class DefaultQuizInstructionAnalyzerFactory implements AnalyzerProvider {
         // default budget instead of leaving the analyzer without one.
         EvaluationRunPolicy effectivePolicy = policy != null
                 ? policy
-                : new EvaluationRunPolicy(config.getDefaultMaxNewEvaluations(), false, null, null);
+                : new EvaluationRunPolicy(config.getDefaultMaxNewEvaluations(), false, null, null, null, null);
 
         // F-QINST-R018 inv.3: a request that cannot be interpreted is rejected here,
         // BEFORE opening the session -- this is the only call of the whole traversal
@@ -116,7 +118,7 @@ public class DefaultQuizInstructionAnalyzerFactory implements AnalyzerProvider {
                 AnalyzerFamily.ERRORS,
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
-                AnalysisCost.PAID_MODEL);
+                AnalysisCost.PAID_MODEL, null);
     }
 
     /** F-QINST-R017: its scores below 1 become QUIZ_INSTRUCTION tasks on the quiz. */

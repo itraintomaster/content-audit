@@ -1,5 +1,6 @@
 package com.learney.contentaudit.evaluationledgerdomain;
 
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -19,4 +20,10 @@ public interface EvaluationSession {
     EvaluationResolution resolvePreferringNew(EvaluationSubject subject);
 
     EvaluationResolution resolveWithoutConsulting(EvaluationSubject subject);
+
+    List<EvaluationResolution> resolveAll(List<EvaluationRequest> requests, int maxConcurrent);
+
+    boolean recorded(EvaluationSubject subject);
+
+    Optional<String> unavailableReason();
 }

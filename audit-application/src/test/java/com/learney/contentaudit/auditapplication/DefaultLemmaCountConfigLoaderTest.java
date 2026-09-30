@@ -89,4 +89,36 @@ public class DefaultLemmaCountConfigLoaderTest {
                 () -> loader.load(""),
                 "N='' (vacío) debe provocar IllegalArgumentException al cargar la configuración (R008)");
     }
+
+    @Test
+    @DisplayName("should load '4' as four bands that all ask for 4 sentences")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R001")
+    public void shouldLoad4AsFourBandsThatAllAskFor4Sentences() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should load '8/6/4/3' as the 1,000, 2,000 and 3,000 most common words and beyond, asking for 8, 6, 4 and 3 sentences")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R001")
+    public void shouldLoad8643AsThe10002000And3000MostCommonWordsAndBeyondAskingFor864And3Sentences() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should load the bands 8, 6, 4 and 3 when no threshold is configured, the default José confirmed on 30/9")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R001")
+    public void shouldLoadTheBands864And3WhenNoThresholdIsConfiguredTheDefaultJosConfirmedOn309() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject a band threshold that is not a positive integer, like '8/0/4/3', as it rejects a uniform one")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R001")
+    public void shouldRejectABandThresholdThatIsNotAPositiveIntegerLike8043AsItRejectsAUniformOne() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

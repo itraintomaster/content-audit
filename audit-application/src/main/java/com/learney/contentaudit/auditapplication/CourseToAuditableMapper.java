@@ -137,7 +137,7 @@ public class CourseToAuditableMapper implements CourseMapper {
         FormEntity form = qt.getForm();
         List<SentencePartEntity> sentenceParts = form != null ? form.getSentenceParts() : null;
         MultipleChoiceEntity multipleChoice = form != null ? form.getMultipleChoice() : null;
-        return new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, qt.getInstructions(), sentenceParts, multipleChoice);
+        return new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, qt.getInstructions(), sentenceParts, multipleChoice, null, null);
     }
 
     private List<String> deriveSentences(QuizTemplateEntity qt) {

@@ -31,4 +31,10 @@ public class EvpThenNlpLemmaCefrLevelResolver implements LemmaCefrLevelResolver 
         // R011: sin CEFR de ninguna fuente -> no asignado
         return Optional.empty();
     }
+
+    @Override
+    public Optional<Integer> resolveCocaRank(LemmaAndPos lemmaAndPos) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

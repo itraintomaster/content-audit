@@ -48,9 +48,39 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: QuizInstructionJudgeConfig - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeSpec");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AgentJudgeSpec - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AgentJudgeConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.JudgeUnavailabilityCause");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeUnavailabilityCause - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadiness");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeProviderReadiness - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeFactory");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: QuizInstructionJudgeFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AgentJudgeFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadinessProbe");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeProviderReadinessProbe - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.QuizInstructionJudgeVersionResolver");
@@ -86,6 +116,61 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.instructionverdict.JacksonQuizInstructionVerdictReader");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: JacksonQuizInstructionVerdictReader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.AgentJudgeVersionResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AgentJudgeVersionResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.AgentJudgeChatModelFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AgentJudgeChatModelFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultAgentJudgeFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultAgentJudgeFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.AgentJudge");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AgentJudge - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultAgentJudgeVersionResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultAgentJudgeVersionResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.SentinelAgentsAgentJudgeChatModelFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SentinelAgentsAgentJudgeChatModelFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultJudgeProviderReadinessProbe");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultJudgeProviderReadinessProbe - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.translationsenseverdict.JacksonTranslationSenseVerdictReader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JacksonTranslationSenseVerdictReader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.singleanswerverdict.JacksonSingleAnswerVerdictReader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JacksonSingleAnswerVerdictReader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.minitheoryverdict.JacksonMiniTheoryVerdictReader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JacksonMiniTheoryVerdictReader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.quizinstructioninfrastructure.choicealternativeverdict.JacksonChoiceAlternativeVerdictReader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JacksonChoiceAlternativeVerdictReader - " + e.getMessage());
     }
   }
 }

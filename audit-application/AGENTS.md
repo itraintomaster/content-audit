@@ -13,6 +13,37 @@
 | excludedAnalyzers | `Set<String>` |
 | analyzerPolicies | `Map<String,EvaluationRunPolicy>` |
 
+### JudgeExamRequest (`record`)
+
+| Field | Type |
+|-------|------|
+| judgeName | `String` |
+| photoCourse | `Path` |
+| caseIds | `Set<String>` |
+| maxNewEvaluations | `int` |
+| maxConcurrentEvaluations | `Integer` |
+
+### JudgeExamTaken (`record`)
+
+| Field | Type |
+|-------|------|
+| judgeName | `String` |
+| judgeVersion | `String` |
+| verdicts | `List<JudgeExamVerdict>` |
+| coverage | `JudgeCoverageDiagnosis` |
+| recordedAsTaken | `boolean` |
+
+### JudgeExamNotTakenException (`exception`)
+
+**Extends:** `IllegalArgumentException`
+
+**Message:** `La versión %2$s del juez '%1$s' no rindió el examen completo: no se puede registrar su resultado`
+
+| Field | Type |
+|-------|------|
+| judgeName | `String` |
+| judgeVersion | `String` |
+
 ## Interfaces
 
 ### AuditRunner (service)
@@ -36,6 +67,14 @@ Methods:
 Methods:
 
 - `load(String rawThreshold): LemmaCountConfig`
+
+### JudgeExamService (service)
+
+Methods:
+
+- `take(JudgeExamRequest request): JudgeExamTaken`
+- `record(JudgeExamRecord measured): JudgeExamStanding` throws JudgeExamNotTakenException
+- `history(String judgeName): List<JudgeExamRecord>`
 
 ## Implementations
 
@@ -118,6 +157,8 @@ Methods:
 - should reject before loading the course a run that asks for quiz-instructions, a name get analyzers does not list, with the message that points to get analyzers → FEAT-HALL/F-HALL-R012
 - should reject before loading the course a run that excludes a name get analyzers does not list, instead of ignoring it → FEAT-HALL/F-HALL-R012
 - should publish on the 29/9 course, with the seven classic analyzers, the same score of each one on each of its 11.760 nodes and the same typed diagnoses as the analysis 2026-09-30T11-54-02 → FEAT-HALL/F-HALL-R013
+- should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels 96.0, 93.6, 78.9 and 63.9 → FEAT-RONDA1/F-RONDA1-R008
+- should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2, 79.5 and 63.5 → FEAT-RONDA1/F-RONDA1-R008
 
 ### DefaultCocaBucketsConfig
 
@@ -233,6 +274,7 @@ Methods:
 **Dependencies (constructor injection):**
 
 - `threshold`: `int`
+- `bands`: `List<LemmaCountBand>`
 
 ### DefaultLemmaCountConfigLoader
 
@@ -248,6 +290,10 @@ Methods:
 - should reject a decimal number as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
 - should reject a non-numeric string as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
 - should reject an empty string as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
+- should load '4' as four bands that all ask for 4 sentences → FEAT-POCOV/F-POCOV-R001
+- should load '8/6/4/3' as the 1,000, 2,000 and 3,000 most common words and beyond, asking for 8, 6, 4 and 3 sentences → FEAT-POCOV/F-POCOV-R001
+- should load the bands 8, 6, 4 and 3 when no threshold is configured, the default José confirmed on 30/9 → FEAT-POCOV/F-POCOV-R001
+- should reject a band threshold that is not a positive integer, like '8/0/4/3', as it rejects a uniform one → FEAT-POCOV/F-POCOV-R001
 
 ### DefaultQuizInstructionConfig
 
@@ -259,6 +305,84 @@ Methods:
 
 - should default the run budget to 500 new judge queries → FEAT-QINST/F-QINST-R006
 - should map the severities none, minor, major and critical to the scores 1.0, 0.6, 0.3 and 0.0 → FEAT-QINST/F-QINST-R002
+
+### DefaultJudgeExamService
+
+**Implements:** JudgeExamService
+
+**Dependencies (constructor injection):**
+
+- `auditRunner`: `AuditRunner`
+- `analyzerCatalog`: `AnalyzerCatalog`
+- `exporter`: `JudgeExamVerdictExporter`
+- `examRegistry`: `JudgeExamRegistry`
+- `runtime`: `JudgeRuntime`
+
+**Tests that must pass:**
+
+- should take the exam of a judge over the photo, running only its analyzer, and give one verdict per exercise of the file → FEAT-JEXAM/F-JEXAM-R001
+- should judge the exam exercises as they are in the photo of 29/9 even when the live course changed them since → FEAT-JEXAM/F-JEXAM-R001
+- should record TAKEN for the version when every exercise of the file got a verdict, and not when one stayed without verdict or is not in the photo → FEAT-JEXAM/F-JEXAM-R001
+- should leave analyze on the course with the same scores, findings and pending quizzes before and after a version takes the exam → FEAT-JEXAM/F-JEXAM-R002
+- should let a version that already took the exam take it again without a single consultation → FEAT-JEXAM/F-JEXAM-R002
+- should rehearse the exam with budget 0 without consulting, reusing what that version judged and saying how many consultations are missing → FEAT-JEXAM/F-JEXAM-R010
+- should record the result measured outside for a version that took the whole exam and make it the standing of that version → FEAT-JEXAM/F-JEXAM-R001
+- should reject with JudgeExamNotTakenException the measured result of a version that did not take the whole exam, recording nothing → FEAT-JEXAM/F-JEXAM-R001
+- should list every exam record of a judge, across its versions, in the order they were recorded → FEAT-JEXAM/F-JEXAM-R001
+- should give one verdict to every exercise of a quiz-instruction exam file that mixes CLOZE and multiple choice exercises, without knowing their groups → FEAT-JEXAM/F-JEXAM-R009
+
+### DefaultJudgeRuntimeConfig
+
+**Implements:** JudgeRuntimeConfig
+
+**Types:** Component
+
+**Tests that must pass:**
+
+- should give budget 0 as the default of quiz-instruction, translation-sense, single-answer, mini-theory and multiple-choice-validity → FEAT-JEXAM/F-JEXAM-R010
+- should give four consultations at a time by default → FEAT-JEXAM/F-JEXAM-R006
+- should give 189 per hour as default rate and 60 per hour for mini-theory → FEAT-JEXAM/F-JEXAM-R004
+
+### DefaultTranslationSenseConfig
+
+**Implements:** TranslationSenseConfig
+
+**Types:** Component
+
+**Tests that must pass:**
+
+- should score a quiz 0.3 for a high, 0.6 for a medium and 0.8 for a low worst severity → FEAT-TRSEN/F-TRSEN-R004
+
+### DefaultSingleAnswerConfig
+
+**Implements:** SingleAnswerConfig
+
+**Types:** Component
+
+**Tests that must pass:**
+
+- should score a quiz 0 for a blocking, 0.3 for a high and 0.6 for a medium worst severity → FEAT-UNICA/F-UNICA-R004
+
+### DefaultMiniTheoryConfig
+
+**Implements:** MiniTheoryConfig
+
+**Types:** Component
+
+**Tests that must pass:**
+
+- should count a false mini-theory only where it is shown unless the whole-topic scope is configured → FEAT-MINIT/F-MINIT-R003
+- should score an exercise 0.3 for a high, 0.6 for a medium and 0.8 for a low worst severity → FEAT-MINIT/F-MINIT-R004
+
+### DefaultChoiceAlternativeConfig
+
+**Implements:** ChoiceAlternativeConfig
+
+**Types:** Component
+
+**Tests that must pass:**
+
+- should score a quiz 0 for a blocking, 0.3 for a high and 0.6 for a medium worst severity → FEAT-MCVALE/F-MCVALE-R003
 
 ## Dependency Contracts
 
@@ -326,6 +450,8 @@ The following models and interfaces are available from dependencies. You can use
 | instructions | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
 | multipleChoice | `MultipleChoiceEntity` |
+| miniTheory | `String` |
+| answerAudioKey | `String` |
 
 ### CefrLevel (`enum`)
 
@@ -382,6 +508,7 @@ The following models and interfaces are available from dependencies. You can use
 | evaluatedTargets | `List<AuditTarget>` |
 | resolutions | `List<FindingResolution>` |
 | cost | `AnalysisCost` |
+| displayName | `String` |
 
 ### AuditNode (`record`)
 
@@ -397,6 +524,7 @@ The following models and interfaces are available from dependencies. You can use
 | findings | `List<Finding>` |
 | numbers | `ContextNumbers` |
 | unevaluatedBy | `List<String>` |
+| partiallyEvaluatedBy | `List<String>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -433,6 +561,8 @@ The following models and interfaces are available from dependencies. You can use
 | reevaluate | `boolean` |
 | reevaluationScope | `String` |
 | reevaluationSubjectIds | `Set<String>` |
+| purpose | `EvaluationRunPurpose` |
+| maxConcurrentEvaluations | `Integer` |
 
 ### EmptyReevaluationSetException (`exception`)
 
@@ -454,6 +584,21 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | analyzerName | `String` |
 | declaredScope | `String` |
+
+### EvaluationRunPurpose (`enum`)
+
+| Field | Type |
+|-------|------|
+| COURSE | `null` |
+| EXAM | `null` |
+
+### LemmaCountBand (`record`)
+
+| Field | Type |
+|-------|------|
+| name | `String` |
+| maxCocaRank | `Integer` |
+| threshold | `int` |
 
 ### AuditEngine (port)
 
@@ -591,6 +736,8 @@ Methods:
 - `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
 - `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>`
 - `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
+- `getJudgeCoverages(): List<JudgeCoverageDiagnosis>`
+- `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -620,6 +767,15 @@ Methods:
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
 - `getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>`
+- `getHintCoherenceDiagnosis(): Optional<HintCoherenceDiagnosis>`
+- `getAnswerCompletenessDiagnosis(): Optional<AnswerCompletenessDiagnosis>`
+- `getMultipleChoiceValidityDiagnosis(): Optional<MultipleChoiceValidityDiagnosis>`
+- `getDataCoherenceDiagnosis(): Optional<DataCoherenceDiagnosis>`
+- `getExactDuplicateDiagnosis(): Optional<ExactDuplicateDiagnosis>`
+- `getTranslationSenseDiagnosis(): Optional<TranslationSenseDiagnosis>`
+- `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>`
+- `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>`
+- `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -662,6 +818,7 @@ Methods:
 Methods:
 
 - `getThreshold(): int`
+- `getBands(): List<LemmaCountBand>`
 
 ### QuizInstructionVerdictReader (port)
 
@@ -706,6 +863,96 @@ Methods:
 Methods:
 
 - `compute(AuditNode root, List<AnalyzerDescriptor> analyzers): void`
+
+### QuizStudentViewRenderer (port)
+
+Methods:
+
+- `render(AuditableQuiz quiz): QuizStudentView`
+- `finishedSentence(AuditableQuiz quiz,SentenceMode mode): String`
+
+### TopicStudentViewQuery (port)
+
+Methods:
+
+- `viewOf(AuditReport report,String knowledgeId): TopicStudentView` throws StudentViewKnowledgeNotFoundException
+
+### IrregularFormsCatalog (port)
+
+Methods:
+
+- `formsOf(String baseWord): Set<String>`
+- `isPastParticiple(String word): boolean`
+
+### CorrectorMatcher (port)
+
+Methods:
+
+- `canonicalForms(String text): Set<String>`
+- `accepts(GapContext context,List<String> acceptedOptions,String written): boolean`
+- `sameAnswer(String first,String second): boolean`
+- `sameAnswer(GapContext context,String first,String second): boolean`
+- `tableVersion(): String`
+
+### FormEquivalenceTableSource (port)
+
+Methods:
+
+- `load(): FormEquivalenceTable`
+
+### AudioRecordingRegistry (port)
+
+Methods:
+
+- `recordingOf(String audioKey): Optional<AudioRecording>`
+- `version(): String`
+
+### ProductionSentenceSource (port)
+
+Methods:
+
+- `savedSentences(String quizId): Optional<List<String>>`
+
+### JudgeExamRegistry (port)
+
+Methods:
+
+- `record(JudgeExamRecord record): void`
+- `latest(String judgeName,String judgeVersion): Optional<JudgeExamRecord>`
+- `history(String judgeName): List<JudgeExamRecord>`
+
+### JudgeRuntimeConfig (port)
+
+Methods:
+
+- `getMaxConcurrentEvaluations(): int`
+- `getDefaultMaxNewEvaluations(String judgeName): int`
+- `getDefaultRatePerHour(String judgeName): double`
+
+### TranslationSenseConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
+
+### SingleAnswerConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
+
+### MiniTheoryConfig (port)
+
+Methods:
+
+- `getErrorScope(): MiniTheoryErrorScope`
+- `getScoreFor(FindingSeverity severity): double`
+
+### ChoiceAlternativeConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
 
 ### From course-domain
 
@@ -979,6 +1226,22 @@ Methods:
 |-------|------|
 | maxNewEvaluations | `int` |
 
+### EvaluationRequestMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| REUSE_OR_EVALUATE | `null` |
+| FORCE | `null` |
+| PREFER_NEW | `null` |
+| REUSE_ONLY | `null` |
+
+### EvaluationRequest (`record`)
+
+| Field | Type |
+|-------|------|
+| subject | `EvaluationSubject` |
+| mode | `EvaluationRequestMode` |
+
 ### EvaluationOutcome (port)
 
 ### EvaluationLedger (port)
@@ -1013,12 +1276,21 @@ Methods:
 - `consultedEvaluatorVersion(): Optional<String>`
 - `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution`
 - `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution`
+- `resolveAll(List<EvaluationRequest> requests,int maxConcurrent): List<EvaluationResolution>`
+- `recorded(EvaluationSubject subject): boolean`
+- `unavailableReason(): Optional<String>`
 
 ### EvaluationSessionFactory (factory)
 
 Methods:
 
 - `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
+
+### EvaluationTimeline (port)
+
+Methods:
+
+- `recordedTimes(String evaluatorId): List<Instant>`
 
 ### From refiner-domain
 

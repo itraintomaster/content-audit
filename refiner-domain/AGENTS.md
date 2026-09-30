@@ -357,6 +357,10 @@ Methods:
 - should populate outOfCatalogWords on the lemma-absence correction context from the quiz diagnosis → FEAT-LABS/F-LABS-R038
 - should map the applied discount into each MisplacedLemmaContext entry → FEAT-LABS/F-LABS-R038
 - should leave outOfCatalogWords empty not null when the diagnosis has no out-of-catalog penalties → FEAT-LABS/F-LABS-R038
+- should mark 'number' (A1, 5 sentences) as an under-exposed suggested word with threshold 8 with bands 8, 6, 4 and 3, and as exposed but scarce with 4 for every band → FEAT-POCOV/F-POCOV-R007
+- should list a content word of the sentence as scarce when its sentences are under the threshold of its own band, and report that threshold with it → FEAT-POCOV/F-POCOV-R007
+- should mark a word under-exposed for the suggestions if and only if lemma-count leaves a finding for it in its level → FEAT-POCOV/F-POCOV-R007
+- should give the same suggested words, tiers, thresholds and scarce words as today with 4 for every band → FEAT-POCOV/F-POCOV-R007
 
 ### DispatchingCorrectionContextResolver
 
@@ -400,6 +404,12 @@ Methods:
 - should declare as unconverted the scores below 1 of an analyzer whose plan binding names a task kind the plan does not know → FEAT-HALL/F-HALL-R004
 - should turn the scores below 1 of a new errors analyzer into tasks through its plan binding, without the plan knowing its name → FEAT-HALL/F-HALL-R004
 - should declare nothing about lemma-count, whose scores below 1 on the levels and the course (67,0 %) have no task as before, because the declaration covers only errors analyzers → FEAT-HALL/F-HALL-R004
+- should derive from the 29/9 analysis with the seventeen analyzers of round 1 the same 4,036 tasks, declaring the scores below 1 of the new errors analyzers as without task kind and those of off-level-words as covered by LEMMA_ABSENCE → FEAT-RONDA1/F-RONDA1-R008
+- should open no task for an off-level-words score below 1 and declare it covered by the LEMMA_ABSENCE task of its quiz, never as an unconverted score → FEAT-NIVFR/F-NIVFR-R006
+- should plan the same 4,036 tasks for the analysis of 29/9 with and without off-level-words: SENTENCE_LENGTH 3,051, LEMMA_ABSENCE 950, KNOWLEDGE_INSTRUCTIONS_LENGTH 25, KNOWLEDGE_TITLE_LENGTH 6, COCA_BUCKETS 3 and LEMMA_RECURRENCE 1 → FEAT-NIVFR/F-NIVFR-R006
+- should open no task for lemma-count and keep the plan of the analysis of 29/9 at 4,036 tasks, with 4 for every band and with bands 8, 6, 4 and 3 → FEAT-POCOV/F-POCOV-R002
+- should keep a single LEMMA_RECURRENCE task, on the course, and 4,036 tasks in the plan of the analysis of 29/9 with the new lemma-recurrence diagnosis and findings → FEAT-RECUR/F-RECUR-R002
+- should open no task for lemma-recurrence findings, only the course task when its score is below 1 → FEAT-RECUR/F-RECUR-R002
 
 ### KnowledgeTitleContextResolver
 
@@ -485,6 +495,8 @@ The following models and interfaces are available from dependencies. You can use
 | instructions | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
 | multipleChoice | `MultipleChoiceEntity` |
+| miniTheory | `String` |
+| answerAudioKey | `String` |
 
 ### CefrLevel (`enum`)
 
@@ -541,6 +553,7 @@ The following models and interfaces are available from dependencies. You can use
 | evaluatedTargets | `List<AuditTarget>` |
 | resolutions | `List<FindingResolution>` |
 | cost | `AnalysisCost` |
+| displayName | `String` |
 
 ### AuditNode (`record`)
 
@@ -556,6 +569,7 @@ The following models and interfaces are available from dependencies. You can use
 | findings | `List<Finding>` |
 | numbers | `ContextNumbers` |
 | unevaluatedBy | `List<String>` |
+| partiallyEvaluatedBy | `List<String>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -592,6 +606,8 @@ The following models and interfaces are available from dependencies. You can use
 | reevaluate | `boolean` |
 | reevaluationScope | `String` |
 | reevaluationSubjectIds | `Set<String>` |
+| purpose | `EvaluationRunPurpose` |
+| maxConcurrentEvaluations | `Integer` |
 
 ### EmptyReevaluationSetException (`exception`)
 
@@ -613,6 +629,21 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | analyzerName | `String` |
 | declaredScope | `String` |
+
+### EvaluationRunPurpose (`enum`)
+
+| Field | Type |
+|-------|------|
+| COURSE | `null` |
+| EXAM | `null` |
+
+### LemmaCountBand (`record`)
+
+| Field | Type |
+|-------|------|
+| name | `String` |
+| maxCocaRank | `Integer` |
+| threshold | `int` |
 
 ### AuditEngine (port)
 
@@ -750,6 +781,8 @@ Methods:
 - `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
 - `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>`
 - `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
+- `getJudgeCoverages(): List<JudgeCoverageDiagnosis>`
+- `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -779,6 +812,15 @@ Methods:
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
 - `getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>`
+- `getHintCoherenceDiagnosis(): Optional<HintCoherenceDiagnosis>`
+- `getAnswerCompletenessDiagnosis(): Optional<AnswerCompletenessDiagnosis>`
+- `getMultipleChoiceValidityDiagnosis(): Optional<MultipleChoiceValidityDiagnosis>`
+- `getDataCoherenceDiagnosis(): Optional<DataCoherenceDiagnosis>`
+- `getExactDuplicateDiagnosis(): Optional<ExactDuplicateDiagnosis>`
+- `getTranslationSenseDiagnosis(): Optional<TranslationSenseDiagnosis>`
+- `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>`
+- `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>`
+- `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -821,6 +863,7 @@ Methods:
 Methods:
 
 - `getThreshold(): int`
+- `getBands(): List<LemmaCountBand>`
 
 ### QuizInstructionVerdictReader (port)
 
@@ -865,6 +908,96 @@ Methods:
 Methods:
 
 - `compute(AuditNode root, List<AnalyzerDescriptor> analyzers): void`
+
+### QuizStudentViewRenderer (port)
+
+Methods:
+
+- `render(AuditableQuiz quiz): QuizStudentView`
+- `finishedSentence(AuditableQuiz quiz,SentenceMode mode): String`
+
+### TopicStudentViewQuery (port)
+
+Methods:
+
+- `viewOf(AuditReport report,String knowledgeId): TopicStudentView` throws StudentViewKnowledgeNotFoundException
+
+### IrregularFormsCatalog (port)
+
+Methods:
+
+- `formsOf(String baseWord): Set<String>`
+- `isPastParticiple(String word): boolean`
+
+### CorrectorMatcher (port)
+
+Methods:
+
+- `canonicalForms(String text): Set<String>`
+- `accepts(GapContext context,List<String> acceptedOptions,String written): boolean`
+- `sameAnswer(String first,String second): boolean`
+- `sameAnswer(GapContext context,String first,String second): boolean`
+- `tableVersion(): String`
+
+### FormEquivalenceTableSource (port)
+
+Methods:
+
+- `load(): FormEquivalenceTable`
+
+### AudioRecordingRegistry (port)
+
+Methods:
+
+- `recordingOf(String audioKey): Optional<AudioRecording>`
+- `version(): String`
+
+### ProductionSentenceSource (port)
+
+Methods:
+
+- `savedSentences(String quizId): Optional<List<String>>`
+
+### JudgeExamRegistry (port)
+
+Methods:
+
+- `record(JudgeExamRecord record): void`
+- `latest(String judgeName,String judgeVersion): Optional<JudgeExamRecord>`
+- `history(String judgeName): List<JudgeExamRecord>`
+
+### JudgeRuntimeConfig (port)
+
+Methods:
+
+- `getMaxConcurrentEvaluations(): int`
+- `getDefaultMaxNewEvaluations(String judgeName): int`
+- `getDefaultRatePerHour(String judgeName): double`
+
+### TranslationSenseConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
+
+### SingleAnswerConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
+
+### MiniTheoryConfig (port)
+
+Methods:
+
+- `getErrorScope(): MiniTheoryErrorScope`
+- `getScoreFor(FindingSeverity severity): double`
+
+### ChoiceAlternativeConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
 
 ### From course-domain
 
@@ -1138,6 +1271,22 @@ Methods:
 |-------|------|
 | maxNewEvaluations | `int` |
 
+### EvaluationRequestMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| REUSE_OR_EVALUATE | `null` |
+| FORCE | `null` |
+| PREFER_NEW | `null` |
+| REUSE_ONLY | `null` |
+
+### EvaluationRequest (`record`)
+
+| Field | Type |
+|-------|------|
+| subject | `EvaluationSubject` |
+| mode | `EvaluationRequestMode` |
+
 ### EvaluationOutcome (port)
 
 ### EvaluationLedger (port)
@@ -1172,10 +1321,19 @@ Methods:
 - `consultedEvaluatorVersion(): Optional<String>`
 - `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution`
 - `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution`
+- `resolveAll(List<EvaluationRequest> requests,int maxConcurrent): List<EvaluationResolution>`
+- `recorded(EvaluationSubject subject): boolean`
+- `unavailableReason(): Optional<String>`
 
 ### EvaluationSessionFactory (factory)
 
 Methods:
 
 - `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
+
+### EvaluationTimeline (port)
+
+Methods:
+
+- `recordedTimes(String evaluatorId): List<Instant>`
 

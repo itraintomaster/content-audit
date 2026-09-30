@@ -213,6 +213,8 @@ Examples:
 | `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>` | (none) |
 | `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>` | (none) |
 | `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>` | (none) |
+| `getJudgeCoverages(): List<JudgeCoverageDiagnosis>` | (none) |
+| `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>` | (none) |
 
 #### LevelDiagnoses (port)
 
@@ -250,6 +252,15 @@ Examples:
 | `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>` | (none) |
 | `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>` | (none) |
 | `getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>` | (none) |
+| `getHintCoherenceDiagnosis(): Optional<HintCoherenceDiagnosis>` | (none) |
+| `getAnswerCompletenessDiagnosis(): Optional<AnswerCompletenessDiagnosis>` | (none) |
+| `getMultipleChoiceValidityDiagnosis(): Optional<MultipleChoiceValidityDiagnosis>` | (none) |
+| `getDataCoherenceDiagnosis(): Optional<DataCoherenceDiagnosis>` | (none) |
+| `getExactDuplicateDiagnosis(): Optional<ExactDuplicateDiagnosis>` | (none) |
+| `getTranslationSenseDiagnosis(): Optional<TranslationSenseDiagnosis>` | (none) |
+| `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>` | (none) |
+| `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>` | (none) |
+| `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>` | (none) |
 
 #### AuditReportStore (port)
 
@@ -312,6 +323,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `getThreshold(): int` | (none) |
+| `getBands(): List<LemmaCountBand>` | (none) |
 
 #### QuizInstructionVerdictReader (port)
 
@@ -372,6 +384,134 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `compute(AuditNode root, List<AnalyzerDescriptor> analyzers): void` | (none) |
+
+#### QuizStudentViewRenderer (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `render(AuditableQuiz quiz): QuizStudentView` | (none) |
+| `finishedSentence(AuditableQuiz quiz,SentenceMode mode): String` | (none) |
+
+#### TopicStudentViewQuery (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `viewOf(AuditReport report,String knowledgeId): TopicStudentView` | StudentViewKnowledgeNotFoundException |
+
+#### IrregularFormsCatalog (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `formsOf(String baseWord): Set<String>` | (none) |
+| `isPastParticiple(String word): boolean` | (none) |
+
+#### CorrectorMatcher (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `canonicalForms(String text): Set<String>` | (none) |
+| `accepts(GapContext context,List<String> acceptedOptions,String written): boolean` | (none) |
+| `sameAnswer(String first,String second): boolean` | (none) |
+| `sameAnswer(GapContext context,String first,String second): boolean` | (none) |
+| `tableVersion(): String` | (none) |
+
+#### FormEquivalenceTableSource (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `load(): FormEquivalenceTable` | (none) |
+
+#### AudioRecordingRegistry (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `recordingOf(String audioKey): Optional<AudioRecording>` | (none) |
+| `version(): String` | (none) |
+
+#### ProductionSentenceSource (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `savedSentences(String quizId): Optional<List<String>>` | (none) |
+
+#### JudgeExamRegistry (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** FileSystemJudgeExamRegistry (audit-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `record(JudgeExamRecord record): void` | (none) |
+| `latest(String judgeName,String judgeVersion): Optional<JudgeExamRecord>` | (none) |
+| `history(String judgeName): List<JudgeExamRecord>` | (none) |
+
+#### JudgeRuntimeConfig (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** DefaultJudgeRuntimeConfig (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `getMaxConcurrentEvaluations(): int` | (none) |
+| `getDefaultMaxNewEvaluations(String judgeName): int` | (none) |
+| `getDefaultRatePerHour(String judgeName): double` | (none) |
+
+#### TranslationSenseConfig (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** DefaultTranslationSenseConfig (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `getScoreFor(FindingSeverity severity): double` | (none) |
+
+#### SingleAnswerConfig (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** DefaultSingleAnswerConfig (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `getScoreFor(FindingSeverity severity): double` | (none) |
+
+#### MiniTheoryConfig (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** DefaultMiniTheoryConfig (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `getErrorScope(): MiniTheoryErrorScope` | (none) |
+| `getScoreFor(FindingSeverity severity): double` | (none) |
+
+#### ChoiceAlternativeConfig (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** DefaultChoiceAlternativeConfig (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `getScoreFor(FindingSeverity severity): double` | (none) |
 
 #### TokenClassifier (package: coca)
 
@@ -436,6 +576,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `resolve(LemmaAndPos lemmaAndPos, Optional<CefrLevel> nlpCefr): Optional<CefrLevel>` | (none) |
+| `resolveCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>` | (none) |
 
 #### SentenceLexicalEvaluator (package: lexicalflags)
 
@@ -502,6 +643,221 @@ Examples:
 |--------|--------|
 | `matches(AuditNode quizNode,String reevaluationScope): boolean` | (none) |
 | `decide(AuditNode quizNode,EvaluationRunPolicy policy): QuizInstructionReevaluationDecision` | (none) |
+
+#### ChoiceAlternativeJudgeRunFactory (package: choicealternative)
+
+**Package:** `com.learney.contentaudit.auditdomain.choicealternative`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `judgeRule(): AnalyzerRuleCard` | (none) |
+| `open(EvaluationRunPolicy policy): ChoiceAlternativeJudgeRun` | EmptyReevaluationSetException, AmbiguousReevaluationScopeException |
+
+#### ChoiceAlternativeJudgeRun (package: choicealternative)
+
+**Package:** `com.learney.contentaudit.auditdomain.choicealternative`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `request(AuditNode quizNode): void` | (none) |
+| `resolveAll(): void` | (none) |
+| `judgmentOf(AuditNode quizNode): ChoiceAlternativeJudgment` | (none) |
+| `coverage(): JudgeCoverageDiagnosis` | (none) |
+
+#### ChoiceAlternativeVerdictReader (package: choicealternative)
+
+**Package:** `com.learney.contentaudit.auditdomain.choicealternative`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `read(String payload): ChoiceAlternativeVerdict` | (none) |
+
+#### HintReader (package: hintcoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.hintcoherence`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `read(AuditableQuiz quiz,SentenceMode mode): Optional<ExerciseHint>` | (none) |
+| `shapeOf(AuditableQuiz quiz,SentenceMode mode): ExerciseShape` | (none) |
+
+#### HintAnswerCheck (package: hintcoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.hintcoherence`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `check(ExerciseHint hint,AuditableQuiz quiz): List<HintIssue>` | (none) |
+
+#### EquivalentFormGenerator (package: answercompleteness)
+
+**Package:** `com.learney.contentaudit.auditdomain.answercompleteness`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `generate(String acceptedAnswer,String wordBeforeGap): List<EquivalentForm>` | (none) |
+
+#### FormRequestDetector (package: answercompleteness)
+
+**Package:** `com.learney.contentaudit.auditdomain.answercompleteness`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `detect(String instructions,String miniTheory): List<FormRequest>` | (none) |
+
+#### OptionRuleCheck (package: multiplechoicevalidity)
+
+**Package:** `com.learney.contentaudit.auditdomain.multiplechoicevalidity`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `check(AuditableQuiz quiz): List<OptionIssue>` | (none) |
+
+#### SpokenTextBuilder (package: datacoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.datacoherence`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `spokenTexts(AuditableQuiz quiz,SentenceMode mode): List<String>` | (none) |
+
+#### JudgeRuntime (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `open(String judgeName,List<Evaluator> evaluators,EvaluationRunPolicy policy): JudgeSessions` | EmptyReevaluationSetException, AmbiguousReevaluationScopeException |
+| `plan(List<AuditNode> units,EvaluationRunPolicy policy): JudgeRequestPlan` | (none) |
+| `coverage(JudgeSessions opened,JudgeUnitTally tally): JudgeCoverageDiagnosis` | (none) |
+| `standing(String judgeName,String judgeVersion): JudgeExamStanding` | (none) |
+
+#### JudgeExamVerdictExporter (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `export(AuditReport report,AnalyzerDescriptor card,Set<String> caseIds,JudgeCoverageDiagnosis coverage): List<JudgeExamVerdict>` | (none) |
+
+#### TranslationSenseVerdictReader (package: translationsense)
+
+**Package:** `com.learney.contentaudit.auditdomain.translationsense`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `read(String payload): TranslationSenseVerdict` | (none) |
+
+#### TranslationSenseSubjectBuilder (package: translationsenseengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.translationsenseengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `build(AuditNode quizNode): EvaluationSubject` | (none) |
+
+#### TranslationSenseCombiner (package: translationsenseengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.translationsenseengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `combine(TranslationSenseVerdict fromEnglish,TranslationSenseVerdict fromTranslation): TranslationSenseOutcome` | (none) |
+
+#### SingleAnswerVerdictReader (package: singleanswer)
+
+**Package:** `com.learney.contentaudit.auditdomain.singleanswer`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `read(String payload): SingleAnswerVerdict` | (none) |
+
+#### SingleAnswerSubjectBuilder (package: singleanswerengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.singleanswerengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `build(AuditNode quizNode): EvaluationSubject` | (none) |
+
+#### SingleAnswerClassifier (package: singleanswerengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.singleanswerengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `classify(SingleAnswerVerdict verdict,AuditableQuiz quiz,boolean reused): SingleAnswerOutcome` | (none) |
+
+#### MiniTheoryVerdictReader (package: minitheory)
+
+**Package:** `com.learney.contentaudit.auditdomain.minitheory`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `read(String payload): MiniTheoryVerdict` | (none) |
+
+#### MiniTheorySubjectBuilder (package: minitheoryengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.minitheoryengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `build(AuditNode knowledgeNode): EvaluationSubject` | (none) |
+
+#### MiniTheoryDistributor (package: minitheoryengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.minitheoryengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `distribute(MiniTheoryVerdict verdict,AuditNode knowledgeNode,boolean reused): List<MiniTheoryQuizOutcome>` | (none) |
+
+#### ChoiceAlternativeSubjectBuilder (package: choicealternativeengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.choicealternativeengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `build(AuditNode quizNode): EvaluationSubject` | (none) |
+
+#### ChoiceAlternativeClassifier (package: choicealternativeengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.choicealternativeengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `classify(ChoiceAlternativeVerdict verdict,AuditableQuiz quiz,EvaluationResolution resolution): ChoiceAlternativeJudgment` | (none) |
+
+#### TopicTeachingResolver (package: offlevelwords)
+
+**Package:** `com.learney.contentaudit.auditdomain.offlevelwords`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `taughtWords(AuditNode knowledgeNode): TaughtWords` | (none) |
 
 ### Module: course-domain
 
@@ -612,6 +968,15 @@ Examples:
 |--------|--------|
 | `lemmasFor(AuditReport report, RefinementTask task, CefrLevel level, Optional<String> partOfSpeech): List<SuggestedLemma>` | (none) |
 
+#### TopicWordLightsQuery (package: topicwords)
+
+**Package:** `com.learney.contentaudit.refinerdomain.topicwords`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `lightsFor(AuditReport report, String auditId, String knowledgeId, SuggestedLemmaQueryCriteria criteria): TopicWordLights` | (none) |
+
 ### Module: audit-application
 
 #### AuditRunner (service)
@@ -647,6 +1012,18 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `load(String rawThreshold): LemmaCountConfig` | (none) |
+
+#### JudgeExamService (service)
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implemented by:** DefaultJudgeExamService (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `take(JudgeExamRequest request): JudgeExamTaken` | (none) |
+| `record(JudgeExamRecord measured): JudgeExamStanding` | JudgeExamNotTakenException |
+| `history(String judgeName): List<JudgeExamRecord>` | (none) |
 
 ### Module: audit-cli
 
@@ -779,6 +1156,16 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `assessCandidate(String planId, String taskId, String candidateQuizSentence, String candidateTranslation, String coursePath, String format): Integer` | (none) |
+
+#### ExamCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `takeExam(String judgeName,String casesFile,String photoCourse,Integer budget,Integer concurrency,String verdictsOut): Integer` | (none) |
+| `recordExam(String resultFile): Integer` | (none) |
+| `showExams(String judgeName): Integer` | (none) |
 
 #### EphemeralPlanRenderer (package: commands)
 
@@ -970,6 +1357,15 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `resolve(String enumeratedIds,String origin): Set<String>` | (none) |
+
+#### AgentJudgeConfigResolver (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `resolve(Map<String,String> env): AgentJudgeConfig` | (none) |
 
 ### Module: nlp-infrastructure
 
@@ -1614,6 +2010,9 @@ Examples:
 | `consultedEvaluatorVersion(): Optional<String>` | (none) |
 | `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution` | (none) |
 | `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution` | (none) |
+| `resolveAll(List<EvaluationRequest> requests,int maxConcurrent): List<EvaluationResolution>` | (none) |
+| `recorded(EvaluationSubject subject): boolean` | (none) |
+| `unavailableReason(): Optional<String>` | (none) |
 
 #### EvaluationSessionFactory (factory)
 
@@ -1622,6 +2021,16 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession` | (none) |
+
+#### EvaluationTimeline (port)
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+
+**Implemented by:** FileSystemEvaluationLedger (evaluation-ledger-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `recordedTimes(String evaluatorId): List<Instant>` | (none) |
 
 ### Module: agent-runtime-infrastructure
 
@@ -1686,6 +2095,23 @@ Examples:
 |--------|--------|
 | `create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator agentDefinitionLocator): Evaluator` | (none) |
 
+#### AgentJudgeFactory (factory)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure`
+
+| Method | Throws |
+|--------|--------|
+| `create(AgentJudgeSpec spec,AgentJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator agentDefinitionLocator): Evaluator` | (none) |
+
+#### JudgeProviderReadinessProbe (port)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure`
+
+| Method | Throws |
+|--------|--------|
+| `probe(LlmProviderResolved provider): JudgeProviderReadiness` | (none) |
+| `explain(LlmProviderResolved provider,String failure): JudgeProviderReadiness` | (none) |
+
 #### QuizInstructionJudgeVersionResolver (package: instructionjudge)
 
 **Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
@@ -1703,4 +2129,22 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `create(QuizInstructionJudgeConfig config,LlmProviderResolved provider): ChatModel` | (none) |
+
+#### AgentJudgeVersionResolver (package: agentjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.agentjudge`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `resolve(AgentJudgeSpec spec,AgentJudgeConfig config,LlmProviderResolved provider): Optional<String>` | (none) |
+
+#### AgentJudgeChatModelFactory (package: agentjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.agentjudge`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(AgentJudgeConfig config,LlmProviderResolved provider): ChatModel` | (none) |
 

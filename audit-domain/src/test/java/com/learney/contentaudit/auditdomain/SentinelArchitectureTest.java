@@ -157,6 +157,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: AmbiguousReevaluationScopeException - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.EvaluationRunPurpose");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EvaluationRunPurpose - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.LemmaCountBand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaCountBand - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.AuditEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AuditEngine - " + e.getMessage());
@@ -310,6 +320,71 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.ContextNumbersCalculator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ContextNumbersCalculator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.QuizStudentViewRenderer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizStudentViewRenderer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.TopicStudentViewQuery");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TopicStudentViewQuery - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.IrregularFormsCatalog");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: IrregularFormsCatalog - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.CorrectorMatcher");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CorrectorMatcher - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.FormEquivalenceTableSource");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FormEquivalenceTableSource - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.AudioRecordingRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AudioRecordingRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.ProductionSentenceSource");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ProductionSentenceSource - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.JudgeExamRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeExamRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.JudgeRuntimeConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeRuntimeConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.TranslationSenseConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TranslationSenseConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.SingleAnswerConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SingleAnswerConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.MiniTheoryConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MiniTheoryConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.ChoiceAlternativeConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChoiceAlternativeConfig - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.IAuditEngine");
@@ -522,6 +597,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: LemmaRecurrenceResult - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.lrec.LevelRecurrence");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LevelRecurrence - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceCourseDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaRecurrenceCourseDiagnosis - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.lrec.IntervalCalculator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: IntervalCalculator - " + e.getMessage());
@@ -695,6 +780,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.lemmacount.LemmaCountLevelDiagnosis");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaCountLevelDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lemmacount.LemmaExposure");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaExposure - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.lemmacount.LemmaCefrLevelResolver");
@@ -992,6 +1082,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: DigestNode - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerFindingCounts");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzerFindingCounts - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.contextnumbers.RuleFindingCount");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RuleFindingCount - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultAnalyzerCatalog - " + e.getMessage());
@@ -1005,6 +1105,671 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultContextNumbersCalculator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.studentview.QuizStudentView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizStudentView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.studentview.StudentGapView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: StudentGapView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.studentview.StudentOptionView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: StudentOptionView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.studentview.TopicStudentView");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TopicStudentView - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.studentview.StudentQuizEntry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: StudentQuizEntry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.studentview.StudentViewKnowledgeNotFoundException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: StudentViewKnowledgeNotFoundException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultQuizStudentViewRenderer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.studentview.DefaultTopicStudentViewQuery");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultTopicStudentViewQuery - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeOption");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChoiceAlternativeOption - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeVerdict");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChoiceAlternativeVerdict - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJudgmentStatus");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChoiceAlternativeJudgmentStatus - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJudgment");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChoiceAlternativeJudgment - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJudgeRunFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChoiceAlternativeJudgeRunFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJudgeRun");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChoiceAlternativeJudgeRun - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeVerdictReader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChoiceAlternativeVerdictReader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: HintCoherenceDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.hintcoherence.HintIssue");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: HintIssue - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.hintcoherence.HintIssueKind");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: HintIssueKind - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.hintcoherence.ExerciseShape");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ExerciseShape - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.hintcoherence.ExerciseHint");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ExerciseHint - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.hintcoherence.HintReader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: HintReader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.hintcoherence.HintAnswerCheck");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: HintAnswerCheck - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzerProvider");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: HintCoherenceAnalyzerProvider - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: HintCoherenceAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.hintcoherence.DefaultHintReader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultHintReader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.hintcoherence.DefaultHintAnswerCheck");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultHintAnswerCheck - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.correctormatch.GapContext");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: GapContext - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.correctormatch.FormEquivalenceTable");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FormEquivalenceTable - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.correctormatch.ContractionExpansion");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ContractionExpansion - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.correctormatch.EquivalentWordGroup");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EquivalentWordGroup - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.correctormatch.FormEquivalenceClass");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FormEquivalenceClass - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultCorrectorMatcher - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnswerCompletenessDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.answercompleteness.MissingAcceptedForm");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MissingAcceptedForm - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.answercompleteness.FormRequest");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FormRequest - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.answercompleteness.FormRequestSource");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FormRequestSource - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.answercompleteness.RequestedForm");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RequestedForm - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.answercompleteness.EquivalentForm");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EquivalentForm - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.answercompleteness.EquivalentFormGenerator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EquivalentFormGenerator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.answercompleteness.FormRequestDetector");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FormRequestDetector - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessAnalyzerProvider");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnswerCompletenessAnalyzerProvider - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnswerCompletenessAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.answercompleteness.DefaultEquivalentFormGenerator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultEquivalentFormGenerator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.answercompleteness.DefaultFormRequestDetector");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultFormRequestDetector - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MultipleChoiceValidityDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.multiplechoicevalidity.OptionIssue");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: OptionIssue - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.multiplechoicevalidity.OptionIssueKind");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: OptionIssueKind - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.multiplechoicevalidity.OptionRuleCheck");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: OptionRuleCheck - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityAnalyzerProvider");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MultipleChoiceValidityAnalyzerProvider - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MultipleChoiceValidityAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.multiplechoicevalidity.DefaultOptionRuleCheck");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultOptionRuleCheck - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.multiplechoicevalidity.UnavailableChoiceAlternativeJudgeRunFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: UnavailableChoiceAlternativeJudgeRunFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.datacoherence.AudioRecording");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AudioRecording - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DataCoherenceDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.datacoherence.CopyMismatch");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CopyMismatch - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.datacoherence.CopyMismatchKind");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CopyMismatchKind - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.datacoherence.ExerciseCopy");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ExerciseCopy - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.datacoherence.SpokenTextBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SpokenTextBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceAnalyzerProvider");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DataCoherenceAnalyzerProvider - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DataCoherenceAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.datacoherence.DefaultSpokenTextBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultSpokenTextBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.exactduplicates.ExactDuplicateDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ExactDuplicateDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.exactduplicates.ExactDuplicatesAnalyzerProvider");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ExactDuplicatesAnalyzerProvider - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.exactduplicates.ExactDuplicatesAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ExactDuplicatesAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeExamStatus");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeExamStatus - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeExamGroupResult");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeExamGroupResult - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeExamRecord");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeExamRecord - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeExamStanding");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeExamStanding - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeVersionStanding - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeCostEstimate");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeCostEstimate - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EvaluatorCoverage - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeCoverageDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeSessions");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeSessions - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeRequestPlan");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeRequestPlan - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeUnitTally");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeUnitTally - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeExamOutcome");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeExamOutcome - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeExamVerdict");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeExamVerdict - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeRuntime");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeRuntime - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeExamVerdictExporter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeExamVerdictExporter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultJudgeRuntime - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeExamVerdictExporter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultJudgeExamVerdictExporter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsense.TranslationSenseCondition");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TranslationSenseCondition - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsense.TranslationSenseFailure");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TranslationSenseFailure - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsense.TranslationSenseVerdict");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TranslationSenseVerdict - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsense.TranslationSenseAgreement");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TranslationSenseAgreement - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsense.TranslationSenseDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TranslationSenseDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsense.TranslationSenseVerdictReader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TranslationSenseVerdictReader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsenseengine.TranslationSenseOutcome");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TranslationSenseOutcome - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsenseengine.TranslationSenseSubjectBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TranslationSenseSubjectBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsenseengine.TranslationSenseCombiner");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TranslationSenseCombiner - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsenseengine.TranslationSenseAnalyzerProvider");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TranslationSenseAnalyzerProvider - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsenseengine.TranslationSenseAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TranslationSenseAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsenseengine.DefaultTranslationSenseSubjectBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultTranslationSenseSubjectBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.translationsenseengine.DefaultTranslationSenseCombiner");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultTranslationSenseCombiner - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.singleanswer.AlternativeAnswerKind");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AlternativeAnswerKind - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.singleanswer.AlternativeAnswer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AlternativeAnswer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerVerdict");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SingleAnswerVerdict - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SingleAnswerDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerVerdictReader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SingleAnswerVerdictReader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.singleanswerengine.SingleAnswerOutcome");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SingleAnswerOutcome - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.singleanswerengine.SingleAnswerSubjectBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SingleAnswerSubjectBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.singleanswerengine.SingleAnswerClassifier");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SingleAnswerClassifier - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.singleanswerengine.SingleAnswerAnalyzerProvider");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SingleAnswerAnalyzerProvider - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.singleanswerengine.SingleAnswerAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SingleAnswerAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.singleanswerengine.DefaultSingleAnswerSubjectBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultSingleAnswerSubjectBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.singleanswerengine.DefaultSingleAnswerClassifier");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultSingleAnswerClassifier - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheory.MiniTheoryProblem");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MiniTheoryProblem - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheory.MiniTheoryErrorScope");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MiniTheoryErrorScope - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheory.MiniTheoryAssessment");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MiniTheoryAssessment - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdict");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MiniTheoryVerdict - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheory.MiniTheoryDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MiniTheoryDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdictReader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MiniTheoryVerdictReader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryQuizOutcome");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MiniTheoryQuizOutcome - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheorySubjectBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MiniTheorySubjectBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryDistributor");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MiniTheoryDistributor - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryAnalyzerProvider");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MiniTheoryAnalyzerProvider - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MiniTheoryAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheoryengine.DefaultMiniTheorySubjectBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultMiniTheorySubjectBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.minitheoryengine.DefaultMiniTheoryDistributor");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultMiniTheoryDistributor - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternativeengine.ChoiceAlternativeSubjectBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChoiceAlternativeSubjectBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternativeengine.ChoiceAlternativeClassifier");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChoiceAlternativeClassifier - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternativeengine.DefaultChoiceAlternativeJudgeRunFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultChoiceAlternativeJudgeRunFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternativeengine.LedgerBackedChoiceAlternativeJudgeRun");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LedgerBackedChoiceAlternativeJudgeRun - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternativeengine.DefaultChoiceAlternativeSubjectBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultChoiceAlternativeSubjectBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.choicealternativeengine.DefaultChoiceAlternativeClassifier");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultChoiceAlternativeClassifier - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: OffLevelWordsDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWord");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: OffLevelWord - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.offlevelwords.OffLevelReason");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: OffLevelReason - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.offlevelwords.TaughtWords");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TaughtWords - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.offlevelwords.TopicTeachingResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TopicTeachingResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultTopicTeachingResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: OffLevelWordsAnalyzerProvider - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: OffLevelWordsAnalyzer - " + e.getMessage());
     }
   }
 }

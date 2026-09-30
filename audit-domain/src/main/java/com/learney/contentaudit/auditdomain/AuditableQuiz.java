@@ -31,12 +31,17 @@ public class AuditableQuiz implements AuditableEntity {
 
     private MultipleChoiceEntity multipleChoice;
 
+    private String miniTheory;
+
+    private String answerAudioKey;
+
     public AuditableQuiz() {
     }
 
     public AuditableQuiz(List<NlpToken> tokens, String id, String label, String code,
             String translation, List<String> sentences, String quizSentence, String instructions,
-            List<SentencePartEntity> sentenceParts, MultipleChoiceEntity multipleChoice) {
+            List<SentencePartEntity> sentenceParts, MultipleChoiceEntity multipleChoice,
+            String miniTheory, String answerAudioKey) {
         this.tokens = tokens;
         this.id = id;
         this.label = label;
@@ -47,6 +52,8 @@ public class AuditableQuiz implements AuditableEntity {
         this.instructions = instructions;
         this.sentenceParts = sentenceParts;
         this.multipleChoice = multipleChoice;
+        this.miniTheory = miniTheory;
+        this.answerAudioKey = answerAudioKey;
     }
 
     public List<NlpToken> getTokens() {
@@ -129,6 +136,22 @@ public class AuditableQuiz implements AuditableEntity {
         this.multipleChoice = multipleChoice;
     }
 
+    public String getMiniTheory() {
+        return this.miniTheory;
+    }
+
+    public void setMiniTheory(String miniTheory) {
+        this.miniTheory = miniTheory;
+    }
+
+    public String getAnswerAudioKey() {
+        return this.answerAudioKey;
+    }
+
+    public void setAnswerAudioKey(String answerAudioKey) {
+        this.answerAudioKey = answerAudioKey;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -143,11 +166,13 @@ public class AuditableQuiz implements AuditableEntity {
                     && Objects.equals(this.quizSentence, that.quizSentence)
                     && Objects.equals(this.instructions, that.instructions)
                     && Objects.equals(this.sentenceParts, that.sentenceParts)
-                    && Objects.equals(this.multipleChoice, that.multipleChoice);
+                    && Objects.equals(this.multipleChoice, that.multipleChoice)
+                    && Objects.equals(this.miniTheory, that.miniTheory)
+                    && Objects.equals(this.answerAudioKey, that.answerAudioKey);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tokens, id, label, code, translation, sentences, quizSentence, instructions, sentenceParts, multipleChoice);
+        return Objects.hash(tokens, id, label, code, translation, sentences, quizSentence, instructions, sentenceParts, multipleChoice, miniTheory, answerAudioKey);
     }
 }

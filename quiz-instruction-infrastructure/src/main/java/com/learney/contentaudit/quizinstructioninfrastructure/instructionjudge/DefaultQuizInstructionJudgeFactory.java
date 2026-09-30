@@ -1,4 +1,5 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge;
+import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadinessProbe;
 import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolver;
 import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolution;
 import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved;
@@ -35,8 +36,11 @@ public class DefaultQuizInstructionJudgeFactory implements QuizInstructionJudgeF
 
 private final LlmProviderResolver llmProviderResolver;
 
-public DefaultQuizInstructionJudgeFactory(LlmProviderResolver llmProviderResolver) {
+private final JudgeProviderReadinessProbe readinessProbe;
+
+public DefaultQuizInstructionJudgeFactory(LlmProviderResolver llmProviderResolver, JudgeProviderReadinessProbe readinessProbe) {
     this.llmProviderResolver = llmProviderResolver;
+    this.readinessProbe = readinessProbe;
 }
 
     @Override

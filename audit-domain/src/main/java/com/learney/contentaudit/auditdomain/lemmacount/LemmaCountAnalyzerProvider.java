@@ -53,7 +53,7 @@ public class LemmaCountAnalyzerProvider implements AnalyzerProvider {
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.MILESTONE, AuditTarget.COURSE),
                 List.of(FindingResolution.RANK_ONLY),
-                AnalysisCost.INSTANT);
+                AnalysisCost.INSTANT, null);
     }
 
     @Override

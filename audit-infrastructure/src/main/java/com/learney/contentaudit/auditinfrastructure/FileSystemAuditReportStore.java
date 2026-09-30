@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditinfrastructure;
+import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.contextnumbers.AuditDigest;
 import com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers;
 import com.learney.contentaudit.auditdomain.contextnumbers.DigestNode;
@@ -55,9 +56,12 @@ public class FileSystemAuditReportStore implements AuditReportStore {
     private final Path baseDir;
     private final ObjectMapper objectMapper;
 
-public FileSystemAuditReportStore(Path baseDir) {
+private final QuizStudentViewRenderer studentViewRenderer;
+
+public FileSystemAuditReportStore(Path baseDir, QuizStudentViewRenderer studentViewRenderer) {
     this.baseDir = baseDir;
     this.objectMapper = AuditReportObjectMapper.create();
+    this.studentViewRenderer = studentViewRenderer;
 }
 
     // -------------------------------------------------------------------------
@@ -117,7 +121,7 @@ public FileSystemAuditReportStore(Path baseDir) {
         return new DigestNode(nodeId, node.getTarget(), label, node.getNumbers(),
                 node.getFindings() != null ? node.getFindings() : List.of(),
                 node.getUnevaluatedBy() != null ? node.getUnevaluatedBy() : List.of(),
-                children);
+                children, null);
     }
 
     @Override

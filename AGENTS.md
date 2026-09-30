@@ -75,6 +75,7 @@ The following interfaces are `sealed`. Only the listed classes may implement the
 - `RepairCommand` permits: (none declared)
 - `ReviseInstructionsCommand` permits: (none declared)
 - `AssessCandidateCommand` permits: (none declared)
+- `ExamCommand` permits: (none declared)
 - `LemmaAbsenceProposalStrategyRegistry` permits: (none declared)
 - `LemmaAbsenceProposalDeriver` permits: (none declared)
 - `KnowledgeTitleProposalStrategyRegistry` permits: (none declared)
@@ -234,9 +235,9 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Depends on:** course-domain, evaluation-ledger-domain
 
-**Models:** AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection, EvaluationRunPolicy, EmptyReevaluationSetException, AmbiguousReevaluationScopeException
+**Models:** AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection, EvaluationRunPolicy, EmptyReevaluationSetException, AmbiguousReevaluationScopeException, EvaluationRunPurpose, LemmaCountBand
 
-**Interfaces:** AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig, QuizInstructionVerdictReader, QuizInstructionConfig, AnalyzerProvider, AnalyzerCatalog, FindingCollector, ContextNumbersCalculator
+**Interfaces:** AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig, QuizInstructionVerdictReader, QuizInstructionConfig, AnalyzerProvider, AnalyzerCatalog, FindingCollector, ContextNumbersCalculator, QuizStudentViewRenderer, TopicStudentViewQuery, IrregularFormsCatalog, CorrectorMatcher, FormEquivalenceTableSource, AudioRecordingRegistry, ProductionSentenceSource, JudgeExamRegistry, JudgeRuntimeConfig, TranslationSenseConfig, SingleAnswerConfig, MiniTheoryConfig, ChoiceAlternativeConfig
 
 **Implementations:** IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator, SentenceLengthAnalyzerProvider, KnowledgeTitleLengthAnalyzerProvider, KnowledgeInstructionsLengthAnalyzerProvider
 
@@ -260,11 +261,11 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain, evaluation-ledger-domain
 
-**Models:** AuditRunRequest
+**Models:** AuditRunRequest, JudgeExamRequest, JudgeExamTaken, JudgeExamNotTakenException
 
-**Interfaces:** AuditRunner, AnalyzerRegistry, LemmaCountConfigLoader
+**Interfaces:** AuditRunner, AnalyzerRegistry, LemmaCountConfigLoader, JudgeExamService
 
-**Implementations:** CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry, DefaultLemmaCountConfig, DefaultLemmaCountConfigLoader, DefaultQuizInstructionConfig
+**Implementations:** CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry, DefaultLemmaCountConfig, DefaultLemmaCountConfigLoader, DefaultQuizInstructionConfig, DefaultJudgeExamService, DefaultJudgeRuntimeConfig, DefaultTranslationSenseConfig, DefaultSingleAnswerConfig, DefaultMiniTheoryConfig, DefaultChoiceAlternativeConfig
 
 ### course-infrastructure
 
@@ -278,7 +279,7 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Models:** GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter, AnalyzeOptions
 
-**Interfaces:** AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand, RepairCommand, ReviseInstructionsCommand, AssessCandidateCommand
+**Interfaces:** AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand, RepairCommand, ReviseInstructionsCommand, AssessCandidateCommand, ExamCommand
 
 ### nlp-infrastructure
 
@@ -296,7 +297,7 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Depends on:** audit-domain, refiner-domain, revision-domain
 
-**Implementations:** FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore, FileSystemActiveAnalysisSelectionStore, FileSystemQuizInstructionCorrectionRunStore
+**Implementations:** FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore, FileSystemActiveAnalysisSelectionStore, FileSystemQuizInstructionCorrectionRunStore, FileSystemJudgeExamRegistry
 
 ### revision-domain
 
@@ -312,9 +313,9 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 ### evaluation-ledger-domain
 
-**Models:** EvaluationKey, EvaluationSubject, EvaluationRecord, EvaluationEmitted, EvaluationNotEmitted, EvaluationFailureKind, EvaluationResolutionKind, EvaluationResolution, EvaluationCoverage, EvaluationBudget
+**Models:** EvaluationKey, EvaluationSubject, EvaluationRecord, EvaluationEmitted, EvaluationNotEmitted, EvaluationFailureKind, EvaluationResolutionKind, EvaluationResolution, EvaluationCoverage, EvaluationBudget, EvaluationRequestMode, EvaluationRequest
 
-**Interfaces:** EvaluationOutcome, EvaluationLedger, ContentFingerprinter, Evaluator, EvaluationSession, EvaluationSessionFactory
+**Interfaces:** EvaluationOutcome, EvaluationLedger, ContentFingerprinter, Evaluator, EvaluationSession, EvaluationSessionFactory, EvaluationTimeline
 
 ### evaluation-ledger-infrastructure
 
@@ -332,9 +333,9 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Depends on:** audit-domain, evaluation-ledger-domain, agent-runtime-infrastructure
 
-**Models:** QuizInstructionJudgeConfig
+**Models:** QuizInstructionJudgeConfig, AgentJudgeSpec, AgentJudgeConfig, JudgeUnavailabilityCause, JudgeProviderReadiness
 
-**Interfaces:** QuizInstructionJudgeFactory
+**Interfaces:** QuizInstructionJudgeFactory, AgentJudgeFactory, JudgeProviderReadinessProbe
 
 ## Features & Business Rules
 

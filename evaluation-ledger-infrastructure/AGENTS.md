@@ -10,7 +10,7 @@ Adaptador filesystem del registro de evaluaciones costosas. Escribe un archivo p
 
 ### FileSystemEvaluationLedger
 
-**Implements:** EvaluationLedger
+**Implements:** EvaluationLedger, EvaluationTimeline
 
 **Types:** Repository
 
@@ -26,6 +26,8 @@ Adaptador filesystem del registro de evaluaciones costosas. Escribe un archivo p
 - should keep the results of previous evaluator versions readable in history after a new version records its own → FEAT-EVCOST/F-EVCOST-R006
 - should keep every registered result readable after the analysis reports under the same base directory are deleted → FEAT-EVCOST/F-EVCOST-R007
 - should keep the earlier entry consultable in history when the same key is recorded again → FEAT-EVCOST/F-EVCOST-R008
+- should return the recorded times of an evaluator in the order they were appended, and none of another evaluator → FEAT-JEXAM/F-JEXAM-R004
+- should not return to the course evaluator a verdict recorded for the same content under its exam: evaluator → FEAT-JEXAM/F-JEXAM-R002
 
 ## Dependency Contracts
 
@@ -113,6 +115,22 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | maxNewEvaluations | `int` |
 
+### EvaluationRequestMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| REUSE_OR_EVALUATE | `null` |
+| FORCE | `null` |
+| PREFER_NEW | `null` |
+| REUSE_ONLY | `null` |
+
+### EvaluationRequest (`record`)
+
+| Field | Type |
+|-------|------|
+| subject | `EvaluationSubject` |
+| mode | `EvaluationRequestMode` |
+
 ### EvaluationOutcome (port)
 
 ### EvaluationLedger (port)
@@ -147,10 +165,19 @@ Methods:
 - `consultedEvaluatorVersion(): Optional<String>`
 - `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution`
 - `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution`
+- `resolveAll(List<EvaluationRequest> requests,int maxConcurrent): List<EvaluationResolution>`
+- `recorded(EvaluationSubject subject): boolean`
+- `unavailableReason(): Optional<String>`
 
 ### EvaluationSessionFactory (factory)
 
 Methods:
 
 - `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
+
+### EvaluationTimeline (port)
+
+Methods:
+
+- `recordedTimes(String evaluatorId): List<Instant>`
 

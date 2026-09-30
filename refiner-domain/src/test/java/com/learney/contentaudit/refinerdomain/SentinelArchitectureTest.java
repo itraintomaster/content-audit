@@ -222,5 +222,45 @@ public class SentinelArchitectureTest {
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LevelWideLemmaInventory - " + e.getMessage());
     }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.topicwords.TopicWordLights");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TopicWordLights - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.topicwords.TopicWord");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TopicWord - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.topicwords.WordLight");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: WordLight - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.topicwords.GreenState");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: GreenState - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.topicwords.KnowledgeNotInAnalysisException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeNotInAnalysisException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.topicwords.LemmaCountDataMissingException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LemmaCountDataMissingException - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.topicwords.TopicWordLightsQuery");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TopicWordLightsQuery - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.topicwords.DefaultTopicWordLightsQuery");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultTopicWordLightsQuery - " + e.getMessage());
+    }
   }
 }

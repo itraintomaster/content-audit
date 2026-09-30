@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain;
 
+import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -8,4 +9,6 @@ import javax.annotation.processing.Generated;
 )
 public interface LemmaCountConfig extends SelfDescribingConfig {
     int getThreshold();
+
+    List<LemmaCountBand> getBands();
 }

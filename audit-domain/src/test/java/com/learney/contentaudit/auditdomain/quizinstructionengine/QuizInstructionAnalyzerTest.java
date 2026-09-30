@@ -1437,4 +1437,108 @@ public class QuizInstructionAnalyzerTest {
         return new QuizInstructionAnalyzer(session, subjectBuilder, new DefaultQuizInstructionScorer(config),
                 mock(QuizInstructionScopeMatcher.class), verdictReader, normalPolicy(500));
     }
+
+    @Test
+    @DisplayName("should resolve every quiz of a course judged before FEAT-JEXAM from its recorded verdicts without a single consultation, with budget 100 and an approved version")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R007")
+    public void shouldResolveEveryQuizOfACourseJudgedBeforeFEATJEXAMFromItsRecordedVerdictsWithoutASingleConsultationWithBudget100AndAnApprovedVersion() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should look up each quiz under the same fingerprint the ledger recorded for it before FEAT-JEXAM")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R007")
+    public void shouldLookUpEachQuizUnderTheSameFingerprintTheLedgerRecordedForItBeforeFEATJEXAM() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reuse without consulting the recorded verdict of a quiz whose translation or mini-theory changed, since the consigna judge reads neither")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R007")
+    public void shouldReuseWithoutConsultingTheRecordedVerdictOfAQuizWhoseTranslationOrMinitheoryChangedSinceTheConsignaJudgeReadsNeither() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reuse the recorded verdicts of a consigna judge version that failed its exam and leave the rest unevaluated, declaring the failed exam, even with budget 500")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R003")
+    public void shouldReuseTheRecordedVerdictsOfAConsignaJudgeVersionThatFailedItsExamAndLeaveTheRestUnevaluatedDeclaringTheFailedExamEvenWithBudget500() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not consult the consigna judge in a run that asks no budget for quiz-instruction, and declare its pending quizzes and what they cost")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R010")
+    public void shouldNotConsultTheConsignaJudgeInARunThatAsksNoBudgetForQuizinstructionAndDeclareItsPendingQuizzesAndWhatTheyCost() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare the same scores, diagnoses, findings and coverage for a course resolved with one and with four consultations at a time")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R006")
+    public void shouldDeclareTheSameScoresDiagnosesFindingsAndCoverageForACourseResolvedWithOneAndWithFourConsultationsAtATime() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should put in the evidence of the finding of a breaching quiz each violation, each checked constraint that passed with its state, and the confidence of the judge")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R008")
+    public void shouldPutInTheEvidenceOfTheFindingOfABreachingQuizEachViolationEachCheckedConstraintThatPassedWithItsStateAndTheConfidenceOfTheJudge() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give a compliant quiz no finding and show in its detail every constraint the judge checked with its state")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R008")
+    public void shouldGiveACompliantQuizNoFindingAndShowInItsDetailEveryConstraintTheJudgeCheckedWithItsState() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give a breaching quiz the same score whatever confidence the judge reported")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R008")
+    public void shouldGiveABreachingQuizTheSameScoreWhateverConfidenceTheJudgeReported() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should call the consigna judge at most once and leave every quiz pending, with «sesión vencida: renovala con claude auth login» in its coverage, when the claude-cli session expired and the budget is 100")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R011")
+    public void shouldCallTheConsignaJudgeAtMostOnceAndLeaveEveryQuizPendingWithSesinVencidaRenovalaConClaudeAuthLoginInItsCoverageWhenTheClaudecliSessionExpiredAndTheBudgetIs100() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should carry in its coverage, next to today's counts, the exam of its version and of every version whose verdicts it reused")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R001")
+    public void shouldCarryInItsCoverageNextToTodaysCountsTheExamOfItsVersionAndOfEveryVersionWhoseVerdictsItReused() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should neither ask nor count, in an EXAM run, a quiz that is not in the exam file")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R001")
+    public void shouldNeitherAskNorCountInAnEXAMRunAQuizThatIsNotInTheExamFile() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should resolve without consulting, in an EXAM run, an exam quiz the same version already judged on the same content")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R002")
+    public void shouldResolveWithoutConsultingInAnEXAMRunAnExamQuizTheSameVersionAlreadyJudgedOnTheSameContent() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

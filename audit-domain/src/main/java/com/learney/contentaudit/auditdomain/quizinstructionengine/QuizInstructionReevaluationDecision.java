@@ -13,5 +13,9 @@ enum QuizInstructionReevaluationDecision {
 
     DECLARED_SET_REEVALUATION,
 
-    OUTSIDE_DECLARED_SET
+    OUTSIDE_DECLARED_SET,
+
+    EXAM_CASE,
+
+    NOT_REQUESTED
 }

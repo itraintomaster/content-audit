@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.lrec;
 
+import com.learney.contentaudit.auditdomain.CefrLevel;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
@@ -23,12 +24,21 @@ public class LemmaStats {
 
     private List<Integer> occurrencePositions;
 
+    private int longestGap;
+
+    private CefrLevel longestGapFromLevel;
+
+    private CefrLevel longestGapToLevel;
+
+    private List<CefrLevel> levels;
+
     public LemmaStats() {
     }
 
     public LemmaStats(String lemma, String pos, int count, double meanInterval,
-            double stdDevInterval, ExposureStatus exposureStatus,
-            List<Integer> occurrencePositions) {
+            double stdDevInterval, ExposureStatus exposureStatus, List<Integer> occurrencePositions,
+            int longestGap, CefrLevel longestGapFromLevel, CefrLevel longestGapToLevel,
+            List<CefrLevel> levels) {
         this.lemma = lemma;
         this.pos = pos;
         this.count = count;
@@ -36,6 +46,10 @@ public class LemmaStats {
         this.stdDevInterval = stdDevInterval;
         this.exposureStatus = exposureStatus;
         this.occurrencePositions = occurrencePositions;
+        this.longestGap = longestGap;
+        this.longestGapFromLevel = longestGapFromLevel;
+        this.longestGapToLevel = longestGapToLevel;
+        this.levels = levels;
     }
 
     public String getLemma() {
@@ -94,6 +108,38 @@ public class LemmaStats {
         this.occurrencePositions = occurrencePositions;
     }
 
+    public int getLongestGap() {
+        return this.longestGap;
+    }
+
+    public void setLongestGap(int longestGap) {
+        this.longestGap = longestGap;
+    }
+
+    public CefrLevel getLongestGapFromLevel() {
+        return this.longestGapFromLevel;
+    }
+
+    public void setLongestGapFromLevel(CefrLevel longestGapFromLevel) {
+        this.longestGapFromLevel = longestGapFromLevel;
+    }
+
+    public CefrLevel getLongestGapToLevel() {
+        return this.longestGapToLevel;
+    }
+
+    public void setLongestGapToLevel(CefrLevel longestGapToLevel) {
+        this.longestGapToLevel = longestGapToLevel;
+    }
+
+    public List<CefrLevel> getLevels() {
+        return this.levels;
+    }
+
+    public void setLevels(List<CefrLevel> levels) {
+        this.levels = levels;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -105,11 +151,15 @@ public class LemmaStats {
                     && Objects.equals(this.meanInterval, that.meanInterval)
                     && Objects.equals(this.stdDevInterval, that.stdDevInterval)
                     && Objects.equals(this.exposureStatus, that.exposureStatus)
-                    && Objects.equals(this.occurrencePositions, that.occurrencePositions);
+                    && Objects.equals(this.occurrencePositions, that.occurrencePositions)
+                    && Objects.equals(this.longestGap, that.longestGap)
+                    && Objects.equals(this.longestGapFromLevel, that.longestGapFromLevel)
+                    && Objects.equals(this.longestGapToLevel, that.longestGapToLevel)
+                    && Objects.equals(this.levels, that.levels);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lemma, pos, count, meanInterval, stdDevInterval, exposureStatus, occurrencePositions);
+        return Objects.hash(lemma, pos, count, meanInterval, stdDevInterval, exposureStatus, occurrencePositions, longestGap, longestGapFromLevel, longestGapToLevel, levels);
     }
 }

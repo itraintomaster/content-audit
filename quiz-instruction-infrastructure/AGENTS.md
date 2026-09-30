@@ -3,8 +3,7 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). El juez no tiene proveedor propio: admite las mismas clases de proveedor que el resto del sistema —incluidas las que se autentican con la sesion local del usuario y por eso no llevan direccion de servicio ni credencial— y juzga la validez de su configuracion contra el proveedor que ella declara (F-QINST-R016). Su version es procedencia, no vigencia: se deriva de la definicion del agente, del modelo y del proveedor efectivo, se estampa sobre cada veredicto nuevo y se declara en el informe, pero no decide que veredictos valen (F-QINST-R010). Cuando la definicion no se puede localizar el juez no enuncia version alguna —evaluatorVersion() devuelve Optional.empty()— y con eso queda tratado como no disponible por la propia sesion. Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
-
+Adaptadores de los jueces con modelo. Nació con el del juez de consigna (instructionjudge: agente quiz-instruction-validator, cinco entradas verbatim, veredicto conservador como OUTPUT_UNUSABLE, fallas de servicio como EVALUATOR_UNAVAILABLE, versión derivada de la definición, el modelo y el proveedor) y desde FEAT-JEXAM aloja también el evaluador genérico por agente de los jueces nuevos (agentjudge) y los lectores de sus veredictos, un paquete por juez. Todos comparten la verificación sin costo de la sesión del proveedor (F-JEXAM-R011). allowedClients=[audit-cli]: es un detalle de la raíz de composición.
 
 ## Models
 
@@ -20,6 +19,45 @@ Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger
 | agentName | `String` |
 | providerName | `String` |
 
+### AgentJudgeSpec (`record`)
+
+| Field | Type |
+|-------|------|
+| evaluatorId | `String` |
+| verdictArtifactKey | `String` |
+| displayName | `String` |
+
+### AgentJudgeConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| providerName | `String` |
+| baseUrl | `String` |
+| apiKey | `String` |
+| modelName | `String` |
+| temperature | `Double` |
+| timeoutSeconds | `Integer` |
+
+### JudgeUnavailabilityCause (`enum`)
+
+| Field | Type |
+|-------|------|
+| SESSION_EXPIRED | `null` |
+| QUOTA_EXHAUSTED | `null` |
+| SERVICE_UNREACHABLE | `null` |
+| TIMEOUT | `null` |
+| NOT_INSTALLED | `null` |
+| UNKNOWN | `null` |
+
+### JudgeProviderReadiness (`record`)
+
+| Field | Type |
+|-------|------|
+| ready | `boolean` |
+| cause | `JudgeUnavailabilityCause` |
+| detail | `String` |
+| remedy | `String` |
+
 ## Interfaces
 
 ### QuizInstructionJudgeFactory (factory)
@@ -27,6 +65,19 @@ Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger
 Methods:
 
 - `create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator agentDefinitionLocator): Evaluator`
+
+### AgentJudgeFactory (factory)
+
+Methods:
+
+- `create(AgentJudgeSpec spec,AgentJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator agentDefinitionLocator): Evaluator`
+
+### JudgeProviderReadinessProbe (port)
+
+Methods:
+
+- `probe(LlmProviderResolved provider): JudgeProviderReadiness`
+- `explain(LlmProviderResolved provider,String failure): JudgeProviderReadiness`
 
 ## Dependency Contracts
 
@@ -94,6 +145,8 @@ The following models and interfaces are available from dependencies. You can use
 | instructions | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
 | multipleChoice | `MultipleChoiceEntity` |
+| miniTheory | `String` |
+| answerAudioKey | `String` |
 
 ### CefrLevel (`enum`)
 
@@ -150,6 +203,7 @@ The following models and interfaces are available from dependencies. You can use
 | evaluatedTargets | `List<AuditTarget>` |
 | resolutions | `List<FindingResolution>` |
 | cost | `AnalysisCost` |
+| displayName | `String` |
 
 ### AuditNode (`record`)
 
@@ -165,6 +219,7 @@ The following models and interfaces are available from dependencies. You can use
 | findings | `List<Finding>` |
 | numbers | `ContextNumbers` |
 | unevaluatedBy | `List<String>` |
+| partiallyEvaluatedBy | `List<String>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -201,6 +256,8 @@ The following models and interfaces are available from dependencies. You can use
 | reevaluate | `boolean` |
 | reevaluationScope | `String` |
 | reevaluationSubjectIds | `Set<String>` |
+| purpose | `EvaluationRunPurpose` |
+| maxConcurrentEvaluations | `Integer` |
 
 ### EmptyReevaluationSetException (`exception`)
 
@@ -222,6 +279,21 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | analyzerName | `String` |
 | declaredScope | `String` |
+
+### EvaluationRunPurpose (`enum`)
+
+| Field | Type |
+|-------|------|
+| COURSE | `null` |
+| EXAM | `null` |
+
+### LemmaCountBand (`record`)
+
+| Field | Type |
+|-------|------|
+| name | `String` |
+| maxCocaRank | `Integer` |
+| threshold | `int` |
 
 ### AuditEngine (port)
 
@@ -359,6 +431,8 @@ Methods:
 - `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
 - `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>`
 - `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
+- `getJudgeCoverages(): List<JudgeCoverageDiagnosis>`
+- `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -388,6 +462,15 @@ Methods:
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
 - `getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>`
+- `getHintCoherenceDiagnosis(): Optional<HintCoherenceDiagnosis>`
+- `getAnswerCompletenessDiagnosis(): Optional<AnswerCompletenessDiagnosis>`
+- `getMultipleChoiceValidityDiagnosis(): Optional<MultipleChoiceValidityDiagnosis>`
+- `getDataCoherenceDiagnosis(): Optional<DataCoherenceDiagnosis>`
+- `getExactDuplicateDiagnosis(): Optional<ExactDuplicateDiagnosis>`
+- `getTranslationSenseDiagnosis(): Optional<TranslationSenseDiagnosis>`
+- `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>`
+- `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>`
+- `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -430,6 +513,7 @@ Methods:
 Methods:
 
 - `getThreshold(): int`
+- `getBands(): List<LemmaCountBand>`
 
 ### QuizInstructionVerdictReader (port)
 
@@ -474,6 +558,96 @@ Methods:
 Methods:
 
 - `compute(AuditNode root, List<AnalyzerDescriptor> analyzers): void`
+
+### QuizStudentViewRenderer (port)
+
+Methods:
+
+- `render(AuditableQuiz quiz): QuizStudentView`
+- `finishedSentence(AuditableQuiz quiz,SentenceMode mode): String`
+
+### TopicStudentViewQuery (port)
+
+Methods:
+
+- `viewOf(AuditReport report,String knowledgeId): TopicStudentView` throws StudentViewKnowledgeNotFoundException
+
+### IrregularFormsCatalog (port)
+
+Methods:
+
+- `formsOf(String baseWord): Set<String>`
+- `isPastParticiple(String word): boolean`
+
+### CorrectorMatcher (port)
+
+Methods:
+
+- `canonicalForms(String text): Set<String>`
+- `accepts(GapContext context,List<String> acceptedOptions,String written): boolean`
+- `sameAnswer(String first,String second): boolean`
+- `sameAnswer(GapContext context,String first,String second): boolean`
+- `tableVersion(): String`
+
+### FormEquivalenceTableSource (port)
+
+Methods:
+
+- `load(): FormEquivalenceTable`
+
+### AudioRecordingRegistry (port)
+
+Methods:
+
+- `recordingOf(String audioKey): Optional<AudioRecording>`
+- `version(): String`
+
+### ProductionSentenceSource (port)
+
+Methods:
+
+- `savedSentences(String quizId): Optional<List<String>>`
+
+### JudgeExamRegistry (port)
+
+Methods:
+
+- `record(JudgeExamRecord record): void`
+- `latest(String judgeName,String judgeVersion): Optional<JudgeExamRecord>`
+- `history(String judgeName): List<JudgeExamRecord>`
+
+### JudgeRuntimeConfig (port)
+
+Methods:
+
+- `getMaxConcurrentEvaluations(): int`
+- `getDefaultMaxNewEvaluations(String judgeName): int`
+- `getDefaultRatePerHour(String judgeName): double`
+
+### TranslationSenseConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
+
+### SingleAnswerConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
+
+### MiniTheoryConfig (port)
+
+Methods:
+
+- `getErrorScope(): MiniTheoryErrorScope`
+- `getScoreFor(FindingSeverity severity): double`
+
+### ChoiceAlternativeConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
 
 ### From course-domain
 
@@ -747,6 +921,22 @@ Methods:
 |-------|------|
 | maxNewEvaluations | `int` |
 
+### EvaluationRequestMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| REUSE_OR_EVALUATE | `null` |
+| FORCE | `null` |
+| PREFER_NEW | `null` |
+| REUSE_ONLY | `null` |
+
+### EvaluationRequest (`record`)
+
+| Field | Type |
+|-------|------|
+| subject | `EvaluationSubject` |
+| mode | `EvaluationRequestMode` |
+
 ### EvaluationOutcome (port)
 
 ### EvaluationLedger (port)
@@ -781,12 +971,21 @@ Methods:
 - `consultedEvaluatorVersion(): Optional<String>`
 - `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution`
 - `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution`
+- `resolveAll(List<EvaluationRequest> requests,int maxConcurrent): List<EvaluationResolution>`
+- `recorded(EvaluationSubject subject): boolean`
+- `unavailableReason(): Optional<String>`
 
 ### EvaluationSessionFactory (factory)
 
 Methods:
 
 - `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
+
+### EvaluationTimeline (port)
+
+Methods:
+
+- `recordedTimes(String evaluatorId): List<Instant>`
 
 ### From agent-runtime-infrastructure
 

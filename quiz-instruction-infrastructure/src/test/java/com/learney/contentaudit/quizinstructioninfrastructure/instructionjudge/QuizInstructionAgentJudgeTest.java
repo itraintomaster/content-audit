@@ -242,4 +242,12 @@ public class QuizInstructionAgentJudgeTest {
                 "F-QINST-R009: la huella del veredicto depende de que el adaptador entregue exactamente el contenido "
                         + "juzgado (cefrLevel, topic, title, instructions, quiz), sin agregar ni quitar nada");
     }
+
+    @Test
+    @DisplayName("should answer unavailable with the cause and the remedy, without running its agent, when the provider session expired")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R011")
+    public void shouldAnswerUnavailableWithTheCauseAndTheRemedyWithoutRunningItsAgentWhenTheProviderSessionExpired() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

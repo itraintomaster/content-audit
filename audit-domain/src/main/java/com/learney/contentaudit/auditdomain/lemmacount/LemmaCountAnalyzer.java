@@ -156,7 +156,7 @@ public class LemmaCountAnalyzer implements ContentAnalyzer {
                         .average()
                         .orElse(0.0));
 
-        LemmaCountResult result = new LemmaCountResult(thresholdN, courseScore, levelResults, unassigned);
+        LemmaCountResult result = new LemmaCountResult(thresholdN, courseScore, levelResults, unassigned, null, null);
 
         // Write course-level score and diagnosis (R015)
         double scoreValue = courseScore.orElse(0.0);

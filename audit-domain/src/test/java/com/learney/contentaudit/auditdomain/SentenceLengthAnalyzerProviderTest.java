@@ -67,4 +67,12 @@ public class SentenceLengthAnalyzerProviderTest {
         org.junit.jupiter.api.Assertions.assertEquals(highest, card.getCost(),
                 "R006 inv. 2: the cost of the card of " + name + " is the highest cost of its rules");
     }
+
+    @Test
+    @DisplayName("should declare in the sentence-length card one rule for sentences shorter than the goal and another for longer ones")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R005")
+    public void shouldDeclareInTheSentencelengthCardOneRuleForSentencesShorterThanTheGoalAndAnotherForLongerOnes() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -843,4 +843,156 @@ public class LemmaCountAnalyzerTest {
                 "R003: the lemmas below their target, with the sentences they appear in: " + evidence);
         assertTrue(evidence.toString().contains("4 oraciones"), "R003: next to the target of 4: " + evidence);
     }
+
+    @Test
+    @DisplayName("should score 'number' (A1, 5 sentences, among the 1,000 most common) 0.625 and mark it under-exposed with bands 8, 6, 4 and 3, and score it 1 with 4 for every band")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R001")
+    public void shouldScoreNumberA15SentencesAmongThe1000MostCommon0625AndMarkItUnderexposedWithBands864And3AndScoreIt1With4ForEveryBand() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should take a word's band from its COCA rank in the EVP catalog for its lemma and part of speech, so 'hop' read from 'hoped' asks for 3 sentences with rank 5,603 and not for 8 with the rank 413 of 'hope'")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R001")
+    public void shouldTakeAWordsBandFromItsCOCARankInTheEVPCatalogForItsLemmaAndPartOfSpeechSoHopReadFromHopedAsksFor3SentencesWithRank5603AndNotFor8WithTheRank413OfHope() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should apply the threshold of the last band to a word without COCA rank")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R001")
+    public void shouldApplyTheThresholdOfTheLastBandToAWordWithoutCOCARank() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give lemma-count A1 0.9388350, A2 0.7114198, B1 0.5251412, B2 0.3404948, C1 0.8333333, course 0.6698448 and 1,535 under-exposed words with 4 for every band, on the lemma table of the course of 29/9")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R001")
+    public void shouldGiveLemmacountA109388350A207114198B105251412B203404948C108333333Course06698448And1535UnderexposedWordsWith4ForEveryBandOnTheLemmaTableOfTheCourseOf299() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give lemma-count A1 0.9077670, A2 0.6782407, B1 0.4903013, B2 0.3612196, C1 0.8888889, course 0.6652835 and 1,616 under-exposed words with bands 8, 6, 4 and 3, on the lemma table of the course of 29/9")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R001")
+    public void shouldGiveLemmacountA109077670A206782407B104903013B203612196C108888889Course06652835And1616UnderexposedWordsWithBands864And3OnTheLemmaTableOfTheCourseOf299() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave in a level one finding per under-exposed word assigned to it, of rule F-POCOV-R003, low severity, only ordering and instant cost, like 'education' (B1) in 1 sentence of 4")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R003")
+    public void shouldLeaveInALevelOneFindingPerUnderexposedWordAssignedToItOfRuleFPOCOVR003LowSeverityOnlyOrderingAndInstantCostLikeEducationB1In1SentenceOf4() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give as evidence the lemma, its part of speech, its sentences against N and its band, like 'education (B1): 1 sentence of 4; band of the 1,000 most common'")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R003")
+    public void shouldGiveAsEvidenceTheLemmaItsPartOfSpeechItsSentencesAgainstNAndItsBandLikeEducationB11SentenceOf4BandOfThe1000MostCommon() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave in the course one finding per level with score below 1 that counts its under-exposed words")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R003")
+    public void shouldLeaveInTheCourseOneFindingPerLevelWithScoreBelow1ThatCountsItsUnderexposedWords() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should name the under-exposed word of C1, 'hop', in the course finding about C1, since C1 has no level node")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R003")
+    public void shouldNameTheUnderexposedWordOfC1HopInTheCourseFindingAboutC1SinceC1HasNoLevelNode() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave no finding for an unassigned lemma nor in a level whose score is 1")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R003")
+    public void shouldLeaveNoFindingForAnUnassignedLemmaNorInALevelWhoseScoreIs1() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should identify each finding by lemma and part of speech, so a noun and a verb with the same lemma, both under-exposed in the level, leave two findings")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R003")
+    public void shouldIdentifyEachFindingByLemmaAndPartOfSpeechSoANounAndAVerbWithTheSameLemmaBothUnderexposedInTheLevelLeaveTwoFindings() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave 1,534 level findings and 5 course findings with 4 for every band, and 1,615 and 5 with bands 8, 6, 4 and 3, on the lemma table of the course of 29/9")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R003")
+    public void shouldLeave1534LevelFindingsAnd5CourseFindingsWith4ForEveryBandAnd1615And5WithBands864And3OnTheLemmaTableOfTheCourseOf299() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should publish each level's words by band, then by fewer sentences, then by ascending COCA rank, so a word of the 1,000 most common in 3 sentences comes before one of the 2,000 in 1 sentence")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R004")
+    public void shouldPublishEachLevelsWordsByBandThenByFewerSentencesThenByAscendingCOCARankSoAWordOfThe1000MostCommonIn3SentencesComesBeforeOneOfThe2000In1Sentence() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should put first in B1 feeling, political, research, human, education, sense and effect, all in one sentence, with 4 for every band on the lemma table of the course of 29/9")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R004")
+    public void shouldPutFirstInB1FeelingPoliticalResearchHumanEducationSenseAndEffectAllInOneSentenceWith4ForEveryBandOnTheLemmaTableOfTheCourseOf299() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep each level's under-exposed list ordered by ascending sentences, as today")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R004")
+    public void shouldKeepEachLevelsUnderexposedListOrderedByAscendingSentencesAsToday() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should name in each under-exposed word's finding the topics whose quizzes use it, in course order")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R005")
+    public void shouldNameInEachUnderexposedWordsFindingTheTopicsWhoseQuizzesUseItInCourseOrder() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should record in each word's row every knowledge whose quizzes use it, so a topic can read the under-exposed words of its level it uses")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R005")
+    public void shouldRecordInEachWordsRowEveryKnowledgeWhoseQuizzesUseItSoATopicCanReadTheUnderexposedWordsOfItsLevelItUses() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not leave as under-exposed a word of the level that no quiz uses, which is the absent word of lemma-absence")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R005")
+    public void shouldNotLeaveAsUnderexposedAWordOfTheLevelThatNoQuizUsesWhichIsTheAbsentWordOfLemmaabsence() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should publish in its result the band table it used, with the threshold of each band")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R006")
+    public void shouldPublishInItsResultTheBandTableItUsedWithTheThresholdOfEachBand() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

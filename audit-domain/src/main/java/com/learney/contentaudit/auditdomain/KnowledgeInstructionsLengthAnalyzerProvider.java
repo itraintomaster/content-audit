@@ -34,7 +34,7 @@ public class KnowledgeInstructionsLengthAnalyzerProvider implements AnalyzerProv
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.KNOWLEDGE),
                 List.of(FindingResolution.RANK_ONLY),
-                AnalysisCost.INSTANT);
+                AnalysisCost.INSTANT, null);
     }
 
     @Override

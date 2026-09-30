@@ -1,4 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
+import com.learney.contentaudit.auditdomain.TopicStudentViewQuery;
+import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLightsQuery;
 import com.learney.contentaudit.auditcli.SuggestedLemmasFilter;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort;
@@ -181,7 +184,13 @@ private final CorrectionContextJsonMapper correctionContextJsonMapper;
 
 private final SuggestedLemmaQueryPort suggestedLemmaQueryPort;
 
-public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver, ImpactPreviewStore impactPreviewStore, ImpactPreviewFormatter impactPreviewFormatter, CorrectionContextJsonMapper correctionContextJsonMapper, SuggestedLemmaQueryPort suggestedLemmaQueryPort) {
+private final TopicWordLightsQuery topicWordLightsQuery;
+
+private final TopicStudentViewQuery topicStudentViewQuery;
+
+private final ActiveAnalysisSelectionStore activeAnalysisSelectionStore;
+
+public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver, ImpactPreviewStore impactPreviewStore, ImpactPreviewFormatter impactPreviewFormatter, CorrectionContextJsonMapper correctionContextJsonMapper, SuggestedLemmaQueryPort suggestedLemmaQueryPort, TopicWordLightsQuery topicWordLightsQuery, TopicStudentViewQuery topicStudentViewQuery, ActiveAnalysisSelectionStore activeAnalysisSelectionStore) {
     this.auditReportStore = auditReportStore;
     this.refinementPlanStore = refinementPlanStore;
     this.analyzerRegistry = analyzerRegistry;
@@ -190,6 +199,9 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
     this.impactPreviewFormatter = impactPreviewFormatter;
     this.correctionContextJsonMapper = correctionContextJsonMapper;
     this.suggestedLemmaQueryPort = suggestedLemmaQueryPort;
+    this.topicWordLightsQuery = topicWordLightsQuery;
+    this.topicStudentViewQuery = topicStudentViewQuery;
+    this.activeAnalysisSelectionStore = activeAnalysisSelectionStore;
 }
 
     /** Called by Main to inject the resolved working directory (needed for plan listing). */

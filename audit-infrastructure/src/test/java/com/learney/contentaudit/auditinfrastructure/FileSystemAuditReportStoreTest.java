@@ -422,4 +422,36 @@ class FileSystemAuditReportStoreTest {
                     || json.contains("\"tokens\""), "the digest carries no course entity");
         }
     }
+
+    @Test
+    @DisplayName("should label each exercise of the digest with its statement as the student sees it, «You ___ (see) cats.» and not «Afirmativas regulares»")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R002")
+    public void shouldLabelEachExerciseOfTheDigestWithItsStatementAsTheStudentSeesItYouSeeCatsAndNotAfirmativasRegulares() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep in the digest the labels of the course, the levels, the topic groups and the topics")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R002")
+    public void shouldKeepInTheDigestTheLabelsOfTheCourseTheLevelsTheTopicGroupsAndTheTopics() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep «Afirmativas regulares» as the exercise label of the saved report, the title the quiz instruction judge reads")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R002")
+    public void shouldKeepAfirmativasRegularesAsTheExerciseLabelOfTheSavedReportTheTitleTheQuizInstructionJudgeReads() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should copy into the digest the analyzers that evaluated each node halfway")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R006")
+    public void shouldCopyIntoTheDigestTheAnalyzersThatEvaluatedEachNodeHalfway() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -1565,3 +1565,359 @@ da 73,9 % o 73,4 % según quién sume, y lo que decide el juez de consigna no ll
 
 - **F-HALL-J002**: Examinar un analizador solo
 
+### FEAT-RONDA1: Integración de la ronda 1 - lo que comparten reglas, jueces y vocabulario, y los tres pedidos de la UI [F-RONDA1]
+
+> **Qué**: Junta en un solo cambio lo que comparten los catorce parches de la ronda 1 (reglas, jueces y vocabulario) y
+suma los tres pedidos de la UI que José aprobó: el nombre en castellano en la ficha, el ejercicio como lo ve el alumno y
+los conteos por gravedad y por regla.
+
+**Por qué**: Cada paquete dejó ganchos en archivos comunes, y si cada uno los toca por su cuenta chocan. Sin los tres
+pedidos, la UI tendría que inventar nombres, oraciones y conteos, que es lo que la línea de la UI prohíbe.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-RONDA1-R001 | El ejercicio como lo ve el alumno sale de un solo lugar, y siempre igual | critical | - |
+| F-RONDA1-R002 | En el resumen, cada ejercicio se llama por su enunciado | major | - |
+| F-RONDA1-R003 | `get student-view <tema>` devuelve el tema entero como lo ve el alumno | major | - |
+| F-RONDA1-R004 | Cada ficha trae su nombre en castellano | major | - |
+| F-RONDA1-R005 | Los números de cada contexto cuentan por gravedad y por regla, en las dos familias | critical | - |
+| F-RONDA1-R006 | Un ejercicio evaluado a medias cuenta como evaluado, y lo dice | critical | - |
+| F-RONDA1-R007 | La corrida base corre las reglas instantáneas de un analizador con juez, sin pagar | major | - |
+| F-RONDA1-R008 | Integrar la ronda no mueve ningún número, salvo el de las bandas | critical | - |
+
+### FEAT-PISTA: Pista coherente - la pista anuncia lo que el alumno tiene que escribir [F-PISTA]
+
+> **Qué**: Un analizador de la familia de errores compara la pista de cada ejercicio con su respuesta —el verbo, el
+sujeto y la negación— y marca los ejercicios sin pista en un tema donde tres cuartos o más la llevan.
+
+**Por qué**: Una pista que no coincide con la respuesta hace imposible acertar: «Who ___ (I / see)?» sólo acepta «are
+you seeing». El 077 encontró 188 ejercicios imposibles y content-audit los muestra en verde.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-PISTA-R001 | Si tres cuartos o más del tema llevan pista, la llevan todos | critical | - |
+| F-PISTA-R002 | Las palabras de la pista están en la respuesta, y la respuesta no trae un verbo sin anunciar | critical | - |
+| F-PISTA-R003 | El sujeto de la pista es el de la respuesta, y ninguno queda sin anunciar | critical | - |
+| F-PISTA-R004 | La pista lleva «not» sólo si la respuesta es negativa | major | - |
+| F-PISTA-R005 | `hint-coherence` es un analizador de errores con arreglo por regla | major | - |
+
+**User Journeys:**
+
+- **F-PISTA-J001**: Revisar si la pista anuncia la respuesta
+
+### FEAT-RESPC: Respuestas completas - el corrector acepta todas las formas de la respuesta y ninguna consigna pide una [F-RESPC]
+
+> **Qué**: Un analizador de la familia de errores arma, para cada respuesta aceptada, sus formas equivalentes —contraída
+y larga, las dos negaciones cortas, las dos grafías, until y till—, marca las que el corrector rechazaría y marca las
+consignas y miniteorías que piden una forma.
+
+**Por qué**: El 077 encontró 484 ejercicios donde una respuesta correcta da mal, y José decidió el 30/9 que el
+corrector acepte siempre las dos formas y que ninguna consigna pida una; hoy nadie lo mide.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-RESPC-R001 | Una forma está aceptada si el corrector del backend la acepta | critical | - |
+| F-RESPC-R002 | Están la contraída y la larga, pida lo que pida la consigna | critical | - |
+| F-RESPC-R003 | Las dos negaciones cortas de *be* están aceptadas | critical | - |
+| F-RESPC-R004 | Están la grafía británica y la americana, y *until* y *till* | major | - |
+| F-RESPC-R005 | Un hallazgo por forma que falta, que se arregla en el corrector o agregándola | major | - |
+| F-RESPC-R006 | `answer-completeness` es un analizador de errores que evalúa ejercicios | major | - |
+| F-RESPC-R007 | Ninguna consigna ni miniteoría pide una forma | major | - |
+
+**User Journeys:**
+
+- **F-RESPC-J001**: Encontrar las formas que el corrector rechaza y los pedidos de forma
+
+### FEAT-OMVAL: Opción múltiple válida - las reglas de las opciones [F-OMVAL]
+
+> **Qué**: Un analizador de la familia de errores revisa las opciones de cada ejercicio de opción múltiple: una sola
+correcta, todas distintas —también en la forma—, con la mayúscula que pide la oración y sin un artículo que delate la
+respuesta.
+
+**Por qué**: El 077 marcó 315 de los 2.810 ejercicios de opción múltiple (11,2 %), casi todos por forma, y hoy
+content-audit los mide pero no mira sus opciones.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-OMVAL-R001 | Una sola opción vale, y vale el puntaje entero | critical | - |
+| F-OMVAL-R002 | Las opciones son distintas entre sí, también en la forma | critical | - |
+| F-OMVAL-R003 | Si el hueco abre la oración, todas las opciones abren con mayúscula | major | - |
+| F-OMVAL-R004 | Ninguna opción queda delatada por el artículo de antes del hueco | major | - |
+| F-OMVAL-R005 | `multiple-choice-validity` evalúa sólo los ejercicios de opción múltiple | major | - |
+
+**User Journeys:**
+
+- **F-OMVAL-J001**: Revisar las opciones de un ejercicio de opción múltiple
+
+### FEAT-DATOS: Datos coherentes - todas las copias del ejercicio dicen lo mismo [F-DATOS]
+
+> **Qué**: Un analizador de la familia de errores compara las copias de cada ejercicio —las partes con su primera
+respuesta, la oración guardada y el texto con que se grabó su audio— y marca las que no coinciden o llevan «/».
+
+**Por qué**: Cuando se corrige una respuesta, las otras copias quedan viejas: el 077 encontró audios que leen «has not
+cut barra hasn't cut» y oraciones guardadas con barra, y hoy nadie lo mide.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-DATOS-R001 | Las dos oraciones guardadas son el ejercicio armado con su primera respuesta | major | - |
+| F-DATOS-R002 | Ni las respuestas ni el audio llevan «/» | critical | - |
+| F-DATOS-R003 | El audio dice lo mismo que el ejercicio de hoy | major | - |
+| F-DATOS-R004 | Todo ejercicio tiene un audio cuyo texto se conoce | minor | - |
+| F-DATOS-R005 | `data-coherence` es un analizador de errores que evalúa ejercicios | major | - |
+
+**User Journeys:**
+
+- **F-DATOS-J001**: Comparar las copias de un ejercicio
+
+### FEAT-DUPEX: Duplicados exactos - dos ejercicios iguales del mismo tema [F-DUPEX]
+
+> **Qué**: Un analizador de la familia de errores marca cada ejercicio que repite, tal cual, a otro de su mismo tema: el
+alumno escribe dos veces lo mismo.
+
+**Por qué**: Hoy nadie lo mira: el 077 encontró 30 repetidos y content-audit los muestra en verde. La parte exacta es
+una regla de segundos; los parecidos, con modelo, son del paquete B.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-DUPEX-R001 | Dos ejercicios del mismo tema que terminan igual son duplicados exactos | major | - |
+| F-DUPEX-R002 | Un hallazgo por copia, nunca en el ejercicio que queda | major | - |
+| F-DUPEX-R003 | El hallazgo es de gravedad baja, va a la mesa y cuesta segundos | major | - |
+| F-DUPEX-R004 | La evidencia muestra los dos ejercicios como los ve el alumno | major | - |
+| F-DUPEX-R005 | `exact-duplicates` es un analizador de errores que evalúa ejercicios | major | - |
+
+**User Journeys:**
+
+- **F-DUPEX-J001**: Encontrar las copias de un tema
+
+### FEAT-JEXAM: El examen fijo de los jueces y el juez de consigna, sin tocar su huella [F-JEXAM]
+
+> **Qué**: Todo juez con modelo rinde un examen fijo por versión antes de juzgar el curso y dice cuánto le falta y cuánto
+cuesta; el juez de consigna, además, muestra su veredicto entero sin cambiar lo que lee.
+
+**Por qué**: El juez de consigna se afinó para marcar menos y nunca se midió lo que deja pasar: da por buenos 178 de los
+187 imposibles. Con cuatro jueces nuevos, pagar sin medir se multiplica por cinco.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-JEXAM-R001 | Cada versión de un juez rinde el examen fijo y su resultado queda a la vista | critical | - |
+| F-JEXAM-R002 | El examen no toca el curso y no paga dos veces lo mismo | critical | - |
+| F-JEXAM-R003 | Una versión sin examen aprobado no consulta sobre el curso | critical | - |
+| F-JEXAM-R004 | Cada juez dice cuánto le falta y cuánto cuesta, sin consultar | critical | - |
+| F-JEXAM-R005 | A todo juez se le puede pedir un conjunto del curso o un candidato de la mesa | critical | - |
+| F-JEXAM-R006 | Consultas a la vez, sin pasarse del tope | critical | - |
+| F-JEXAM-R007 | Lo que lee el juez de consigna no cambia | critical | - |
+| F-JEXAM-R008 | El juez de consigna muestra su veredicto entero | major | - |
+| F-JEXAM-R009 | El examen del juez de consigna | critical | - |
+| F-JEXAM-R010 | Sin pedido explícito, ningún juez consulta | critical | - |
+| F-JEXAM-R011 | Con la sesión del proveedor vencida, el juez no consulta y el informe dice cómo renovarla | critical | - |
+| F-JEXAM-R012 | Los jueces nuevos no tratan como problema una forma que el corrector acepta | critical | - |
+
+**User Journeys:**
+
+- **F-JEXAM-J001**: Rendir el examen y juzgar el curso con esa versión
+
+### FEAT-TRSEN: Juez de traducción y sentido [F-TRSEN]
+
+> **Qué**: Un analizador nuevo, `translation-sense`, lee cada ejercicio entero como queda y dice si el inglés y la
+traducción dicen lo mismo y si un nativo lo diría así; lo juzgan dos jueces que no se hablan.
+
+**Por qué**: El 077 encontró 738 así y ningún analizador los ve: el de consigna no lee la traducción y dio «cumple» en
+284 de los 285 de A1 y A2.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-TRSEN-R001 | Lee el ejercicio entero como lo ve el alumno, y nada más | critical | - |
+| F-TRSEN-R002 | Cuatro condiciones, sobre el ejercicio como está | critical | - |
+| F-TRSEN-R003 | Dos jueces que no se hablan | critical | - |
+| F-TRSEN-R004 | Gravedad y puntaje | critical | - |
+| F-TRSEN-R005 | Reuso, tope, fallas y cobertura, como el juez de consigna | critical | - |
+| F-TRSEN-R006 | El examen de translation-sense | critical | - |
+| F-TRSEN-R007 | Lo que marca se resuelve en la mesa, con los mismos dos jueces | major | - |
+
+**User Journeys:**
+
+- **F-TRSEN-J001**: Juzgar la traducción y el sentido de un ejercicio
+
+### FEAT-UNICA: Juez de una sola respuesta [F-UNICA]
+
+> **Qué**: Un analizador nuevo, `single-answer`, lista con lo que el alumno ve antes de contestar las respuestas que
+también valdrían y el corrector no acepta: la que ofrece la consigna la deriva a respuestas completas; la distinta, la marca.
+
+**Por qué**: El 077 encontró 476 ejercicios con otra respuesta igual de buena, y el juez de consigna, que revisa la
+resolubilidad, dio «cumple» en los 179 de A1 y A2.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-UNICA-R001 | Lee lo que el alumno ve antes de contestar | critical | - |
+| F-UNICA-R002 | Lista las respuestas que también valdrían, salvo las que el corrector acepta | critical | - |
+| F-UNICA-R003 | Una opción que ofrece la consigna se deriva a respuestas completas | critical | - |
+| F-UNICA-R004 | La distinta y válida se marca, con su gravedad | critical | - |
+| F-UNICA-R005 | Reuso, tope, fallas y cobertura, como el juez de consigna | critical | - |
+| F-UNICA-R006 | El examen de single-answer | critical | - |
+| F-UNICA-R007 | Se arregla con una regla o en la mesa, y la mesa juzga con este juez | major | - |
+
+**User Journeys:**
+
+- **F-UNICA-J001**: Buscar otra respuesta que también valga
+
+### FEAT-MINIT: Juez de miniteoría [F-MINIT]
+
+> **Qué**: Un analizador nuevo, `mini-theory`, juzga cada tema de una vez: lee sus miniteorías y todos sus ejercicios, y
+dice si cada regla es cierta y si algún ejercicio del tema la contradice.
+
+**Por qué**: El 077 encontró 335 ejercicios con una tarjeta falsa, en pocos temas, y nada la mira: el de consigna no lee
+la miniteoría y dio «cumple» en los 112 de A1 y A2.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-MINIT-R001 | Un juez por tema, que lee las miniteorías y el tema entero | critical | - |
+| F-MINIT-R002 | Por cada miniteoría: si es cierta y si el tema la contradice | critical | - |
+| F-MINIT-R003 | La miniteoría con problema cuenta como error sólo donde se muestra | critical | - |
+| F-MINIT-R004 | Gravedad y puntaje de cada ejercicio | critical | - |
+| F-MINIT-R005 | Reuso, tope, fallas y cobertura, contando temas | critical | - |
+| F-MINIT-R006 | El examen de mini-theory | critical | - |
+| F-MINIT-R007 | Se resuelve una vez por miniteoría | major | - |
+
+**User Journeys:**
+
+- **F-MINIT-J001**: Juzgar las miniteorías de un tema
+
+### FEAT-MCVALE: Juez de opción múltiple, ¿otra opción también vale? [F-MCVALE]
+
+> **Qué**: Una regla con modelo del analizador de opción múltiple válida lee cada ejercicio de opción múltiple como lo ve
+el alumno y dice si alguna opción marcada como incorrecta también vale en ese contexto, o si la correcta no vale.
+
+**Por qué**: En A1 y A2 el 077 encontró 93 ejercicios de opción múltiple con dos opciones correctas y una sola aceptada;
+las reglas de forma no los ven y el juez de consigna los dio por buenos.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-MCVALE-R001 | Lee cada opción múltiple como la ve el alumno | critical | - |
+| F-MCVALE-R002 | Qué decide: si otra opción también vale, y si la correcta vale | critical | - |
+| F-MCVALE-R003 | Gravedad y puntaje | critical | - |
+| F-MCVALE-R004 | Es una regla del analizador de opción múltiple válida | major | - |
+| F-MCVALE-R005 | Reuso, tope, fallas y cobertura, como el juez de consigna | critical | - |
+| F-MCVALE-R006 | El examen del juez de opción múltiple | critical | - |
+| F-MCVALE-R007 | Lo que marca se resuelve en la mesa, con este mismo juez | major | - |
+
+**User Journeys:**
+
+- **F-MCVALE-J001**: Juzgar si otra opción también vale
+
+### FEAT-NIVFR: Palabras de otro nivel, mirando las frases del EVP [F-NIVFR]
+
+> **Qué**: Un analizador nuevo de la familia de errores, `off-level-words`, cuenta los ejercicios con palabras que el alumno
+de su nivel no puede conocer, dos niveles arriba o fuera del EVP, leídas con el catálogo y las frases de `lemma-absence`.
+
+**Por qué**: `lemma-absence` marca 337 ejercicios de A1 y el 077 marcó 17. José decidió el 30/9 que el error lo cuente un
+analizador aparte, con su ficha, y que `lemma-absence` siga entero en el 73,9 %.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-NIVFR-R001 | El nivel de cada palabra es el que resuelve lemma-absence | critical | - |
+| F-NIVFR-R002 | Cuenta como error sólo lo que queda lejos del nivel | critical | - |
+| F-NIVFR-R003 | Lo que el tema enseña no es error | major | - |
+| F-NIVFR-R004 | La palabra que la traducción repite no es error | major | - |
+| F-NIVFR-R005 | Un hallazgo por palabra, contado como error | critical | - |
+| F-NIVFR-R006 | No mueve nada de lemma-absence ni del vocabulario | critical | - |
+| F-NIVFR-R007 | Se describe en su ficha con un solo nombre | major | - |
+
+**User Journeys:**
+
+- **F-NIVFR-J001**: Contar las palabras de otro nivel de un ejercicio
+
+### FEAT-POCOV: Palabras poco vistas, con prioridad por banda de frecuencia [F-POCOV]
+
+> **Qué**: `lemma-count` sigue midiendo igual, y ahora dice qué palabra falta repetir, en qué orden y dónde está: cada
+palabra poco vista es un hallazgo de su nivel, con su banda de frecuencia y los temas que la usan.
+
+**Por qué**: Cuenta en el 73,9 % (67,0 % en el curso) pero sólo deja un número: 1.535 lemas en menos de 4 oraciones, y
+nadie sabe si «education» (una oración en B1) importa más que «goalkeeper». José eligió umbrales por banda (8 · 6 · 4 · 3).
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-POCOV-R001 | El umbral de cada palabra es el de su banda, y «4 para todas» da lo de hoy | critical | - |
+| F-POCOV-R002 | Sin tareas, como hoy | critical | - |
+| F-POCOV-R003 | Cada palabra poco vista es un hallazgo de su nivel | critical | - |
+| F-POCOV-R004 | La banda de frecuencia ordena qué repetir primero | critical | - |
+| F-POCOV-R005 | Cada palabra dice en qué temas está | major | - |
+| F-POCOV-R006 | La ficha la describe con su nombre de siempre | major | - |
+| F-POCOV-R007 | Las palabras sugeridas usan el umbral de la banda de cada palabra | critical | - |
+
+**User Journeys:**
+
+- **F-POCOV-J001**: Ver qué palabras del nivel repetir primero
+
+### FEAT-SEMAF: Semáforo de palabras por tema [F-SEMAF]
+
+> **Qué**: Una consulta por tema que devuelve sus palabras en verde (el nivel las espera y el curso casi no las usa) y en
+rojo (están por encima del nivel), más las palabras verdes para sumar, salvo las que el propio tema enseña.
+
+**Por qué**: Cuando una corrección tiene que cambiar una palabra, hoy no sabe cuál elegir: «wears» o una más rara. El
+curso necesita repetir, no evitar: de los 1.750 lemas que vuelven al menos una vez, sólo 134 lo hacen a un ritmo sano.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-SEMAF-R001 | Una consulta por tema, de sólo lectura | critical | Knowledge '<id>' not found in the analysis. |
+| F-SEMAF-R002 | Verde propio: la palabra del tema que conviene que vuelva | critical | - |
+| F-SEMAF-R003 | Verde para sumar: las sugeridas del nivel del tema | critical | - |
+| F-SEMAF-R004 | Lo que el tema enseña nunca es rojo | critical | - |
+| F-SEMAF-R005 | Rojo: lo que `lexis` marca para el nivel del tema | critical | - |
+| F-SEMAF-R006 | Una palabra nunca es roja por aparecer mucho | major | - |
+| F-SEMAF-R007 | El verde se ofrece; el rojo sólo avisa | critical | - |
+
+**User Journeys:**
+
+- **F-SEMAF-J001**: Pedir el semáforo de un tema
+
+### FEAT-RECUR: Recurrencia visible, por palabra y por nivel [F-RECUR]
+
+> **Qué**: `lemma-recurrence` sigue dando el mismo puntaje de curso, y además publica cada palabra (cuántas veces está,
+cada cuántas palabras vuelve y dónde está su hueco más largo) y la recurrencia dentro de cada nivel, como detalle.
+
+**Por qué**: Es la peor métrica del curso (8 %) y hoy sólo deja ese número: la vista del dashboard dice «No lemma
+recurrence data available», y nadie puede ver qué palabra vuelve poco ni en qué nivel se pierde.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-RECUR-R001 | Umbrales, orden y puntaje son los de hoy | critical | - |
+| F-RECUR-R002 | El plan y las tareas no cambian | critical | - |
+| F-RECUR-R003 | Cada palabra analizada queda en el informe | critical | - |
+| F-RECUR-R004 | La recurrencia dentro de cada nivel, como detalle | critical | - |
+| F-RECUR-R005 | Cada palabra fuera de rango es un hallazgo del curso | major | - |
+| F-RECUR-R006 | La ficha la describe con su nombre de siempre | major | - |
+
+**User Journeys:**
+
+- **F-RECUR-J001**: Ver qué palabras vuelven poco, en el curso y en cada nivel
+

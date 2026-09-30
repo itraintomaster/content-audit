@@ -1453,4 +1453,20 @@ public class AnalyzeCmdTest {
             }
         }
     }
+
+    @Test
+    @DisplayName("should reject «Largo de oración» as an analyzer name, since only the unique name sentence-length names the analyzer")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R004")
+    public void shouldRejectLargoDeOracinAsAnAnalyzerNameSinceOnlyTheUniqueNameSentencelengthNamesTheAnalyzer() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the 886 files of the 29/9 course identical byte for byte after analyzing it with the seventeen analyzers of round 1")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R008")
+    public void shouldLeaveThe886FilesOfThe299CourseIdenticalByteForByteAfterAnalyzingItWithTheSeventeenAnalyzersOfRound1() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

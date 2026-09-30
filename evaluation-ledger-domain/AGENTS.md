@@ -86,6 +86,22 @@ FEAT-EVCOST. Capacidad general de resultados de evaluacion costosa reutilizables
 |-------|------|
 | maxNewEvaluations | `int` |
 
+### EvaluationRequestMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| REUSE_OR_EVALUATE | `null` |
+| FORCE | `null` |
+| PREFER_NEW | `null` |
+| REUSE_ONLY | `null` |
+
+### EvaluationRequest (`record`)
+
+| Field | Type |
+|-------|------|
+| subject | `EvaluationSubject` |
+| mode | `EvaluationRequestMode` |
+
 ## Interfaces
 
 ### EvaluationOutcome (port)
@@ -122,10 +138,19 @@ Methods:
 - `consultedEvaluatorVersion(): Optional<String>`
 - `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution`
 - `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution`
+- `resolveAll(List<EvaluationRequest> requests,int maxConcurrent): List<EvaluationResolution>`
+- `recorded(EvaluationSubject subject): boolean`
+- `unavailableReason(): Optional<String>`
 
 ### EvaluationSessionFactory (factory)
 
 Methods:
 
 - `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
+
+### EvaluationTimeline (port)
+
+Methods:
+
+- `recordedTimes(String evaluatorId): List<Instant>`
 

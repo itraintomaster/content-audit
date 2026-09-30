@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.auditcli.formatting.DetailedFormatter;
 
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.auditapplication.AuditRunRequest;
@@ -70,12 +71,14 @@ final class StatsAnalyzerCmd implements StatsAnalyzerCommand, Callable<Integer> 
             defaultValue = "text")
     private String formatName;
 
-    public StatsAnalyzerCmd(AnalyzerRegistry analyzerRegistry,
-            AnalyzerStatsTransformer analyzerStatsTransformer, AuditRunner auditRunner) {
-        this.analyzerRegistry = analyzerRegistry;
-        this.analyzerStatsTransformer = analyzerStatsTransformer;
-        this.auditRunner = auditRunner;
-    }
+private final Map<String, DetailedFormatter> detailedFormatters;
+
+public StatsAnalyzerCmd(AnalyzerRegistry analyzerRegistry, AnalyzerStatsTransformer analyzerStatsTransformer, AuditRunner auditRunner, Map<String, DetailedFormatter> detailedFormatters) {
+    this.analyzerRegistry = analyzerRegistry;
+    this.analyzerStatsTransformer = analyzerStatsTransformer;
+    this.auditRunner = auditRunner;
+    this.detailedFormatters = detailedFormatters;
+}
 
     @Override
     public Integer call() {
@@ -112,7 +115,7 @@ final class StatsAnalyzerCmd implements StatsAnalyzerCommand, Callable<Integer> 
             // new ones, and declares how many quizzes lack one (DOUBT-STATS-DE-LOS-JUECES, A).
             boolean paidModel = descriptorOpt.get().getCost() == AnalysisCost.PAID_MODEL;
             Map<String, EvaluationRunPolicy> policies = paidModel
-                    ? Map.of(analyzerName, new EvaluationRunPolicy(0, false, null, null))
+                    ? Map.of(analyzerName, new EvaluationRunPolicy(0, false, null, null, null, null))
                     : null;
             AuditReport report = auditRunner.runAudit(Path.of(resolvedCoursePath),
                     new AuditRunRequest(Set.of(analyzerName), null, policies));

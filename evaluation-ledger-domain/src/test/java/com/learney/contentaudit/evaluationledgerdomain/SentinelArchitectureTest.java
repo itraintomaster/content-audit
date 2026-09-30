@@ -87,6 +87,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: EvaluationBudget - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.evaluationledgerdomain.EvaluationRequestMode");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EvaluationRequestMode - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.evaluationledgerdomain.EvaluationRequest");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EvaluationRequest - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: EvaluationOutcome - " + e.getMessage());
@@ -117,6 +127,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: EvaluationSessionFactory - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EvaluationTimeline - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultEvaluationSessionFactory - " + e.getMessage());
@@ -125,6 +140,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSession");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultEvaluationSession - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ExamEvaluationSessionFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamScopedEvaluationLedger");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ExamScopedEvaluationLedger - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter");

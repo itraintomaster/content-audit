@@ -17,15 +17,22 @@ public class EvaluationRunPolicy {
 
     private Set<String> reevaluationSubjectIds;
 
+    private EvaluationRunPurpose purpose;
+
+    private Integer maxConcurrentEvaluations;
+
     public EvaluationRunPolicy() {
     }
 
     public EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reevaluationScope,
-            Set<String> reevaluationSubjectIds) {
+            Set<String> reevaluationSubjectIds, EvaluationRunPurpose purpose,
+            Integer maxConcurrentEvaluations) {
         this.maxNewEvaluations = maxNewEvaluations;
         this.reevaluate = reevaluate;
         this.reevaluationScope = reevaluationScope;
         this.reevaluationSubjectIds = reevaluationSubjectIds;
+        this.purpose = purpose;
+        this.maxConcurrentEvaluations = maxConcurrentEvaluations;
     }
 
     public int getMaxNewEvaluations() {
@@ -60,6 +67,22 @@ public class EvaluationRunPolicy {
         this.reevaluationSubjectIds = reevaluationSubjectIds;
     }
 
+    public EvaluationRunPurpose getPurpose() {
+        return this.purpose;
+    }
+
+    public void setPurpose(EvaluationRunPurpose purpose) {
+        this.purpose = purpose;
+    }
+
+    public Integer getMaxConcurrentEvaluations() {
+        return this.maxConcurrentEvaluations;
+    }
+
+    public void setMaxConcurrentEvaluations(Integer maxConcurrentEvaluations) {
+        this.maxConcurrentEvaluations = maxConcurrentEvaluations;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,11 +91,13 @@ public class EvaluationRunPolicy {
         return Objects.equals(this.maxNewEvaluations, that.maxNewEvaluations)
                     && Objects.equals(this.reevaluate, that.reevaluate)
                     && Objects.equals(this.reevaluationScope, that.reevaluationScope)
-                    && Objects.equals(this.reevaluationSubjectIds, that.reevaluationSubjectIds);
+                    && Objects.equals(this.reevaluationSubjectIds, that.reevaluationSubjectIds)
+                    && Objects.equals(this.purpose, that.purpose)
+                    && Objects.equals(this.maxConcurrentEvaluations, that.maxConcurrentEvaluations);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(maxNewEvaluations, reevaluate, reevaluationScope, reevaluationSubjectIds);
+        return Objects.hash(maxNewEvaluations, reevaluate, reevaluationScope, reevaluationSubjectIds, purpose, maxConcurrentEvaluations);
     }
 }

@@ -542,4 +542,52 @@ public class DefaultRefinerEngineTest {
             }
         };
     }
+
+    @Test
+    @DisplayName("should derive from the 29/9 analysis with the seventeen analyzers of round 1 the same 4,036 tasks, declaring the scores below 1 of the new errors analyzers as without task kind and those of off-level-words as covered by LEMMA_ABSENCE")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R008")
+    public void shouldDeriveFromThe299AnalysisWithTheSeventeenAnalyzersOfRound1TheSame4036TasksDeclaringTheScoresBelow1OfTheNewErrorsAnalyzersAsWithoutTaskKindAndThoseOfOfflevelwordsAsCoveredByLEMMAABSENCE() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should open no task for an off-level-words score below 1 and declare it covered by the LEMMA_ABSENCE task of its quiz, never as an unconverted score")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R006")
+    public void shouldOpenNoTaskForAnOfflevelwordsScoreBelow1AndDeclareItCoveredByTheLEMMAABSENCETaskOfItsQuizNeverAsAnUnconvertedScore() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should plan the same 4,036 tasks for the analysis of 29/9 with and without off-level-words: SENTENCE_LENGTH 3,051, LEMMA_ABSENCE 950, KNOWLEDGE_INSTRUCTIONS_LENGTH 25, KNOWLEDGE_TITLE_LENGTH 6, COCA_BUCKETS 3 and LEMMA_RECURRENCE 1")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R006")
+    public void shouldPlanTheSame4036TasksForTheAnalysisOf299WithAndWithoutOfflevelwordsSENTENCELENGTH3051LEMMAABSENCE950KNOWLEDGEINSTRUCTIONSLENGTH25KNOWLEDGETITLELENGTH6COCABUCKETS3AndLEMMARECURRENCE1() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should open no task for lemma-count and keep the plan of the analysis of 29/9 at 4,036 tasks, with 4 for every band and with bands 8, 6, 4 and 3")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R002")
+    public void shouldOpenNoTaskForLemmacountAndKeepThePlanOfTheAnalysisOf299At4036TasksWith4ForEveryBandAndWithBands864And3() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep a single LEMMA_RECURRENCE task, on the course, and 4,036 tasks in the plan of the analysis of 29/9 with the new lemma-recurrence diagnosis and findings")
+    @Tag("FEAT-RECUR")
+    @Tag("F-RECUR-R002")
+    public void shouldKeepASingleLEMMARECURRENCETaskOnTheCourseAnd4036TasksInThePlanOfTheAnalysisOf299WithTheNewLemmarecurrenceDiagnosisAndFindings() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should open no task for lemma-recurrence findings, only the course task when its score is below 1")
+    @Tag("FEAT-RECUR")
+    @Tag("F-RECUR-R002")
+    public void shouldOpenNoTaskForLemmarecurrenceFindingsOnlyTheCourseTaskWhenItsScoreIsBelow1() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

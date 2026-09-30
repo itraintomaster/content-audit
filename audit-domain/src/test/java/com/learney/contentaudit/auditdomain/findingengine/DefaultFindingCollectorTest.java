@@ -544,4 +544,20 @@ public class DefaultFindingCollectorTest {
             }
         };
     }
+
+    @Test
+    @DisplayName("should accept the findings of an analyzer on an exercise it evaluated halfway, as multiple-choice-validity on «___ a child? (He)» with its judge pending")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R006")
+    public void shouldAcceptTheFindingsOfAnAnalyzerOnAnExerciseItEvaluatedHalfwayAsMultiplechoicevalidityOnAChildHeWithItsJudgePending() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject an exercise that names the same analyzer as evaluated halfway and as not evaluated")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R006")
+    public void shouldRejectAnExerciseThatNamesTheSameAnalyzerAsEvaluatedHalfwayAndAsNotEvaluated() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

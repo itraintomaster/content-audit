@@ -11,4 +11,6 @@ import javax.annotation.processing.Generated;
 )
 public interface LemmaCefrLevelResolver {
     Optional<CefrLevel> resolve(LemmaAndPos lemmaAndPos, Optional<CefrLevel> nlpCefr);
+
+    Optional<Integer> resolveCocaRank(LemmaAndPos lemmaAndPos);
 }

@@ -194,7 +194,7 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
             AnalyzeOptions options = new AnalyzeOptions(this.formatName, this.level, this.topic,
                     this.knowledge, this.analyzerFilter, this.excludeAnalyzers, this.detailed,
                     this.instructionBudget, this.reevaluateInstructions, reevaluateInstructionQuizIds,
-                    this.analyzerBudgets);
+                    this.analyzerBudgets, null, null);
             return analyze(this.coursePath, options);
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
@@ -434,7 +434,7 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
                 }
                 EvaluationRunPolicy policy = analyzerPolicies.get(name);
                 if (policy == null) {
-                    analyzerPolicies.put(name, new EvaluationRunPolicy(budget, false, null, null));
+                    analyzerPolicies.put(name, new EvaluationRunPolicy(budget, false, null, null, null, null));
                 } else if (QUIZ_INSTRUCTION_ANALYZER_NAME.equals(name) && instructionBudget != null
                         && !instructionBudget.equals(budget)) {
                     throw new IllegalArgumentException("--instruction-budget " + instructionBudget + " and --budget "

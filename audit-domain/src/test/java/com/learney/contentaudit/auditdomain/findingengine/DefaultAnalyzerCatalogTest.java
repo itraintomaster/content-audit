@@ -279,4 +279,20 @@ public class DefaultAnalyzerCatalogTest {
                     "R006: no rule of " + name + " costs more than its card");
         }
     }
+
+    @Test
+    @DisplayName("should reject at startup a card without a Spanish name with InvalidAnalyzerCardException")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R004")
+    public void shouldRejectAtStartupACardWithoutASpanishNameWithInvalidAnalyzerCardException() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject at startup two cards that share a Spanish name")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R004")
+    public void shouldRejectAtStartupTwoCardsThatShareASpanishName() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

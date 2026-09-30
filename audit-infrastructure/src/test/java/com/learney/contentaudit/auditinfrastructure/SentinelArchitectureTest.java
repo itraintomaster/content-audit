@@ -35,6 +35,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageExercisecopiesVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..auditinfrastructure..", "java..").should().dependOnClassesThat().resideInAPackage("..auditinfrastructure.exercisecopies..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore");
@@ -65,6 +71,21 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditinfrastructure.FileSystemQuizInstructionCorrectionRunStore");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: FileSystemQuizInstructionCorrectionRunStore - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditinfrastructure.FileSystemJudgeExamRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemJudgeExamRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemAudioRecordingRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemAudioRecordingRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemProductionSentenceSource");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemProductionSentenceSource - " + e.getMessage());
     }
   }
 }

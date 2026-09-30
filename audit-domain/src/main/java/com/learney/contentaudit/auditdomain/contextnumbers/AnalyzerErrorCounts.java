@@ -22,11 +22,13 @@ public class AnalyzerErrorCounts {
 
     private int marked;
 
+    private int partiallyEvaluated;
+
     public AnalyzerErrorCounts() {
     }
 
     public AnalyzerErrorCounts(String analyzer, int reached, int evaluated, int notEvaluated,
-            int withError, double errorShare, int marked) {
+            int withError, double errorShare, int marked, int partiallyEvaluated) {
         this.analyzer = analyzer;
         this.reached = reached;
         this.evaluated = evaluated;
@@ -34,6 +36,7 @@ public class AnalyzerErrorCounts {
         this.withError = withError;
         this.errorShare = errorShare;
         this.marked = marked;
+        this.partiallyEvaluated = partiallyEvaluated;
     }
 
     public String getAnalyzer() {
@@ -92,6 +95,14 @@ public class AnalyzerErrorCounts {
         this.marked = marked;
     }
 
+    public int getPartiallyEvaluated() {
+        return this.partiallyEvaluated;
+    }
+
+    public void setPartiallyEvaluated(int partiallyEvaluated) {
+        this.partiallyEvaluated = partiallyEvaluated;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -103,11 +114,12 @@ public class AnalyzerErrorCounts {
                     && Objects.equals(this.notEvaluated, that.notEvaluated)
                     && Objects.equals(this.withError, that.withError)
                     && Objects.equals(this.errorShare, that.errorShare)
-                    && Objects.equals(this.marked, that.marked);
+                    && Objects.equals(this.marked, that.marked)
+                    && Objects.equals(this.partiallyEvaluated, that.partiallyEvaluated);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(analyzer, reached, evaluated, notEvaluated, withError, errorShare, marked);
+        return Objects.hash(analyzer, reached, evaluated, notEvaluated, withError, errorShare, marked, partiallyEvaluated);
     }
 }

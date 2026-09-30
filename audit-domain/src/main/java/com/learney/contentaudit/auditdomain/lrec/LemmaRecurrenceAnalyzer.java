@@ -125,7 +125,7 @@ public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter, LemmaRecurre
             ExposureStatus status = exposureClassifier.classify(mean, lemmaRecurrenceConfig);
 
             String pos = lemmaPosTag.getOrDefault(lemma, "");
-            LemmaStats stats = new LemmaStats(lemma, pos, positions.size(), mean, stdDev, status, positions);
+            LemmaStats stats = new LemmaStats(lemma, pos, positions.size(), mean, stdDev, status, positions, 0, null, null, null);
             lemmaStatsList.add(stats);
 
             if (status == ExposureStatus.NORMAL) {

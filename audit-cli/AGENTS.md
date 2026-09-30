@@ -63,6 +63,8 @@ CLI entry point
 | reevaluateInstructions | `String` |
 | reevaluateInstructionQuizIds | `Set<String>` |
 | analyzerBudgets | `Map<String,Integer>` |
+| analyzerReevaluationSets | `Map<String,Set<String>>` |
+| maxConcurrentEvaluations | `Integer` |
 
 ## Interfaces
 
@@ -164,6 +166,14 @@ Methods:
 
 - `assessCandidate(String planId, String taskId, String candidateQuizSentence, String candidateTranslation, String coursePath, String format): Integer`
 
+### ExamCommand (port) [sealed]
+
+Methods:
+
+- `takeExam(String judgeName,String casesFile,String photoCourse,Integer budget,Integer concurrency,String verdictsOut): Integer`
+- `recordExam(String resultFile): Integer`
+- `showExams(String judgeName): Integer`
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -179,6 +189,37 @@ The following models and interfaces are available from dependencies. You can use
 | includedAnalyzers | `Set<String>` |
 | excludedAnalyzers | `Set<String>` |
 | analyzerPolicies | `Map<String,EvaluationRunPolicy>` |
+
+### JudgeExamRequest (`record`)
+
+| Field | Type |
+|-------|------|
+| judgeName | `String` |
+| photoCourse | `Path` |
+| caseIds | `Set<String>` |
+| maxNewEvaluations | `int` |
+| maxConcurrentEvaluations | `Integer` |
+
+### JudgeExamTaken (`record`)
+
+| Field | Type |
+|-------|------|
+| judgeName | `String` |
+| judgeVersion | `String` |
+| verdicts | `List<JudgeExamVerdict>` |
+| coverage | `JudgeCoverageDiagnosis` |
+| recordedAsTaken | `boolean` |
+
+### JudgeExamNotTakenException (`exception`)
+
+**Extends:** `IllegalArgumentException`
+
+**Message:** `La versión %2$s del juez '%1$s' no rindió el examen completo: no se puede registrar su resultado`
+
+| Field | Type |
+|-------|------|
+| judgeName | `String` |
+| judgeVersion | `String` |
 
 ### AuditRunner (service)
 
@@ -201,6 +242,14 @@ Methods:
 Methods:
 
 - `load(String rawThreshold): LemmaCountConfig`
+
+### JudgeExamService (service)
+
+Methods:
+
+- `take(JudgeExamRequest request): JudgeExamTaken`
+- `record(JudgeExamRecord measured): JudgeExamStanding` throws JudgeExamNotTakenException
+- `history(String judgeName): List<JudgeExamRecord>`
 
 ### From audit-domain
 
@@ -264,6 +313,8 @@ Methods:
 | instructions | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
 | multipleChoice | `MultipleChoiceEntity` |
+| miniTheory | `String` |
+| answerAudioKey | `String` |
 
 ### CefrLevel (`enum`)
 
@@ -320,6 +371,7 @@ Methods:
 | evaluatedTargets | `List<AuditTarget>` |
 | resolutions | `List<FindingResolution>` |
 | cost | `AnalysisCost` |
+| displayName | `String` |
 
 ### AuditNode (`record`)
 
@@ -335,6 +387,7 @@ Methods:
 | findings | `List<Finding>` |
 | numbers | `ContextNumbers` |
 | unevaluatedBy | `List<String>` |
+| partiallyEvaluatedBy | `List<String>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -371,6 +424,8 @@ Methods:
 | reevaluate | `boolean` |
 | reevaluationScope | `String` |
 | reevaluationSubjectIds | `Set<String>` |
+| purpose | `EvaluationRunPurpose` |
+| maxConcurrentEvaluations | `Integer` |
 
 ### EmptyReevaluationSetException (`exception`)
 
@@ -392,6 +447,21 @@ Methods:
 |-------|------|
 | analyzerName | `String` |
 | declaredScope | `String` |
+
+### EvaluationRunPurpose (`enum`)
+
+| Field | Type |
+|-------|------|
+| COURSE | `null` |
+| EXAM | `null` |
+
+### LemmaCountBand (`record`)
+
+| Field | Type |
+|-------|------|
+| name | `String` |
+| maxCocaRank | `Integer` |
+| threshold | `int` |
 
 ### AuditEngine (port)
 
@@ -529,6 +599,8 @@ Methods:
 - `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
 - `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>`
 - `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
+- `getJudgeCoverages(): List<JudgeCoverageDiagnosis>`
+- `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -558,6 +630,15 @@ Methods:
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
 - `getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>`
+- `getHintCoherenceDiagnosis(): Optional<HintCoherenceDiagnosis>`
+- `getAnswerCompletenessDiagnosis(): Optional<AnswerCompletenessDiagnosis>`
+- `getMultipleChoiceValidityDiagnosis(): Optional<MultipleChoiceValidityDiagnosis>`
+- `getDataCoherenceDiagnosis(): Optional<DataCoherenceDiagnosis>`
+- `getExactDuplicateDiagnosis(): Optional<ExactDuplicateDiagnosis>`
+- `getTranslationSenseDiagnosis(): Optional<TranslationSenseDiagnosis>`
+- `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>`
+- `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>`
+- `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -600,6 +681,7 @@ Methods:
 Methods:
 
 - `getThreshold(): int`
+- `getBands(): List<LemmaCountBand>`
 
 ### QuizInstructionVerdictReader (port)
 
@@ -644,6 +726,96 @@ Methods:
 Methods:
 
 - `compute(AuditNode root, List<AnalyzerDescriptor> analyzers): void`
+
+### QuizStudentViewRenderer (port)
+
+Methods:
+
+- `render(AuditableQuiz quiz): QuizStudentView`
+- `finishedSentence(AuditableQuiz quiz,SentenceMode mode): String`
+
+### TopicStudentViewQuery (port)
+
+Methods:
+
+- `viewOf(AuditReport report,String knowledgeId): TopicStudentView` throws StudentViewKnowledgeNotFoundException
+
+### IrregularFormsCatalog (port)
+
+Methods:
+
+- `formsOf(String baseWord): Set<String>`
+- `isPastParticiple(String word): boolean`
+
+### CorrectorMatcher (port)
+
+Methods:
+
+- `canonicalForms(String text): Set<String>`
+- `accepts(GapContext context,List<String> acceptedOptions,String written): boolean`
+- `sameAnswer(String first,String second): boolean`
+- `sameAnswer(GapContext context,String first,String second): boolean`
+- `tableVersion(): String`
+
+### FormEquivalenceTableSource (port)
+
+Methods:
+
+- `load(): FormEquivalenceTable`
+
+### AudioRecordingRegistry (port)
+
+Methods:
+
+- `recordingOf(String audioKey): Optional<AudioRecording>`
+- `version(): String`
+
+### ProductionSentenceSource (port)
+
+Methods:
+
+- `savedSentences(String quizId): Optional<List<String>>`
+
+### JudgeExamRegistry (port)
+
+Methods:
+
+- `record(JudgeExamRecord record): void`
+- `latest(String judgeName,String judgeVersion): Optional<JudgeExamRecord>`
+- `history(String judgeName): List<JudgeExamRecord>`
+
+### JudgeRuntimeConfig (port)
+
+Methods:
+
+- `getMaxConcurrentEvaluations(): int`
+- `getDefaultMaxNewEvaluations(String judgeName): int`
+- `getDefaultRatePerHour(String judgeName): double`
+
+### TranslationSenseConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
+
+### SingleAnswerConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
+
+### MiniTheoryConfig (port)
+
+Methods:
+
+- `getErrorScope(): MiniTheoryErrorScope`
+- `getScoreFor(FindingSeverity severity): double`
+
+### ChoiceAlternativeConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
 
 ### From course-domain
 
@@ -917,6 +1089,22 @@ Methods:
 |-------|------|
 | maxNewEvaluations | `int` |
 
+### EvaluationRequestMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| REUSE_OR_EVALUATE | `null` |
+| FORCE | `null` |
+| PREFER_NEW | `null` |
+| REUSE_ONLY | `null` |
+
+### EvaluationRequest (`record`)
+
+| Field | Type |
+|-------|------|
+| subject | `EvaluationSubject` |
+| mode | `EvaluationRequestMode` |
+
 ### EvaluationOutcome (port)
 
 ### EvaluationLedger (port)
@@ -951,12 +1139,21 @@ Methods:
 - `consultedEvaluatorVersion(): Optional<String>`
 - `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution`
 - `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution`
+- `resolveAll(List<EvaluationRequest> requests,int maxConcurrent): List<EvaluationResolution>`
+- `recorded(EvaluationSubject subject): boolean`
+- `unavailableReason(): Optional<String>`
 
 ### EvaluationSessionFactory (factory)
 
 Methods:
 
 - `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
+
+### EvaluationTimeline (port)
+
+Methods:
+
+- `recordedTimes(String evaluatorId): List<Instant>`
 
 ### From refiner-domain
 
@@ -1706,9 +1903,61 @@ Methods:
 | agentName | `String` |
 | providerName | `String` |
 
+### AgentJudgeSpec (`record`)
+
+| Field | Type |
+|-------|------|
+| evaluatorId | `String` |
+| verdictArtifactKey | `String` |
+| displayName | `String` |
+
+### AgentJudgeConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| providerName | `String` |
+| baseUrl | `String` |
+| apiKey | `String` |
+| modelName | `String` |
+| temperature | `Double` |
+| timeoutSeconds | `Integer` |
+
+### JudgeUnavailabilityCause (`enum`)
+
+| Field | Type |
+|-------|------|
+| SESSION_EXPIRED | `null` |
+| QUOTA_EXHAUSTED | `null` |
+| SERVICE_UNREACHABLE | `null` |
+| TIMEOUT | `null` |
+| NOT_INSTALLED | `null` |
+| UNKNOWN | `null` |
+
+### JudgeProviderReadiness (`record`)
+
+| Field | Type |
+|-------|------|
+| ready | `boolean` |
+| cause | `JudgeUnavailabilityCause` |
+| detail | `String` |
+| remedy | `String` |
+
 ### QuizInstructionJudgeFactory (factory)
 
 Methods:
 
 - `create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator agentDefinitionLocator): Evaluator`
+
+### AgentJudgeFactory (factory)
+
+Methods:
+
+- `create(AgentJudgeSpec spec,AgentJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator agentDefinitionLocator): Evaluator`
+
+### JudgeProviderReadinessProbe (port)
+
+Methods:
+
+- `probe(LlmProviderResolved provider): JudgeProviderReadiness`
+- `explain(LlmProviderResolved provider,String failure): JudgeProviderReadiness`
 

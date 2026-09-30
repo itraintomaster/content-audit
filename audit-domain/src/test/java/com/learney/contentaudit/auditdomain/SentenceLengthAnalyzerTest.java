@@ -772,4 +772,20 @@ public class SentenceLengthAnalyzerTest {
         }
         return result;
     }
+
+    @Test
+    @DisplayName("should mark «He isn't in the living-room.», 9 tokens against the 3 to 8 of A1, with the rule for longer sentences")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R005")
+    public void shouldMarkHeIsntInTheLivingroom9TokensAgainstThe3To8OfA1WithTheRuleForLongerSentences() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should mark a sentence under the minimum of its level with the rule for shorter sentences")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R005")
+    public void shouldMarkASentenceUnderTheMinimumOfItsLevelWithTheRuleForShorterSentences() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

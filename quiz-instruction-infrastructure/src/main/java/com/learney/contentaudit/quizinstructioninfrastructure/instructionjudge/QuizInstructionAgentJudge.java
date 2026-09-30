@@ -1,4 +1,5 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge;
+import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadinessProbe;
 import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved;
 import java.util.Optional;
 
@@ -49,12 +50,15 @@ private final JudgeChatModelFactory chatModelFactory;
 
 private final LlmProviderResolved provider;
 
-public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRunner agentGraphRunner, QuizInstructionJudgeVersionResolver versionResolver, JudgeChatModelFactory chatModelFactory, LlmProviderResolved provider) {
+private final JudgeProviderReadinessProbe readinessProbe;
+
+public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRunner agentGraphRunner, QuizInstructionJudgeVersionResolver versionResolver, JudgeChatModelFactory chatModelFactory, LlmProviderResolved provider, JudgeProviderReadinessProbe readinessProbe) {
     this.config = config;
     this.agentGraphRunner = agentGraphRunner;
     this.versionResolver = versionResolver;
     this.chatModelFactory = chatModelFactory;
     this.provider = provider;
+    this.readinessProbe = readinessProbe;
 }
 
     @Override

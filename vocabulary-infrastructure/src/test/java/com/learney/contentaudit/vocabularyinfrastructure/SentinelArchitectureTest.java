@@ -47,11 +47,33 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageIrregularformsVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..vocabularyinfrastructure..", "java..").should().dependOnClassesThat().resideInAPackage("..vocabularyinfrastructure.irregularforms..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
+  public void enforcePackageCorrectortableVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..vocabularyinfrastructure..", "java..").should().dependOnClassesThat().resideInAPackage("..vocabularyinfrastructure.correctortable..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.vocabularyinfrastructure.evp.FileSystemEvpCatalog");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: FileSystemEvpCatalog - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.vocabularyinfrastructure.irregularforms.FileSystemIrregularFormsCatalog");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemIrregularFormsCatalog - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.vocabularyinfrastructure.correctortable.FileSystemFormEquivalenceTableSource");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemFormEquivalenceTableSource - " + e.getMessage());
     }
   }
 }

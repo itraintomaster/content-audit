@@ -40,4 +40,20 @@ public class MainTest {
             assertNotNull(mainMethod, "R006: Main must declare a static main(String[]) entry point");
         }, "R006: Main.class must be accessible and declare the main method");
     }
+
+    @Test
+    @DisplayName("should register the seventeen analyzers of round 1 in catalog order, from sentence-length to mini-theory, each with the Spanish name of its card, «Largo de oración» to «Miniteoría»")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R004")
+    public void shouldRegisterTheSeventeenAnalyzersOfRound1InCatalogOrderFromSentencelengthToMinitheoryEachWithTheSpanishNameOfItsCardLargoDeOracinToMiniteora() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should list off-level-words with its card in get analyzers, registered in the catalog right after lemma-absence")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R007")
+    public void shouldListOfflevelwordsWithItsCardInGetAnalyzersRegisteredInTheCatalogRightAfterLemmaabsence() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

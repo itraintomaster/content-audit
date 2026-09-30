@@ -91,10 +91,10 @@ project-root/
 | Depends On | course-domain, evaluation-ledger-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 18 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection, EvaluationRunPolicy, EmptyReevaluationSetException, AmbiguousReevaluationScopeException) |
-| Interfaces | 31 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig, QuizInstructionVerdictReader, QuizInstructionConfig, AnalyzerProvider, AnalyzerCatalog, FindingCollector, ContextNumbersCalculator) |
+| Models | 20 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection, EvaluationRunPolicy, EmptyReevaluationSetException, AmbiguousReevaluationScopeException, EvaluationRunPurpose, LemmaCountBand) |
+| Interfaces | 44 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig, QuizInstructionVerdictReader, QuizInstructionConfig, AnalyzerProvider, AnalyzerCatalog, FindingCollector, ContextNumbersCalculator, QuizStudentViewRenderer, TopicStudentViewQuery, IrregularFormsCatalog, CorrectorMatcher, FormEquivalenceTableSource, AudioRecordingRegistry, ProductionSentenceSource, JudgeExamRegistry, JudgeRuntimeConfig, TranslationSenseConfig, SingleAnswerConfig, MiniTheoryConfig, ChoiceAlternativeConfig) |
 | Implementations | 8 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator, SentenceLengthAnalyzerProvider, KnowledgeTitleLengthAnalyzerProvider, KnowledgeInstructionsLengthAnalyzerProvider) |
-| Packages | 12 (coca [internal], lrec [internal], labs [internal], auditnodeindex [internal], lemmacount [internal], lexicalflags [public], quizinstruction [public], quizinstructionengine [public], finding [public], catalog [public], contextnumbers [public], findingengine [public]) |
+| Packages | 30 (coca [internal], lrec [internal], labs [internal], auditnodeindex [internal], lemmacount [internal], lexicalflags [public], quizinstruction [public], quizinstructionengine [public], finding [public], catalog [public], contextnumbers [public], findingengine [public], studentview [public], choicealternative [public], hintcoherence [public], correctormatch [public], answercompleteness [public], multiplechoicevalidity [public], datacoherence [public], exactduplicates [public], judging [public], judgingengine [public], translationsense [public], translationsenseengine [public], singleanswer [public], singleanswerengine [public], minitheory [public], minitheoryengine [public], choicealternativeengine [public], offlevelwords [public]) |
 
 ### course-domain
 
@@ -124,7 +124,7 @@ project-root/
 | Models | 17 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext, OutOfCatalogWordContext, QuizInstructionCorrectionContext, UnconvertedScoreCount) |
 | Interfaces | 7 (RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext, SuggestedLemmaQueryPort, SuggestedLemmaQuerySession, SuggestedLemmaQuerySessionFactory) |
 | Implementations | 6 (SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine, KnowledgeTitleContextResolver, QuizInstructionContextResolver) |
-| Packages | 1 (lemmasuggestion [internal]) |
+| Packages | 2 (lemmasuggestion [internal], topicwords [public]) |
 
 ### audit-application
 
@@ -134,9 +134,9 @@ project-root/
 | Depends On | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain, evaluation-ledger-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 1 (AuditRunRequest) |
-| Interfaces | 3 (AuditRunner, AnalyzerRegistry, LemmaCountConfigLoader) |
-| Implementations | 10 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry, DefaultLemmaCountConfig, DefaultLemmaCountConfigLoader, DefaultQuizInstructionConfig) |
+| Models | 4 (AuditRunRequest, JudgeExamRequest, JudgeExamTaken, JudgeExamNotTakenException) |
+| Interfaces | 4 (AuditRunner, AnalyzerRegistry, LemmaCountConfigLoader, JudgeExamService) |
+| Implementations | 16 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry, DefaultLemmaCountConfig, DefaultLemmaCountConfigLoader, DefaultQuizInstructionConfig, DefaultJudgeExamService, DefaultJudgeRuntimeConfig, DefaultTranslationSenseConfig, DefaultSingleAnswerConfig, DefaultMiniTheoryConfig, DefaultChoiceAlternativeConfig) |
 | Packages | 0 |
 
 ### course-infrastructure
@@ -165,7 +165,7 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 6 (GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter, AnalyzeOptions) |
-| Interfaces | 16 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand, RepairCommand, ReviseInstructionsCommand, AssessCandidateCommand) |
+| Interfaces | 17 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand, RepairCommand, ReviseInstructionsCommand, AssessCandidateCommand, ExamCommand) |
 | Implementations | 0 |
 | Packages | 3 (commands [internal], formatting [internal], bootstrap [internal]) |
 
@@ -197,7 +197,7 @@ project-root/
 | Models | 0 |
 | Interfaces | 0 |
 | Implementations | 0 |
-| Packages | 2 (evp [internal], coca [internal]) |
+| Packages | 4 (evp [internal], coca [internal], irregularforms [internal], correctortable [internal]) |
 
 ### audit-infrastructure
 
@@ -211,8 +211,8 @@ project-root/
 | Scope | internal |
 | Models | 0 |
 | Interfaces | 0 |
-| Implementations | 6 (FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore, FileSystemActiveAnalysisSelectionStore, FileSystemQuizInstructionCorrectionRunStore) |
-| Packages | 0 |
+| Implementations | 7 (FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore, FileSystemActiveAnalysisSelectionStore, FileSystemQuizInstructionCorrectionRunStore, FileSystemJudgeExamRegistry) |
+| Packages | 1 (exercisecopies [internal]) |
 
 ### revision-domain
 
@@ -255,8 +255,8 @@ project-root/
 | Depends On | (none — leaf module) |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 10 (EvaluationKey, EvaluationSubject, EvaluationRecord, EvaluationEmitted, EvaluationNotEmitted, EvaluationFailureKind, EvaluationResolutionKind, EvaluationResolution, EvaluationCoverage, EvaluationBudget) |
-| Interfaces | 6 (EvaluationOutcome, EvaluationLedger, ContentFingerprinter, Evaluator, EvaluationSession, EvaluationSessionFactory) |
+| Models | 12 (EvaluationKey, EvaluationSubject, EvaluationRecord, EvaluationEmitted, EvaluationNotEmitted, EvaluationFailureKind, EvaluationResolutionKind, EvaluationResolution, EvaluationCoverage, EvaluationBudget, EvaluationRequestMode, EvaluationRequest) |
+| Interfaces | 7 (EvaluationOutcome, EvaluationLedger, ContentFingerprinter, Evaluator, EvaluationSession, EvaluationSessionFactory, EvaluationTimeline) |
 | Implementations | 0 |
 | Packages | 2 (evaluationsession [public], contentfingerprint [public]) |
 
@@ -294,8 +294,7 @@ project-root/
 
 ### quiz-instruction-infrastructure
 
-> Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). El juez no tiene proveedor propio: admite las mismas clases de proveedor que el resto del sistema —incluidas las que se autentican con la sesion local del usuario y por eso no llevan direccion de servicio ni credencial— y juzga la validez de su configuracion contra el proveedor que ella declara (F-QINST-R016). Su version es procedencia, no vigencia: se deriva de la definicion del agente, del modelo y del proveedor efectivo, se estampa sobre cada veredicto nuevo y se declara en el informe, pero no decide que veredictos valen (F-QINST-R010). Cuando la definicion no se puede localizar el juez no enuncia version alguna —evaluatorVersion() devuelve Optional.empty()— y con eso queda tratado como no disponible por la propia sesion. Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
-
+> Adaptadores de los jueces con modelo. Nació con el del juez de consigna (instructionjudge: agente quiz-instruction-validator, cinco entradas verbatim, veredicto conservador como OUTPUT_UNUSABLE, fallas de servicio como EVALUATOR_UNAVAILABLE, versión derivada de la definición, el modelo y el proveedor) y desde FEAT-JEXAM aloja también el evaluador genérico por agente de los jueces nuevos (agentjudge) y los lectores de sus veredictos, un paquete por juez. Todos comparten la verificación sin costo de la sesión del proveedor (F-JEXAM-R011). allowedClients=[audit-cli]: es un detalle de la raíz de composición.
 
 | Property | Value |
 |----------|-------|
@@ -303,10 +302,10 @@ project-root/
 | Depends On | audit-domain, evaluation-ledger-domain, agent-runtime-infrastructure |
 | Allowed Clients | audit-cli |
 | Scope | public |
-| Models | 1 (QuizInstructionJudgeConfig) |
-| Interfaces | 1 (QuizInstructionJudgeFactory) |
+| Models | 5 (QuizInstructionJudgeConfig, AgentJudgeSpec, AgentJudgeConfig, JudgeUnavailabilityCause, JudgeProviderReadiness) |
+| Interfaces | 3 (QuizInstructionJudgeFactory, AgentJudgeFactory, JudgeProviderReadinessProbe) |
 | Implementations | 0 |
-| Packages | 2 (instructionjudge [public], instructionverdict [public]) |
+| Packages | 7 (instructionjudge [public], instructionverdict [public], agentjudge [public], translationsenseverdict [public], singleanswerverdict [public], minitheoryverdict [public], choicealternativeverdict [public]) |
 
 ## Dependency Graph
 

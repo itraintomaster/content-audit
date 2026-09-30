@@ -171,4 +171,20 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
         org.junit.jupiter.api.Assertions.assertEquals(highest, card.getCost(),
                 "R006 inv. 2: the cost of the card of " + name + " is the highest cost of its rules");
     }
+
+    @Test
+    @DisplayName("should build the consigna analyzer with budget 0 when the run declares no budget for quiz-instruction, instead of the 500 of its configuration")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R010")
+    public void shouldBuildTheConsignaAnalyzerWithBudget0WhenTheRunDeclaresNoBudgetForQuizinstructionInsteadOfThe500OfItsConfiguration() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should open the consigna judge through the judges runtime, so a version that did not pass the exam gets budget 0 whatever the run asked")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R003")
+    public void shouldOpenTheConsignaJudgeThroughTheJudgesRuntimeSoAVersionThatDidNotPassTheExamGetsBudget0WhateverTheRunAsked() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

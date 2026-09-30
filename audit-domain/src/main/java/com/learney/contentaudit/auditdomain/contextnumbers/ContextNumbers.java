@@ -15,14 +15,17 @@ public class ContextNumbers {
 
     private ErrorCounts errors;
 
+    private List<AnalyzerFindingCounts> findingCounts;
+
     public ContextNumbers() {
     }
 
     public ContextNumbers(Double vocabularyScore, List<AnalyzerScore> analyzerScores,
-            ErrorCounts errors) {
+            ErrorCounts errors, List<AnalyzerFindingCounts> findingCounts) {
         this.vocabularyScore = vocabularyScore;
         this.analyzerScores = analyzerScores;
         this.errors = errors;
+        this.findingCounts = findingCounts;
     }
 
     public Double getVocabularyScore() {
@@ -49,6 +52,14 @@ public class ContextNumbers {
         this.errors = errors;
     }
 
+    public List<AnalyzerFindingCounts> getFindingCounts() {
+        return this.findingCounts;
+    }
+
+    public void setFindingCounts(List<AnalyzerFindingCounts> findingCounts) {
+        this.findingCounts = findingCounts;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,11 +67,12 @@ public class ContextNumbers {
         ContextNumbers that = (ContextNumbers) o;
         return Objects.equals(this.vocabularyScore, that.vocabularyScore)
                     && Objects.equals(this.analyzerScores, that.analyzerScores)
-                    && Objects.equals(this.errors, that.errors);
+                    && Objects.equals(this.errors, that.errors)
+                    && Objects.equals(this.findingCounts, that.findingCounts);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(vocabularyScore, analyzerScores, errors);
+        return Objects.hash(vocabularyScore, analyzerScores, errors, findingCounts);
     }
 }

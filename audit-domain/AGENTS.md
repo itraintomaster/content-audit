@@ -65,6 +65,8 @@ Core business logic
 | instructions | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
 | multipleChoice | `MultipleChoiceEntity` |
+| miniTheory | `String` |
+| answerAudioKey | `String` |
 
 ### CefrLevel (`enum`)
 
@@ -121,6 +123,7 @@ Core business logic
 | evaluatedTargets | `List<AuditTarget>` |
 | resolutions | `List<FindingResolution>` |
 | cost | `AnalysisCost` |
+| displayName | `String` |
 
 ### AuditNode (`record`)
 
@@ -136,6 +139,7 @@ Core business logic
 | findings | `List<Finding>` |
 | numbers | `ContextNumbers` |
 | unevaluatedBy | `List<String>` |
+| partiallyEvaluatedBy | `List<String>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -172,6 +176,8 @@ Core business logic
 | reevaluate | `boolean` |
 | reevaluationScope | `String` |
 | reevaluationSubjectIds | `Set<String>` |
+| purpose | `EvaluationRunPurpose` |
+| maxConcurrentEvaluations | `Integer` |
 
 ### EmptyReevaluationSetException (`exception`)
 
@@ -193,6 +199,21 @@ Core business logic
 |-------|------|
 | analyzerName | `String` |
 | declaredScope | `String` |
+
+### EvaluationRunPurpose (`enum`)
+
+| Field | Type |
+|-------|------|
+| COURSE | `null` |
+| EXAM | `null` |
+
+### LemmaCountBand (`record`)
+
+| Field | Type |
+|-------|------|
+| name | `String` |
+| maxCocaRank | `Integer` |
+| threshold | `int` |
 
 ## Interfaces
 
@@ -332,6 +353,8 @@ Methods:
 - `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
 - `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>`
 - `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
+- `getJudgeCoverages(): List<JudgeCoverageDiagnosis>`
+- `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -361,6 +384,15 @@ Methods:
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
 - `getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>`
+- `getHintCoherenceDiagnosis(): Optional<HintCoherenceDiagnosis>`
+- `getAnswerCompletenessDiagnosis(): Optional<AnswerCompletenessDiagnosis>`
+- `getMultipleChoiceValidityDiagnosis(): Optional<MultipleChoiceValidityDiagnosis>`
+- `getDataCoherenceDiagnosis(): Optional<DataCoherenceDiagnosis>`
+- `getExactDuplicateDiagnosis(): Optional<ExactDuplicateDiagnosis>`
+- `getTranslationSenseDiagnosis(): Optional<TranslationSenseDiagnosis>`
+- `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>`
+- `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>`
+- `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -403,6 +435,7 @@ Methods:
 Methods:
 
 - `getThreshold(): int`
+- `getBands(): List<LemmaCountBand>`
 
 ### QuizInstructionVerdictReader (port)
 
@@ -448,6 +481,96 @@ Methods:
 
 - `compute(AuditNode root, List<AnalyzerDescriptor> analyzers): void`
 
+### QuizStudentViewRenderer (port)
+
+Methods:
+
+- `render(AuditableQuiz quiz): QuizStudentView`
+- `finishedSentence(AuditableQuiz quiz,SentenceMode mode): String`
+
+### TopicStudentViewQuery (port)
+
+Methods:
+
+- `viewOf(AuditReport report,String knowledgeId): TopicStudentView` throws StudentViewKnowledgeNotFoundException
+
+### IrregularFormsCatalog (port)
+
+Methods:
+
+- `formsOf(String baseWord): Set<String>`
+- `isPastParticiple(String word): boolean`
+
+### CorrectorMatcher (port)
+
+Methods:
+
+- `canonicalForms(String text): Set<String>`
+- `accepts(GapContext context,List<String> acceptedOptions,String written): boolean`
+- `sameAnswer(String first,String second): boolean`
+- `sameAnswer(GapContext context,String first,String second): boolean`
+- `tableVersion(): String`
+
+### FormEquivalenceTableSource (port)
+
+Methods:
+
+- `load(): FormEquivalenceTable`
+
+### AudioRecordingRegistry (port)
+
+Methods:
+
+- `recordingOf(String audioKey): Optional<AudioRecording>`
+- `version(): String`
+
+### ProductionSentenceSource (port)
+
+Methods:
+
+- `savedSentences(String quizId): Optional<List<String>>`
+
+### JudgeExamRegistry (port)
+
+Methods:
+
+- `record(JudgeExamRecord record): void`
+- `latest(String judgeName,String judgeVersion): Optional<JudgeExamRecord>`
+- `history(String judgeName): List<JudgeExamRecord>`
+
+### JudgeRuntimeConfig (port)
+
+Methods:
+
+- `getMaxConcurrentEvaluations(): int`
+- `getDefaultMaxNewEvaluations(String judgeName): int`
+- `getDefaultRatePerHour(String judgeName): double`
+
+### TranslationSenseConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
+
+### SingleAnswerConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
+
+### MiniTheoryConfig (port)
+
+Methods:
+
+- `getErrorScope(): MiniTheoryErrorScope`
+- `getScoreFor(FindingSeverity severity): double`
+
+### ChoiceAlternativeConfig (port)
+
+Methods:
+
+- `getScoreFor(FindingSeverity severity): double`
+
 ## Implementations
 
 ### IAuditEngine
@@ -483,6 +606,15 @@ Methods:
 - should keep the identity of the finding on «Where is my wallet?» when «He isn't in the living-room.», another quiz of its knowledge, changes → FEAT-HALL/F-HALL-R014
 - should leave as not evaluated by quiz-instruction a quiz on which the judge failed, so that it counts among the unevaluated quizzes → FEAT-HALL/F-HALL-R008
 - should leave the auditable course untouched when an analyzer returns a finding that is resolved by a rule → FEAT-HALL/F-HALL-R015
+- should run multiple-choice-validity in the base run with budget 0 for its judge, so its instant rules mark «___ a child? (He)» and no consultation is paid → FEAT-RONDA1/F-RONDA1-R007
+- should count in the base run only the multiple choice verdicts already recorded, reused without a new consultation → FEAT-RONDA1/F-RONDA1-R007
+- should leave quiz-instruction, translation-sense, single-answer and mini-theory out of the base run, since none has an instant rule → FEAT-RONDA1/F-RONDA1-R007
+- should give lemma-absence the same scores and typed diagnoses in every node whether or not off-level-words runs in the same analysis → FEAT-NIVFR/F-NIVFR-R006
+- should keep the vocabulary score of every node when off-level-words runs, 73.92% in the course and 96.54, 94.16, 79.45 and 63.51 from A1 to B2 on the published scores of the analysis of 29/9 → FEAT-NIVFR/F-NIVFR-R006
+- should publish a course vocabulary score of 73.92% and levels 96.54, 94.16, 79.45 and 63.51 with lemma-count at 4 for every band, next to the other six published scores of the analysis of 29/9 → FEAT-POCOV/F-POCOV-R001
+- should publish a course vocabulary score of 73.86% and levels 96.02, 93.60, 78.87 and 63.86 with lemma-count at bands 8, 6, 4 and 3, next to the other six published scores of the analysis of 29/9 → FEAT-POCOV/F-POCOV-R001
+- should keep the course vocabulary score at 73.92% with lemma-recurrence at 0.08 publishing its course diagnosis, on the published scores of the analysis of 29/9 → FEAT-RECUR/F-RECUR-R001
+- should keep the vocabulary score of every level at 96.54, 94.16, 79.45 and 63.51 with the recurrence of each level published as detail → FEAT-RECUR/F-RECUR-R004
 
 ### KnowledgeTitleLengthAnalyzer
 
@@ -590,6 +722,8 @@ Methods:
 - should grade low and resolve at the panel the finding of «He isn't in the living-room.», one token over the 3 to 8 of A1 → FEAT-HALL/F-HALL-R002
 - should give the finding of «He isn't in the living-room.» as evidence the sentence as the student reads it and its measure next to its goal, 9 tokens against the 3 to 8 of A1, never the internal format of the course → FEAT-HALL/F-HALL-R003
 - should keep emitting for «He isn't in the living-room.» the same SentenceLengthDiagnosis as before, 9 tokens against 3 to 8 with delta 1 and margin 5, with nothing of it copied into its finding → FEAT-HALL/F-HALL-R001
+- should mark «He isn't in the living-room.», 9 tokens against the 3 to 8 of A1, with the rule for longer sentences → FEAT-RONDA1/F-RONDA1-R005
+- should mark a sentence under the minimum of its level with the rule for shorter sentences → FEAT-RONDA1/F-RONDA1-R005
 
 ### IScoreAggregator
 
@@ -611,6 +745,7 @@ Methods:
 **Tests that must pass:**
 
 - should describe sentence-length in its card as vocabulary, evaluating the quiz, resolved at the panel and instant, with the goal A1 3 to 8 tokens that the code applies → FEAT-HALL/F-HALL-R006
+- should declare in the sentence-length card one rule for sentences shorter than the goal and another for longer ones → FEAT-RONDA1/F-RONDA1-R005
 
 ### KnowledgeTitleLengthAnalyzerProvider
 
@@ -904,6 +1039,22 @@ Methods:
 |-------|------|
 | maxNewEvaluations | `int` |
 
+### EvaluationRequestMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| REUSE_OR_EVALUATE | `null` |
+| FORCE | `null` |
+| PREFER_NEW | `null` |
+| REUSE_ONLY | `null` |
+
+### EvaluationRequest (`record`)
+
+| Field | Type |
+|-------|------|
+| subject | `EvaluationSubject` |
+| mode | `EvaluationRequestMode` |
+
 ### EvaluationOutcome (port)
 
 ### EvaluationLedger (port)
@@ -938,10 +1089,19 @@ Methods:
 - `consultedEvaluatorVersion(): Optional<String>`
 - `resolvePreferringNew(EvaluationSubject subject): EvaluationResolution`
 - `resolveWithoutConsulting(EvaluationSubject subject): EvaluationResolution`
+- `resolveAll(List<EvaluationRequest> requests,int maxConcurrent): List<EvaluationResolution>`
+- `recorded(EvaluationSubject subject): boolean`
+- `unavailableReason(): Optional<String>`
 
 ### EvaluationSessionFactory (factory)
 
 Methods:
 
 - `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
+
+### EvaluationTimeline (port)
+
+Methods:
+
+- `recordedTimes(String evaluatorId): List<Instant>`
 

@@ -63,4 +63,12 @@ public class LemmaRecurrenceAnalyzerProviderTest {
         org.junit.jupiter.api.Assertions.assertEquals(highest, card.getCost(),
                 "R006 inv. 2: the cost of the card of " + name + " is the highest cost of its rules");
     }
+
+    @Test
+    @DisplayName("should describe lemma-recurrence in its card: whether words return at healthy intervals, reading the sentences of the whole course in order, vocabulary family, course target, goal of returning every more than 50 and up to 1,000 words, only ordering and instant cost")
+    @Tag("FEAT-RECUR")
+    @Tag("F-RECUR-R006")
+    public void shouldDescribeLemmarecurrenceInItsCardWhetherWordsReturnAtHealthyIntervalsReadingTheSentencesOfTheWholeCourseInOrderVocabularyFamilyCourseTargetGoalOfReturningEveryMoreThan50AndUpTo1000WordsOnlyOrderingAndInstantCost() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -565,4 +565,52 @@ public class DefaultContextNumbersCalculatorTest {
     private static String percent(double score) {
         return String.format(Locale.ROOT, "%.1f", score * 100).replace('.', ',');
     }
+
+    @Test
+    @DisplayName("should publish for every analyzer that ran and every node type it evaluates how many nodes it reaches, evaluates and marks and how many findings it leaves, also for a vocabulary analyzer like sentence-length")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R005")
+    public void shouldPublishForEveryAnalyzerThatRanAndEveryNodeTypeItEvaluatesHowManyNodesItReachesEvaluatesAndMarksAndHowManyFindingsItLeavesAlsoForAVocabularyAnalyzerLikeSentencelength() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should count the nodes with findings by their highest severity, so the four severities add up to the nodes with findings")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R005")
+    public void shouldCountTheNodesWithFindingsByTheirHighestSeveritySoTheFourSeveritiesAddUpToTheNodesWithFindings() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should count each rule of the card with its nodes and findings, so the findings of the rules add up to those of the analyzer")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R005")
+    public void shouldCountEachRuleOfTheCardWithItsNodesAndFindingsSoTheFindingsOfTheRulesAddUpToThoseOfTheAnalyzer() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should count in a context the sum of its children plus the node itself when the analyzer evaluates it, as lemma-absence in a level")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R005")
+    public void shouldCountInAContextTheSumOfItsChildrenPlusTheNodeItselfWhenTheAnalyzerEvaluatesItAsLemmaabsenceInALevel() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should count an exercise evaluated halfway as evaluated by the analyzer, in its halfway count and in the node's count of exercises not fully evaluated")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R006")
+    public void shouldCountAnExerciseEvaluatedHalfwayAsEvaluatedByTheAnalyzerInItsHalfwayCountAndInTheNodesCountOfExercisesNotFullyEvaluated() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should count as errors the rule findings of an exercise the judge did not see, as the capital letter of «___ a child? (He)», so «algún error» reads as a floor")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R006")
+    public void shouldCountAsErrorsTheRuleFindingsOfAnExerciseTheJudgeDidNotSeeAsTheCapitalLetterOfAChildHeSoAlgnErrorReadsAsAFloor() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

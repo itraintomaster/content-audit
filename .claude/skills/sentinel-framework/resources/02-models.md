@@ -130,10 +130,12 @@ new AuditableMilestone(List<AuditableTopic> topics, String id, String label, Str
 | `instructions` | `String` |  |
 | `sentenceParts` | `List<SentencePartEntity>` | Import `java.util.List` |
 | `multipleChoice` | `MultipleChoiceEntity` |  |
+| `miniTheory` | `String` |  |
+| `answerAudioKey` | `String` |  |
 
 **Generated constructor:**
 ```java
-new AuditableQuiz(List<NlpToken> tokens, String id, String label, String code, String translation, List<String> sentences, String quizSentence, String instructions, List<SentencePartEntity> sentenceParts, MultipleChoiceEntity multipleChoice)
+new AuditableQuiz(List<NlpToken> tokens, String id, String label, String code, String translation, List<String> sentences, String quizSentence, String instructions, List<SentencePartEntity> sentenceParts, MultipleChoiceEntity multipleChoice, String miniTheory, String answerAudioKey)
 ```
 
 #### CefrLevel
@@ -226,10 +228,11 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 | `evaluatedTargets` | `List<AuditTarget>` | Import `java.util.List` |
 | `resolutions` | `List<FindingResolution>` | Import `java.util.List` |
 | `cost` | `AnalysisCost` |  |
+| `displayName` | `String` |  |
 
 **Generated constructor:**
 ```java
-new AnalyzerDescriptor(String name, String description, AuditTarget target, String question, String reads, List<AnalyzerRuleCard> rules, String goal, AnalyzerFamily family, List<AuditTarget> evaluatedTargets, List<FindingResolution> resolutions, AnalysisCost cost)
+new AnalyzerDescriptor(String name, String description, AuditTarget target, String question, String reads, List<AnalyzerRuleCard> rules, String goal, AnalyzerFamily family, List<AuditTarget> evaluatedTargets, List<FindingResolution> resolutions, AnalysisCost cost, String displayName)
 ```
 
 #### AuditNode
@@ -249,10 +252,11 @@ new AnalyzerDescriptor(String name, String description, AuditTarget target, Stri
 | `findings` | `List<Finding>` | Import `java.util.List` |
 | `numbers` | `ContextNumbers` |  |
 | `unevaluatedBy` | `List<String>` | Import `java.util.List` |
+| `partiallyEvaluatedBy` | `List<String>` | Import `java.util.List` |
 
 **Generated constructor:**
 ```java
-new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List<AuditNode> children, Map<String,Double> scores, Map<String,Object> metadata, NodeDiagnoses diagnoses, List<Finding> findings, ContextNumbers numbers, List<String> unevaluatedBy)
+new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List<AuditNode> children, Map<String,Double> scores, Map<String,Object> metadata, NodeDiagnoses diagnoses, List<Finding> findings, ContextNumbers numbers, List<String> unevaluatedBy, List<String> partiallyEvaluatedBy)
 ```
 
 #### SentenceLengthDiagnosis
@@ -317,10 +321,12 @@ new ActiveAnalysisSelection(String auditId, String planId)
 | `reevaluate` | `boolean` |  |
 | `reevaluationScope` | `String` |  |
 | `reevaluationSubjectIds` | `Set<String>` |  |
+| `purpose` | `EvaluationRunPurpose` |  |
+| `maxConcurrentEvaluations` | `Integer` |  |
 
 **Generated constructor:**
 ```java
-new EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reevaluationScope, Set<String> reevaluationSubjectIds)
+new EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reevaluationScope, Set<String> reevaluationSubjectIds, EvaluationRunPurpose purpose, Integer maxConcurrentEvaluations)
 ```
 
 #### EmptyReevaluationSetException
@@ -354,6 +360,37 @@ new EmptyReevaluationSetException(String analyzerName)
 **Generated class** extends `IllegalArgumentException` with constructor:
 ```java
 new AmbiguousReevaluationScopeException(String analyzerName, String declaredScope)
+```
+
+#### EvaluationRunPurpose
+
+**Package:** `com.learney.contentaudit.auditdomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `COURSE` | `null` |  |
+| `EXAM` | `null` |  |
+
+**Generated constructor:**
+```java
+new EvaluationRunPurpose(null COURSE, null EXAM)
+```
+
+#### LemmaCountBand
+
+**Package:** `com.learney.contentaudit.auditdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `name` | `String` |  |
+| `maxCocaRank` | `Integer` |  |
+| `threshold` | `int` |  |
+
+**Generated constructor:**
+```java
+new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 ```
 
 #### FrequencyBand (package: coca)
@@ -641,6 +678,10 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | `stdDevInterval` | `double` |
 | `exposureStatus` | `ExposureStatus` |
 | `occurrencePositions` | `List<Integer>` |
+| `longestGap` | `int` |
+| `longestGapFromLevel` | `CefrLevel` |
+| `longestGapToLevel` | `CefrLevel` |
+| `levels` | `List<CefrLevel>` |
 
 #### ExposureSummary (package: lrec)
 
@@ -665,6 +706,33 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | `lemmaStats` | `List<LemmaStats>` |
 | `exposureSummary` | `ExposureSummary` |
 | `overallScore` | `double` |
+
+#### LevelRecurrence (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `level` | `CefrLevel` |
+| `positions` | `int` |
+| `returningLemmas` | `int` |
+| `normalCount` | `int` |
+| `subExposedCount` | `int` |
+| `overExposedCount` | `int` |
+| `normalShare` | `double` |
+
+#### LemmaRecurrenceCourseDiagnosis (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `result` | `LemmaRecurrenceResult` |
+| `levels` | `List<LevelRecurrence>` |
 
 #### AbsenceType (package: labs)
 
@@ -921,6 +989,8 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | `courseScore` | `Optional<Double>` |
 | `levels` | `List<LevelLemmaCountResult>` |
 | `unassigned` | `List<UnassignedLemmaEntry>` |
+| `bands` | `List<LemmaCountBand>` |
+| `exposures` | `List<LemmaExposure>` |
 
 #### LemmaCountCourseDiagnosis (package: lemmacount)
 
@@ -941,6 +1011,23 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | Field | Type |
 |-------|------|
 | `levelResult` | `LevelLemmaCountResult` |
+
+#### LemmaExposure (package: lemmacount)
+
+**Package:** `com.learney.contentaudit.auditdomain.lemmacount`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemmaAndPos` | `LemmaAndPos` |
+| `assignedLevel` | `CefrLevel` |
+| `count` | `int` |
+| `cocaRank` | `Integer` |
+| `band` | `String` |
+| `threshold` | `int` |
+| `score` | `double` |
+| `knowledgeIds` | `List<String>` |
 
 #### SentenceLexicalFlags (package: lexicalflags)
 
@@ -1068,6 +1155,7 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | `consultedJudgeVersion` | `String` |
 | `verdictsByJudgeVersion` | `List<JudgeVersionVerdictCount>` |
 | `unmatchedReevaluationIds` | `List<String>` |
+| `judge` | `JudgeCoverageDiagnosis` |
 
 #### JudgeVersionVerdictCount (package: quizinstruction)
 
@@ -1134,6 +1222,8 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | `AREA_REEVALUATION` | `null` |
 | `DECLARED_SET_REEVALUATION` | `null` |
 | `OUTSIDE_DECLARED_SET` | `null` |
+| `EXAM_CASE` | `null` |
+| `NOT_REQUESTED` | `null` |
 
 #### Finding (package: finding)
 
@@ -1338,6 +1428,7 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | `vocabularyScore` | `Double` |
 | `analyzerScores` | `List<AnalyzerScore>` |
 | `errors` | `ErrorCounts` |
+| `findingCounts` | `List<AnalyzerFindingCounts>` |
 
 #### AnalyzerScore (package: contextnumbers)
 
@@ -1393,6 +1484,7 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | `withError` | `int` |
 | `errorShare` | `double` |
 | `marked` | `int` |
+| `partiallyEvaluated` | `int` |
 
 #### SeverityCounts (package: contextnumbers)
 
@@ -1433,6 +1525,952 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | `findings` | `List<Finding>` |
 | `unevaluatedBy` | `List<String>` |
 | `children` | `List<DigestNode>` |
+| `partiallyEvaluatedBy` | `List<String>` |
+
+#### AnalyzerFindingCounts (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `analyzer` | `String` |
+| `family` | `AnalyzerFamily` |
+| `target` | `AuditTarget` |
+| `reached` | `int` |
+| `evaluated` | `int` |
+| `withFinding` | `int` |
+| `findings` | `int` |
+| `bySeverity` | `SeverityCounts` |
+| `byRule` | `List<RuleFindingCount>` |
+
+#### RuleFindingCount (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `rule` | `String` |
+| `withFinding` | `int` |
+| `findings` | `int` |
+
+#### QuizStudentView (package: studentview)
+
+**Package:** `com.learney.contentaudit.auditdomain.studentview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `statement` | `String` |
+| `gaps` | `List<StudentGapView>` |
+| `options` | `List<StudentOptionView>` |
+| `instructions` | `String` |
+| `translation` | `String` |
+| `miniTheory` | `String` |
+
+#### StudentGapView (package: studentview)
+
+**Package:** `com.learney.contentaudit.auditdomain.studentview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `index` | `int` |
+| `hint` | `String` |
+| `acceptedAnswers` | `List<String>` |
+| `firstAnswer` | `String` |
+
+#### StudentOptionView (package: studentview)
+
+**Package:** `com.learney.contentaudit.auditdomain.studentview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `label` | `String` |
+| `correct` | `boolean` |
+
+#### TopicStudentView (package: studentview)
+
+**Package:** `com.learney.contentaudit.auditdomain.studentview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `auditId` | `String` |
+| `knowledgeId` | `String` |
+| `label` | `String` |
+| `instructions` | `String` |
+| `sentenceMode` | `SentenceMode` |
+| `quizzes` | `List<StudentQuizEntry>` |
+
+#### StudentQuizEntry (package: studentview)
+
+**Package:** `com.learney.contentaudit.auditdomain.studentview`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `quizId` | `String` |
+| `view` | `QuizStudentView` |
+| `finishedSentence` | `String` |
+| `answerAudioKey` | `String` |
+| `recordedAudioText` | `String` |
+
+#### StudentViewKnowledgeNotFoundException (package: studentview)
+
+**Package:** `com.learney.contentaudit.auditdomain.studentview`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `knowledgeId` | `String` |
+
+#### ChoiceAlternativeOption (package: choicealternative)
+
+**Package:** `com.learney.contentaudit.auditdomain.choicealternative`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `label` | `String` |
+| `severity` | `FindingSeverity` |
+| `reason` | `String` |
+
+#### ChoiceAlternativeVerdict (package: choicealternative)
+
+**Package:** `com.learney.contentaudit.auditdomain.choicealternative`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `correctIsValid` | `boolean` |
+| `validAlternatives` | `List<ChoiceAlternativeOption>` |
+| `correctProblem` | `String` |
+| `rationale` | `String` |
+
+#### ChoiceAlternativeJudgmentStatus (package: choicealternative)
+
+**Package:** `com.learney.contentaudit.auditdomain.choicealternative`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `JUDGED` | `null` |
+| `PENDING` | `null` |
+| `FAILED` | `null` |
+| `NOT_AVAILABLE` | `null` |
+
+#### ChoiceAlternativeJudgment (package: choicealternative)
+
+**Package:** `com.learney.contentaudit.auditdomain.choicealternative`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `quizId` | `String` |
+| `status` | `ChoiceAlternativeJudgmentStatus` |
+| `verdict` | `ChoiceAlternativeVerdict` |
+| `droppedAsForm` | `List<String>` |
+| `findings` | `List<FindingDraft>` |
+| `score` | `Double` |
+| `evaluatorVersion` | `String` |
+| `reused` | `boolean` |
+| `notJudgedReason` | `String` |
+
+#### HintCoherenceDiagnosis (package: hintcoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.hintcoherence`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `hint` | `String` |
+| `firstAnswer` | `String` |
+| `shape` | `ExerciseShape` |
+| `hintedInTopic` | `int` |
+| `comparableInTopic` | `int` |
+| `issues` | `List<HintIssue>` |
+| `score` | `double` |
+
+#### HintIssue (package: hintcoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.hintcoherence`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `rule` | `String` |
+| `kind` | `HintIssueKind` |
+| `word` | `String` |
+| `proposedHint` | `String` |
+| `resolution` | `FindingResolution` |
+
+#### HintIssueKind (package: hintcoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.hintcoherence`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `MISSING_HINT` | `null` |
+| `HINT_WORD_ABSENT` | `null` |
+| `VERB_NOT_ANNOUNCED` | `null` |
+| `SUBJECT_MISMATCH` | `null` |
+| `SUBJECT_NOT_ANNOUNCED` | `null` |
+| `NEGATION_WITHOUT_NEGATIVE` | `null` |
+
+#### ExerciseShape (package: hintcoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.hintcoherence`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `GAP_IN_SENTENCE` | `null` |
+| `WHOLE_SENTENCE` | `null` |
+
+#### ExerciseHint (package: hintcoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.hintcoherence`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `text` | `String` |
+| `words` | `List<String>` |
+| `subject` | `String` |
+| `negated` | `boolean` |
+| `choice` | `boolean` |
+
+#### GapContext (package: correctormatch)
+
+**Package:** `com.learney.contentaudit.auditdomain.correctormatch`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `before` | `String` |
+| `after` | `String` |
+
+#### FormEquivalenceTable (package: correctormatch)
+
+**Package:** `com.learney.contentaudit.auditdomain.correctormatch`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `version` | `String` |
+| `contractions` | `List<ContractionExpansion>` |
+| `equivalentWords` | `List<EquivalentWordGroup>` |
+| `invertsNegativeQuestions` | `boolean` |
+
+#### ContractionExpansion (package: correctormatch)
+
+**Package:** `com.learney.contentaudit.auditdomain.correctormatch`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `contracted` | `String` |
+| `expansions` | `List<String>` |
+| `wholeWord` | `boolean` |
+
+#### EquivalentWordGroup (package: correctormatch)
+
+**Package:** `com.learney.contentaudit.auditdomain.correctormatch`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `equivalenceClass` | `FormEquivalenceClass` |
+| `words` | `List<String>` |
+
+#### FormEquivalenceClass (package: correctormatch)
+
+**Package:** `com.learney.contentaudit.auditdomain.correctormatch`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `CONTRACTION` | `null` |
+| `BE_NEGATION` | `null` |
+| `SPELLING` | `null` |
+| `PREPOSITION` | `null` |
+
+#### AnswerCompletenessDiagnosis (package: answercompleteness)
+
+**Package:** `com.learney.contentaudit.auditdomain.answercompleteness`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `missingForms` | `List<MissingAcceptedForm>` |
+| `formRequests` | `List<FormRequest>` |
+| `tableVersion` | `String` |
+| `score` | `double` |
+
+#### MissingAcceptedForm (package: answercompleteness)
+
+**Package:** `com.learney.contentaudit.auditdomain.answercompleteness`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `gapIndex` | `int` |
+| `acceptedAnswer` | `String` |
+| `missingForm` | `String` |
+| `equivalenceClass` | `FormEquivalenceClass` |
+| `severity` | `FindingSeverity` |
+
+#### FormRequest (package: answercompleteness)
+
+**Package:** `com.learney.contentaudit.auditdomain.answercompleteness`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `source` | `FormRequestSource` |
+| `requestedForm` | `RequestedForm` |
+| `phrase` | `String` |
+| `removableByRule` | `boolean` |
+
+#### FormRequestSource (package: answercompleteness)
+
+**Package:** `com.learney.contentaudit.auditdomain.answercompleteness`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `INSTRUCTIONS` | `null` |
+| `MINI_THEORY` | `null` |
+
+#### RequestedForm (package: answercompleteness)
+
+**Package:** `com.learney.contentaudit.auditdomain.answercompleteness`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `SHORT` | `null` |
+| `LONG` | `null` |
+
+#### EquivalentForm (package: answercompleteness)
+
+**Package:** `com.learney.contentaudit.auditdomain.answercompleteness`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `form` | `String` |
+| `equivalenceClass` | `FormEquivalenceClass` |
+
+#### MultipleChoiceValidityDiagnosis (package: multiplechoicevalidity)
+
+**Package:** `com.learney.contentaudit.auditdomain.multiplechoicevalidity`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `issues` | `List<OptionIssue>` |
+| `judgment` | `ChoiceAlternativeJudgment` |
+| `score` | `double` |
+
+#### OptionIssue (package: multiplechoicevalidity)
+
+**Package:** `com.learney.contentaudit.auditdomain.multiplechoicevalidity`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `rule` | `String` |
+| `kind` | `OptionIssueKind` |
+| `option` | `String` |
+| `relatedOption` | `String` |
+| `involvesCorrect` | `boolean` |
+
+#### OptionIssueKind (package: multiplechoicevalidity)
+
+**Package:** `com.learney.contentaudit.auditdomain.multiplechoicevalidity`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `NO_VALID_OPTION` | `null` |
+| `SEVERAL_VALID_OPTIONS` | `null` |
+| `IDENTICAL_OPTIONS` | `null` |
+| `SAME_ANSWER_OTHER_FORM` | `null` |
+| `LOWERCASE_SENTENCE_START` | `null` |
+| `LOWERCASE_I` | `null` |
+| `DASH_AT_SENTENCE_START` | `null` |
+| `ARTICLE_GIVES_AWAY` | `null` |
+
+#### AudioRecording (package: datacoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.datacoherence`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `audioKey` | `String` |
+| `recordedText` | `String` |
+| `source` | `String` |
+
+#### DataCoherenceDiagnosis (package: datacoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.datacoherence`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `issues` | `List<CopyMismatch>` |
+| `registryVersion` | `String` |
+| `score` | `double` |
+
+#### CopyMismatch (package: datacoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.datacoherence`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `rule` | `String` |
+| `kind` | `CopyMismatchKind` |
+| `copy` | `ExerciseCopy` |
+| `expected` | `String` |
+| `found` | `String` |
+
+#### CopyMismatchKind (package: datacoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.datacoherence`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `SAVED_SENTENCE_DIFFERS` | `null` |
+| `SLASH_IN_ANSWER` | `null` |
+| `SLASH_IN_AUDIO` | `null` |
+| `AUDIO_DIFFERS` | `null` |
+| `NO_AUDIO_KEY` | `null` |
+| `SHARED_AUDIO_KEY` | `null` |
+| `UNKNOWN_RECORDING` | `null` |
+
+#### ExerciseCopy (package: datacoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.datacoherence`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `TREE_SENTENCE` | `null` |
+| `PRODUCTION_SENTENCE` | `null` |
+| `ACCEPTED_ANSWER` | `null` |
+| `AUDIO` | `null` |
+
+#### ExactDuplicateDiagnosis (package: exactduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.exactduplicates`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `keptQuizId` | `String` |
+| `finishedExercise` | `String` |
+| `score` | `double` |
+
+#### JudgeExamStatus (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `APPROVED` | `null` |
+| `FAILED` | `null` |
+| `TAKEN` | `null` |
+| `NOT_TAKEN` | `null` |
+| `NO_VERSION` | `null` |
+
+#### JudgeExamGroupResult (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `group` | `String` |
+| `cases` | `int` |
+| `asExpected` | `int` |
+| `notAsExpected` | `int` |
+
+#### JudgeExamRecord (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `judgeName` | `String` |
+| `judgeVersion` | `String` |
+| `status` | `JudgeExamStatus` |
+| `casesJudged` | `int` |
+| `casesNotJudged` | `int` |
+| `groups` | `List<JudgeExamGroupResult>` |
+| `mismatchedCaseIds` | `List<String>` |
+| `goalMet` | `boolean` |
+| `photo` | `String` |
+| `measuredBy` | `String` |
+| `recordedAt` | `Instant` |
+
+#### JudgeExamStanding (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `judgeName` | `String` |
+| `judgeVersion` | `String` |
+| `status` | `JudgeExamStatus` |
+| `consultsOnCourse` | `boolean` |
+| `reason` | `String` |
+
+#### JudgeVersionStanding (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `judgeVersion` | `String` |
+| `verdictCount` | `int` |
+| `examStatus` | `JudgeExamStatus` |
+
+#### JudgeCostEstimate (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `pendingUnits` | `int` |
+| `pendingConsultations` | `int` |
+| `ratePerHour` | `double` |
+| `rateMeasured` | `boolean` |
+| `hoursOneAtATime` | `double` |
+| `maxConcurrentEvaluations` | `int` |
+| `hoursConcurrent` | `double` |
+
+#### EvaluatorCoverage (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `evaluatorId` | `String` |
+| `coverage` | `EvaluationCoverage` |
+| `consultedVersion` | `String` |
+
+#### JudgeCoverageDiagnosis (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `judgeName` | `String` |
+| `unit` | `AuditTarget` |
+| `reached` | `int` |
+| `evaluated` | `int` |
+| `notEvaluated` | `int` |
+| `evaluators` | `List<EvaluatorCoverage>` |
+| `standing` | `JudgeExamStanding` |
+| `versions` | `List<JudgeVersionStanding>` |
+| `unavailableReason` | `String` |
+| `cost` | `JudgeCostEstimate` |
+| `unmatchedDeclaredIds` | `List<String>` |
+
+#### JudgeSessions (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `judgeName` | `String` |
+| `judgeVersion` | `String` |
+| `evaluatorIds` | `List<String>` |
+| `sessions` | `List<EvaluationSession>` |
+| `standing` | `JudgeExamStanding` |
+| `effectivePolicy` | `EvaluationRunPolicy` |
+
+#### JudgeRequestPlan (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `units` | `List<AuditNode>` |
+| `modes` | `List<EvaluationRequestMode>` |
+| `unmatchedDeclaredIds` | `List<String>` |
+
+#### JudgeUnitTally (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `unit` | `AuditTarget` |
+| `reached` | `int` |
+| `evaluated` | `int` |
+| `notEvaluated` | `int` |
+| `verdictsByVersion` | `Map<String,Integer>` |
+| `unmatchedDeclaredIds` | `List<String>` |
+
+#### JudgeExamOutcome (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `FAILS` | `null` |
+| `MARKED` | `null` |
+| `PASSES` | `null` |
+| `NOT_JUDGED` | `null` |
+
+#### JudgeExamVerdict (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `caseId` | `String` |
+| `judgeName` | `String` |
+| `judgeVersion` | `String` |
+| `outcome` | `JudgeExamOutcome` |
+| `worstSeverity` | `FindingSeverity` |
+| `rules` | `List<String>` |
+| `detail` | `String` |
+
+#### TranslationSenseCondition (package: translationsense)
+
+**Package:** `com.learney.contentaudit.auditdomain.translationsense`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `SAME_MEANING` | `null` |
+| `NATIVE_WOULD_SAY` | `null` |
+| `WORDS_GO_TOGETHER` | `null` |
+| `LEVEL_REGISTER` | `null` |
+
+#### TranslationSenseFailure (package: translationsense)
+
+**Package:** `com.learney.contentaudit.auditdomain.translationsense`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `condition` | `TranslationSenseCondition` |
+| `severity` | `FindingSeverity` |
+| `fragment` | `String` |
+| `evidence` | `String` |
+
+#### TranslationSenseVerdict (package: translationsense)
+
+**Package:** `com.learney.contentaudit.auditdomain.translationsense`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `passes` | `boolean` |
+| `failures` | `List<TranslationSenseFailure>` |
+| `rationale` | `String` |
+
+#### TranslationSenseAgreement (package: translationsense)
+
+**Package:** `com.learney.contentaudit.auditdomain.translationsense`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `BOTH_PASS` | `null` |
+| `BOTH_FAIL` | `null` |
+| `SPLIT` | `null` |
+
+#### TranslationSenseDiagnosis (package: translationsense)
+
+**Package:** `com.learney.contentaudit.auditdomain.translationsense`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `fromEnglish` | `TranslationSenseVerdict` |
+| `fromTranslation` | `TranslationSenseVerdict` |
+| `agreement` | `TranslationSenseAgreement` |
+| `score` | `double` |
+| `reusedFromPreviousRun` | `boolean` |
+
+#### TranslationSenseOutcome (package: translationsenseengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.translationsenseengine`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `agreement` | `TranslationSenseAgreement` |
+| `findings` | `List<FindingDraft>` |
+| `score` | `double` |
+
+#### AlternativeAnswerKind (package: singleanswer)
+
+**Package:** `com.learney.contentaudit.auditdomain.singleanswer`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `OFFERED_BY_INSTRUCTION` | `null` |
+| `DIFFERENT_VALID` | `null` |
+
+#### AlternativeAnswer (package: singleanswer)
+
+**Package:** `com.learney.contentaudit.auditdomain.singleanswer`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `answer` | `String` |
+| `gap` | `int` |
+| `kind` | `AlternativeAnswerKind` |
+| `severity` | `FindingSeverity` |
+| `reason` | `String` |
+
+#### SingleAnswerVerdict (package: singleanswer)
+
+**Package:** `com.learney.contentaudit.auditdomain.singleanswer`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `alternatives` | `List<AlternativeAnswer>` |
+| `rationale` | `String` |
+
+#### SingleAnswerDiagnosis (package: singleanswer)
+
+**Package:** `com.learney.contentaudit.auditdomain.singleanswer`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `verdict` | `SingleAnswerVerdict` |
+| `counted` | `List<AlternativeAnswer>` |
+| `droppedAsAccepted` | `List<String>` |
+| `score` | `double` |
+| `reusedFromPreviousRun` | `boolean` |
+
+#### SingleAnswerOutcome (package: singleanswerengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.singleanswerengine`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `diagnosis` | `SingleAnswerDiagnosis` |
+| `findings` | `List<FindingDraft>` |
+| `score` | `double` |
+
+#### MiniTheoryProblem (package: minitheory)
+
+**Package:** `com.learney.contentaudit.auditdomain.minitheory`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `FALSE_RULE` | `null` |
+| `OVERSTATED` | `null` |
+| `CONTRADICTED_BY_EXERCISE` | `null` |
+| `NOT_COVERING_EXERCISE` | `null` |
+
+#### MiniTheoryErrorScope (package: minitheory)
+
+**Package:** `com.learney.contentaudit.auditdomain.minitheory`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `SHOWN_ONLY` | `null` |
+| `WHOLE_TOPIC` | `null` |
+
+#### MiniTheoryAssessment (package: minitheory)
+
+**Package:** `com.learney.contentaudit.auditdomain.minitheory`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `miniTheory` | `int` |
+| `holds` | `boolean` |
+| `problem` | `MiniTheoryProblem` |
+| `severity` | `FindingSeverity` |
+| `counterexample` | `String` |
+| `exercises` | `List<Integer>` |
+| `explanation` | `String` |
+
+#### MiniTheoryVerdict (package: minitheory)
+
+**Package:** `com.learney.contentaudit.auditdomain.minitheory`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `assessments` | `List<MiniTheoryAssessment>` |
+| `rationale` | `String` |
+
+#### MiniTheoryDiagnosis (package: minitheory)
+
+**Package:** `com.learney.contentaudit.auditdomain.minitheory`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `knowledgeId` | `String` |
+| `miniTheory` | `String` |
+| `assessments` | `List<MiniTheoryAssessment>` |
+| `score` | `double` |
+| `reusedFromPreviousRun` | `boolean` |
+
+#### MiniTheoryQuizOutcome (package: minitheoryengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.minitheoryengine`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `quizId` | `String` |
+| `diagnosis` | `MiniTheoryDiagnosis` |
+| `findings` | `List<FindingDraft>` |
+| `score` | `double` |
+
+#### OffLevelWordsDiagnosis (package: offlevelwords)
+
+**Package:** `com.learney.contentaudit.auditdomain.offlevelwords`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `level` | `CefrLevel` |
+| `words` | `List<OffLevelWord>` |
+
+#### OffLevelWord (package: offlevelwords)
+
+**Package:** `com.learney.contentaudit.auditdomain.offlevelwords`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemma` | `String` |
+| `pos` | `String` |
+| `reason` | `OffLevelReason` |
+| `catalogLevel` | `CefrLevel` |
+| `frequencyRank` | `Integer` |
+
+#### OffLevelReason (package: offlevelwords)
+
+**Package:** `com.learney.contentaudit.auditdomain.offlevelwords`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `ABOVE_LEVEL` | `null` |
+| `OUT_OF_CATALOG` | `null` |
+
+#### TaughtWords (package: offlevelwords)
+
+**Package:** `com.learney.contentaudit.auditdomain.offlevelwords`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `knowledgeId` | `String` |
+| `titleTerms` | `List<String>` |
+| `frequentAnswers` | `List<String>` |
 
 ### Module: course-domain
 
@@ -2097,6 +3135,84 @@ new QuizInstructionCorrectionContext(String taskId, String nodeId, String quizSe
 new UnconvertedScoreCount(String analyzer, int nodeCount, String reason)
 ```
 
+#### TopicWordLights (package: topicwords)
+
+**Package:** `com.learney.contentaudit.refinerdomain.topicwords`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `auditId` | `String` |
+| `knowledgeId` | `String` |
+| `knowledgeLabel` | `String` |
+| `level` | `CefrLevel` |
+| `words` | `List<TopicWord>` |
+| `toAdd` | `List<SuggestedLemma>` |
+
+#### TopicWord (package: topicwords)
+
+**Package:** `com.learney.contentaudit.refinerdomain.topicwords`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemma` | `String` |
+| `pos` | `String` |
+| `level` | `CefrLevel` |
+| `outOfCatalog` | `boolean` |
+| `frequencyRank` | `Integer` |
+| `sentenceCount` | `int` |
+| `threshold` | `Integer` |
+| `light` | `WordLight` |
+| `greenState` | `GreenState` |
+| `taughtByTopic` | `boolean` |
+| `offLevelError` | `Boolean` |
+
+#### WordLight (package: topicwords)
+
+**Package:** `com.learney.contentaudit.refinerdomain.topicwords`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `GREEN` | `null` |
+| `RED` | `null` |
+| `NEUTRAL` | `null` |
+
+#### GreenState (package: topicwords)
+
+**Package:** `com.learney.contentaudit.refinerdomain.topicwords`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `UNDER_EXPOSED` | `null` |
+| `SCARCE` | `null` |
+
+#### KnowledgeNotInAnalysisException (package: topicwords)
+
+**Package:** `com.learney.contentaudit.refinerdomain.topicwords`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `knowledgeId` | `String` |
+
+#### LemmaCountDataMissingException (package: topicwords)
+
+**Package:** `com.learney.contentaudit.refinerdomain.topicwords`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `auditId` | `String` |
+
 ### Module: audit-application
 
 #### AuditRunRequest
@@ -2113,6 +3229,59 @@ new UnconvertedScoreCount(String analyzer, int nodeCount, String reason)
 **Generated constructor:**
 ```java
 new AuditRunRequest(Set<String> includedAnalyzers, Set<String> excludedAnalyzers, Map<String,EvaluationRunPolicy> analyzerPolicies)
+```
+
+#### JudgeExamRequest
+
+**Package:** `com.learney.contentaudit.auditapplication`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `judgeName` | `String` |  |
+| `photoCourse` | `Path` |  |
+| `caseIds` | `Set<String>` |  |
+| `maxNewEvaluations` | `int` |  |
+| `maxConcurrentEvaluations` | `Integer` |  |
+
+**Generated constructor:**
+```java
+new JudgeExamRequest(String judgeName, Path photoCourse, Set<String> caseIds, int maxNewEvaluations, Integer maxConcurrentEvaluations)
+```
+
+#### JudgeExamTaken
+
+**Package:** `com.learney.contentaudit.auditapplication`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `judgeName` | `String` |  |
+| `judgeVersion` | `String` |  |
+| `verdicts` | `List<JudgeExamVerdict>` | Import `java.util.List` |
+| `coverage` | `JudgeCoverageDiagnosis` |  |
+| `recordedAsTaken` | `boolean` |  |
+
+**Generated constructor:**
+```java
+new JudgeExamTaken(String judgeName, String judgeVersion, List<JudgeExamVerdict> verdicts, JudgeCoverageDiagnosis coverage, boolean recordedAsTaken)
+```
+
+#### JudgeExamNotTakenException
+
+**Package:** `com.learney.contentaudit.auditapplication`
+**Type:** exception
+**Extends:** `IllegalArgumentException`
+**Message:** `"La versión %2$s del juez '%1$s' no rindió el examen completo: no se puede registrar su resultado"`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `judgeName` | `String` |  |
+| `judgeVersion` | `String` |  |
+
+**Generated class** extends `IllegalArgumentException` with constructor:
+```java
+new JudgeExamNotTakenException(String judgeName, String judgeVersion)
 ```
 
 ### Module: audit-cli
@@ -2216,10 +3385,12 @@ new SuggestedLemmasFilter(Optional<Integer> limit, Optional<String> partOfSpeech
 | `reevaluateInstructions` | `String` |  |
 | `reevaluateInstructionQuizIds` | `Set<String>` |  |
 | `analyzerBudgets` | `Map<String,Integer>` |  |
+| `analyzerReevaluationSets` | `Map<String,Set<String>>` |  |
+| `maxConcurrentEvaluations` | `Integer` |  |
 
 **Generated constructor:**
 ```java
-new AnalyzeOptions(String format, String level, String topic, String knowledge, List<String> analyzers, List<String> excludeAnalyzers, boolean detailed, Integer instructionBudget, String reevaluateInstructions, Set<String> reevaluateInstructionQuizIds, Map<String,Integer> analyzerBudgets)
+new AnalyzeOptions(String format, String level, String topic, String knowledge, List<String> analyzers, List<String> excludeAnalyzers, boolean detailed, Integer instructionBudget, String reevaluateInstructions, Set<String> reevaluateInstructionQuizIds, Map<String,Integer> analyzerBudgets, Map<String,Set<String>> analyzerReevaluationSets, Integer maxConcurrentEvaluations)
 ```
 
 #### ReportViewModel (package: formatting)
@@ -3793,6 +4964,38 @@ new EvaluationCoverage(int reached, int withResult, int evaluatedInRun, int reus
 new EvaluationBudget(int maxNewEvaluations)
 ```
 
+#### EvaluationRequestMode
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `REUSE_OR_EVALUATE` | `null` |  |
+| `FORCE` | `null` |  |
+| `PREFER_NEW` | `null` |  |
+| `REUSE_ONLY` | `null` |  |
+
+**Generated constructor:**
+```java
+new EvaluationRequestMode(null REUSE_OR_EVALUATE, null FORCE, null PREFER_NEW, null REUSE_ONLY)
+```
+
+#### EvaluationRequest
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `subject` | `EvaluationSubject` |  |
+| `mode` | `EvaluationRequestMode` |  |
+
+**Generated constructor:**
+```java
+new EvaluationRequest(EvaluationSubject subject, EvaluationRequestMode mode)
+```
+
 ### Module: agent-runtime-infrastructure
 
 #### AgentGraphRunnerConfig
@@ -3906,5 +5109,76 @@ new AgentDefinitionUnresolved(String agentName, Path searchedIn)
 **Generated constructor:**
 ```java
 new QuizInstructionJudgeConfig(String baseUrl, String apiKey, String modelName, Double temperature, Integer timeoutSeconds, String agentName, String providerName)
+```
+
+#### AgentJudgeSpec
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `evaluatorId` | `String` |  |
+| `verdictArtifactKey` | `String` |  |
+| `displayName` | `String` |  |
+
+**Generated constructor:**
+```java
+new AgentJudgeSpec(String evaluatorId, String verdictArtifactKey, String displayName)
+```
+
+#### AgentJudgeConfig
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `providerName` | `String` |  |
+| `baseUrl` | `String` |  |
+| `apiKey` | `String` |  |
+| `modelName` | `String` |  |
+| `temperature` | `Double` |  |
+| `timeoutSeconds` | `Integer` |  |
+
+**Generated constructor:**
+```java
+new AgentJudgeConfig(String providerName, String baseUrl, String apiKey, String modelName, Double temperature, Integer timeoutSeconds)
+```
+
+#### JudgeUnavailabilityCause
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `SESSION_EXPIRED` | `null` |  |
+| `QUOTA_EXHAUSTED` | `null` |  |
+| `SERVICE_UNREACHABLE` | `null` |  |
+| `TIMEOUT` | `null` |  |
+| `NOT_INSTALLED` | `null` |  |
+| `UNKNOWN` | `null` |  |
+
+**Generated constructor:**
+```java
+new JudgeUnavailabilityCause(null SESSION_EXPIRED, null QUOTA_EXHAUSTED, null SERVICE_UNREACHABLE, null TIMEOUT, null NOT_INSTALLED, null UNKNOWN)
+```
+
+#### JudgeProviderReadiness
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `ready` | `boolean` |  |
+| `cause` | `JudgeUnavailabilityCause` |  |
+| `detail` | `String` |  |
+| `remedy` | `String` |  |
+
+**Generated constructor:**
+```java
+new JudgeProviderReadiness(boolean ready, JudgeUnavailabilityCause cause, String detail, String remedy)
 ```
 

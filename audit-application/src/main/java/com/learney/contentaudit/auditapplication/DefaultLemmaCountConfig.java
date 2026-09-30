@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditapplication;
+import com.learney.contentaudit.auditdomain.LemmaCountBand;
+import java.util.List;
 
 import com.learney.contentaudit.auditdomain.LemmaCountConfig;
 import java.util.Map;
@@ -12,8 +14,11 @@ public class DefaultLemmaCountConfig implements LemmaCountConfig {
 
 private final int threshold;
 
-public DefaultLemmaCountConfig(int threshold) {
+private final List<LemmaCountBand> bands;
+
+public DefaultLemmaCountConfig(int threshold, List<LemmaCountBand> bands) {
     this.threshold = threshold;
+    this.bands = bands;
 }
 
     @Override
@@ -27,4 +32,10 @@ public DefaultLemmaCountConfig(int threshold) {
                 "analyzerName", "lemma-count",
                 "threshold", threshold);
     }
+
+    @Override
+    public List<LemmaCountBand> getBands() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

@@ -48,6 +48,21 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: AuditRunRequest - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditapplication.JudgeExamRequest");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeExamRequest - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.JudgeExamTaken");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeExamTaken - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.JudgeExamNotTakenException");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeExamNotTakenException - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditapplication.AuditRunner");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AuditRunner - " + e.getMessage());
@@ -61,6 +76,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditapplication.LemmaCountConfigLoader");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaCountConfigLoader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.JudgeExamService");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeExamService - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditapplication.CourseToAuditableMapper");
@@ -111,6 +131,36 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditapplication.DefaultQuizInstructionConfig");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultQuizInstructionConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultJudgeExamService");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultJudgeExamService - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultJudgeRuntimeConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultTranslationSenseConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultTranslationSenseConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultSingleAnswerConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultSingleAnswerConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultMiniTheoryConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultMiniTheoryConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultChoiceAlternativeConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultChoiceAlternativeConfig - " + e.getMessage());
     }
   }
 }

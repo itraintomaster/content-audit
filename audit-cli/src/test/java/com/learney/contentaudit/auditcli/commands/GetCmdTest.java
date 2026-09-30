@@ -4432,4 +4432,76 @@ public class GetCmdTest {
     private static List<String> texts(List<JsonNode> values) {
         return values.stream().map(JsonNode::asText).toList();
     }
+
+    @Test
+    @DisplayName("should print as JSON the whole topic as the student sees it with get student-view 6814dafa7d73e7209a13d389, Afirmativas regulares")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R003")
+    public void shouldPrintAsJSONTheWholeTopicAsTheStudentSeesItWithGetStudentview6814dafa7d73e7209a13d389AfirmativasRegulares() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should read for get student-view the analysis chosen with set-active-analysis and, when none is chosen, the latest one")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R003")
+    public void shouldReadForGetStudentviewTheAnalysisChosenWithSetactiveanalysisAndWhenNoneIsChosenTheLatestOne() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should exit with code 1 and print «Knowledge <id> not found in the analysis.» for a knowledge that is not in the analysis")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R003")
+    public void shouldExitWithCode1AndPrintKnowledgeIdNotFoundInTheAnalysisForAKnowledgeThatIsNotInTheAnalysis() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the stored analyses and the course byte for byte identical after get student-view")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R003")
+    public void shouldLeaveTheStoredAnalysesAndTheCourseByteForByteIdenticalAfterGetStudentview() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should show in get analyzers the Spanish name of each analyzer next to its unique name, «Largo de oración» next to sentence-length")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R004")
+    public void shouldShowInGetAnalyzersTheSpanishNameOfEachAnalyzerNextToItsUniqueNameLargoDeOracinNextToSentencelength() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should print as JSON the word lights of a knowledge with get word-lights, read from the source analysis of the latest plan like get suggested-lemmas, or from the latest analysis when there is no plan")
+    @Tag("FEAT-SEMAF")
+    @Tag("F-SEMAF-R001")
+    public void shouldPrintAsJSONTheWordLightsOfAKnowledgeWithGetWordlightsReadFromTheSourceAnalysisOfTheLatestPlanLikeGetSuggestedlemmasOrFromTheLatestAnalysisWhenThereIsNoPlan() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should exit with code 1 and print the not-found message for a knowledge that is not in the analysis")
+    @Tag("FEAT-SEMAF")
+    @Tag("F-SEMAF-R001")
+    public void shouldExitWithCode1AndPrintTheNotfoundMessageForAKnowledgeThatIsNotInTheAnalysis() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject --level for word-lights, since the level is the topic's")
+    @Tag("FEAT-SEMAF")
+    @Tag("F-SEMAF-R001")
+    public void shouldRejectLevelForWordlightsSinceTheLevelIsTheTopics() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the stored analysis of 29/9 and its plan byte for byte identical after get word-lights, at 73.92% and 4,036 tasks")
+    @Tag("FEAT-SEMAF")
+    @Tag("F-SEMAF-R007")
+    public void shouldLeaveTheStoredAnalysisOf299AndItsPlanByteForByteIdenticalAfterGetWordlightsAt7392And4036Tasks() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

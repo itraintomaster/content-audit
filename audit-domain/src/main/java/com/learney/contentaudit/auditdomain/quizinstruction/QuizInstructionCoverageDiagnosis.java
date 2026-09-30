@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.quizinstruction;
 
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
 import java.util.List;
 import java.util.Objects;
@@ -18,16 +19,19 @@ public class QuizInstructionCoverageDiagnosis {
 
     private List<String> unmatchedReevaluationIds;
 
+    private JudgeCoverageDiagnosis judge;
+
     public QuizInstructionCoverageDiagnosis() {
     }
 
     public QuizInstructionCoverageDiagnosis(EvaluationCoverage coverage,
             String consultedJudgeVersion, List<JudgeVersionVerdictCount> verdictsByJudgeVersion,
-            List<String> unmatchedReevaluationIds) {
+            List<String> unmatchedReevaluationIds, JudgeCoverageDiagnosis judge) {
         this.coverage = coverage;
         this.consultedJudgeVersion = consultedJudgeVersion;
         this.verdictsByJudgeVersion = verdictsByJudgeVersion;
         this.unmatchedReevaluationIds = unmatchedReevaluationIds;
+        this.judge = judge;
     }
 
     public EvaluationCoverage getCoverage() {
@@ -62,6 +66,14 @@ public class QuizInstructionCoverageDiagnosis {
         this.unmatchedReevaluationIds = unmatchedReevaluationIds;
     }
 
+    public JudgeCoverageDiagnosis getJudge() {
+        return this.judge;
+    }
+
+    public void setJudge(JudgeCoverageDiagnosis judge) {
+        this.judge = judge;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,11 +82,12 @@ public class QuizInstructionCoverageDiagnosis {
         return Objects.equals(this.coverage, that.coverage)
                     && Objects.equals(this.consultedJudgeVersion, that.consultedJudgeVersion)
                     && Objects.equals(this.verdictsByJudgeVersion, that.verdictsByJudgeVersion)
-                    && Objects.equals(this.unmatchedReevaluationIds, that.unmatchedReevaluationIds);
+                    && Objects.equals(this.unmatchedReevaluationIds, that.unmatchedReevaluationIds)
+                    && Objects.equals(this.judge, that.judge);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(coverage, consultedJudgeVersion, verdictsByJudgeVersion, unmatchedReevaluationIds);
+        return Objects.hash(coverage, consultedJudgeVersion, verdictsByJudgeVersion, unmatchedReevaluationIds, judge);
     }
 }

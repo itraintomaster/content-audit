@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.lemmacount;
 
+import com.learney.contentaudit.auditdomain.LemmaCountBand;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,15 +19,22 @@ public class LemmaCountResult {
 
     private List<UnassignedLemmaEntry> unassigned;
 
+    private List<LemmaCountBand> bands;
+
+    private List<LemmaExposure> exposures;
+
     public LemmaCountResult() {
     }
 
     public LemmaCountResult(int thresholdN, Optional<Double> courseScore,
-            List<LevelLemmaCountResult> levels, List<UnassignedLemmaEntry> unassigned) {
+            List<LevelLemmaCountResult> levels, List<UnassignedLemmaEntry> unassigned,
+            List<LemmaCountBand> bands, List<LemmaExposure> exposures) {
         this.thresholdN = thresholdN;
         this.courseScore = courseScore;
         this.levels = levels;
         this.unassigned = unassigned;
+        this.bands = bands;
+        this.exposures = exposures;
     }
 
     public int getThresholdN() {
@@ -61,6 +69,22 @@ public class LemmaCountResult {
         this.unassigned = unassigned;
     }
 
+    public List<LemmaCountBand> getBands() {
+        return this.bands;
+    }
+
+    public void setBands(List<LemmaCountBand> bands) {
+        this.bands = bands;
+    }
+
+    public List<LemmaExposure> getExposures() {
+        return this.exposures;
+    }
+
+    public void setExposures(List<LemmaExposure> exposures) {
+        this.exposures = exposures;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,11 +93,13 @@ public class LemmaCountResult {
         return Objects.equals(this.thresholdN, that.thresholdN)
                     && Objects.equals(this.courseScore, that.courseScore)
                     && Objects.equals(this.levels, that.levels)
-                    && Objects.equals(this.unassigned, that.unassigned);
+                    && Objects.equals(this.unassigned, that.unassigned)
+                    && Objects.equals(this.bands, that.bands)
+                    && Objects.equals(this.exposures, that.exposures);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(thresholdN, courseScore, levels, unassigned);
+        return Objects.hash(thresholdN, courseScore, levels, unassigned, bands, exposures);
     }
 }

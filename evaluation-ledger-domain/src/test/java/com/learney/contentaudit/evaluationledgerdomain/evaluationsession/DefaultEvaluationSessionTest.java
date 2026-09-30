@@ -856,4 +856,52 @@ public class DefaultEvaluationSessionTest {
         assertEquals("APPROVED-PREVIOUS", resolution.getPayload());
         verify(evaluator, never()).evaluate(any());
     }
+
+    @Test
+    @DisplayName("should consult with four at a time exactly the three contents it consults one at a time when five new contents meet a budget of 3, in the order of the requests")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R006")
+    public void shouldConsultWithFourAtATimeExactlyTheThreeContentsItConsultsOneAtATimeWhenFiveNewContentsMeetABudgetOf3InTheOrderOfTheRequests() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should resolve a batch mixing reuse-or-evaluate, forced, prefer-new and reuse-only requests exactly as the one-at-a-time methods resolve them in the same order")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R006")
+    public void shouldResolveABatchMixingReuseorevaluateForcedPrefernewAndReuseonlyRequestsExactlyAsTheOneatatimeMethodsResolveThemInTheSameOrder() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should start no consultation after a service failure while resolving at a time, and record the verdict of each consultation already in flight that the evaluator emitted")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R006")
+    public void shouldStartNoConsultationAfterAServiceFailureWhileResolvingAtATimeAndRecordTheVerdictOfEachConsultationAlreadyInFlightThatTheEvaluatorEmitted() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should return the same resolution for every content with one and with four consultations at a time, given the same ledger and the same verdicts")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R006")
+    public void shouldReturnTheSameResolutionForEveryContentWithOneAndWithFourConsultationsAtATimeGivenTheSameLedgerAndTheSameVerdicts() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should send the first consultation of a batch alone, so an evaluator whose provider session expired is called once and not four times")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R011")
+    public void shouldSendTheFirstConsultationOfABatchAloneSoAnEvaluatorWhoseProviderSessionExpiredIsCalledOnceAndNotFourTimes() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep as unavailable reason the cause and the remedy the evaluator gave on its first service failure")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R011")
+    public void shouldKeepAsUnavailableReasonTheCauseAndTheRemedyTheEvaluatorGaveOnItsFirstServiceFailure() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

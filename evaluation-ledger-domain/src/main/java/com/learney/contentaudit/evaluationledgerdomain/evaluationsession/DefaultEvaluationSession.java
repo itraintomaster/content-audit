@@ -1,4 +1,6 @@
 package com.learney.contentaudit.evaluationledgerdomain.evaluationsession;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequest;
+import java.util.List;
 
 import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
@@ -289,6 +291,24 @@ class DefaultEvaluationSession implements EvaluationSession {
         }
         pending++;
         return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null);
+    }
+
+
+    @Override
+    public List<EvaluationResolution> resolveAll(List<EvaluationRequest> requests,int maxConcurrent) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+
+    @Override
+    public boolean recorded(EvaluationSubject subject) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+
+    @Override
+    public Optional<String> unavailableReason() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
 }

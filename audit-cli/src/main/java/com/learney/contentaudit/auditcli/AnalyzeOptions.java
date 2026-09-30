@@ -33,13 +33,18 @@ public class AnalyzeOptions {
 
     private Map<String, Integer> analyzerBudgets;
 
+    private Map<String, Set<String>> analyzerReevaluationSets;
+
+    private Integer maxConcurrentEvaluations;
+
     public AnalyzeOptions() {
     }
 
     public AnalyzeOptions(String format, String level, String topic, String knowledge,
             List<String> analyzers, List<String> excludeAnalyzers, boolean detailed,
             Integer instructionBudget, String reevaluateInstructions,
-            Set<String> reevaluateInstructionQuizIds, Map<String, Integer> analyzerBudgets) {
+            Set<String> reevaluateInstructionQuizIds, Map<String, Integer> analyzerBudgets,
+            Map<String, Set<String>> analyzerReevaluationSets, Integer maxConcurrentEvaluations) {
         this.format = format;
         this.level = level;
         this.topic = topic;
@@ -51,6 +56,8 @@ public class AnalyzeOptions {
         this.reevaluateInstructions = reevaluateInstructions;
         this.reevaluateInstructionQuizIds = reevaluateInstructionQuizIds;
         this.analyzerBudgets = analyzerBudgets;
+        this.analyzerReevaluationSets = analyzerReevaluationSets;
+        this.maxConcurrentEvaluations = maxConcurrentEvaluations;
     }
 
     public String getFormat() {
@@ -141,6 +148,22 @@ public class AnalyzeOptions {
         this.analyzerBudgets = analyzerBudgets;
     }
 
+    public Map<String, Set<String>> getAnalyzerReevaluationSets() {
+        return this.analyzerReevaluationSets;
+    }
+
+    public void setAnalyzerReevaluationSets(Map<String, Set<String>> analyzerReevaluationSets) {
+        this.analyzerReevaluationSets = analyzerReevaluationSets;
+    }
+
+    public Integer getMaxConcurrentEvaluations() {
+        return this.maxConcurrentEvaluations;
+    }
+
+    public void setMaxConcurrentEvaluations(Integer maxConcurrentEvaluations) {
+        this.maxConcurrentEvaluations = maxConcurrentEvaluations;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -156,11 +179,13 @@ public class AnalyzeOptions {
                     && Objects.equals(this.instructionBudget, that.instructionBudget)
                     && Objects.equals(this.reevaluateInstructions, that.reevaluateInstructions)
                     && Objects.equals(this.reevaluateInstructionQuizIds, that.reevaluateInstructionQuizIds)
-                    && Objects.equals(this.analyzerBudgets, that.analyzerBudgets);
+                    && Objects.equals(this.analyzerBudgets, that.analyzerBudgets)
+                    && Objects.equals(this.analyzerReevaluationSets, that.analyzerReevaluationSets)
+                    && Objects.equals(this.maxConcurrentEvaluations, that.maxConcurrentEvaluations);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(format, level, topic, knowledge, analyzers, excludeAnalyzers, detailed, instructionBudget, reevaluateInstructions, reevaluateInstructionQuizIds, analyzerBudgets);
+        return Objects.hash(format, level, topic, knowledge, analyzers, excludeAnalyzers, detailed, instructionBudget, reevaluateInstructions, reevaluateInstructionQuizIds, analyzerBudgets, analyzerReevaluationSets, maxConcurrentEvaluations);
     }
 }

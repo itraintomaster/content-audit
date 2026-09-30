@@ -1263,4 +1263,20 @@ public class DefaultAuditRunnerTest {
         AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "Topic", "T1");
         return new AuditableCourse(List.of(new AuditableMilestone(List.of(topic), "m1", "A1", "A1")));
     }
+
+    @Test
+    @DisplayName("should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels 96.0, 93.6, 78.9 and 63.9")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R008")
+    public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1AndTheDefaultBands864And3AVocabularyScoreOf7386AndLevels960936789And639() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2, 79.5 and 63.5")
+    @Tag("FEAT-RONDA1")
+    @Tag("F-RONDA1-R008")
+    public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1And4ForEveryBandTheNumbersOfToday7392AndLevels965942795And635() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

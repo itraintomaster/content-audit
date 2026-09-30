@@ -62,4 +62,28 @@ public class LemmaCountAnalyzerProviderTest {
         org.junit.jupiter.api.Assertions.assertEquals(highest, card.getCost(),
                 "R006 inv. 2: the cost of the card of " + name + " is the highest cost of its rules");
     }
+
+    @Test
+    @DisplayName("should declare no plan binding for lemma-count")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R002")
+    public void shouldDeclareNoPlanBindingForLemmacount() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should describe lemma-count in its card: whether each word of the level appears in enough sentences, reading the finished sentences of the whole course, vocabulary family, level and course targets, only ordering and instant cost")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R006")
+    public void shouldDescribeLemmacountInItsCardWhetherEachWordOfTheLevelAppearsInEnoughSentencesReadingTheFinishedSentencesOfTheWholeCourseVocabularyFamilyLevelAndCourseTargetsOnlyOrderingAndInstantCost() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should state in its card goal the threshold of each band it uses, 8, 6, 4 and 3 with the recommended bands")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R006")
+    public void shouldStateInItsCardGoalTheThresholdOfEachBandItUses864And3WithTheRecommendedBands() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

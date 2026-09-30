@@ -319,4 +319,20 @@ public class DefaultQuizInstructionJudgeFactoryTest {
                         + "declarado no la necesita para dirigirla");
         assertNotNull(emitted.getPayload());
     }
+
+    @Test
+    @DisplayName("should give the consigna judge the same session check, so an expired claude-cli session leaves it unavailable with «renovala con claude auth login» before any consultation")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R011")
+    public void shouldGiveTheConsignaJudgeTheSameSessionCheckSoAnExpiredClaudecliSessionLeavesItUnavailableWithRenovalaConClaudeAuthLoginBeforeAnyConsultation() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should derive for the consigna judge the same version it derived before FEAT-JEXAM, so its recorded verdicts keep being reused")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R007")
+    public void shouldDeriveForTheConsignaJudgeTheSameVersionItDerivedBeforeFEATJEXAMSoItsRecordedVerdictsKeepBeingReused() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

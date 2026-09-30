@@ -279,4 +279,20 @@ public class FileSystemEvaluationLedgerTest {
                 "The earlier entry must remain consultable in history after the same key is recorded again");
         assertTrue(history.contains(reevaluated));
     }
+
+    @Test
+    @DisplayName("should return the recorded times of an evaluator in the order they were appended, and none of another evaluator")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R004")
+    public void shouldReturnTheRecordedTimesOfAnEvaluatorInTheOrderTheyWereAppendedAndNoneOfAnotherEvaluator() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not return to the course evaluator a verdict recorded for the same content under its exam: evaluator")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R002")
+    public void shouldNotReturnToTheCourseEvaluatorAVerdictRecordedForTheSameContentUnderItsExamEvaluator() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -69,7 +69,7 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
         }
         List<AnalyzerScore> analyzerScores = analyzerScores(node, cards);
         ErrorCounts errors = errorCards.isEmpty() ? null : tally.toErrorCounts(errorCards);
-        node.setNumbers(new ContextNumbers(vocabularyScore(analyzerScores), analyzerScores, errors));
+        node.setNumbers(new ContextNumbers(vocabularyScore(analyzerScores), analyzerScores, errors, null));
         return tally;
     }
 
@@ -264,7 +264,7 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
             for (int i = 0; i < errorCards.size(); i++) {
                 double share = evaluated[i] > 0 ? (double) withError[i] / evaluated[i] : 0.0;
                 perAnalyzer.add(new AnalyzerErrorCounts(errorCards.get(i).getName(), reached[i],
-                        evaluated[i], notEvaluated[i], withError[i], share, marked[i]));
+                        evaluated[i], notEvaluated[i], withError[i], share, marked[i], 0));
             }
             double anyShare = quizzes > 0 ? (double) withAnyError / quizzes : 0.0;
             return new ErrorCounts(quizzes, withAnyError, anyShare,

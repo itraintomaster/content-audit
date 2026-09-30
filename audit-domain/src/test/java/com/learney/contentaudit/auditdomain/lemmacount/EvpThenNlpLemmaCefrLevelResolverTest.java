@@ -110,4 +110,20 @@ public class EvpThenNlpLemmaCefrLevelResolverTest {
         assertEquals(Optional.of(CefrLevel.A1), result,
                 "El EVP debe tener prioridad sobre el NLP cuando ambos aportan CEFR (R009 > R010)");
     }
+
+    @Test
+    @DisplayName("should resolve the COCA rank of a lemma and part of speech from the EVP catalog, the same rank the suggested words show")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R001")
+    public void shouldResolveTheCOCARankOfALemmaAndPartOfSpeechFromTheEVPCatalogTheSameRankTheSuggestedWordsShow() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should resolve no COCA rank for a lemma and part of speech the EVP catalog does not have")
+    @Tag("FEAT-POCOV")
+    @Tag("F-POCOV-R001")
+    public void shouldResolveNoCOCARankForALemmaAndPartOfSpeechTheEVPCatalogDoesNotHave() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

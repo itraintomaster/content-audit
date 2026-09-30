@@ -25,11 +25,14 @@ public class DigestNode {
 
     private List<DigestNode> children;
 
+    private List<String> partiallyEvaluatedBy;
+
     public DigestNode() {
     }
 
     public DigestNode(String nodeId, AuditTarget target, String label, ContextNumbers numbers,
-            List<Finding> findings, List<String> unevaluatedBy, List<DigestNode> children) {
+            List<Finding> findings, List<String> unevaluatedBy, List<DigestNode> children,
+            List<String> partiallyEvaluatedBy) {
         this.nodeId = nodeId;
         this.target = target;
         this.label = label;
@@ -37,6 +40,7 @@ public class DigestNode {
         this.findings = findings;
         this.unevaluatedBy = unevaluatedBy;
         this.children = children;
+        this.partiallyEvaluatedBy = partiallyEvaluatedBy;
     }
 
     public String getNodeId() {
@@ -95,6 +99,14 @@ public class DigestNode {
         this.children = children;
     }
 
+    public List<String> getPartiallyEvaluatedBy() {
+        return this.partiallyEvaluatedBy;
+    }
+
+    public void setPartiallyEvaluatedBy(List<String> partiallyEvaluatedBy) {
+        this.partiallyEvaluatedBy = partiallyEvaluatedBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -106,11 +118,12 @@ public class DigestNode {
                     && Objects.equals(this.numbers, that.numbers)
                     && Objects.equals(this.findings, that.findings)
                     && Objects.equals(this.unevaluatedBy, that.unevaluatedBy)
-                    && Objects.equals(this.children, that.children);
+                    && Objects.equals(this.children, that.children)
+                    && Objects.equals(this.partiallyEvaluatedBy, that.partiallyEvaluatedBy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nodeId, target, label, numbers, findings, unevaluatedBy, children);
+        return Objects.hash(nodeId, target, label, numbers, findings, unevaluatedBy, children, partiallyEvaluatedBy);
     }
 }

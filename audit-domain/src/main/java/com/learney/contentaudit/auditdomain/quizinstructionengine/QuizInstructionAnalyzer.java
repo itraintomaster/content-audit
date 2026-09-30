@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
+import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
+import com.learney.contentaudit.auditdomain.judging.JudgeSessions;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.finding.EvidencePart;
@@ -82,17 +84,20 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
     // of the course).
     private final Set<String> matchedDeclaredSetIds = new HashSet<>();
 
-    public QuizInstructionAnalyzer(EvaluationSession session,
-            QuizInstructionSubjectBuilder subjectBuilder, QuizInstructionScorer scorer,
-            QuizInstructionScopeMatcher scopeMatcher, QuizInstructionVerdictReader verdictReader,
-            EvaluationRunPolicy policy) {
-        this.session = session;
-        this.subjectBuilder = subjectBuilder;
-        this.scorer = scorer;
-        this.scopeMatcher = scopeMatcher;
-        this.verdictReader = verdictReader;
-        this.policy = policy;
-    }
+private final JudgeSessions opened;
+
+private final JudgeRuntime runtime;
+
+public QuizInstructionAnalyzer(EvaluationSession session, QuizInstructionSubjectBuilder subjectBuilder, QuizInstructionScorer scorer, QuizInstructionScopeMatcher scopeMatcher, QuizInstructionVerdictReader verdictReader, EvaluationRunPolicy policy, JudgeSessions opened, JudgeRuntime runtime) {
+    this.session = session;
+    this.subjectBuilder = subjectBuilder;
+    this.scorer = scorer;
+    this.scopeMatcher = scopeMatcher;
+    this.verdictReader = verdictReader;
+    this.policy = policy;
+    this.opened = opened;
+    this.runtime = runtime;
+}
 
     @Override
     public Void onKnowledge(AuditNode node) {
@@ -206,7 +211,7 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
                         .collect(Collectors.toList());
 
         courseDiagnoses.setQuizInstructionCoverage(new QuizInstructionCoverageDiagnosis(
-                coverage, consultedJudgeVersion, verdictsByJudgeVersion, unmatchedReevaluationIds));
+                coverage, consultedJudgeVersion, verdictsByJudgeVersion, unmatchedReevaluationIds, null));
 
         return null;
     }

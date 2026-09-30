@@ -47,6 +47,15 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should keep the identity of the finding on «Where is my wallet?» when «He isn't in the living-room.», another quiz of its knowledge, changes → FEAT-HALL/F-HALL-R014
 - should leave as not evaluated by quiz-instruction a quiz on which the judge failed, so that it counts among the unevaluated quizzes → FEAT-HALL/F-HALL-R008
 - should leave the auditable course untouched when an analyzer returns a finding that is resolved by a rule → FEAT-HALL/F-HALL-R015
+- should run multiple-choice-validity in the base run with budget 0 for its judge, so its instant rules mark «___ a child? (He)» and no consultation is paid → FEAT-RONDA1/F-RONDA1-R007
+- should count in the base run only the multiple choice verdicts already recorded, reused without a new consultation → FEAT-RONDA1/F-RONDA1-R007
+- should leave quiz-instruction, translation-sense, single-answer and mini-theory out of the base run, since none has an instant rule → FEAT-RONDA1/F-RONDA1-R007
+- should give lemma-absence the same scores and typed diagnoses in every node whether or not off-level-words runs in the same analysis → FEAT-NIVFR/F-NIVFR-R006
+- should keep the vocabulary score of every node when off-level-words runs, 73.92% in the course and 96.54, 94.16, 79.45 and 63.51 from A1 to B2 on the published scores of the analysis of 29/9 → FEAT-NIVFR/F-NIVFR-R006
+- should publish a course vocabulary score of 73.92% and levels 96.54, 94.16, 79.45 and 63.51 with lemma-count at 4 for every band, next to the other six published scores of the analysis of 29/9 → FEAT-POCOV/F-POCOV-R001
+- should publish a course vocabulary score of 73.86% and levels 96.02, 93.60, 78.87 and 63.86 with lemma-count at bands 8, 6, 4 and 3, next to the other six published scores of the analysis of 29/9 → FEAT-POCOV/F-POCOV-R001
+- should keep the course vocabulary score at 73.92% with lemma-recurrence at 0.08 publishing its course diagnosis, on the published scores of the analysis of 29/9 → FEAT-RECUR/F-RECUR-R001
+- should keep the vocabulary score of every level at 96.54, 94.16, 79.45 and 63.51 with the recurrence of each level published as detail → FEAT-RECUR/F-RECUR-R004
 
 ### KnowledgeTitleLengthAnalyzer (audit-domain)
 
@@ -137,6 +146,8 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should grade low and resolve at the panel the finding of «He isn't in the living-room.», one token over the 3 to 8 of A1 → FEAT-HALL/F-HALL-R002
 - should give the finding of «He isn't in the living-room.» as evidence the sentence as the student reads it and its measure next to its goal, 9 tokens against the 3 to 8 of A1, never the internal format of the course → FEAT-HALL/F-HALL-R003
 - should keep emitting for «He isn't in the living-room.» the same SentenceLengthDiagnosis as before, 9 tokens against 3 to 8 with delta 1 and margin 5, with nothing of it copied into its finding → FEAT-HALL/F-HALL-R001
+- should mark «He isn't in the living-room.», 9 tokens against the 3 to 8 of A1, with the rule for longer sentences → FEAT-RONDA1/F-RONDA1-R005
+- should mark a sentence under the minimum of its level with the rule for shorter sentences → FEAT-RONDA1/F-RONDA1-R005
 
 ### IScoreAggregator (audit-domain)
 
@@ -145,6 +156,7 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 ### SentenceLengthAnalyzerProvider (audit-domain)
 
 - should describe sentence-length in its card as vocabulary, evaluating the quiz, resolved at the panel and instant, with the goal A1 3 to 8 tokens that the code applies → FEAT-HALL/F-HALL-R006
+- should declare in the sentence-length card one rule for sentences shorter than the goal and another for longer ones → FEAT-RONDA1/F-RONDA1-R005
 
 ### KnowledgeTitleLengthAnalyzerProvider (audit-domain)
 
@@ -240,6 +252,10 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should populate outOfCatalogWords on the lemma-absence correction context from the quiz diagnosis → FEAT-LABS/F-LABS-R038
 - should map the applied discount into each MisplacedLemmaContext entry → FEAT-LABS/F-LABS-R038
 - should leave outOfCatalogWords empty not null when the diagnosis has no out-of-catalog penalties → FEAT-LABS/F-LABS-R038
+- should mark 'number' (A1, 5 sentences) as an under-exposed suggested word with threshold 8 with bands 8, 6, 4 and 3, and as exposed but scarce with 4 for every band → FEAT-POCOV/F-POCOV-R007
+- should list a content word of the sentence as scarce when its sentences are under the threshold of its own band, and report that threshold with it → FEAT-POCOV/F-POCOV-R007
+- should mark a word under-exposed for the suggestions if and only if lemma-count leaves a finding for it in its level → FEAT-POCOV/F-POCOV-R007
+- should give the same suggested words, tiers, thresholds and scarce words as today with 4 for every band → FEAT-POCOV/F-POCOV-R007
 
 ### DispatchingCorrectionContextResolver (refiner-domain)
 
@@ -264,6 +280,12 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should declare as unconverted the scores below 1 of an analyzer whose plan binding names a task kind the plan does not know → FEAT-HALL/F-HALL-R004
 - should turn the scores below 1 of a new errors analyzer into tasks through its plan binding, without the plan knowing its name → FEAT-HALL/F-HALL-R004
 - should declare nothing about lemma-count, whose scores below 1 on the levels and the course (67,0 %) have no task as before, because the declaration covers only errors analyzers → FEAT-HALL/F-HALL-R004
+- should derive from the 29/9 analysis with the seventeen analyzers of round 1 the same 4,036 tasks, declaring the scores below 1 of the new errors analyzers as without task kind and those of off-level-words as covered by LEMMA_ABSENCE → FEAT-RONDA1/F-RONDA1-R008
+- should open no task for an off-level-words score below 1 and declare it covered by the LEMMA_ABSENCE task of its quiz, never as an unconverted score → FEAT-NIVFR/F-NIVFR-R006
+- should plan the same 4,036 tasks for the analysis of 29/9 with and without off-level-words: SENTENCE_LENGTH 3,051, LEMMA_ABSENCE 950, KNOWLEDGE_INSTRUCTIONS_LENGTH 25, KNOWLEDGE_TITLE_LENGTH 6, COCA_BUCKETS 3 and LEMMA_RECURRENCE 1 → FEAT-NIVFR/F-NIVFR-R006
+- should open no task for lemma-count and keep the plan of the analysis of 29/9 at 4,036 tasks, with 4 for every band and with bands 8, 6, 4 and 3 → FEAT-POCOV/F-POCOV-R002
+- should keep a single LEMMA_RECURRENCE task, on the course, and 4,036 tasks in the plan of the analysis of 29/9 with the new lemma-recurrence diagnosis and findings → FEAT-RECUR/F-RECUR-R002
+- should open no task for lemma-recurrence findings, only the course task when its score is below 1 → FEAT-RECUR/F-RECUR-R002
 
 ### KnowledgeTitleContextResolver (refiner-domain)
 
@@ -324,6 +346,8 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should reject before loading the course a run that asks for quiz-instructions, a name get analyzers does not list, with the message that points to get analyzers → FEAT-HALL/F-HALL-R012
 - should reject before loading the course a run that excludes a name get analyzers does not list, instead of ignoring it → FEAT-HALL/F-HALL-R012
 - should publish on the 29/9 course, with the seven classic analyzers, the same score of each one on each of its 11.760 nodes and the same typed diagnoses as the analysis 2026-09-30T11-54-02 → FEAT-HALL/F-HALL-R013
+- should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels 96.0, 93.6, 78.9 and 63.9 → FEAT-RONDA1/F-RONDA1-R008
+- should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2, 79.5 and 63.5 → FEAT-RONDA1/F-RONDA1-R008
 
 ### DefaultCocaBucketsConfig (audit-application)
 
@@ -410,11 +434,51 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should reject a decimal number as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
 - should reject a non-numeric string as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
 - should reject an empty string as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
+- should load '4' as four bands that all ask for 4 sentences → FEAT-POCOV/F-POCOV-R001
+- should load '8/6/4/3' as the 1,000, 2,000 and 3,000 most common words and beyond, asking for 8, 6, 4 and 3 sentences → FEAT-POCOV/F-POCOV-R001
+- should load the bands 8, 6, 4 and 3 when no threshold is configured, the default José confirmed on 30/9 → FEAT-POCOV/F-POCOV-R001
+- should reject a band threshold that is not a positive integer, like '8/0/4/3', as it rejects a uniform one → FEAT-POCOV/F-POCOV-R001
 
 ### DefaultQuizInstructionConfig (audit-application)
 
 - should default the run budget to 500 new judge queries → FEAT-QINST/F-QINST-R006
 - should map the severities none, minor, major and critical to the scores 1.0, 0.6, 0.3 and 0.0 → FEAT-QINST/F-QINST-R002
+
+### DefaultJudgeExamService (audit-application)
+
+- should take the exam of a judge over the photo, running only its analyzer, and give one verdict per exercise of the file → FEAT-JEXAM/F-JEXAM-R001
+- should judge the exam exercises as they are in the photo of 29/9 even when the live course changed them since → FEAT-JEXAM/F-JEXAM-R001
+- should record TAKEN for the version when every exercise of the file got a verdict, and not when one stayed without verdict or is not in the photo → FEAT-JEXAM/F-JEXAM-R001
+- should leave analyze on the course with the same scores, findings and pending quizzes before and after a version takes the exam → FEAT-JEXAM/F-JEXAM-R002
+- should let a version that already took the exam take it again without a single consultation → FEAT-JEXAM/F-JEXAM-R002
+- should rehearse the exam with budget 0 without consulting, reusing what that version judged and saying how many consultations are missing → FEAT-JEXAM/F-JEXAM-R010
+- should record the result measured outside for a version that took the whole exam and make it the standing of that version → FEAT-JEXAM/F-JEXAM-R001
+- should reject with JudgeExamNotTakenException the measured result of a version that did not take the whole exam, recording nothing → FEAT-JEXAM/F-JEXAM-R001
+- should list every exam record of a judge, across its versions, in the order they were recorded → FEAT-JEXAM/F-JEXAM-R001
+- should give one verdict to every exercise of a quiz-instruction exam file that mixes CLOZE and multiple choice exercises, without knowing their groups → FEAT-JEXAM/F-JEXAM-R009
+
+### DefaultJudgeRuntimeConfig (audit-application)
+
+- should give budget 0 as the default of quiz-instruction, translation-sense, single-answer, mini-theory and multiple-choice-validity → FEAT-JEXAM/F-JEXAM-R010
+- should give four consultations at a time by default → FEAT-JEXAM/F-JEXAM-R006
+- should give 189 per hour as default rate and 60 per hour for mini-theory → FEAT-JEXAM/F-JEXAM-R004
+
+### DefaultTranslationSenseConfig (audit-application)
+
+- should score a quiz 0.3 for a high, 0.6 for a medium and 0.8 for a low worst severity → FEAT-TRSEN/F-TRSEN-R004
+
+### DefaultSingleAnswerConfig (audit-application)
+
+- should score a quiz 0 for a blocking, 0.3 for a high and 0.6 for a medium worst severity → FEAT-UNICA/F-UNICA-R004
+
+### DefaultMiniTheoryConfig (audit-application)
+
+- should count a false mini-theory only where it is shown unless the whole-topic scope is configured → FEAT-MINIT/F-MINIT-R003
+- should score an exercise 0.3 for a high, 0.6 for a medium and 0.8 for a low worst severity → FEAT-MINIT/F-MINIT-R004
+
+### DefaultChoiceAlternativeConfig (audit-application)
+
+- should score a quiz 0 for a blocking, 0.3 for a high and 0.6 for a medium worst severity → FEAT-MCVALE/F-MCVALE-R003
 
 ### FileSystemCourseRepository (course-infrastructure)
 
@@ -460,6 +524,10 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should save an AuditReport and load it back with identical content
 - should list each saved analysis with the vocabulary score published on its course, 73,9 % for the 29/9 base, instead of 73,4 %, the average of its eleven course keys → FEAT-HALL/F-HALL-R010
 - should save with each analysis a digest without the course entities whose numbers, findings and unevaluated analyzers are copied from the report and not recomputed, and load it by the analysis id → FEAT-HALL/F-HALL-R010
+- should label each exercise of the digest with its statement as the student sees it, «You ___ (see) cats.» and not «Afirmativas regulares» → FEAT-RONDA1/F-RONDA1-R002
+- should keep in the digest the labels of the course, the levels, the topic groups and the topics → FEAT-RONDA1/F-RONDA1-R002
+- should keep «Afirmativas regulares» as the exercise label of the saved report, the title the quiz instruction judge reads → FEAT-RONDA1/F-RONDA1-R002
+- should copy into the digest the analyzers that evaluated each node halfway → FEAT-RONDA1/F-RONDA1-R006
 
 ### FileSystemRevisionArtifactStore (audit-infrastructure)
 
@@ -491,6 +559,12 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Dado un store con una seleccion escrita, cuando clear corre, entonces read posterior retorna Optional.empty → FEAT-CDIFF/F-CDIFF-R001
 - Dado un courseRoot con AuditReports y RefinementPlans persistidos, cuando write y clear se invocan sobre el ActiveAnalysisSelectionStore, entonces ningun AuditReport, RefinementPlan, RevisionArtifact ni archivo del curso se modifica → FEAT-CDIFF/F-CDIFF-R002
 
+### FileSystemJudgeExamRegistry (audit-infrastructure)
+
+- should append each exam record of a judge as one line of .content-audit/judge-exams/<judge>.jsonl and never rewrite an earlier one → FEAT-JEXAM/F-JEXAM-R001
+- should give as latest of a version its last record, and nothing for a version that never took the exam → FEAT-JEXAM/F-JEXAM-R001
+- should keep every exam record readable after the analysis reports under the same base directory are deleted → FEAT-JEXAM/F-JEXAM-R001
+
 ### FileSystemEvaluationLedger (evaluation-ledger-infrastructure)
 
 - should make every appended result readable by a ledger instance opened after the run was interrupted → FEAT-EVCOST/F-EVCOST-R004
@@ -499,4 +573,6 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should keep the results of previous evaluator versions readable in history after a new version records its own → FEAT-EVCOST/F-EVCOST-R006
 - should keep every registered result readable after the analysis reports under the same base directory are deleted → FEAT-EVCOST/F-EVCOST-R007
 - should keep the earlier entry consultable in history when the same key is recorded again → FEAT-EVCOST/F-EVCOST-R008
+- should return the recorded times of an evaluator in the order they were appended, and none of another evaluator → FEAT-JEXAM/F-JEXAM-R004
+- should not return to the course evaluator a verdict recorded for the same content under its exam: evaluator → FEAT-JEXAM/F-JEXAM-R002
 
