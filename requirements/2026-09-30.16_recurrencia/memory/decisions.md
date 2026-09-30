@@ -5,6 +5,12 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-RECUR-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
+  why: pide analyze y stats analyzer, package-private ahí, y su último paso mira el plan.
+
+2026-09-30 — qa-tester — R003 se prueba en el analizador, el formateador y StatsAnalyzerCmd; R004 prohíbe la clave de puntaje en el milestone en el analizador y fija los niveles de vocabulario en IAuditEngine.
+  why: hoy DefaultRefinerEngine abre LEMMA_RECURRENCE en un milestone con puntaje: una clave de nivel crearía tareas.
+
 2026-09-30 — analyst — José resolvió DOUBT-PUNTAJE-POR-NIVEL → A, en cada nivel es detalle y no puntaje, y DOUBT-UNA-SOLA-VEZ → A, no cuenta las palabras vistas una vez (José, 30/9). R004 pasa a VALIDATED.
 
 2026-09-30 — analyst — R003: `get audit` sale de la regla (muestra sólo el resumen del curso, para todo analizador); los datos por palabra los muestra `stats analyzer lemma-recurrence` y los publica el informe.

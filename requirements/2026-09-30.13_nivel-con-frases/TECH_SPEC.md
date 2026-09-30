@@ -208,3 +208,39 @@ modules:
               - { name: lemmaAbsenceConfig, type: LemmaAbsenceConfig }
               - { name: topicTeachingResolver, type: TopicTeachingResolver }
 ```
+
+## Declarar las 37 pruebas de FEAT-NIVFR y ubicar su journey
+Las 37 son nuevas: no hay código de `off-level-words` que portar. Cada una fija una regla con un caso del curso, en la
+pieza que la cumple, y donde la regla trae un número, la prueba lo fija.
+
+| Pieza | Reglas | Pruebas | Qué fija |
+|---|---|---:|---|
+| `OffLevelWordsAnalyzer` | R001–R006 | 22 | el nivel de `lemma-absence` (live baja con «live in/at», run no sube con «run out», reside sin nivel inventado, nada que `lexis` no marque); dos niveles con C1 = 5 y C2 = 6; la banda fuerte de R034 (3.000 no, 3.001 y sin puesto sí; reside marca en A2 y no en B1); invest del tema; sushi, adore, tildes y palabra del catálogo; un hallazgo media / mesa / instantáneo por palabra con su evidencia; puntaje 1 o menor; el diagnóstico tipado; la opción múltiple como CLOZE; sólo su clave |
+| `DefaultTopicTeachingResolver` | R003 | 7 | términos entre `$`, let's como let, los bordes de 3 ejercicios y 20 % (3 de 15 sí, 3 de 16 no, 2 nunca), la opción correcta, nada fuera de la respuesta |
+| `OffLevelWordsAnalyzerProvider` | R006, R007 | 3 | la ficha, un solo nombre, sin ligadura al plan |
+| `IAuditEngine` | R006 | 2 | `lemma-absence` igual con y sin el analizador; el vocabulario en 73,92 % y 96,54 · 94,16 · 79,45 · 63,51 |
+| `DefaultRefinerEngine` | R006 | 2 | «cubierto por la LEMMA_ABSENCE del ejercicio»; 4.036 tareas (3.051 · 950 · 25 · 6 · 3 · 1) con y sin el analizador |
+| `Main` | R007 | 1 | figura en `get analyzers` |
+
+**Dependencias.** Todo se implementa sobre 0.3 (`findingsAt`, la ficha, el puntaje de vocabulario, `unconvertedScores`);
+la opción múltiple del resolutor y del analizador, sobre 0.2. Además: el diagnóstico tipado del ejercicio, D-02; `Main`,
+D-03; «cubierto», D-04; los números del 29/9, el fixture de D-12 (los puntajes publicados y el plan del análisis
+2026-09-30T11-54-02); la evidencia con el hueco, D-14 (hasta entonces, la oración terminada). El proveedor pasa a
+`implements: [AnalyzerProvider]` con D-01.
+
+F-NIVFR-J001 va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: su camino cruza `analyze` y el plan,
+`AnalyzeCmd` y `PlanCmd` son package-private ahí, como en F-CLEX-J001, y el analizador se alcanza por su proveedor, que
+`audit-cli` puede ver. Quedan como pruebas comunes, sin declarar, las que no fijan una regla de FEAT-NIVFR: un analizador
+nuevo por corrida (F-HALL-R014) y los tokens vacíos. Los 170 ejercicios (18 · 33 · 81 · 38) y el 26 de 52 del examen se
+miden con la corrida del integrador y `medir.py`, no con una prueba.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+features:
+  - id: FEAT-NIVFR
+    code: F-NIVFR
+    journeys:
+      - { id: F-NIVFR-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
+```

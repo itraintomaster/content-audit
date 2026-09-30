@@ -191,3 +191,36 @@ features:
   - id: FEAT-SEMAF
     code: F-SEMAF
 ```
+
+## Declarar las 32 pruebas de FEAT-SEMAF y ubicar su journey
+Las 32 son nuevas: no hay código del semáforo que portar. 28 van a `DefaultTopicWordLightsQuery`, que hace la consulta,
+y 4 a `GetCmd`, que la expone como `get word-lights`. Donde la regla trae un número, la prueba lo fija.
+
+| Pieza | Reglas | Pruebas | Qué fija |
+|---|---|---:|---|
+| `DefaultTopicWordLightsQuery` | R001 | 5 | una fila por lema y categoría con nivel, oraciones y color; qué nivel se muestra; «sin nivel»; los dos rechazos con su mensaje |
+| | R002 | 7 | verde con menos de 2N; poco vista de 1 a N−1 y escasa de N a 2N−1 (rubber 3, lamp 4 y vegetable 10 con N 4); otro nivel no es verde; el N de la banda (number, 5 oraciones: poco vista con 8, escasa con 4); ninguna roja es verde; poco vista ⇔ hallazgo de `lemma-count` |
+| | R003 | 3 | el orden de `get suggested-lemmas`; el límite después de sacar las del tema; los mismos filtros |
+| | R004 | 3 | invest en «$Invest time$ + gerundio»; sequence y simultaneous como respuesta; let's |
+| | R005 | 6 | mal ubicada con su nivel; fuera del EVP con su puesto; la que `lexis` no castiga; sin depender de `lemma-absence`; la marca de error y su «sin dato» |
+| | R006, R007 | 4 | go y oven quedan neutras; ninguna roja para sumar; el informe queda igual |
+| `GetCmd` | R001, R007 | 4 | JSON leído del análisis fuente del último plan; código 1 con el tema que no está; `--level` rechazado; el análisis y el plan del 29/9 idénticos byte a byte, en 73,92 % y 4.036 tareas |
+
+**Dependencias.** `TopicTeachingResolver` viene de FEAT-NIVFR y la tabla por palabra de `lemma-count` (el N de cada
+banda y sus hallazgos) de FEAT-POCOV, así que las dos se aplican antes o junto con ésta. La marca de error lee el
+diagnóstico del enganche D-02; las cuatro de `GetCmd`, D-05, y el journey además D-06; «incluir expuestas» con bandas,
+D-08; la de byte a byte usa una copia del análisis 2026-09-30T11-54-02 y de su plan (el fixture de D-12).
+
+F-SEMAF-J001 va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`, donde `GetCmd` es package-private, como
+los journeys de las sugeridas (F-SLEM-J001) y de `lexis` (F-CLEX-J001). Queda como prueba común el formato del JSON.
+
+```architecture
+modules:
+  - name: refiner-domain
+    _change: modify
+features:
+  - id: FEAT-SEMAF
+    code: F-SEMAF
+    journeys:
+      - { id: F-SEMAF-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
+```

@@ -5,6 +5,12 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-NIVFR-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
+  why: cruza analyze y el plan; AnalyzeCmd y PlanCmd son package-private ahí (como F-CLEX-J001) y el analizador se alcanza por su proveedor público.
+
+2026-09-30 — qa-tester — R006 se prueba fuera del paquete: IAuditEngine (lemma-absence igual con y sin el analizador; vocabulario 73,92 % y 96,54 · 94,16 · 79,45 · 63,51) y DefaultRefinerEngine (cubierto por LEMMA_ABSENCE, D-04; 4.036 tareas).
+  why: el analizador solo no puede garantizar lo que no mueve; cada número va en la pieza que lo calcula, con fixture del análisis 2026-09-30T11-54-02 (D-12).
+
 2026-09-30 — architect — Paquete público `offlevelwords` (audit-domain, allowedClients audit-cli y refiner-domain): diagnóstico, regla del tema (`TopicTeachingResolver`, compartida con el semáforo) y proveedor; el analizador es package-private, recalcula con `SentenceLexicalScorer` (no lee lo de lemma-absence) y puntúa 0 o 1.
   why: correr solo (F-HALL-R012), paridad con lexis por construcción (R001 inv. 3) y una sola regla del tema para dos piezas.
 

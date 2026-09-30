@@ -5,6 +5,12 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-SEMAF-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
+  why: GetCmd es package-private ahí; mismo paquete que F-SLEM-J001 y F-CLEX-J001.
+
+2026-09-30 — qa-tester — 28 pruebas en DefaultTopicWordLightsQuery y 4 en GetCmd (D-05); la de R007 compara el análisis y el plan del 29/9 byte a byte, en 73,92 % y 4.036.
+  why: R007 inv. 3 trae números: se fijan sobre una copia del análisis 2026-09-30T11-54-02 y su plan.
+
 2026-09-30 — analyst — José resolvió DOUBT-CONSULTA-O-ANALIZADOR → A, consulta, y DOUBT-SOBREEXPOSICION → A, una palabra muy repetida no es roja (José, 30/9). R006 pasa a VALIDATED.
 
 2026-09-30 — analyst — DOUBT-VERDE-POR-RECURRENCIA → A, la recomendada (José, 30/9: «por lo demás, continúa»).

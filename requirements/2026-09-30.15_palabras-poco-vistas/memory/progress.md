@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — Ronda 1: `patch propose` exit 0, fusionado con el parche del arquitecto: 36 handwrittenTests nuevos (0 portados) y F-POCOV-J001 en audit-cli, paquete commands; `tech-spec write` exit 0 (+1 sección). No aplicado.
+  Simulado en scratch/qa-D (apply en memoria con la librería del jar, sin CLI apply ni generate), sobre el sentinel.yaml de hoy y sobre 0.2 + 0.3 aplicados antes: 36 pruebas aterrizan, 0 errores de traza, J001 ubicado, `feature status` OK, 7/7 reglas [covered]; generate agregaría 36 stubs y FPocovJ001JourneyTest con 2 caminos, sin choques de nombre.
+  Next: el integrador aplica después de 0.2 y 0.3 y sin `--as` (el parche lleva la estructura del arquitecto); José corre generate; @test-writer implementa.
+
 2026-09-30 — architect — Ronda 1: REQUIREMENT al día (bandas B y sin tareas, José 30/9; nueva R007; dudas nuevas PUESTO-DE-LA-BANDA y LEMATIZADOR). Parche y TECH_SPEC en exit 0: tabla de bandas en la configuración, `LemmaExposure` en `LemmaCountResult`, `resolveCocaRank`.
   Next: José confirma las bandas y el puesto; el integrador suma D-07 a D-09 y D-12 de ronda1/ganchos-D.md; `feature sync --feature FEAT-POCOV` y @qa-tester (prueba de los dos números en el TECH_SPEC).
 

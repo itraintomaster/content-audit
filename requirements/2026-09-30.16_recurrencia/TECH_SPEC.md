@@ -162,3 +162,40 @@ modules:
               - { name: result, type: LemmaRecurrenceResult }
               - { name: levels, type: "List<LevelRecurrence>" }
 ```
+
+## Declarar las 24 pruebas de FEAT-RECUR y ubicar su journey
+Las 24 son nuevas. Los 11 tests de `LemmaRecurrenceAnalyzer` y el de su configuración siguen trazados a FEAT-LREC, que
+R001 mantiene. Donde la regla trae un número, la prueba lo fija.
+
+| Pieza | Reglas | Pruebas | Qué fija |
+|---|---|---:|---|
+| `LemmaRecurrenceAnalyzer` | R001 | 2 | 0,08 en el curso del 29/9, con 134 · 1.570 · 46 de 1.750; el mismo cálculo publicando el diagnóstico |
+| | R003 | 4 | cada lema con sus datos y su hueco más largo (movie 6.510 de A1 a A2, suppose 27.379 de B1 a B2); sus niveles; de más a menos veces |
+| | R004 | 4 | la recurrencia de cada nivel y sus sumas; A1 450 · 178 (39,6 %), A2 752 · 155 (20,6 %), B1 1.139 · 161 (14,1 %), B2 819 · 165 (20,1 %); nunca una clave de puntaje en un milestone |
+| | R005 | 6 | un hallazgo baja / sólo ordena por lema fuera de rango; su evidencia (movie); ninguno con puntaje 1 ni para los vistos una vez; identidad por lema; 1.616 en el 29/9 |
+| `LemmaRecurrenceAnalyzerProvider` (de 0.3) | R006 | 1 | la ficha |
+| `IAuditEngine` | R001, R004 | 2 | 73,92 % con 0,08; los niveles en 96,54 · 94,16 · 79,45 · 63,51 con el detalle publicado |
+| `DefaultRefinerEngine` | R002 | 2 | una sola LEMMA_RECURRENCE, en el curso, y 4.036 tareas; los hallazgos no abren tareas |
+| `LemmaRecurrenceDetailedFormatter` | R003 | 2 | cada lema y cada nivel; lo publicado, sin recalcular |
+| `StatsAnalyzerCmd` | R003 | 1 | `stats analyzer lemma-recurrence` muestra el diagnóstico del informe |
+
+**Dependencias.** El diagnóstico de curso necesita el enganche D-10; los hallazgos y el proveedor, 0.3 (si este parche se
+aplicara antes, `LemmaRecurrenceAnalyzerProvider` entraría como una implementación vacía, sólo con su prueba). Los
+números del 29/9 usan como fixture las posiciones de ese curso (91.873) y el plan y los puntajes de 2026-09-30T11-54-02
+(D-12). **Falta un enganche:** D-11 registra el formateador en el mapa de `analyze --detailed`, pero `stats analyzer` no
+usa ese mapa (`StatsAnalyzerCmd` pasa el informe por `AnalyzerStatsTransformer`), así que la prueba de `StatsAnalyzerCmd`
+pide un cableado que todavía no está en `ronda1/ganchos-D.md`.
+
+F-RECUR-J001 va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: pide `analyze` y `stats analyzer`, que
+son package-private ahí, y su último paso mira el plan.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+features:
+  - id: FEAT-RECUR
+    code: F-RECUR
+    journeys:
+      - { id: F-RECUR-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
+```

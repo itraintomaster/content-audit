@@ -5,6 +5,12 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-POCOV-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
+  why: su último paso mira el plan, que audit-domain no ve; AnalyzeCmd y PlanCmd son package-private ahí.
+
+2026-09-30 — qa-tester — R002 y R006 del proveedor se declaran en LemmaCountAnalyzerProvider, que llega con 0.3; los 23 + 5 + 6 tests de LCOUNT siguen trazados a sus reglas.
+  why: la ficha y la ligadura son del proveedor; re-trazar tests viejos rompería su traza a FEAT-LCOUNT.
+
 2026-09-30 — analyst — José eligió DOUBT-UMBRALES-POR-BANDA → B, 8 · 6 · 4 · 3 (José, 30/9), a confirmar antes de construir. R001 pasa a «el umbral es el de la banda»: con 4 para todas da lo de hoy (67,0 / 73,9 / 1.535) y con las bandas, 66,5 / 73,86 / 1.616.
   why: mueve el número del curso; los umbrales quedan como configuración y volver atrás es un valor.
 

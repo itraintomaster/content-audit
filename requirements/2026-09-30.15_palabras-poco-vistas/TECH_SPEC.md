@@ -194,3 +194,42 @@ modules:
         requiresInject:
           - { name: bands, type: "List<LemmaCountBand>", _change: add }
 ```
+
+## Declarar las 36 pruebas de FEAT-POCOV y ubicar su journey
+Las 36 son nuevas. Los 23 tests de `LemmaCountAnalyzer`, los 5 del resolutor y los 6 del cargador siguen trazados a
+FEAT-LCOUNT, que R001 mantiene con el N de cada banda. Donde la regla trae un número, la prueba lo fija.
+
+| Pieza | Reglas | Pruebas | Qué fija |
+|---|---|---:|---|
+| `LemmaCountAnalyzer` | R001 | 5 | number: 0,625 con 8 y 1 con 4; la banda por el puesto del catálogo (hop pide 3, no 8); sin puesto, la última banda; con 4 para todas, A1 0,9388350 · A2 0,7114198 · B1 0,5251412 · B2 0,3404948 · C1 0,8333333 · curso 0,6698448 y 1.535; con 8 · 6 · 4 · 3, 0,9077670 · 0,6782407 · 0,4903013 · 0,3612196 · 0,8888889 · 0,6652835 y 1.616 |
+| | R003 | 7 | un hallazgo baja / sólo ordena / instantáneo por palabra; su evidencia (education, 1 de 4); el de curso por nivel; hop en el de C1; nada para no asignadas ni en un nivel en 1; identidad lema y categoría; 1.534 + 5, y 1.615 + 5 con bandas |
+| | R004–R006 | 7 | banda, oraciones y puesto; B1 empieza por feeling … effect; la lista de sub-expuestos sigue por oraciones; los temas de cada palabra; la ausente no es poco vista; la tabla de bandas en el resultado |
+| `EvpThenNlpLemmaCefrLevelResolver` | R001 | 2 | el puesto sale del catálogo, o no hay |
+| `LemmaCountAnalyzerProvider` (de 0.3) | R002, R006 | 3 | sin ligadura al plan; la ficha; la meta con el umbral de cada banda |
+| `IAuditEngine` | R001 | 2 | 73,92 % y 96,54 · 94,16 · 79,45 · 63,51 con 4 para todas; 73,86 % y 96,02 · 93,60 · 78,87 · 63,86 con las bandas |
+| `DefaultLemmaCountConfigLoader` | R001 | 4 | «4»; «8/6/4/3»; sin valor, cuatro bandas de 4; «8/0/4/3» rechazado |
+| `DefaultRefinerEngine` | R002 | 1 | 4.036 tareas y ninguna de `lemma-count`, con las dos configuraciones |
+| `LemmaAbsenceContextResolver`, `LevelWideLemmaInventory` | R007 | 5 | number poco vista con 8 y escasa con 4; escasas con su N; poco vista ⇔ hallazgo; con 4 para todas, lo de hoy; incluir expuestas con el N de su banda |
+
+**De dónde salen los números.** Los de `lemma-count` salen del fixture de la sección anterior: la tabla por lema de
+contenido del curso del 29/9 (2.597 con nivel y 473 sin) y el curso sintético donde cada lema aparece en sus oraciones.
+Para el vocabulario, los otros seis puntajes publicados de 2026-09-30T11-54-02; para el plan, ese análisis (D-12).
+
+**Dependencias.** Los hallazgos (R003, R005) y el proveedor se implementan sobre 0.3. Si este parche se aplicara antes que
+0.3, `LemmaCountAnalyzerProvider` entraría como una implementación vacía, sólo con sus pruebas. `LemmaAbsenceContextResolver`
+depende de D-07 y `LevelWideLemmaInventory` de D-08. El cargador queda en «4» hasta que José confirme «8/6/4/3».
+
+F-POCOV-J001 va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: su último paso mira el plan, que
+`audit-domain` no ve, y `AnalyzeCmd` y `PlanCmd` son package-private ahí. Queda como prueba común la configuración sin
+bandas de los tests viejos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+features:
+  - id: FEAT-POCOV
+    code: F-POCOV
+    journeys:
+      - { id: F-POCOV-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
+```
