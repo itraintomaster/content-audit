@@ -5,10 +5,10 @@ description: "Deuda de 83228e54 (FEAT-OPMUL): declara en sentinel.yaml lo que el
   \ nuevos en FormEntity, QuizTemplateEntity, AuditableQuiz, QuizInstructionSubjectView\
   \ y QuizInstructionCorrectionRunReport; el desenlace MULTIPLE_CHOICE_UNSUPPORTED\
   \ en tres enums; y el registro de FEAT-OPMUL. No agrega comportamiento ni cambia\
-  \ firmas de interfaces.; qa-tester: traza las 8 reglas de FEAT-OPMUL a 32 handwrittenTests\
-  \ (27 portan un test MC existente de 83228e54, 5 son nuevos) y ubica F-OPMUL-J001\
-  \ a J003. Declarar un test es llevar su cuerpo a la clase {Impl}Test: generate ignora\
-  \ className y sourceFile."
+  \ firmas de interfaces.; qa-tester: traza las 9 reglas de FEAT-OPMUL a 34 handwrittenTests\
+  \ (28 portan un test MC existente de 83228e54 y 6 son nuevos; R009 porta quizFormKindFallsBackToQuizKind\
+  \ a revise y suma uno nuevo en repair) y ubica F-OPMUL-J001 a J003. Declarar un\
+  \ test es llevar su cuerpo a la clase {Impl}Test: generate ignora className y sourceFile."
 modules:
 - name: course-domain
   models:
@@ -248,6 +248,11 @@ modules:
         traceability:
           feature: FEAT-OPMUL
           rule: F-OPMUL-R006
+      - name: "should reject revising a quiz whose own kind is multiple choice when\
+          \ its form does not say one, but not when its form says CLOZE"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R009
     - name: DefaultQuizInstructionCorrectionRunner
       handwrittenTests:
       - name: "should count a task on a multiple choice quiz apart, neither corrected\
@@ -325,6 +330,11 @@ modules:
         traceability:
           feature: FEAT-OPMUL
           rule: F-OPMUL-R008
+      - name: should never restore a quiz whose own kind is multiple choice and whose
+          form lost its kind from a snapshot recorded when it was a CLOZE
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R009
   _change: modify
 - name: course-infrastructure
   implementations:

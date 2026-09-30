@@ -32,3 +32,15 @@
   why: TestCoverageValidator solo cuenta tests declarativos de implementaciones de raiz; la cobertura real la da `tool listModules --with-coverage`.
 
 2026-09-30 — qa-tester — Proximo paso: José resuelve las dudas de traza (OG1) y aplica sin --as; despues corre generate. El equipo de implementacion adapta el codigo y los 415 sitios. @test-writer porta 27 cuerpos, borra los originales y escribe los 5 nuevos y los 12 caminos. Meta: ~1.713 tests en verde (1.696 + 5 + 12).
+
+2026-09-30 — analyst — F-OPMUL-R009 agregada (brief 092, pregunta 3). `requirement validate`, `feature validate` y `glossary validate` [OK]; `feature list` = FEAT-OPMUL 9 reglas / 3 journeys. Sin `feature sync`: solo se agrego una regla y FEAT-OPMUL todavia no esta en sentinel.yaml.
+
+2026-09-30 — qa-tester — patch propose OK, fusionado (3 altas, 23 modificaciones, 0 conflictos; `patch validate` igual): +2 handwrittenTests para R009, quedan 34 (28 portados, 6 nuevos) y 11 tests MC comunes. `tech-spec write` OK: 9 fences (+1, seccion R009). No aplicado.
+
+2026-09-30 — qa-tester — Simulacion en scratch (apply en memoria con la libreria del jar, sin CLI apply ni generate): los 34 tests aterrizan, J001-J003 ubicados, `feature status` OK, 9/9 reglas [covered]; generate crearia 34 stubs en 12 {Impl}Test existentes, sin choques de nombre. El aviso de TestCoverageValidator ahora lista R001-R009.
+
+2026-09-30 — qa-tester — Proximo paso, sin cambios: José aplica sin --as y corre generate. @test-writer porta 28 cuerpos (quizFormKindFallsBackToQuizKind, por revise) y borra los originales, y escribe los 6 nuevos y los 12 caminos. Meta: ~1.714 tests en verde (1.696 + 6 + 12).
+
+2026-09-30 — analyst — Por revision del coordinador, R009 pasa a AUTO_VALIDATED: José acepto la recomendacion, no confirmo el texto.
+
+2026-09-30 — qa-tester — Por revision del coordinador: la descripcion del parche se reescribio con `patch propose --replace` (el resto del parche queda byte a byte: 9 reglas, 34 tests, 28 portados, 6 nuevos). TECH_SPEC: «Registrar FEAT-OPMUL y ubicar sus tres journeys» al dia y un parrafo sobre las 34 pruebas; quedan 11 comunes (39 - 28), no 12, porque quizFormKindFallsBackToQuizKind paso a portado.

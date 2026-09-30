@@ -1,7 +1,7 @@
 ---
 patch: FEAT-OPMUL
 requirement: 2026-09-30.01_opcion-multiple
-generated: 2026-09-30T14:35:00Z
+generated: 2026-09-30T17:56:13Z
 ---
 
 # Tech Spec: Ejercicios de opcion multiple, declarados despues de hechos
@@ -164,15 +164,46 @@ modules:
               - { name: multipleChoiceUnsupported, type: int, _change: add }
 ```
 
-## Registrar FEAT-OPMUL
+## Registrar FEAT-OPMUL y ubicar sus tres journeys
 
-`feature status` no encuentra FEAT-OPMUL, y sin registro la feature no llega a la generacion ni a la trazabilidad. Al aplicar, Sentinel copia desde REQUIREMENT.md la compuerta de activacion con F-OPMUL-J001, J002 y J003. Ubicarlos (testModule y testPackage) le toca al qa-tester, no a este parche. Hasta que lo haga, `generate` se niega a correr y no escribe nada, porque los tres journeys tienen flujo y no tienen modulo de test.
+`feature status` no encuentra FEAT-OPMUL, y sin registro la feature no llega a la generacion ni a la trazabilidad. Al aplicar, Sentinel copia desde REQUIREMENT.md la compuerta de activacion con F-OPMUL-J001, J002 y J003, y el parche los ubica: cada uno trae testModule y testPackage, asi que `generate` no se niega a correr y crea sus tres journey tests, con 12 caminos entre los tres. Cada journey va al modulo que ve a todos sus participantes y a su paquete exacto, con el mismo criterio que F-QINST, F-REVBYP y F-RPRES.
 
 ```architecture
 features:
   - id: FEAT-OPMUL
     code: F-OPMUL
+    journeys:
+      - { id: F-OPMUL-J001, testModule: audit-application, testPackage: com.learney.contentaudit.auditapplication }
+      - { id: F-OPMUL-J002, testModule: revision-domain, testPackage: com.learney.contentaudit.revisiondomain.engine }
+      - { id: F-OPMUL-J003, testModule: audit-cli, testPackage: com.learney.contentaudit.journeys }
 modules:
   - name: course-domain
     _change: modify
+```
+
+## Declarar las 34 pruebas de FEAT-OPMUL
+
+El parche declara 34 handwrittenTests para las 9 reglas. 28 portan un test MC que ya existe desde 83228e54: su cuerpo pasa al stub que `generate` crea en `{Impl}Test`, porque generate ignora className y sourceFile, y el original se borra. 6 son nuevos y cubren clausulas que ningun test probaba, como el approve que perderia los datos de hoy (R008) o el MC cuyo formulario perdio su tipo (R009). De los 39 tests MC, los otros 11 quedan como pruebas comunes porque no verifican una regla de FEAT-OPMUL: 4 sostienen la carga y el guardado, entre ellos el del orden en que se escribe un formulario MC; 5 son internos del modelo, y 2 son guardas de FEAT-QSENT.
+
+## Cubrir F-OPMUL-R009 en revise y en repair
+
+Si el formulario no dice CLOZE ni opcion multiple, vale el tipo del ejercicio (F-OPMUL-R009, pregunta 3 del brief 092). Hoy lo resuelve `QuizTemplateEntity.formKind()` y lo cubre una sola prueba, `MultipleChoiceModelTest.quizFormKindFallsBackToQuizKind`; con la opcion A ese metodo sale del modelo, y un modelo no lleva handwrittenTests, asi que la regla se prueba en quien decide con ella. La de revise porta los casos de esa prueba: formulario sin tipo en un ejercicio de opcion multiple, rechazo; formulario CLOZE, se corrige. La de repair es nueva: el MC cuyo formulario perdio su tipo, que sin la regla volveria al CLOZE de su foto.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: engine
+        implementations:
+          - name: DefaultRevisionEngine
+            handwrittenTests:
+              - name: "should reject revising a quiz whose own kind is multiple choice when its form does not say one, but not when its form says CLOZE"
+                traceability: { feature: FEAT-OPMUL, rule: F-OPMUL-R009 }
+      - name: preservationengine
+        implementations:
+          - name: DefaultPreservationRepair
+            handwrittenTests:
+              - name: "should never restore a quiz whose own kind is multiple choice and whose form lost its kind from a snapshot recorded when it was a CLOZE"
+                traceability: { feature: FEAT-OPMUL, rule: F-OPMUL-R009 }
 ```

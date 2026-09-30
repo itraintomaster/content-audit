@@ -151,6 +151,21 @@ restaurarla lo devolveria al CLOZE que fue ([F-RPRES-R005](#F-RPRES-R005)).
 CLOZE se aborta; (b) un CLOZE cuya foto es anterior al 30/9 conserva esos datos tras `repair`: en
 esa foto "no estan" quiere decir "no se conocian".
 
+<a id="F-OPMUL-R009"></a>
+### Rule[F-OPMUL-R009] - Si el formulario no dice de que tipo es el ejercicio, vale el tipo del ejercicio
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> Para no corregir ([F-OPMUL-R006](#F-OPMUL-R006)) ni restaurar ([F-OPMUL-R007](#F-OPMUL-R007)) un MC,
+> el tipo lo dice el formulario: si dice CLOZE u opcion multiple, vale ese, diga lo que diga el
+> ejercicio. Si no dice ninguno de los dos —no trae tipo, trae uno que el sistema no reconoce o no hay
+> formulario—, vale el tipo del ejercicio.
+
+Un MC cuyo formulario perdio su tipo sigue siendo MC: `revise` lo rechaza y `repair` no lo restaura
+desde su foto de cuando era CLOZE. La auditoria no mira el tipo del ejercicio: mide segun el
+formulario ([F-OPMUL-R003](#F-OPMUL-R003)). **Criterio de aceptacion**: si el ejercicio es de opcion
+multiple, un formulario sin tipo da MC y uno que dice CLOZE da CLOZE. En el curso vivo los dos tipos
+coinciden en los 11.287 ejercicios, asi que la regla no cambia ningun rechazo de hoy.
+
 ## Contexto
 
 El curso vivo tiene 11.287 ejercicios; 2.810 son MC que produccion convirtio desde CLOZE, y cada uno

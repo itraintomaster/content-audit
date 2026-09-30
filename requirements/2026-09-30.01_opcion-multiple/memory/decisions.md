@@ -55,3 +55,14 @@
 
 2026-09-30 — qa-tester — Los 2 tests de CourseElementFieldDiff (helper estatico no declarado) se declaran en DefaultPreservationCheck y se portan por verify().
   why: handwrittenTests solo cuelgan de implementaciones declaradas.
+
+2026-09-30 — analyst — José, 30/9: la pregunta 3 del brief 092, sí. Nueva F-OPMUL-R009 (critical, AUTO_VALIDATED: José acepto la recomendacion, no confirmo el texto): para no corregir (R006) ni restaurar (R007) un MC, el tipo lo dice el formulario; si no dice CLOZE ni opcion multiple, vale el tipo del ejercicio.
+  why: vivia solo en QuizTemplateEntity.formKind(), sin regla y con una sola prueba; con la opcion A ese metodo sale del modelo.
+
+2026-09-30 — analyst — R009 acotada a corregir y reparar; la auditoria no mira el tipo del ejercicio (R003).
+  why: la carga, la oracion medible y el render del juez leen solo el formulario; una regla general habria sido falsa para ellos.
+
+2026-09-30 — qa-tester — Brief 092, preguntas 1 (si) y 2 (no): el parche ya las reflejaba y no se toco. Los 27 portados cuelgan de su implementacion, sin className; writesMultipleChoiceKeysInOrder (orden de guardado) sigue comun y R004.3 la cubre el test nuevo de CourseToAuditableMapper.
+
+2026-09-30 — qa-tester — R009 con 2 handwrittenTests: el caso de MultipleChoiceModelTest.quizFormKindFallsBackToQuizKind se porta a DefaultRevisionEngine (formulario sin tipo en un ejercicio MC: rechazo; formulario CLOZE: se corrige) y uno nuevo va a DefaultPreservationRepair (MC cuyo formulario perdio su tipo: repair no lo devuelve al CLOZE de su foto).
+  why: un modelo no lleva handwrittenTests y formKind() sale del modelo; la prueba vieja no llegaba a repair, donde la regla evita el daño real.
