@@ -922,7 +922,32 @@ public class IAuditEngineTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R007")
     public void shouldRunMultiplechoicevalidityInTheBaseRunWithBudget0ForItsJudgeSoItsInstantRulesMarkAChildHeAndNoConsultationIsPaid() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: the base run -- runAudit(course), the one of the consolidated view and the impact
+        // preview -- also runs multiple-choice-validity, because its card has instant rules, with a
+        // budget of 0 for its judge: its capital-letter rule marks «___ a child? (He)» and the judge
+        // is never consulted, so the exercise stays evaluated halfway.
+        List<String> built = new ArrayList<>();
+        MultipleChoiceJudgeStandIn judge = new MultipleChoiceJudgeStandIn(Map.of());
+        List<AnalyzerProvider> providers = new ArrayList<>(withJudge(Map.of(), Set.of()));
+        providers.add(judge.provider());
+        IAuditEngine engine = realEngine(recording(providers, built));
+
+        AuditReport report = engine.runAudit(multipleChoiceCourse());
+
+        List<String> seven = classics().stream().map(AnalyzerProvider::analyzerName).toList();
+        List<String> expected = new ArrayList<>(seven);
+        expected.add(MULTIPLE_CHOICE);
+        assertEquals(expected, built, "R007: the seven classics and multiple-choice-validity, never the paid judge alone");
+        assertEquals(1, judge.policies().size());
+        assertNotNull(judge.policies().get(0), "the base run declares a policy for it");
+        assertEquals(0, judge.policies().get(0).getMaxNewEvaluations(), "R007: budget 0 for what consults a model");
+        assertEquals(0, judge.consultations(), "no consultation is paid");
+        AuditNode aChild = node(report, A_CHILD_ID);
+        assertEquals(List.of(MULTIPLE_CHOICE + "|" + CAPITAL_RULE + "|" + A_CHILD_ID + "|am i"),
+                aChild.getFindings().stream().filter(f -> MULTIPLE_CHOICE.equals(f.getAnalyzer()))
+                        .map(f -> f.getIdentity().getKey()).toList(), "R007: its instant rule marks it");
+        assertEquals(List.of(MULTIPLE_CHOICE), aChild.getPartiallyEvaluatedBy(), "and the judge that did not run is declared");
+        assertEquals(1, errorCounts(report.getRoot(), MULTIPLE_CHOICE).getWithError(), "its error counts");
     }
 
     @Test
@@ -930,7 +955,27 @@ public class IAuditEngineTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R007")
     public void shouldCountInTheBaseRunOnlyTheMultipleChoiceVerdictsAlreadyRecordedReusedWithoutANewConsultation() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: of the judge, only what is already recorded counts in the base run. «The show
+        // started ___ time.» has a recorded verdict («in» also valid) and it counts, reused; «___ a
+        // child? (He)» has none and stays pending -- and no new consultation is made for it.
+        MultipleChoiceJudgeStandIn judge = new MultipleChoiceJudgeStandIn(Map.of(SHOW_ID, "in"));
+        List<AnalyzerProvider> providers = new ArrayList<>(classics());
+        providers.add(judge.provider());
+
+        AuditReport report = realEngine(providers).runAudit(multipleChoiceCourse());
+
+        assertEquals(0, judge.consultations(), "R007: no new consultation");
+        assertEquals(List.of(SHOW_ID), judge.reused(), "the recorded verdict is reused");
+        AuditNode show = node(report, SHOW_ID);
+        assertEquals(List.of(MULTIPLE_CHOICE + "|another-option-valid|" + SHOW_ID + "|in"),
+                show.getFindings().stream().filter(f -> MULTIPLE_CHOICE.equals(f.getAnalyzer()))
+                        .map(f -> f.getIdentity().getKey()).toList(), "the recorded verdict counts");
+        assertTrue(show.getPartiallyEvaluatedBy().isEmpty(), "fully evaluated with what was recorded");
+        assertEquals(List.of(MULTIPLE_CHOICE), node(report, A_CHILD_ID).getPartiallyEvaluatedBy(),
+                "the exercise without a recorded verdict stays halfway");
+        AnalyzerErrorCounts counts = errorCounts(report.getRoot(), MULTIPLE_CHOICE);
+        assertEquals(List.of(2, 2, 1, 2), List.of(counts.getReached(), counts.getEvaluated(),
+                counts.getPartiallyEvaluated(), counts.getWithError()), "reached, evaluated, halfway and with error");
     }
 
     @Test
@@ -938,7 +983,172 @@ public class IAuditEngineTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R007")
     public void shouldLeaveQuizinstructionTranslationsenseSingleanswerAndMinitheoryOutOfTheBaseRunSinceNoneHasAnInstantRule() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: the base run adds only the analyzers with a model whose card has an instant rule;
+        // the quiz-instruction judge and the three new judges have only paid rules and stay out.
+        List<String> built = new ArrayList<>();
+        List<AnalyzerProvider> providers = new ArrayList<>(withJudge(Map.of(), Set.of()));
+        providers.add(new MultipleChoiceJudgeStandIn(Map.of()).provider());
+        for (String judgeName : List.of("translation-sense", "single-answer", "mini-theory")) {
+            AnalyzerDescriptor card = DefaultAnalyzerCatalogTest.card(judgeName, AnalyzerFamily.ERRORS,
+                    AnalysisCost.PAID_MODEL);
+            providers.add(scriptedProvider(card, (node, drafts) -> {
+                throw new AssertionError(judgeName + " never runs in the base run");
+            }));
+        }
+        IAuditEngine engine = realEngine(recording(providers, built));
+
+        AuditReport report = engine.runAudit(multipleChoiceCourse());
+
+        List<String> expected = new ArrayList<>(classics().stream().map(AnalyzerProvider::analyzerName).toList());
+        expected.add(MULTIPLE_CHOICE);
+        assertEquals(expected, built, "R007: quiz-instruction, translation-sense, single-answer and mini-theory are not built");
+        for (String judgeName : List.of("quiz-instruction", "translation-sense", "single-answer", "mini-theory")) {
+            walk(report.getRoot(), node -> {
+                assertNull(node.getScores().get(judgeName), judgeName + " leaves no score");
+                assertTrue(node.getUnevaluatedBy() == null || !node.getUnevaluatedBy().contains(judgeName),
+                        judgeName + " does not even reach a node");
+            });
+        }
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-RONDA1 fixtures: multiple-choice-validity in the base run
+    // ------------------------------------------------------------------
+
+    private static final String MULTIPLE_CHOICE = "multiple-choice-validity";
+    private static final String CAPITAL_RULE = "F-OMVAL-R003";
+    private static final String A_CHILD_ID = "67fab6d59930102295341e87";
+    private static final String SHOW_ID = "67fab6d59930102295343d28";
+
+    /**
+     * A1 > «Be» > «___ a child? (He)», whose options open the sentence in lowercase («is he» is
+     * correct), and «The show started ___ time.» («on» is correct), next to a sentence exercise.
+     */
+    private static AuditableCourse multipleChoiceCourse() {
+        AuditableQuiz aChild = quizOf(A_CHILD_ID, "is he a child?", "is", "he", "a", "child", "?");
+        aChild.setMultipleChoice(new com.learney.contentaudit.coursedomain.MultipleChoiceEntity("SINGLE", List.of(
+                option("am i", 0.0), option("are we", 0.0), option("are you", 0.0), option("is he", 1.0),
+                option("is it", 0.0), option("is she", 0.0))));
+        AuditableQuiz show = quizOf(SHOW_ID, "The show started on time.", "The", "show", "started", "on", "time", ".");
+        show.setMultipleChoice(new com.learney.contentaudit.coursedomain.MultipleChoiceEntity("SINGLE", List.of(
+                option("in", 0.0), option("on", 1.0))));
+        AuditableKnowledge knowledge = knowledgeOf("k-mc", "Be", List.of(aChild, show,
+                quizOf("q-dog", "The dog sleeps.", "The", "dog", "sleeps", ".")));
+        return courseOf(knowledge);
+    }
+
+    private static com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity option(String label, double incidence) {
+        return new com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity(label, incidence, label);
+    }
+
+    private static AuditNode node(AuditReport report, String id) {
+        List<AuditNode> found = new ArrayList<>();
+        walk(report.getRoot(), n -> {
+            if (n.getEntity() != null && id.equals(n.getEntity().getId())) {
+                found.add(n);
+            }
+        });
+        assertEquals(1, found.size(), id);
+        return found.get(0);
+    }
+
+    /**
+     * multiple-choice-validity stood in: its instant capital-letter rule (an option opening the
+     * sentence in lowercase) and its judge, which reuses a recorded verdict -- the option that also
+     * is valid -- and consults for a new one only within the budget of the run's policy.
+     */
+    private static final class MultipleChoiceJudgeStandIn {
+        private final Map<String, String> recorded;
+        private final List<EvaluationRunPolicy> policies = new ArrayList<>();
+        private final List<String> reused = new ArrayList<>();
+        private int consultations;
+
+        MultipleChoiceJudgeStandIn(Map<String, String> recorded) {
+            this.recorded = recorded;
+        }
+
+        List<EvaluationRunPolicy> policies() {
+            return policies;
+        }
+
+        List<String> reused() {
+            return reused;
+        }
+
+        int consultations() {
+            return consultations;
+        }
+
+        AnalyzerProvider provider() {
+            AnalyzerDescriptor card = DefaultAnalyzerCatalogTest.card(MULTIPLE_CHOICE, AnalyzerFamily.ERRORS,
+                    AnalysisCost.PAID_MODEL);
+            card.setRules(List.of(new AnalyzerRuleCard(CAPITAL_RULE,
+                            "Si el hueco abre la oración, las opciones abren con mayúscula", AnalysisCost.INSTANT),
+                    new AnalyzerRuleCard("another-option-valid", "Otra opción también vale", AnalysisCost.PAID_MODEL)));
+            card.setResolutions(List.of(FindingResolution.RULE, FindingResolution.PANEL));
+            AnalyzerProvider scripted = scriptedProvider(card, (node, drafts) -> {
+                throw new AssertionError("replaced below");
+            });
+            return new AnalyzerProvider() {
+                @Override
+                public String analyzerName() {
+                    return MULTIPLE_CHOICE;
+                }
+
+                @Override
+                public AnalyzerDescriptor describe() {
+                    return card;
+                }
+
+                @Override
+                public ContentAnalyzer create(EvaluationRunPolicy policy) {
+                    policies.add(policy);
+                    int budget = policy != null ? policy.getMaxNewEvaluations() : Integer.MAX_VALUE;
+                    int[] spent = {0};
+                    return scriptedProvider(card, (node, drafts) -> {
+                        AuditableQuiz quiz = (AuditableQuiz) node.getEntity();
+                        if (quiz.getMultipleChoice() == null) {
+                            return;
+                        }
+                        String id = quiz.getId();
+                        double score = 1.0;
+                        boolean lowercase = quiz.getMultipleChoice().getItems().stream()
+                                .anyMatch(item -> Character.isLowerCase(item.getLabel().charAt(0)))
+                                && quiz.getSentences().get(0).startsWith(quiz.getMultipleChoice().correctItem()
+                                        .orElseThrow().getLabel());
+                        if (lowercase) {
+                            score = 0.0;
+                            drafts.add(new FindingDraft(CAPITAL_RULE, "am i", FindingSeverity.HIGH, FindingResolution.RULE,
+                                    new FindingEvidence(List.of(new EvidencePart("Ejercicio", "___ a child? (He)")),
+                                            "Las opciones abren la oración en minúscula", List.of())));
+                        }
+                        if (recorded.containsKey(id)) {
+                            reused.add(id);
+                            score = 0.0;
+                            drafts.add(new FindingDraft("another-option-valid", recorded.get(id), FindingSeverity.HIGH,
+                                    FindingResolution.PANEL, new FindingEvidence(List.of(new EvidencePart("Opción",
+                                            recorded.get(id))), "Esta opción también vale", List.of())));
+                        } else if (spent[0] < budget) {
+                            spent[0]++;
+                            consultations++;
+                        } else {
+                            node.getPartiallyEvaluatedBy().add(MULTIPLE_CHOICE);
+                        }
+                        node.getScores().put(MULTIPLE_CHOICE, score);
+                    }).create(policy);
+                }
+
+                @Override
+                public Optional<AnalyzerPlanBinding> planBinding() {
+                    return scripted.planBinding();
+                }
+
+                @Override
+                public Optional<SelfDescribingConfig> config() {
+                    return Optional.empty();
+                }
+            };
+        }
     }
 
     @Test

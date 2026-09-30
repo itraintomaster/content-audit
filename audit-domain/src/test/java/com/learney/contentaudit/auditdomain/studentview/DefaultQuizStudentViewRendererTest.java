@@ -1,5 +1,18 @@
 package com.learney.contentaudit.auditdomain.studentview;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -16,7 +29,15 @@ public class DefaultQuizStudentViewRendererTest {
     @Tag("F-RONDA1-R001")
     public void shouldRenderYouSeeCatsWithOneGapWhoseHintIsSeeAndWhoseOnlyAcceptedAnswerAndFirstAnswerAreSeeNeverTheInternalFormatYouSeeSeeCats(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 1 and 3: the statement with «___» in the gap and the hint as it appears; the gap
+        // with its hint, its accepted answers and the first one -- and never the course's format.
+        QuizStudentView view = renderer().render(youSeeCats());
+
+        assertEquals("You ___ (see) cats.", view.getStatement());
+        assertEquals(List.of(new StudentGapView(0, "(see)", List.of("see"), "see")), view.getGaps());
+        assertTrue(view.getOptions().isEmpty(), "a gap to write has no options");
+        assertFalse(view.getStatement().contains("____") || view.getStatement().contains("["),
+                "R001 inv. 3: never «You ____ [see] (see) cats.»");
     }
 
     @Test
@@ -25,7 +46,17 @@ public class DefaultQuizStudentViewRendererTest {
     @Tag("F-RONDA1-R001")
     public void shouldSplitTheAcceptedAnswersOfAGapOnAndNeverOnSoHasNotCutHasntCutGivesTwoAnswersAndHasNotCuthasntCutOnlyOne(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 1: «He ___ (not / cut) himself.» (…286c, A2) accepts «has not cut|hasn't cut»: two
+        // answers, the first one «has not cut». With a slash instead, it is one answer, as the
+        // corrector reads it: the slash is part of the answer, as the one of the hint is of the hint.
+        QuizStudentView piped = renderer().render(hasNotCut("has not cut | hasn't cut"));
+        QuizStudentView slashed = renderer().render(hasNotCut("has not cut/hasn't cut"));
+
+        assertEquals(List.of("has not cut", "hasn't cut"), piped.getGaps().get(0).getAcceptedAnswers());
+        assertEquals("has not cut", piped.getGaps().get(0).getFirstAnswer());
+        assertEquals(List.of("has not cut/hasn't cut"), slashed.getGaps().get(0).getAcceptedAnswers());
+        assertEquals("(not / cut)", piped.getGaps().get(0).getHint(), "the hint keeps its slash as it appears");
+        assertEquals("He ___ (not / cut) himself.", piped.getStatement());
     }
 
     @Test
@@ -34,7 +65,13 @@ public class DefaultQuizStudentViewRendererTest {
     @Tag("F-RONDA1-R001")
     public void shouldGiveTheShowStartedTimeItsOptionsInAndOnInTheStudentsOrderWithOnMarkedAsTheCorrectOne(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 1: the multiple choice (…3d28, B1, In time u on time) brings its options in the
+        // order the student sees them, with the correct one marked; its gap accepts only that one.
+        QuizStudentView view = renderer().render(theShowStarted());
+
+        assertEquals("The show started ___ time.", view.getStatement());
+        assertEquals(List.of(new StudentOptionView("in", false), new StudentOptionView("on", true)), view.getOptions());
+        assertEquals(List.of(new StudentGapView(0, null, List.of("on"), "on")), view.getGaps());
     }
 
     @Test
@@ -43,7 +80,12 @@ public class DefaultQuizStudentViewRendererTest {
     @Tag("F-RONDA1-R001")
     public void shouldBringWithTheViewTheInstructionsTheTranslationAndTheMiniTheoryOfTheExerciseAsEscribeLaFormaAfirmativaEnPresenteSimpleVesGatosAndConHeSheItElVerboLlevaSForYouSeeCats(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 1: the view brings the exercise's own instructions, translation and mini theory.
+        QuizStudentView view = renderer().render(youSeeCats());
+
+        assertEquals("Escribe la forma afirmativa en presente simple.", view.getInstructions());
+        assertEquals("Ves gatos.", view.getTranslation());
+        assertEquals(MINI_THEORY, view.getMiniTheory());
     }
 
     @Test
@@ -52,7 +94,11 @@ public class DefaultQuizStudentViewRendererTest {
     @Tag("F-RONDA1-R001")
     public void shouldFinishYouSeeCatsOfAFILLTopicAsYouSeeCatsWithItsFirstAnswerAndWithoutTheHint(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 2: the finished exercise is the sentence with the first answer and without the
+        // hint -- the whole text in a FILL topic (Afirmativas regulares is FILL).
+        assertEquals("You see cats.", renderer().finishedSentence(youSeeCats(), SentenceMode.FILL));
+        assertEquals("He has not cut himself.", renderer().finishedSentence(hasNotCut("has not cut|hasn't cut"),
+                SentenceMode.FILL), "with the first answer of the gap");
     }
 
     @Test
@@ -60,7 +106,8 @@ public class DefaultQuizStudentViewRendererTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R001")
     public void shouldFinishTheShowStartedTimeWithItsCorrectOptionAsTheShowStartedOnTime() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 2 and F-OPMUL-R004: the multiple choice is finished with its correct option.
+        assertEquals("The show started on time.", renderer().finishedSentence(theShowStarted(), SentenceMode.FILL));
     }
 
     @Test
@@ -69,7 +116,23 @@ public class DefaultQuizStudentViewRendererTest {
     @Tag("F-RONDA1-R001")
     public void shouldFinishTheREWRITEExerciseOfAdjetivosAtributivosWithTheSavedSentenceThatIsClassicRubbishFromARespectedNewspaperTodayAndNotWithItsWholeText(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 2 and F-SMODE-R003: in a REWRITE topic the finished exercise is the saved
+        // sentence (…48dc, B2), without the sentence to rewrite; the statement still shows it all,
+        // with the hint «(classic)» of its only gap before it.
+        AuditableQuiz rubbish = quiz("67fab6d599301022953448dc", List.of(
+                text("That is rubbish from a respected newspaper today. (classic)"),
+                cloze("That is classic rubbish from a respected newspaper today.")), null,
+                "Cambia las oraciones para que incluyan la palabra entre paréntesis.",
+                "Eso es basura clásica de un periódico respetado hoy.", null, null);
+
+        String finished = renderer().finishedSentence(rubbish, SentenceMode.REWRITE);
+
+        assertEquals("That is classic rubbish from a respected newspaper today.", finished);
+        assertEquals("That is rubbish from a respected newspaper today. That is classic rubbish from a respected "
+                + "newspaper today.", renderer().finishedSentence(rubbish, SentenceMode.FILL), "not the whole text");
+        QuizStudentView view = renderer().render(rubbish);
+        assertEquals("That is rubbish from a respected newspaper today. (classic) ___", view.getStatement());
+        assertEquals("(classic)", view.getGaps().get(0).getHint());
     }
 
     @Test
@@ -77,6 +140,84 @@ public class DefaultQuizStudentViewRendererTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R001")
     public void shouldRenderTheSameExerciseToTheSameTextByteForByteInTwoRuns() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 4: two renderers, two copies of the same exercise, at two moments: the same
+        // text, because four judges fingerprint what it renders.
+        for (java.util.function.Supplier<AuditableQuiz> exercise : List.<java.util.function.Supplier<AuditableQuiz>>of(
+                DefaultQuizStudentViewRendererTest::youSeeCats, DefaultQuizStudentViewRendererTest::theShowStarted,
+                () -> hasNotCut("has not cut|hasn't cut"))) {
+            AuditableQuiz first = exercise.get();
+            AuditableQuiz second = exercise.get();
+            assertNotSame(first, second);
+            QuizStudentView one = renderer().render(first);
+            QuizStudentView other = renderer().render(second);
+            assertEquals(one, other, "the same view");
+            assertEquals(describe(one), describe(other), "byte for byte");
+            assertEquals(renderer().finishedSentence(first, SentenceMode.FILL),
+                    renderer().finishedSentence(second, SentenceMode.FILL));
+        }
+    }
+
+    // ------------------------------------------------------------------
+    // Exercises of the 29/9 course
+    // ------------------------------------------------------------------
+
+    static final String MINI_THEORY = "Con he, she, it el verbo lleva $-s$. Con I, you, we, they va en forma base.";
+
+    static DefaultQuizStudentViewRenderer renderer() {
+        return new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create());
+    }
+
+    /** «You ___ (see) cats.» (…1ec3, A1, Afirmativas regulares), audio A1.01.06.01. */
+    static AuditableQuiz youSeeCats() {
+        return quiz("67fab6d59930102295341ec3", List.of(text("You"), cloze("see"), text("(see) cats.")), null,
+                "Escribe la forma afirmativa en presente simple.", "Ves gatos.", MINI_THEORY, "A1.01.06.01");
+    }
+
+    /** «He ___ (not / cut) himself.» (…286c, A2), with the given accepted answers. */
+    static AuditableQuiz hasNotCut(String answers) {
+        return quiz("67fab6d5993010229534286c", List.of(text("He"), cloze(answers), text("(not / cut) himself.")),
+                null, "Escribe la forma negativa en presente perfecto.", "Él no se ha cortado.", null,
+                "A2.04.05.09");
+    }
+
+    /** «The show started ___ time.» (…3d28, B1, In time u on time): «in» and «on», «on» correct. */
+    static AuditableQuiz theShowStarted() {
+        return quiz("67fab6d59930102295343d28", List.of(text("The show started"), gap(), text("time.")),
+                new MultipleChoiceEntity("SINGLE", List.of(new MultipleChoiceItemEntity("in", 0.0, "in"),
+                        new MultipleChoiceItemEntity("on", 1.0, "on"))),
+                "Elige 'in' u 'on'.", "El programa empezó a tiempo.",
+                "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.", "B1.17.13.04");
+    }
+
+    static AuditableQuiz quiz(String id, List<SentencePartEntity> parts, MultipleChoiceEntity multipleChoice,
+            String instructions, String translation, String miniTheory, String audioKey) {
+        return new AuditableQuiz(List.of(), id, "label", "", translation, List.of(), null, instructions, parts,
+                multipleChoice, miniTheory, audioKey);
+    }
+
+    static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    static SentencePartEntity cloze(String... options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(options));
+    }
+
+    static SentencePartEntity gap() {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", null);
+    }
+
+    /** Every field of the view as one text, to compare byte for byte. */
+    private static String describe(QuizStudentView view) {
+        StringBuilder sb = new StringBuilder(view.getStatement()).append('\n');
+        for (StudentGapView gap : view.getGaps()) {
+            sb.append(gap.getIndex()).append('|').append(gap.getHint()).append('|')
+                    .append(String.join("|", gap.getAcceptedAnswers())).append('|').append(gap.getFirstAnswer()).append('\n');
+        }
+        for (StudentOptionView option : view.getOptions()) {
+            sb.append(option.getLabel()).append('|').append(option.isCorrect()).append('\n');
+        }
+        return sb.append(view.getInstructions()).append('\n').append(view.getTranslation()).append('\n')
+                .append(view.getMiniTheory()).toString();
     }
 }

@@ -222,7 +222,7 @@ public class DefaultAnalyzerCatalogTest {
     }
 
     /** A complete card for an analyzer that does not exist yet, evaluating the quiz. */
-    static AnalyzerDescriptor card(String name, AnalyzerFamily family, AnalysisCost cost) {
+    public static AnalyzerDescriptor card(String name, AnalyzerFamily family, AnalysisCost cost) {
         return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿Pregunta de " + name + "?",
                 "La oracion como la ve el alumno", new ArrayList<>(List.of(new AnalyzerRuleCard("rule-" + name,
                         "La regla de " + name, cost))), "Meta de " + name, family, List.of(AuditTarget.QUIZ),
@@ -285,7 +285,26 @@ public class DefaultAnalyzerCatalogTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R004")
     public void shouldRejectAtStartupACardWithoutASpanishNameWithInvalidAnalyzerCardException() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 1: every card brings its Spanish name, never empty -- a card without it is
+        // refused when the catalog is built, naming the analyzer and the field.
+        AnalyzerDescriptor none = card("hint-coherence", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT);
+        none.setDisplayName(null);
+        InvalidAnalyzerCardException refused = Assertions.assertThrows(InvalidAnalyzerCardException.class,
+                () -> new DefaultAnalyzerCatalog(List.of(providerOf(none))));
+        Assertions.assertEquals("hint-coherence", refused.getAnalyzerName(), "R004: it names the analyzer");
+        Assertions.assertTrue(refused.getDetail().contains("displayName"), "R004: and the field: " + refused.getDetail());
+
+        AnalyzerDescriptor blank = card("hint-coherence", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT);
+        blank.setDisplayName("   ");
+        InvalidAnalyzerCardException refusedBlank = Assertions.assertThrows(InvalidAnalyzerCardException.class,
+                () -> new DefaultAnalyzerCatalog(List.of(providerOf(blank))));
+        Assertions.assertTrue(refusedBlank.getDetail().contains("displayName"),
+                "R004: a blank name is an empty one: " + refusedBlank.getDetail());
+
+        AnalyzerDescriptor named = card("hint-coherence", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT);
+        named.setDisplayName("Pista coherente");
+        Assertions.assertDoesNotThrow(() -> new DefaultAnalyzerCatalog(List.of(providerOf(named))),
+                "the same card with its Spanish name is accepted");
     }
 
     @Test
@@ -293,6 +312,23 @@ public class DefaultAnalyzerCatalogTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R004")
     public void shouldRejectAtStartupTwoCardsThatShareASpanishName() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 1: two cards never share their Spanish name -- the second one is refused.
+        AnalyzerDescriptor first = card("hint-coherence", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT);
+        first.setDisplayName("Pista coherente");
+        AnalyzerDescriptor second = card("answer-completeness", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT);
+        second.setDisplayName("Pista coherente");
+
+        InvalidAnalyzerCardException refused = Assertions.assertThrows(InvalidAnalyzerCardException.class,
+                () -> new DefaultAnalyzerCatalog(List.of(providerOf(first), providerOf(second))));
+
+        Assertions.assertEquals("answer-completeness", refused.getAnalyzerName(), "R004: the card that repeats it");
+        Assertions.assertTrue(refused.getDetail().contains("Pista coherente") && refused.getDetail().contains("hint-coherence"),
+                "R004: the name and the analyzer that already has it: " + refused.getDetail());
+
+        // R004 inv. 2: the eight cards of today bring the names of the table, one each, in catalog order.
+        List<String> names = new DefaultAnalyzerCatalog(realProviders()).list().stream()
+                .map(AnalyzerDescriptor::getDisplayName).toList();
+        Assertions.assertEquals(List.of("Largo de oración", "Largo del título", "Largo de la consigna",
+                "Bandas de frecuencia", "Recurrencia", "Palabras que faltan", "Palabras poco vistas", "Consigna"), names);
     }
 }

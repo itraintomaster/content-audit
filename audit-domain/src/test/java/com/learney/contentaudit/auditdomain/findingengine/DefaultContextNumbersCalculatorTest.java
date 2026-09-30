@@ -1,4 +1,8 @@
 package com.learney.contentaudit.auditdomain.findingengine;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.contextnumbers.SeverityCounts;
+import com.learney.contentaudit.auditdomain.contextnumbers.RuleFindingCount;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerFindingCounts;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -571,7 +575,42 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R005")
     public void shouldPublishForEveryAnalyzerThatRanAndEveryNodeTypeItEvaluatesHowManyNodesItReachesEvaluatesAndMarksAndHowManyFindingsItLeavesAlsoForAVocabularyAnalyzerLikeSentencelength() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 (inv. 1): the counts of both families. sentence-length, vocabulary, marks «He isn't in
+        // the living-room.» (9 tokens, longer than the 3 to 8 of A1) and a three-token question, and
+        // lets «Where is my wallet?» pass; the judge judged one quiz and left the other pending.
+        Course course = new Course();
+        AuditNode k1 = course.knowledge("k1");
+        AuditNode livingRoom = course.quiz(k1, "q-living-room");
+        sentenceLength(livingRoom, 0.8, "longer-than-goal");
+        judgeScores(livingRoom, 1.0);
+        AuditNode wallet = course.quiz(k1, "q-wallet");
+        sentenceLength(wallet, 1.0, null);
+        wallet.getUnevaluatedBy().add("quiz-instruction");
+        AuditNode k2 = course.knowledge("k2");
+        AuditNode short1 = course.quiz(k2, "q-short");
+        sentenceLength(short1, 0.6, "shorter-than-goal");
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(card("sentence-length"), card("quiz-instruction")));
+
+        for (AuditNode context : List.of(course.root, course.level, course.topic)) {
+            Assertions.assertEquals(List.of("sentence-length QUIZ", "quiz-instruction QUIZ"),
+                    context.getNumbers().getFindingCounts().stream()
+                            .map(c -> c.getAnalyzer() + " " + c.getTarget()).toList(),
+                    context.getTarget() + ": one row per analyzer that ran and node type it evaluates, in catalog order");
+            AnalyzerFindingCounts length = row(context, "sentence-length", AuditTarget.QUIZ);
+            Assertions.assertEquals(AnalyzerFamily.VOCABULARY, length.getFamily(), "R005 inv. 1: a vocabulary analyzer too");
+            Assertions.assertEquals(List.of(3, 3, 2, 2), List.of(length.getReached(), length.getEvaluated(),
+                    length.getWithFinding(), length.getFindings()), context.getTarget() + ": sentence-length");
+            AnalyzerFindingCounts judge = row(context, "quiz-instruction", AuditTarget.QUIZ);
+            Assertions.assertEquals(List.of(2, 1, 0, 0), List.of(judge.getReached(), judge.getEvaluated(),
+                    judge.getWithFinding(), judge.getFindings()), context.getTarget() + ": the judge reached two, evaluated one");
+        }
+        Assertions.assertEquals(List.of(2, 2, 1, 1), List.of(row(k1, "sentence-length", AuditTarget.QUIZ).getReached(),
+                row(k1, "sentence-length", AuditTarget.QUIZ).getEvaluated(),
+                row(k1, "sentence-length", AuditTarget.QUIZ).getWithFinding(),
+                row(k1, "sentence-length", AuditTarget.QUIZ).getFindings()), "the knowledge counts its own quizzes");
+        Assertions.assertNull(livingRoom.getNumbers().getFindingCounts(), "a quiz is what is counted, not a context");
     }
 
     @Test
@@ -579,7 +618,35 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R005")
     public void shouldCountTheNodesWithFindingsByTheirHighestSeveritySoTheFourSeveritiesAddUpToTheNodesWithFindings() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 (inv. 2): each node with findings counts once, by its highest severity, and the four
+        // severities add up to the nodes with findings.
+        Course course = new Course();
+        AuditNode knowledge = course.knowledge("k1");
+        AuditNode high = course.quiz(knowledge, "q-high-and-low");
+        errors(high, "pista-coherente", FindingSeverity.HIGH, FindingSeverity.LOW);
+        AuditNode medium = course.quiz(knowledge, "q-medium");
+        errors(medium, "pista-coherente", FindingSeverity.MEDIUM);
+        AuditNode blocking = course.quiz(knowledge, "q-blocking-and-medium");
+        errors(blocking, "pista-coherente", FindingSeverity.MEDIUM, FindingSeverity.BLOCKING);
+        AuditNode low = course.quiz(knowledge, "q-low");
+        errors(low, "pista-coherente", FindingSeverity.LOW);
+        AuditNode clean = course.quiz(knowledge, "q-clean");
+        clean.getScores().put("pista-coherente", 1.0);
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(errorsCard("pista-coherente")));
+
+        for (AuditNode context : List.of(course.root, course.level, knowledge)) {
+            AnalyzerFindingCounts counts = row(context, "pista-coherente", AuditTarget.QUIZ);
+            SeverityCounts bySeverity = counts.getBySeverity();
+            Assertions.assertEquals(List.of(1, 1, 1, 1), List.of(bySeverity.getBlocking(), bySeverity.getHigh(),
+                    bySeverity.getMedium(), bySeverity.getLow()), context.getTarget() + ": each node by its highest");
+            Assertions.assertEquals(4, counts.getWithFinding());
+            Assertions.assertEquals(counts.getWithFinding(), bySeverity.getBlocking() + bySeverity.getHigh()
+                    + bySeverity.getMedium() + bySeverity.getLow(), "R005 inv. 2: the severities add up to the marked nodes");
+            Assertions.assertEquals(6, counts.getFindings(), "and the findings are all of them");
+            Assertions.assertEquals(5, counts.getEvaluated());
+        }
     }
 
     @Test
@@ -587,7 +654,41 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R005")
     public void shouldCountEachRuleOfTheCardWithItsNodesAndFindingsSoTheFindingsOfTheRulesAddUpToThoseOfTheAnalyzer() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 (inv. 2): every rule of the card, in its order, with the nodes it marks and its
+        // findings -- a rule with none too --, and the findings of the rules add up to the
+        // analyzer's. With sentence-length that is how the level says how many sentences are
+        // shorter and how many longer than the goal (inv. 4).
+        Course course = new Course();
+        AuditNode knowledge = course.knowledge("k1");
+        sentenceLength(course.quiz(knowledge, "q-long-1"), 0.8, "longer-than-goal");
+        sentenceLength(course.quiz(knowledge, "q-long-2"), 0.2, "longer-than-goal");
+        sentenceLength(course.quiz(knowledge, "q-short"), 0.6, "shorter-than-goal");
+        sentenceLength(course.quiz(knowledge, "q-on-goal"), 1.0, null);
+        AuditNode twoRules = course.quiz(knowledge, "q-two-rules");
+        twoRules.getScores().put("dos-reglas", 0.0);
+        twoRules.getFindings().add(finding("dos-reglas", "rule-a", "x", twoRules, FindingSeverity.HIGH, FindingResolution.RULE));
+        twoRules.getFindings().add(finding("dos-reglas", "rule-a", "y", twoRules, FindingSeverity.HIGH, FindingResolution.RULE));
+        twoRules.getFindings().add(finding("dos-reglas", "rule-b", null, twoRules, FindingSeverity.LOW, FindingResolution.RULE));
+        AnalyzerDescriptor twoRuleCard = errorsCard("dos-reglas");
+        twoRuleCard.setRules(List.of(new AnalyzerRuleCard("rule-a", "La regla a", AnalysisCost.INSTANT),
+                new AnalyzerRuleCard("rule-b", "La regla b", AnalysisCost.INSTANT),
+                new AnalyzerRuleCard("rule-c", "La regla c", AnalysisCost.INSTANT)));
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(card("sentence-length"), twoRuleCard));
+
+        AnalyzerFindingCounts length = row(course.level, "sentence-length", AuditTarget.QUIZ);
+        Assertions.assertEquals(List.of("shorter-than-goal 1 1", "longer-than-goal 2 2"), length.getByRule().stream()
+                .map(r -> r.getRule() + " " + r.getWithFinding() + " " + r.getFindings()).toList(),
+                "R005 inv. 4: one shorter and two longer than the goal of the level");
+        Assertions.assertEquals(length.getFindings(), length.getByRule().stream().mapToInt(RuleFindingCount::getFindings).sum());
+        AnalyzerFindingCounts two = row(course.level, "dos-reglas", AuditTarget.QUIZ);
+        Assertions.assertEquals(List.of("rule-a 1 2", "rule-b 1 1", "rule-c 0 0"), two.getByRule().stream()
+                .map(r -> r.getRule() + " " + r.getWithFinding() + " " + r.getFindings()).toList(),
+                "every rule of the card, in its order, the one without findings too");
+        Assertions.assertEquals(List.of(1, 3), List.of(two.getWithFinding(), two.getFindings()));
+        Assertions.assertEquals(two.getFindings(), two.getByRule().stream().mapToInt(RuleFindingCount::getFindings).sum(),
+                "R005 inv. 2: the findings of the rules add up to the analyzer's");
     }
 
     @Test
@@ -595,7 +696,35 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R005")
     public void shouldCountInAContextTheSumOfItsChildrenPlusTheNodeItselfWhenTheAnalyzerEvaluatesItAsLemmaabsenceInALevel() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 (inv. 3): lemma-absence evaluates the quiz, the level and the course. In a level it
+        // publishes a row for the quizzes below it and one for the level itself; the course adds
+        // its own row to the sums of its levels; a topic, below the level, only counts quizzes.
+        Course course = new Course();
+        AuditNode knowledge = course.knowledge("k1");
+        AuditNode marked = course.quiz(knowledge, "q-marked");
+        marked.getScores().put("lemma-absence", 0.9);
+        marked.getFindings().add(finding("lemma-absence", "misplaced-lemma", "spread|VERB", marked,
+                FindingSeverity.MEDIUM, FindingResolution.RANK_ONLY));
+        AuditNode clean = course.quiz(knowledge, "q-clean");
+        clean.getScores().put("lemma-absence", 1.0);
+        course.level.getScores().put("lemma-absence", 0.8);
+        course.level.getFindings().add(finding("lemma-absence", "absent-lemma", "quilt|NOUN", course.level,
+                FindingSeverity.LOW, FindingResolution.RANK_ONLY));
+        course.root.getScores().put("lemma-absence", 0.8);
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(card("lemma-absence")));
+
+        Assertions.assertEquals(List.of("QUIZ 2 1", "MILESTONE 1 1"), course.level.getNumbers().getFindingCounts().stream()
+                .map(c -> c.getTarget() + " " + c.getReached() + " " + c.getWithFinding()).toList(),
+                "the level: its quizzes, and the level itself");
+        Assertions.assertEquals(List.of("QUIZ 2 1", "MILESTONE 1 1", "COURSE 1 0"),
+                course.root.getNumbers().getFindingCounts().stream()
+                        .map(c -> c.getTarget() + " " + c.getReached() + " " + c.getWithFinding()).toList(),
+                "the course: the sum of its levels plus the course itself");
+        Assertions.assertEquals(List.of("QUIZ 2 1"), course.topic.getNumbers().getFindingCounts().stream()
+                .map(c -> c.getTarget() + " " + c.getReached() + " " + c.getWithFinding()).toList(),
+                "a topic counts the quizzes below it: the level is above it");
     }
 
     @Test
@@ -603,7 +732,32 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R006")
     public void shouldCountAnExerciseEvaluatedHalfwayAsEvaluatedByTheAnalyzerInItsHalfwayCountAndInTheNodesCountOfExercisesNotFullyEvaluated() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 inv. 1 and 3: multiple-choice-validity ran its rules on three exercises and its judge
+        // on one; the two it evaluated halfway count as evaluated, in its halfway count and in the
+        // exercises not fully evaluated of every node above them.
+        Course course = new Course();
+        AuditNode knowledge = course.knowledge("k1");
+        AuditNode aChild = course.quiz(knowledge, "q-a-child");
+        halfway(aChild, 0.0, FindingSeverity.HIGH);
+        AuditNode pending = course.quiz(knowledge, "q-judge-pending");
+        halfway(pending, 1.0, null);
+        AuditNode judged = course.quiz(knowledge, "q-judged");
+        judged.getScores().put("multiple-choice-validity", 1.0);
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(multipleChoiceCard()));
+
+        for (AuditNode context : List.of(course.root, course.level, knowledge)) {
+            AnalyzerErrorCounts counts = counts(context, "multiple-choice-validity");
+            Assertions.assertEquals(List.of(3, 3, 0, 2, 1), List.of(counts.getReached(), counts.getEvaluated(),
+                    counts.getNotEvaluated(), counts.getPartiallyEvaluated(), counts.getWithError()),
+                    context.getTarget() + ": reached, evaluated, not evaluated, halfway, with error");
+            Assertions.assertEquals(1.0 / 3.0, counts.getErrorShare(), 1e-9, "the share is over the three evaluated");
+            Assertions.assertEquals(2, context.getNumbers().getErrors().getNotFullyEvaluated(),
+                    "R006 inv. 3: the two halfway exercises are not fully evaluated");
+            Assertions.assertEquals(3, row(context, "multiple-choice-validity", AuditTarget.QUIZ).getEvaluated(),
+                    "and they count as evaluated in the findings counts too");
+        }
     }
 
     @Test
@@ -611,6 +765,69 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R006")
     public void shouldCountAsErrorsTheRuleFindingsOfAnExerciseTheJudgeDidNotSeeAsTheCapitalLetterOfAChildHeSoAlgnErrorReadsAsAFloor() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: «___ a child? (He)» (…1e87) opens the sentence with a lowercase option, which an
+        // instant rule marks, and the judge did not see it: its error counts in «algún error», and
+        // the node declares it not fully evaluated, so «algún error» reads as a floor.
+        Course course = new Course();
+        AuditNode knowledge = course.knowledge("k-be");
+        AuditNode aChild = course.quiz(knowledge, "67fab6d59930102295341e87");
+        halfway(aChild, 0.0, FindingSeverity.HIGH);
+        AuditNode other = course.quiz(knowledge, "q-other");
+        other.getScores().put("multiple-choice-validity", 1.0);
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(multipleChoiceCard()));
+
+        for (AuditNode context : List.of(course.root, course.level, knowledge)) {
+            ErrorCounts errors = context.getNumbers().getErrors();
+            Assertions.assertEquals(1, errors.getWithAnyError(), context.getTarget() + ": its rule error counts");
+            Assertions.assertEquals(1, errors.getBySeverity().getHigh(), "by its severity");
+            Assertions.assertEquals(1, errors.getNotFullyEvaluated(), "and the judge that did not see it is declared");
+            Assertions.assertEquals(1, counts(context, "multiple-choice-validity").getWithError());
+        }
+    }
+
+    private static AnalyzerFindingCounts row(AuditNode node, String analyzer, AuditTarget target) {
+        return node.getNumbers().getFindingCounts().stream()
+                .filter(c -> analyzer.equals(c.getAnalyzer()) && c.getTarget() == target)
+                .findFirst().orElseThrow(() -> new AssertionError("no findings counts of " + analyzer + " on " + target));
+    }
+
+    /** sentence-length's score on a quiz and, below 1, its one finding with the rule of its side. */
+    private static void sentenceLength(AuditNode quiz, double score, String rule) {
+        quiz.getScores().put("sentence-length", score);
+        if (rule != null) {
+            quiz.getFindings().add(finding("sentence-length", rule, null, quiz, FindingSeverity.LOW,
+                    FindingResolution.PANEL));
+        }
+    }
+
+    /** An errors analyzer's score 0 on a quiz with one finding per severity given. */
+    private static void errors(AuditNode quiz, String analyzer, FindingSeverity... severities) {
+        quiz.getScores().put(analyzer, 0.0);
+        for (int i = 0; i < severities.length; i++) {
+            quiz.getFindings().add(finding(analyzer, "rule-" + analyzer, "m" + i, quiz, severities[i],
+                    FindingResolution.RULE));
+        }
+    }
+
+    /** multiple-choice-validity with its rules run and its judge pending on the quiz. */
+    private static void halfway(AuditNode quiz, double score, FindingSeverity ruleFinding) {
+        quiz.getScores().put("multiple-choice-validity", score);
+        quiz.getPartiallyEvaluatedBy().add("multiple-choice-validity");
+        if (ruleFinding != null) {
+            quiz.getFindings().add(finding("multiple-choice-validity", "F-OMVAL-R003", "am i", quiz, ruleFinding,
+                    FindingResolution.RULE));
+        }
+    }
+
+    /** The card of multiple-choice-validity: its instant rules and the paid rule of its judge. */
+    private static AnalyzerDescriptor multipleChoiceCard() {
+        AnalyzerDescriptor card = errorsCard("multiple-choice-validity");
+        card.setRules(List.of(new AnalyzerRuleCard("F-OMVAL-R003",
+                        "Si el hueco abre la oración, las opciones abren con mayúscula", AnalysisCost.INSTANT),
+                new AnalyzerRuleCard("another-option-valid", "Otra opción también vale", AnalysisCost.PAID_MODEL)));
+        card.setCost(AnalysisCost.PAID_MODEL);
+        return card;
     }
 }

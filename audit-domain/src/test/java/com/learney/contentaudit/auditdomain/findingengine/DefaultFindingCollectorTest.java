@@ -552,7 +552,26 @@ public class DefaultFindingCollectorTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R006")
     public void shouldAcceptTheFindingsOfAnAnalyzerOnAnExerciseItEvaluatedHalfwayAsMultiplechoicevalidityOnAChildHeWithItsJudgePending() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: «___ a child? (He)» (…1e87) -- its options open the sentence in lowercase, which an
+        // instant rule marks, and the judge of the card did not run. The quiz is evaluated halfway:
+        // it has its score, it names the analyzer as halfway, and its finding counts.
+        Tree tree = aChildHe();
+        AuditNode quiz = tree.quizzes().get(0);
+        quiz.getScores().put(MULTIPLE_CHOICE, 0.0);
+        quiz.getPartiallyEvaluatedBy().add(MULTIPLE_CHOICE);
+        FindingDraft capital = draft(CAPITAL_RULE, "am i", FindingSeverity.HIGH, FindingResolution.RULE);
+        Map<AuditNode, List<FindingDraft>> script = new IdentityHashMap<>();
+        script.put(quiz, List.of(capital));
+
+        collector.collect(tree.root(), scripted(MULTIPLE_CHOICE, script), multipleChoiceCard());
+
+        Assertions.assertEquals(1, quiz.getFindings().size(), "R006 inv. 1: its findings count");
+        Finding stamped = quiz.getFindings().get(0);
+        Assertions.assertEquals(MULTIPLE_CHOICE, stamped.getAnalyzer());
+        Assertions.assertEquals(CAPITAL_RULE, stamped.getRule());
+        Assertions.assertEquals(AnalysisCost.INSTANT, stamped.getCost(), "the cost of its instant rule, not of the judge");
+        Assertions.assertEquals(List.of(MULTIPLE_CHOICE), quiz.getPartiallyEvaluatedBy(), "R006 inv. 2: declared halfway");
+        Assertions.assertTrue(quiz.getUnevaluatedBy().isEmpty(), "R006 inv. 2: never also not evaluated");
     }
 
     @Test
@@ -560,6 +579,44 @@ public class DefaultFindingCollectorTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R006")
     public void shouldRejectAnExerciseThatNamesTheSameAnalyzerAsEvaluatedHalfwayAndAsNotEvaluated() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 inv. 2: halfway and not evaluated are exclusive -- an exercise that says both breaks
+        // the contract, and the run stops naming the analyzer and the exercise.
+        Tree tree = aChildHe();
+        AuditNode quiz = tree.quizzes().get(0);
+        quiz.getScores().put(MULTIPLE_CHOICE, 0.0);
+        quiz.getPartiallyEvaluatedBy().add(MULTIPLE_CHOICE);
+        quiz.getUnevaluatedBy().add(MULTIPLE_CHOICE);
+        Map<AuditNode, List<FindingDraft>> script = new IdentityHashMap<>();
+        script.put(quiz, List.of(draft(CAPITAL_RULE, "am i", FindingSeverity.HIGH, FindingResolution.RULE)));
+
+        FindingContractViolationException broken = Assertions.assertThrows(FindingContractViolationException.class,
+                () -> collector.collect(tree.root(), scripted(MULTIPLE_CHOICE, script), multipleChoiceCard()));
+
+        Assertions.assertTrue(broken.getMessage().contains(MULTIPLE_CHOICE) && broken.getMessage().contains(A_CHILD_ID),
+                "names the analyzer and the exercise: " + broken.getMessage());
+        Assertions.assertTrue(quiz.getFindings().isEmpty(), "nothing is stamped on it");
+    }
+
+    private static final String MULTIPLE_CHOICE = "multiple-choice-validity";
+    private static final String CAPITAL_RULE = "F-OMVAL-R003";
+    private static final String A_CHILD_ID = "67fab6d59930102295341e87";
+
+    /** A1 > «$Be$: preguntas $yes / no$» > «___ a child? (He)», a multiple choice whose correct option is «is he». */
+    private static Tree aChildHe() {
+        AuditNode root = node(AuditTarget.COURSE, null, null);
+        AuditNode level = node(AuditTarget.MILESTONE, new AuditableMilestone(List.of(), "m-a1", "A1", null), root);
+        AuditNode topic = node(AuditTarget.TOPIC, new AuditableTopic(List.of(), "t-be", "Be", null), level);
+        AuditNode knowledge = node(AuditTarget.KNOWLEDGE, new AuditableKnowledge(List.of(), "$Be$: preguntas $yes / no$",
+                "Elige", true, "k-be", "$Be$: preguntas $yes / no$", "K", null, "Be"), topic);
+        AuditNode aChild = node(AuditTarget.QUIZ, quiz(A_CHILD_ID, "is he a child?", 4), knowledge);
+        return new Tree(root, List.of(aChild));
+    }
+
+    /** The card of multiple-choice-validity: instant rules and the paid rule of its judge. */
+    private static AnalyzerDescriptor multipleChoiceCard() {
+        return errorsCard(MULTIPLE_CHOICE,
+                new AnalyzerRuleCard(CAPITAL_RULE, "Si el hueco abre la oración, las opciones abren con mayúscula",
+                        AnalysisCost.INSTANT),
+                new AnalyzerRuleCard("another-option-valid", "Otra opción también vale", AnalysisCost.PAID_MODEL));
     }
 }

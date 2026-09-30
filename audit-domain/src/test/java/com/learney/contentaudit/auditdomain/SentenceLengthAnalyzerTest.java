@@ -778,7 +778,18 @@ public class SentenceLengthAnalyzerTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R005")
     public void shouldMarkHeIsntInTheLivingroom9TokensAgainstThe3To8OfA1WithTheRuleForLongerSentences() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 inv. 4: «He isn't in the living-room.», 9 tokens against the 3 to 8 of A1, is longer
+        // than the goal of its level: its finding is the card's rule for longer sentences.
+        AuditNode quizNode = livingRoomQuiz();
+
+        sut.onQuiz(quizNode);
+        List<FindingDraft> drafts = sut.findingsAt(quizNode);
+
+        Assertions.assertEquals(0.8, quizNode.getScores().get("sentence-length"), 1e-9);
+        Assertions.assertEquals(1, drafts.size());
+        Assertions.assertEquals("longer-than-goal", drafts.get(0).getRule(), "R005 inv. 4: the rule for longer sentences");
+        Assertions.assertTrue(drafts.get(0).getEvidence().getObservation().contains("1 de más"),
+                drafts.get(0).getEvidence().getObservation());
     }
 
     @Test
@@ -786,6 +797,26 @@ public class SentenceLengthAnalyzerTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R005")
     public void shouldMarkASentenceUnderTheMinimumOfItsLevelWithTheRuleForShorterSentences() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 inv. 4: «an apple» (…234f, A1, Elegir entre a y an), 2 spaCy tokens against the 3 to 8
+        // of A1, is shorter than the goal: its finding is the card's rule for shorter sentences.
+        Mockito.lenient().when(config.getTargetRange(CefrLevel.A1))
+                .thenReturn(Optional.of(new TargetRange(CefrLevel.A1, 3, 8)));
+        Mockito.lenient().when(config.getToleranceMargin()).thenReturn(5);
+        List<NlpToken> spacyTokens = List.of(new NlpToken("an", "an", "DET", 4, true, false),
+                new NlpToken("apple", "apple", "NOUN", 1327, false, false));
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Elegir entre $a$ y $an$",
+                "Elige a o an.", true, "k-a-an", "Elegir entre $a$ y $an$", "K", null, null);
+        AuditableQuiz quiz = new AuditableQuiz(spacyTokens, "67fab6d5993010229534234f", "Elegir entre $a$ y $an$", "Q",
+                null, List.of("an apple"), null, null, null, null, null, null);
+        AuditNode quizNode = fullTree("A1", knowledge, quiz);
+
+        sut.onQuiz(quizNode);
+        List<FindingDraft> drafts = sut.findingsAt(quizNode);
+
+        Assertions.assertEquals(0.8, quizNode.getScores().get("sentence-length"), 1e-9, "one token short, margin 5");
+        Assertions.assertEquals(1, drafts.size());
+        Assertions.assertEquals("shorter-than-goal", drafts.get(0).getRule(), "R005 inv. 4: the rule for shorter sentences");
+        Assertions.assertTrue(drafts.get(0).getEvidence().getObservation().contains("1 de menos"),
+                drafts.get(0).getEvidence().getObservation());
     }
 }

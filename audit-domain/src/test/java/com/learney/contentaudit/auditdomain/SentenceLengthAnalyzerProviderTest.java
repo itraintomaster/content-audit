@@ -73,6 +73,26 @@ public class SentenceLengthAnalyzerProviderTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R005")
     public void shouldDeclareInTheSentencelengthCardOneRuleForSentencesShorterThanTheGoalAndAnotherForLongerOnes() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 inv. 4: the card declares one rule for each side of the goal -- the level can then
+        // say how many sentences are shorter and how many longer without computing anything.
+        SentenceLengthConfig config = Mockito.mock(SentenceLengthConfig.class);
+        Mockito.when(config.getTargetRange(Mockito.any())).thenReturn(Optional.empty());
+        Mockito.when(config.getTargetRange(CefrLevel.A1)).thenReturn(Optional.of(new TargetRange(CefrLevel.A1, 3, 8)));
+        Mockito.when(config.getToleranceMargin()).thenReturn(5);
+
+        AnalyzerDescriptor card = new SentenceLengthAnalyzerProvider(Mockito.mock(NlpTokenizer.class), config).describe();
+
+        assertCompleteCard(card, "sentence-length");
+        Assertions.assertEquals(List.of("shorter-than-goal", "longer-than-goal"),
+                card.getRules().stream().map(com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard::getId).toList(),
+                "R005 inv. 4: shorter first, longer second, the order of «más cortas · en la meta · más largas»");
+        Assertions.assertTrue(card.getRules().get(0).getDescription().contains("menos tokens que el mínimo"),
+                card.getRules().get(0).getDescription());
+        Assertions.assertTrue(card.getRules().get(1).getDescription().contains("más tokens que el máximo"),
+                card.getRules().get(1).getDescription());
+        for (com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard rule : card.getRules()) {
+            Assertions.assertEquals(AnalysisCost.INSTANT, rule.getCost(), "both rules are instant");
+        }
+        Assertions.assertEquals("Largo de oración", card.getDisplayName(), "F-RONDA1-R004: its Spanish name");
     }
 }

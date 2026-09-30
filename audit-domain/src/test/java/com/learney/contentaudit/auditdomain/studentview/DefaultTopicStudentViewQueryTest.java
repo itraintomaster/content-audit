@@ -1,5 +1,25 @@
 package com.learney.contentaudit.auditdomain.studentview;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import com.learney.contentaudit.auditdomain.AudioRecordingRegistry;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.datacoherence.AudioRecording;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -16,7 +36,22 @@ public class DefaultTopicStudentViewQueryTest {
     @Tag("F-RONDA1-R003")
     public void shouldReturnThe20ExercisesOfAfirmativasRegularesInCourseOrderUnderTheTopicInstructionsEscribeLaFormaCorrectaDelVerbo(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the whole topic (6814dafa7d73e7209a13d389, A1) from the report: its instructions, and
+        // its 20 exercises in the order of the course, each as the student sees it.
+        TopicStudentView view = query(new Recordings(Map.of())).viewOf(report(), AFIRMATIVAS_REGULARES);
+
+        assertEquals(AFIRMATIVAS_REGULARES, view.getKnowledgeId());
+        assertEquals("Afirmativas regulares", view.getLabel());
+        assertEquals("Escribe la forma correcta del verbo.", view.getInstructions(), "the instructions of the topic");
+        assertEquals(SentenceMode.FILL, view.getSentenceMode());
+        assertEquals(20, view.getQuizzes().size());
+        List<String> ids = new ArrayList<>();
+        for (String[] row : AFIRMATIVAS) {
+            ids.add(row[0]);
+        }
+        assertEquals(ids, view.getQuizzes().stream().map(StudentQuizEntry::getQuizId).toList(), "in course order");
+        assertEquals("She ___ (sport) hats.", view.getQuizzes().get(19).getView().getStatement(), "the last one too");
+        assertNull(view.getAuditId(), "which analysis it read is said by whoever chose it");
     }
 
     @Test
@@ -25,7 +60,22 @@ public class DefaultTopicStudentViewQueryTest {
     @Tag("F-RONDA1-R003")
     public void shouldGiveYouSeeCatsItsViewItsFinishedSentenceYouSeeCatsItsAudioKeyA1010601AndTheTextTheRecordingsRegistryHasForThatKey(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the first exercise with its view (R001), its finished exercise, its audio key and the
+        // text that audio was recorded with, which the recordings registry knows.
+        Recordings recordings = new Recordings(Map.of("A1.01.06.01",
+                new AudioRecording("A1.01.06.01", "You see cats.", "manifiesto de la regrabación del 24/8")));
+
+        StudentQuizEntry first = query(recordings).viewOf(report(), AFIRMATIVAS_REGULARES).getQuizzes().get(0);
+
+        assertEquals("67fab6d59930102295341ec3", first.getQuizId());
+        assertEquals(DefaultQuizStudentViewRendererTest.renderer().render(
+                DefaultQuizStudentViewRendererTest.youSeeCats()), first.getView(), "the one view of R001");
+        assertEquals("You ___ (see) cats.", first.getView().getStatement());
+        assertEquals(DefaultQuizStudentViewRendererTest.MINI_THEORY, first.getView().getMiniTheory());
+        assertEquals("You see cats.", first.getFinishedSentence());
+        assertEquals("A1.01.06.01", first.getAnswerAudioKey());
+        assertEquals("You see cats.", first.getRecordedAudioText(), "the text the registry has for the key");
+        assertEquals(List.of("A1.01.06.01"), recordings.asked().subList(0, 1), "read from the registry");
     }
 
     @Test
@@ -34,7 +84,17 @@ public class DefaultTopicStudentViewQueryTest {
     @Tag("F-RONDA1-R003")
     public void shouldLeaveTheRecordedAudioTextEmptyWhenTheRecordingsRegistryDoesNotKnowTheKeyNeverBuildingItFromTheSentence(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 inv. 2: a registry that does not know A1.01.06.01 leaves the text of its audio empty,
+        // even though the finished sentence is right there.
+        Recordings recordings = new Recordings(Map.of());
+
+        TopicStudentView view = query(recordings).viewOf(report(), AFIRMATIVAS_REGULARES);
+
+        StudentQuizEntry first = view.getQuizzes().get(0);
+        assertEquals("You see cats.", first.getFinishedSentence());
+        assertNull(first.getRecordedAudioText(), "R003 inv. 2: never built from the sentence");
+        assertEquals(20, recordings.asked().size(), "every key was asked to the registry");
+        view.getQuizzes().forEach(entry -> assertNull(entry.getRecordedAudioText(), entry.getQuizId()));
     }
 
     @Test
@@ -43,6 +103,113 @@ public class DefaultTopicStudentViewQueryTest {
     @Tag("F-RONDA1-R003")
     public void shouldRejectAKnowledgeThatIsNotInTheReportWithStudentViewKnowledgeNotFoundExceptionAndTheMessageKnowledgeIdNotFoundInTheAnalysis(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 inv. 3: a topic the analysis does not have is rejected with the message of the rule.
+        Recordings recordings = new Recordings(Map.of());
+        StudentViewKnowledgeNotFoundException missing = assertThrows(StudentViewKnowledgeNotFoundException.class,
+                () -> query(recordings).viewOf(report(), "6814dafa7d73e7209a13d000"));
+
+        assertEquals("6814dafa7d73e7209a13d000", missing.getKnowledgeId());
+        assertEquals("Knowledge 6814dafa7d73e7209a13d000 not found in the analysis.", missing.getMessage());
+        assertEquals(List.of(), recordings.asked(), "nothing is read for a topic that is not there");
+    }
+
+    // ------------------------------------------------------------------
+    // The report: A1 > Present Simple > Afirmativas regulares, as the 29/9 course has it
+    // ------------------------------------------------------------------
+
+    static final String AFIRMATIVAS_REGULARES = "6814dafa7d73e7209a13d389";
+
+    /** id, subject, answer, the text after the gap with its hint, translation and audio key. */
+    static final String[][] AFIRMATIVAS = {
+            {"67fab6d59930102295341ec3", "You", "see", "(see) cats.", "Ves gatos.", "A1.01.06.01"},
+            {"67fab6d59930102295341ec4", "It", "comes", "(come) every year.", "Viene cada año.", "A1.01.06.02"},
+            {"67fab6d59930102295341ec5", "He", "leaves", "(leave) the bedroom.", "Él sale del dormitorio.", "A1.01.06.03"},
+            {"67fab6d59930102295341ec6", "They", "go", "(go) to school every day.", "Ellos van a la escuela todos los días.", "A1.01.06.04"},
+            {"67fab6d59930102295341ec7", "We", "make", "(make) clothes.", "Nosotros hacemos ropa.", "A1.01.06.05"},
+            {"67fab6d59930102295341ec8", "He", "buys", "(buy) a lot of tea.", "Él compra mucho té.", "A1.01.06.06"},
+            {"67fab6d59930102295341ec9", "She", "eats", "(eat) lunch.", "Ella come el almuerzo.", "A1.01.06.07"},
+            {"67fab6d59930102295341eca", "You", "enjoy", "(enjoy) life.", "Disfrutas de la vida.", "A1.01.06.08"},
+            {"67fab6d59930102295341ecb", "We", "know", "(know) ourselves.", "Nosotros nos conocemos.", "A1.01.06.09"},
+            {"67fab6d59930102295341ecc", "We", "want", "(want) some food.", "Queremos algo de comida.", "A1.01.06.10"},
+            {"67fab6d59930102295341ecd", "I", "love", "a lot of vegetables.", "Me gustan mucho las verduras.", "A1.01.06.11"},
+            {"67fab6d59930102295341ece", "I", "play", "(play) basketball every week.", "Juego baloncesto todas las semanas.", "A1.01.06.12"},
+            {"67fab6d59930102295341ecf", "He", "reads", "(read) books.", "Él lee libros.", "A1.01.06.13"},
+            {"67fab6d59930102295341ed0", "They", "work", "(work) on the beach.", "Ellos trabajan en la playa.", "A1.01.06.14"},
+            {"67fab6d59930102295341ed1", "She", "lives", "(live) in London.", "Ella vive en Londres.", "A1.01.06.15"},
+            {"67fab6d59930102295341ed2", "You", "have", "(have) two sisters.", "Tú tienes dos hermanas.", "A1.01.06.16"},
+            {"67fab6d59930102295341ed3", "I", "help", "(help) my friends.", "Yo ayudo a mis amigos.", "A1.01.06.17"},
+            {"67fab6d59930102295341ed4", "It", "gets", "(get) cold here.", "Aquí hace frío.", "A1.01.06.18"},
+            {"67fab6d59930102295341ed5", "I", "learn", "(learn) every afternoon.", "Aprendo todas las tardes.", "A1.01.06.19"},
+            {"67fab6d59930102295341ed6", "She", "sports", "(sport) hats.", "Ella luce sombreros.", "A1.01.06.20"}};
+
+    private static DefaultTopicStudentViewQuery query(AudioRecordingRegistry recordings) {
+        return new DefaultTopicStudentViewQuery(DefaultQuizStudentViewRendererTest.renderer(), recordings);
+    }
+
+    /** The report of an analysis with this topic and, before it, another one of the same level. */
+    private static AuditReport report() {
+        AuditNode root = node(AuditTarget.COURSE, null, null);
+        AuditNode level = node(AuditTarget.MILESTONE, new AuditableMilestone(List.of(), "6814dafa7d73e7209a13d382", "A1", "A1"),
+                root);
+        AuditNode topic = node(AuditTarget.TOPIC, new AuditableTopic(List.of(), "t-present-simple", "Present Simple", "T"),
+                level);
+        AuditNode other = node(AuditTarget.KNOWLEDGE, new AuditableKnowledge(List.of(), "Afirmativas con be",
+                "Completa con am, is o are.", true, "6814dafa7d73e7209a13d388", "Afirmativas con be", "K",
+                SentenceMode.FILL, "Present Simple"), topic);
+        node(AuditTarget.QUIZ, DefaultQuizStudentViewRendererTest.quiz("67fab6d59930102295341e5f",
+                List.of(DefaultQuizStudentViewRendererTest.text("She"), DefaultQuizStudentViewRendererTest.cloze("is"),
+                        DefaultQuizStudentViewRendererTest.text("English.")), null, "Completa.", "Ella es inglesa.", null,
+                "A1.01.01.01"), other);
+        AuditNode afirmativas = node(AuditTarget.KNOWLEDGE, new AuditableKnowledge(List.of(), "Afirmativas regulares",
+                "Escribe la forma correcta del verbo.", true, AFIRMATIVAS_REGULARES, "Afirmativas regulares", "K",
+                SentenceMode.FILL, "Present Simple"), topic);
+        for (String[] row : AFIRMATIVAS) {
+            AuditableQuiz quiz = DefaultQuizStudentViewRendererTest.quiz(row[0],
+                    List.of(DefaultQuizStudentViewRendererTest.text(row[1]), DefaultQuizStudentViewRendererTest.cloze(row[2]),
+                            DefaultQuizStudentViewRendererTest.text(row[3])),
+                    null, "Escribe la forma afirmativa en presente simple.", row[4],
+                    DefaultQuizStudentViewRendererTest.MINI_THEORY, row[5]);
+            node(AuditTarget.QUIZ, quiz, afirmativas);
+        }
+        return new AuditReport(root);
+    }
+
+    private static AuditNode node(AuditTarget target, AuditableEntity entity, AuditNode parent) {
+        AuditNode node = new AuditNode();
+        node.setTarget(target);
+        node.setEntity(entity);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        if (parent != null) {
+            parent.getChildren().add(node);
+        }
+        return node;
+    }
+
+    /** The recordings registry, with what it knows, writing down the keys it is asked. */
+    private static final class Recordings implements AudioRecordingRegistry {
+        private final Map<String, AudioRecording> known;
+        private final List<String> asked = new ArrayList<>();
+
+        Recordings(Map<String, AudioRecording> known) {
+            this.known = known;
+        }
+
+        List<String> asked() {
+            return asked;
+        }
+
+        @Override
+        public Optional<AudioRecording> recordingOf(String audioKey) {
+            asked.add(audioKey);
+            return Optional.ofNullable(known.get(audioKey));
+        }
+
+        @Override
+        public String version() {
+            return "2026-09-30";
+        }
     }
 }
