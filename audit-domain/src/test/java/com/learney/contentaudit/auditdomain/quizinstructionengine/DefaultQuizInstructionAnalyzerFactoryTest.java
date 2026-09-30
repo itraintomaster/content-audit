@@ -19,6 +19,7 @@ import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -176,6 +177,7 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
     @DisplayName("should build the consigna analyzer with budget 0 when the run declares no budget for quiz-instruction, instead of the 500 of its configuration")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R010")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldBuildTheConsignaAnalyzerWithBudget0WhenTheRunDeclaresNoBudgetForQuizinstructionInsteadOfThe500OfItsConfiguration() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -184,6 +186,7 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
     @DisplayName("should open the consigna judge through the judges runtime, so a version that did not pass the exam gets budget 0 whatever the run asked")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R003")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenTheConsignaJudgeThroughTheJudgesRuntimeSoAVersionThatDidNotPassTheExamGetsBudget0WhateverTheRunAsked() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

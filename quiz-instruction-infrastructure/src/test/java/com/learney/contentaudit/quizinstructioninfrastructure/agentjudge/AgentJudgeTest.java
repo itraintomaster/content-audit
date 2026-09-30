@@ -1,6 +1,7 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.agentjudge;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class AgentJudgeTest {
     @DisplayName("should check its provider session once, before its first consultation, even with four consultations at a time")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldCheckItsProviderSessionOnceBeforeItsFirstConsultationEvenWithFourConsultationsAtATime(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class AgentJudgeTest {
     @DisplayName("should answer EVALUATOR_UNAVAILABLE with the cause and the remedy, without running its agent, when its provider session expired")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldAnswerEVALUATORUNAVAILABLEWithTheCauseAndTheRemedyWithoutRunningItsAgentWhenItsProviderSessionExpired(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class AgentJudgeTest {
     @DisplayName("should answer EVALUATOR_UNAVAILABLE with the explained cause when its first consultation comes back for lack of session or of quota")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldAnswerEVALUATORUNAVAILABLEWithTheExplainedCauseWhenItsFirstConsultationComesBackForLackOfSessionOrOfQuota(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class AgentJudgeTest {
     @DisplayName("should report the conservative outputUnusable verdict of a translation-sense judge as an unusable output, not as a verdict")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R005")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldReportTheConservativeOutputUnusableVerdictOfATranslationsenseJudgeAsAnUnusableOutputNotAsAVerdict(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class AgentJudgeTest {
     @DisplayName("should hand the agent of a translation-sense judge each entry of the content map verbatim as its inputs, and nothing else")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R001")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldHandTheAgentOfATranslationsenseJudgeEachEntryOfTheContentMapVerbatimAsItsInputsAndNothingElse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

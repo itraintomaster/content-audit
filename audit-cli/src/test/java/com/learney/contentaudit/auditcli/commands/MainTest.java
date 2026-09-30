@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -96,6 +97,7 @@ public class MainTest {
     @DisplayName("should list off-level-words with its card in get analyzers, registered in the catalog right after lemma-absence")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R007")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldListOfflevelwordsWithItsCardInGetAnalyzersRegisteredInTheCatalogRightAfterLemmaabsence() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

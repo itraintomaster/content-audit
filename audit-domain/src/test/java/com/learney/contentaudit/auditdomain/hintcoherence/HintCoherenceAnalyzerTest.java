@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class HintCoherenceAnalyzerTest {
     @DisplayName("should raise a high finding on an exercise without hint when three quarters or more of its topic's exercises of the same shape carry one, as «I ___ a lot of vegetables.» among the 19 of 20 of Afirmativas regulares")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R001")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldRaiseAHighFindingOnAnExerciseWithoutHintWhenThreeQuartersOrMoreOfItsTopicsExercisesOfTheSameShapeCarryOneAsIALotOfVegetablesAmongThe19Of20OfAfirmativasRegulares(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class HintCoherenceAnalyzerTest {
     @DisplayName("should take exactly three quarters of the topic as reaching the threshold and leave a topic below it without finding, as «I'd love ___ .» in One y ones, where 12 of 20 carry a hint")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R001")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldTakeExactlyThreeQuartersOfTheTopicAsReachingTheThresholdAndLeaveATopicBelowItWithoutFindingAsIdLoveInOneYOnesWhere12Of20CarryAHint(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class HintCoherenceAnalyzerTest {
     @DisplayName("should count hints only among exercises of the same shape, so the 20 transformations without hint of El posesivo are not measured against its 20 hinted gaps")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R001")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldCountHintsOnlyAmongExercisesOfTheSameShapeSoThe20TransformationsWithoutHintOfElPosesivoAreNotMeasuredAgainstIts20HintedGaps(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class HintCoherenceAnalyzerTest {
     @DisplayName("should neither count nor mark multiple choice exercises, as «My brother is a ___ (good / well) driver.» in ¿Good o well?")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R001")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldNeitherCountNorMarkMultipleChoiceExercisesAsMyBrotherIsAGoodWellDriverInGoodOWell(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class HintCoherenceAnalyzerTest {
     @DisplayName("should raise a blocking finding with the hint and the answer as evidence when the hint names another verb than the answer, as «This idea ___ (not / sound) very good.» answered «does not»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldRaiseABlockingFindingWithTheHintAndTheAnswerAsEvidenceWhenTheHintNamesAnotherVerbThanTheAnswerAsThisIdeaNotSoundVeryGoodAnsweredDoesNot(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -59,6 +65,7 @@ public class HintCoherenceAnalyzerTest {
     @DisplayName("should raise a blocking finding when the subject of the hint is not the subject of the answer, as «What ___ (it / be)?» answered «is that»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R003")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldRaiseABlockingFindingWhenTheSubjectOfTheHintIsNotTheSubjectOfTheAnswerAsWhatItBeAnsweredIsThat(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -68,6 +75,7 @@ public class HintCoherenceAnalyzerTest {
     @DisplayName("should score 0 an exercise with a finding and 1 an exercise whose hint announces its answer, as «You ___ (see) cats.» answered «see»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldScore0AnExerciseWithAFindingAnd1AnExerciseWhoseHintAnnouncesItsAnswerAsYouSeeCatsAnsweredSee(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -77,6 +85,7 @@ public class HintCoherenceAnalyzerTest {
     @DisplayName("should show as evidence the exercise as the student sees it, its answer and the line that names the fault, as «Who ___ (I / see)? → are you seeing: el sujeto I no es you»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldShowAsEvidenceTheExerciseAsTheStudentSeesItItsAnswerAndTheLineThatNamesTheFaultAsWhoISeeAreYouSeeingElSujetoINoEsYou(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -86,6 +95,7 @@ public class HintCoherenceAnalyzerTest {
     @DisplayName("should identify each finding by its rule and the word it names, so two runs give «Who ___ (I / see)?» the same identity")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldIdentifyEachFindingByItsRuleAndTheWordItNamesSoTwoRunsGiveWhoISeeTheSameIdentity(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

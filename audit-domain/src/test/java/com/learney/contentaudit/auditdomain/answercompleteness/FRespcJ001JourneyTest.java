@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FRespcJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → Para cada respuesta aceptada, el info... → Un hallazgo por forma que falta, con ... [Falta la forma contraída o la larga] → success")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void path1_faltaLaFormaContradaOLaLarga_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -28,6 +30,7 @@ public class FRespcJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo só... → Para cada respuesta aceptada, el info... → Un hallazgo por forma que falta, con ... [Falta la otra negación corta de be] → success")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void path2_faltaLaOtraNegacinCortaDeBe_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -36,6 +39,7 @@ public class FRespcJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → Para cada respuesta aceptada, el info... → Un hallazgo por forma que falta, con ... [Falta la otra grafía de una palabra de la lista, o until o till] → success")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void path3_faltaLaOtraGrafaDeUnaPalabraDeLaListaOUntilOTill_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -44,6 +48,7 @@ public class FRespcJ001JourneyTest {
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo só... → Para cada respuesta aceptada, el info... → Un hallazgo con la consigna o la mini... [La consigna o la miniteoría piden short forms o long forms] → success")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void path4_laConsignaOLaMiniteoraPidenShortFormsOLongForms_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -52,6 +57,7 @@ public class FRespcJ001JourneyTest {
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: El operador corre analyze pidiendo só... → Para cada respuesta aceptada, el info... → Sin hallazgo de este analizador; el e... [Todas las formas equivalentes están aceptadas y nada pide una forma] → success")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void path5_todasLasFormasEquivalentesEstnAceptadasYNadaPideUnaForma_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

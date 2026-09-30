@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditapplication;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultChoiceAlternativeConfigTest {
     @DisplayName("should score a quiz 0 for a blocking, 0.3 for a high and 0.6 for a medium worst severity")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R003")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldScoreAQuiz0ForABlocking03ForAHighAnd06ForAMediumWorstSeverity() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

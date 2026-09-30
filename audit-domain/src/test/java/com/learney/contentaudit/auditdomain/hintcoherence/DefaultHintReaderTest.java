@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultHintReaderTest {
     @DisplayName("should tell a gap inside the sentence, as «She dances ___ (good / well).», from an answer that is the whole sentence, as «Polite request: I want to eat some cake. ___»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R001")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldTellAGapInsideTheSentenceAsSheDancesGoodWellFromAnAnswerThatIsTheWholeSentenceAsPoliteRequestIWantToEatSomeCake(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultHintReaderTest {
     @DisplayName("should not take as a hint a tense name, an instruction or a context note between parentheses, as «(present simple)» in «She ___ (live) there. (present simple)» or «(be extra polite)» in «Where / you / going? (be extra polite) ___»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldNotTakeAsAHintATenseNameAnInstructionOrAContextNoteBetweenParenthesesAsPresentSimpleInSheLiveTherePresentSimpleOrBeExtraPoliteInWhereYouGoingBeExtraPolite(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultHintReaderTest {
     @DisplayName("should read as the hint of an answer that is the whole sentence its statement of words separated by «/», as «She / assist you. ___» answered «She'd help you.»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldReadAsTheHintOfAnAnswerThatIsTheWholeSentenceItsStatementOfWordsSeparatedByAsSheAssistYouAnsweredShedHelpYou(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultHintReaderTest {
     @DisplayName("should never read as a hint the sentence to be transformed, as «I want to eat some cake.» in «Polite request: I want to eat some cake. ___» answered «Could I have some cake?»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldNeverReadAsAHintTheSentenceToBeTransformedAsIWantToEatSomeCakeInPoliteRequestIWantToEatSomeCakeAnsweredCouldIHaveSomeCake(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

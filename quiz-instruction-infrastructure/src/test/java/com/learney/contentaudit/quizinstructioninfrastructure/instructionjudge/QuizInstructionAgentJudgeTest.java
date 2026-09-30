@@ -33,6 +33,7 @@ import java.time.Instant;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -247,6 +248,7 @@ public class QuizInstructionAgentJudgeTest {
     @DisplayName("should answer unavailable with the cause and the remedy, without running its agent, when the provider session expired")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldAnswerUnavailableWithTheCauseAndTheRemedyWithoutRunningItsAgentWhenTheProviderSessionExpired() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

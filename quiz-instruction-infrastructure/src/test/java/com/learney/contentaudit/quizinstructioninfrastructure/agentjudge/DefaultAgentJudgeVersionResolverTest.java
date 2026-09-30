@@ -1,6 +1,7 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.agentjudge;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultAgentJudgeVersionResolverTest {
     @DisplayName("should derive a new version when the agent definition, the model or the provider of a judge changes, and the same version otherwise, so a changed judge takes the exam again")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldDeriveANewVersionWhenTheAgentDefinitionTheModelOrTheProviderOfAJudgeChangesAndTheSameVersionOtherwiseSoAChangedJudgeTakesTheExamAgain(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultAgentJudgeVersionResolverTest {
     @DisplayName("should derive no version when the agent definition of the judge cannot be located")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R003")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldDeriveNoVersionWhenTheAgentDefinitionOfTheJudgeCannotBeLocated() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

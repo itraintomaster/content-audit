@@ -1,6 +1,7 @@
 package com.learney.contentaudit.evaluationledgerdomain.evaluationsession;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class ExamEvaluationSessionFactoryTest {
     @DisplayName("should open exam sessions that reuse without consulting what the same version already judged on the same content, in an earlier exam or on the course")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R002")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenExamSessionsThatReuseWithoutConsultingWhatTheSameVersionAlreadyJudgedOnTheSameContentInAnEarlierExamOrOnTheCourse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class ExamEvaluationSessionFactoryTest {
     @DisplayName("should open exam sessions that consult, within the budget, a content the taking version never judged even when another version judged it")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R002")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenExamSessionsThatConsultWithinTheBudgetAContentTheTakingVersionNeverJudgedEvenWhenAnotherVersionJudgedIt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

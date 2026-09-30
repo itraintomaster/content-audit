@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.choicealternativeengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultChoiceAlternativeSubjectBuilderTest {
     @DisplayName("should build for «There's a cat ___ the window.» the content title, instructions, exercise and options at, in and on in the order shown with at marked correct, and nothing else")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R001")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldBuildForTheresACatTheWindowTheContentTitleInstructionsExerciseAndOptionsAtInAndOnInTheOrderShownWithAtMarkedCorrectAndNothingElse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultChoiceAlternativeSubjectBuilderTest {
     @DisplayName("should build different contents for two quizzes that differ only in which option is correct")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R001")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldBuildDifferentContentsForTwoQuizzesThatDifferOnlyInWhichOptionIsCorrect() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -31,6 +34,7 @@ public class DefaultChoiceAlternativeSubjectBuilderTest {
     @DisplayName("should build the same content when only the translation, the mini-theory or the audio of the quiz changes")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R001")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldBuildTheSameContentWhenOnlyTheTranslationTheMinitheoryOrTheAudioOfTheQuizChanges(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

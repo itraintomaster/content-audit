@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FSemafJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El que propone pide el semáforo de un... → Cada palabra del tema sale con su niv... [El tema existe en el análisis] → La lista para sumar trae las sugerida... → success")
+    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void path1_elTemaExisteEnElAnlisis_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -28,6 +30,7 @@ public class FSemafJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El que propone pide el semáforo de un... → La consulta se rechaza con el mensaje... [El tema no existe] → failure")
+    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void path2_elTemaNoExiste_failure() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

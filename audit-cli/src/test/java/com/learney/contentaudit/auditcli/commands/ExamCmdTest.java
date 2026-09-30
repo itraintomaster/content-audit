@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class ExamCmdTest {
     @DisplayName("should read a synthetic exam file of the form [{ejercicio}] and write one JSON line per exercise with ejercicio, juez, version, resultado, gravedad, reglas and detalle")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldReadASyntheticExamFileOfTheFormEjercicioAndWriteOneJSONLinePerExerciseWithEjercicioJuezVersionResultadoGravedadReglasAndDetalle(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class ExamCmdTest {
     @DisplayName("should take the exam as a rehearsal with budget 0 when --budget is not given")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R010")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldTakeTheExamAsARehearsalWithBudget0WhenBudgetIsNotGiven() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -31,6 +34,7 @@ public class ExamCmdTest {
     @DisplayName("should record a measured result read as {juez, version, estado, grupos, noDieronLoEsperado, alcanzoLaMeta, foto, medidoPor}, taking APROBADO as approved and REPROBADO as failed")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldRecordAMeasuredResultReadAsJuezVersionEstadoGruposNoDieronLoEsperadoAlcanzoLaMetaFotoMedidoPorTakingAPROBADOAsApprovedAndREPROBADOAsFailed(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -40,6 +44,7 @@ public class ExamCmdTest {
     @DisplayName("should refuse, with a non-zero exit and nothing recorded, a measured result for a version that did not take the whole exam")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldRefuseWithANonzeroExitAndNothingRecordedAMeasuredResultForAVersionThatDidNotTakeTheWholeExam(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -49,6 +54,7 @@ public class ExamCmdTest {
     @DisplayName("should show the exam history of a judge, one line per record with its version, its status and when it was recorded")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldShowTheExamHistoryOfAJudgeOneLinePerRecordWithItsVersionItsStatusAndWhenItWasRecorded(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

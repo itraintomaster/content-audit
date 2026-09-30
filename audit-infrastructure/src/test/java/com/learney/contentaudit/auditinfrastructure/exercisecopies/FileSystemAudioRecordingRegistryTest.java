@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditinfrastructure.exercisecopies;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class FileSystemAudioRecordingRegistryTest {
     @DisplayName("should give for an audio key the text it was last recorded with and where that text came from, as «He has not cut/hasn't cut himself.» for A2.04.05.09")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R004")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldGiveForAnAudioKeyTheTextItWasLastRecordedWithAndWhereThatTextCameFromAsHeHasNotCuthasntCutHimselfForA2040509(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class FileSystemAudioRecordingRegistryTest {
     @DisplayName("should give nothing for an audio key the registry does not know, as the empty key of «Are we eating soon?»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R004")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldGiveNothingForAnAudioKeyTheRegistryDoesNotKnowAsTheEmptyKeyOfAreWeEatingSoon(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

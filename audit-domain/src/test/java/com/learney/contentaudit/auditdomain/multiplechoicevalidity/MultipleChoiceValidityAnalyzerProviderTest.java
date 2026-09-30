@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class MultipleChoiceValidityAnalyzerProviderTest {
     @DisplayName("should describe multiple-choice-validity with one card that asks «¿Hay una sola opción correcta, y ninguna se delata por la forma?», lists its four instant rules and the judge's rule and declares the paid model cost, the highest")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldDescribeMultiplechoicevalidityWithOneCardThatAsksHayUnaSolaOpcinCorrectaYNingunaSeDelataPorLaFormaListsItsFourInstantRulesAndTheJudgesRuleAndDeclaresThePaidModelCostTheHighest(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

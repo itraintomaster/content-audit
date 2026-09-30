@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -2994,6 +2995,7 @@ public class LemmaAbsenceContextResolverTest {
     @DisplayName("should mark 'number' (A1, 5 sentences) as an under-exposed suggested word with threshold 8 with bands 8, 6, 4 and 3, and as exposed but scarce with 4 for every band")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R007")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldMarkNumberA15SentencesAsAnUnderexposedSuggestedWordWithThreshold8WithBands864And3AndAsExposedButScarceWith4ForEveryBand() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -3002,6 +3004,7 @@ public class LemmaAbsenceContextResolverTest {
     @DisplayName("should list a content word of the sentence as scarce when its sentences are under the threshold of its own band, and report that threshold with it")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R007")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldListAContentWordOfTheSentenceAsScarceWhenItsSentencesAreUnderTheThresholdOfItsOwnBandAndReportThatThresholdWithIt() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -3010,6 +3013,7 @@ public class LemmaAbsenceContextResolverTest {
     @DisplayName("should mark a word under-exposed for the suggestions if and only if lemma-count leaves a finding for it in its level")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R007")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldMarkAWordUnderexposedForTheSuggestionsIfAndOnlyIfLemmacountLeavesAFindingForItInItsLevel() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -3018,6 +3022,7 @@ public class LemmaAbsenceContextResolverTest {
     @DisplayName("should give the same suggested words, tiers, thresholds and scarce words as today with 4 for every band")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R007")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldGiveTheSameSuggestedWordsTiersThresholdsAndScarceWordsAsTodayWith4ForEveryBand() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

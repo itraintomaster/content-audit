@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     @DisplayName("should raise a blocking finding on an exercise with no valid option or with several, as «The performance was ___ awful.» with no option scoring")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R001")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldRaiseABlockingFindingOnAnExerciseWithNoValidOptionOrWithSeveralAsThePerformanceWasAwfulWithNoOptionScoring(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     @DisplayName("should send twin options to the panel, blocking when they look identical and one is correct, high when only their form differs from the correct one and low when both are incorrect, as «'ve got to» and «have got to» in «David ___ call his mother now. (must)»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R002")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldSendTwinOptionsToThePanelBlockingWhenTheyLookIdenticalAndOneIsCorrectHighWhenOnlyTheirFormDiffersFromTheCorrectOneAndLowWhenBothAreIncorrectAsVeGotToAndHaveGotToInDavidCallHisMotherNowMust(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     @DisplayName("should rate the capital letter low when all options share their case and medium when only some do, and resolve it by one rule over all the options at once, as in «___ a child? (He)»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R003")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldRateTheCapitalLetterLowWhenAllOptionsShareTheirCaseAndMediumWhenOnlySomeDoAndResolveItByOneRuleOverAllTheOptionsAtOnceAsInAChildHe(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     @DisplayName("should send the dash at the start of a sentence to the panel, as in «___ golf is difficult to learn.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R003")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldSendTheDashAtTheStartOfASentenceToThePanelAsInGolfIsDifficultToLearn() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -49,6 +54,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     @DisplayName("should send the article that gives the answer away to the panel as medium, with the article and the options as evidence, as in «It was an ___ wonderful experience.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R004")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldSendTheArticleThatGivesTheAnswerAwayToThePanelAsMediumWithTheArticleAndTheOptionsAsEvidenceAsInItWasAnWonderfulExperience(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     @DisplayName("should never leave a finding of its own on a write-in exercise, as «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldNeverLeaveAFindingOfItsOwnOnAWriteinExerciseAsTheyNotBeFromIreland() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -66,6 +73,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     @DisplayName("should score 0 a multiple choice exercise with a finding and 1 one with a single correct option, distinct options and nothing that gives it away, as «The performance was ___ awful.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldScore0AMultipleChoiceExerciseWithAFindingAnd1OneWithASingleCorrectOptionDistinctOptionsAndNothingThatGivesItAwayAsThePerformanceWasAwful(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -75,6 +83,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     @DisplayName("should identify each finding by its rule, its exercise and the option it marks, so two runs mark «very» in «He's an ___ amazing man.» the same")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldIdentifyEachFindingByItsRuleItsExerciseAndTheOptionItMarksSoTwoRunsMarkVeryInHesAnAmazingManTheSame(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -84,6 +93,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     @DisplayName("should keep counting the findings of its rules on an exercise the judge did not see and say that the judge did not see it, as «___ a child? (He)» with the judge pending")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldKeepCountingTheFindingsOfItsRulesOnAnExerciseTheJudgeDidNotSeeAndSayThatTheJudgeDidNotSeeItAsAChildHeWithTheJudgePending(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -93,6 +103,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     @DisplayName("should turn an incorrect option the judge also finds valid into a finding for the panel, with the judge's explanation as evidence, as «very» if the judge found it valid in «The performance was ___ awful.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldTurnAnIncorrectOptionTheJudgeAlsoFindsValidIntoAFindingForThePanelWithTheJudgesExplanationAsEvidenceAsVeryIfTheJudgeFoundItValidInThePerformanceWasAwful(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditapplication;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultSingleAnswerConfigTest {
     @DisplayName("should score a quiz 0 for a blocking, 0.3 for a high and 0.6 for a medium worst severity")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R004")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldScoreAQuiz0ForABlocking03ForAHighAnd06ForAMediumWorstSeverity() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

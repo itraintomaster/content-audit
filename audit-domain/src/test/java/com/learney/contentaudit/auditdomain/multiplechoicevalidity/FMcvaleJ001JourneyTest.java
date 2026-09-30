@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FMcvaleJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo el... → El veredicto dice qué incorrectas tam... [El ejercicio ya tiene veredicto para ese contenido, o se lo consulta dentro del tope] → El ejercicio no tiene hallazgo de est... [Sólo vale la correcta] → success")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void path1_elEjercicioYaTieneVeredictoParaEseContenidoOSeLoConsultaDentroDelTope_sloValeLaCorrecta_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -29,6 +31,7 @@ public class FMcvaleJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo el... → El veredicto dice qué incorrectas tam... [El ejercicio ya tiene veredicto para ese contenido, o se lo consulta dentro del tope] → El ejercicio tiene su hallazgo, alta ... [Otra opción también vale] → success")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void path2_elEjercicioYaTieneVeredictoParaEseContenidoOSeLoConsultaDentroDelTope_otraOpcinTambinVale_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -38,6 +41,7 @@ public class FMcvaleJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo el... → El veredicto dice qué incorrectas tam... [El ejercicio ya tiene veredicto para ese contenido, o se lo consulta dentro del tope] → El ejercicio tiene su hallazgo bloque... [La correcta no vale y otra sí] → success")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void path3_elEjercicioYaTieneVeredictoParaEseContenidoOSeLoConsultaDentroDelTope_laCorrectaNoValeYOtraS_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -47,6 +51,7 @@ public class FMcvaleJ001JourneyTest {
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo el... → El ejercicio queda sin evaluar por es... [No tiene veredicto y no queda tope] → success")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void path4_noTieneVeredictoYNoQuedaTope_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

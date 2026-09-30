@@ -1,6 +1,7 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.minitheoryverdict;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class JacksonMiniTheoryVerdictReaderTest {
     @DisplayName("should read one assessment per mini-theory with whether it holds, its problem, severity, counterexample, exercises and explanation")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R002")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldReadOneAssessmentPerMinitheoryWithWhetherItHoldsItsProblemSeverityCounterexampleExercisesAndExplanation(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

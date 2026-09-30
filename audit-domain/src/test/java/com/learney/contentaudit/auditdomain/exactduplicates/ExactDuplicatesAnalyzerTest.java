@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.exactduplicates;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should find the 23 exact copies of the course of 29/9 inside their 14 topics, 17 in A1, 2 in A2 and 4 in B1, as «They weren't at the park.» twice in Práctica mixta")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R001")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldFindThe23ExactCopiesOfTheCourseOf299InsideTheir14Topics17InA12InA2And4InB1AsTheyWerentAtTheParkTwiceInPrcticaMixta(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should take as duplicates two exercises that finish the same although their options differ, as «The show started on time.» twice in In time u on time")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R001")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldTakeAsDuplicatesTwoExercisesThatFinishTheSameAlthoughTheirOptionsDifferAsTheShowStartedOnTimeTwiceInInTimeUOnTime(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should leave the hint out of the comparison, taking as duplicates «rice ___ (no plural form)» and «rice ___» of Contable o incontable")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R001")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldLeaveTheHintOutOfTheComparisonTakingAsDuplicatesRiceNoPluralFormAndRiceOfContableOIncontable(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should keep the starting sentence in the comparison, so the eleven «So am I.» of Presente simple: so/neither that answer different sentences are not duplicates")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R001")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldKeepTheStartingSentenceInTheComparisonSoTheElevenSoAmIOfPresenteSimpleSoneitherThatAnswerDifferentSentencesAreNotDuplicates(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should not compare exercises of different topics, leaving «She dances ___ (good / well).» of Adjetivo o adverbio without finding although ¿Good o well? has the same exercise")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R001")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldNotCompareExercisesOfDifferentTopicsLeavingSheDancesGoodWellOfAdjetivoOAdverbioWithoutFindingAlthoughGoodOWellHasTheSameExercise(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -59,6 +65,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should not take as exact duplicates two exercises that differ in a word, as «I don't have ___ time.» and «I didn't have ___ time.»")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R001")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldNotTakeAsExactDuplicatesTwoExercisesThatDifferInAWordAsIDontHaveTimeAndIDidntHaveTime(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -68,6 +75,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should leave without finding the first exercise in the order of the topic and mark the one that comes after it, as 67fab6d59930102295342260 after 67fab6d5993010229534224b in Práctica mixta")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R002")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldLeaveWithoutFindingTheFirstExerciseInTheOrderOfTheTopicAndMarkTheOneThatComesAfterItAs67fab6d59930102295342260After67fab6d5993010229534224bInPrcticaMixta(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -77,6 +85,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should mark n minus 1 exercises in a group of n equal exercises of a topic, as two copies if «stop - ___» appeared three times in Doble consonante y e")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R002")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldMarkNMinus1ExercisesInAGroupOfNEqualExercisesOfATopicAsTwoCopiesIfStopAppearedThreeTimesInDobleConsonanteYE(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -86,6 +95,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should name in each finding the exercise that stays, as 67fab6d5993010229534224b in the finding of 67fab6d59930102295342260")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R002")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldNameInEachFindingTheExerciseThatStaysAs67fab6d5993010229534224bInTheFindingOf67fab6d59930102295342260(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -95,6 +105,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should mark the same copies in two runs of the same course, as the second «stop - stopping» of Doble consonante y e")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R002")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldMarkTheSameCopiesInTwoRunsOfTheSameCourseAsTheSecondStopStoppingOfDobleConsonanteYE(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -104,6 +115,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should give every copy a low finding for the panel that counts as an error, as the second «rice ___» of Contable o incontable")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R003")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldGiveEveryCopyALowFindingForThePanelThatCountsAsAnErrorAsTheSecondRiceOfContableOIncontable(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -113,6 +125,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should show as evidence both exercises as the student sees them, the finished exercise they share and «Idéntico a 67fab6d5993010229534224b del mismo tema», never the internal format «They ____ [weren't] (not / be)»")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R004")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldShowAsEvidenceBothExercisesAsTheStudentSeesThemTheFinishedExerciseTheyShareAndIdnticoA67fab6d5993010229534224bDelMismoTemaNeverTheInternalFormatTheyWerentNotBe(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -122,6 +135,7 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should score 0 the copy and 1 the exercise that stays and every exercise without a twin, as in Práctica mixta")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R005")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldScore0TheCopyAnd1TheExerciseThatStaysAndEveryExerciseWithoutATwinAsInPrcticaMixta(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

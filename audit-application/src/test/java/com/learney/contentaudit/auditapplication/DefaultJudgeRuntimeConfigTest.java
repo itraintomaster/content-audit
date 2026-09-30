@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditapplication;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultJudgeRuntimeConfigTest {
     @DisplayName("should give budget 0 as the default of quiz-instruction, translation-sense, single-answer, mini-theory and multiple-choice-validity")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R010")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldGiveBudget0AsTheDefaultOfQuizinstructionTranslationsenseSingleanswerMinitheoryAndMultiplechoicevalidity(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultJudgeRuntimeConfigTest {
     @DisplayName("should give four consultations at a time by default")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R006")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldGiveFourConsultationsAtATimeByDefault() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -31,6 +34,7 @@ public class DefaultJudgeRuntimeConfigTest {
     @DisplayName("should give 189 per hour as default rate and 60 per hour for mini-theory")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R004")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldGive189PerHourAsDefaultRateAnd60PerHourForMinitheory() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

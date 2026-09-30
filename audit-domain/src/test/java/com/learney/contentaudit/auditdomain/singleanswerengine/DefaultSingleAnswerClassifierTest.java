@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.singleanswerengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultSingleAnswerClassifierTest {
     @DisplayName("should drop «is not» listed by the judge for a quiz that accepts «isn't», leaving it without single-answer finding")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R002")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldDropIsNotListedByTheJudgeForAQuizThatAcceptsIsntLeavingItWithoutSingleanswerFinding(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultSingleAnswerClassifierTest {
     @DisplayName("should drop «traveled» listed for a quiz that accepts «travelled» and «till» for one that accepts «until», since the corrector accepts them")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R002")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldDropTraveledListedForAQuizThatAcceptsTravelledAndTillForOneThatAcceptsUntilSinceTheCorrectorAcceptsThem(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultSingleAnswerClassifierTest {
     @DisplayName("should keep in the diagnosis the answers dropped because the corrector accepts them, visible and not counted")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R002")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldKeepInTheDiagnosisTheAnswersDroppedBecauseTheCorrectorAcceptsThemVisibleAndNotCounted(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultSingleAnswerClassifierTest {
     @DisplayName("should pass a quiz whose judge lists no other answer, with score 1 and no finding")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R002")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldPassAQuizWhoseJudgeListsNoOtherAnswerWithScore1AndNoFinding() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -49,6 +54,7 @@ public class DefaultSingleAnswerClassifierTest {
     @DisplayName("should give «from Friday until Sunday» and «from Friday till Sunday», offered by the instruction of «He was in Italy ___ .», a rank-only finding each that names the answer and answer-completeness")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R003")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldGiveFromFridayUntilSundayAndFromFridayTillSundayOfferedByTheInstructionOfHeWasInItalyARankonlyFindingEachThatNamesTheAnswerAndAnswercompleteness(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class DefaultSingleAnswerClassifierTest {
     @DisplayName("should count no error of single-answer for a quiz whose only other answers are offered by its instruction, keeping its score at 1")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R003")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldCountNoErrorOfSingleanswerForAQuizWhoseOnlyOtherAnswersAreOfferedByItsInstructionKeepingItsScoreAt1(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -67,6 +74,7 @@ public class DefaultSingleAnswerClassifierTest {
     @DisplayName("should give the verduras (…1ecd) a blocking finding and score 0 when eat, like, buy and want fit as well as «love» and no hint picks one")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R004")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldGiveTheVerduras1ecdABlockingFindingAndScore0WhenEatLikeBuyAndWantFitAsWellAsLoveAndNoHintPicksOne(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -76,6 +84,7 @@ public class DefaultSingleAnswerClassifierTest {
     @DisplayName("should give «Does he need water? He ___ .» a high finding for «doesn't» and score 0.3")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R004")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldGiveDoesHeNeedWaterHeAHighFindingForDoesntAndScore03() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -84,6 +93,7 @@ public class DefaultSingleAnswerClassifierTest {
     @DisplayName("should give «She ___ (not / come).» a medium finding for «won't come» and score 0.6")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R004")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldGiveSheNotComeAMediumFindingForWontComeAndScore06() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -92,6 +102,7 @@ public class DefaultSingleAnswerClassifierTest {
     @DisplayName("should give one finding per counted answer, marked with the answer, and score the quiz by the gravest")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R004")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldGiveOneFindingPerCountedAnswerMarkedWithTheAnswerAndScoreTheQuizByTheGravest(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -101,6 +112,7 @@ public class DefaultSingleAnswerClassifierTest {
     @DisplayName("should pass a candidate such as «Yes, he ___» for «Does he need water?» when the judge lists nothing or only answers offered by its instruction")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R007")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldPassACandidateSuchAsYesHeForDoesHeNeedWaterWhenTheJudgeListsNothingOrOnlyAnswersOfferedByItsInstruction(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

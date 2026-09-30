@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -861,6 +862,7 @@ public class DefaultEvaluationSessionTest {
     @DisplayName("should consult with four at a time exactly the three contents it consults one at a time when five new contents meet a budget of 3, in the order of the requests")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R006")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldConsultWithFourAtATimeExactlyTheThreeContentsItConsultsOneAtATimeWhenFiveNewContentsMeetABudgetOf3InTheOrderOfTheRequests() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -869,6 +871,7 @@ public class DefaultEvaluationSessionTest {
     @DisplayName("should resolve a batch mixing reuse-or-evaluate, forced, prefer-new and reuse-only requests exactly as the one-at-a-time methods resolve them in the same order")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R006")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldResolveABatchMixingReuseorevaluateForcedPrefernewAndReuseonlyRequestsExactlyAsTheOneatatimeMethodsResolveThemInTheSameOrder() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -877,6 +880,7 @@ public class DefaultEvaluationSessionTest {
     @DisplayName("should start no consultation after a service failure while resolving at a time, and record the verdict of each consultation already in flight that the evaluator emitted")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R006")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldStartNoConsultationAfterAServiceFailureWhileResolvingAtATimeAndRecordTheVerdictOfEachConsultationAlreadyInFlightThatTheEvaluatorEmitted() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -885,6 +889,7 @@ public class DefaultEvaluationSessionTest {
     @DisplayName("should return the same resolution for every content with one and with four consultations at a time, given the same ledger and the same verdicts")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R006")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldReturnTheSameResolutionForEveryContentWithOneAndWithFourConsultationsAtATimeGivenTheSameLedgerAndTheSameVerdicts() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -893,6 +898,7 @@ public class DefaultEvaluationSessionTest {
     @DisplayName("should send the first consultation of a batch alone, so an evaluator whose provider session expired is called once and not four times")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldSendTheFirstConsultationOfABatchAloneSoAnEvaluatorWhoseProviderSessionExpiredIsCalledOnceAndNotFourTimes() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -901,6 +907,7 @@ public class DefaultEvaluationSessionTest {
     @DisplayName("should keep as unavailable reason the cause and the remedy the evaluator gave on its first service failure")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldKeepAsUnavailableReasonTheCauseAndTheRemedyTheEvaluatorGaveOnItsFirstServiceFailure() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

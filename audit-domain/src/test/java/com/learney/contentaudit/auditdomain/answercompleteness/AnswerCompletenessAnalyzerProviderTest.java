@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class AnswerCompletenessAnalyzerProviderTest {
     @DisplayName("should describe answer-completeness in the catalog as an errors analyzer that evaluates exercises, resolves by rule or at the panel and costs instant, asking «¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R006")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldDescribeAnswercompletenessInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleOrAtThePanelAndCostsInstantAskingElCorrectorAceptaTodasLasFormasDeLaRespuestaYNingunaConsignaPideUna(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

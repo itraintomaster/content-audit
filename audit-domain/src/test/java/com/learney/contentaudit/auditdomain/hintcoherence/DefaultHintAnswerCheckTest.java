@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should find no issue when every hint word is in the answer as written, inflected or through its lemma, as «You ___ (see) cats.» answered «see» and «He ___ (not / cut) himself.» answered «has not cut»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldFindNoIssueWhenEveryHintWordIsInTheAnswerAsWrittenInflectedOrThroughItsLemmaAsYouSeeCatsAnsweredSeeAndHeNotCutHimselfAnsweredHasNotCut(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should report a hint word that is in the answer neither inflected nor through its lemma, as «mean» in «This sentence ___ (mean) 'hope'.» answered «implies»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldReportAHintWordThatIsInTheAnswerNeitherInflectedNorThroughItsLemmaAsMeanInThisSentenceMeanHopeAnsweredImplies(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should recognize through the table of irregular forms the inflected forms the shared lemmatizer misses, as swum in «They ___ (swim) in the ocean» and hated in «She ___ (hate) broccoli for ages»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldRecognizeThroughTheTableOfIrregularFormsTheInflectedFormsTheSharedLemmatizerMissesAsSwumInTheySwimInTheOceanAndHatedInSheHateBroccoliForAges(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should report a verb of the answer that is not an auxiliary and that the hint does not announce, as «rain» in «It ___ (be) soon.» answered «'s going to rain»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldReportAVerbOfTheAnswerThatIsNotAnAuxiliaryAndThatTheHintDoesNotAnnounceAsRainInItBeSoonAnsweredSGoingToRain(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should take the answer as one of the options of a choice hint instead of comparing it word by word, as «She dances ___ (good / well).» answered «well»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldTakeTheAnswerAsOneOfTheOptionsOfAChoiceHintInsteadOfComparingItWordByWordAsSheDancesGoodWellAnsweredWell(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -59,6 +65,7 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should report a subject pronoun of the hint that is not the subject of the answer, as «I» in «Who ___ (I / see)?» answered «are you seeing»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R003")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldReportASubjectPronounOfTheHintThatIsNotTheSubjectOfTheAnswerAsIInWhoISeeAnsweredAreYouSeeing(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -68,6 +75,7 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should report a subject pronoun that opens the answer when neither the hint nor the rest of the statement names it, as «___ (not / dream) about her.» answered «I haven't dreamt»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R003")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldReportASubjectPronounThatOpensTheAnswerWhenNeitherTheHintNorTheRestOfTheStatementNamesItAsNotDreamAboutHerAnsweredIHaventDreamt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -77,6 +85,7 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should not take an empty it or there as an unannounced subject, as «(him) ___» answered «It's him.»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R003")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldNotTakeAnEmptyItOrThereAsAnUnannouncedSubjectAsHimAnsweredItsHim() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -85,6 +94,7 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should report a hint with «not» whose answer does not negate, as «He ___ (not / cut) himself.» answered «has cut»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R004")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldReportAHintWithNotWhoseAnswerDoesNotNegateAsHeNotCutHimselfAnsweredHasCut() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -93,6 +103,7 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should not ask for «not» in the hint of a negative answer whose negation comes from the dialogue, as «A: Am I wrong? B: No, you ___ .» answered «aren't»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R004")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldNotAskForNotInTheHintOfANegativeAnswerWhoseNegationComesFromTheDialogueAsAAmIWrongBNoYouAnsweredArent(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -102,6 +113,7 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should propose as the fix by rule the hint drawn from the first answer, with its base verb, its subject and its not, leaving the answer and its audio as they are, as «(you / see)» for «Who ___ (I / see)?»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldProposeAsTheFixByRuleTheHintDrawnFromTheFirstAnswerWithItsBaseVerbItsSubjectAndItsNotLeavingTheAnswerAndItsAudioAsTheyAreAsYouSeeForWhoISee(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -111,6 +123,7 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should send to the panel instead of fixing by rule a hint word that is not in the answer, as «bad» in «That was ___ (bad) holiday ever!» answered «the best»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldSendToThePanelInsteadOfFixingByRuleAHintWordThatIsNotInTheAnswerAsBadInThatWasBadHolidayEverAnsweredTheBest(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

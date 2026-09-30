@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class UnavailableChoiceAlternativeJudgeRunFactoryTest {
     @DisplayName("should give the card the judge's rule with the paid model cost while no judge is connected, so multiple-choice-validity keeps a single card")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldGiveTheCardTheJudgesRuleWithThePaidModelCostWhileNoJudgeIsConnectedSoMultiplechoicevalidityKeepsASingleCard(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

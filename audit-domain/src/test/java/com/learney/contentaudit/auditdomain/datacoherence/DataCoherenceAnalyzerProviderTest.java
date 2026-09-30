@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DataCoherenceAnalyzerProviderTest {
     @DisplayName("should describe data-coherence in the catalog as an errors analyzer that evaluates exercises, resolves by rule or at the panel and costs instant, asking «¿Todas las copias del ejercicio dicen lo mismo?»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R005")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldDescribeDatacoherenceInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleOrAtThePanelAndCostsInstantAskingTodasLasCopiasDelEjercicioDicenLoMismo(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

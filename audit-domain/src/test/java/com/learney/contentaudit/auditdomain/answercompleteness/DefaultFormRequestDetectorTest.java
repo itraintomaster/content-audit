@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultFormRequestDetectorTest {
     @DisplayName("should detect «Usa $short forms$ si es posible.» opening the instructions as a request for the short form that a rule can remove, as in «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldDetectUsaShortFormsSiEsPosibleOpeningTheInstructionsAsARequestForTheShortFormThatARuleCanRemoveAsInTheyNotBeFromIreland(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultFormRequestDetectorTest {
     @DisplayName("should detect «Usa $long forms$.» as a request for the long form, as in «They ___ (not / have) many cars.» of Negativas regulares")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldDetectUsaLongFormsAsARequestForTheLongFormAsInTheyNotHaveManyCarsOfNegativasRegulares(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultFormRequestDetectorTest {
     @DisplayName("should detect the mini-theory that asks for a form, as «Elige $am$, $is$ o $are$ según el sujeto, y usa $short forms$.» of «It ___ (be) hot inside.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldDetectTheMinitheoryThatAsksForAFormAsEligeAmIsOAreSegnElSujetoYUsaShortFormsOfItBeHotInside(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultFormRequestDetectorTest {
     @DisplayName("should not take «Escribe la respuesta corta.» as a request for a form, as in «Is it going to matter? No, it ___ .»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldNotTakeEscribeLaRespuestaCortaAsARequestForAFormAsInIsItGoingToMatterNoIt() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -49,6 +54,7 @@ public class DefaultFormRequestDetectorTest {
     @DisplayName("should not take as a request a mini-theory that names a form without asking for it, as «La pregunta negativa arranca con el auxiliar en $short form$: $Doesn't she dance$?» of Sorpresa inicial")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldNotTakeAsARequestAMinitheoryThatNamesAFormWithoutAskingForItAsLaPreguntaNegativaArrancaConElAuxiliarEnShortFormDoesntSheDanceOfSorpresaInicial(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class DefaultFormRequestDetectorTest {
     @DisplayName("should mark as not removable by rule a request that is the lesson, as «Escribe la $short form$ de lo que está entre paréntesis.» of «You ___ (do not) work at the bank.» in Contracciones")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldMarkAsNotRemovableByRuleARequestThatIsTheLessonAsEscribeLaShortFormDeLoQueEstEntreParntesisOfYouDoNotWorkAtTheBankInContracciones(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

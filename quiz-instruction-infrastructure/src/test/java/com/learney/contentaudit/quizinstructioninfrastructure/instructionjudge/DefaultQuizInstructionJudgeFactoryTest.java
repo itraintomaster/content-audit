@@ -39,6 +39,7 @@ import java.time.Instant;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -324,6 +325,7 @@ public class DefaultQuizInstructionJudgeFactoryTest {
     @DisplayName("should give the consigna judge the same session check, so an expired claude-cli session leaves it unavailable with «renovala con claude auth login» before any consultation")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldGiveTheConsignaJudgeTheSameSessionCheckSoAnExpiredClaudecliSessionLeavesItUnavailableWithRenovalaConClaudeAuthLoginBeforeAnyConsultation() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -332,6 +334,7 @@ public class DefaultQuizInstructionJudgeFactoryTest {
     @DisplayName("should derive for the consigna judge the same version it derived before FEAT-JEXAM, so its recorded verdicts keep being reused")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R007")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldDeriveForTheConsignaJudgeTheSameVersionItDerivedBeforeFEATJEXAMSoItsRecordedVerdictsKeepBeingReused() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

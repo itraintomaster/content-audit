@@ -1,6 +1,7 @@
 package com.learney.contentaudit.vocabularyinfrastructure.correctortable;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class FileSystemFormEquivalenceTableSourceTest {
     @DisplayName("should read from the copy of the corrector's table its version, each contraction with all its long forms, as «'s» with is and has, and each group of equivalent words with its class, as travelled and traveled")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldReadFromTheCopyOfTheCorrectorsTableItsVersionEachContractionWithAllItsLongFormsAsSWithIsAndHasAndEachGroupOfEquivalentWordsWithItsClassAsTravelledAndTraveled(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

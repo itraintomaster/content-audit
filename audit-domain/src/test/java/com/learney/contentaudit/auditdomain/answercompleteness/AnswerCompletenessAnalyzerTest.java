@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should report the long form the corrector rejects, as «do not eat» for «I ___ (not / eat) meat often.», which only accepts «don't eat»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldReportTheLongFormTheCorrectorRejectsAsDoNotEatForINotEatMeatOftenWhichOnlyAcceptsDontEat(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should report the missing form whatever the instructions ask, as «don't have» for «They ___ (not / have) many cars.» under «Usa $long forms$.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldReportTheMissingFormWhateverTheInstructionsAskAsDontHaveForTheyNotHaveManyCarsUnderUsaLongForms(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should report «aren't» missing for «They ___ (not / be) from Ireland.», which accepts «'re not» while its mini-theory teaches «aren't»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R003")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldReportArentMissingForTheyNotBeFromIrelandWhichAcceptsReNotWhileItsMinitheoryTeachesArent(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should report «traveled» missing for «She ___ (travel) to Europe.», which only accepts «travelled»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R004")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldReportTraveledMissingForSheTravelToEuropeWhichOnlyAcceptsTravelled() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -49,6 +54,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should leave one finding per missing form, identified by the form, as «aren't» and «are not» for «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldLeaveOneFindingPerMissingFormIdentifiedByTheFormAsArentAndAreNotForTheyNotBeFromIreland(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should rate high a missing form that the mini-theory or the statement shows, as «aren't» in «They ___ (not / be) from Ireland.», whose mini-theory says «Negativo: $isn't$, $aren't$.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldRateHighAMissingFormThatTheMinitheoryOrTheStatementShowsAsArentInTheyNotBeFromIrelandWhoseMinitheorySaysNegativoIsntArent(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -67,6 +74,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should rate low the long form missing in a short answer, as «is not» for «A: Is it hot today? B: No, it ___ .» answered «isn't»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldRateLowTheLongFormMissingInAShortAnswerAsIsNotForAIsItHotTodayBNoItAnsweredIsnt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -76,6 +84,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should rate medium any other missing form, as «do not eat» for «I ___ (not / eat) meat often.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldRateMediumAnyOtherMissingFormAsDoNotEatForINotEatMeatOften() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -84,6 +93,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should resolve by rule in the corrector, and not in the course, a missing form of a class the new corrector equates, leaving the first answer and its audio as they are, as «aren't» for «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldResolveByRuleInTheCorrectorAndNotInTheCourseAMissingFormOfAClassTheNewCorrectorEquatesLeavingTheFirstAnswerAndItsAudioAsTheyAreAsArentForTheyNotBeFromIreland(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -93,6 +103,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should resolve by adding it after «|» a missing form the new corrector still rejects, as «has trained» if «He ___ (train) hard today.» only accepted «'s trained», a limit of the corrector")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldResolveByAddingItAfterAMissingFormTheNewCorrectorStillRejectsAsHasTrainedIfHeTrainHardTodayOnlyAcceptedSTrainedALimitOfTheCorrector(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -102,6 +113,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should stop reporting the forms the new corrector's table equates, reading the gap with the sentence around it, as «is» for «It ___ (be) hot inside.» answered «'s»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldStopReportingTheFormsTheNewCorrectorsTableEquatesReadingTheGapWithTheSentenceAroundItAsIsForItBeHotInsideAnsweredS(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -111,6 +123,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should show as evidence the exercise as the student sees it, what it accepts and what is missing, as «They ___ (not / be) from Ireland. → acepta 're not; falta aren't»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldShowAsEvidenceTheExerciseAsTheStudentSeesItWhatItAcceptsAndWhatIsMissingAsTheyNotBeFromIrelandAceptaReNotFaltaArent(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -120,6 +133,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should leave multiple choice exercises without a finding of its own, as «___ a child? (He)»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R006")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldLeaveMultipleChoiceExercisesWithoutAFindingOfItsOwnAsAChildHe() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -128,6 +142,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should score 0 an exercise with a finding and 1 an exercise whose forms are all accepted and whose instructions ask for none, as «You ___ (see) cats.» answered «see»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R006")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldScore0AnExerciseWithAFindingAnd1AnExerciseWhoseFormsAreAllAcceptedAndWhoseInstructionsAskForNoneAsYouSeeCatsAnsweredSee(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -137,6 +152,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should leave a low finding with the instructions and the phrase that asks, fixed by removing the request without touching the audio, as «Usa $short forms$ si es posible.» in «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldLeaveALowFindingWithTheInstructionsAndThePhraseThatAsksFixedByRemovingTheRequestWithoutTouchingTheAudioAsUsaShortFormsSiEsPosibleInTheyNotBeFromIreland(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -146,6 +162,7 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should leave a finding on the mini-theory that asks for a form, naming the mini-theory in its identity, as for «It ___ (be) hot inside.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldLeaveAFindingOnTheMinitheoryThatAsksForAFormNamingTheMinitheoryInItsIdentityAsForItBeHotInside(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

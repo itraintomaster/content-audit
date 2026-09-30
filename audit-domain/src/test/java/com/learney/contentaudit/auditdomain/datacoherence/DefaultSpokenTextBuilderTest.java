@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultSpokenTextBuilderTest {
     @DisplayName("should say only the answer of B in a dialogue, without its label, as «No, you aren't.» for «A: Am I wrong? B: No, you ___ .»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R003")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldSayOnlyTheAnswerOfBInADialogueWithoutItsLabelAsNoYouArentForAAmIWrongBNoYou(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultSpokenTextBuilderTest {
     @DisplayName("should say only the answer of a word form prompt, as «stopping» for «stop - ___»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R003")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldSayOnlyTheAnswerOfAWordFormPromptAsStoppingForStop() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

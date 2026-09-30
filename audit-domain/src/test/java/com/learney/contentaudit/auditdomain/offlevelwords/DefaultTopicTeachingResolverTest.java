@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.offlevelwords;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultTopicTeachingResolverTest {
     @DisplayName("should take as taught the words of the English terms between dollar signs in the knowledge title, like 'invest' and 'time' in '$Invest time$ + gerundio'")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldTakeAsTaughtTheWordsOfTheEnglishTermsBetweenDollarSignsInTheKnowledgeTitleLikeInvestAndTimeInInvestTimeGerundio(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultTopicTeachingResolverTest {
     @DisplayName("should take 'let' as taught when a title term between dollar signs is 'Let's'")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldTakeLetAsTaughtWhenATitleTermBetweenDollarSignsIsLets() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -31,6 +34,7 @@ public class DefaultTopicTeachingResolverTest {
     @DisplayName("should take as taught a lemma that is part of the answer of at least 3 quizzes of the topic and of 20% or more of them, like 'sequence' in 'Orden o simultaneidad'")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldTakeAsTaughtALemmaThatIsPartOfTheAnswerOfAtLeast3QuizzesOfTheTopicAndOf20OrMoreOfThemLikeSequenceInOrdenOSimultaneidad(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -40,6 +44,7 @@ public class DefaultTopicTeachingResolverTest {
     @DisplayName("should not take as taught a lemma that is part of the answer of only 2 quizzes, even when they are half of the topic")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNotTakeAsTaughtALemmaThatIsPartOfTheAnswerOfOnly2QuizzesEvenWhenTheyAreHalfOfTheTopic(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -49,6 +54,7 @@ public class DefaultTopicTeachingResolverTest {
     @DisplayName("should take as taught a lemma in the answer of 3 of the 15 quizzes of a topic but not of 3 of 16, which are less than 20%")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldTakeAsTaughtALemmaInTheAnswerOf3OfThe15QuizzesOfATopicButNotOf3Of16WhichAreLessThan20(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class DefaultTopicTeachingResolverTest {
     @DisplayName("should read the answer of a multiple choice quiz as its correct option and never as its distractors")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldReadTheAnswerOfAMultipleChoiceQuizAsItsCorrectOptionAndNeverAsItsDistractors(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -67,6 +74,7 @@ public class DefaultTopicTeachingResolverTest {
     @DisplayName("should not take as taught a word that only appears in the sentence outside the answer")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNotTakeAsTaughtAWordThatOnlyAppearsInTheSentenceOutsideTheAnswer() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

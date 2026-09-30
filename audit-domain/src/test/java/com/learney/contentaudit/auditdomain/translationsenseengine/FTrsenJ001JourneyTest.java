@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.translationsenseengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FTrsenJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo tr... → El sistema junta los dos veredictos [Cada juez ya juzgó ese mismo contenido, o se lo consulta en un contexto limpio dentro del tope] → El ejercicio no tiene hallazgo de tra... [Los dos dicen que cumple] → success")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void path1_cadaJuezYaJuzgEseMismoContenidoOSeLoConsultaEnUnContextoLimpioDentroDelTope_losDosDicenQueCumple_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -29,6 +31,7 @@ public class FTrsenJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo tr... → El sistema junta los dos veredictos [Cada juez ya juzgó ese mismo contenido, o se lo consulta en un contexto limpio dentro del tope] → El ejercicio tiene un hallazgo por co... [Los dos dicen que no cumple] → success")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void path2_cadaJuezYaJuzgEseMismoContenidoOSeLoConsultaEnUnContextoLimpioDentroDelTope_losDosDicenQueNoCumple_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -38,6 +41,7 @@ public class FTrsenJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo tr... → El sistema junta los dos veredictos [Cada juez ya juzgó ese mismo contenido, o se lo consulta en un contexto limpio dentro del tope] → El ejercicio queda marcado con los do... [No coinciden] → success")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void path3_cadaJuezYaJuzgEseMismoContenidoOSeLoConsultaEnUnContextoLimpioDentroDelTope_noCoinciden_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -47,6 +51,7 @@ public class FTrsenJ001JourneyTest {
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo tr... → El ejercicio queda sin evaluar, sin p... [Falta el veredicto de algún juez y no queda tope] → success")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void path4_faltaElVeredictoDeAlgnJuezYNoQuedaTope_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

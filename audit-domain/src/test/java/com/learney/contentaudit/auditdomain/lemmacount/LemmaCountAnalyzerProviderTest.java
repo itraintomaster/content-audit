@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -67,6 +68,7 @@ public class LemmaCountAnalyzerProviderTest {
     @DisplayName("should declare no plan binding for lemma-count")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R002")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldDeclareNoPlanBindingForLemmacount() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -75,6 +77,7 @@ public class LemmaCountAnalyzerProviderTest {
     @DisplayName("should describe lemma-count in its card: whether each word of the level appears in enough sentences, reading the finished sentences of the whole course, vocabulary family, level and course targets, only ordering and instant cost")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R006")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldDescribeLemmacountInItsCardWhetherEachWordOfTheLevelAppearsInEnoughSentencesReadingTheFinishedSentencesOfTheWholeCourseVocabularyFamilyLevelAndCourseTargetsOnlyOrderingAndInstantCost() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -83,6 +86,7 @@ public class LemmaCountAnalyzerProviderTest {
     @DisplayName("should state in its card goal the threshold of each band it uses, 8, 6, 4 and 3 with the recommended bands")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R006")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldStateInItsCardGoalTheThresholdOfEachBandItUses864And3WithTheRecommendedBands() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.offlevelwords;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class OffLevelWordsAnalyzerProviderTest {
     @DisplayName("should describe off-level-words in its card: whether there are words the student of the level cannot know, reading the finished sentence, the topic title and answers and the translation, errors family, quiz target, rule F-NIVFR-R002, goal 0, panel resolution and instant cost")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R007")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldDescribeOfflevelwordsInItsCardWhetherThereAreWordsTheStudentOfTheLevelCannotKnowReadingTheFinishedSentenceTheTopicTitleAndAnswersAndTheTranslationErrorsFamilyQuizTargetRuleFNIVFRR002Goal0PanelResolutionAndInstantCost(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class OffLevelWordsAnalyzerProviderTest {
     @DisplayName("should use the single name off-level-words for its card, the analyzer it creates and every finding of that analyzer")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R007")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldUseTheSingleNameOfflevelwordsForItsCardTheAnalyzerItCreatesAndEveryFindingOfThatAnalyzer(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class OffLevelWordsAnalyzerProviderTest {
     @DisplayName("should declare no plan binding for off-level-words, so the plan opens no task of its own")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldDeclareNoPlanBindingForOfflevelwordsSoThePlanOpensNoTaskOfItsOwn() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

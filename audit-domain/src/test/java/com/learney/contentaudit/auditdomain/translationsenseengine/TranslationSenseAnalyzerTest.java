@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.translationsenseengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should hand both judges the same content, each in its own session, and never one judge's verdict to the other")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R003")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldHandBothJudgesTheSameContentEachInItsOwnSessionAndNeverOneJudgesVerdictToTheOther(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should record each judge's verdict under its own evaluator, so one never overwrites the other and each is reused on its own")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R003")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldRecordEachJudgesVerdictUnderItsOwnEvaluatorSoOneNeverOverwritesTheOtherAndEachIsReusedOnItsOwn(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should count a quiz as evaluated only when it has the verdicts of both judges")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R003")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldCountAQuizAsEvaluatedOnlyWhenItHasTheVerdictsOfBothJudges() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -40,6 +44,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should spend a budget of 10 over twenty new quizzes on five quizzes with both verdicts, not on ten quizzes with one")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R005")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldSpendABudgetOf10OverTwentyNewQuizzesOnFiveQuizzesWithBothVerdictsNotOnTenQuizzesWithOne(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -49,6 +54,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should consult only the missing judge for a quiz that already has the other judge's verdict, counting that single consultation against the budget")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R005")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldConsultOnlyTheMissingJudgeForAQuizThatAlreadyHasTheOtherJudgesVerdictCountingThatSingleConsultationAgainstTheBudget(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should reuse both recorded verdicts of a quiz without consulting and without spending budget")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R005")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldReuseBothRecordedVerdictsOfAQuizWithoutConsultingAndWithoutSpendingBudget() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -66,6 +73,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should leave a quiz lacking a judge's verdict without score and without finding, marked as unevaluated by translation-sense")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R005")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldLeaveAQuizLackingAJudgesVerdictWithoutScoreAndWithoutFindingMarkedAsUnevaluatedByTranslationsense(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -75,6 +83,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should finish the run and record nothing when a judge's service fails or its output is unusable, leaving those quizzes unevaluated")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R005")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldFinishTheRunAndRecordNothingWhenAJudgesServiceFailsOrItsOutputIsUnusableLeavingThoseQuizzesUnevaluated(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -84,6 +93,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should declare the quizzes reached, evaluated and unevaluated in its coverage")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R005")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldDeclareTheQuizzesReachedEvaluatedAndUnevaluatedInItsCoverage() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -92,6 +102,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should consult no judge when the run asks no budget for translation-sense, and declare two consultations for each pending quiz")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R005")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldConsultNoJudgeWhenTheRunAsksNoBudgetForTranslationsenseAndDeclareTwoConsultationsForEachPendingQuiz(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -101,6 +112,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should have at most four consultations of its two judges in flight at once when the run says nothing")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R005")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldHaveAtMostFourConsultationsOfItsTwoJudgesInFlightAtOnceWhenTheRunSaysNothing(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -110,6 +122,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should ask both judges about every exercise of the exam file in an EXAM run, and about no other exercise of the photo")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R006")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldAskBothJudgesAboutEveryExerciseOfTheExamFileInAnEXAMRunAndAboutNoOtherExerciseOfThePhoto(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -119,6 +132,7 @@ public class TranslationSenseAnalyzerTest {
     @DisplayName("should judge a candidate that changes only the translation of a marked quiz with the same two judges and versions, and reuse both verdicts once it enters the course")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R007")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldJudgeACandidateThatChangesOnlyTheTranslationOfAMarkedQuizWithTheSameTwoJudgesAndVersionsAndReuseBothVerdictsOnceItEntersTheCourse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

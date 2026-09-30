@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FNivfrJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze con off-lev... → El ejercicio queda con un hallazgo me... [La palabra queda dos niveles arriba o fuera del EVP, y ni el tema la enseña ni la traducción la repite] → lemma-absence, el puntaje de vocabula... → success")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void path1_laPalabraQuedaDosNivelesArribaOFueraDelEVPYNiElTemaLaEnseaNiLaTraduccinLaRepite_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -29,6 +31,7 @@ public class FNivfrJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze con off-lev... → El ejercicio queda con puntaje 1 y si... [La palabra queda en el nivel o uno arriba, la baja una frase, la enseña el tema o la repite la traducción] → lemma-absence, el puntaje de vocabula... → success")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void path2_laPalabraQuedaEnElNivelOUnoArribaLaBajaUnaFraseLaEnseaElTemaOLaRepiteLaTraduccin_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

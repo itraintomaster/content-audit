@@ -466,6 +466,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should give the course of 29/9 a lemma-recurrence score of 0.08, with 134 normal, 1,570 under-exposed and 46 over-exposed of its 1,750 returning lemmas")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R001")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldGiveTheCourseOf299ALemmarecurrenceScoreOf008With134Normal1570UnderexposedAnd46OverexposedOfIts1750ReturningLemmas() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -474,6 +475,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should score the course as before, normal lemmas over analysed lemmas rounded to two decimals, while it also publishes its course diagnosis")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R001")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldScoreTheCourseAsBeforeNormalLemmasOverAnalysedLemmasRoundedToTwoDecimalsWhileItAlsoPublishesItsCourseDiagnosis() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -482,6 +484,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should publish in the course diagnosis each analysed lemma with its count, mean interval, status, deviation, longest gap with its start and end levels and its levels, like 'movie': 90 times, every 1,005 words, under-exposed, longest gap 6,510 from A1 to A2")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldPublishInTheCourseDiagnosisEachAnalysedLemmaWithItsCountMeanIntervalStatusDeviationLongestGapWithItsStartAndEndLevelsAndItsLevelsLikeMovie90TimesEvery1005WordsUnderexposedLongestGap6510FromA1ToA2() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -490,6 +493,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should take a lemma's longest gap as the largest interval between two consecutive occurrences, with the levels of the quizzes where it starts and ends, like 27,379 from B1 to B2 for 'suppose'")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldTakeALemmasLongestGapAsTheLargestIntervalBetweenTwoConsecutiveOccurrencesWithTheLevelsOfTheQuizzesWhereItStartsAndEndsLike27379FromB1ToB2ForSuppose() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -498,6 +502,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should list the levels where a lemma appears from A1 to B2 without repeating them")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldListTheLevelsWhereALemmaAppearsFromA1ToB2WithoutRepeatingThem() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -506,6 +511,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should publish the analysed lemmas from most to least frequent")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldPublishTheAnalysedLemmasFromMostToLeastFrequent() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -514,6 +520,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should publish for each level the recurrence measured only with its quizzes and the same thresholds: returning lemmas, normal, under-exposed, over-exposed and the normal share")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldPublishForEachLevelTheRecurrenceMeasuredOnlyWithItsQuizzesAndTheSameThresholdsReturningLemmasNormalUnderexposedOverexposedAndTheNormalShare() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -522,6 +529,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should close the sums of every level, so normal plus under-exposed plus over-exposed lemmas equal its returning lemmas")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldCloseTheSumsOfEveryLevelSoNormalPlusUnderexposedPlusOverexposedLemmasEqualItsReturningLemmas() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -530,6 +538,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should publish for the course of 29/9 A1 450 returning lemmas with 178 normal (39.6%), A2 752 with 155 (20.6%), B1 1,139 with 161 (14.1%) and B2 819 with 165 (20.1%)")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldPublishForTheCourseOf299A1450ReturningLemmasWith178Normal396A2752With155206B11139With161141AndB2819With165201() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -538,6 +547,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should keep the recurrence of each level as detail of the course diagnosis and never write a lemma-recurrence score on a milestone")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldKeepTheRecurrenceOfEachLevelAsDetailOfTheCourseDiagnosisAndNeverWriteALemmarecurrenceScoreOnAMilestone() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -546,6 +556,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should leave in the course one finding per under-exposed or over-exposed lemma, of rule F-RECUR-R005, low severity, only ordering and instant cost, and none for a normal one")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldLeaveInTheCourseOneFindingPerUnderexposedOrOverexposedLemmaOfRuleFRECURR005LowSeverityOnlyOrderingAndInstantCostAndNoneForANormalOne() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -554,6 +565,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should give as evidence the lemma, its times, how often it returns against the goal and its longest gap, like 'movie: 90 times, returns every 1,005 words (goal: more than 50 and up to 1,000); its longest gap, 6,510, goes from A1 to A2'")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldGiveAsEvidenceTheLemmaItsTimesHowOftenItReturnsAgainstTheGoalAndItsLongestGapLikeMovie90TimesReturnsEvery1005WordsGoalMoreThan50AndUpTo1000ItsLongestGap6510GoesFromA1ToA2() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -562,6 +574,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should leave no finding when the course score is 1")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldLeaveNoFindingWhenTheCourseScoreIs1() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -570,6 +583,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should leave no finding for a lemma seen only once, which lemma-recurrence does not analyse")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldLeaveNoFindingForALemmaSeenOnlyOnceWhichLemmarecurrenceDoesNotAnalyse() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -578,6 +592,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should identify each finding by its lemma")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldIdentifyEachFindingByItsLemma() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -586,6 +601,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should leave 1,616 findings in the course of 29/9, 1,570 for under-exposed and 46 for over-exposed lemmas")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldLeave1616FindingsInTheCourseOf2991570ForUnderexposedAnd46ForOverexposedLemmas() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.choicealternativeengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultChoiceAlternativeClassifierTest {
     @DisplayName("should drop «is not» listed as also valid for a quiz whose correct option is «isn't», leaving it without finding of another-option-valid")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R002")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldDropIsNotListedAsAlsoValidForAQuizWhoseCorrectOptionIsIsntLeavingItWithoutFindingOfAnotheroptionvalid(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultChoiceAlternativeClassifierTest {
     @DisplayName("should keep «a» of «She wants ___ hot tea.» as an option that also counts, with the judge's reason in its evidence")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R002")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldKeepAOfSheWantsHotTeaAsAnOptionThatAlsoCountsWithTheJudgesReasonInItsEvidence(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultChoiceAlternativeClassifierTest {
     @DisplayName("should give «Are you thirsty? ___ , let's drink water soon.» a blocking finding marked «(correcta)» and score 0 when the judge says «if not» is not valid and «if so» is")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R003")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldGiveAreYouThirstyLetsDrinkWaterSoonABlockingFindingMarkedCorrectaAndScore0WhenTheJudgeSaysIfNotIsNotValidAndIfSoIs(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultChoiceAlternativeClassifierTest {
     @DisplayName("should give «I don't enjoy extra food ___ .» a high finding for «a lot» and score 0.3")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R003")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldGiveIDontEnjoyExtraFoodAHighFindingForALotAndScore03() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -49,6 +54,7 @@ public class DefaultChoiceAlternativeClassifierTest {
     @DisplayName("should give «There's a cat ___ the window.» a medium finding for «in» and score 0.6")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R003")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldGiveTheresACatTheWindowAMediumFindingForInAndScore06() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -57,6 +63,7 @@ public class DefaultChoiceAlternativeClassifierTest {
     @DisplayName("should give one finding of the rule another-option-valid per option that also counts, marked with the option")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R003")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldGiveOneFindingOfTheRuleAnotheroptionvalidPerOptionThatAlsoCountsMarkedWithTheOption(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -66,6 +73,7 @@ public class DefaultChoiceAlternativeClassifierTest {
     @DisplayName("should pass a candidate whose options leave only the correct one valid")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R007")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldPassACandidateWhoseOptionsLeaveOnlyTheCorrectOneValid() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

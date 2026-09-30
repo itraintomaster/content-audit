@@ -39,6 +39,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -1442,6 +1443,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should resolve every quiz of a course judged before FEAT-JEXAM from its recorded verdicts without a single consultation, with budget 100 and an approved version")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R007")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldResolveEveryQuizOfACourseJudgedBeforeFEATJEXAMFromItsRecordedVerdictsWithoutASingleConsultationWithBudget100AndAnApprovedVersion() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1450,6 +1452,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should look up each quiz under the same fingerprint the ledger recorded for it before FEAT-JEXAM")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R007")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldLookUpEachQuizUnderTheSameFingerprintTheLedgerRecordedForItBeforeFEATJEXAM() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1458,6 +1461,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should reuse without consulting the recorded verdict of a quiz whose translation or mini-theory changed, since the consigna judge reads neither")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R007")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldReuseWithoutConsultingTheRecordedVerdictOfAQuizWhoseTranslationOrMinitheoryChangedSinceTheConsignaJudgeReadsNeither() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1466,6 +1470,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should reuse the recorded verdicts of a consigna judge version that failed its exam and leave the rest unevaluated, declaring the failed exam, even with budget 500")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R003")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldReuseTheRecordedVerdictsOfAConsignaJudgeVersionThatFailedItsExamAndLeaveTheRestUnevaluatedDeclaringTheFailedExamEvenWithBudget500() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1474,6 +1479,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should not consult the consigna judge in a run that asks no budget for quiz-instruction, and declare its pending quizzes and what they cost")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R010")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldNotConsultTheConsignaJudgeInARunThatAsksNoBudgetForQuizinstructionAndDeclareItsPendingQuizzesAndWhatTheyCost() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1482,6 +1488,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should declare the same scores, diagnoses, findings and coverage for a course resolved with one and with four consultations at a time")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R006")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldDeclareTheSameScoresDiagnosesFindingsAndCoverageForACourseResolvedWithOneAndWithFourConsultationsAtATime() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1490,6 +1497,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should put in the evidence of the finding of a breaching quiz each violation, each checked constraint that passed with its state, and the confidence of the judge")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R008")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldPutInTheEvidenceOfTheFindingOfABreachingQuizEachViolationEachCheckedConstraintThatPassedWithItsStateAndTheConfidenceOfTheJudge() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1498,6 +1506,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should give a compliant quiz no finding and show in its detail every constraint the judge checked with its state")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R008")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldGiveACompliantQuizNoFindingAndShowInItsDetailEveryConstraintTheJudgeCheckedWithItsState() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1506,6 +1515,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should give a breaching quiz the same score whatever confidence the judge reported")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R008")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldGiveABreachingQuizTheSameScoreWhateverConfidenceTheJudgeReported() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1514,6 +1524,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should call the consigna judge at most once and leave every quiz pending, with «sesión vencida: renovala con claude auth login» in its coverage, when the claude-cli session expired and the budget is 100")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldCallTheConsignaJudgeAtMostOnceAndLeaveEveryQuizPendingWithSesinVencidaRenovalaConClaudeAuthLoginInItsCoverageWhenTheClaudecliSessionExpiredAndTheBudgetIs100() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1522,6 +1533,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should carry in its coverage, next to today's counts, the exam of its version and of every version whose verdicts it reused")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldCarryInItsCoverageNextToTodaysCountsTheExamOfItsVersionAndOfEveryVersionWhoseVerdictsItReused() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1530,6 +1542,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should neither ask nor count, in an EXAM run, a quiz that is not in the exam file")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldNeitherAskNorCountInAnEXAMRunAQuizThatIsNotInTheExamFile() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1538,6 +1551,7 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should resolve without consulting, in an EXAM run, an exam quiz the same version already judged on the same content")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R002")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldResolveWithoutConsultingInAnEXAMRunAnExamQuizTheSameVersionAlreadyJudgedOnTheSameContent() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

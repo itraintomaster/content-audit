@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.singleanswerengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultSingleAnswerSubjectBuilderTest {
     @DisplayName("should build for «He was in Italy ___ .» the content title, instructions, exercise with its hint and acceptedAnswers per gap, in that order and nothing else")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R001")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldBuildForHeWasInItalyTheContentTitleInstructionsExerciseWithItsHintAndAcceptedAnswersPerGapInThatOrderAndNothingElse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultSingleAnswerSubjectBuilderTest {
     @DisplayName("should take the title and the instructions the app shows above the quiz, those of the quiz copy")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R001")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldTakeTheTitleAndTheInstructionsTheAppShowsAboveTheQuizThoseOfTheQuizCopy() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -31,6 +34,7 @@ public class DefaultSingleAnswerSubjectBuilderTest {
     @DisplayName("should build the same content for a quiz whose translation, mini-theory or audio changed")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R001")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldBuildTheSameContentForAQuizWhoseTranslationMinitheoryOrAudioChanged() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

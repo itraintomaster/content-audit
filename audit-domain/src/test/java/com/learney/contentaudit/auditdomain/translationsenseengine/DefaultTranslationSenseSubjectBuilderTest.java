@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.translationsenseengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultTranslationSenseSubjectBuilderTest {
     @DisplayName("should build for «I ___ a lot of vegetables.» the content cefrLevel, instructions, exercise, acceptedSentences and translation «Me gustan mucho las verduras.», in that order and nothing else")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R001")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldBuildForIALotOfVegetablesTheContentCefrLevelInstructionsExerciseAcceptedSentencesAndTranslationMeGustanMuchoLasVerdurasInThatOrderAndNothingElse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultTranslationSenseSubjectBuilderTest {
     @DisplayName("should take the instructions from the quiz copy the app shows, not from its knowledge")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R001")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldTakeTheInstructionsFromTheQuizCopyTheAppShowsNotFromItsKnowledge() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -31,6 +34,7 @@ public class DefaultTranslationSenseSubjectBuilderTest {
     @DisplayName("should put in acceptedSentences the sentence completed with each accepted answer, and for a multiple choice quiz only the one with its correct option, as «Jakarta is the capital of the Philippines.»")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R001")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldPutInAcceptedSentencesTheSentenceCompletedWithEachAcceptedAnswerAndForAMultipleChoiceQuizOnlyTheOneWithItsCorrectOptionAsJakartaIsTheCapitalOfThePhilippines(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -40,6 +44,7 @@ public class DefaultTranslationSenseSubjectBuilderTest {
     @DisplayName("should build the same content for a quiz whose mini-theory or audio changed, and a different one when its translation or an accepted answer changed")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R001")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldBuildTheSameContentForAQuizWhoseMinitheoryOrAudioChangedAndADifferentOneWhenItsTranslationOrAnAcceptedAnswerChanged(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

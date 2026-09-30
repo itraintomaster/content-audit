@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.singleanswerengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class SingleAnswerAnalyzerProviderTest {
     @DisplayName("should publish the name single-answer and open its judge through the judges runtime under that name, so a version without an approved exam gets budget 0")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R005")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldPublishTheNameSingleanswerAndOpenItsJudgeThroughTheJudgesRuntimeUnderThatNameSoAVersionWithoutAnApprovedExamGetsBudget0(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class SingleAnswerAnalyzerProviderTest {
     @DisplayName("should publish a card with family errors, paid model cost, the quiz as evaluated level and the rules different-valid-answer and offered-alternative")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R002")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldPublishACardWithFamilyErrorsPaidModelCostTheQuizAsEvaluatedLevelAndTheRulesDifferentvalidanswerAndOfferedalternative(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class SingleAnswerAnalyzerProviderTest {
     @DisplayName("should declare in its card the panel for different-valid-answer and rank only for offered-alternative, which the answer-completeness rule fixes")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R007")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldDeclareInItsCardThePanelForDifferentvalidanswerAndRankOnlyForOfferedalternativeWhichTheAnswercompletenessRuleFixes(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class SingleAnswerAnalyzerProviderTest {
     @DisplayName("should bind its scores below 1 to the plan as SINGLE_ANSWER tasks on quizzes")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R004")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldBindItsScoresBelow1ToThePlanAsSINGLEANSWERTasksOnQuizzes() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

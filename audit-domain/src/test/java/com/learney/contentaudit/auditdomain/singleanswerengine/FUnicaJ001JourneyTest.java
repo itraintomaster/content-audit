@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.singleanswerengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FUnicaJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo si... → El veredicto lista las otras respuest... [El ejercicio ya tiene veredicto para ese contenido, o se lo consulta dentro del tope] → El ejercicio no tiene hallazgo de sin... [La lista está vacía, o sólo tenía formas que el corrector acepta] → success")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void path1_elEjercicioYaTieneVeredictoParaEseContenidoOSeLoConsultaDentroDelTope_laListaEstVacaOSloTenaFormasQueElCorrectorAcepta_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -29,6 +31,7 @@ public class FUnicaJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo si... → El veredicto lista las otras respuest... [El ejercicio ya tiene veredicto para ese contenido, o se lo consulta dentro del tope] → El ejercicio queda marcado para respu... [Sólo hay opciones que ofrece la consigna] → success")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void path2_elEjercicioYaTieneVeredictoParaEseContenidoOSeLoConsultaDentroDelTope_sloHayOpcionesQueOfreceLaConsigna_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -38,6 +41,7 @@ public class FUnicaJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo si... → El veredicto lista las otras respuest... [El ejercicio ya tiene veredicto para ese contenido, o se lo consulta dentro del tope] → El ejercicio tiene su hallazgo con gr... [Hay al menos una distinta y válida] → success")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void path3_elEjercicioYaTieneVeredictoParaEseContenidoOSeLoConsultaDentroDelTope_hayAlMenosUnaDistintaYVlida_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -47,6 +51,7 @@ public class FUnicaJ001JourneyTest {
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo si... → El ejercicio queda sin evaluar, sin p... [No tiene veredicto y no queda tope] → success")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void path4_noTieneVeredictoYNoQuedaTope_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

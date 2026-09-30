@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.singleanswerengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class SingleAnswerAnalyzerTest {
     @DisplayName("should neither ask the judge about a multiple choice quiz nor count it as reached")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R001")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldNeitherAskTheJudgeAboutAMultipleChoiceQuizNorCountItAsReached() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -22,6 +24,7 @@ public class SingleAnswerAnalyzerTest {
     @DisplayName("should reuse the recorded verdict of a quiz without consulting and without spending budget")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R005")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldReuseTheRecordedVerdictOfAQuizWithoutConsultingAndWithoutSpendingBudget() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -30,6 +33,7 @@ public class SingleAnswerAnalyzerTest {
     @DisplayName("should consult no more quizzes than its budget and leave the rest unevaluated, without score and without finding")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R005")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldConsultNoMoreQuizzesThanItsBudgetAndLeaveTheRestUnevaluatedWithoutScoreAndWithoutFinding(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -39,6 +43,7 @@ public class SingleAnswerAnalyzerTest {
     @DisplayName("should finish the run and record nothing when the judge's service fails or its output is unusable, leaving those quizzes unevaluated")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R005")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldFinishTheRunAndRecordNothingWhenTheJudgesServiceFailsOrItsOutputIsUnusableLeavingThoseQuizzesUnevaluated(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -48,6 +53,7 @@ public class SingleAnswerAnalyzerTest {
     @DisplayName("should declare the CLOZE quizzes reached, evaluated and unevaluated in its coverage")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R005")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldDeclareTheCLOZEQuizzesReachedEvaluatedAndUnevaluatedInItsCoverage() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -56,6 +62,7 @@ public class SingleAnswerAnalyzerTest {
     @DisplayName("should consult the judge on no quiz when the run asks no budget for single-answer, and declare what the pending quizzes cost")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R005")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldConsultTheJudgeOnNoQuizWhenTheRunAsksNoBudgetForSingleanswerAndDeclareWhatThePendingQuizzesCost(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -65,6 +72,7 @@ public class SingleAnswerAnalyzerTest {
     @DisplayName("should judge in an EXAM run only the CLOZE exercises of the file and leave a multiple choice one of the file without verdict")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R006")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldJudgeInAnEXAMRunOnlyTheCLOZEExercisesOfTheFileAndLeaveAMultipleChoiceOneOfTheFileWithoutVerdict(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -74,6 +82,7 @@ public class SingleAnswerAnalyzerTest {
     @DisplayName("should judge a candidate of a marked quiz with the same judge and version, and reuse its verdict once the candidate enters the course")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R007")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldJudgeACandidateOfAMarkedQuizWithTheSameJudgeAndVersionAndReuseItsVerdictOnceTheCandidateEntersTheCourse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

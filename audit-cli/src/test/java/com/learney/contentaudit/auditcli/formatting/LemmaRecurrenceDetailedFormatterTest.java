@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.formatting;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class LemmaRecurrenceDetailedFormatterTest {
     @DisplayName("should show each lemma of the lemma-recurrence course diagnosis with its count, interval, status, deviation, longest gap and levels, and the recurrence of each level")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldShowEachLemmaOfTheLemmarecurrenceCourseDiagnosisWithItsCountIntervalStatusDeviationLongestGapAndLevelsAndTheRecurrenceOfEachLevel(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class LemmaRecurrenceDetailedFormatterTest {
     @DisplayName("should print the values of the course diagnosis as published, without recomputing them from positions")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldPrintTheValuesOfTheCourseDiagnosisAsPublishedWithoutRecomputingThemFromPositions(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

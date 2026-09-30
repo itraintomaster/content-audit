@@ -1,6 +1,7 @@
 package com.learney.contentaudit.vocabularyinfrastructure.irregularforms;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class FileSystemIrregularFormsCatalogTest {
     @DisplayName("should give from the closed table the irregular forms of a base word, as drank and drunk for drink, which «She ___ (drink) juice if the shop ___ (sell) it.» needs, and better, best and well for good")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldGiveFromTheClosedTableTheIrregularFormsOfABaseWordAsDrankAndDrunkForDrinkWhichSheDrinkJuiceIfTheShopSellItNeedsAndBetterBestAndWellForGood(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class FileSystemIrregularFormsCatalogTest {
     @DisplayName("should say whether a word is a past participle, as swum and not swam, so that «'ve» in «They ___ (swim) in the ocean» answered «'ve swum» counts as an auxiliary")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldSayWhetherAWordIsAPastParticipleAsSwumAndNotSwamSoThatVeInTheySwimInTheOceanAnsweredVeSwumCountsAsAnAuxiliary(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

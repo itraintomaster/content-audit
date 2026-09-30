@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class HintCoherenceAnalyzerProviderTest {
     @DisplayName("should describe hint-coherence in the catalog as an errors analyzer that evaluates exercises, resolves by rule or at the panel and costs instant, asking «¿La pista le anuncia al alumno lo que tiene que escribir?»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
+    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldDescribeHintcoherenceInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleOrAtThePanelAndCostsInstantAskingLaPistaLeAnunciaAlAlumnoLoQueTieneQueEscribir(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

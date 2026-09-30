@@ -1,6 +1,7 @@
 package com.learney.contentaudit.evaluationledgerdomain.evaluationsession;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class ExamScopedEvaluationLedgerTest {
     @DisplayName("should find only records of the version taking the exam, first in its exam space and then in the course's, and none of another version")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R002")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldFindOnlyRecordsOfTheVersionTakingTheExamFirstInItsExamSpaceAndThenInTheCoursesAndNoneOfAnotherVersion(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class ExamScopedEvaluationLedgerTest {
     @DisplayName("should append the exam verdicts only under the evaluator prefixed exam:, leaving the course ledger as it was")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R002")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldAppendTheExamVerdictsOnlyUnderTheEvaluatorPrefixedExamLeavingTheCourseLedgerAsItWas(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

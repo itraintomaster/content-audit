@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditapplication;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultMiniTheoryConfigTest {
     @DisplayName("should count a false mini-theory only where it is shown unless the whole-topic scope is configured")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R003")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldCountAFalseMinitheoryOnlyWhereItIsShownUnlessTheWholetopicScopeIsConfigured(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultMiniTheoryConfigTest {
     @DisplayName("should score an exercise 0.3 for a high, 0.6 for a medium and 0.8 for a low worst severity")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R004")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldScoreAnExercise03ForAHigh06ForAMediumAnd08ForALowWorstSeverity() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

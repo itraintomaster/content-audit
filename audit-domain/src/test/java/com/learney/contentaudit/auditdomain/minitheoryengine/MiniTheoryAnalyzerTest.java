@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.minitheoryengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class MiniTheoryAnalyzerTest {
     @DisplayName("should consult the judge once per topic, never once per exercise")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldConsultTheJudgeOncePerTopicNeverOncePerExercise() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -22,6 +24,7 @@ public class MiniTheoryAnalyzerTest {
     @DisplayName("should count topics against its budget, so with budget 1 and two new topics it judges one and leaves every exercise of the other unevaluated")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldCountTopicsAgainstItsBudgetSoWithBudget1AndTwoNewTopicsItJudgesOneAndLeavesEveryExerciseOfTheOtherUnevaluated(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -31,6 +34,7 @@ public class MiniTheoryAnalyzerTest {
     @DisplayName("should reuse the verdict of a topic whose content did not change without consulting and without spending budget")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldReuseTheVerdictOfATopicWhoseContentDidNotChangeWithoutConsultingAndWithoutSpendingBudget(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -40,6 +44,7 @@ public class MiniTheoryAnalyzerTest {
     @DisplayName("should leave the exercises of an unevaluated topic without mini-theory score and finding, marked as unevaluated by mini-theory")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldLeaveTheExercisesOfAnUnevaluatedTopicWithoutMinitheoryScoreAndFindingMarkedAsUnevaluatedByMinitheory(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -49,6 +54,7 @@ public class MiniTheoryAnalyzerTest {
     @DisplayName("should finish the run and record nothing when the judge's service fails or its output is unusable, leaving those topics unevaluated")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldFinishTheRunAndRecordNothingWhenTheJudgesServiceFailsOrItsOutputIsUnusableLeavingThoseTopicsUnevaluated(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class MiniTheoryAnalyzerTest {
     @DisplayName("should declare the topics reached, evaluated and unevaluated, and the exercises they contain, in its coverage")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldDeclareTheTopicsReachedEvaluatedAndUnevaluatedAndTheExercisesTheyContainInItsCoverage(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -67,6 +74,7 @@ public class MiniTheoryAnalyzerTest {
     @DisplayName("should consult the judge on no topic when the run asks no budget for mini-theory, and declare what the pending topics cost")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldConsultTheJudgeOnNoTopicWhenTheRunAsksNoBudgetForMinitheoryAndDeclareWhatThePendingTopicsCost(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -76,6 +84,7 @@ public class MiniTheoryAnalyzerTest {
     @DisplayName("should judge in an EXAM run the topics of the exercises of the file and no other topic")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R006")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldJudgeInAnEXAMRunTheTopicsOfTheExercisesOfTheFileAndNoOtherTopic() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -84,6 +93,7 @@ public class MiniTheoryAnalyzerTest {
     @DisplayName("should judge a candidate that rewrites a mini-theory with the same judge and version, and reuse its verdict once the candidate enters the course")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R007")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldJudgeACandidateThatRewritesAMinitheoryWithTheSameJudgeAndVersionAndReuseItsVerdictOnceTheCandidateEntersTheCourse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

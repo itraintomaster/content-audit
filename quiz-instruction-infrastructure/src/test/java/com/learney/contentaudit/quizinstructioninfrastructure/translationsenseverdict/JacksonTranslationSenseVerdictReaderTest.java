@@ -1,6 +1,7 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.translationsenseverdict;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class JacksonTranslationSenseVerdictReaderTest {
     @DisplayName("should read a failing verdict with each failed condition, its severity, its fragment and its evidence line")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R002")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldReadAFailingVerdictWithEachFailedConditionItsSeverityItsFragmentAndItsEvidenceLine(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

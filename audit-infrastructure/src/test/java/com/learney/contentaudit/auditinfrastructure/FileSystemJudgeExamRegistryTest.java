@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditinfrastructure;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class FileSystemJudgeExamRegistryTest {
     @DisplayName("should append each exam record of a judge as one line of .content-audit/judge-exams/<judge>.jsonl and never rewrite an earlier one")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldAppendEachExamRecordOfAJudgeAsOneLineOfContentauditjudgeexamsjudgejsonlAndNeverRewriteAnEarlierOne(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class FileSystemJudgeExamRegistryTest {
     @DisplayName("should give as latest of a version its last record, and nothing for a version that never took the exam")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldGiveAsLatestOfAVersionItsLastRecordAndNothingForAVersionThatNeverTookTheExam(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class FileSystemJudgeExamRegistryTest {
     @DisplayName("should keep every exam record readable after the analysis reports under the same base directory are deleted")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldKeepEveryExamRecordReadableAfterTheAnalysisReportsUnderTheSameBaseDirectoryAreDeleted(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

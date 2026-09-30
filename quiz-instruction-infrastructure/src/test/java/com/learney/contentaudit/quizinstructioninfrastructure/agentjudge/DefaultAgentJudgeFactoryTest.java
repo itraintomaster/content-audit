@@ -1,6 +1,7 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.agentjudge;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultAgentJudgeFactoryTest {
     @DisplayName("should create for claude-cli an evaluator that answers unavailable without running its agent when `claude auth status` says the session expired")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldCreateForClaudecliAnEvaluatorThatAnswersUnavailableWithoutRunningItsAgentWhenClaudeAuthStatusSaysTheSessionExpired(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.judgingengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should open on the course the sessions of a judge whose version never took the exam with budget 0, whatever budget the run asked, giving «sin examen» as reason")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R003")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenOnTheCourseTheSessionsOfAJudgeWhoseVersionNeverTookTheExamWithBudget0WhateverBudgetTheRunAskedGivingSinExamenAsReason(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should open with budget 0 and reason «reprobada» the sessions of a version whose last exam record failed, even when the run asks 500")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R003")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenWithBudget0AndReasonReprobadaTheSessionsOfAVersionWhoseLastExamRecordFailedEvenWhenTheRunAsks500(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should open with budget 0 the sessions of a version that took the whole exam but whose measured result was not recorded yet")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R003")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenWithBudget0TheSessionsOfAVersionThatTookTheWholeExamButWhoseMeasuredResultWasNotRecordedYet(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should open with the budget the run asked only the sessions of a version whose exam was approved")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R003")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenWithTheBudgetTheRunAskedOnlyTheSessionsOfAVersionWhoseExamWasApproved() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -49,6 +54,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should open no consulting session for a judge one of whose evaluators states no version, and declare it not available")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R003")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenNoConsultingSessionForAJudgeOneOfWhoseEvaluatorsStatesNoVersionAndDeclareItNotAvailable(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should open the sessions of a judge with budget 0 when the run asks no budget for it, even when its version passed the exam")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R010")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenTheSessionsOfAJudgeWithBudget0WhenTheRunAsksNoBudgetForItEvenWhenItsVersionPassedTheExam(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -67,6 +74,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should open with four consultations at a time when the run says nothing, and with the number the run asks otherwise")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R006")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenWithFourConsultationsAtATimeWhenTheRunSaysNothingAndWithTheNumberTheRunAsksOtherwise(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -76,6 +84,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should compose the version of a judge from the version of each of its evaluators, in order, joined by «+», as for the two judges of translation-sense")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldComposeTheVersionOfAJudgeFromTheVersionOfEachOfItsEvaluatorsInOrderJoinedByAsForTheTwoJudgesOfTranslationsense(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -85,6 +94,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should open the sessions of an EXAM run on the exam ledger and never on the course's, without the exam brake")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R002")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenTheSessionsOfAnEXAMRunOnTheExamLedgerAndNeverOnTheCoursesWithoutTheExamBrake(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -94,6 +104,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should open a run on a candidate course with the course purpose, the same judge version and the course ledger, so the candidate's verdict is reused once it enters the course")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R005")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenARunOnACandidateCourseWithTheCoursePurposeTheSameJudgeVersionAndTheCourseLedgerSoTheCandidatesVerdictIsReusedOnceItEntersTheCourse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -103,6 +114,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should reject, for any judge, a declared empty set and a set declared together with a course area before opening any session")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R005")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldRejectForAnyJudgeADeclaredEmptySetAndASetDeclaredTogetherWithACourseAreaBeforeOpeningAnySession(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -112,6 +124,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should ask for a new verdict exactly on the units of a declared set and only reuse on every other unit, for any judge")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R005")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldAskForANewVerdictExactlyOnTheUnitsOfADeclaredSetAndOnlyReuseOnEveryOtherUnitForAnyJudge(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -121,6 +134,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should declare as unmatched every id of the declared set that no unit of the course corresponds to")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R005")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldDeclareAsUnmatchedEveryIdOfTheDeclaredSetThatNoUnitOfTheCourseCorrespondsTo(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -130,6 +144,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should take a topic into a declared set of mini-theory when its id or the id of one of its exercises is declared")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R005")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldTakeATopicIntoADeclaredSetOfMinitheoryWhenItsIdOrTheIdOfOneOfItsExercisesIsDeclared(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -139,6 +154,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should ask in an EXAM run only the units of the exam file, and neither ask nor count any other unit of the photo")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldAskInAnEXAMRunOnlyTheUnitsOfTheExamFileAndNeitherAskNorCountAnyOtherUnitOfThePhoto(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -148,6 +164,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should declare 352 pending quizzes as 352 consultations, 2 hours one at a time at a measured 176 per hour and half an hour with four at a time, without consulting")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R004")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldDeclare352PendingQuizzesAs352Consultations2HoursOneAtATimeAtAMeasured176PerHourAndHalfAnHourWithFourAtATimeWithoutConsulting(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -157,6 +174,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should count two consultations for each quiz pending for translation-sense, one per judge")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R004")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldCountTwoConsultationsForEachQuizPendingForTranslationsenseOnePerJudge() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -165,6 +183,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should measure the rate as the mean interval between consecutive verdicts of a run, cutting at pauses longer than 10 minutes, so verdicts 20 seconds apart around a 3-hour pause give 180 per hour")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R004")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldMeasureTheRateAsTheMeanIntervalBetweenConsecutiveVerdictsOfARunCuttingAtPausesLongerThan10MinutesSoVerdicts20SecondsApartAroundA3hourPauseGive180PerHour(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -174,6 +193,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should fall back to the configured rate, 189 per hour or 60 for mini-theory, and say the rate is not measured, when the judge has no recorded history")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R004")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldFallBackToTheConfiguredRate189PerHourOr60ForMinitheoryAndSayTheRateIsNotMeasuredWhenTheJudgeHasNoRecordedHistory(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -183,6 +203,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should declare next to the judge's numbers the exam of the version it consulted and of every version that contributed verdicts, as approved, failed or without exam")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldDeclareNextToTheJudgesNumbersTheExamOfTheVersionItConsultedAndOfEveryVersionThatContributedVerdictsAsApprovedFailedOrWithoutExam(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -192,6 +213,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should carry into the judge's coverage the cause and the remedy of the first service failure of any of its sessions")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldCarryIntoTheJudgesCoverageTheCauseAndTheRemedyOfTheFirstServiceFailureOfAnyOfItsSessions(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -201,6 +223,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should take the last exam record of a version as its standing, so an approval recorded after a failure lets it consult")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldTakeTheLastExamRecordOfAVersionAsItsStandingSoAnApprovalRecordedAfterAFailureLetsItConsult(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

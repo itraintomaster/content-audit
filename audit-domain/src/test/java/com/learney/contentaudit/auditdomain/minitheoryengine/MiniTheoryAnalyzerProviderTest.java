@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.minitheoryengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class MiniTheoryAnalyzerProviderTest {
     @DisplayName("should publish the name mini-theory and open its judge through the judges runtime under that name, so a version without an approved exam gets budget 0")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldPublishTheNameMinitheoryAndOpenItsJudgeThroughTheJudgesRuntimeUnderThatNameSoAVersionWithoutAnApprovedExamGetsBudget0(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class MiniTheoryAnalyzerProviderTest {
     @DisplayName("should publish a card with family errors, paid model cost, the quiz as evaluated level and the rules false-rule, overstated-rule, contradicting-exercise and uncovered-exercise")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R002")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldPublishACardWithFamilyErrorsPaidModelCostTheQuizAsEvaluatedLevelAndTheRulesFalseruleOverstatedruleContradictingexerciseAndUncoveredexercise(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class MiniTheoryAnalyzerProviderTest {
     @DisplayName("should declare in its card the panel as resolution of its four rules")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R007")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldDeclareInItsCardThePanelAsResolutionOfItsFourRules() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -40,6 +44,7 @@ public class MiniTheoryAnalyzerProviderTest {
     @DisplayName("should bind its scores below 1 to the plan as MINI_THEORY tasks on quizzes")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R004")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldBindItsScoresBelow1ToThePlanAsMINITHEORYTasksOnQuizzes() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

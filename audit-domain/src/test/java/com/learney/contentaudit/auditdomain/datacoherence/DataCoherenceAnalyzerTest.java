@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should report the production copy's saved sentence that is not the exercise built with its first answer, as «The tree has not grown/hasn't grown yet.» for «The tree ___ (not / grow) yet.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R001")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldReportTheProductionCopysSavedSentenceThatIsNotTheExerciseBuiltWithItsFirstAnswerAsTheTreeHasNotGrownhasntGrownYetForTheTreeNotGrowYet(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should report a saved sentence of the tree that is not the exercise built with its first answer, fixed by rule rebuilding it from the parts, as «The tree has not grown/hasn't grown yet.» if the tree kept it")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R001")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldReportASavedSentenceOfTheTreeThatIsNotTheExerciseBuiltWithItsFirstAnswerFixedByRuleRebuildingItFromThePartsAsTheTreeHasNotGrownhasntGrownYetIfTheTreeKeptIt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should not count spaces, punctuation or a rewrite saved as its answer alone as a difference, as «They 're late for the game.» and «Ana was teached a lesson by my brother.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R001")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldNotCountSpacesPunctuationOrARewriteSavedAsItsAnswerAloneAsADifferenceAsTheyReLateForTheGameAndAnaWasTeachedALessonByMyBrother(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should build the sentence of a multiple choice exercise with its correct option in the gap, as «I saw a man.» for «I saw ___ man (the listener doesn't know which man).»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R001")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldBuildTheSentenceOfAMultipleChoiceExerciseWithItsCorrectOptionInTheGapAsISawAManForISawManTheListenerDoesntKnowWhichMan(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should raise a blocking finding on an accepted answer with «/», fixed by rule turning the slash into «|», as «has not cut/hasn't cut» for «He ___ (not / cut) himself.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R002")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldRaiseABlockingFindingOnAnAcceptedAnswerWithFixedByRuleTurningTheSlashIntoAsHasNotCuthasntCutForHeNotCutHimself(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -59,6 +65,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should raise a medium finding on a recorded text that reads a slash, fixed by rule recording again with today's text, as «He has not cut/hasn't cut himself.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R002")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldRaiseAMediumFindingOnARecordedTextThatReadsASlashFixedByRuleRecordingAgainWithTodaysTextAsHeHasNotCuthasntCutHimself(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -68,6 +75,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should not report the slash of a statement such as «a / an» by itself, but report it when the audio reads it, as in «Don't touch a / an ___ (asleep / resting) dog!»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R002")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldNotReportTheSlashOfAStatementSuchAsAAnByItselfButReportItWhenTheAudioReadsItAsInDontTouchAAnAsleepRestingDog(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -77,6 +85,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should send to the panel as medium a recorded text that says something else than the exercise today, as «Ana was taught a lesson» against «Ana was teached a lesson»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R003")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldSendToThePanelAsMediumARecordedTextThatSaysSomethingElseThanTheExerciseTodayAsAnaWasTaughtALessonAgainstAnaWasTeachedALesson(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -86,6 +95,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should accept a recording that says another accepted answer or the long form of a contraction, as «We are very excited.» for «We ___ (be) very excited.» answered «'re»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R003")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldAcceptARecordingThatSaysAnotherAcceptedAnswerOrTheLongFormOfAContractionAsWeAreVeryExcitedForWeBeVeryExcitedAnsweredRe(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -95,6 +105,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should accept a recording that contains what the exercise says or is contained in it, as «If not» for «Can you hear me clearly? ___ , I can speak louder.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R003")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldAcceptARecordingThatContainsWhatTheExerciseSaysOrIsContainedInItAsIfNotForCanYouHearMeClearlyICanSpeakLouder(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -104,6 +115,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should raise a low finding on an exercise without audio key, fixed by rule recording it with today's text, as «Are we eating soon?» in Planes y horarios")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R004")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldRaiseALowFindingOnAnExerciseWithoutAudioKeyFixedByRuleRecordingItWithTodaysTextAsAreWeEatingSoonInPlanesYHorarios(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -113,6 +125,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should report every exercise that shares its audio key with another once the whole course has been seen and before the scores are aggregated, as two exercises with the key A1.04.08.01")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R004")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldReportEveryExerciseThatSharesItsAudioKeyWithAnotherOnceTheWholeCourseHasBeenSeenAndBeforeTheScoresAreAggregatedAsTwoExercisesWithTheKeyA1040801(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -122,6 +135,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should raise a low finding on an exercise whose recording the registry does not know, as «Did he have dinner?» if A1.04.08.01 were not registered")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R004")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldRaiseALowFindingOnAnExerciseWhoseRecordingTheRegistryDoesNotKnowAsDidHeHaveDinnerIfA1040801WereNotRegistered(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -131,6 +145,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should show as evidence the two copies that do not match with their text and name the copy in the identity, as «He ___ (not / cut) himself. → audio: He has not cut/hasn't cut himself.; hoy: He has not cut himself.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R005")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldShowAsEvidenceTheTwoCopiesThatDoNotMatchWithTheirTextAndNameTheCopyInTheIdentityAsHeNotCutHimselfAudioHeHasNotCuthasntCutHimselfHoyHeHasNotCutHimself(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -140,6 +155,7 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should score 0 an exercise with a finding and 1 an exercise whose three copies match, as «You ___ (see) cats.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R005")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldScore0AnExerciseWithAFindingAnd1AnExerciseWhoseThreeCopiesMatchAsYouSeeCats(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

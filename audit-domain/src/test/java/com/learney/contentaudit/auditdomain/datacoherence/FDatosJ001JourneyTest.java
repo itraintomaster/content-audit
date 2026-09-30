@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FDatosJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe compara, en cada ejercicio... → Hallazgo bloqueante si la barra está ... [Una respuesta aceptada o el texto grabado llevan «/»] → success")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void path1_unaRespuestaAceptadaOElTextoGrabadoLlevan_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -28,6 +30,7 @@ public class FDatosJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe compara, en cada ejercicio... → Hallazgo media que se arregla volvien... [La oración guardada no es el ejercicio armado con su primera respuesta] → success")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void path2_laOracinGuardadaNoEsElEjercicioArmadoConSuPrimeraRespuesta_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -36,6 +39,7 @@ public class FDatosJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → El informe compara, en cada ejercicio... → Hallazgo media para la mesa, con el t... [El audio dice otra cosa que el ejercicio de hoy] → success")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void path3_elAudioDiceOtraCosaQueElEjercicioDeHoy_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -44,6 +48,7 @@ public class FDatosJ001JourneyTest {
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo só... → El informe compara, en cada ejercicio... → Hallazgo baja que se arregla grabando... [El ejercicio no tiene audio, o nadie sabe con qué se grabó] → success")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void path4_elEjercicioNoTieneAudioONadieSabeConQuSeGrab_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -52,6 +57,7 @@ public class FDatosJ001JourneyTest {
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: El operador corre analyze pidiendo só... → El informe compara, en cada ejercicio... → Sin hallazgo de este analizador; el e... [Las tres copias coinciden] → success")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void path5_lasTresCopiasCoinciden_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.exactduplicates;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class ExactDuplicatesAnalyzerProviderTest {
     @DisplayName("should describe exact-duplicates in the catalog as an errors analyzer that evaluates exercises, resolves at the panel and costs instant, asking «¿Dos ejercicios del mismo tema dicen lo mismo?»")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R005")
+    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldDescribeExactduplicatesInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesAtThePanelAndCostsInstantAskingDosEjerciciosDelMismoTemaDicenLoMismo(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

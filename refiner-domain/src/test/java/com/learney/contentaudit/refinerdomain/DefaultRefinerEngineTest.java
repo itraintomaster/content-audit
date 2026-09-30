@@ -32,6 +32,7 @@ import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -623,6 +624,7 @@ public class DefaultRefinerEngineTest {
     @DisplayName("should open no task for an off-level-words score below 1 and declare it covered by the LEMMA_ABSENCE task of its quiz, never as an unconverted score")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldOpenNoTaskForAnOfflevelwordsScoreBelow1AndDeclareItCoveredByTheLEMMAABSENCETaskOfItsQuizNeverAsAnUnconvertedScore() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -631,6 +633,7 @@ public class DefaultRefinerEngineTest {
     @DisplayName("should plan the same 4,036 tasks for the analysis of 29/9 with and without off-level-words: SENTENCE_LENGTH 3,051, LEMMA_ABSENCE 950, KNOWLEDGE_INSTRUCTIONS_LENGTH 25, KNOWLEDGE_TITLE_LENGTH 6, COCA_BUCKETS 3 and LEMMA_RECURRENCE 1")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldPlanTheSame4036TasksForTheAnalysisOf299WithAndWithoutOfflevelwordsSENTENCELENGTH3051LEMMAABSENCE950KNOWLEDGEINSTRUCTIONSLENGTH25KNOWLEDGETITLELENGTH6COCABUCKETS3AndLEMMARECURRENCE1() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -639,6 +642,7 @@ public class DefaultRefinerEngineTest {
     @DisplayName("should open no task for lemma-count and keep the plan of the analysis of 29/9 at 4,036 tasks, with 4 for every band and with bands 8, 6, 4 and 3")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R002")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldOpenNoTaskForLemmacountAndKeepThePlanOfTheAnalysisOf299At4036TasksWith4ForEveryBandAndWithBands864And3() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -647,6 +651,7 @@ public class DefaultRefinerEngineTest {
     @DisplayName("should keep a single LEMMA_RECURRENCE task, on the course, and 4,036 tasks in the plan of the analysis of 29/9 with the new lemma-recurrence diagnosis and findings")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R002")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldKeepASingleLEMMARECURRENCETaskOnTheCourseAnd4036TasksInThePlanOfTheAnalysisOf299WithTheNewLemmarecurrenceDiagnosisAndFindings() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -655,6 +660,7 @@ public class DefaultRefinerEngineTest {
     @DisplayName("should open no task for lemma-recurrence findings, only the course task when its score is below 1")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R002")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldOpenNoTaskForLemmarecurrenceFindingsOnlyTheCourseTaskWhenItsScoreIsBelow1() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

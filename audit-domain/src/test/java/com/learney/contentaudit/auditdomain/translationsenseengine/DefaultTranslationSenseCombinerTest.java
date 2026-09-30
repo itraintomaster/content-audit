@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.translationsenseengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultTranslationSenseCombinerTest {
     @DisplayName("should give no finding and score 1 when both judges pass the quiz")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R003")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldGiveNoFindingAndScore1WhenBothJudgesPassTheQuiz() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -22,6 +24,7 @@ public class DefaultTranslationSenseCombinerTest {
     @DisplayName("should give one finding per condition either judge marked, counting as error, when both judges fail the verduras (…1ecd)")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R003")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldGiveOneFindingPerConditionEitherJudgeMarkedCountingAsErrorWhenBothJudgesFailTheVerduras1ecd(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -31,6 +34,7 @@ public class DefaultTranslationSenseCombinerTest {
     @DisplayName("should give a single rank-only judges-disagree finding with both verdicts in its evidence, and score 1, when only one judge fails «It's the moment ___ dinner!»")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R003")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldGiveASingleRankonlyJudgesdisagreeFindingWithBothVerdictsInItsEvidenceAndScore1WhenOnlyOneJudgeFailsItsTheMomentDinner(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -40,6 +44,7 @@ public class DefaultTranslationSenseCombinerTest {
     @DisplayName("should give a condition both judges marked the higher of their two severities")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R004")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldGiveAConditionBothJudgesMarkedTheHigherOfTheirTwoSeverities() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -48,6 +53,7 @@ public class DefaultTranslationSenseCombinerTest {
     @DisplayName("should score 0.3, 0.6 or 0.8 by the highest severity among the findings that count")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R004")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldScore0306Or08ByTheHighestSeverityAmongTheFindingsThatCount() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -56,6 +62,7 @@ public class DefaultTranslationSenseCombinerTest {
     @DisplayName("should give no blocking finding even when a judge reports a blocking failure")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R004")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldGiveNoBlockingFindingEvenWhenAJudgeReportsABlockingFailure() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -64,6 +71,7 @@ public class DefaultTranslationSenseCombinerTest {
     @DisplayName("should put in the evidence of each finding the failing fragment and its line in Spanish, as «a lot of» counting vegetables while «mucho» says how much they are liked")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R002")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldPutInTheEvidenceOfEachFindingTheFailingFragmentAndItsLineInSpanishAsALotOfCountingVegetablesWhileMuchoSaysHowMuchTheyAreLiked(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.correctormatch;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultCorrectorMatcherTest {
     @DisplayName("should accept «cafe» where the accepted answer says «café» and take «everyday» as «every day», as the backend corrector does for «Don't run in the café.» and «The girls would cycle to school every day.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldAcceptCafeWhereTheAcceptedAnswerSaysCafAndTakeEverydayAsEveryDayAsTheBackendCorrectorDoesForDontRunInTheCafAndTheGirlsWouldCycleToSchoolEveryDay(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultCorrectorMatcherTest {
     @DisplayName("should split the accepted answers on «|» and never on «/», so «has not cut | hasn't cut» accepts each form and «has not cut/hasn't cut» is a single form")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldSplitTheAcceptedAnswersOnAndNeverOnSoHasNotCutHasntCutAcceptsEachFormAndHasNotCuthasntCutIsASingleForm(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultCorrectorMatcherTest {
     @DisplayName("should take «aren't», «are not» and «'re not» as three different forms with today's empty table, so «They ___ (not / be) from Ireland.» rejects «aren't»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldTakeArentAreNotAndReNotAsThreeDifferentFormsWithTodaysEmptyTableSoTheyNotBeFromIrelandRejectsArent(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultCorrectorMatcherTest {
     @DisplayName("should take «aren't», «are not» and «'re not» as the same form with the new corrector's table, so «They ___ (not / be) from Ireland.» accepts «aren't»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldTakeArentAreNotAndReNotAsTheSameFormWithTheNewCorrectorsTableSoTheyNotBeFromIrelandAcceptsArent(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultCorrectorMatcherTest {
     @DisplayName("should decide every golden case of the backend corrector as its «hoy» column says with today's empty table, as «traveled» rejected for «She ___ (travel) to Europe.» answered «travelled»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldDecideEveryGoldenCaseOfTheBackendCorrectorAsItsHoyColumnSaysWithTodaysEmptyTableAsTraveledRejectedForSheTravelToEuropeAnsweredTravelled(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -59,6 +65,7 @@ public class DefaultCorrectorMatcherTest {
     @DisplayName("should decide every golden case of the backend corrector as its «acepta» column says with the copy of the new corrector's table, reading each gap with the sentence around it, as «is» for «It ___ (be) hot inside.» answered «'s»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldDecideEveryGoldenCaseOfTheBackendCorrectorAsItsAceptaColumnSaysWithTheCopyOfTheNewCorrectorsTableReadingEachGapWithTheSentenceAroundItAsIsForItBeHotInsideAnsweredS(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

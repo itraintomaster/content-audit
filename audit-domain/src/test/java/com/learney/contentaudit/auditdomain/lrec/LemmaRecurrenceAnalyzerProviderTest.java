@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -68,6 +69,7 @@ public class LemmaRecurrenceAnalyzerProviderTest {
     @DisplayName("should describe lemma-recurrence in its card: whether words return at healthy intervals, reading the sentences of the whole course in order, vocabulary family, course target, goal of returning every more than 50 and up to 1,000 words, only ordering and instant cost")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R006")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldDescribeLemmarecurrenceInItsCardWhetherWordsReturnAtHealthyIntervalsReadingTheSentencesOfTheWholeCourseInOrderVocabularyFamilyCourseTargetGoalOfReturningEveryMoreThan50AndUpTo1000WordsOnlyOrderingAndInstantCost() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

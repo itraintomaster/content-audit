@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FJexamJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador pide que un juez rinda el... → El operador registra para esa versión... → El operador corre analyze sobre el cu... → La corrida reusa lo registrado, consu... [La versión aprobó su examen] → success")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void path1_laVersinAprobSuExamen_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -28,6 +30,7 @@ public class FJexamJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador pide que un juez rinda el... → El operador registra para esa versión... → El operador corre analyze sobre el cu... → La corrida no consulta, reusa lo regi... [La versión no rindió o reprobó] → failure")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void path2_laVersinNoRindiOReprob_failure() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

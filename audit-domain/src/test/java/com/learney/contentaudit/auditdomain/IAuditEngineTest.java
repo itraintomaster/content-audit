@@ -37,6 +37,7 @@ import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer;
 import com.learney.contentaudit.auditdomain.lrec.IntervalCalculator;
 import com.learney.contentaudit.auditdomain.lrec.ExposureClassifier;
 import com.learney.contentaudit.auditdomain.lrec.ExposureStatus;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -1155,6 +1156,7 @@ public class IAuditEngineTest {
     @DisplayName("should give lemma-absence the same scores and typed diagnoses in every node whether or not off-level-words runs in the same analysis")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldGiveLemmaabsenceTheSameScoresAndTypedDiagnosesInEveryNodeWhetherOrNotOfflevelwordsRunsInTheSameAnalysis() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1163,6 +1165,7 @@ public class IAuditEngineTest {
     @DisplayName("should keep the vocabulary score of every node when off-level-words runs, 73.92% in the course and 96.54, 94.16, 79.45 and 63.51 from A1 to B2 on the published scores of the analysis of 29/9")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldKeepTheVocabularyScoreOfEveryNodeWhenOfflevelwordsRuns7392InTheCourseAnd965494167945And6351FromA1ToB2OnThePublishedScoresOfTheAnalysisOf299() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1171,6 +1174,7 @@ public class IAuditEngineTest {
     @DisplayName("should publish a course vocabulary score of 73.92% and levels 96.54, 94.16, 79.45 and 63.51 with lemma-count at 4 for every band, next to the other six published scores of the analysis of 29/9")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldPublishACourseVocabularyScoreOf7392AndLevels965494167945And6351WithLemmacountAt4ForEveryBandNextToTheOtherSixPublishedScoresOfTheAnalysisOf299() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1179,6 +1183,7 @@ public class IAuditEngineTest {
     @DisplayName("should publish a course vocabulary score of 73.86% and levels 96.02, 93.60, 78.87 and 63.86 with lemma-count at bands 8, 6, 4 and 3, next to the other six published scores of the analysis of 29/9")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldPublishACourseVocabularyScoreOf7386AndLevels960293607887And6386WithLemmacountAtBands864And3NextToTheOtherSixPublishedScoresOfTheAnalysisOf299() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1187,6 +1192,7 @@ public class IAuditEngineTest {
     @DisplayName("should keep the course vocabulary score at 73.92% with lemma-recurrence at 0.08 publishing its course diagnosis, on the published scores of the analysis of 29/9")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R001")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldKeepTheCourseVocabularyScoreAt7392WithLemmarecurrenceAt008PublishingItsCourseDiagnosisOnThePublishedScoresOfTheAnalysisOf299() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1195,6 +1201,7 @@ public class IAuditEngineTest {
     @DisplayName("should keep the vocabulary score of every level at 96.54, 94.16, 79.45 and 63.51 with the recurrence of each level published as detail")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldKeepTheVocabularyScoreOfEveryLevelAt965494167945And6351WithTheRecurrenceOfEachLevelPublishedAsDetail() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

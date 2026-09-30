@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.choicealternativeengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class LedgerBackedChoiceAlternativeJudgeRunTest {
     @DisplayName("should ignore a CLOZE quiz requested to it, neither judging it nor counting it")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R001")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldIgnoreACLOZEQuizRequestedToItNeitherJudgingItNorCountingIt() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -22,6 +24,7 @@ public class LedgerBackedChoiceAlternativeJudgeRunTest {
     @DisplayName("should judge a quiz from its recorded verdict without consulting, as JUDGED and reused")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R005")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldJudgeAQuizFromItsRecordedVerdictWithoutConsultingAsJUDGEDAndReused() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -30,6 +33,7 @@ public class LedgerBackedChoiceAlternativeJudgeRunTest {
     @DisplayName("should leave PENDING, without score and without findings, the quizzes the budget did not reach")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R005")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldLeavePENDINGWithoutScoreAndWithoutFindingsTheQuizzesTheBudgetDidNotReach() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -38,6 +42,7 @@ public class LedgerBackedChoiceAlternativeJudgeRunTest {
     @DisplayName("should leave FAILED with its reason, without score and without findings, a quiz whose judge failed or answered something unusable, and finish")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R005")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldLeaveFAILEDWithItsReasonWithoutScoreAndWithoutFindingsAQuizWhoseJudgeFailedOrAnsweredSomethingUnusableAndFinish(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -47,6 +52,7 @@ public class LedgerBackedChoiceAlternativeJudgeRunTest {
     @DisplayName("should leave every quiz NOT_AVAILABLE, without score and without findings, when the judge states no version")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R005")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldLeaveEveryQuizNOTAVAILABLEWithoutScoreAndWithoutFindingsWhenTheJudgeStatesNoVersion(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -56,6 +62,7 @@ public class LedgerBackedChoiceAlternativeJudgeRunTest {
     @DisplayName("should declare in its coverage the multiple choice quizzes reached, evaluated and unevaluated")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R005")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldDeclareInItsCoverageTheMultipleChoiceQuizzesReachedEvaluatedAndUnevaluated() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -64,6 +71,7 @@ public class LedgerBackedChoiceAlternativeJudgeRunTest {
     @DisplayName("should resolve all requested quizzes together within the budget and give the same judgment of a quiz however many times it is asked")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R005")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldResolveAllRequestedQuizzesTogetherWithinTheBudgetAndGiveTheSameJudgmentOfAQuizHoweverManyTimesItIsAsked(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -73,6 +81,7 @@ public class LedgerBackedChoiceAlternativeJudgeRunTest {
     @DisplayName("should judge in an EXAM run only the multiple choice exercises of the file, …47cc among them, and not the CLOZE verduras")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R006")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldJudgeInAnEXAMRunOnlyTheMultipleChoiceExercisesOfTheFile47ccAmongThemAndNotTheCLOZEVerduras(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -82,6 +91,7 @@ public class LedgerBackedChoiceAlternativeJudgeRunTest {
     @DisplayName("should judge a candidate with the same judge and version, and reuse its verdict once the candidate enters the course")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R007")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldJudgeACandidateWithTheSameJudgeAndVersionAndReuseItsVerdictOnceTheCandidateEntersTheCourse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

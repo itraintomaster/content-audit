@@ -17,6 +17,7 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -284,6 +285,7 @@ public class FileSystemEvaluationLedgerTest {
     @DisplayName("should return the recorded times of an evaluator in the order they were appended, and none of another evaluator")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R004")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldReturnTheRecordedTimesOfAnEvaluatorInTheOrderTheyWereAppendedAndNoneOfAnotherEvaluator() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -292,6 +294,7 @@ public class FileSystemEvaluationLedgerTest {
     @DisplayName("should not return to the course evaluator a verdict recorded for the same content under its exam: evaluator")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R002")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldNotReturnToTheCourseEvaluatorAVerdictRecordedForTheSameContentUnderItsExamEvaluator() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

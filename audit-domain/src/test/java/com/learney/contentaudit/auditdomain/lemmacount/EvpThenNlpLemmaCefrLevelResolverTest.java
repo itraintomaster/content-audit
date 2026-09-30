@@ -9,6 +9,7 @@ import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -115,6 +116,7 @@ public class EvpThenNlpLemmaCefrLevelResolverTest {
     @DisplayName("should resolve the COCA rank of a lemma and part of speech from the EVP catalog, the same rank the suggested words show")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldResolveTheCOCARankOfALemmaAndPartOfSpeechFromTheEVPCatalogTheSameRankTheSuggestedWordsShow() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -123,6 +125,7 @@ public class EvpThenNlpLemmaCefrLevelResolverTest {
     @DisplayName("should resolve no COCA rank for a lemma and part of speech the EVP catalog does not have")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldResolveNoCOCARankForALemmaAndPartOfSpeechTheEVPCatalogDoesNotHave() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

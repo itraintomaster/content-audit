@@ -1,6 +1,7 @@
 package com.learney.contentaudit.refinerdomain.lemmasuggestion;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class LevelWideLemmaInventoryTest {
     @DisplayName("should report for each exposed word listed with include-exposed the threshold of its band, marking 'number' (A1, 5 sentences) under-exposed with bands 8, 6, 4 and 3")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R007")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldReportForEachExposedWordListedWithIncludeexposedTheThresholdOfItsBandMarkingNumberA15SentencesUnderexposedWithBands864And3(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

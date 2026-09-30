@@ -1,6 +1,7 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.singleanswerverdict;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class JacksonSingleAnswerVerdictReaderTest {
     @DisplayName("should read each listed answer with its gap, its kind, its severity and its reason")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R002")
+    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldReadEachListedAnswerWithItsGapItsKindItsSeverityAndItsReason() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

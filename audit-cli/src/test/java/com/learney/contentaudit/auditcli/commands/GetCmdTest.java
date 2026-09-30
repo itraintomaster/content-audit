@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -4622,6 +4623,7 @@ public class GetCmdTest {
     @DisplayName("should print as JSON the word lights of a knowledge with get word-lights, read from the source analysis of the latest plan like get suggested-lemmas, or from the latest analysis when there is no plan")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R001")
+    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldPrintAsJSONTheWordLightsOfAKnowledgeWithGetWordlightsReadFromTheSourceAnalysisOfTheLatestPlanLikeGetSuggestedlemmasOrFromTheLatestAnalysisWhenThereIsNoPlan() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -4630,6 +4632,7 @@ public class GetCmdTest {
     @DisplayName("should exit with code 1 and print the not-found message for a knowledge that is not in the analysis")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R001")
+    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldExitWithCode1AndPrintTheNotfoundMessageForAKnowledgeThatIsNotInTheAnalysis() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -4638,6 +4641,7 @@ public class GetCmdTest {
     @DisplayName("should reject --level for word-lights, since the level is the topic's")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R001")
+    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldRejectLevelForWordlightsSinceTheLevelIsTheTopics() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -4646,6 +4650,7 @@ public class GetCmdTest {
     @DisplayName("should leave the stored analysis of 29/9 and its plan byte for byte identical after get word-lights, at 73.92% and 4,036 tasks")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R007")
+    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldLeaveTheStoredAnalysisOf299AndItsPlanByteForByteIdenticalAfterGetWordlightsAt7392And4036Tasks() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

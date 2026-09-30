@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.choicealternativeengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultChoiceAlternativeJudgeRunFactoryTest {
     @DisplayName("should give for the card of multiple-choice-validity the judge rule another-option-valid with paid model cost")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R004")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldGiveForTheCardOfMultiplechoicevalidityTheJudgeRuleAnotheroptionvalidWithPaidModelCost(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultChoiceAlternativeJudgeRunFactoryTest {
     @DisplayName("should open the judge's sessions under the name multiple-choice-validity, so its budget, exam brake and exam are those of that analyzer")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R004")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldOpenTheJudgesSessionsUnderTheNameMultiplechoicevaliditySoItsBudgetExamBrakeAndExamAreThoseOfThatAnalyzer(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultChoiceAlternativeJudgeRunFactoryTest {
     @DisplayName("should consult nothing when the run asks no budget for multiple-choice-validity, reusing what was judged")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R004")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldConsultNothingWhenTheRunAsksNoBudgetForMultiplechoicevalidityReusingWhatWasJudged(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

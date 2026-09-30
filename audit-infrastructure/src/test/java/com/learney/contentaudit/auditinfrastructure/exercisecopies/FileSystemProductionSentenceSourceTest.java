@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditinfrastructure.exercisecopies;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class FileSystemProductionSentenceSourceTest {
     @DisplayName("should read by quiz id the saved sentences of the production copy the importer leaves, as «The tree has not grown/hasn't grown yet.» for 67fab6d5993010229534287e")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R001")
+    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldReadByQuizIdTheSavedSentencesOfTheProductionCopyTheImporterLeavesAsTheTreeHasNotGrownhasntGrownYetFor67fab6d5993010229534287e(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

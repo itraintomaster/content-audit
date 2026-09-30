@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -286,6 +287,7 @@ public class StatsAnalyzerCmdTest {
     @DisplayName("should show with stats analyzer lemma-recurrence the data of each lemma and each level read from the course diagnosis of the report")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
+    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldShowWithStatsAnalyzerLemmarecurrenceTheDataOfEachLemmaAndEachLevelReadFromTheCourseDiagnosisOfTheReport() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

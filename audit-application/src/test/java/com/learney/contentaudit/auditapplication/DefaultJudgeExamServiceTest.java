@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditapplication;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should take the exam of a judge over the photo, running only its analyzer, and give one verdict per exercise of the file")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldTakeTheExamOfAJudgeOverThePhotoRunningOnlyItsAnalyzerAndGiveOneVerdictPerExerciseOfTheFile(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should judge the exam exercises as they are in the photo of 29/9 even when the live course changed them since")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldJudgeTheExamExercisesAsTheyAreInThePhotoOf299EvenWhenTheLiveCourseChangedThemSince(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should record TAKEN for the version when every exercise of the file got a verdict, and not when one stayed without verdict or is not in the photo")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldRecordTAKENForTheVersionWhenEveryExerciseOfTheFileGotAVerdictAndNotWhenOneStayedWithoutVerdictOrIsNotInThePhoto(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should leave analyze on the course with the same scores, findings and pending quizzes before and after a version takes the exam")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R002")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldLeaveAnalyzeOnTheCourseWithTheSameScoresFindingsAndPendingQuizzesBeforeAndAfterAVersionTakesTheExam(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should let a version that already took the exam take it again without a single consultation")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R002")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldLetAVersionThatAlreadyTookTheExamTakeItAgainWithoutASingleConsultation() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -58,6 +64,7 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should rehearse the exam with budget 0 without consulting, reusing what that version judged and saying how many consultations are missing")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R010")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldRehearseTheExamWithBudget0WithoutConsultingReusingWhatThatVersionJudgedAndSayingHowManyConsultationsAreMissing(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -67,6 +74,7 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should record the result measured outside for a version that took the whole exam and make it the standing of that version")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldRecordTheResultMeasuredOutsideForAVersionThatTookTheWholeExamAndMakeItTheStandingOfThatVersion(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -76,6 +84,7 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should reject with JudgeExamNotTakenException the measured result of a version that did not take the whole exam, recording nothing")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldRejectWithJudgeExamNotTakenExceptionTheMeasuredResultOfAVersionThatDidNotTakeTheWholeExamRecordingNothing(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -85,6 +94,7 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should list every exam record of a judge, across its versions, in the order they were recorded")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldListEveryExamRecordOfAJudgeAcrossItsVersionsInTheOrderTheyWereRecorded() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -93,6 +103,7 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should give one verdict to every exercise of a quiz-instruction exam file that mixes CLOZE and multiple choice exercises, without knowing their groups")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R009")
+    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldGiveOneVerdictToEveryExerciseOfAQuizinstructionExamFileThatMixesCLOZEAndMultipleChoiceExercisesWithoutKnowingTheirGroups(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

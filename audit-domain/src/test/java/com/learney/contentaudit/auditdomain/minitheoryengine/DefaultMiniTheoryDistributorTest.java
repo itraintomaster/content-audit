@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.minitheoryengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultMiniTheoryDistributorTest {
     @DisplayName("should put a finding of the false «enjoy» mini-theory in the 9 exercises of «Contraste inicial» that show it and in none of its other 71")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R003")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldPutAFindingOfTheFalseEnjoyMinitheoryInThe9ExercisesOfContrasteInicialThatShowItAndInNoneOfItsOther71(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultMiniTheoryDistributorTest {
     @DisplayName("should put that finding in the 80 exercises of «Contraste inicial» when the error scope is the whole topic")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R003")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldPutThatFindingInThe80ExercisesOfContrasteInicialWhenTheErrorScopeIsTheWholeTopic(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultMiniTheoryDistributorTest {
     @DisplayName("should put the finding of an exercise that contradicts its mini-theory, or falls outside it, only on that exercise, whatever the error scope")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R003")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldPutTheFindingOfAnExerciseThatContradictsItsMinitheoryOrFallsOutsideItOnlyOnThatExerciseWhateverTheErrorScope(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultMiniTheoryDistributorTest {
     @DisplayName("should give HIGH to a false or contradicted mini-theory, MEDIUM to an overstated one and LOW to one that does not cover its exercise, and never BLOCKING")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R004")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldGiveHIGHToAFalseOrContradictedMinitheoryMEDIUMToAnOverstatedOneAndLOWToOneThatDoesNotCoverItsExerciseAndNeverBLOCKING(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultMiniTheoryDistributorTest {
     @DisplayName("should score each exercise 1 without finding and 0.3, 0.6 or 0.8 by its gravest mini-theory finding")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R004")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldScoreEachExercise1WithoutFindingAnd0306Or08ByItsGravestMinitheoryFinding() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -58,6 +64,7 @@ public class DefaultMiniTheoryDistributorTest {
     @DisplayName("should put in the evidence the text of the mini-theory, what it has false with its counterexample «Are you enjoying the party?», and the exercises involved")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R002")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldPutInTheEvidenceTheTextOfTheMinitheoryWhatItHasFalseWithItsCounterexampleAreYouEnjoyingThePartyAndTheExercisesInvolved(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -67,6 +74,7 @@ public class DefaultMiniTheoryDistributorTest {
     @DisplayName("should mark every finding of one mini-theory with its text, so the exercises that show it are resolved together with a single candidate")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R007")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldMarkEveryFindingOfOneMinitheoryWithItsTextSoTheExercisesThatShowItAreResolvedTogetherWithASingleCandidate(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -76,6 +84,7 @@ public class DefaultMiniTheoryDistributorTest {
     @DisplayName("should leave the verduras without mini-theory finding when the judge holds their mini-theory «Con he, she, it el verbo lleva -s…» true")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R006")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldLeaveTheVerdurasWithoutMinitheoryFindingWhenTheJudgeHoldsTheirMinitheoryConHeSheItElVerboLlevaSTrue(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

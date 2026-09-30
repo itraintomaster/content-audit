@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FOmvalJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Hallazgo bloqueante que cuenta en los... [No vale ninguna opción, o valen dos] → success")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void path1_noValeNingunaOpcinOValenDos_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -28,6 +30,7 @@ public class FOmvalJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Hallazgo alta para la mesa, con las d... [Dos opciones son la misma respuesta con otra forma, y una es la correcta] → success")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void path2_dosOpcionesSonLaMismaRespuestaConOtraFormaYUnaEsLaCorrecta_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -36,6 +39,7 @@ public class FOmvalJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Hallazgo baja para la mesa: sobra una... [Dos opciones incorrectas son la misma respuesta] → success")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void path3_dosOpcionesIncorrectasSonLaMismaRespuesta_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -44,6 +48,7 @@ public class FOmvalJ001JourneyTest {
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Hallazgo de gravedad baja que se resu... [El hueco abre la oración y las opciones van en minúscula] → success")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void path4_elHuecoAbreLaOracinYLasOpcionesVanEnMinscula_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -52,6 +57,7 @@ public class FOmvalJ001JourneyTest {
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Hallazgo de gravedad media para la me... [El artículo antes del hueco sólo encaja con la correcta] → success")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void path5_elArtculoAntesDelHuecoSloEncajaConLaCorrecta_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -60,6 +66,7 @@ public class FOmvalJ001JourneyTest {
     @Order(6)
     @Tag("path-6")
     @DisplayName("path-6: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Sin hallazgo de este analizador; el e... [Una sola vale, son distintas y la forma no delata nada] → success")
+    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void path6_unaSolaValeSonDistintasYLaFormaNoDelataNada_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

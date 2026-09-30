@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.learney.contentaudit.auditdomain.LemmaCountConfig;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -94,6 +95,7 @@ public class DefaultLemmaCountConfigLoaderTest {
     @DisplayName("should load '4' as four bands that all ask for 4 sentences")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldLoad4AsFourBandsThatAllAskFor4Sentences() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -102,6 +104,7 @@ public class DefaultLemmaCountConfigLoaderTest {
     @DisplayName("should load '8/6/4/3' as the 1,000, 2,000 and 3,000 most common words and beyond, asking for 8, 6, 4 and 3 sentences")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldLoad8643AsThe10002000And3000MostCommonWordsAndBeyondAskingFor864And3Sentences() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -110,6 +113,7 @@ public class DefaultLemmaCountConfigLoaderTest {
     @DisplayName("should load the bands 8, 6, 4 and 3 when no threshold is configured, the default José confirmed on 30/9")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldLoadTheBands864And3WhenNoThresholdIsConfiguredTheDefaultJosConfirmedOn309() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -118,6 +122,7 @@ public class DefaultLemmaCountConfigLoaderTest {
     @DisplayName("should reject a band threshold that is not a positive integer, like '8/0/4/3', as it rejects a uniform one")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
+    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldRejectABandThresholdThatIsNotAPositiveIntegerLike8043AsItRejectsAUniformOne() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

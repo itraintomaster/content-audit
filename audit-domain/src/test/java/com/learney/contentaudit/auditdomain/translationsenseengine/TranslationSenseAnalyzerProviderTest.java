@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.translationsenseengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class TranslationSenseAnalyzerProviderTest {
     @DisplayName("should publish the name translation-sense and open its two judges through the judges runtime under that name, so a version without an approved exam gets budget 0")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R005")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldPublishTheNameTranslationsenseAndOpenItsTwoJudgesThroughTheJudgesRuntimeUnderThatNameSoAVersionWithoutAnApprovedExamGetsBudget0(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class TranslationSenseAnalyzerProviderTest {
     @DisplayName("should publish a card with family errors, paid model cost, the quiz as evaluated level and the rules same-meaning, native-would-say, words-go-together, level-register and judges-disagree")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R002")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldPublishACardWithFamilyErrorsPaidModelCostTheQuizAsEvaluatedLevelAndTheRulesSamemeaningNativewouldsayWordsgotogetherLevelregisterAndJudgesdisagree(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class TranslationSenseAnalyzerProviderTest {
     @DisplayName("should declare in its card the panel as resolution of the four conditions and rank only for judges-disagree")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R007")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldDeclareInItsCardThePanelAsResolutionOfTheFourConditionsAndRankOnlyForJudgesdisagree(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class TranslationSenseAnalyzerProviderTest {
     @DisplayName("should bind its scores below 1 to the plan as TRANSLATION_SENSE tasks on quizzes")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R004")
+    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldBindItsScoresBelow1ToThePlanAsTRANSLATIONSENSETasksOnQuizzes() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultEquivalentFormGeneratorTest {
     @DisplayName("should generate the long form of a contracted negation and the contraction of a long one, as «do not eat» for «don't eat» in «I ___ (not / eat) meat often.» and «don't have» for «do not have» in «They ___ (not / have) many cars.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldGenerateTheLongFormOfAContractedNegationAndTheContractionOfALongOneAsDoNotEatForDontEatInINotEatMeatOftenAndDontHaveForDoNotHaveInTheyNotHaveManyCars(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultEquivalentFormGeneratorTest {
     @DisplayName("should generate the contraction of an auxiliary attached to the subject, as «There's a house near the school.» for «There is a house near the school.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldGenerateTheContractionOfAnAuxiliaryAttachedToTheSubjectAsTheresAHouseNearTheSchoolForThereIsAHouseNearTheSchool(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultEquivalentFormGeneratorTest {
     @DisplayName("should read «'s» as has before a past participle and as is otherwise, as «has hated» for «'s hated» in «She ___ (hate) broccoli for ages» and «is» for «'s» in «It ___ (be) hot inside.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldReadSAsHasBeforeAPastParticipleAndAsIsOtherwiseAsHasHatedForSHatedInSheHateBroccoliForAgesAndIsForSInItBeHotInside(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultEquivalentFormGeneratorTest {
     @DisplayName("should generate the long form when the subject stays outside the gap or is a noun, as «am not» for «'m not» in «I ___ (not / be) forty.» and «Peter is reading a book.» for «Peter's reading a book.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldGenerateTheLongFormWhenTheSubjectStaysOutsideTheGapOrIsANounAsAmNotForMNotInINotBeFortyAndPeterIsReadingABookForPetersReadingABook(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultEquivalentFormGeneratorTest {
     @DisplayName("should put the not after the subject in the long form of a negative question, as «Does she not dance?» for «Doesn't she dance?» in Sorpresa inicial")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldPutTheNotAfterTheSubjectInTheLongFormOfANegativeQuestionAsDoesSheNotDanceForDoesntSheDanceInSorpresaInicial(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -59,6 +65,7 @@ public class DefaultEquivalentFormGeneratorTest {
     @DisplayName("should generate the other short negation of be, as «aren't» for «'re not» in «They ___ (not / be) from Ireland.» and «'s not» for «isn't» in «A: Is it hot today? B: No, it ___ .»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R003")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldGenerateTheOtherShortNegationOfBeAsArentForReNotInTheyNotBeFromIrelandAndSNotForIsntInAIsItHotTodayBNoIt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -68,6 +75,7 @@ public class DefaultEquivalentFormGeneratorTest {
     @DisplayName("should generate the other spelling of a word on the closed list, as «traveled» for «travelled» in «She ___ (travel) to Europe.» and «travelled» for «traveled» in «___ (you / ever / travel) to Ireland?»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R004")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldGenerateTheOtherSpellingOfAWordOnTheClosedListAsTraveledForTravelledInSheTravelToEuropeAndTravelledForTraveledInYouEverTravelToIreland(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -77,6 +85,7 @@ public class DefaultEquivalentFormGeneratorTest {
     @DisplayName("should generate «till» for «until» and «until» for «till», as «Why had she worked there till then?» for «Why had she worked there until then?»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R004")
+    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldGenerateTillForUntilAndUntilForTillAsWhyHadSheWorkedThereTillThenForWhyHadSheWorkedThereUntilThen(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.choicealternativeverdict;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class JacksonChoiceAlternativeVerdictReaderTest {
     @DisplayName("should read whether the correct option is valid and why not, and each valid alternative with its severity and reason")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R002")
+    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldReadWhetherTheCorrectOptionIsValidAndWhyNotAndEachValidAlternativeWithItsSeverityAndReason(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.offlevelwords;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should not mark 'live' (B1) in the A1 quiz 'She lives in London.', because the A1 EVP phrase 'live in/at' lowers its level as it does for lemma-absence")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R001")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNotMarkLiveB1InTheA1QuizSheLivesInLondonBecauseTheA1EVPPhraseLiveInatLowersItsLevelAsItDoesForLemmaabsence(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should not mark 'run' in an A1 quiz because of the B1 EVP phrase 'run out', since a phrase never raises the level of its lemma")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R001")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNotMarkRunInAnA1QuizBecauseOfTheB1EVPPhraseRunOutSinceAPhraseNeverRaisesTheLevelOfItsLemma(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should report 'reside' in an A1 quiz as out of the EVP with its COCA rank 5,333 and no catalog level, never an invented level")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R001")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldReportResideInAnA1QuizAsOutOfTheEVPWithItsCOCARank5333AndNoCatalogLevelNeverAnInventedLevel(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should mark in 'She spread the warm blue quilt on the bed.' (A2) only words that lexis also flags for that sentence at A2")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R001")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldMarkInSheSpreadTheWarmBlueQuiltOnTheBedA2OnlyWordsThatLexisAlsoFlagsForThatSentenceAtA2(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should mark 'spread' and 'quilt', B2 words, in the A2 quiz 'She spread the warm blue quilt on the bed.', two levels above it")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R002")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldMarkSpreadAndQuiltB2WordsInTheA2QuizSheSpreadTheWarmBlueQuiltOnTheBedTwoLevelsAboveIt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -59,6 +65,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should never mark a word only one level above the quiz, like 'let' (A2) in an A1 quiz")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R002")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNeverMarkAWordOnlyOneLevelAboveTheQuizLikeLetA2InAnA1Quiz() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -67,6 +74,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should count C1 as level 5 and C2 as level 6, so a C1 word is marked in a B1 quiz but not in a B2 quiz, and a C2 word is marked in a B2 quiz")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R002")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldCountC1AsLevel5AndC2AsLevel6SoAC1WordIsMarkedInAB1QuizButNotInAB2QuizAndAC2WordIsMarkedInAB2Quiz(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -76,6 +84,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should mark an out-of-catalog word only in the strong-discount band of the quiz level, like 'reside' (rank 5,333) in an A2 quiz but not in a B1 quiz")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R002")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldMarkAnOutofcatalogWordOnlyInTheStrongdiscountBandOfTheQuizLevelLikeResideRank5333InAnA2QuizButNotInAB1Quiz(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -85,6 +94,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should mark in an A1 quiz an out-of-catalog word ranked 3,001 or without rank but not one ranked 3,000, taking the band bounds from the lemma-absence configuration")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R002")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldMarkInAnA1QuizAnOutofcatalogWordRanked3001OrWithoutRankButNotOneRanked3000TakingTheBandBoundsFromTheLemmaabsenceConfiguration(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -94,6 +104,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should not mark 'invest' (B2) in an A2 quiz of '$Invest time$ + gerundio', because its topic teaches it")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNotMarkInvestB2InAnA2QuizOfInvestTimeGerundioBecauseItsTopicTeachesIt() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -102,6 +113,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should mark 'invest' (B2) in an A2 quiz of a topic that does not teach it, even though another topic of the course does")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldMarkInvestB2InAnA2QuizOfATopicThatDoesNotTeachItEvenThoughAnotherTopicOfTheCourseDoes(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -111,6 +123,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should not mark 'sushi' in 'We make sushi and pizza.' because the translation repeats it whole")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R004")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNotMarkSushiInWeMakeSushiAndPizzaBecauseTheTranslationRepeatsItWhole() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -119,6 +132,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should keep marking 'adore' when the translation only says 'adoran', because the word has to appear whole")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R004")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldKeepMarkingAdoreWhenTheTranslationOnlySaysAdoranBecauseTheWordHasToAppearWhole(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -128,6 +142,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should ignore accents when it compares with the translation, so an out-of-catalog 'canape' is not marked when the translation writes it with an accent")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R004")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldIgnoreAccentsWhenItComparesWithTheTranslationSoAnOutofcatalogCanapeIsNotMarkedWhenTheTranslationWritesItWithAnAccent(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -137,6 +152,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should keep marking a catalog word two levels above the quiz even when the translation repeats it, since the exception only covers words out of the EVP")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R004")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldKeepMarkingACatalogWordTwoLevelsAboveTheQuizEvenWhenTheTranslationRepeatsItSinceTheExceptionOnlyCoversWordsOutOfTheEVP(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -146,6 +162,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should leave one finding per off-level word, of rule F-NIVFR-R002, medium severity, panel resolution and instant cost: two in 'She spread the warm blue quilt on the bed.' (A2)")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R005")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldLeaveOneFindingPerOfflevelWordOfRuleFNIVFRR002MediumSeverityPanelResolutionAndInstantCostTwoInSheSpreadTheWarmBlueQuiltOnTheBedA2(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -155,6 +172,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should give as evidence the sentence, the word, its level or out of the EVP with its COCA rank, and the quiz level, like 'reside is out of the EVP (rank 5,333); the quiz is A1'")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R005")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldGiveAsEvidenceTheSentenceTheWordItsLevelOrOutOfTheEVPWithItsCOCARankAndTheQuizLevelLikeResideIsOutOfTheEVPRank5333TheQuizIsA1(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -164,6 +182,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should score 1 a quiz without off-level words, leaving it no finding, and below 1 a quiz with at least one")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R005")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldScore1AQuizWithoutOfflevelWordsLeavingItNoFindingAndBelow1AQuizWithAtLeastOne(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -173,6 +192,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should leave a single finding for a word repeated in the sentence, identified by its lemma and part of speech")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R005")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldLeaveASingleFindingForAWordRepeatedInTheSentenceIdentifiedByItsLemmaAndPartOfSpeech(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -182,6 +202,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should keep the quiz level and its off-level words in the typed diagnosis of the quiz, with the same data as its findings")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R005")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldKeepTheQuizLevelAndItsOfflevelWordsInTheTypedDiagnosisOfTheQuizWithTheSameDataAsItsFindings(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -191,6 +212,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should measure a multiple choice quiz like a CLOZE one, on the sentence lemma-absence measures with its correct option in the gap")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R005")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldMeasureAMultipleChoiceQuizLikeACLOZEOneOnTheSentenceLemmaabsenceMeasuresWithItsCorrectOptionInTheGap(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -200,6 +222,7 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should write only the off-level-words score on the quizzes it evaluates and never touch the score or diagnosis of another analyzer")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
+    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldWriteOnlyTheOfflevelwordsScoreOnTheQuizzesItEvaluatesAndNeverTouchTheScoreOrDiagnosisOfAnotherAnalyzer(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.minitheoryengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultMiniTheorySubjectBuilderTest {
     @DisplayName("should build one content per topic with cefrLevel, topic, the topic's instructions, its mini-theories and its exercises, in that order and nothing else")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldBuildOneContentPerTopicWithCefrLevelTopicTheTopicsInstructionsItsMinitheoriesAndItsExercisesInThatOrderAndNothingElse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultMiniTheorySubjectBuilderTest {
     @DisplayName("should list each distinct mini-theory once, numbered by first appearance with the exercises that show it, as the they/them one of 16 exercises of «Sujeto u objeto» and the she/her one of 12")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldListEachDistinctMinitheoryOnceNumberedByFirstAppearanceWithTheExercisesThatShowItAsTheTheythemOneOf16ExercisesOfSujetoUObjetoAndTheSheherOneOf12(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultMiniTheorySubjectBuilderTest {
     @DisplayName("should number the exercises in topic order, each with its statement, hint and accepted answers, or its options with the correct one marked")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldNumberTheExercisesInTopicOrderEachWithItsStatementHintAndAcceptedAnswersOrItsOptionsWithTheCorrectOneMarked(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultMiniTheorySubjectBuilderTest {
     @DisplayName("should build the same content when only a translation or an audio of the topic changes, and a different one when a mini-theory or an exercise changes")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
+    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldBuildTheSameContentWhenOnlyATranslationOrAnAudioOfTheTopicChangesAndADifferentOneWhenAMinitheoryOrAnExerciseChanges(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
