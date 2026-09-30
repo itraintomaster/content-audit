@@ -19,22 +19,23 @@ MILESTONE.children → TOPIC.ruleIds, que tiene que coincidir con
 course.knowledgeIds (si no coincide, aborta). Los knowledges que no están en el
 curso (p. ej. los fundidos) y sus ejercicios quedan sólo en los exports planos.
 
-Los documentos se escriben completos, sin convertir nada: los campos que el
-modelo Java no conoce (form.items y form.selection de la opción múltiple,
-formCloze, los respaldos *Antes*) se conservan después de los conocidos. El
-formato es el del writer de Jackson, así que un load->save del repositorio no
-reformatea los archivos. Los ejercicios de cada knowledge van ordenados por _id.
+Los documentos se escriben completos, sin convertir nada: la opción múltiple
+(form.selection y form.items) va después de form.sentences, y los campos que el
+modelo no interpreta (formCloze, los respaldos *Antes*) después de los conocidos.
+El formato es el del writer de Jackson, así que un load->save del repositorio
+devuelve los archivos byte a byte. Los ejercicios de cada knowledge van
+ordenados por _id.
 
 Dos datos son de content-audit y no están en producción; se arrastran del
 árbol anterior (db/english-course) por id:
 
   - _knowledge.json.sentenceMode (FEAT-SMODE).
-  - form.sentences de los ejercicios CLOZE (F-DBSENT): si el backup ya la trae
-    y el contenido no cambió, queda la del backup; si no la trae y el
-    contenido (textos + respuestas) es igual al del árbol anterior, se copia
-    del árbol anterior; si el contenido cambió, se deriva con el mismo código
-    que usa content-audit al aplicar una corrección (DerivePlainSentences.java).
-    La opción múltiple no se toca: el modelo Java todavía no la conoce.
+  - form.sentences (F-DBSENT): si el árbol anterior tiene el mismo contenido
+    (textos, respuestas y, en la opción múltiple, sus opciones), se copia de
+    ahí; si no, se deriva con el mismo código que usa content-audit
+    (DerivePlainSentences.java), y la del backup queda sólo si dice lo mismo.
+    La oración de un ejercicio de opción múltiple es el enunciado con la opción
+    correcta en el hueco, tal cual.
 
 Uso:
   python3 scripts/import_backup.py <dir-del-backup>            # escribe db/
@@ -72,7 +73,9 @@ KNOWLEDGE_KEYS = ("_id", "code", "isRule", "kind", "label", "oldId", "parentId",
 QUIZ_KEYS = ("_id", "id", "kind", "knowledgeId", "title", "instructions", "translation", "theoryId", "topicName",
              "difficulty", "retries", "noScoreRetries", "code", "audioUrl", "imageUrl", "answerAudioUrl",
              "answerImageUrl", "miniTheory", "successMessage", "form")
-FORM_KEYS = ("kind", "incidence", "label", "name", "sentenceParts", "sentences")
+# Mismo orden que escribe FileSystemCourseRepository.formToJson; QUIZ_KEYS y estos se
+# mantienen a mano en sincronía con QUIZ_KNOWN_KEYS/FORM_KNOWN_KEYS de ese archivo.
+FORM_KEYS = ("kind", "incidence", "label", "name", "sentenceParts", "sentences", "selection", "items")
 PART_KEYS = ("kind", "text", "options")
 
 
@@ -157,14 +160,37 @@ def slugify(label):
     return s.strip("-")
 
 
+MEASURED_KINDS = ("CLOZE", "MULTIPLE_CHOICE")
+
+
+def number(value):
+    """Valor numérico de un campo en JSON extendido ({"$numberDouble": "1.0"}) o plano."""
+    if isinstance(value, dict):
+        for key in ("$numberDouble", "$numberInt", "$numberLong", "$numberDecimal"):
+            if key in value:
+                return float(value[key])
+        return 0.0
+    return float(value or 0)
+
+
+def choice_items(form):
+    """Las opciones de un ejercicio de opción múltiple, como las lee DerivePlainSentences.java."""
+    return [{"id": item.get("id"), "label": item.get("label"), "incidence": number(item.get("incidence"))}
+            for item in (form or {}).get("items") or []]
+
+
 def content_signature(form):
-    """Lo que se lee y se responde: textos fijos y respuestas aceptadas de cada hueco."""
+    """Lo que se lee y se responde: textos fijos, respuestas aceptadas de cada hueco y, en la
+    opción múltiple, sus opciones y cuál es la correcta."""
+    form = form or {}
     sig = []
-    for part in (form or {}).get("sentenceParts") or []:
+    for part in form.get("sentenceParts") or []:
         if part.get("kind") == "TEXT":
             sig.append(("T", part.get("text")))
         else:
             sig.append(("C", tuple(part.get("options") or ())))
+    if form.get("kind") == "MULTIPLE_CHOICE":
+        sig.append(("MC", tuple((item["label"], item["incidence"] > 0) for item in choice_items(form))))
     return sig
 
 
@@ -247,11 +273,20 @@ def build_live_course(courses, knowledges, quizzes):
 # ---------------------------------------------------------------------------
 
 def audit_cli_classpath():
+    """El classpath de audit-cli.sh, con cada target/classes apuntando a este repo.
+
+    audit-cli.sh fija rutas absolutas al checkout principal; desde otro checkout (un worktree)
+    eso derivaría con el código de main y no con el de acá.
+    """
     with open(os.path.join(REPO, "audit-cli.sh"), encoding="utf-8") as f:
         match = re.search(r'-cp "([^"]+)"', f.read())
     if not match:
         sys.exit("No encontré el classpath en audit-cli.sh.")
-    return match.group(1)
+    entries = []
+    for entry in match.group(1).split(":"):
+        module = re.match(r"^.*/([^/]+)/target/classes$", entry)
+        entries.append(os.path.join(REPO, module.group(1), "target", "classes") if module else entry)
+    return ":".join(entries)
 
 
 def derive_sentences(items):
@@ -277,7 +312,9 @@ def _squeeze(sentences):
 
 
 def assign_sentences(milestones, prev):
-    """Decide form.sentences de cada CLOZE. Devuelve ({quiz_id: oraciones}, estadística, avisos, ids derivados).
+    """Decide form.sentences de cada CLOZE y de cada opción múltiple.
+
+    Devuelve ({quiz_id: oraciones}, estadística, avisos, ids derivados).
 
     La fuente de form.sentences es content-audit: si el árbol anterior tiene el mismo contenido,
     manda su oración. Si no, se deriva; la del backup se conserva sólo si dice lo mismo que la
@@ -292,7 +329,7 @@ def assign_sentences(milestones, prev):
                 mode = prev["sentence_mode"].get(oid(k["_id"]))
                 for q in qs:
                     form = q.get("form") or {}
-                    if form.get("kind") != "CLOZE":
+                    if form.get("kind") not in MEASURED_KINDS:
                         stats["sin form.sentences (%s)" % form.get("kind")] += 1
                         continue
                     prev_sig, prev_sentences = prev["quizzes"].get(q["id"], (None, None))
@@ -305,7 +342,11 @@ def assign_sentences(milestones, prev):
                         else:
                             stats["del árbol anterior (la del backup está desactualizada)"] += 1
                         continue
-                    to_derive.append({"id": q["id"], "mode": mode, "sentenceParts": form.get("sentenceParts") or []})
+                    item = {"id": q["id"], "mode": mode, "kind": form.get("kind"),
+                            "sentenceParts": form.get("sentenceParts") or []}
+                    if form.get("kind") == "MULTIPLE_CHOICE":
+                        item["items"] = choice_items(form)
+                    to_derive.append(item)
                     if form.get("sentences"):
                         backup_sentences[q["id"]] = form["sentences"]
     derived = derive_sentences(to_derive)
@@ -474,8 +515,8 @@ def verify(db_dir, backup_dir):
                         # El backup trae form.sentences que no corresponde a sus propias partes
                         # (se corrigieron las respuestas sin recalcularla): queda la derivada.
                         counts["form.sentences del backup desactualizada (reemplazada)"] += 1
-                    if q["form"].get("kind") == "CLOZE" and not q["form"].get("sentences"):
-                        problems.append("%s: CLOZE sin form.sentences" % q["id"])
+                    if q["form"].get("kind") in MEASURED_KINDS and not q["form"].get("sentences"):
+                        problems.append("%s: %s sin form.sentences" % (q["id"], q["form"].get("kind")))
 
     live = [oid(x) for x in course["knowledgeIds"]]
     if sorted(seen_knowledges) != sorted(live):

@@ -125,16 +125,19 @@ public class CourseToAuditableMapper implements CourseMapper {
         // Use canonical sentence (index 0) as the key for the NLP token cache
         String canonicalSentence = sentences.isEmpty() ? "" : sentences.get(0);
         List<NlpToken> tokens = tokenCache.getOrDefault(canonicalSentence, List.of());
-        // FEAT-RCLAQS R001/R002: quizSentence is derived in the same pass; null only when
-        // the form has no sentenceParts (quizSentenceByQuiz will not contain an entry for it).
+        // FEAT-RCLAQS R001/R002: quizSentence is derived in the same pass; null when the form
+        // has no sentenceParts (no entry in quizSentenceByQuiz) and for a multiple-choice form,
+        // which has no DSL representation.
         String quizSentence = quizSentenceByQuiz.get(qt);
-        // F-QINST-R009: instructions and sentenceParts are copied verbatim from the entity --
-        // never re-derived by parsing the quizSentence DSL. QuizSentenceParser.buildForm()
-        // fabricates an empty FormEntity, which would mutilate exactly the content the
-        // fingerprint protects (see FEAT-RPRES known bug).
+        // F-QINST-R009: instructions, sentenceParts and the multiple-choice options are copied
+        // verbatim from the entity -- never re-derived by parsing the quizSentence DSL.
+        // QuizSentenceParser.buildForm() fabricates an empty FormEntity, which would mutilate
+        // exactly the content the fingerprint protects (see FEAT-RPRES known bug).
         FormEntity form = qt.getForm();
         List<SentencePartEntity> sentenceParts = form != null ? form.getSentenceParts() : null;
-        return new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, qt.getInstructions(), sentenceParts);
+        AuditableQuiz quiz = new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, qt.getInstructions(), sentenceParts);
+        quiz.setMultipleChoice(form != null ? form.getMultipleChoice() : null);
+        return quiz;
     }
 
     private List<String> deriveSentences(QuizTemplateEntity qt) {
@@ -154,7 +157,9 @@ public class CourseToAuditableMapper implements CourseMapper {
 
         // FEAT-RCLAQS R002: serialize() produces the DSL in the same single invocation window.
         // QuizSentenceSerializationException propagates unchecked — the quiz must not enter
-        // the AuditReport if sentenceParts are invalid (FEAT-RCLAQS R004 fail-fast).
+        // the AuditReport if sentenceParts are invalid (FEAT-RCLAQS R004 fail-fast). A
+        // multiple-choice form serializes to null: it has no DSL, and its optionless gap is
+        // not an invalid CLOZE.
         String dsl = quizSentenceConverter.serialize(form);
         quizSentenceByQuiz.put(qt, dsl);
 

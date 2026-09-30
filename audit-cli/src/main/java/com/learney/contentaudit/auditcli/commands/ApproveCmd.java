@@ -113,6 +113,12 @@ final class ApproveCmd implements ApproveCommand, Callable<Integer> {
                 System.err.println(msg);
                 yield 1;
             }
+            case MULTIPLE_CHOICE_UNSUPPORTED, PRESERVATION_VIOLATED -> {
+                System.err.println(outcome.getErrorMessage() != null
+                        ? outcome.getErrorMessage()
+                        : "Proposal '" + proposalId + "' was not applied: " + outcome.getKind());
+                yield 1;
+            }
             default -> {
                 System.err.println("Unexpected outcome: " + outcome.getKind());
                 yield 1;

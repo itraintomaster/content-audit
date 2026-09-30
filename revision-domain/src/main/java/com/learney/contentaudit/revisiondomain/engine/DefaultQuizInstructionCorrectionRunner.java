@@ -90,6 +90,7 @@ class DefaultQuizInstructionCorrectionRunner implements QuizInstructionCorrectio
         int failed = 0;
         int proposedWithUnmetCriteria = 0;
         int proposedOutOfLengthRange = 0;
+        int multipleChoiceUnsupported = 0;
         List<String> notAttempted = new ArrayList<>();
         List<QuizInstructionTaskOutcome> outcomes = new ArrayList<>();
         // F-QICOR / DOUBT-TAREA-CAIDA opcion B: a diagnosis-stale task is marked STALE
@@ -145,6 +146,16 @@ class DefaultQuizInstructionCorrectionRunner implements QuizInstructionCorrectio
                 outcomes.add(new QuizInstructionTaskOutcome(task.getId(), task.getNodeId(),
                         QuizInstructionTaskOutcomeKind.DIAGNOSIS_STALE, List.of(),
                         outcome.getErrorMessage(), null, 0, null, false));
+            } else if (kind == RevisionOutcomeKind.MULTIPLE_CHOICE_UNSUPPORTED) {
+                // The engine already persisted SKIPPED on its own copy of the plan. It is
+                // recorded here too because this runner saves its own copy at the end, which
+                // would otherwise put the task back to PENDING -- and every later run would
+                // spend a slot on it again.
+                multipleChoiceUnsupported++;
+                statusUpdates.put(task.getId(), RefinementTaskStatus.SKIPPED);
+                outcomes.add(new QuizInstructionTaskOutcome(task.getId(), task.getNodeId(),
+                        QuizInstructionTaskOutcomeKind.MULTIPLE_CHOICE_UNSUPPORTED, List.of(),
+                        outcome.getErrorMessage(), null, 0, null, false));
             } else if (kind == RevisionOutcomeKind.NO_ACCEPTABLE_CANDIDATE) {
                 notCorrected++;
                 List<CorrectionCriterion> failedCriteria =
@@ -191,7 +202,8 @@ class DefaultQuizInstructionCorrectionRunner implements QuizInstructionCorrectio
                 notAttempted,
                 outcomes,
                 proposedWithUnmetCriteria,
-                proposedOutOfLengthRange);
+                proposedOutOfLengthRange,
+                multipleChoiceUnsupported);
 
         String runId = runStore.save(report);
         report.setRunId(runId);

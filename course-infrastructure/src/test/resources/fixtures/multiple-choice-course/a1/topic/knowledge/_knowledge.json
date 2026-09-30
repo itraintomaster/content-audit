@@ -1,0 +1,15 @@
+{
+  "_id" : {
+    "$oid" : "400000000000000000000001"
+  },
+  "code" : "400000000000000000000001",
+  "isRule" : true,
+  "kind" : "KNOWLEDGE",
+  "label" : "Knowledge",
+  "oldId" : "k-old",
+  "parentId" : {
+    "$oid" : "300000000000000000000001"
+  },
+  "instructions" : "Elige la opcion correcta.",
+  "sentenceMode" : "FILL"
+}

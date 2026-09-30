@@ -1,6 +1,7 @@
 package com.learney.contentaudit.coursedomain.quizsentenceengine;
 
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.FormKind;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceSerializationException;
@@ -36,11 +37,18 @@ class QuizSentenceSerializer {
     /**
      * Serializes {@code form.sentenceParts} to a canonical quizSentence DSL string.
      *
+     * <p>A multiple-choice form has no DSL representation: the grammar encodes a gap with
+     * equally accepted answers, not a fixed set of choices with one correct option. Its gap
+     * carries no options, so serializing it as a CLOZE would fail R004; it returns {@code null}.
+     *
      * @param form the FormEntity to serialize
-     * @return the canonical quizSentence string
+     * @return the canonical quizSentence string, or {@code null} for a multiple-choice form
      * @throws QuizSentenceSerializationException if the sentenceParts are invalid
      */
     String serialize(FormEntity form) {
+        if (form != null && form.formKind() == FormKind.MULTIPLE_CHOICE) {
+            return null;
+        }
         if (form == null || form.getSentenceParts() == null || form.getSentenceParts().isEmpty()) {
             return "";
         }

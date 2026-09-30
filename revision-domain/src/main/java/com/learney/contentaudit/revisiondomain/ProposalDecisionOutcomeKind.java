@@ -17,5 +17,7 @@ public enum ProposalDecisionOutcomeKind {
 
     ALREADY_DECIDED,
 
-    PRESERVATION_VIOLATED
+    PRESERVATION_VIOLATED,
+
+    MULTIPLE_CHOICE_UNSUPPORTED
 }

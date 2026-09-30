@@ -368,6 +368,15 @@ class ReviseCmd implements ReviseCommand, Callable<Integer> {
                 }
                 yield 1;
             }
+            case MULTIPLE_CHOICE_UNSUPPORTED -> {
+                // Policy, not failure: content-audit measures multiple-choice quizzes but does
+                // not correct them. No model was consulted and nothing was written but the
+                // task's SKIPPED status.
+                System.out.println("[MC] " + (outcome.getErrorMessage() != null
+                        ? outcome.getErrorMessage()
+                        : "El ejercicio de la tarea " + taskId + " es de opcion multiple: no se corrige."));
+                yield 0;
+            }
         };
     }
 

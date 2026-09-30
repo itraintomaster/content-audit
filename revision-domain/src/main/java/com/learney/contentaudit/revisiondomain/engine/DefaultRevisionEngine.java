@@ -10,6 +10,7 @@ import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.coursedomain.FormKind;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
@@ -185,6 +186,25 @@ class DefaultRevisionEngine implements RevisionEngine {
                     "Element not found in course: " + task.getNodeId());
         }
         CourseElementSnapshot snapshot = snapshotOpt.get();
+
+        // Step 3b: content-audit measures multiple-choice quizzes but does not correct them.
+        // Rejected here -- for every diagnosis kind and every entry path -- before any Reviser,
+        // and so any generative model, runs. Nothing is written but the plan: the task becomes
+        // SKIPPED so batch runs stop spending a slot on it. Same idiom as the STALE transition
+        // for DIAGNOSIS_NOT_SUSTAINED below.
+        if (snapshot.getQuiz() != null && snapshot.getQuiz().formKind() == FormKind.MULTIPLE_CHOICE) {
+            task.setStatus(RefinementTaskStatus.SKIPPED);
+            List<RefinementTask> skippedTasks = new ArrayList<>(plan.getTasks());
+            int skippedTaskIndex = skippedTasks.indexOf(task);
+            if (skippedTaskIndex >= 0) {
+                skippedTasks.set(skippedTaskIndex, task);
+            }
+            refinementPlanStore.save(new RefinementPlan(
+                    plan.getId(), plan.getSourceAuditId(), plan.getCreatedAt(), skippedTasks));
+            return new RevisionOutcome(RevisionOutcomeKind.MULTIPLE_CHOICE_UNSUPPORTED, null,
+                    "El ejercicio " + task.getNodeId() + " es de opcion multiple: content-audit lo mide"
+                            + " pero no lo corrige. La tarea " + taskId + " quedo SKIPPED.");
+        }
 
         // Step 4: Check reviser handles this diagnosis kind
         if (!reviser.handles(task.getDiagnosisKind())) {

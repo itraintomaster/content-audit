@@ -6,11 +6,15 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
 import com.learney.contentaudit.auditdomain.AuditableMilestone;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -40,7 +44,7 @@ class DefaultQuizInstructionSubjectBuilder implements QuizInstructionSubjectBuil
         content.put("topic", knowledge != null ? knowledge.getTopicName() : null);
         content.put("title", knowledge != null ? knowledge.getLabel() : null);
         content.put("instructions", knowledge != null ? knowledge.getInstructions() : null);
-        content.put("quiz", serializeQuiz(quiz));
+        content.put("quiz", serializeQuiz(quiz.getSentenceParts(), quiz.getMultipleChoice()));
 
         return new EvaluationSubject(quiz.getId(), content);
     }
@@ -52,16 +56,57 @@ class DefaultQuizInstructionSubjectBuilder implements QuizInstructionSubjectBuil
      * lets a reprocessed course reuse a verdict (R009) instead of always
      * missing the cache.
      *
-     * <p>Delegates to {@link #serializeParts(List)} -- the single place the
-     * quiz's sentence parts are ever rendered, shared with {@link
-     * #buildFromView(QuizInstructionSubjectView)} -- so a future change to the
-     * render (e.g. folding in {@code form.sentences}) is one edit, not two that
-     * can silently drift apart. This delegation changes nothing about what gets
-     * returned: both bodies were character-for-character identical before this
-     * change, so no fingerprint moves.
+     * <p>The single place a quiz is ever rendered, shared by {@link #build(AuditNode)}
+     * and {@link #buildFromView(QuizInstructionSubjectView)} -- so a future change to
+     * the render (e.g. folding in {@code form.sentences}) is one edit, not two that
+     * can silently drift apart. A multiple-choice quiz renders its options; every other
+     * quiz renders through {@link #serializeParts(List)}, whose output is
+     * character-for-character what it always was, so no fingerprint moves.
      */
-    private static String serializeQuiz(AuditableQuiz quiz) {
-        return serializeParts(quiz.getSentenceParts());
+    private static String serializeQuiz(List<SentencePartEntity> parts, MultipleChoiceEntity multipleChoice) {
+        if (multipleChoice != null) {
+            return serializeMultipleChoiceParts(parts, multipleChoice);
+        }
+        return serializeParts(parts);
+    }
+
+    /**
+     * The render of a multiple-choice quiz: every part exactly as {@link #serializeParts(List)}
+     * renders it, except the gap, which becomes
+     * {@code MULTIPLE_CHOICE:<text>:<options in display order>|} with the correct option
+     * suffixed {@code [CORRECT]} -- e.g. {@code TEXT:She:|MULTIPLE_CHOICE::am,is[CORRECT],are|}.
+     *
+     * <p>Only multiple-choice quizzes reach this method, so the CLOZE render -- and every
+     * fingerprint the verdicts already paid for depend on -- never moves. The options enter the
+     * fingerprint: two quizzes that differ only in which option is correct get different verdicts.
+     */
+    private static String serializeMultipleChoiceParts(List<SentencePartEntity> parts,
+            MultipleChoiceEntity multipleChoice) {
+        StringBuilder builder = new StringBuilder();
+        if (parts != null) {
+            for (SentencePartEntity part : parts) {
+                if (part.getKind() == SentencePartKind.CLOZE) {
+                    builder.append("MULTIPLE_CHOICE:")
+                            .append(part.getText())
+                            .append(':')
+                            .append(renderChoices(multipleChoice))
+                            .append('|');
+                } else {
+                    builder.append(serializeParts(List.of(part)));
+                }
+            }
+        }
+        return builder.toString();
+    }
+
+    private static String renderChoices(MultipleChoiceEntity multipleChoice) {
+        List<MultipleChoiceItemEntity> items = multipleChoice.getItems();
+        if (items == null) {
+            return "";
+        }
+        return items.stream()
+                .map(item -> item.getIncidence() > 0.0 ? item.getLabel() + "[CORRECT]" : item.getLabel())
+                .collect(Collectors.joining(","));
     }
 
     /**
@@ -69,10 +114,9 @@ class DefaultQuizInstructionSubjectBuilder implements QuizInstructionSubjectBuil
      * {@link #build(AuditNode)} builds, but from a {@link QuizInstructionSubjectView}
      * assembled around a candidate or a revalidated quiz instead of a live
      * {@link AuditNode}. The content map is built with the exact same keys, in
-     * the exact same order, and the sentence parts are rendered through the
-     * same {@link #serializeParts(List)} that {@link #serializeQuiz(AuditableQuiz)}
-     * delegates to, so the fingerprint that the 1329 verdicts already
-     * registered depend on never moves.
+     * the exact same order, and the quiz is rendered through the same {@link
+     * #serializeQuiz(List, MultipleChoiceEntity)}, so the fingerprint that the
+     * 1329 verdicts already registered depend on never moves.
      *
      * <p>{@code view.getSubjectRef()} never enters the content map, mirroring
      * that {@code quiz.getId()} never enters it either in {@link #build(AuditNode)}:
@@ -85,18 +129,17 @@ class DefaultQuizInstructionSubjectBuilder implements QuizInstructionSubjectBuil
         content.put("topic", view.getTopic());
         content.put("title", view.getTitle());
         content.put("instructions", view.getInstructions());
-        content.put("quiz", serializeParts(view.getSentenceParts()));
+        content.put("quiz", serializeQuiz(view.getSentenceParts(), view.getMultipleChoice()));
 
         return new EvaluationSubject(view.getSubjectRef(), content);
     }
 
     /**
-     * The single place the quiz's sentence parts are ever rendered into the
-     * fingerprinted string, in order, with every accepted option of every
-     * cloze. Both {@link #serializeQuiz(AuditableQuiz)} (the live-{@link
-     * AuditNode} path) and {@link #buildFromView(QuizInstructionSubjectView)}
-     * (the candidate/revalidation path) call this same method with the same
-     * kind of {@code List<SentencePartEntity>}, so the render can only ever
+     * The render of the sentence parts, in order, with every accepted option of
+     * every cloze. Both {@link #build(AuditNode)} (the live-{@link AuditNode}
+     * path) and {@link #buildFromView(QuizInstructionSubjectView)} (the
+     * candidate/revalidation path) reach it through {@link
+     * #serializeQuiz(List, MultipleChoiceEntity)}, so the render can only ever
      * change in one place -- there is no second copy of this algorithm to
      * forget to update.
      */

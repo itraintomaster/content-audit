@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import java.util.List;
 import java.util.Objects;
@@ -27,6 +28,9 @@ public class AuditableQuiz implements AuditableEntity {
     private String instructions;
 
     private List<SentencePartEntity> sentenceParts;
+
+    // The options of a multiple-choice quiz, copied verbatim from its form; null otherwise.
+    private MultipleChoiceEntity multipleChoice;
 
     public AuditableQuiz() {
     }
@@ -117,6 +121,14 @@ public class AuditableQuiz implements AuditableEntity {
         this.sentenceParts = sentenceParts;
     }
 
+    public MultipleChoiceEntity getMultipleChoice() {
+        return this.multipleChoice;
+    }
+
+    public void setMultipleChoice(MultipleChoiceEntity multipleChoice) {
+        this.multipleChoice = multipleChoice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,11 +142,12 @@ public class AuditableQuiz implements AuditableEntity {
                     && Objects.equals(this.sentences, that.sentences)
                     && Objects.equals(this.quizSentence, that.quizSentence)
                     && Objects.equals(this.instructions, that.instructions)
-                    && Objects.equals(this.sentenceParts, that.sentenceParts);
+                    && Objects.equals(this.sentenceParts, that.sentenceParts)
+                    && Objects.equals(this.multipleChoice, that.multipleChoice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tokens, id, label, code, translation, sentences, quizSentence, instructions, sentenceParts);
+        return Objects.hash(tokens, id, label, code, translation, sentences, quizSentence, instructions, sentenceParts, multipleChoice);
     }
 }

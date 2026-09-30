@@ -314,14 +314,11 @@ class DefaultCourseElementLocator implements CourseElementLocator {
                     if (knowledgeId.equals(knowledge.getId()) && knowledge.getQuizTemplates() != null) {
                         List<QuizTemplateEntity> alignedQuizzes = new ArrayList<>();
                         for (QuizTemplateEntity quiz : knowledge.getQuizTemplates()) {
-                            QuizTemplateEntity alignedQuiz = new QuizTemplateEntity(
-                                    quiz.getId(), quiz.getOidId(), quiz.getKind(), quiz.getKnowledgeId(),
-                                    knowledge.getLabel(), quiz.getInstructions(), quiz.getTranslation(),
-                                    quiz.getTheoryId(), quiz.getTopicName(), quiz.getForm(),
-                                    quiz.getDifficulty(), quiz.getRetries(), quiz.getNoScoreRetries(),
-                                    quiz.getCode(), quiz.getAudioUrl(), quiz.getImageUrl(),
-                                    quiz.getAnswerAudioUrl(), quiz.getAnswerImageUrl(), quiz.getMiniTheory(),
-                                    quiz.getSuccessMessage(), quiz.getSentences());
+                            // Copy everything, change only the title: a multiple-choice sibling
+                            // keeps its options and every quiz keeps the fields the model does
+                            // not interpret.
+                            QuizTemplateEntity alignedQuiz = new QuizTemplateEntity(quiz);
+                            alignedQuiz.setTitle(knowledge.getLabel());
                             alignedQuizzes.add(alignedQuiz);
                         }
                         KnowledgeEntity updatedKnowledge = new KnowledgeEntity(

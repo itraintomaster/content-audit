@@ -1,0 +1,196 @@
+[ {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fa5"
+  },
+  "id" : "67fab6d59930102295341fa5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "400000000000000000000001"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "Hace calor adentro.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.17.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Elige $am$, $is$ o $are$ según el sujeto, y usa $short forms$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) hot inside.",
+      "options" : null
+    } ],
+    "sentences" : [ "It's hot inside." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
+  "miniTheoryAntesDeShortForms" : "Elegí $am$, $is$ o $are$ según el sujeto, y usá la forma corta."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c7f"
+  },
+  "id" : "67fab6d59930102295342c7f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "400000000000000000000001"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Normalmente comen pizza el fin de semana.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Weekend$ es especial: acepta $on$ (como día) y también $at$ (uso británico).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They usually eat pizza",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the weekend.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They usually eat pizza"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at|on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the weekend.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They usually eat pizza",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the weekend.",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  }
+} ]

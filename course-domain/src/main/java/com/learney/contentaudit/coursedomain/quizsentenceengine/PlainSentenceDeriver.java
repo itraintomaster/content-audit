@@ -1,6 +1,8 @@
 package com.learney.contentaudit.coursedomain.quizsentenceengine;
 
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.FormKind;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
@@ -80,7 +82,10 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
      * @return ordered list; index 0 is the canonical variant
      */
     List<String> derive(FormEntity form, SentenceMode mode) {
-        if (mode != SentenceMode.REWRITE) {
+        // A multiple-choice quiz ignores the mode: the student reads the whole sentence and picks
+        // one option for the gap, so there is no source sentence to leave out.
+        boolean multipleChoice = form != null && form.formKind() == FormKind.MULTIPLE_CHOICE;
+        if (mode != SentenceMode.REWRITE || multipleChoice) {
             // FILL or null → full-sentence, mode-blind derivation (legacy behaviour)
             // Apply post-processing to remove spaces before punctuation that arise from hint-stripping
             return removeSpaceBeforePunctuation(derive(form));
@@ -162,6 +167,9 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
         if (form == null || form.getSentenceParts() == null || form.getSentenceParts().isEmpty()) {
             return List.of();
         }
+        if (form.formKind() == FormKind.MULTIPLE_CHOICE) {
+            return deriveMultipleChoice(form);
+        }
 
         List<SentencePartEntity> parts = form.getSentenceParts();
 
@@ -220,6 +228,35 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
         return result;
     }
 
+    /**
+     * The measured sentence of a multiple-choice form: the stem with the correct option's label
+     * in the gap, as-is (no case normalization). One sentence only — there is a single correct
+     * option, and its label is literal (a {@code |} in it would not mean alternatives).
+     *
+     * <p>Assembled by the same loop as a CLOZE sentence ({@link #assemble}), so a multiple-choice
+     * quiz measures exactly as the CLOZE whose only accepted answer is its correct option.
+     *
+     * @throws QuizSentenceSerializationException if the form has no single gap or no correct option
+     */
+    private List<String> deriveMultipleChoice(FormEntity form) {
+        List<SentencePartEntity> parts = form.getSentenceParts();
+        long gaps = parts.stream().filter(p -> p.getKind() == SentencePartKind.CLOZE).count();
+        if (gaps != 1) {
+            throw new QuizSentenceSerializationException(
+                    "Un ejercicio de opcion multiple tiene que tener exactamente un hueco; tiene " + gaps,
+                    "gaps");
+        }
+        MultipleChoiceItemEntity correct = form.getMultipleChoice() == null
+                ? null
+                : form.getMultipleChoice().correctItem().orElse(null);
+        if (correct == null || correct.getLabel() == null) {
+            throw new QuizSentenceSerializationException(
+                    "El ejercicio de opcion multiple no tiene una opcion correcta (incidence > 0)",
+                    "items");
+        }
+        return List.of(assemble(parts, (gap, ordinal) -> correct.getLabel()));
+    }
+
     // -------------------------------------------------------------------------
     // Combinatorics helpers
     // -------------------------------------------------------------------------
@@ -263,8 +300,23 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
      * @param indices  for each CLOZE (in order of appearance), the chosen variant index
      */
     private String buildSentenceFromParts(List<SentencePartEntity> parts, int[] indices) {
+        return assemble(parts, (gap, ordinal) -> flattenVariants(gap.getOptions()).get(indices[ordinal]));
+    }
+
+    /** What goes in a gap: the CLOZE part and its position among the form's gaps (0-based). */
+    @FunctionalInterface
+    private interface GapFiller {
+        String fill(SentencePartEntity gap, int ordinal);
+    }
+
+    /**
+     * The one sentence-assembly loop, shared by CLOZE and multiple-choice forms: TEXT parts
+     * with their hints stripped, each gap filled by {@code gapFiller}, one space between tokens,
+     * whitespace normalized.
+     */
+    private String assemble(List<SentencePartEntity> parts, GapFiller gapFiller) {
         StringBuilder sb = new StringBuilder();
-        int clozeIdx = 0;
+        int gapOrdinal = 0;
         boolean firstTokenEmitted = false;
 
         for (SentencePartEntity part : parts) {
@@ -277,9 +329,7 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
                 // Strip hints (R019)
                 token = HINT_PATTERN.matcher(text).replaceAll("");
             } else if (part.getKind() == SentencePartKind.CLOZE) {
-                List<String> flat = flattenVariants(part.getOptions());
-                token = flat.get(indices[clozeIdx]);
-                clozeIdx++;
+                token = gapFiller.fill(part, gapOrdinal++);
             } else {
                 continue;
             }

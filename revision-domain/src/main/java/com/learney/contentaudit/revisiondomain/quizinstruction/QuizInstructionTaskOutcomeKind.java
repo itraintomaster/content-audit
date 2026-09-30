@@ -15,5 +15,7 @@ public enum QuizInstructionTaskOutcomeKind {
 
     NOT_ATTEMPTED,
 
-    FAILED
+    FAILED,
+
+    MULTIPLE_CHOICE_UNSUPPORTED
 }

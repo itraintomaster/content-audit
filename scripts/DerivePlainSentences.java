@@ -2,6 +2,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
@@ -20,7 +22,9 @@ import java.util.List;
  *
  *   java -cp "$CP" scripts/DerivePlainSentences.java entrada.json salida.json
  *
- * Entrada: [{"id": "...", "mode": "FILL"|"REWRITE"|null, "sentenceParts": [{kind, text, options}]}]
+ * Entrada: [{"id": "...", "mode": "FILL"|"REWRITE"|null, "kind": "CLOZE"|"MULTIPLE_CHOICE",
+ *            "sentenceParts": [{kind, text, options}], "items": [{id, label, incidence}]}]
+ *          (kind e items son opcionales; un MULTIPLE_CHOICE sin items falla con su mensaje)
  * Salida:  {"sentences": {"<id>": ["..."]}, "errors": {"<id>": "mensaje"}}
  */
 public class DerivePlainSentences {
@@ -44,7 +48,11 @@ public class DerivePlainSentences {
                 SentenceMode mode = item.hasNonNull("mode")
                         ? SentenceMode.valueOf(item.get("mode").asText())
                         : null;
-                FormEntity form = new FormEntity("CLOZE", 1.0, "", "", parts(item.get("sentenceParts")));
+                String kind = item.hasNonNull("kind") ? item.get("kind").asText() : "CLOZE";
+                FormEntity form = new FormEntity(kind, 1.0, "", "", parts(item.get("sentenceParts")));
+                if (item.hasNonNull("items")) {
+                    form.setMultipleChoice(new MultipleChoiceEntity("SINGLE", items(item.get("items"))));
+                }
                 List<String> derived = converter.toPlainSentences(form, mode);
                 sentences.set(id, mapper.valueToTree(derived));
             } catch (RuntimeException e) {
@@ -52,6 +60,17 @@ public class DerivePlainSentences {
             }
         }
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(args[1]), output);
+    }
+
+    private static List<MultipleChoiceItemEntity> items(JsonNode array) {
+        List<MultipleChoiceItemEntity> items = new ArrayList<>();
+        for (JsonNode item : array) {
+            items.add(new MultipleChoiceItemEntity(
+                    item.hasNonNull("id") ? item.get("id").asText() : null,
+                    item.path("incidence").asDouble(0.0),
+                    item.hasNonNull("label") ? item.get("label").asText() : null));
+        }
+        return items;
     }
 
     private static List<SentencePartEntity> parts(JsonNode array) {

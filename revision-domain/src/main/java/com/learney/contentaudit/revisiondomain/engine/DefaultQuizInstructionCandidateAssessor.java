@@ -3,6 +3,7 @@ import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.coursedomain.FormKind;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
@@ -165,6 +166,13 @@ public DefaultQuizInstructionCandidateAssessor(CandidateAssessor assessor, Lemma
                 .snapshot(course, task.getNodeTarget(), task.getNodeId())
                 .orElseThrow(() -> new CandidateAssessmentUnavailableException(taskId,
                         "el ejercicio de la tarea no se encontro en el curso"));
+        // The same refusal as revise and approve: a multiple-choice quiz is measured but never
+        // corrected, so there is no candidate of it to judge -- and judging one would read the
+        // gap's answer off the original's correct option, not off the candidate.
+        if (original.getQuiz() != null && original.getQuiz().formKind() == FormKind.MULTIPLE_CHOICE) {
+            throw new CandidateAssessmentUnavailableException(taskId,
+                    "el ejercicio es de opcion multiple: content-audit lo mide pero no lo corrige");
+        }
 
         return assess(qic, original, candidateQuizSentence, candidateTranslation);
     }

@@ -3,6 +3,7 @@ package com.learney.contentaudit.revisiondomain.preservationengine;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.FormKind;
 import com.learney.contentaudit.coursedomain.KnowledgeEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
@@ -61,6 +62,17 @@ class DefaultPreservationRepair implements PreservationRepair {
                 elementsInspected++;
                 String quizId = quiz.getId();
 
+                // A multiple-choice quiz is never restored from a recorded snapshot: content-audit
+                // does not correct multiple choice, so any snapshot of it predates its conversion
+                // and restoring from it would turn it back into a CLOZE. It is only reported
+                // when it has visibly lost its options.
+                if (quiz.formKind() == FormKind.MULTIPLE_CHOICE) {
+                    if (looksDegraded(quiz)) {
+                        unrepairable.add(quizId);
+                    }
+                    continue;
+                }
+
                 List<RevisionArtifact> matching = artifactStore.list().stream()
                         .filter(a -> a.getVerdict() == RevisionVerdict.APPROVED)
                         .filter(a -> a.getProposal() != null
@@ -115,7 +127,9 @@ class DefaultPreservationRepair implements PreservationRepair {
         return CourseElementFieldDiff.classify(form.getKind()) == AttributeState.ABSENT
                 || CourseElementFieldDiff.classify(form.getIncidence()) == AttributeState.ABSENT
                 || CourseElementFieldDiff.classify(form.getLabel()) == AttributeState.ABSENT
-                || CourseElementFieldDiff.classify(form.getName()) == AttributeState.ABSENT;
+                || CourseElementFieldDiff.classify(form.getName()) == AttributeState.ABSENT
+                // A multiple-choice form that lost its options cannot be answered at all.
+                || (form.formKind() == FormKind.MULTIPLE_CHOICE && form.getMultipleChoice() == null);
     }
 
     private static void applyRestoration(QuizTemplateEntity quiz, QuizTemplateEntity intact, String path) {
@@ -139,10 +153,15 @@ class DefaultPreservationRepair implements PreservationRepair {
             case "miniTheory" -> quiz.setMiniTheory(intact.getMiniTheory());
             case "successMessage" -> quiz.setSuccessMessage(intact.getSuccessMessage());
             case "sentences" -> quiz.setSentences(intact.getSentences());
+            case "unmodeledFields" -> quiz.setUnmodeledFields(intact.getUnmodeledFields());
             case "form.kind" -> ensureForm(quiz).setKind(intact.getForm() != null ? intact.getForm().getKind() : null);
             case "form.incidence" -> ensureForm(quiz).setIncidence(intact.getForm() != null ? intact.getForm().getIncidence() : 0.0);
             case "form.label" -> ensureForm(quiz).setLabel(intact.getForm() != null ? intact.getForm().getLabel() : null);
             case "form.name" -> ensureForm(quiz).setName(intact.getForm() != null ? intact.getForm().getName() : null);
+            case "form.multipleChoice" -> ensureForm(quiz).setMultipleChoice(
+                    intact.getForm() != null ? intact.getForm().getMultipleChoice() : null);
+            case "form.unmodeledFields" -> ensureForm(quiz).setUnmodeledFields(
+                    intact.getForm() != null ? intact.getForm().getUnmodeledFields() : null);
             case "form" -> quiz.setForm(intact.getForm());
             default -> applyPartRestoration(quiz, intact, path);
         }

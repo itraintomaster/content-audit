@@ -7,8 +7,11 @@ import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.coursedomain.CourseValidationException;
 import com.learney.contentaudit.coursedomain.CourseValidator;
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.FormKind;
 import com.learney.contentaudit.coursedomain.KnowledgeEntity;
 import com.learney.contentaudit.coursedomain.MilestoneEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.coursedomain.NodeKind;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.RootNodeEntity;
@@ -27,10 +30,15 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Filesystem adapter for course persistence.
  * Reads and writes the hierarchical directory structure with MongoDB Extended JSON format.
+ *
+ * <p>A quiz or form key the model does not interpret is kept in the entity's
+ * {@code unmodeledFields}, in its original order, and written back after the known keys — so a
+ * load->save round trip returns every quiz document byte for byte.
  */
 public class FileSystemCourseRepository implements CourseRepository {
 
@@ -39,6 +47,20 @@ public class FileSystemCourseRepository implements CourseRepository {
     private static final String TOPIC_FILE = "_topic.json";
     private static final String KNOWLEDGE_FILE = "_knowledge.json";
     private static final String QUIZZES_FILE = "quizzes.json";
+
+    // Keys loadQuizzes consumes ("sentences" is the top-level fallback of F-DBSENT). Kept in
+    // sync by hand with QUIZ_KEYS in scripts/import_backup.py.
+    private static final Set<String> QUIZ_KNOWN_KEYS = Set.of(
+            "_id", "id", "kind", "knowledgeId", "title", "instructions", "translation", "theoryId",
+            "topicName", "difficulty", "retries", "noScoreRetries", "code", "audioUrl", "imageUrl",
+            "answerAudioUrl", "answerImageUrl", "miniTheory", "successMessage", "form", "sentences");
+
+    // Keys loadForm consumes. A multiple-choice form also consumes selection and items; on any
+    // other form those two keys, if present, are preserved like any unknown key.
+    private static final Set<String> FORM_KNOWN_KEYS = Set.of(
+            "kind", "incidence", "label", "name", "sentenceParts", "sentences");
+    private static final Set<String> MULTIPLE_CHOICE_FORM_KNOWN_KEYS = Set.of(
+            "kind", "incidence", "label", "name", "sentenceParts", "sentences", "selection", "items");
 
     private final CourseValidator courseValidator;
     private final ObjectMapper objectMapper;
@@ -354,6 +376,7 @@ public class FileSystemCourseRepository implements CourseRepository {
                     code, audioUrl, imageUrl, answerAudioUrl, answerImageUrl,
                     miniTheory, successMessage, sentences
             );
+            quiz.setUnmodeledFields(unmodeledFields(q, QUIZ_KNOWN_KEYS));
             quizzes.add(quiz);
         }
         return quizzes;
@@ -377,7 +400,45 @@ public class FileSystemCourseRepository implements CourseRepository {
             }
         }
 
-        return new FormEntity(kind, incidence, label, name, sentenceParts);
+        FormEntity form = new FormEntity(kind, incidence, label, name, sentenceParts);
+        boolean multipleChoice = form.formKind() == FormKind.MULTIPLE_CHOICE;
+        if (multipleChoice) {
+            form.setMultipleChoice(loadMultipleChoice(formJson));
+        }
+        form.setUnmodeledFields(unmodeledFields(formJson,
+                multipleChoice ? MULTIPLE_CHOICE_FORM_KNOWN_KEYS : FORM_KNOWN_KEYS));
+        return form;
+    }
+
+    private MultipleChoiceEntity loadMultipleChoice(Map<String, Object> formJson) {
+        List<MultipleChoiceItemEntity> items = null;
+        if (formJson.get("items") instanceof List<?> itemsList) {
+            items = new ArrayList<>();
+            for (Object item : itemsList) {
+                Map<String, Object> itemMap = asMap(item);
+                if (itemMap != null) {
+                    items.add(new MultipleChoiceItemEntity(
+                            (String) itemMap.get("id"),
+                            extractNumberDouble(itemMap.get("incidence")),
+                            (String) itemMap.get("label")));
+                }
+            }
+        }
+        return new MultipleChoiceEntity((String) formJson.get("selection"), items);
+    }
+
+    /**
+     * The entries of {@code json} whose key is not in {@code knownKeys}, in their original order
+     * (Jackson reads objects into a LinkedHashMap), or null when there are none.
+     */
+    private Map<String, Object> unmodeledFields(Map<String, Object> json, Set<String> knownKeys) {
+        Map<String, Object> unmodeled = new LinkedHashMap<>();
+        for (Map.Entry<String, Object> entry : json.entrySet()) {
+            if (!knownKeys.contains(entry.getKey())) {
+                unmodeled.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return unmodeled.isEmpty() ? null : unmodeled;
     }
 
     @SuppressWarnings("unchecked")
@@ -574,15 +635,8 @@ public class FileSystemCourseRepository implements CourseRepository {
             q.put("answerImageUrl", quiz.getAnswerImageUrl());
             q.put("miniTheory", quiz.getMiniTheory());
             q.put("successMessage", quiz.getSuccessMessage());
-            // F-DBSENT-R004: serialize sentences symmetrically to how they are read.
-            // The loader reads sentences from form.sentences (primary) so we inject
-            // them into the form map here. Only emit when the list is non-null and
-            // non-empty to avoid writing empty arrays that the loader would treat as absent.
-            Map<String, Object> formJson = formToJson(quiz.getForm());
-            if (formJson != null && quiz.getSentences() != null && !quiz.getSentences().isEmpty()) {
-                formJson.put("sentences", quiz.getSentences());
-            }
-            q.put("form", formJson);
+            q.put("form", formToJson(quiz.getForm(), quiz.getSentences()));
+            putUnmodeled(q, quiz.getUnmodeledFields());
             jsonArray.add(q);
         }
 
@@ -590,7 +644,11 @@ public class FileSystemCourseRepository implements CourseRepository {
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(quizzesFile.toFile(), jsonArray);
     }
 
-    private Map<String, Object> formToJson(FormEntity form) {
+    /**
+     * Writes a form in the on-disk key order: kind, incidence, label, name, sentenceParts,
+     * sentences, selection, items, then the unmodeled keys in their original order.
+     */
+    private Map<String, Object> formToJson(FormEntity form, List<String> sentences) {
         if (form == null) return null;
         Map<String, Object> json = new LinkedHashMap<>();
         json.put("kind", form.getKind());
@@ -605,7 +663,41 @@ public class FileSystemCourseRepository implements CourseRepository {
             }
         }
         json.put("sentenceParts", parts);
+        // F-DBSENT-R004: sentences are written where the loader reads them (form.sentences).
+        // Only emit when non-empty, so the loader never sees an empty array as "present".
+        if (sentences != null && !sentences.isEmpty()) {
+            json.put("sentences", sentences);
+        }
+        MultipleChoiceEntity multipleChoice = form.getMultipleChoice();
+        if (multipleChoice != null) {
+            if (multipleChoice.getSelection() != null) {
+                json.put("selection", multipleChoice.getSelection());
+            }
+            if (multipleChoice.getItems() != null) {
+                json.put("items", multipleChoiceItemsToJson(multipleChoice.getItems()));
+            }
+        }
+        putUnmodeled(json, form.getUnmodeledFields());
         return json;
+    }
+
+    private List<Map<String, Object>> multipleChoiceItemsToJson(List<MultipleChoiceItemEntity> items) {
+        List<Map<String, Object>> json = new ArrayList<>();
+        for (MultipleChoiceItemEntity item : items) {
+            Map<String, Object> itemJson = new LinkedHashMap<>();
+            itemJson.put("id", item.getId());
+            itemJson.put("incidence", numberDoubleWrapper(item.getIncidence()));
+            itemJson.put("label", item.getLabel());
+            json.add(itemJson);
+        }
+        return json;
+    }
+
+    /** Appends the unmodeled keys after the known ones; a known key is never overwritten. */
+    private void putUnmodeled(Map<String, Object> json, Map<String, Object> unmodeled) {
+        if (unmodeled != null) {
+            unmodeled.forEach(json::putIfAbsent);
+        }
     }
 
     private Map<String, Object> sentencePartToJson(SentencePartEntity part) {

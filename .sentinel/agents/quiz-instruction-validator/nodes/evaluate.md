@@ -66,6 +66,26 @@ pedagógico dado.
      fragmentos colgados—. Ahí el problema es que partieron una frase, no que
      usaron la barra.
 
+   **Una parte `MULTIPLE_CHOICE` es el hueco de un ejercicio de opción múltiple.**
+   Ocupa el lugar que en los demás ejercicios ocupa el `CLOZE`:
+
+   ```
+   TEXT:She:|MULTIPLE_CHOICE::am,is[CORRECT],are|TEXT:English.:|
+   ```
+
+   Sus opciones, separadas por coma, **no son respuestas aceptadas**: son todas
+   las alternativas que el alumno ve, en el orden en que las ve, y elige UNA.
+   La que termina en `[CORRECT]` es la respuesta correcta —el sufijo no es parte
+   del texto—; las demás son distractores puestos ahí para ser incorrectos.
+   - Armá la respuesta completa con la opción `[CORRECT]` en el hueco y juzgala
+     como juzgarías la respuesta de un `CLOZE`: que cumpla la consigna, que sea
+     gramatical y natural, y que la mayúscula y la puntuación correspondan al
+     lugar que ocupa en la oración.
+   - Además, ningún distractor puede ser también correcto en ese contexto. Si
+     alguno lo es, el ejercicio es ambiguo: reportalo como defecto.
+   - No trates un distractor como variante aceptada, ni la falta de variantes
+     como defecto: acá no hay alternativas equivalentes, hay una sola correcta.
+
    **(b) Objeto JSON.** Puede venir como objeto, como JSON serializado en un
    string, o como un string que contiene otra serialización. Decodificá hasta
    obtener el objeto completo.

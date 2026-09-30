@@ -41,6 +41,7 @@ public class DefaultQuizInstructionCorrectionRunFormatter implements QuizInstruc
         sb.append("  No logradas: ").append(report.getNotCorrected()).append('\n');
         sb.append("  Diagnostico caido: ").append(report.getDiagnosisStale()).append('\n');
         sb.append("  Fallidas: ").append(report.getFailed()).append('\n');
+        sb.append("  Opcion multiple (salteadas): ").append(report.getMultipleChoiceUnsupported()).append('\n');
 
         List<String> notAttempted = report.getNotAttempted();
         int notAttemptedCount = notAttempted != null ? notAttempted.size() : 0;

@@ -45,7 +45,8 @@ public class DefaultQuizSentenceConverter implements QuizSentenceConverter {
      * Serializes a {@link FormEntity} to its canonical quizSentence DSL string.
      *
      * @param form the form to serialize; must have valid sentenceParts
-     * @return the canonical quizSentence string
+     * @return the canonical quizSentence string, or {@code null} for a multiple-choice form,
+     *         which has no DSL representation
      */
     @Override
     public String serialize(FormEntity form) {
@@ -102,8 +103,9 @@ public class DefaultQuizSentenceConverter implements QuizSentenceConverter {
      * correct answer and accepted variants (its {@code options}) — exactly what the DSL
      * grammar encodes.
      *
-     * <p>What is preserved from {@code base}: the form-level attributes the DSL never
-     * encodes (kind, incidence, label, name), and each blank's non-encoded {@code text}
+     * <p>What is preserved from {@code base}: every form-level attribute the DSL never
+     * encodes (kind, incidence, label, name, the multiple-choice payload and the fields the
+     * model does not interpret), and each blank's non-encoded {@code text}
      * attribute (always present and empty, never absent). The non-encoded attribute of a
      * part is taken from the base part at the same position when that base part is of the
      * same kind (R014); when the correction adds a part beyond what the base had, it is
@@ -141,11 +143,7 @@ public class DefaultQuizSentenceConverter implements QuizSentenceConverter {
             }
         }
 
-        FormEntity result = new FormEntity();
-        result.setKind(base.getKind());
-        result.setIncidence(base.getIncidence());
-        result.setLabel(base.getLabel());
-        result.setName(base.getName());
+        FormEntity result = new FormEntity(base);
         result.setSentenceParts(mergedParts);
         return result;
     }

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.coursedomain;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -19,6 +20,13 @@ public class FormEntity {
 
     private List<SentencePartEntity> sentenceParts;
 
+    // Multiple-choice payload (form.selection + form.items); null for every other form kind.
+    private MultipleChoiceEntity multipleChoice;
+
+    // Form-level keys the model does not interpret, in their original order, so a
+    // load->save round trip gives them back untouched. Null when there are none.
+    private Map<String, Object> unmodeledFields;
+
     public FormEntity() {
     }
 
@@ -29,6 +37,25 @@ public class FormEntity {
         this.label = label;
         this.name = name;
         this.sentenceParts = sentenceParts;
+    }
+
+    /**
+     * Shallow copy of every field. Code that needs "the same form with one thing changed" copies
+     * with this and then sets that one thing, so a field added later is never silently dropped.
+     */
+    public FormEntity(FormEntity other) {
+        this.kind = other.kind;
+        this.incidence = other.incidence;
+        this.label = other.label;
+        this.name = other.name;
+        this.sentenceParts = other.sentenceParts;
+        this.multipleChoice = other.multipleChoice;
+        this.unmodeledFields = other.unmodeledFields;
+    }
+
+    /** Typed reading of {@link #getKind()}. Not a bean accessor on purpose: it is derived. */
+    public FormKind formKind() {
+        return FormKind.from(this.kind);
     }
 
     public String getKind() {
@@ -71,6 +98,22 @@ public class FormEntity {
         this.sentenceParts = sentenceParts;
     }
 
+    public MultipleChoiceEntity getMultipleChoice() {
+        return this.multipleChoice;
+    }
+
+    public void setMultipleChoice(MultipleChoiceEntity multipleChoice) {
+        this.multipleChoice = multipleChoice;
+    }
+
+    public Map<String, Object> getUnmodeledFields() {
+        return this.unmodeledFields;
+    }
+
+    public void setUnmodeledFields(Map<String, Object> unmodeledFields) {
+        this.unmodeledFields = unmodeledFields;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,11 +123,13 @@ public class FormEntity {
                     && Objects.equals(this.incidence, that.incidence)
                     && Objects.equals(this.label, that.label)
                     && Objects.equals(this.name, that.name)
-                    && Objects.equals(this.sentenceParts, that.sentenceParts);
+                    && Objects.equals(this.sentenceParts, that.sentenceParts)
+                    && Objects.equals(this.multipleChoice, that.multipleChoice)
+                    && Objects.equals(this.unmodeledFields, that.unmodeledFields);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(kind, incidence, label, name, sentenceParts);
+        return Objects.hash(kind, incidence, label, name, sentenceParts, multipleChoice, unmodeledFields);
     }
 }

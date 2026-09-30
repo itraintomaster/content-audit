@@ -53,6 +53,9 @@ final class CourseElementFieldDiff {
         if (value instanceof List<?> l) {
             return l.isEmpty() ? AttributeState.EMPTY_PRESENT : AttributeState.VALUE_PRESENT;
         }
+        if (value instanceof Map<?, ?> m) {
+            return m.isEmpty() ? AttributeState.EMPTY_PRESENT : AttributeState.VALUE_PRESENT;
+        }
         return AttributeState.VALUE_PRESENT;
     }
 
@@ -92,6 +95,21 @@ final class CourseElementFieldDiff {
         diffLeaf(elementId, path, path, null, before, after, scope, out);
     }
 
+    /**
+     * Compares a field only when the reference side ({@code before}: the course as it is before a
+     * correction, or the intact snapshot a repair restores from) carries it. A snapshot recorded
+     * before the model knew the field has it null: that means "unknown", not "absent", so it must
+     * neither flag nor "restore" away what today's course legitimately has (the multiple-choice
+     * options, the fields the model does not interpret).
+     */
+    private static void diffKnownOnlyInReference(String elementId, String path, Object before, Object after,
+            Set<ScopedField> scope, List<PreservationViolation> out) {
+        if (before == null) {
+            return;
+        }
+        diffLeaf(elementId, path, before, after, scope, out);
+    }
+
     static void diffQuiz(QuizTemplateEntity before, QuizTemplateEntity after, Set<ScopedField> scope,
             List<PreservationViolation> out) {
         String id = before.getId();
@@ -114,6 +132,8 @@ final class CourseElementFieldDiff {
         diffLeaf(id, "miniTheory", before.getMiniTheory(), after.getMiniTheory(), scope, out);
         diffLeaf(id, "successMessage", before.getSuccessMessage(), after.getSuccessMessage(), scope, out);
         diffLeaf(id, "sentences", before.getSentences(), after.getSentences(), scope, out);
+        diffKnownOnlyInReference(id, "unmodeledFields", before.getUnmodeledFields(), after.getUnmodeledFields(),
+                scope, out);
 
         FormEntity formBefore = before.getForm();
         FormEntity formAfter = after.getForm();
@@ -128,6 +148,10 @@ final class CourseElementFieldDiff {
         diffLeaf(id, "form.incidence", formBefore.getIncidence(), formAfter.getIncidence(), scope, out);
         diffLeaf(id, "form.label", formBefore.getLabel(), formAfter.getLabel(), scope, out);
         diffLeaf(id, "form.name", formBefore.getName(), formAfter.getName(), scope, out);
+        diffKnownOnlyInReference(id, "form.multipleChoice", formBefore.getMultipleChoice(),
+                formAfter.getMultipleChoice(), scope, out);
+        diffKnownOnlyInReference(id, "form.unmodeledFields", formBefore.getUnmodeledFields(),
+                formAfter.getUnmodeledFields(), scope, out);
         diffSentenceParts(id, formBefore.getSentenceParts(), formAfter.getSentenceParts(), scope, out);
     }
 

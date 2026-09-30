@@ -269,18 +269,13 @@ class QuizInstructionReviser implements Reviser {
         reconciledParts.addAll(
                 originalParts.subList(originalParts.size() - trailingEmptyCount, originalParts.size()));
 
-        FormEntity candidateForm = afterQuiz.getForm();
-        FormEntity reconciledForm = new FormEntity(candidateForm.getKind(), candidateForm.getIncidence(),
-                candidateForm.getLabel(), candidateForm.getName(), reconciledParts);
+        // Copy everything and change only the parts, so nothing the candidate carried --
+        // unmodeled fields included -- is lost in the reconciliation.
+        FormEntity reconciledForm = new FormEntity(afterQuiz.getForm());
+        reconciledForm.setSentenceParts(reconciledParts);
 
-        QuizTemplateEntity reconciledQuiz = new QuizTemplateEntity(
-                afterQuiz.getId(), afterQuiz.getOidId(), afterQuiz.getKind(), afterQuiz.getKnowledgeId(),
-                afterQuiz.getTitle(), afterQuiz.getInstructions(), afterQuiz.getTranslation(),
-                afterQuiz.getTheoryId(), afterQuiz.getTopicName(), reconciledForm,
-                afterQuiz.getDifficulty(), afterQuiz.getRetries(), afterQuiz.getNoScoreRetries(),
-                afterQuiz.getCode(), afterQuiz.getAudioUrl(), afterQuiz.getImageUrl(),
-                afterQuiz.getAnswerAudioUrl(), afterQuiz.getAnswerImageUrl(), afterQuiz.getMiniTheory(),
-                afterQuiz.getSuccessMessage(), afterQuiz.getSentences());
+        QuizTemplateEntity reconciledQuiz = new QuizTemplateEntity(afterQuiz);
+        reconciledQuiz.setForm(reconciledForm);
 
         return new CourseElementSnapshot(elementAfter.getNodeTarget(), elementAfter.getNodeId(),
                 reconciledQuiz, elementAfter.getKnowledge());

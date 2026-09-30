@@ -42,6 +42,9 @@ public class QuizInstructionCorrectionRunReport {
 
     private int proposedOutOfLengthRange;
 
+    // Tasks on multiple-choice quizzes: content-audit does not correct them, so revise skips them.
+    private int multipleChoiceUnsupported;
+
     public QuizInstructionCorrectionRunReport() {
     }
 
@@ -49,7 +52,8 @@ public class QuizInstructionCorrectionRunReport {
             Instant startedAt, Instant finishedAt, int maxCorrections, int eligibleTasks,
             int attempted, int proposed, int notCorrected, int diagnosisStale, int failed,
             List<String> notAttempted, List<QuizInstructionTaskOutcome> outcomes,
-            int proposedWithUnmetCriteria, int proposedOutOfLengthRange) {
+            int proposedWithUnmetCriteria, int proposedOutOfLengthRange,
+            int multipleChoiceUnsupported) {
         this.runId = runId;
         this.planId = planId;
         this.sourceAuditId = sourceAuditId;
@@ -66,6 +70,7 @@ public class QuizInstructionCorrectionRunReport {
         this.outcomes = outcomes;
         this.proposedWithUnmetCriteria = proposedWithUnmetCriteria;
         this.proposedOutOfLengthRange = proposedOutOfLengthRange;
+        this.multipleChoiceUnsupported = multipleChoiceUnsupported;
     }
 
     public String getRunId() {
@@ -196,6 +201,14 @@ public class QuizInstructionCorrectionRunReport {
         this.proposedOutOfLengthRange = proposedOutOfLengthRange;
     }
 
+    public int getMultipleChoiceUnsupported() {
+        return this.multipleChoiceUnsupported;
+    }
+
+    public void setMultipleChoiceUnsupported(int multipleChoiceUnsupported) {
+        this.multipleChoiceUnsupported = multipleChoiceUnsupported;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -216,11 +229,12 @@ public class QuizInstructionCorrectionRunReport {
                     && Objects.equals(this.notAttempted, that.notAttempted)
                     && Objects.equals(this.outcomes, that.outcomes)
                     && Objects.equals(this.proposedWithUnmetCriteria, that.proposedWithUnmetCriteria)
-                    && Objects.equals(this.proposedOutOfLengthRange, that.proposedOutOfLengthRange);
+                    && Objects.equals(this.proposedOutOfLengthRange, that.proposedOutOfLengthRange)
+                    && Objects.equals(this.multipleChoiceUnsupported, that.multipleChoiceUnsupported);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(runId, planId, sourceAuditId, startedAt, finishedAt, maxCorrections, eligibleTasks, attempted, proposed, notCorrected, diagnosisStale, failed, notAttempted, outcomes, proposedWithUnmetCriteria, proposedOutOfLengthRange);
+        return Objects.hash(runId, planId, sourceAuditId, startedAt, finishedAt, maxCorrections, eligibleTasks, attempted, proposed, notCorrected, diagnosisStale, failed, notAttempted, outcomes, proposedWithUnmetCriteria, proposedOutOfLengthRange, multipleChoiceUnsupported);
     }
 }

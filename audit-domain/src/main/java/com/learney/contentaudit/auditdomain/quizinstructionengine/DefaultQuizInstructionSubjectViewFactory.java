@@ -20,7 +20,8 @@ public class DefaultQuizInstructionSubjectViewFactory implements QuizInstruction
      * candidate that never touched the course (verification, R005). cefrLevel,
      * topic, title and instructions are passed in rather than derived from the
      * quiz itself because a candidate has no milestone/knowledge ancestors of
-     * its own to read them from.
+     * its own to read them from. A multiple-choice quiz carries its options along, so it
+     * renders exactly as the analysis rendered it (and reuses that verdict).
      */
     @Override
     public QuizInstructionSubjectView fromQuiz(QuizTemplateEntity quiz, String cefrLevel,
@@ -29,7 +30,9 @@ public class DefaultQuizInstructionSubjectViewFactory implements QuizInstruction
         List<SentencePartEntity> sentenceParts = form != null ? form.getSentenceParts() : null;
         String subjectRef = quiz != null ? quiz.getId() : null;
 
-        return new QuizInstructionSubjectView(
+        QuizInstructionSubjectView view = new QuizInstructionSubjectView(
                 subjectRef, cefrLevel, topic, title, instructions, sentenceParts);
+        view.setMultipleChoice(form != null ? form.getMultipleChoice() : null);
+        return view;
     }
 }

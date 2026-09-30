@@ -1,6 +1,7 @@
 package com.learney.contentaudit.coursedomain;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -51,7 +52,49 @@ public class QuizTemplateEntity {
 
     private List<String> sentences;
 
+    // Quiz-level keys the model does not interpret (formCloze, instructionsAnteriores, ...), in
+    // their original order, so a load->save round trip gives them back untouched. Null when none.
+    private Map<String, Object> unmodeledFields;
+
     public QuizTemplateEntity() {
+    }
+
+    /**
+     * Shallow copy of every field. Code that needs "the same quiz with one thing changed" copies
+     * with this and then sets that one thing, so a field added later is never silently dropped.
+     */
+    public QuizTemplateEntity(QuizTemplateEntity other) {
+        this.id = other.id;
+        this.oidId = other.oidId;
+        this.kind = other.kind;
+        this.knowledgeId = other.knowledgeId;
+        this.title = other.title;
+        this.instructions = other.instructions;
+        this.translation = other.translation;
+        this.theoryId = other.theoryId;
+        this.topicName = other.topicName;
+        this.form = other.form;
+        this.difficulty = other.difficulty;
+        this.retries = other.retries;
+        this.noScoreRetries = other.noScoreRetries;
+        this.code = other.code;
+        this.audioUrl = other.audioUrl;
+        this.imageUrl = other.imageUrl;
+        this.answerAudioUrl = other.answerAudioUrl;
+        this.answerImageUrl = other.answerImageUrl;
+        this.miniTheory = other.miniTheory;
+        this.successMessage = other.successMessage;
+        this.sentences = other.sentences;
+        this.unmodeledFields = other.unmodeledFields;
+    }
+
+    /**
+     * The kind of this quiz's form. Falls back to the quiz-level {@code kind} when the form
+     * carries no recognizable kind of its own. Not a bean accessor on purpose: it is derived.
+     */
+    public FormKind formKind() {
+        FormKind fromForm = this.form != null ? this.form.formKind() : FormKind.OTHER;
+        return fromForm != FormKind.OTHER ? fromForm : FormKind.from(this.kind);
     }
 
     public QuizTemplateEntity(String id, String oidId, String kind, String knowledgeId,
@@ -251,6 +294,14 @@ public class QuizTemplateEntity {
         this.sentences = sentences;
     }
 
+    public Map<String, Object> getUnmodeledFields() {
+        return this.unmodeledFields;
+    }
+
+    public void setUnmodeledFields(Map<String, Object> unmodeledFields) {
+        this.unmodeledFields = unmodeledFields;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -276,11 +327,12 @@ public class QuizTemplateEntity {
                     && Objects.equals(this.answerImageUrl, that.answerImageUrl)
                     && Objects.equals(this.miniTheory, that.miniTheory)
                     && Objects.equals(this.successMessage, that.successMessage)
-                    && Objects.equals(this.sentences, that.sentences);
+                    && Objects.equals(this.sentences, that.sentences)
+                    && Objects.equals(this.unmodeledFields, that.unmodeledFields);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, oidId, kind, knowledgeId, title, instructions, translation, theoryId, topicName, form, difficulty, retries, noScoreRetries, code, audioUrl, imageUrl, answerAudioUrl, answerImageUrl, miniTheory, successMessage, sentences);
+        return Objects.hash(id, oidId, kind, knowledgeId, title, instructions, translation, theoryId, topicName, form, difficulty, retries, noScoreRetries, code, audioUrl, imageUrl, answerAudioUrl, answerImageUrl, miniTheory, successMessage, sentences, unmodeledFields);
     }
 }

@@ -3,6 +3,8 @@ package com.learney.contentaudit.revisiondomain.engine;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.coursedomain.FormKind;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
@@ -70,6 +72,16 @@ public DefaultProposalDecisionService(RevisionArtifactStore artifactStore, Cours
 
         CourseEntity course = courseRepository.load(coursePath);
         CourseElementSnapshot elementAfter = artifact.getProposal().getElementAfter();
+
+        // Defensive: content-audit never corrects a multiple-choice quiz. revise already refuses
+        // to propose one; this also stops an older proposal, made when the quiz was still a
+        // CLOZE, from turning today's multiple-choice quiz back into one. Nothing is written.
+        if (targetsMultipleChoice(course, elementAfter)) {
+            return new ProposalDecisionOutcome(ProposalDecisionOutcomeKind.MULTIPLE_CHOICE_UNSUPPORTED, null,
+                    "La propuesta " + proposalId + " corrige el ejercicio " + elementAfter.getNodeId()
+                            + ", que es de opcion multiple: content-audit no lo corrige. No se aplico nada.");
+        }
+
         CourseEntity replacedCourse = elementLocator.replace(course, elementAfter);
 
         // F-RPRES-R004: a KNOWLEDGE label correction also aligns the title of every quiz of
@@ -166,5 +178,22 @@ public DefaultProposalDecisionService(RevisionArtifactStore artifactStore, Cours
         refinementPlanStore.save(plan);
 
         return new ProposalDecisionOutcome(ProposalDecisionOutcomeKind.REJECTED, rejectedArtifact, null);
+    }
+
+    private boolean targetsMultipleChoice(CourseEntity course, CourseElementSnapshot elementAfter) {
+        if (elementAfter == null || elementAfter.getNodeTarget() != AuditTarget.QUIZ) {
+            return false;
+        }
+        if (isMultipleChoice(elementAfter.getQuiz())) {
+            return true;
+        }
+        return elementLocator.snapshot(course, AuditTarget.QUIZ, elementAfter.getNodeId())
+                .map(CourseElementSnapshot::getQuiz)
+                .map(DefaultProposalDecisionService::isMultipleChoice)
+                .orElse(false);
+    }
+
+    private static boolean isMultipleChoice(QuizTemplateEntity quiz) {
+        return quiz != null && quiz.formKind() == FormKind.MULTIPLE_CHOICE;
     }
 }

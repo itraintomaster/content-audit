@@ -1226,9 +1226,17 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                 case TEXT -> sb.append(part.getText() != null ? part.getText() : "");
                 case CLOZE -> {
                     var opts = part.getOptions();
-                    sb.append('[')
-                      .append(opts == null || opts.isEmpty() ? "___" : String.join("/", opts))
-                      .append(']');
+                    var choices = quiz.getForm().getMultipleChoice();
+                    String rendered;
+                    if ((opts == null || opts.isEmpty()) && choices != null && choices.getItems() != null) {
+                        // Multiple choice: every option the student sees, the correct one marked.
+                        rendered = choices.getItems().stream()
+                                .map(item -> item.getIncidence() > 0.0 ? item.getLabel() + "✓" : item.getLabel())
+                                .collect(java.util.stream.Collectors.joining("/"));
+                    } else {
+                        rendered = opts == null || opts.isEmpty() ? "___" : String.join("/", opts);
+                    }
+                    sb.append('[').append(rendered).append(']');
                 }
                 default -> sb.append(part.getText() != null ? part.getText() : "?");
             }

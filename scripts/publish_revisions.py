@@ -219,6 +219,11 @@ def build_quiz_update(file_doc, mongo_doc, stats):
             sets[field] = file_doc.get(field)
     file_form = file_doc.get("form") or {}
     mongo_form = mongo_doc.get("form") or {}
+    if "MULTIPLE_CHOICE" in (file_form.get("kind"), mongo_form.get("kind")):
+        # content-audit no corrige la opción múltiple: su form (hueco sin options, items,
+        # selection) nunca se escribe desde acá, aunque una revisión vieja lo haya tocado.
+        stats["form de opción múltiple no publicado"] += 1
+        return sets
     for field in FORM_SET_FIELDS:
         value = file_form.get(field)
         if field == "sentenceParts":

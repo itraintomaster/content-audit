@@ -79,33 +79,14 @@ public final class DefaultLemmaAbsenceProposalDeriver implements LemmaAbsencePro
                     "unexpected error deriving plain sentences: " + e.getMessage());
         }
 
-        // Build elementAfter: copy all fields from beforeQuiz except form (quiz structure)
-        // and translation (from candidate). The title is NOT in scope of a lexical
-        // correction (F-LAPS-R014, F-RPRES-R004) — it tracks the knowledge label only,
-        // so it is preserved unchanged from beforeQuiz.
-        QuizTemplateEntity afterQuiz = new QuizTemplateEntity(
-                beforeQuiz.getId(),
-                beforeQuiz.getOidId(),
-                beforeQuiz.getKind(),
-                beforeQuiz.getKnowledgeId(),
-                beforeQuiz.getTitle(),
-                beforeQuiz.getInstructions(),
-                candidate.getTranslation(),
-                beforeQuiz.getTheoryId(),
-                beforeQuiz.getTopicName(),
-                newForm,
-                beforeQuiz.getDifficulty(),
-                beforeQuiz.getRetries(),
-                beforeQuiz.getNoScoreRetries(),
-                beforeQuiz.getCode(),
-                beforeQuiz.getAudioUrl(),
-                beforeQuiz.getImageUrl(),
-                beforeQuiz.getAnswerAudioUrl(),
-                beforeQuiz.getAnswerImageUrl(),
-                beforeQuiz.getMiniTheory(),
-                beforeQuiz.getSuccessMessage(),
-                plainSentences
-        );
+        // Build elementAfter: copy all fields from beforeQuiz -- the unmodeled ones included --
+        // except form (quiz structure), translation (from candidate) and the derived sentences.
+        // The title is NOT in scope of a lexical correction (F-LAPS-R014, F-RPRES-R004) — it
+        // tracks the knowledge label only, so it is preserved unchanged from beforeQuiz.
+        QuizTemplateEntity afterQuiz = new QuizTemplateEntity(beforeQuiz);
+        afterQuiz.setTranslation(candidate.getTranslation());
+        afterQuiz.setForm(newForm);
+        afterQuiz.setSentences(plainSentences);
 
         return new CourseElementSnapshot(before.getNodeTarget(), before.getNodeId(), afterQuiz, null);
     }

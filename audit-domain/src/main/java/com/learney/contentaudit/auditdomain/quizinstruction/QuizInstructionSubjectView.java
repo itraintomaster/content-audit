@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.quizinstruction;
 
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import java.util.List;
 import java.util.Objects;
@@ -21,6 +22,9 @@ public class QuizInstructionSubjectView {
     private String instructions;
 
     private List<SentencePartEntity> sentenceParts;
+
+    /** The options of a multiple-choice quiz; null for every other kind. */
+    private MultipleChoiceEntity multipleChoice;
 
     public QuizInstructionSubjectView() {
     }
@@ -83,6 +87,14 @@ public class QuizInstructionSubjectView {
         this.sentenceParts = sentenceParts;
     }
 
+    public MultipleChoiceEntity getMultipleChoice() {
+        return this.multipleChoice;
+    }
+
+    public void setMultipleChoice(MultipleChoiceEntity multipleChoice) {
+        this.multipleChoice = multipleChoice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,11 +105,13 @@ public class QuizInstructionSubjectView {
                     && Objects.equals(this.topic, that.topic)
                     && Objects.equals(this.title, that.title)
                     && Objects.equals(this.instructions, that.instructions)
-                    && Objects.equals(this.sentenceParts, that.sentenceParts);
+                    && Objects.equals(this.sentenceParts, that.sentenceParts)
+                    && Objects.equals(this.multipleChoice, that.multipleChoice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(subjectRef, cefrLevel, topic, title, instructions, sentenceParts);
+        return Objects.hash(subjectRef, cefrLevel, topic, title, instructions, sentenceParts,
+                multipleChoice);
     }
 }
