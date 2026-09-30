@@ -18,6 +18,10 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import java.util.ArrayList;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -50,6 +54,23 @@ public class DefaultQuizSentenceConverterTest {
 
     private static SentencePartEntity cloze(String... options) {
         return new SentencePartEntity(SentencePartKind.CLOZE, "", Arrays.asList(options));
+    }
+
+    /** The gap of a multiple-choice form: a CLOZE part without options (the answer is an item). */
+    private static SentencePartEntity gap() {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", null);
+    }
+
+    /** A multiple-choice form: the wrong options first, then the correct one (incidence 1.0). */
+    private static FormEntity multipleChoice(String correct, List<String> wrong, SentencePartEntity... parts) {
+        List<MultipleChoiceItemEntity> items = new ArrayList<>();
+        for (String label : wrong) {
+            items.add(new MultipleChoiceItemEntity(label, 0.0, label));
+        }
+        items.add(new MultipleChoiceItemEntity(correct, 1.0, correct));
+        FormEntity form = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", Arrays.asList(parts), null, null);
+        form.setMultipleChoice(new MultipleChoiceEntity("SINGLE", items));
+        return form;
     }
 
     /** Collapses runs of whitespace and trims, matching R010 equivalence. */
@@ -1334,7 +1355,17 @@ public class DefaultQuizSentenceConverterTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R002")
     public void shouldKeepTheDataTheSystemDoesNotInterpretOfTheBaseFormWhenACorrectedQuizSentenceIsParsedOntoIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FormEntity base = new FormEntity("CLOZE", 1.0, "", "", List.of(text("She"), cloze("is"), text("English.")), null, null);
+        MultipleChoiceEntity payload = new MultipleChoiceEntity("SINGLE",
+                List.of(new MultipleChoiceItemEntity("is", 1.0, "is")));
+        base.setMultipleChoice(payload);
+        base.setUnmodeledFields(Map.of("futureKey", "kept"));
+
+        FormEntity result = converter.parseOnto("She ____ [was] English.", base);
+
+        assertSame(payload, result.getMultipleChoice());
+        assertEquals(Map.of("futureKey", "kept"), result.getUnmodeledFields());
+        assertEquals(List.of("was"), result.getSentenceParts().get(1).getOptions());
     }
 
     @Test
@@ -1342,7 +1373,9 @@ public class DefaultQuizSentenceConverterTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R004")
     public void shouldDeriveThePlainSentenceOfAMultipleChoiceQuizAsItsStemWithTheTextOfTheCorrectOptionInTheGapAsWritten() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FormEntity form = multipleChoice("is he", List.of("are he"), gap(), text("a doctor?"));
+        assertEquals(List.of("is he a doctor?"), converter.toPlainSentences(form, SentenceMode.FILL));
+        assertEquals(List.of("is he a doctor?"), converter.toPlainSentences(form));
     }
 
     @Test
@@ -1350,7 +1383,12 @@ public class DefaultQuizSentenceConverterTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R004")
     public void shouldDeriveForAMultipleChoiceQuizTheSamePlainSentenceAsTheCLOZEWhoseOnlyAcceptedAnswerIsItsCorrectOption() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FormEntity mc = multipleChoice("loudly", List.of("loud"), text("She sang"), gap(), text("(loud / loudly)."));
+        FormEntity cloze = new FormEntity("CLOZE", 1.0, "", "",
+                List.of(text("She sang"), cloze("loudly"), text("(loud / loudly).")), null, null);
+        assertEquals(converter.toPlainSentences(cloze, SentenceMode.FILL),
+                converter.toPlainSentences(mc, SentenceMode.FILL));
+        assertEquals(List.of("She sang loudly."), converter.toPlainSentences(mc, SentenceMode.FILL));
     }
 
     @Test
@@ -1358,7 +1396,9 @@ public class DefaultQuizSentenceConverterTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R004")
     public void shouldKeepTheSentenceBeforeTheGapInThePlainSentenceOfAMultipleChoiceQuizEvenWhenItsKnowledgeIsInREWRITEMode() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FormEntity form = multipleChoice("So", List.of("Although"), text("It was raining."), gap(), text("we stayed home."));
+        assertEquals(List.of("It was raining. So we stayed home."),
+                converter.toPlainSentences(form, SentenceMode.REWRITE));
     }
 
     @Test
@@ -1366,7 +1406,8 @@ public class DefaultQuizSentenceConverterTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R004")
     public void shouldTakeAPipeInsideTheCorrectOptionOfAMultipleChoiceQuizAsLiteralTextAndDeriveASinglePlainSentence() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FormEntity form = multipleChoice("a|b", List.of("c"), text("Pick"), gap(), text("now."));
+        assertEquals(List.of("Pick a|b now."), converter.toPlainSentences(form, SentenceMode.FILL));
     }
 
     @Test
@@ -1374,7 +1415,8 @@ public class DefaultQuizSentenceConverterTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R004")
     public void shouldLeaveTheQuizSentenceOfAMultipleChoiceFormEmptyInsteadOfFailingOnItsGapWithoutOptions() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FormEntity form = multipleChoice("is", List.of("am", "are"), text("She"), gap(), text("English."));
+        assertNull(converter.serialize(form));
     }
 
     @Test
@@ -1382,7 +1424,9 @@ public class DefaultQuizSentenceConverterTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R004")
     public void shouldFailToDeriveThePlainSentenceOfAMultipleChoiceQuizThatHasNoCorrectOption() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FormEntity form = multipleChoice("is", List.of("am"), text("She"), gap(), text("English."));
+        form.getMultipleChoice().getItems().forEach(item -> item.setIncidence(0.0));
+        assertThrows(QuizSentenceSerializationException.class, () -> converter.toPlainSentences(form));
     }
 
     @Test
@@ -1390,6 +1434,7 @@ public class DefaultQuizSentenceConverterTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R004")
     public void shouldFailToDeriveThePlainSentenceOfAMultipleChoiceQuizThatHasMoreThanOneGap() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FormEntity form = multipleChoice("is", List.of("am"), text("She"), gap(), text("and he"), gap(), text("."));
+        assertThrows(QuizSentenceSerializationException.class, () -> converter.toPlainSentences(form));
     }
 }

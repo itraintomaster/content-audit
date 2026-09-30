@@ -23,6 +23,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -36,6 +38,23 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
 
     private LemmaAbsenceProposalDeriver deriver;
     private QuizSentenceConverter converter;
+
+    /** A quiz of the given form carrying data the system does not interpret, as production writes it. */
+    private static QuizTemplateEntity quiz(String id, FormEntity form) {
+        QuizTemplateEntity quiz = new QuizTemplateEntity();
+        quiz.setId(id);
+        quiz.setOidId(id);
+        quiz.setKind(form.getKind());
+        quiz.setKnowledgeId("k1");
+        quiz.setTitle("old title");
+        quiz.setForm(form);
+        quiz.setSentences(List.of("She is English."));
+        Map<String, Object> unmodeled = new LinkedHashMap<>();
+        unmodeled.put("formCloze", Map.of("kind", "CLOZE"));
+        unmodeled.put("instructionsAnteriores", "Elegi la forma de be.");
+        quiz.setUnmodeledFields(unmodeled);
+        return quiz;
+    }
 
     @BeforeEach
     void setUp() {
@@ -518,6 +537,24 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R002")
     public void shouldKeepTheQuizAndFormDataTheSystemDoesNotInterpretWhenDerivingTheLexicalCorrectionOfACLOZEQuiz() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FormEntity cloze = new FormEntity("CLOZE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("is")),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
+        Map<String, Object> formExtra = new LinkedHashMap<>();
+        formExtra.put("futureKey", "kept");
+        cloze.setUnmodeledFields(formExtra);
+        QuizTemplateEntity before = quiz("cloze-1", cloze);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "cloze-1", before, null);
+
+        CourseElementSnapshot after = new DefaultLemmaAbsenceProposalDeriver(DefaultQuizSentenceConverter.create())
+                .derive(snapshot, new LemmaAbsenceQuizCandidate("She ____ [is] Irish.", "Ella es irlandesa."),
+                        SentenceMode.FILL);
+
+        QuizTemplateEntity afterQuiz = after.getQuiz();
+        assertEquals(before.getUnmodeledFields(), afterQuiz.getUnmodeledFields());
+        assertEquals(formExtra, afterQuiz.getForm().getUnmodeledFields());
+        assertEquals(List.of("She is Irish."), afterQuiz.getSentences());
+        assertEquals("Ella es irlandesa.", afterQuiz.getTranslation());
     }
 }

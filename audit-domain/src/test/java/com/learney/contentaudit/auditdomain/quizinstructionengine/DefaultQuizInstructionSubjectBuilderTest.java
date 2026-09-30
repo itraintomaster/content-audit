@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 
+
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
@@ -19,6 +20,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -112,6 +119,35 @@ public class DefaultQuizInstructionSubjectBuilderTest {
         AuditNode topic = buildTopicNode(milestone);
         AuditNode knowledgeNode = buildKnowledgeNode(topic, knowledge);
         return buildQuizNode(knowledgeNode, quiz);
+    }
+
+    // FEAT-OPMUL helpers: "She ___ English." under an A1 knowledge, as the judge receives it.
+
+    private static String judgedQuiz(DefaultQuizInstructionSubjectBuilder builder, AuditableQuiz quiz) {
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Be", "Elige la forma de be.", true,
+                "k1", "Be", "K", null, "Present Simple");
+        return builder.build(quizNodeUnder("A1", knowledge, quiz)).getContent().get("quiz");
+    }
+
+    private static List<SentencePartEntity> stem(List<String> gapOptions) {
+        return List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", gapOptions),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null));
+    }
+
+    private static AuditableQuiz quiz(List<SentencePartEntity> parts) {
+        return new AuditableQuiz(List.of(), "q1", "Be", "", null, List.of("She is English."), null,
+                "Elige la forma de be.", parts, null);
+    }
+
+    /** am / is / are, in the order the student sees them, with {@code correct} marked. */
+    private static MultipleChoiceEntity choices(String correct) {
+        List<MultipleChoiceItemEntity> items = new ArrayList<>();
+        for (String label : List.of("am", "is", "are")) {
+            items.add(new MultipleChoiceItemEntity(label, label.equals(correct) ? 1.0 : 0.0, label));
+        }
+        return new MultipleChoiceEntity("SINGLE", items);
     }
 
     // ------------------------------------------------------------------
@@ -318,7 +354,9 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R005")
     public void shouldShowTheJudgeEveryOptionOfAMultipleChoiceQuizInItsGapInTheOrderTheStudentSeesThemWithTheCorrectOneMarked() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableQuiz quiz = quiz(stem(null));
+        quiz.setMultipleChoice(choices("is"));
+        assertEquals("TEXT:She:|MULTIPLE_CHOICE::am,is[CORRECT],are|TEXT:English.:|", judgedQuiz(sut, quiz));
     }
 
     @Test
@@ -326,7 +364,18 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R005")
     public void shouldRenderAMultipleChoiceQuizForTheJudgeOnTheRevalidationAndCandidatePathExactlyAsOnTheAnalysisPath() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FormEntity form = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", stem(null), null, null);
+        form.setMultipleChoice(choices("is"));
+        QuizTemplateEntity template = new QuizTemplateEntity();
+        template.setId("q1");
+        template.setForm(form);
+        AuditableQuiz audited = quiz(stem(null));
+        audited.setMultipleChoice(choices("is"));
+
+        QuizInstructionSubjectView view = new DefaultQuizInstructionSubjectViewFactory()
+                .fromQuiz(template, "A1", "Present Simple", "Be", "Elige la forma de be.");
+
+        assertEquals(judgedQuiz(sut, audited), sut.buildFromView(view).getContent().get("quiz"));
     }
 
     @Test
@@ -334,7 +383,11 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R005")
     public void shouldGiveDifferentJudgedContentToTwoMultipleChoiceQuizzesThatDifferOnlyInTheirCorrectOption() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableQuiz first = quiz(stem(null));
+        first.setMultipleChoice(choices("is"));
+        AuditableQuiz second = quiz(stem(null));
+        second.setMultipleChoice(choices("am"));
+        assertNotEquals(judgedQuiz(sut, first), judgedQuiz(sut, second));
     }
 
     @Test
@@ -342,7 +395,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R005")
     public void shouldRenderACLOZEQuizForTheJudgeCharacterForCharacterAsItDidBeforeMultipleChoiceExisted() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        assertEquals("TEXT:She:|CLOZE::is|TEXT:English.:|", judgedQuiz(sut, quiz(stem(List.of("is")))));
     }
 
     @Test
@@ -350,6 +403,6 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R005")
     public void shouldRenderAQuizWhoseGapHasNoOptionsAndThatCarriesNoMultipleChoiceOptionsTheCLOZEWayAsBefore() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        assertEquals("TEXT:She:|CLOZE::|TEXT:English.:|", judgedQuiz(sut, quiz(stem(null))));
     }
 }

@@ -47,6 +47,14 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -60,6 +68,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 @ExtendWith(MockitoExtension.class)
 @Generated(
@@ -80,6 +89,43 @@ public class DefaultRevisionEngineTest {
     @Mock private ImpactPreviewComputer impactPreviewComputer;
     @Mock private ImpactPreviewStore impactPreviewStore;
     @Mock private CorrectionContextOverrideParser correctionContextOverrideParser;
+
+    // FEAT-OPMUL fixtures
+    private static final String PLAN_ID = "plan-mc";
+    private static final Path COURSE_PATH = Path.of("db/english-course");
+
+    /** "She ___ English." as a multiple-choice form: am / is, with "is" correct. */
+    private static FormEntity multipleChoiceForm() {
+        FormEntity form = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", null),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
+        form.setMultipleChoice(new MultipleChoiceEntity("SINGLE", List.of(
+                new MultipleChoiceItemEntity("am", 0.0, "am"),
+                new MultipleChoiceItemEntity("is", 1.0, "is"))));
+        return form;
+    }
+
+    /** A quiz of the given form carrying data the system does not interpret, as production writes it. */
+    private static QuizTemplateEntity quiz(String id, FormEntity form) {
+        QuizTemplateEntity quiz = new QuizTemplateEntity();
+        quiz.setId(id);
+        quiz.setOidId(id);
+        quiz.setKind(form.getKind());
+        quiz.setKnowledgeId("k1");
+        quiz.setTitle("old title");
+        quiz.setForm(form);
+        quiz.setSentences(List.of("She is English."));
+        Map<String, Object> unmodeled = new LinkedHashMap<>();
+        unmodeled.put("formCloze", Map.of("kind", "CLOZE"));
+        unmodeled.put("instructionsAnteriores", "Elegi la forma de be.");
+        quiz.setUnmodeledFields(unmodeled);
+        return quiz;
+    }
+
+    private static RefinementTask task(String id, String nodeId, DiagnosisKind kind) {
+        return new RefinementTask(id, AuditTarget.QUIZ, nodeId, "Be", kind, 1, RefinementTaskStatus.PENDING);
+    }
 
     private DefaultRevisionEngine buildEngine() {
         return new DefaultRevisionEngine(
@@ -1261,8 +1307,41 @@ public class DefaultRevisionEngineTest {
     @DisplayName("should reject revising a task on a multiple choice quiz before any reviser runs, writing nothing but the plan and leaving the task SKIPPED")
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R006")
+    @SuppressWarnings("unchecked")
     public void shouldRejectRevisingATaskOnAMultipleChoiceQuizBeforeAnyReviserRunsWritingNothingButThePlanAndLeavingTheTaskSKIPPED() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        AuditReportStore auditStore = mock(AuditReportStore.class);
+        CorrectionContextResolver<CorrectionContext> resolver = mock(CorrectionContextResolver.class);
+        Reviser reviser = mock(Reviser.class);
+        RevisionArtifactStore artifactStore = mock(RevisionArtifactStore.class);
+        CourseRepository courseRepository = mock(CourseRepository.class);
+        CourseElementLocator locator = mock(CourseElementLocator.class);
+
+        RefinementTask task = task("task-1", "mc-1", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = new RefinementPlan(PLAN_ID, "audit-mc", Instant.now(), List.of(task));
+        AuditReport report = mock(AuditReport.class);
+        CourseEntity course = mock(CourseEntity.class);
+        when(planStore.load(PLAN_ID)).thenReturn(Optional.of(plan));
+        when(auditStore.load("audit-mc")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(mock(CorrectionContext.class)));
+        when(courseRepository.load(COURSE_PATH)).thenReturn(course);
+        when(locator.snapshot(course, AuditTarget.QUIZ, "mc-1")).thenReturn(Optional.of(
+                new CourseElementSnapshot(AuditTarget.QUIZ, "mc-1", quiz("mc-1", multipleChoiceForm()), null)));
+
+        DefaultRevisionEngine engine = new DefaultRevisionEngine(planStore, auditStore, resolver, reviser,
+                mock(RevisionValidator.class), artifactStore, courseRepository, locator,
+                mock(ImpactPreviewComputer.class), mock(ImpactPreviewStore.class),
+                mock(CorrectionContextOverrideParser.class));
+
+        RevisionOutcome outcome = engine.revise(PLAN_ID, "task-1", COURSE_PATH, null);
+
+        assertEquals(RevisionOutcomeKind.MULTIPLE_CHOICE_UNSUPPORTED, outcome.getKind());
+        verifyNoInteractions(reviser);
+        verify(courseRepository, never()).save(any(), any());
+        verify(artifactStore, never()).save(any());
+        ArgumentCaptor<RefinementPlan> saved = ArgumentCaptor.forClass(RefinementPlan.class);
+        verify(planStore).save(saved.capture());
+        assertEquals(RefinementTaskStatus.SKIPPED, saved.getValue().getTasks().get(0).getStatus());
     }
 
     @Test
@@ -1270,6 +1349,65 @@ public class DefaultRevisionEngineTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R009")
     public void shouldRejectRevisingAQuizWhoseOwnKindIsMultipleChoiceWhenItsFormDoesNotSayOneButNotWhenItsFormSaysCLOZE() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Both quizzes are multiple choice by their own kind (F-OPMUL-R009). The form of the first
+        // one lost its kind, so the quiz-level kind decides; the form of the second one says CLOZE,
+        // and what the form says wins over the quiz.
+        FormEntity formWithoutKind = multipleChoiceForm();
+        formWithoutKind.setKind(null);
+        QuizTemplateEntity lostItsKind = quiz("mc-1", formWithoutKind);
+        lostItsKind.setKind("MULTIPLE_CHOICE");
+        FormEntity clozeForm = new FormEntity("CLOZE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("is")),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
+        QuizTemplateEntity saysCloze = quiz("mc-2", clozeForm);
+        saysCloze.setKind("MULTIPLE_CHOICE");
+
+        RefinementTask lostItsKindTask = task("task-1", "mc-1", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementTask saysClozeTask = task("task-2", "mc-2", DiagnosisKind.LEMMA_ABSENCE);
+        RefinementPlan plan = new RefinementPlan(PLAN_ID, "audit-mc", Instant.now(),
+                List.of(lostItsKindTask, saysClozeTask));
+        AuditReport report = mock(AuditReport.class);
+        CorrectionContext context = mock(CorrectionContext.class);
+        CourseEntity course = mock(CourseEntity.class);
+        CourseElementSnapshot lostItsKindSnapshot =
+                new CourseElementSnapshot(AuditTarget.QUIZ, "mc-1", lostItsKind, null);
+        CourseElementSnapshot saysClozeSnapshot =
+                new CourseElementSnapshot(AuditTarget.QUIZ, "mc-2", saysCloze, null);
+        when(refinementPlanStore.load(PLAN_ID)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load("audit-mc")).thenReturn(Optional.of(report));
+        when(contextResolver.resolve(report, lostItsKindTask)).thenReturn(Optional.of(context));
+        when(contextResolver.resolve(report, saysClozeTask)).thenReturn(Optional.of(context));
+        when(courseRepository.load(COURSE_PATH)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, "mc-1")).thenReturn(Optional.of(lostItsKindSnapshot));
+        when(elementLocator.snapshot(course, AuditTarget.QUIZ, "mc-2")).thenReturn(Optional.of(saysClozeSnapshot));
+
+        RevisionProposal proposal = new RevisionProposal("task-2-1", "task-2", PLAN_ID, "audit-mc",
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, "mc-2", saysClozeSnapshot, saysClozeSnapshot,
+                "lexical correction", "lemma-absence", Instant.now(), null, null, null);
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.APPROVED);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.empty());
+        when(reviser.handles(DiagnosisKind.LEMMA_ABSENCE)).thenReturn(true);
+        when(reviser.propose(saysClozeTask, context, saysClozeSnapshot)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + PLAN_ID);
+        when(elementLocator.replace(course, saysClozeSnapshot)).thenReturn(course);
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // A form that says no kind: the quiz's own kind makes it multiple choice, so revise refuses it.
+        RevisionOutcome lostItsKindOutcome = engine.revise(PLAN_ID, "task-1", COURSE_PATH, null);
+        assertEquals(RevisionOutcomeKind.MULTIPLE_CHOICE_UNSUPPORTED, lostItsKindOutcome.getKind(),
+                "R009: a form without a kind falls back to the quiz's own kind, multiple choice");
+        verifyNoInteractions(reviser);
+        verify(courseRepository, never()).save(any(), any());
+
+        // A form that says CLOZE: it is corrected like any CLOZE, whatever the quiz-level kind says.
+        RevisionOutcome saysClozeOutcome = engine.revise(PLAN_ID, "task-2", COURSE_PATH, null);
+        assertEquals(RevisionOutcomeKind.APPROVED_APPLIED, saysClozeOutcome.getKind(),
+                "R009: a form that says CLOZE is a CLOZE, even if the quiz-level kind says multiple choice");
+        verify(reviser).propose(saysClozeTask, context, saysClozeSnapshot);
+        verify(courseRepository).save(course, COURSE_PATH);
     }
 }

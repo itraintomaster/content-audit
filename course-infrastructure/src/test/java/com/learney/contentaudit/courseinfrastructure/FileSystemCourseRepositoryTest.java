@@ -15,9 +15,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import java.net.URISyntaxException;
+import java.util.LinkedHashMap;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -148,6 +155,45 @@ public class FileSystemCourseRepositoryTest {
 
     private void writeJson(Path file, Object obj) throws IOException {
         mapper.writerWithDefaultPrettyPrinter().writeValue(file.toFile(), obj);
+    }
+
+    // -------------------------------------------------------------------------
+    // FEAT-OPMUL: fixtures/multiple-choice-course holds two real quizzes of the 2026-09-29
+    // production backup, in the writer's format: a MULTIPLE_CHOICE one (items, selection,
+    // formCloze, formAntesDeRevisar and two backup instructions) and a CLOZE one with two backup
+    // fields of its own.
+    // -------------------------------------------------------------------------
+
+    private static final String CLOZE_ID = "67fab6d59930102295341fa5";
+
+    private final FileSystemCourseRepository repository =
+            new FileSystemCourseRepository(new CourseValidatorImpl());
+
+    private static Path fixture() throws URISyntaxException {
+        return Path.of(FileSystemCourseRepositoryTest.class
+                .getResource("/fixtures/multiple-choice-course").toURI());
+    }
+
+    private static Path copyFixture(Path target) throws IOException, URISyntaxException {
+        Path source = fixture();
+        try (Stream<Path> paths = Files.walk(source)) {
+            for (Path path : (Iterable<Path>) paths::iterator) {
+                Path destination = target.resolve(source.relativize(path).toString());
+                if (Files.isDirectory(path)) {
+                    Files.createDirectories(destination);
+                } else {
+                    Files.copy(path, destination);
+                }
+            }
+        }
+        return target;
+    }
+
+    private static QuizTemplateEntity quiz(CourseEntity course, String id) {
+        KnowledgeEntity knowledge = course.getRoot().getMilestones().get(0).getTopics().get(0)
+                .getKnowledges().get(0);
+        return knowledge.getQuizTemplates().stream().filter(q -> id.equals(q.getId())).findFirst()
+                .orElseThrow();
     }
 
     // =========================================================================
@@ -503,16 +549,42 @@ public class FileSystemCourseRepositoryTest {
     @DisplayName("should write every file of a course with multiple choice quizzes back byte for byte when it is loaded and saved without changes")
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R001")
-    public void shouldWriteEveryFileOfACourseWithMultipleChoiceQuizzesBackByteForByteWhenItIsLoadedAndSavedWithoutChanges() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldWriteEveryFileOfACourseWithMultipleChoiceQuizzesBackByteForByteWhenItIsLoadedAndSavedWithoutChanges(
+            @TempDir Path target) throws Exception {
+        Path saved = target.resolve("multiple-choice-course");
+        repository.save(repository.load(fixture()), saved);
+
+        Path source = fixture();
+        try (Stream<Path> paths = Files.walk(source)) {
+            for (Path path : (Iterable<Path>) paths::iterator) {
+                if (Files.isRegularFile(path)) {
+                    Path written = saved.resolve(source.relativize(path).toString());
+                    assertArrayEquals(Files.readAllBytes(path), Files.readAllBytes(written),
+                            "byte difference in " + source.relativize(path));
+                }
+            }
+        }
     }
 
     @Test
     @DisplayName("should keep selection and items on a form that is not multiple choice as data it does not interpret, with their value, when saving")
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R002")
-    public void shouldKeepSelectionAndItemsOnAFormThatIsNotMultipleChoiceAsDataItDoesNotInterpretWithTheirValueWhenSaving() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldKeepSelectionAndItemsOnAFormThatIsNotMultipleChoiceAsDataItDoesNotInterpretWithTheirValueWhenSaving(
+            @TempDir Path work) throws Exception {
+        Path course = copyFixture(work.resolve("course"));
+        CourseEntity loaded = repository.load(course);
+        FormEntity clozeForm = quiz(loaded, CLOZE_ID).getForm();
+        Map<String, Object> stray = new LinkedHashMap<>();
+        stray.put("selection", "SINGLE");
+        stray.put("items", List.of(Map.of("id", "at", "incidence", Map.of("$numberDouble", "1.0"),
+                "label", "at")));
+        clozeForm.setUnmodeledFields(stray);
+        repository.save(loaded, course);
+
+        FormEntity reloaded = quiz(repository.load(course), CLOZE_ID).getForm();
+        assertNull(reloaded.getMultipleChoice());
+        assertEquals(stray, reloaded.getUnmodeledFields());
     }
 
     @Test

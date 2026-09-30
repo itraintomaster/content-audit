@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
@@ -46,6 +48,11 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import com.learney.contentaudit.refinerdomain.CorrectionContext;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -66,6 +73,39 @@ public class DefaultQuizInstructionCandidateAssessorTest {
     private static final String CANDIDATE_TRANSLATION = "El gato corre rapido.";
 
     private static final Path COURSE_PATH = Path.of("/placeholder/course");
+
+    /** "She ___ English." as a multiple-choice form: am / is, with "is" correct. */
+    private static FormEntity multipleChoiceForm() {
+        FormEntity form = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", null),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
+        form.setMultipleChoice(new MultipleChoiceEntity("SINGLE", List.of(
+                new MultipleChoiceItemEntity("am", 0.0, "am"),
+                new MultipleChoiceItemEntity("is", 1.0, "is"))));
+        return form;
+    }
+
+    /** A quiz of the given form carrying data the system does not interpret, as production writes it. */
+    private static QuizTemplateEntity quiz(String id, FormEntity form) {
+        QuizTemplateEntity quiz = new QuizTemplateEntity();
+        quiz.setId(id);
+        quiz.setOidId(id);
+        quiz.setKind(form.getKind());
+        quiz.setKnowledgeId("k1");
+        quiz.setTitle("old title");
+        quiz.setForm(form);
+        quiz.setSentences(List.of("She is English."));
+        Map<String, Object> unmodeled = new LinkedHashMap<>();
+        unmodeled.put("formCloze", Map.of("kind", "CLOZE"));
+        unmodeled.put("instructionsAnteriores", "Elegi la forma de be.");
+        quiz.setUnmodeledFields(unmodeled);
+        return quiz;
+    }
+
+    private static RefinementTask task(String id, String nodeId, DiagnosisKind kind) {
+        return new RefinementTask(id, AuditTarget.QUIZ, nodeId, "Be", kind, 1, RefinementTaskStatus.PENDING);
+    }
 
     private static InstructionViolation violation(String evidence) {
         return new InstructionViolation("ANSWER_FORM",
@@ -505,7 +545,34 @@ public class DefaultQuizInstructionCandidateAssessorTest {
     @DisplayName("should declare the consultation unavailable for a task on a multiple choice quiz without judging any candidate")
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R006")
+    @SuppressWarnings("unchecked")
     public void shouldDeclareTheConsultationUnavailableForATaskOnAMultipleChoiceQuizWithoutJudgingAnyCandidate() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        AuditReportStore auditStore = mock(AuditReportStore.class);
+        CorrectionContextResolver<CorrectionContext> resolver = mock(CorrectionContextResolver.class);
+        CourseRepository courseRepository = mock(CourseRepository.class);
+        CourseElementLocator locator = mock(CourseElementLocator.class);
+        CandidateAssessor assessor = mock(CandidateAssessor.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+
+        RefinementTask task = task("task-1", "mc-1", DiagnosisKind.QUIZ_INSTRUCTION);
+        AuditReport report = mock(AuditReport.class);
+        CourseEntity course = mock(CourseEntity.class);
+        when(planStore.load(PLAN_ID)).thenReturn(Optional.of(
+                new RefinementPlan(PLAN_ID, "audit-mc", Instant.now(), List.of(task))));
+        when(auditStore.load("audit-mc")).thenReturn(Optional.of(report));
+        when(resolver.resolve(report, task)).thenReturn(Optional.of(new QuizInstructionCorrectionContext()));
+        when(courseRepository.load(COURSE_PATH)).thenReturn(course);
+        when(locator.snapshot(course, AuditTarget.QUIZ, "mc-1")).thenReturn(Optional.of(
+                new CourseElementSnapshot(AuditTarget.QUIZ, "mc-1", quiz("mc-1", multipleChoiceForm()), null)));
+
+        DefaultQuizInstructionCandidateAssessor candidateAssessor = new DefaultQuizInstructionCandidateAssessor(
+                assessor, deriver, planStore, auditStore, resolver, courseRepository, locator);
+
+        CandidateAssessmentUnavailableException refused = assertThrows(CandidateAssessmentUnavailableException.class,
+                () -> candidateAssessor.assessTask(PLAN_ID, "task-1", COURSE_PATH,
+                        "She ____ [was] English.", "Ella era inglesa."));
+        assertTrue(refused.getReason().contains("opcion multiple"), refused.getReason());
+        verifyNoInteractions(assessor, deriver);
     }
 }

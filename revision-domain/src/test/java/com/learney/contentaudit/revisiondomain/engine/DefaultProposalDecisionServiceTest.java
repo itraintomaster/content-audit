@@ -46,6 +46,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -70,6 +75,39 @@ public class DefaultProposalDecisionServiceTest {
     @Mock private CourseElementLocator elementLocator;
     @Mock private RefinementPlanStore refinementPlanStore;
     @Mock private PreservationCheck preservationCheck;
+
+    // FEAT-OPMUL fixtures
+    private static final String PLAN_ID = "plan-mc";
+    private static final Path COURSE_PATH = Path.of("db/english-course");
+
+    /** "She ___ English." as a multiple-choice form: am / is, with "is" correct. */
+    private static FormEntity multipleChoiceForm() {
+        FormEntity form = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", null),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
+        form.setMultipleChoice(new MultipleChoiceEntity("SINGLE", List.of(
+                new MultipleChoiceItemEntity("am", 0.0, "am"),
+                new MultipleChoiceItemEntity("is", 1.0, "is"))));
+        return form;
+    }
+
+    /** A quiz of the given form carrying data the system does not interpret, as production writes it. */
+    private static QuizTemplateEntity quiz(String id, FormEntity form) {
+        QuizTemplateEntity quiz = new QuizTemplateEntity();
+        quiz.setId(id);
+        quiz.setOidId(id);
+        quiz.setKind(form.getKind());
+        quiz.setKnowledgeId("k1");
+        quiz.setTitle("old title");
+        quiz.setForm(form);
+        quiz.setSentences(List.of("She is English."));
+        Map<String, Object> unmodeled = new LinkedHashMap<>();
+        unmodeled.put("formCloze", Map.of("kind", "CLOZE"));
+        unmodeled.put("instructionsAnteriores", "Elegi la forma de be.");
+        quiz.setUnmodeledFields(unmodeled);
+        return quiz;
+    }
 
     private DefaultProposalDecisionService buildService() {
         return new DefaultProposalDecisionService(
@@ -990,7 +1028,38 @@ public class DefaultProposalDecisionServiceTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R006")
     public void shouldLeaveUndecidedAndUnappliedAProposalOnAQuizThatIsMultipleChoiceInTodaysCourseEvenIfTheProposalSawItAsACLOZE() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        RevisionArtifactStore artifactStore = mock(RevisionArtifactStore.class);
+        CourseRepository courseRepository = mock(CourseRepository.class);
+        CourseElementLocator locator = mock(CourseElementLocator.class);
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        PreservationCheck preservationCheck = mock(PreservationCheck.class);
+
+        FormEntity oldCloze = new FormEntity("CLOZE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("was")),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, "mc-1", quiz("mc-1", oldCloze), null);
+        RevisionProposal proposal = new RevisionProposal("p-1", "task-1", PLAN_ID, "audit-mc",
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, "mc-1", after, after, "old", "lemma-absence-llm",
+                Instant.now(), null, null, null);
+        RevisionArtifact artifact = new RevisionArtifact(proposal, RevisionVerdict.PENDING_APPROVAL, null,
+                RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, null, null, null, null);
+        CourseEntity course = mock(CourseEntity.class);
+        when(artifactStore.findByProposalId(eq("p-1"), any())).thenReturn(Optional.of(artifact));
+        when(planStore.load(PLAN_ID)).thenReturn(Optional.of(
+                new RefinementPlan(PLAN_ID, "audit-mc", Instant.now(), List.of())));
+        when(courseRepository.load(COURSE_PATH)).thenReturn(course);
+        when(locator.snapshot(course, AuditTarget.QUIZ, "mc-1")).thenReturn(Optional.of(
+                new CourseElementSnapshot(AuditTarget.QUIZ, "mc-1", quiz("mc-1", multipleChoiceForm()), null)));
+
+        ProposalDecisionOutcome outcome = new DefaultProposalDecisionService(
+                artifactStore, courseRepository, locator, planStore, preservationCheck)
+                .approve("p-1", Optional.empty(), Optional.empty(), COURSE_PATH);
+
+        assertEquals(ProposalDecisionOutcomeKind.MULTIPLE_CHOICE_UNSUPPORTED, outcome.getKind());
+        verify(courseRepository, never()).save(any(), any());
+        verify(artifactStore, never()).save(any());
+        verify(locator, never()).replace(any(), any());
     }
 
     @Test

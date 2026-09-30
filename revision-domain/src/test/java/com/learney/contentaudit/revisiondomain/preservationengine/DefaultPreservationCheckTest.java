@@ -32,6 +32,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import com.learney.contentaudit.coursedomain.FormEntities;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @ExtendWith(MockitoExtension.class)
 @Generated(
@@ -77,6 +83,40 @@ public class DefaultPreservationCheckTest {
 
     private static SentencePartEntity cloze(String... options) {
         return new SentencePartEntity(SentencePartKind.CLOZE, "", Arrays.asList(options));
+    }
+
+    /** The gap of a multiple-choice form: a CLOZE part without options (the answer is an item). */
+    private static SentencePartEntity gap() {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", null);
+    }
+
+    /** am / is, with {@code correct} marked. */
+    private static MultipleChoiceEntity choices(String correct) {
+        List<MultipleChoiceItemEntity> items = new ArrayList<>();
+        for (String label : List.of("am", "is")) {
+            items.add(new MultipleChoiceItemEntity(label, label.equals(correct) ? 1.0 : 0.0, label));
+        }
+        return new MultipleChoiceEntity("SINGLE", items);
+    }
+
+    /** Data the system does not interpret, as production writes it on a converted quiz. */
+    private static Map<String, Object> backups() {
+        Map<String, Object> unmodeled = new LinkedHashMap<>();
+        unmodeled.put("formCloze", Map.of("kind", "CLOZE"));
+        unmodeled.put("instructionsAnteriores", "Elegi la forma de be.");
+        return unmodeled;
+    }
+
+    /** The paths verify() reports when quiz-1 goes from {@code before} to {@code after} under the lexical scope. */
+    private List<String> violatedPaths(QuizTemplateEntity before, QuizTemplateEntity after) {
+        CourseEntity courseBefore = courseOf("course-1", List.of("knowledge-1"),
+                knowledge("knowledge-1", "Be", before));
+        CourseEntity courseAfter = courseOf("course-1", List.of("knowledge-1"),
+                knowledge("knowledge-1", "Be", after));
+        CourseElementSnapshot revised = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-1", after, null);
+        return buildCheck().verify(courseBefore, courseAfter, revised, DiagnosisKind.LEMMA_ABSENCE).stream()
+                .map(PreservationViolation::getPath)
+                .toList();
     }
 
     private static FormEntity form(String kind, double incidence, String label, String name,
@@ -539,7 +579,25 @@ public class DefaultPreservationCheckTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R008")
     public void shouldReportAViolationWhenACorrectionDropsTheDataTheSystemDoesNotInterpretOrChangesTheMultipleChoiceOptionsTheReferenceCarries() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        when(scope.changeableFields(DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ))
+                .thenReturn(lemmaAbsenceQuizScope());
+        FormEntity mc = form("MULTIPLE_CHOICE", 1.0, "", "", text("She"), gap(), text("English."));
+        mc.setMultipleChoice(choices("is"));
+        QuizTemplateEntity before = quiz("quiz-1", "knowledge-1", "Be", List.of("She is English."),
+                "Ella es inglesa.", mc);
+        before.setKind("MULTIPLE_CHOICE");
+        before.setUnmodeledFields(backups());
+
+        FormEntity changed = FormEntities.copyOf(mc);
+        changed.setMultipleChoice(choices("am"));
+        QuizTemplateEntity after = quiz("quiz-1", "knowledge-1", "Be", List.of("She is English."),
+                "Ella es inglesa.", changed);
+        after.setKind("MULTIPLE_CHOICE");
+
+        List<String> paths = violatedPaths(before, after);
+
+        assertTrue(paths.contains("unmodeledFields"), paths.toString());
+        assertTrue(paths.contains("form.multipleChoice"), paths.toString());
     }
 
     @Test
@@ -547,6 +605,30 @@ public class DefaultPreservationCheckTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R008")
     public void shouldNotTakeAsAViolationTheAbsenceOfOptionsOrOfDataTheSystemDoesNotInterpretInAReferenceRecordedBeforeTheyExisted() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        when(scope.changeableFields(DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ))
+                .thenReturn(lemmaAbsenceQuizScope());
+
+        // A reference recorded before the model knew the data it does not interpret: it has none.
+        QuizTemplateEntity oldSnapshot = quiz("quiz-1", "knowledge-1", "Be", List.of("She is English."),
+                "Ella es inglesa.", form("CLOZE", 1.0, "", "", text("She"), cloze("is"), text("English.")));
+        QuizTemplateEntity current = quiz("quiz-1", "knowledge-1", "Be", List.of("She is English."),
+                "Ella es inglesa.", form("CLOZE", 1.0, "", "", text("She"), cloze("is"), text("English.")));
+        current.setUnmodeledFields(backups());
+
+        List<String> unknownData = violatedPaths(oldSnapshot, current);
+
+        assertTrue(unknownData.isEmpty(), unknownData.toString());
+
+        // A reference recorded before the model knew the options: its form carries none.
+        QuizTemplateEntity optionlessSnapshot = quiz("quiz-1", "knowledge-1", "Be", List.of("She is English."),
+                "Ella es inglesa.", form("MULTIPLE_CHOICE", 1.0, "", "", text("She"), gap(), text("English.")));
+        FormEntity withOptions = form("MULTIPLE_CHOICE", 1.0, "", "", text("She"), gap(), text("English."));
+        withOptions.setMultipleChoice(choices("is"));
+        QuizTemplateEntity currentWithOptions = quiz("quiz-1", "knowledge-1", "Be", List.of("She is English."),
+                "Ella es inglesa.", withOptions);
+
+        List<String> unknownOptions = violatedPaths(optionlessSnapshot, currentWithOptions);
+
+        assertTrue(unknownOptions.isEmpty(), unknownOptions.toString());
     }
 }

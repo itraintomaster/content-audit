@@ -1,13 +1,11 @@
 package com.learney.contentaudit.courseinfrastructure;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.coursedomain.CourseEntity;
-import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.FormKind;
 import com.learney.contentaudit.coursedomain.KnowledgeEntity;
 import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
@@ -30,6 +28,9 @@ import org.junit.jupiter.api.io.TempDir;
  * The fixture holds two real quizzes of the 2026-09-29 production backup, written in the
  * writer's format: a MULTIPLE_CHOICE one (items, selection, formCloze, formAntesDeRevisar and two
  * backup instructions) and a CLOZE one with two backup fields of its own.
+ *
+ * <p>What stays here supports loading and saving; the round trip and the stray keys on a CLOZE
+ * form are traced to FEAT-OPMUL in {@link FileSystemCourseRepositoryTest}.
  */
 @Tag("multiple-choice")
 class FileSystemCourseRepositoryMultipleChoiceTest {
@@ -99,24 +100,6 @@ class FileSystemCourseRepositoryMultipleChoiceTest {
     }
 
     @Test
-    @DisplayName("A load->save round trip writes every file back byte for byte, multiple choice and backup fields included")
-    void roundTripIsByteIdentical(@TempDir Path target) throws Exception {
-        Path saved = target.resolve("multiple-choice-course");
-        repository.save(repository.load(fixture()), saved);
-
-        Path source = fixture();
-        try (Stream<Path> paths = Files.walk(source)) {
-            for (Path path : (Iterable<Path>) paths::iterator) {
-                if (Files.isRegularFile(path)) {
-                    Path written = saved.resolve(source.relativize(path).toString());
-                    assertArrayEquals(Files.readAllBytes(path), Files.readAllBytes(written),
-                            "byte difference in " + source.relativize(path));
-                }
-            }
-        }
-    }
-
-    @Test
     @DisplayName("A multiple-choice form writes sentences, selection and items in the on-disk order")
     @SuppressWarnings("unchecked")
     void writesMultipleChoiceKeysInOrder(@TempDir Path work) throws Exception {
@@ -132,22 +115,6 @@ class FileSystemCourseRepositoryMultipleChoiceTest {
                 .get("form");
         assertEquals(List.of("kind", "incidence", "label", "name", "sentenceParts", "sentences",
                 "selection", "items"), List.copyOf(form.keySet()));
-    }
-
-    @Test
-    @DisplayName("selection and items on a form that is not multiple choice are preserved like any unknown key")
-    void strayMultipleChoiceKeysOnClozeArePreserved(@TempDir Path work) throws Exception {
-        Path course = copyFixture(work.resolve("course"));
-        CourseEntity loaded = repository.load(course);
-        FormEntity clozeForm = quiz(loaded, CLOZE_ID).getForm();
-        Map<String, Object> stray = new LinkedHashMap<>();
-        stray.put("selection", "SINGLE");
-        clozeForm.setUnmodeledFields(stray);
-        repository.save(loaded, course);
-
-        FormEntity reloaded = quiz(repository.load(course), CLOZE_ID).getForm();
-        assertNull(reloaded.getMultipleChoice());
-        assertEquals(stray, reloaded.getUnmodeledFields());
     }
 
     @Test
