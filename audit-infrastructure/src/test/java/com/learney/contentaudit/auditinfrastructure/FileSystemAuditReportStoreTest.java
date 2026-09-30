@@ -13,6 +13,9 @@ import com.learney.contentaudit.auditdomain.DefaultKnowledgeDiagnoses;
 import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
 import com.learney.contentaudit.auditdomain.NlpToken;
 import com.learney.contentaudit.auditdomain.SentenceLengthDiagnosis;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerScore;
+import com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers;
 import com.learney.contentaudit.auditdomain.labs.LemmaPlacementDiagnosis;
 
 import java.nio.file.Path;
@@ -286,6 +289,10 @@ class FileSystemAuditReportStoreTest {
         Map<String, Double> scores = Map.of("sentence-length", 0.75);
         // Root node entity is null (COURSE level)
         AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, List.of(), scores, Map.of(), null);
+        // FEAT-HALL (F-HALL-R010): the summary shows the vocabulary score the engine published
+        // on the course, as every report the engine produces carries it.
+        root.setNumbers(new ContextNumbers(0.75,
+                List.of(new AnalyzerScore("sentence-length", AnalyzerFamily.VOCABULARY, 0.75, List.of())), null));
         AuditReport report = new AuditReport(root);
 
         String id = store.save(report);

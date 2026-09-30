@@ -344,7 +344,7 @@ public class AnalyzeCmdTest {
                 CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                List.of("quiz-instruction"), false, null, null, null);
+                List.of("quiz-instruction"), false, null, null, null, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -396,7 +396,7 @@ public class AnalyzeCmdTest {
                 CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                null, false, 250, null, null);
+                null, false, 250, null, null, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -450,7 +450,7 @@ public class AnalyzeCmdTest {
                 CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                null, false, null, "knowledge:K-042", null);
+                null, false, null, "knowledge:K-042", null, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -507,7 +507,7 @@ public class AnalyzeCmdTest {
                 CoursePathResolver::resolve, mock(ReevaluationQuizSetResolver.class));
 
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                null, false, null, null, null);
+                null, false, null, null, null, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
@@ -569,7 +569,7 @@ public class AnalyzeCmdTest {
 
         Set<String> declaredQuizIds = Set.of("Q-101", "Q-202", "Q-303");
         AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
-                null, false, null, null, declaredQuizIds);
+                null, false, null, null, declaredQuizIds, null);
 
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));

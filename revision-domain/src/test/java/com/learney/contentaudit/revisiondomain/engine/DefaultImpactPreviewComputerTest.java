@@ -443,6 +443,12 @@ public class DefaultImpactPreviewComputerTest {
         AuditNode courseSim = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizSim),
                 Map.of("lemma-absence", simulatedLemmaScore), Map.of(), null);
         AuditReport simulatedReport = new AuditReport(courseSim);
+        // FEAT-HALL (F-HALL-R010): every report the engine produces publishes the vocabulary
+        // score of each node, and the aggregate of the preview reads it from there.
+        publishVocabularyScore(quizBaseline, baselineLemmaScore);
+        publishVocabularyScore(courseBaseline, baselineLemmaScore);
+        publishVocabularyScore(quizSim, simulatedLemmaScore);
+        publishVocabularyScore(courseSim, simulatedLemmaScore);
 
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
@@ -715,5 +721,10 @@ public class DefaultImpactPreviewComputerTest {
     @Tag("F-HALL-R010")
     public void shouldComputeTheBeforeAndAfterOfEachLevelOfTheImpactPreviewFromTheVocabularyScoresPublishedOnTheBaseAndSimulatedReports739BeforeOnTheCourseOfThe299BaseInsteadOf734() {
         throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    private static void publishVocabularyScore(AuditNode node, double score) {
+        node.setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(
+                score, List.of(), null));
     }
 }

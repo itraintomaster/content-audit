@@ -24,7 +24,7 @@ public class DefaultRefinerEngineTest {
 
     @BeforeEach
     void setUp() {
-        sut = new DefaultRefinerEngine();
+        sut = new DefaultRefinerEngine(realCatalog());
     }
 
     /**
@@ -338,5 +338,29 @@ public class DefaultRefinerEngineTest {
     @Tag("F-HALL-R004")
     public void shouldDeclareNothingAboutLemmacountWhoseScoresBelow1OnTheLevelsAndTheCourse670HaveNoTaskAsBeforeBecauseTheDeclarationCoversOnlyErrorsAnalyzers() {
         throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    /**
+     * FEAT-HALL: the plan reads the bindings of the catalog, one per provider. These are the
+     * eight real providers, as Main registers them; their configurations only feed the cards,
+     * so mocks are enough to read the bindings.
+     */
+    static com.learney.contentaudit.auditdomain.AnalyzerCatalog realCatalog() {
+        return new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(java.util.List.of(
+                new com.learney.contentaudit.auditdomain.SentenceLengthAnalyzerProvider(null,
+                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.SentenceLengthConfig.class)),
+                new com.learney.contentaudit.auditdomain.KnowledgeTitleLengthAnalyzerProvider(),
+                new com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzerProvider(),
+                new com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProvider(null,
+                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.CocaBucketsConfig.class)),
+                new com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzerProvider(
+                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig.class)),
+                new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceAnalyzerProvider(null,
+                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.LemmaAbsenceConfig.class), null),
+                new com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider(null,
+                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.LemmaCountConfig.class)),
+                new com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory(
+                        null, null, null,
+                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.QuizInstructionConfig.class))));
     }
 }

@@ -41,7 +41,7 @@ public class IAuditEngineTest {
         List<ContentAnalyzer> analyzers = new ArrayList<>();
         analyzers.add(new KnowledgeTitleLengthAnalyzer());
         analyzers.add(new KnowledgeInstructionsLengthAnalyzer());
-        return new IAuditEngine(analyzers, new IScoreAggregator());
+        return engineOf(analyzers, new IScoreAggregator());
     }
 
     private static NlpToken tok() {
@@ -58,7 +58,7 @@ public class IAuditEngineTest {
     }
 
     private IAuditEngine slenEngine() {
-        return new IAuditEngine(
+        return engineOf(
                 List.of(new SentenceLengthAnalyzer(null, stubSlenConfig())),
                 new IScoreAggregator());
     }
@@ -220,7 +220,7 @@ public class IAuditEngineTest {
         Mockito.lenient().when(ec.classify(anyDouble(), any())).thenReturn(ExposureStatus.NORMAL);
 
         List<ContentAnalyzer> analyzers = List.of(new LemmaRecurrenceAnalyzer(cwf, cfg, ic, ec));
-        AuditEngine engine = new IAuditEngine(analyzers, new IScoreAggregator());
+        AuditEngine engine = engineOf(analyzers, new IScoreAggregator());
 
         AuditReport report1 = engine.runAudit(course1);
         // Re-wire mocks for second run (mocks are stateless here, same behavior)
@@ -234,7 +234,7 @@ public class IAuditEngineTest {
         Mockito.lenient().when(ic2.calculateStdDevInterval(any(), anyDouble())).thenReturn(0.0);
         Mockito.lenient().when(ec2.classify(anyDouble(), any())).thenReturn(ExposureStatus.NORMAL);
 
-        AuditEngine engine2 = new IAuditEngine(List.of(new LemmaRecurrenceAnalyzer(cwf2, cfg2, ic2, ec2)), new IScoreAggregator());
+        AuditEngine engine2 = engineOf(List.of(new LemmaRecurrenceAnalyzer(cwf2, cfg2, ic2, ec2)), new IScoreAggregator());
         AuditReport report2 = engine2.runAudit(course2);
 
         Double score1 = report1.getRoot().getScores().get("lemma-recurrence");
@@ -439,5 +439,67 @@ public class IAuditEngineTest {
     @Tag("F-HALL-R015")
     public void shouldLeaveTheAuditableCourseUntouchedWhenAnAnalyzerReturnsAFindingThatIsResolvedByARule() {
         throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    /**
+     * FEAT-HALL: the engine runs what its catalog lists. This wraps the given analyzer instances
+     * in providers that return that same instance, with a minimal card, so the test keeps running
+     * exactly those analyzers in that order; findings are not collected here.
+     */
+    static com.learney.contentaudit.auditdomain.IAuditEngine engineOf(
+            java.util.List<? extends com.learney.contentaudit.auditdomain.ContentAnalyzer> analyzers,
+            com.learney.contentaudit.auditdomain.ScoreAggregator aggregator) {
+        java.util.List<com.learney.contentaudit.auditdomain.AnalyzerProvider> providers = new java.util.ArrayList<>();
+        for (com.learney.contentaudit.auditdomain.ContentAnalyzer analyzer : analyzers) {
+            providers.add(fixedProvider(analyzer));
+        }
+        return new com.learney.contentaudit.auditdomain.IAuditEngine(aggregator,
+                new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(providers),
+                (root, analyzer, card) -> { },
+                new com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator());
+    }
+
+    static com.learney.contentaudit.auditdomain.AnalyzerProvider fixedProvider(
+            com.learney.contentaudit.auditdomain.ContentAnalyzer analyzer) {
+        boolean judge = "quiz-instruction".equals(analyzer.getName());
+        com.learney.contentaudit.auditdomain.finding.AnalysisCost cost = judge
+                ? com.learney.contentaudit.auditdomain.finding.AnalysisCost.PAID_MODEL
+                : com.learney.contentaudit.auditdomain.finding.AnalysisCost.INSTANT;
+        com.learney.contentaudit.auditdomain.AuditTarget target = analyzer.getTarget() != null
+                ? analyzer.getTarget() : com.learney.contentaudit.auditdomain.AuditTarget.QUIZ;
+        com.learney.contentaudit.auditdomain.AnalyzerDescriptor card = new com.learney.contentaudit.auditdomain.AnalyzerDescriptor(
+                analyzer.getName(), analyzer.getDescription() != null ? analyzer.getDescription() : "-", target,
+                "-", "-", java.util.List.of(new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("rule", "-", cost)),
+                "-", judge ? com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS
+                        : com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.VOCABULARY,
+                java.util.List.of(target), java.util.List.of(com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL),
+                cost);
+        return new com.learney.contentaudit.auditdomain.AnalyzerProvider() {
+            @Override
+            public String analyzerName() {
+                return analyzer.getName();
+            }
+
+            @Override
+            public com.learney.contentaudit.auditdomain.AnalyzerDescriptor describe() {
+                return card;
+            }
+
+            @Override
+            public com.learney.contentaudit.auditdomain.ContentAnalyzer create(
+                    com.learney.contentaudit.auditdomain.EvaluationRunPolicy policy) {
+                return analyzer;
+            }
+
+            @Override
+            public java.util.Optional<com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding> planBinding() {
+                return java.util.Optional.empty();
+            }
+
+            @Override
+            public java.util.Optional<com.learney.contentaudit.auditdomain.SelfDescribingConfig> config() {
+                return java.util.Optional.empty();
+            }
+        };
     }
 }

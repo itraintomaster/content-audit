@@ -287,7 +287,7 @@ public class CocaBucketsAnalyzerTest {
         when(config.getAnalysisStrategy()).thenReturn(AnalysisStrategy.LEVELS);
         lenient().when(config.getProgressionExpectations()).thenReturn(List.of());
 
-        IAuditEngine engine = new IAuditEngine(List.of(buildAnalyzer()), new IScoreAggregator());
+        IAuditEngine engine = engineOf(List.of(buildAnalyzer()), new IScoreAggregator());
         return engine.runAudit(course).getRoot();
     }
 
@@ -663,7 +663,7 @@ public class CocaBucketsAnalyzerTest {
         lenient().when(config.getProgressionExpectations()).thenReturn(List.of());
 
         CocaBucketsAnalyzer sut = buildAnalyzer();
-        AuditReport report = new IAuditEngine(List.of(sut), new IScoreAggregator())
+        AuditReport report = engineOf(List.of(sut), new IScoreAggregator())
                 .runAudit(course);
 
         AuditNode milestone = report.getRoot().getChildren().get(0);
@@ -696,5 +696,67 @@ public class CocaBucketsAnalyzerTest {
     @Tag("F-HALL-R003")
     public void shouldGiveTheFindingOfB2WhichItScores322TheShareOfEachFrequencyBandAgainstTheTargetsOfItsLevel() {
         throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    /**
+     * FEAT-HALL: the engine runs what its catalog lists. This wraps the given analyzer instances
+     * in providers that return that same instance, with a minimal card, so the test keeps running
+     * exactly those analyzers in that order; findings are not collected here.
+     */
+    static com.learney.contentaudit.auditdomain.IAuditEngine engineOf(
+            java.util.List<? extends com.learney.contentaudit.auditdomain.ContentAnalyzer> analyzers,
+            com.learney.contentaudit.auditdomain.ScoreAggregator aggregator) {
+        java.util.List<com.learney.contentaudit.auditdomain.AnalyzerProvider> providers = new java.util.ArrayList<>();
+        for (com.learney.contentaudit.auditdomain.ContentAnalyzer analyzer : analyzers) {
+            providers.add(fixedProvider(analyzer));
+        }
+        return new com.learney.contentaudit.auditdomain.IAuditEngine(aggregator,
+                new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(providers),
+                (root, analyzer, card) -> { },
+                new com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator());
+    }
+
+    static com.learney.contentaudit.auditdomain.AnalyzerProvider fixedProvider(
+            com.learney.contentaudit.auditdomain.ContentAnalyzer analyzer) {
+        boolean judge = "quiz-instruction".equals(analyzer.getName());
+        com.learney.contentaudit.auditdomain.finding.AnalysisCost cost = judge
+                ? com.learney.contentaudit.auditdomain.finding.AnalysisCost.PAID_MODEL
+                : com.learney.contentaudit.auditdomain.finding.AnalysisCost.INSTANT;
+        com.learney.contentaudit.auditdomain.AuditTarget target = analyzer.getTarget() != null
+                ? analyzer.getTarget() : com.learney.contentaudit.auditdomain.AuditTarget.QUIZ;
+        com.learney.contentaudit.auditdomain.AnalyzerDescriptor card = new com.learney.contentaudit.auditdomain.AnalyzerDescriptor(
+                analyzer.getName(), analyzer.getDescription() != null ? analyzer.getDescription() : "-", target,
+                "-", "-", java.util.List.of(new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("rule", "-", cost)),
+                "-", judge ? com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS
+                        : com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.VOCABULARY,
+                java.util.List.of(target), java.util.List.of(com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL),
+                cost);
+        return new com.learney.contentaudit.auditdomain.AnalyzerProvider() {
+            @Override
+            public String analyzerName() {
+                return analyzer.getName();
+            }
+
+            @Override
+            public com.learney.contentaudit.auditdomain.AnalyzerDescriptor describe() {
+                return card;
+            }
+
+            @Override
+            public com.learney.contentaudit.auditdomain.ContentAnalyzer create(
+                    com.learney.contentaudit.auditdomain.EvaluationRunPolicy policy) {
+                return analyzer;
+            }
+
+            @Override
+            public java.util.Optional<com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding> planBinding() {
+                return java.util.Optional.empty();
+            }
+
+            @Override
+            public java.util.Optional<com.learney.contentaudit.auditdomain.SelfDescribingConfig> config() {
+                return java.util.Optional.empty();
+            }
+        };
     }
 }
