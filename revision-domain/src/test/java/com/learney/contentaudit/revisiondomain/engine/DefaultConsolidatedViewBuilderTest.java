@@ -1,4 +1,6 @@
 package com.learney.contentaudit.revisiondomain.engine;
+import com.learney.contentaudit.revisiondomain.consolidatedview.FieldChange;
+import com.learney.contentaudit.revisiondomain.consolidatedview.NodeImpact;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -1300,6 +1302,36 @@ public class DefaultConsolidatedViewBuilderTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R010")
     public void shouldCarryIntoTheConsolidatedViewTheVocabularyScoreAndTheErrorCountsTheEnginePublishedOnEachNodeOfEachSnapshotWithoutComputingThemAgain() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010 / F-CDIFF-R007: the view reads the numbers the engine published on each snapshot --
+        // here deliberately different from what the scores would give -- and never computes them.
+        AuditNode baselineQuiz = quizNode("q1", 14, 2);
+        baselineQuiz.setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(0.61,
+                List.of(), new com.learney.contentaudit.auditdomain.contextnumbers.ErrorCounts(1, 1, 1.0,
+                        new com.learney.contentaudit.auditdomain.contextnumbers.SeverityCounts(0, 1, 0, 0), 0, List.of())));
+        AuditNode consolidatedQuiz = quizNode("q1", 10, 0);
+        consolidatedQuiz.setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(0.97,
+                List.of(), new com.learney.contentaudit.auditdomain.contextnumbers.ErrorCounts(1, 0, 0.0,
+                        new com.learney.contentaudit.auditdomain.contextnumbers.SeverityCounts(0, 0, 0, 0), 0, List.of())));
+        stubActive(baselineQuiz);
+        when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approvedArtifact("p1", "q1")));
+        when(courseElementLocator.replace(any(), any())).thenAnswer(invocation -> invocation.getArgument(0));
+        when(auditEngine.runAudit(any())).thenReturn(reportWith(consolidatedQuiz));
+        DefaultConsolidatedViewBuilder realDiff = new DefaultConsolidatedViewBuilder(revisionArtifactStore,
+                activeAnalysisSelectionStore, auditReportStore, refinementPlanStore, courseRepository,
+                courseElementLocator, courseMapper, auditEngine,
+                new com.learney.contentaudit.revisiondomain.fielddiff.DefaultNodeFieldDifferFactory().create());
+
+        ConsolidatedView view = realDiff.build(COURSE_PATH);
+
+        NodeImpact impact = view.getNodeImpacts().stream().filter(n -> "q1".equals(n.getNodeId())).findFirst()
+                .orElseThrow();
+        FieldChange vocabulary = impact.getFieldChanges().get("numbers.vocabularyScore");
+        assertNotNull(vocabulary, "R010: the vocabulary score travels into the view: " + impact.getFieldChanges().keySet());
+        assertEquals(0.61, vocabulary.getOriginal(), "R010: the one published on the original snapshot");
+        assertEquals(0.97, vocabulary.getConsolidated(), "R010: the one published on the consolidated snapshot");
+        FieldChange withAnyError = impact.getFieldChanges().get("numbers.errors.withAnyError");
+        assertNotNull(withAnyError, "R010: and the error counts");
+        assertEquals(1, withAnyError.getOriginal());
+        assertEquals(0, withAnyError.getConsolidated());
     }
 }

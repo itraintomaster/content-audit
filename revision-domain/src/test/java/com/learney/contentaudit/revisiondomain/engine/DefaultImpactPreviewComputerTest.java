@@ -1,4 +1,5 @@
 package com.learney.contentaudit.revisiondomain.engine;
+import com.learney.contentaudit.revisiondomain.impactpreview.LevelImpact;
 
 import com.learney.contentaudit.auditdomain.CourseMapper;
 import com.learney.contentaudit.auditdomain.AuditEngine;
@@ -720,7 +721,54 @@ public class DefaultImpactPreviewComputerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R010")
     public void shouldComputeTheBeforeAndAfterOfEachLevelOfTheImpactPreviewFromTheVocabularyScoresPublishedOnTheBaseAndSimulatedReports739BeforeOnTheCourseOfThe299BaseInsteadOf734() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010 / F-PIPRE-R004: the aggregate of each level reads the vocabulary score the engine
+        // published -- 73,9 % before on the course of the 29/9 base -- and not the 73,4 % of
+        // averaging all its dimensions, the COCA quarters included.
+        CourseEntity course = minimalCourse("course-299");
+        RevisionProposal prop = proposal("proposal-r010", "quiz-001");
+        Map<String, Double> courseKeys = new java.util.LinkedHashMap<>();
+        courseKeys.put("coca-buckets-distribution", 0.7253788624322802);
+        courseKeys.put("lemma-recurrence", 0.08);
+        courseKeys.put("lemma-absence", 0.89250300362255);
+        courseKeys.put("lemma-count", 0.6698448144961168);
+        courseKeys.put("coca-buckets-distribution/Q1", 0.7673328547283127);
+        courseKeys.put("coca-buckets-distribution/Q2", 0.7684543932356559);
+        courseKeys.put("coca-buckets-distribution/Q3", 0.6915373831741857);
+        courseKeys.put("coca-buckets-distribution/Q4", 0.6741908185909666);
+        courseKeys.put("knowledge-title-length", 0.9877878929349517);
+        courseKeys.put("knowledge-instructions-length", 0.9546429877621389);
+        courseKeys.put("sentence-length", 0.8644799618316434);
+        AuditReport base = twoLevelReport("course-299", "quiz-001", courseKeys, Map.of("sentence-length", 0.8));
+        base.getRoot().setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(
+                0.7392339318685259, List.of(), null));
+        base.getRoot().getChildren().get(0).setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers
+                .ContextNumbers(0.8, List.of(), null));
+        Map<String, Double> simulatedKeys = new java.util.LinkedHashMap<>(courseKeys);
+        simulatedKeys.put("sentence-length", 0.8645);
+        AuditReport simulated = twoLevelReport("course-299", "quiz-001", simulatedKeys, Map.of("sentence-length", 1.0));
+        simulated.getRoot().setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(
+                0.74, List.of(), null));
+        simulated.getRoot().getChildren().get(0).setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers
+                .ContextNumbers(1.0, List.of(), null));
+        when(auditReportStore.loadLatest()).thenReturn(Optional.of(base));
+        when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
+        when(elementLocator.replace(any(), any())).thenReturn(course);
+        when(courseMapper.map(any())).thenReturn(mock(AuditableCourse.class));
+        when(auditEngine.runAudit(any())).thenReturn(simulated);
+
+        ImpactPreview preview = buildComputer().compute(course, prop);
+
+        LevelImpact courseLevel = preview.getLevelImpacts().stream()
+                .filter(li -> li.getNodeTarget() == AuditTarget.COURSE).findFirst().orElseThrow();
+        assertEquals(0.7392339318685259, courseLevel.getAggregateDelta().getBefore(), 1e-12,
+                "R010: 73,9 % before on the course, the published number");
+        assertEquals(0.74, courseLevel.getAggregateDelta().getAfter(), 1e-12, "the published number after");
+        double allDimensions = courseKeys.values().stream().mapToDouble(Double::doubleValue).average().orElseThrow();
+        assertEquals(0.734, allDimensions, 5e-4, "averaging every dimension gave the old 73,4 %");
+        LevelImpact quizLevel = preview.getLevelImpacts().stream()
+                .filter(li -> li.getNodeTarget() == AuditTarget.QUIZ).findFirst().orElseThrow();
+        assertEquals(0.8, quizLevel.getAggregateDelta().getBefore(), 1e-12);
+        assertEquals(1.0, quizLevel.getAggregateDelta().getAfter(), 1e-12);
     }
 
     private static void publishVocabularyScore(AuditNode node, double score) {

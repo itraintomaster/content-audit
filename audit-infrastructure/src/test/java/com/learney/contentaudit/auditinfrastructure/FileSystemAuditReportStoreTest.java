@@ -1,4 +1,18 @@
 package com.learney.contentaudit.auditinfrastructure;
+import com.learney.contentaudit.auditdomain.contextnumbers.AuditDigest;
+import com.learney.contentaudit.auditdomain.contextnumbers.DigestNode;
+import com.learney.contentaudit.auditdomain.contextnumbers.ErrorCounts;
+import com.learney.contentaudit.auditdomain.contextnumbers.SeverityCounts;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import java.nio.file.Files;
+import java.util.LinkedHashMap;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
@@ -328,15 +342,84 @@ class FileSystemAuditReportStoreTest {
     @DisplayName("should list each saved analysis with the vocabulary score published on its course, 73,9 % for the 29/9 base, instead of 73,4 %, the average of its eleven course keys")
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R010")
-    public void shouldListEachSavedAnalysisWithTheVocabularyScorePublishedOnItsCourse739ForThe299BaseInsteadOf734TheAverageOfItsElevenCourseKeys() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldListEachSavedAnalysisWithTheVocabularyScorePublishedOnItsCourse739ForThe299BaseInsteadOf734TheAverageOfItsElevenCourseKeys(
+            @TempDir Path tempDir) {
+        // R010: the listing shows the number the engine published on the course -- 73,9 % on the
+        // 29/9 base -- and not the 73,4 % of averaging its eleven course keys, quarters included.
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir);
+        Map<String, Double> courseKeys = new LinkedHashMap<>();
+        courseKeys.put("coca-buckets-distribution", 0.7253788624322802);
+        courseKeys.put("lemma-recurrence", 0.08);
+        courseKeys.put("lemma-absence", 0.89250300362255);
+        courseKeys.put("lemma-count", 0.6698448144961168);
+        courseKeys.put("coca-buckets-distribution/Q1", 0.7673328547283127);
+        courseKeys.put("coca-buckets-distribution/Q2", 0.7684543932356559);
+        courseKeys.put("coca-buckets-distribution/Q3", 0.6915373831741857);
+        courseKeys.put("coca-buckets-distribution/Q4", 0.6741908185909666);
+        courseKeys.put("knowledge-title-length", 0.9877878929349517);
+        courseKeys.put("knowledge-instructions-length", 0.9546429877621389);
+        courseKeys.put("sentence-length", 0.8644799618316434);
+        AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, List.of(), courseKeys, Map.of(), null);
+        root.setNumbers(new ContextNumbers(0.7392339318685259, List.of(), null));
+        String id = store.save(new AuditReport(root));
+
+        List<AuditReportSummary> summaries = store.list();
+
+        assertEquals(1, summaries.size(), "the digest, in its own directory, is not taken for another analysis");
+        assertEquals(id, summaries.get(0).getId());
+        assertEquals(0.7392339318685259, summaries.get(0).getOverallScore(), 1e-12,
+                "R010: 73,9 %, the vocabulary score published on the course");
+        double elevenKeys = courseKeys.values().stream().mapToDouble(Double::doubleValue).average().orElseThrow();
+        assertEquals(0.734, elevenKeys, 5e-4, "the old number averaged the eleven keys");
     }
 
     @Test
     @DisplayName("should save with each analysis a digest without the course entities whose numbers, findings and unevaluated analyzers are copied from the report and not recomputed, and load it by the analysis id")
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R010")
-    public void shouldSaveWithEachAnalysisADigestWithoutTheCourseEntitiesWhoseNumbersFindingsAndUnevaluatedAnalyzersAreCopiedFromTheReportAndNotRecomputedAndLoadItByTheAnalysisId() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldSaveWithEachAnalysisADigestWithoutTheCourseEntitiesWhoseNumbersFindingsAndUnevaluatedAnalyzersAreCopiedFromTheReportAndNotRecomputedAndLoadItByTheAnalysisId(
+            @TempDir Path tempDir) throws Exception {
+        // R010: whoever draws reads the digest, not the 146 MB report: ids, labels, numbers,
+        // findings and what was left unevaluated -- copied, never recomputed -- and no entity.
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(new NlpToken("wallet", "wallet", "NOUN", 9000, false, false)),
+                "67fab6d599301022953425b1", "Where is my wallet?", "Q1", "¿Dónde está mi billetera?",
+                List.of("Where is my wallet?"), "Where is my [wallet]?", "Completa", List.of(), null);
+        AuditNode quizNode = new AuditNode(quiz, AuditTarget.QUIZ, null, List.of(), Map.of("lemma-absence", 0.9),
+                Map.of(), null);
+        Finding wallet = new Finding("lemma-absence", "misplaced-word", new FindingNodeRef(AuditTarget.QUIZ,
+                "67fab6d599301022953425b1", "Where is my wallet?"), FindingSeverity.MEDIUM,
+                new FindingEvidence(List.of(new EvidencePart("Palabra", "wallet")), "wallet es de A2", List.of()),
+                FindingResolution.PANEL, AnalysisCost.INSTANT,
+                new FindingIdentity("lemma-absence|misplaced-word|67fab6d599301022953425b1|wallet", "wallet"));
+        quizNode.setFindings(List.of(wallet));
+        quizNode.setUnevaluatedBy(List.of("quiz-instruction"));
+        // Deliberately not what the scores would give: the digest copies, it never recomputes.
+        ContextNumbers published = new ContextNumbers(0.123, List.of(), new ErrorCounts(1, 0, 0.0,
+                new SeverityCounts(0, 0, 0, 0), 1, List.of()));
+        quizNode.setNumbers(published);
+        AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizNode), Map.of("lemma-absence", 0.9),
+                Map.of(), null);
+        root.setNumbers(new ContextNumbers(0.456, List.of(), null));
+        quizNode.setParent(root);
+
+        String id = store.save(new AuditReport(root));
+        AuditDigest digest = store.loadDigest(id).orElseThrow(() -> new AssertionError("the digest of " + id));
+
+        assertEquals(id, digest.getAuditId());
+        DigestNode course = digest.getRoot();
+        assertEquals(AuditTarget.COURSE, course.getTarget());
+        assertEquals(0.456, course.getNumbers().getVocabularyScore(), 1e-12, "R010: copied from the report");
+        DigestNode digestQuiz = course.getChildren().get(0);
+        assertEquals("67fab6d599301022953425b1", digestQuiz.getNodeId());
+        assertEquals("Where is my wallet?", digestQuiz.getLabel());
+        assertEquals(published, digestQuiz.getNumbers(), "R010: the numbers, as the engine published them");
+        assertEquals(List.of(wallet), digestQuiz.getFindings(), "the findings of the node");
+        assertEquals(List.of("quiz-instruction"), digestQuiz.getUnevaluatedBy(), "what was left unevaluated");
+        try (var files = Files.list(tempDir.resolve(".content-audit/audit-digests"))) {
+            String json = Files.readString(files.findFirst().orElseThrow());
+            assertFalse(json.contains("¿Dónde está mi billetera?") || json.contains("sentenceParts")
+                    || json.contains("\"tokens\""), "the digest carries no course entity");
+        }
     }
 }

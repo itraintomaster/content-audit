@@ -1,4 +1,26 @@
 package com.learney.contentaudit.auditapplication;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.learney.contentaudit.auditdomain.catalog.UnknownAnalyzerException;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerScore;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.courseinfrastructure.CourseValidatorImpl;
+import com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository;
+import com.learney.contentaudit.vocabularyinfrastructure.evp.FileSystemEvpCatalog;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
+import java.util.function.Consumer;
+import java.util.zip.GZIPInputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -945,7 +967,23 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R012")
     public void shouldRunExactlySentencelengthWhenARunAsksOnlyForItLeavingNoScoreFindingOrNumberOfTheOtherSixClassicAnalyzers() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: asking for sentence-length runs exactly it -- before the contract the selection
+        // only filtered the judges and the seven classics ran anyway.
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("q1", "q2"));
+        DefaultAuditRunner runner = realRunnerWith(classicProviders(mock(EvpCatalogPort.class)));
+
+        AuditReport report = runner.runAudit(coursePath, new AuditRunRequest(Set.of("sentence-length"), null, null));
+
+        walkTree(report.getRoot(), node -> {
+            assertTrue(Set.of("sentence-length").containsAll(node.getScores().keySet()),
+                    "R012: no score of another analyzer: " + node.getScores());
+            node.getFindings().forEach(f -> assertEquals("sentence-length", f.getAnalyzer(), "R012: no finding of another"));
+            assertEquals(Set.of("sentence-length"), node.getNumbers().getAnalyzerScores().stream()
+                    .map(AnalyzerScore::getAnalyzer).collect(java.util.stream.Collectors.toSet()),
+                    "R012: no number of another");
+        });
+        assertFalse(firstQuiz(report).getFindings().isEmpty(), "its own findings are there");
     }
 
     @Test
@@ -953,7 +991,27 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R012")
     public void shouldRunExactlyQuizinstructionWhenARunAsksOnlyForItWithItsFindingsNumbersAndCoverageAndNothingFromTheSevenClassicAnalyzers() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: asking for the judge runs exactly the judge, with its findings, its numbers and its
+        // coverage -- and nothing of the seven classics.
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        // Each quiz with its own content: the judge reuses a verdict for identical content (F-EVCOST-R001).
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithDistinctQuizzes("q-breach", "q-ok"));
+        List<AnalyzerProvider> providers = new ArrayList<>(classicProviders(mock(EvpCatalogPort.class)));
+        providers.add(breachingJudge());
+        DefaultAuditRunner runner = realRunnerWith(providers);
+
+        AuditReport report = runner.runAudit(coursePath, new AuditRunRequest(Set.of("quiz-instruction"), null, null));
+
+        walkTree(report.getRoot(), node -> {
+            assertTrue(Set.of("quiz-instruction").containsAll(node.getScores().keySet()),
+                    "R012: nothing of the seven classics: " + node.getScores());
+            node.getFindings().forEach(f -> assertEquals("quiz-instruction", f.getAnalyzer()));
+        });
+        AuditNode breach = firstQuiz(report);
+        assertEquals(1, breach.getFindings().size(), "R012: its findings");
+        assertEquals(1, report.getRoot().getNumbers().getErrors().getWithAnyError(), "R012: its numbers");
+        assertTrue(((CourseDiagnoses) report.getRoot().getDiagnoses()).getQuizInstructionCoverage().isPresent(),
+                "R012: its coverage");
     }
 
     @Test
@@ -961,7 +1019,18 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R012")
     public void shouldRejectBeforeLoadingTheCourseARunThatAsksForQuizinstructionsANameGetAnalyzersDoesNotListWithTheMessageThatPointsToGetAnalyzers() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: a name that get analyzers does not list rejects the run before the course is loaded
+        // (loading it tokenizes it with spaCy), with the message of F-CLIRV-R016.
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                realCatalog());
+
+        UnknownAnalyzerException rejected = assertThrows(UnknownAnalyzerException.class,
+                () -> runner.runAudit(coursePath, new AuditRunRequest(Set.of("quiz-instructions"), null, null)));
+
+        assertEquals("Analyzer 'quiz-instructions' not found. Run 'content-audit get analyzers' to see available analyzers.",
+                rejected.getMessage());
+        verify(courseRepository, never()).load(any());
+        verifyNoInteractions(auditEngine);
     }
 
     @Test
@@ -969,7 +1038,16 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R012")
     public void shouldRejectBeforeLoadingTheCourseARunThatExcludesANameGetAnalyzersDoesNotListInsteadOfIgnoringIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: excluding a name the catalog does not have is rejected too, instead of ignored.
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                realCatalog());
+
+        UnknownAnalyzerException rejected = assertThrows(UnknownAnalyzerException.class,
+                () -> runner.runAudit(coursePath, new AuditRunRequest(null, Set.of("quiz-instructions"), null)));
+
+        assertEquals("quiz-instructions", rejected.getAnalyzerName());
+        verify(courseRepository, never()).load(any());
+        verifyNoInteractions(auditEngine);
     }
 
     @Test
@@ -977,6 +1055,212 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R013")
     public void shouldPublishOnThe299CourseWithTheSevenClassicAnalyzersTheSameScoreOfEachOneOnEachOfIts11760NodesAndTheSameTypedDiagnosesAsTheAnalysis20260930T115402() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R013: the course of the 29/9 base (db/english-course), the spaCy tokens it had then and the
+        // real configurations and EVP catalog give, node by node, the scores and the typed
+        // diagnoses of the analysis 2026-09-30T11-54-02 (fixtures made by scripts/fhall_base_fixtures.py).
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(new RecordedTokenizer(),
+                DefaultQuizSentenceConverter.create());
+        EvpCatalogPort evp = new FileSystemEvpCatalog(Path.of("../analysis/recursos-compartidos/enriched_vocabulary_catalog.json"));
+        List<AnalyzerProvider> classics = classicProviders(evp);
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(classics);
+        DefaultAuditRunner runner = new DefaultAuditRunner(new FileSystemCourseRepository(new CourseValidatorImpl()), mapper,
+                new IAuditEngine(new IScoreAggregator(), catalog, new DefaultFindingCollector(),
+                        new DefaultContextNumbersCalculator()), catalog);
+
+        AuditReport report = runner.runAudit(Path.of("../db/english-course"), (Set<String>) null);
+
+        List<String> expectedNodes = readFixture("nodes.jsonl.gz");
+        List<String> expectedDiagnoses = readFixture("diagnoses.jsonl.gz");
+        List<AuditNode> nodes = new ArrayList<>();
+        walkTree(report.getRoot(), nodes::add);
+        assertEquals(11760, nodes.size(), "R013: the 11.760 nodes of the 29/9 course");
+        assertEquals(expectedNodes.size(), nodes.size());
+        ObjectMapper json = diagnosesMapper();
+        for (int i = 0; i < nodes.size(); i++) {
+            AuditNode node = nodes.get(i);
+            JsonNode expected = parse(json, expectedNodes.get(i));
+            String id = node.getEntity() != null ? node.getEntity().getId() : "root";
+            assertEquals(expected.get(0).asText() + " " + expected.get(1).asText(), node.getTarget() + " " + id,
+                    "the same node in the same place");
+            Map<String, Double> expectedScores = new LinkedHashMap<>();
+            expected.get(2).fields().forEachRemaining(e -> expectedScores.put(e.getKey(), e.getValue().asDouble()));
+            assertEquals(expectedScores, node.getScores(), "R013: the same score of each analyzer on " + id);
+            assertEquals(new ArrayList<>(expectedScores.keySet()), new ArrayList<>(node.getScores().keySet()),
+                    "and in the same order on " + id);
+            assertEquals(parse(json, expectedDiagnoses.get(i)), diagnosesTree(json, node),
+                    "R013: the same typed diagnoses on " + id);
+        }
+        assertEquals(new HashSet<>(List.of("sentence-length", "knowledge-title-length", "knowledge-instructions-length",
+                "coca-buckets-distribution", "lemma-recurrence", "lemma-absence", "lemma-count")),
+                new HashSet<>(report.getRoot().getNumbers().getAnalyzerScores().stream().map(AnalyzerScore::getAnalyzer)
+                        .toList()), "the seven classic analyzers ran");
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-HALL: the seven classics with the configurations the code applies, the real engine
+    // with the real collector, and the 29/9 base
+    // -----------------------------------------------------------------------
+
+    private DefaultAuditRunner realRunnerWith(List<AnalyzerProvider> providers) {
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
+        return new DefaultAuditRunner(courseRepository, courseToAuditableMapper, new IAuditEngine(new IScoreAggregator(),
+                catalog, new DefaultFindingCollector(), new DefaultContextNumbersCalculator()), catalog);
+    }
+
+    /** The seven classic providers as Main builds them, over the given EVP catalog. */
+    private static List<AnalyzerProvider> classicProviders(EvpCatalogPort evp) {
+        DefaultLemmaAbsenceConfig absence = new DefaultLemmaAbsenceConfig();
+        return List.of(
+                new SentenceLengthAnalyzerProvider(null, new DefaultSentenceLengthConfig()),
+                new KnowledgeTitleLengthAnalyzerProvider(),
+                new KnowledgeInstructionsLengthAnalyzerProvider(),
+                new CocaBucketsAnalyzerProvider(null, new DefaultCocaBucketsConfig()),
+                new LemmaRecurrenceAnalyzerProvider(new DefaultLemmaRecurrenceConfig()),
+                new LemmaAbsenceAnalyzerProvider(evp, absence,
+                        new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), absence)),
+                new LemmaCountAnalyzerProvider(evp, new DefaultLemmaCountConfigLoader().load(null)));
+    }
+
+    /** The real judge factory whose judge finds a major breach in q-breach and nothing in any other quiz. */
+    private static AnalyzerProvider breachingJudge() {
+        Evaluator evaluator = new Evaluator() {
+            @Override
+            public String evaluatorId() {
+                return EVALUATOR_ID;
+            }
+
+            @Override
+            public Optional<String> evaluatorVersion() {
+                return Optional.of("v1");
+            }
+
+            @Override
+            public EvaluationOutcome evaluate(EvaluationSubject subject) {
+                return new EvaluationEmitted("q-breach".equals(subject.getSubjectRef()) ? "breach" : "ok");
+            }
+        };
+        QuizInstructionVerdictReader reader = payload -> "breach".equals(payload)
+                ? new QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR, "Incumple la consigna",
+                        List.of(new com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation(
+                                "TENSE", "Pasado", "goes", "Esta en presente")), List.of())
+                : new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "Cumple", List.of(), List.of());
+        return new DefaultQuizInstructionAnalyzerFactory(new DefaultEvaluationSessionFactory(
+                new FakeQuizInstructionEvaluationLedger(), new FakeQuizInstructionContentFingerprinter()), evaluator,
+                reader, new DefaultQuizInstructionConfig());
+    }
+
+    private static void walkTree(AuditNode node, Consumer<AuditNode> action) {
+        action.accept(node);
+        if (node.getChildren() != null) {
+            node.getChildren().forEach(child -> walkTree(child, action));
+        }
+    }
+
+    private static List<String> readFixture(String name) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new GZIPInputStream(
+                DefaultAuditRunnerTest.class.getResourceAsStream("/fhall-base-2026-09-30/" + name)),
+                StandardCharsets.UTF_8))) {
+            return reader.lines().toList();
+        } catch (IOException e) {
+            throw new AssertionError("fixture " + name + " unreadable", e);
+        }
+    }
+
+    private static JsonNode parse(ObjectMapper json, String line) {
+        try {
+            return json.readTree(line);
+        } catch (IOException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    /** The typed diagnoses serialized as the report store does: polymorphic, with Optionals unwrapped. */
+    private static ObjectMapper diagnosesMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new Jdk8Module());
+        mapper.addMixIn(NodeDiagnoses.class, NodeDiagnosesMixin.class);
+        return mapper;
+    }
+
+    private static JsonNode diagnosesTree(ObjectMapper json, AuditNode node) {
+        try {
+            return json.readTree(json.writerFor(NodeDiagnoses.class).writeValueAsString(node.getDiagnoses()));
+        } catch (IOException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "@type")
+    @JsonSubTypes({
+        @JsonSubTypes.Type(value = DefaultCourseDiagnoses.class, name = "CourseDiagnoses"),
+        @JsonSubTypes.Type(value = DefaultLevelDiagnoses.class, name = "LevelDiagnoses"),
+        @JsonSubTypes.Type(value = DefaultTopicDiagnoses.class, name = "TopicDiagnoses"),
+        @JsonSubTypes.Type(value = DefaultKnowledgeDiagnoses.class, name = "KnowledgeDiagnoses"),
+        @JsonSubTypes.Type(value = DefaultQuizDiagnoses.class, name = "QuizDiagnoses")
+    })
+    abstract static class NodeDiagnosesMixin {
+    }
+
+    /** The spaCy tokens each canonical sentence of the 29/9 course had in the analysis 2026-09-30T11-54-02. */
+    private static final class RecordedTokenizer implements NlpTokenizer {
+        private final Map<String, List<NlpToken>> bySentence = new java.util.HashMap<>();
+
+        RecordedTokenizer() {
+            ObjectMapper json = new ObjectMapper();
+            List<NlpToken> table = new ArrayList<>();
+            for (String line : readFixture("tokens.jsonl.gz")) {
+                JsonNode t = parse(json, line);
+                table.add(new NlpToken(t.get(0).asText(), t.get(1).asText(), t.get(2).asText(),
+                        t.get(3).isNull() ? null : t.get(3).asInt(), t.get(4).asBoolean(), t.get(5).asBoolean()));
+            }
+            for (String line : readFixture("sentences.jsonl.gz")) {
+                JsonNode s = parse(json, line);
+                List<NlpToken> tokens = new ArrayList<>();
+                s.get(1).forEach(index -> tokens.add(table.get(index.asInt())));
+                bySentence.put(s.get(0).asText(), tokens);
+            }
+        }
+
+        @Override
+        public Map<String, List<NlpToken>> analyzeTokensBatch(List<String> sentences) {
+            Map<String, List<NlpToken>> result = new java.util.HashMap<>();
+            for (String sentence : sentences) {
+                List<NlpToken> tokens = bySentence.get(sentence);
+                if (tokens == null) {
+                    throw new AssertionError("a sentence the 29/9 course did not have: " + sentence);
+                }
+                result.put(sentence, tokens);
+            }
+            return result;
+        }
+
+        @Override
+        public List<String> tokenize(String text) {
+            throw new UnsupportedOperationException("the audit tokenizes in batch");
+        }
+
+        @Override
+        public int countTokens(String text) {
+            throw new UnsupportedOperationException("the audit tokenizes in batch");
+        }
+
+        @Override
+        public List<NlpToken> analyzeTokens(String text) {
+            throw new UnsupportedOperationException("the audit tokenizes in batch");
+        }
+    }
+
+    /** Like courseWithQuizzes, but each quiz with its own text, so the judge sees different content. */
+    private static AuditableCourse courseWithDistinctQuizzes(String... quizIds) {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (String quizId : quizIds) {
+            quizzes.add(new AuditableQuiz(List.of(), quizId, "label", "code", null, List.of("She is " + quizId + "."),
+                    null, null, List.of(new com.learney.contentaudit.coursedomain.SentencePartEntity(
+                            com.learney.contentaudit.coursedomain.SentencePartKind.TEXT, "She is " + quizId, null)), null));
+        }
+        AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Knowledge", "Instructions", true,
+                "k1", "Knowledge", "K1", null, "Topic");
+        AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "Topic", "T1");
+        return new AuditableCourse(List.of(new AuditableMilestone(List.of(topic), "m1", "A1", "A1")));
     }
 }

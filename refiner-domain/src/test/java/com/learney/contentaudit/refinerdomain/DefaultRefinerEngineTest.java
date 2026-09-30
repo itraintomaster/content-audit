@@ -1,4 +1,26 @@
 package com.learney.contentaudit.refinerdomain;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedHashMap;
+import java.util.Optional;
+import java.util.TreeMap;
+import java.util.zip.GZIPInputStream;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditableEntity;
@@ -305,7 +327,29 @@ public class DefaultRefinerEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R013")
     public void shouldDeriveFromThe299AnalysisTheSame4036TasksAsBeforeTheContract3051SENTENCELENGTH950LEMMAABSENCE25KNOWLEDGEINSTRUCTIONSLENGTH6KNOWLEDGETITLELENGTH3COCABUCKETSAnd1LEMMARECURRENCE() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R013: the plan bindings of the catalog reproduce the old lists and switch exactly -- the
+        // 4.036 tasks of the plan 2026-09-30T11-54-12, derived from the analysis 2026-09-30T11-54-02,
+        // task by task and in the same order.
+        AuditReport base = new AuditReport(baseTree());
+
+        RefinementPlan plan = sut.plan(base, "2026-09-30T11-54-02");
+
+        List<String> tasks = new ArrayList<>();
+        Map<DiagnosisKind, Integer> byKind = new TreeMap<>();
+        for (RefinementTask task : plan.getTasks()) {
+            tasks.add(task.getNodeTarget() + "\t" + task.getNodeId() + "\t" + task.getNodeLabel() + "\t"
+                    + task.getDiagnosisKind());
+            byKind.merge(task.getDiagnosisKind(), 1, Integer::sum);
+        }
+        Assertions.assertEquals(4036, tasks.size(), "R013: the same 4.036 tasks");
+        Map<DiagnosisKind, Integer> expected = new TreeMap<>(Map.of(DiagnosisKind.SENTENCE_LENGTH, 3051,
+                DiagnosisKind.LEMMA_ABSENCE, 950, DiagnosisKind.KNOWLEDGE_INSTRUCTIONS_LENGTH, 25,
+                DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, 6, DiagnosisKind.COCA_BUCKETS, 3, DiagnosisKind.LEMMA_RECURRENCE, 1));
+        Assertions.assertEquals(expected, byKind, "R013: 3.051 + 950 + 25 + 6 + 3 + 1");
+        Assertions.assertEquals(readLines("plan.tsv.gz"), tasks,
+                "R013: task by task, in the order of the plan made before the contract");
+        Assertions.assertTrue(sut.unconvertedScores(base).isEmpty(),
+                "the base ran without the judge: no errors analyzer has scores to declare");
     }
 
     @Test
@@ -313,7 +357,19 @@ public class DefaultRefinerEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R004")
     public void shouldDeclareInsteadOfDroppingThemInSilenceTheAnalyzerAndTheNumberOfNodesWhoseScoresBelow1ItCouldNotTurnIntoTasksBecauseTheAnalyzerHasNoTaskKindAsHappenedToTheJudgeBeforeFQINSTR017() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 3: before F-QINST-R017 the plan had no task kind for the judge and dropped its
+        // scores without a word. An errors analyzer without a task kind is declared, not dropped.
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(new DefaultAnalyzerCatalog(List.of(
+                provider(errorsCard("quiz-instruction"), Optional.empty()))));
+        AuditReport report = reportWithQuizScores("quiz-instruction", 0.3, 0.0, 0.6, 1.0);
+
+        List<UnconvertedScoreCount> unconverted = engine.unconvertedScores(report);
+
+        Assertions.assertTrue(engine.plan(report, "a1").getTasks().isEmpty(), "no task kind, no task");
+        Assertions.assertEquals(1, unconverted.size());
+        Assertions.assertEquals("quiz-instruction", unconverted.get(0).getAnalyzer(), "R004: which analyzer");
+        Assertions.assertEquals(3, unconverted.get(0).getNodeCount(), "R004: how many nodes below 1");
+        Assertions.assertFalse(unconverted.get(0).getReason().isBlank(), "R004: and why");
     }
 
     @Test
@@ -321,7 +377,21 @@ public class DefaultRefinerEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R004")
     public void shouldDeclareAsUnconvertedTheScoresBelow1OfAnAnalyzerWhosePlanBindingNamesATaskKindThePlanDoesNotKnow() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 3: a binding whose task kind is not a DiagnosisKind of the plan (a new analyzer
+        // whose constant was not added) is declared too.
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(new DefaultAnalyzerCatalog(List.of(
+                provider(errorsCard("pista-coherente"), Optional.of(new AnalyzerPlanBinding("HINT_COHERENCE",
+                        List.of(AuditTarget.QUIZ)))))));
+        AuditReport report = reportWithQuizScores("pista-coherente", 0.0, 0.5);
+
+        List<UnconvertedScoreCount> unconverted = engine.unconvertedScores(report);
+
+        Assertions.assertTrue(engine.plan(report, "a1").getTasks().isEmpty());
+        Assertions.assertEquals(1, unconverted.size());
+        Assertions.assertEquals("pista-coherente", unconverted.get(0).getAnalyzer());
+        Assertions.assertEquals(2, unconverted.get(0).getNodeCount());
+        Assertions.assertTrue(unconverted.get(0).getReason().contains("HINT_COHERENCE"),
+                "R004: the reason names the unknown task kind: " + unconverted.get(0).getReason());
     }
 
     @Test
@@ -329,7 +399,19 @@ public class DefaultRefinerEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R004")
     public void shouldTurnTheScoresBelow1OfANewErrorsAnalyzerIntoTasksThroughItsPlanBindingWithoutThePlanKnowingItsName() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 / TECH_SPEC: the plan is not edited to add an analyzer -- its binding is enough.
+        // pista-coherente is a name the plan never heard of; its binding names a task kind it knows.
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(new DefaultAnalyzerCatalog(List.of(
+                provider(errorsCard("pista-coherente"), Optional.of(new AnalyzerPlanBinding("QUIZ_INSTRUCTION",
+                        List.of(AuditTarget.QUIZ)))))));
+        AuditReport report = reportWithQuizScores("pista-coherente", 0.0, 1.0, 0.5);
+
+        RefinementPlan plan = engine.plan(report, "a1");
+
+        Assertions.assertEquals(List.of("q0", "q2"), plan.getTasks().stream().map(RefinementTask::getNodeId).toList(),
+                "R004: one task per quiz below 1, worst first");
+        plan.getTasks().forEach(task -> Assertions.assertEquals(DiagnosisKind.QUIZ_INSTRUCTION, task.getDiagnosisKind()));
+        Assertions.assertTrue(engine.unconvertedScores(report).isEmpty(), "nothing left unconverted");
     }
 
     @Test
@@ -337,7 +419,16 @@ public class DefaultRefinerEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R004")
     public void shouldDeclareNothingAboutLemmacountWhoseScoresBelow1OnTheLevelsAndTheCourse670HaveNoTaskAsBeforeBecauseTheDeclarationCoversOnlyErrorsAnalyzers() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 / R013: lemma-count is a vocabulary analyzer without tasks, as before the contract;
+        // the declaration covers only the errors family, so its 67,0 % declares nothing.
+        AuditNode course = buildNode(AuditTarget.COURSE, "root", "Course", new LinkedHashMap<>(Map.of("lemma-count", 0.67)));
+        AuditNode level = buildNode(AuditTarget.MILESTONE, "m-b2", "B2", new LinkedHashMap<>(Map.of("lemma-count", 0.34)));
+        course.setChildren(List.of(level));
+
+        AuditReport report = new AuditReport(course);
+
+        Assertions.assertTrue(sut.plan(report, "a1").getTasks().isEmpty(), "lemma-count makes no tasks");
+        Assertions.assertTrue(sut.unconvertedScores(report).isEmpty(), "R004: and declares nothing");
     }
 
     /**
@@ -362,5 +453,93 @@ public class DefaultRefinerEngineTest {
                 new com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory(
                         null, null, null,
                         org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.QuizInstructionConfig.class))));
+    }
+
+    /** The tree of the analysis 2026-09-30T11-54-02: every node, in preorder, with its scores. */
+    private AuditNode baseTree() {
+        Deque<AuditNode> path = new ArrayDeque<>();
+        AuditNode root = null;
+        for (String line : readLines("nodes.tsv.gz")) {
+            String[] fields = line.split("\t", -1);
+            AuditTarget target = AuditTarget.valueOf(fields[0]);
+            Map<String, Double> scores = new LinkedHashMap<>();
+            if (!fields[3].isEmpty()) {
+                for (String pair : fields[3].split(";")) {
+                    int eq = pair.indexOf('=');
+                    scores.put(pair.substring(0, eq), Double.parseDouble(pair.substring(eq + 1)));
+                }
+            }
+            AuditNode node = buildNode(target, fields[1], fields[2], scores);
+            node.setChildren(new ArrayList<>());
+            int depth = List.of(AuditTarget.COURSE, AuditTarget.MILESTONE, AuditTarget.TOPIC, AuditTarget.KNOWLEDGE,
+                    AuditTarget.QUIZ).indexOf(target);
+            while (path.size() > depth) {
+                path.pop();
+            }
+            if (path.isEmpty()) {
+                root = node;
+            } else {
+                node.setParent(path.peek());
+                path.peek().getChildren().add(node);
+            }
+            path.push(node);
+        }
+        Assertions.assertNotNull(root);
+        return root;
+    }
+
+    private List<String> readLines(String fixture) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new GZIPInputStream(
+                getClass().getResourceAsStream("/fhall-base-2026-09-30/" + fixture)), StandardCharsets.UTF_8))) {
+            return reader.lines().toList();
+        } catch (IOException e) {
+            throw new AssertionError("fixture " + fixture + " unreadable", e);
+        }
+    }
+
+    /** A course with one quiz per score of the analyzer: q0, q1... */
+    private AuditReport reportWithQuizScores(String analyzer, double... scores) {
+        AuditNode course = buildNode(AuditTarget.COURSE, "root", "Course", new LinkedHashMap<>());
+        List<AuditNode> quizzes = new ArrayList<>();
+        for (int i = 0; i < scores.length; i++) {
+            quizzes.add(buildNode(AuditTarget.QUIZ, "q" + i, "Quiz " + i, new LinkedHashMap<>(Map.of(analyzer, scores[i]))));
+        }
+        course.setChildren(quizzes);
+        return new AuditReport(course);
+    }
+
+    private static AnalyzerDescriptor errorsCard(String name) {
+        return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿" + name + "?", "El ejercicio",
+                List.of(new AnalyzerRuleCard("rule-" + name, "La regla", AnalysisCost.INSTANT)), "Ningun error",
+                AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT);
+    }
+
+    private static AnalyzerProvider provider(AnalyzerDescriptor card, Optional<AnalyzerPlanBinding> binding) {
+        return new AnalyzerProvider() {
+            @Override
+            public String analyzerName() {
+                return card.getName();
+            }
+
+            @Override
+            public AnalyzerDescriptor describe() {
+                return card;
+            }
+
+            @Override
+            public ContentAnalyzer create(EvaluationRunPolicy policy) {
+                throw new AssertionError("the plan never builds an analyzer");
+            }
+
+            @Override
+            public Optional<AnalyzerPlanBinding> planBinding() {
+                return binding;
+            }
+
+            @Override
+            public Optional<SelfDescribingConfig> config() {
+                return Optional.empty();
+            }
+        };
     }
 }
