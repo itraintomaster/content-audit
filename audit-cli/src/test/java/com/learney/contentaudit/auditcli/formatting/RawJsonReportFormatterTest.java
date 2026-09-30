@@ -4,6 +4,37 @@ import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import com.learney.contentaudit.auditapplication.DefaultCocaBucketsConfig;
+import com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig;
+import com.learney.contentaudit.auditapplication.DefaultLemmaCountConfigLoader;
+import com.learney.contentaudit.auditapplication.DefaultLemmaRecurrenceConfig;
+import com.learney.contentaudit.auditapplication.DefaultQuizInstructionConfig;
+import com.learney.contentaudit.auditapplication.DefaultSentenceLengthConfig;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.KnowledgeTitleLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.SentenceLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -15,7 +46,74 @@ public class RawJsonReportFormatterTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R010")
     public void shouldWriteAsOverallScoreInAnalyzeFRawTheVocabularyScorePublishedOnTheCourse739ForThe299BaseInsteadOf734TheAverageOfItsElevenCourseKeys(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            ) throws IOException {
+        // R010: analyze -f raw writes as overall score the vocabulary score the engine published on the
+        // course of the 29/9 base, 73,9 %, instead of 73,4 %, the average of its eleven course keys;
+        // the keys themselves are still written as they are.
+        AuditNode course = node(AuditTarget.COURSE, null, course299());
+        new DefaultContextNumbersCalculator().compute(course, mainCards());
+
+        JsonNode raw = new ObjectMapper().readTree(new RawJsonReportFormatter().format(new AuditReport(course)));
+
+        assertEquals(0.7392339318685259, raw.get("overallScore").asDouble(), 1e-12,
+                "R010: the vocabulary score published on the course");
+        assertEquals("73.9", percent(raw.get("overallScore").asDouble()));
+        assertEquals("73.4", percent(averageOfKeys(course299())), "what -f raw wrote before the contract");
+        assertEquals(11, raw.get("scores").size(), "the eleven course keys, written as they are");
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-HALL: the course and levels of the 29/9 base (analysis 2026-09-30T11-54-02)
+    // -----------------------------------------------------------------------
+
+    /** The eleven course keys of the 29/9 base: the seven classic analyzers and the four COCA quarters. */
+    private static Map<String, Double> course299() {
+        return keys("coca-buckets-distribution", 0.7253788624322802, "lemma-recurrence", 0.08,
+                "lemma-absence", 0.89250300362255, "lemma-count", 0.6698448144961168,
+                "coca-buckets-distribution/Q1", 0.7673328547283127, "coca-buckets-distribution/Q2", 0.7684543932356559,
+                "coca-buckets-distribution/Q3", 0.6915373831741857, "coca-buckets-distribution/Q4", 0.6741908185909666,
+                "knowledge-title-length", 0.9877878929349517, "knowledge-instructions-length", 0.9546429877621389,
+                "sentence-length", 0.8644799618316434);
+    }
+
+    /** The cards of the eight analyzers Main registers, in its order. */
+    private static List<AnalyzerDescriptor> mainCards() {
+        DefaultLemmaAbsenceConfig absence = new DefaultLemmaAbsenceConfig();
+        return new DefaultAnalyzerCatalog(List.of(
+                new SentenceLengthAnalyzerProvider(null, new DefaultSentenceLengthConfig()),
+                new KnowledgeTitleLengthAnalyzerProvider(),
+                new KnowledgeInstructionsLengthAnalyzerProvider(),
+                new CocaBucketsAnalyzerProvider(null, new DefaultCocaBucketsConfig()),
+                new LemmaRecurrenceAnalyzerProvider(new DefaultLemmaRecurrenceConfig()),
+                new LemmaAbsenceAnalyzerProvider(null, absence, null),
+                new LemmaCountAnalyzerProvider(null, new DefaultLemmaCountConfigLoader().load(null)),
+                new DefaultQuizInstructionAnalyzerFactory(null, null, null, new DefaultQuizInstructionConfig())))
+                .list();
+    }
+
+    private static AuditNode node(AuditTarget target, AuditableEntity entity, Map<String, Double> scores) {
+        AuditNode node = new AuditNode();
+        node.setTarget(target);
+        node.setEntity(entity);
+        node.setScores(scores);
+        node.setMetadata(new LinkedHashMap<>());
+        node.setChildren(new ArrayList<>());
+        return node;
+    }
+
+    private static Map<String, Double> keys(Object... pairs) {
+        Map<String, Double> scores = new LinkedHashMap<>();
+        for (int i = 0; i < pairs.length; i += 2) {
+            scores.put((String) pairs[i], (Double) pairs[i + 1]);
+        }
+        return scores;
+    }
+
+    private static double averageOfKeys(Map<String, Double> scores) {
+        return scores.values().stream().mapToDouble(d -> d).average().orElseThrow();
+    }
+
+    private static String percent(double score) {
+        return String.format(Locale.ROOT, "%.1f", score * 100);
     }
 }

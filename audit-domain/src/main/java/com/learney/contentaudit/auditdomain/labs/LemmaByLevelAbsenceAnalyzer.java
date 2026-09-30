@@ -1,5 +1,9 @@
 package com.learney.contentaudit.auditdomain.labs;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -23,7 +27,9 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -52,7 +58,20 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
     this.sentenceLexicalScorer = sentenceLexicalScorer;
 }
 
-    private static final String ANALYZER_NAME = "lemma-absence";
+    static final String ANALYZER_NAME = "lemma-absence";
+
+    static final String DESCRIPTION = "Detects expected vocabulary absent from each CEFR level";
+
+    /** F-HALL-R006: the rules of this analyzer, as its card declares them. */
+    static final String RULE_MISPLACED_WORD = "misplaced-word";
+
+    static final String RULE_OUT_OF_CATALOG_WORD = "out-of-catalog-word";
+
+    static final String RULE_LEVEL_COVERAGE = "level-coverage";
+
+    static final String RULE_COURSE_COVERAGE = "course-coverage";
+
+    private static final int EVIDENCE_EXAMPLES = 10;
 
     // Critical functional lemmas always treated as content words in A1/A2
     private static final Set<String> CRITICAL_FUNCTIONAL_LEMMAS = new HashSet<>();
@@ -855,13 +874,198 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
 
     @Override
     public String getDescription() {
-        return "Detects expected vocabulary absent from each CEFR level";
+        return DESCRIPTION;
     }
 
-
+    /**
+     * F-HALL-R001 to R003 and R014: read from the typed diagnoses, which keep being emitted as
+     * before. On a quiz below 1, one finding per word of a higher level or out of the catalog,
+     * marked with the word, of medium severity and resolved at the panel; on a level or the
+     * course below 1, one finding with the coverage of the expected lemmas, low and rank-only
+     * (DOUBT-GRAVEDAD-EXISTENTES). Knowledges and topics get an average from this analyzer and
+     * are not evaluated by it (F-HALL-R001 inv. 2).
+     */
     @Override
     public List<FindingDraft> findingsAt(AuditNode node) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (node == null || node.getScores() == null) {
+            return List.of();
+        }
+        Double score = node.getScores().get(ANALYZER_NAME);
+        if (score == null || score >= 1.0 || node.getTarget() == null) {
+            return List.of();
+        }
+        switch (node.getTarget()) {
+            case QUIZ:
+                return quizFindings(node);
+            case MILESTONE:
+                return List.of(levelFinding(node, score));
+            case COURSE:
+                return List.of(courseFinding(node, score));
+            default:
+                return List.of();
+        }
+    }
+
+    private List<FindingDraft> quizFindings(AuditNode node) {
+        String sentence = sentenceOf(node);
+        Optional<LemmaPlacementDiagnosis> diagnosis = node.getDiagnoses() instanceof DefaultQuizDiagnoses quizDiagnoses
+                ? quizDiagnoses.getLemmaAbsenceDiagnosis()
+                : Optional.empty();
+        List<FindingDraft> drafts = new ArrayList<>();
+        if (diagnosis.isPresent()) {
+            Map<String, List<MisplacedLemma>> misplacedByWord = new LinkedHashMap<>();
+            for (MisplacedLemma ml : diagnosis.get().getMisplacedLemmas() != null
+                    ? diagnosis.get().getMisplacedLemmas() : List.<MisplacedLemma>of()) {
+                if (ml.getLemmaAndPos() == null || ml.getLemmaAndPos().getLemma() == null) {
+                    continue;
+                }
+                misplacedByWord.computeIfAbsent(ml.getLemmaAndPos().getLemma(), k -> new ArrayList<>()).add(ml);
+            }
+            for (Map.Entry<String, List<MisplacedLemma>> entry : misplacedByWord.entrySet()) {
+                drafts.add(misplacedWordFinding(entry.getKey(), entry.getValue(), sentence));
+            }
+            Map<String, OutOfCatalogWord> outOfCatalogByWord = new LinkedHashMap<>();
+            for (OutOfCatalogWord word : diagnosis.get().getOutOfCatalogWords() != null
+                    ? diagnosis.get().getOutOfCatalogWords() : List.<OutOfCatalogWord>of()) {
+                if (word.getLemma() != null) {
+                    outOfCatalogByWord.putIfAbsent(word.getLemma(), word);
+                }
+            }
+            CefrLevel sentenceLevel = parseLevelFromQuizNode(node);
+            for (OutOfCatalogWord word : outOfCatalogByWord.values()) {
+                drafts.add(outOfCatalogFinding(word, sentence, sentenceLevel));
+            }
+        }
+        if (drafts.isEmpty()) {
+            drafts.add(new FindingDraft(RULE_MISPLACED_WORD, null, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                    new FindingEvidence(List.of(new EvidencePart("Oración", sentence)),
+                            "El vocabulario de la oración no es el de su nivel", List.of())));
+        }
+        return drafts;
+    }
+
+    private static FindingDraft misplacedWordFinding(String word, List<MisplacedLemma> entries, String sentence) {
+        MisplacedLemma first = entries.get(0);
+        CefrLevel wordLevel = first.getExpectedLevel();
+        for (MisplacedLemma ml : entries) {
+            if (ml.getExpectedLevel() != null && (wordLevel == null
+                    || LEVEL_ORDER.getOrDefault(ml.getExpectedLevel(), 0) > LEVEL_ORDER.getOrDefault(wordLevel, 0))) {
+                wordLevel = ml.getExpectedLevel();
+            }
+        }
+        String wordLevelName = wordLevel != null ? wordLevel.name() : "otro nivel";
+        String quizLevelName = first.getFoundInLevel() != null ? first.getFoundInLevel().name() : "su nivel";
+        List<EvidencePart> examined = List.of(
+                new EvidencePart("Oración", sentence),
+                new EvidencePart("Palabra", word),
+                new EvidencePart("Nivel de la palabra", wordLevelName),
+                new EvidencePart("Nivel del ejercicio", quizLevelName));
+        String observation = word + " es una palabra de " + wordLevelName + " en un ejercicio de " + quizLevelName;
+        return new FindingDraft(RULE_MISPLACED_WORD, word, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                new FindingEvidence(examined, observation, List.of()));
+    }
+
+    private static FindingDraft outOfCatalogFinding(OutOfCatalogWord word, String sentence, CefrLevel sentenceLevel) {
+        String levelName = sentenceLevel != null ? sentenceLevel.name() : "su nivel";
+        String rank = word.getFrequencyRank() != null ? "rango " + word.getFrequencyRank() : "sin rango";
+        List<EvidencePart> examined = List.of(
+                new EvidencePart("Oración", sentence),
+                new EvidencePart("Palabra", word.getLemma()),
+                new EvidencePart("Frecuencia COCA", rank));
+        String observation = word.getLemma() + " no está en el catálogo EVP y es poco frecuente para " + levelName
+                + " (" + rank + ")";
+        return new FindingDraft(RULE_OUT_OF_CATALOG_WORD, word.getLemma(), FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, new FindingEvidence(examined, observation, List.of()));
+    }
+
+    private FindingDraft levelFinding(AuditNode node, double score) {
+        String level = node.getEntity() != null && node.getEntity().getLabel() != null
+                ? node.getEntity().getLabel() : "El nivel";
+        Optional<LemmaAbsenceLevelDiagnosis> diagnosis = node.getDiagnoses() instanceof DefaultLevelDiagnoses levelDiagnoses
+                ? levelDiagnoses.getLemmaAbsenceDiagnosis()
+                : Optional.empty();
+        List<EvidencePart> examined = new ArrayList<>();
+        String observation;
+        if (diagnosis.isPresent()) {
+            LemmaAbsenceLevelDiagnosis d = diagnosis.get();
+            examined.add(new EvidencePart("Esperados", d.getTotalExpected() + " lemas"));
+            examined.add(new EvidencePart("Ausentes", d.getTotalAbsent() + " (" + percentOf100(d.getAbsencePercentage()) + ")"));
+            examined.add(new EvidencePart("Meta de cobertura", percent(d.getCoverageTarget())));
+            List<String> examples = new ArrayList<>();
+            for (AbsentLemma absent : d.getAbsentLemmas() != null ? d.getAbsentLemmas() : List.<AbsentLemma>of()) {
+                if (examples.size() >= EVIDENCE_EXAMPLES) {
+                    break;
+                }
+                if (absent.getLemmaAndPos() != null && absent.getLemmaAndPos().getLemma() != null) {
+                    examples.add(absent.getLemmaAndPos().getLemma());
+                }
+            }
+            if (!examples.isEmpty()) {
+                examined.add(new EvidencePart("Ausentes de mayor prioridad", String.join(", ", examples)));
+            }
+            observation = level + ": faltan " + d.getTotalAbsent() + " de los " + d.getTotalExpected()
+                    + " lemas que el EVP espera; con la meta de cobertura de " + percent(d.getCoverageTarget())
+                    + " da " + percent(score);
+        } else {
+            examined.add(new EvidencePart("Puntaje", percent(score)));
+            observation = level + " no cubre los lemas que el EVP espera";
+        }
+        return new FindingDraft(RULE_LEVEL_COVERAGE, null, FindingSeverity.LOW, FindingResolution.RANK_ONLY,
+                new FindingEvidence(examined, observation, List.of()));
+    }
+
+    private FindingDraft courseFinding(AuditNode root, double score) {
+        List<EvidencePart> examined = new ArrayList<>();
+        List<String> below = new ArrayList<>();
+        if (root.getChildren() != null) {
+            for (AuditNode milestone : root.getChildren()) {
+                Double levelScore = milestone.getScores() != null ? milestone.getScores().get(ANALYZER_NAME) : null;
+                if (levelScore == null) {
+                    continue;
+                }
+                String label = milestone.getEntity() != null && milestone.getEntity().getLabel() != null
+                        ? milestone.getEntity().getLabel() : "nivel";
+                examined.add(new EvidencePart(label, percent(levelScore)));
+                if (levelScore < 1.0) {
+                    below.add(label + " (" + percent(levelScore) + ")");
+                }
+            }
+        }
+        if (root.getDiagnoses() instanceof DefaultCourseDiagnoses courseDiagnoses) {
+            courseDiagnoses.getLemmaAbsenceDiagnosis()
+                    .map(LemmaAbsenceCourseDiagnosis::getAssessment)
+                    .ifPresent(a -> examined.add(new EvidencePart("Evaluación", a.name())));
+        }
+        if (examined.isEmpty()) {
+            examined.add(new EvidencePart("Puntaje", percent(score)));
+        }
+        String observation = "El curso, ponderado por nivel, da " + percent(score)
+                + (below.isEmpty() ? "" : "; por debajo de 1: " + String.join(", ", below));
+        return new FindingDraft(RULE_COURSE_COVERAGE, null, FindingSeverity.LOW, FindingResolution.RANK_ONLY,
+                new FindingEvidence(examined, observation, List.of()));
+    }
+
+    private static String sentenceOf(AuditNode node) {
+        if (node.getEntity() instanceof AuditableQuiz quiz) {
+            if (quiz.getSentences() != null && !quiz.getSentences().isEmpty()
+                    && quiz.getSentences().get(0) != null && !quiz.getSentences().get(0).isBlank()) {
+                return quiz.getSentences().get(0);
+            }
+            if (quiz.getLabel() != null && !quiz.getLabel().isBlank()) {
+                return quiz.getLabel();
+            }
+            return quiz.getId() != null ? quiz.getId() : "(sin oración)";
+        }
+        return "(sin oración)";
+    }
+
+    /** A fraction (0-1) with a decimal comma: 0,322 -> 32,2 %. */
+    private static String percent(double fraction) {
+        return percentOf100(fraction * 100);
+    }
+
+    private static String percentOf100(double value) {
+        return String.format(Locale.ROOT, "%.1f", value).replace('.', ',') + " %";
     }
 
 }

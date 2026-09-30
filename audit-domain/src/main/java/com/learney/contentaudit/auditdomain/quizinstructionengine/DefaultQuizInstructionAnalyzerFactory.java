@@ -1,14 +1,19 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
 import java.util.Optional;
 
 import com.learney.contentaudit.auditdomain.AmbiguousReevaluationScopeException;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.EmptyReevaluationSetException;
-import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
 import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
@@ -92,21 +97,38 @@ public class DefaultQuizInstructionAnalyzerFactory implements AnalyzerProvider {
     }
 
 
+    /**
+     * F-HALL-R005/R006: the judge is in the catalog like any other analyzer -- errors family,
+     * evaluates the quiz, resolved at the panel and costing a paid model.
+     */
     @Override
     public AnalyzerDescriptor describe() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new AnalyzerDescriptor(
+                QuizInstructionAnalyzer.ANALYZER_NAME,
+                QuizInstructionAnalyzer.DESCRIPTION,
+                AuditTarget.QUIZ,
+                "¿El ejercicio cumple su consigna?",
+                "El ejercicio como lo ve el alumno —la consigna, la oración con su hueco, la pista, las opciones y "
+                        + "la traducción—, juzgado por un modelo que reutiliza los veredictos ya registrados",
+                List.of(new AnalyzerRuleCard(QuizInstructionAnalyzer.RULE_INSTRUCTION_BREACH,
+                        "El juez encontró que el ejercicio no cumple su consigna", AnalysisCost.PAID_MODEL)),
+                "Ningún ejercicio que incumpla su consigna (meta: 0 ejercicios con error)",
+                AnalyzerFamily.ERRORS,
+                List.of(AuditTarget.QUIZ),
+                List.of(FindingResolution.PANEL),
+                AnalysisCost.PAID_MODEL);
     }
 
-
+    /** F-QINST-R017: its scores below 1 become QUIZ_INSTRUCTION tasks on the quiz. */
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.of(new AnalyzerPlanBinding("QUIZ_INSTRUCTION", List.of(AuditTarget.QUIZ)));
     }
 
-
+    /** F-HALL-R005: config analyzer quiz-instruction shows this instead of "not found". */
     @Override
     public Optional<SelfDescribingConfig> config() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.of(config);
     }
 
 }

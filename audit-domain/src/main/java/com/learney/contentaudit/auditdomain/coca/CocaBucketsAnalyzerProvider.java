@@ -2,12 +2,21 @@ package com.learney.contentaudit.auditdomain.coca;
 
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.CocaBucketsConfig;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.NlpTokenizer;
 import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -28,26 +37,69 @@ public class CocaBucketsAnalyzerProvider implements AnalyzerProvider {
 
     @Override
     public String analyzerName() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return CocaBucketsAnalyzer.ANALYZER_NAME;
     }
 
+    /**
+     * F-HALL-R006: evaluates the levels and the course, not the topics -- a topic gets a score
+     * without a goal, which is not an evaluation (decisions.md, 2026-09-30).
+     */
     @Override
     public AnalyzerDescriptor describe() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new AnalyzerDescriptor(
+                CocaBucketsAnalyzer.ANALYZER_NAME,
+                CocaBucketsAnalyzer.DESCRIPTION,
+                AuditTarget.MILESTONE,
+                "¿Las palabras tienen la frecuencia que pide el nivel?",
+                "Los tokens de todas las oraciones con su rango de frecuencia COCA, por nivel y por cuarto del nivel",
+                List.of(
+                        new AnalyzerRuleCard(CocaBucketsAnalyzer.RULE_LEVEL_DISTRIBUTION,
+                                "El reparto de las bandas de frecuencia de un nivel se aleja de las metas de sus cuartos",
+                                AnalysisCost.INSTANT),
+                        new AnalyzerRuleCard(CocaBucketsAnalyzer.RULE_COURSE_DISTRIBUTION,
+                                "El promedio de los niveles no llega a la meta",
+                                AnalysisCost.INSTANT)),
+                goal(),
+                AnalyzerFamily.VOCABULARY,
+                List.of(AuditTarget.MILESTONE, AuditTarget.COURSE),
+                List.of(FindingResolution.RANK_ONLY),
+                AnalysisCost.INSTANT);
     }
 
+    /** A fresh analyzer per run, with its stateless collaborators built here, not in Main (P4). */
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new CocaBucketsAnalyzer(nlpTokenizer, cocaBucketsConfig, new DefaultTokenClassifier(),
+                new DefaultProgressionEvaluator(), new DefaultImprovementPlanner());
     }
 
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.of(new AnalyzerPlanBinding("COCA_BUCKETS",
+                List.of(AuditTarget.MILESTONE, AuditTarget.COURSE)));
     }
 
     @Override
     public Optional<SelfDescribingConfig> config() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.of(cocaBucketsConfig);
+    }
+
+    private String goal() {
+        List<String> levels = new ArrayList<>();
+        for (CefrLevel level : CefrLevel.values()) {
+            List<BucketTarget> targets = cocaBucketsConfig.getTargetsForLevel(level.name());
+            if (targets == null || targets.isEmpty()) {
+                continue;
+            }
+            List<String> bands = new ArrayList<>();
+            for (BucketTarget target : targets) {
+                bands.add(target.getBandName() + (target.getKind() == TargetKind.AT_LEAST ? " al menos " : " a lo sumo ")
+                        + String.format(Locale.ROOT, "%.0f %%", target.getTargetPercentage()));
+            }
+            levels.add(level.name() + ": " + String.join(", ", bands));
+        }
+        String tolerance = String.format(Locale.ROOT, "%.0f", cocaBucketsConfig.getToleranceMargin());
+        return "Cada banda dentro de su meta, por nivel y por cuarto (" + String.join("; ", levels)
+                + "; tolerancia de " + tolerance + " puntos)";
     }
 }

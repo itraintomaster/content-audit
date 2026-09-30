@@ -7,6 +7,7 @@ import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditdomain.AuditReportSummary;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.refinerdomain.RefinerEngine;
+import com.learney.contentaudit.refinerdomain.UnconvertedScoreCount;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
@@ -117,6 +118,7 @@ final class PlanCmd implements PlanCommand, Callable<Integer> {
 
         AuditReport report = reportOpt.get();
         RefinementPlan plan = refinerEngine.plan(report, resolvedAuditId);
+        warnUnconverted(refinerEngine.unconvertedScores(report));
 
         if (storageMode == PlanStorageMode.EPHEMERAL) {
             return ephemeralPlanRenderer.render(plan, report, new com.learney.contentaudit.auditcli.EphemeralRenderOptions(withCorrectionContext));
@@ -217,6 +219,21 @@ final class PlanCmd implements PlanCommand, Callable<Integer> {
         } catch (Exception e) {
             System.err.println("Error formatting JSON: " + e.getMessage());
             return 1;
+        }
+    }
+
+    /**
+     * F-HALL-R004 inv. 3: the plan never drops a score below 1 in silence. On stderr, so the
+     * JSON of an ephemeral plan stays valid on stdout.
+     */
+    private static void warnUnconverted(List<UnconvertedScoreCount> unconverted) {
+        if (unconverted == null) {
+            return;
+        }
+        for (UnconvertedScoreCount u : unconverted) {
+            System.err.println("Aviso: " + u.getAnalyzer() + " dejó " + u.getNodeCount()
+                    + (u.getNodeCount() == 1 ? " nodo" : " nodos")
+                    + " con puntaje menor que 1 sin convertir en tareas: " + u.getReason());
         }
     }
 

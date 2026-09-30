@@ -1,4 +1,23 @@
 package com.learney.contentaudit.auditapplication;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.CocaBucketsConfig;
+import com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.KnowledgeTitleLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
+import com.learney.contentaudit.auditdomain.LemmaCountConfig;
+import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
+import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
+import com.learney.contentaudit.auditdomain.SentenceLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.SentenceLengthConfig;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory;
+import java.util.List;
+import org.junit.jupiter.api.Assertions;
+import org.mockito.Mockito;
 
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +35,24 @@ public class DefaultAnalyzerRegistryTest {
     @Tag("F-HALL-R005")
     public void shouldListInGetAnalyzersTheEightAnalyzersAnalyzeAcceptsQuizinstructionIncludedEachOnceUnderItsCatalogName(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: a name is in get analyzers if and only if analyze accepts it -- the registry reads
+        // the same catalog as the run, so quiz-instruction, missing before, is there.
+        DefaultAnalyzerRegistry registry = new DefaultAnalyzerRegistry(new DefaultAnalyzerCatalog(List.of(
+                new SentenceLengthAnalyzerProvider(null, Mockito.mock(SentenceLengthConfig.class)),
+                new KnowledgeTitleLengthAnalyzerProvider(),
+                new KnowledgeInstructionsLengthAnalyzerProvider(),
+                new CocaBucketsAnalyzerProvider(null, Mockito.mock(CocaBucketsConfig.class)),
+                new LemmaRecurrenceAnalyzerProvider(Mockito.mock(LemmaRecurrenceConfig.class)),
+                new LemmaAbsenceAnalyzerProvider(null, Mockito.mock(LemmaAbsenceConfig.class), null),
+                new LemmaCountAnalyzerProvider(null, Mockito.mock(LemmaCountConfig.class)),
+                new DefaultQuizInstructionAnalyzerFactory(null, null, null, Mockito.mock(QuizInstructionConfig.class)))));
+
+        List<String> names = registry.listAnalyzers().stream().map(AnalyzerDescriptor::getName).toList();
+
+        Assertions.assertEquals(List.of("sentence-length", "knowledge-title-length", "knowledge-instructions-length",
+                "coca-buckets-distribution", "lemma-recurrence", "lemma-absence", "lemma-count", "quiz-instruction"),
+                names, "R005: the eight analyzers analyze accepts, each once, under its catalog name");
+        Assertions.assertTrue(registry.getAnalyzerConfig("quiz-instruction").isPresent(),
+                "R005: config analyzer finds the judge under the same name");
     }
 }

@@ -146,7 +146,7 @@ class DefaultImpactPreviewComputer implements ImpactPreviewComputer {
 
             LevelImpact levelImpact = buildLevelImpact(level,
                     baseNode.getEntity() != null ? baseNode.getEntity().getId() : targetNodeId,
-                    baseNode.getScores(), simNode.getScores());
+                    baseNode, simNode);
             impacts.add(levelImpact);
         }
 
@@ -219,15 +219,20 @@ class DefaultImpactPreviewComputer implements ImpactPreviewComputer {
      * Si una dimension solo esta en uno de los dos reportes, se omite (R005: solo pares evaluados).
      */
     private LevelImpact buildLevelImpact(AuditTarget target, String nodeId,
-            Map<String, Double> baseScores, Map<String, Double> simScores) {
+            AuditNode baseNode, AuditNode simNode) {
 
-        Map<String, Double> base = baseScores != null ? baseScores : Map.of();
-        Map<String, Double> sim = simScores != null ? simScores : Map.of();
+        Map<String, Double> base = baseNode.getScores() != null ? baseNode.getScores() : Map.of();
+        Map<String, Double> sim = simNode.getScores() != null ? simNode.getScores() : Map.of();
 
-        // Score agregado: promedio de todas las dimensiones disponibles en ambos reportes
-        double baseAvg = base.values().stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
-        double simAvg = sim.values().stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
-        ScoreDelta aggregateDelta = new ScoreDelta(baseAvg, simAvg, simAvg - baseAvg);
+        // F-HALL-R010: el score agregado es el puntaje de vocabulario que el motor publico en
+        // cada reporte, nunca un promedio rearmado aca (el de todas las dimensiones promediaba
+        // los cuartos COCA: 73,4 % en vez de 73,9 % en el curso). Si alguno de los dos reportes
+        // no lo publico (uno guardado antes del contrato), el agregado queda sin dato.
+        Double baseVocabulary = vocabularyScore(baseNode);
+        Double simVocabulary = vocabularyScore(simNode);
+        ScoreDelta aggregateDelta = baseVocabulary != null && simVocabulary != null
+                ? new ScoreDelta(baseVocabulary, simVocabulary, simVocabulary - baseVocabulary)
+                : null;
 
         // Deltas por dimension: solo los pares (nivel, dimension) evaluados en ambos reportes
         List<DimensionDelta> dimensionDeltas = new ArrayList<>();
@@ -242,6 +247,10 @@ class DefaultImpactPreviewComputer implements ImpactPreviewComputer {
         }
 
         return new LevelImpact(target, nodeId, aggregateDelta, dimensionDeltas);
+    }
+
+    private static Double vocabularyScore(AuditNode node) {
+        return node.getNumbers() != null ? node.getNumbers().getVocabularyScore() : null;
     }
 
     // -------------------------------------------------------------------------

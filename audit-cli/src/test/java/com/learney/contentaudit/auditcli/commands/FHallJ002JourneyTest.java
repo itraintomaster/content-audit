@@ -7,6 +7,35 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditcli.commands.AnalyzeCmdTest.Base299;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
+import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.courseinfrastructure.CourseValidatorImpl;
+import com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
+import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -20,15 +49,116 @@ public class FHallJ002JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador pide get analyzers y obti... → El operador corre analyze pidiendo un... → El informe trae sólo los hallazgos, l... [El nombre figura en el catálogo] → Una segunda corrida igual produce los... → success")
-    public void path1_elNombreFiguraEnElCatlogo_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path1_elNombreFiguraEnElCatlogo_success(
+            @TempDir Path tempDir) throws IOException {
+        // The operator's working directory, a copy of the 29/9 course and the catalog Main builds.
+        Path workdir = tempDir.resolve("workdir");
+        Path course = tempDir.resolve("english-course");
+        Base299.copyTree(Base299.COURSE, course);
+        Map<String, String> courseFiles = Base299.hashes(course);
+        Base299.FakeJudge judge = new Base299.FakeJudge();
+        AnalyzerCatalog catalog = Base299.mainCatalog(judge, new Base299.MapLedger());
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir);
+        AnalyzeCmd analyze = Base299.analyzeCmd(Base299.runner(catalog), store);
+
+        // === Node: leer_catalogo ===
+        // Gate: F-HALL-R005, F-HALL-R006 -- the whole card of every analyzer, the judge included
+        Base299.Captured cards = Base299.run(Base299.getCmd(store, catalog), "analyzers", "-f", "json");
+        assertEquals(0, cards.exit(), cards.err());
+        List<String> names = new ArrayList<>();
+        new ObjectMapper().readTree(cards.out()).forEach(card -> {
+            names.add(card.get("name").asText());
+            for (String field : List.of("description", "question", "reads", "goal", "family", "cost")) {
+                assertFalse(card.get(field).asText().isBlank(), "R006: " + field + " of " + card.get("name"));
+            }
+            for (String field : List.of("rules", "evaluatedTargets", "resolutions")) {
+                assertFalse(card.get(field).isEmpty(), "R006: " + field + " of " + card.get("name"));
+            }
+        });
+        List<String> catalogNames = new ArrayList<>(Base299.CLASSIC);
+        catalogNames.add(Base299.JUDGE);
+        assertEquals(catalogNames, names, "R005: the seven classic analyzers and the judge, in the order of the catalog");
+
+        // === Node: pedir_uno ===
+        // The operator asks for lemma-absence alone, by the name get analyzers listed.
+        Base299.Captured first = Base299.run(analyze, course.toString(), "--analyzers", "lemma-absence", "-f", "raw");
+        assertEquals(0, first.exit(), first.err());
+        AuditReport report = store.load(Base299.savedId(first)).orElseThrow();
+
+        // === Node: corre_solo ===
+        // Gate: F-HALL-R012 -- only the findings, the numbers and the coverage of lemma-absence
+        Base299.walk(report.getRoot(), node -> {
+            String key = Base299.key(node);
+            assertTrue(Set.of("lemma-absence").containsAll(node.getScores().keySet()),
+                    "R012: no score of another analyzer on " + key + ": " + node.getScores().keySet());
+            node.getFindings().forEach(finding -> assertEquals("lemma-absence", finding.getAnalyzer(),
+                    "R012: no finding of another analyzer on " + key));
+            node.getNumbers().getAnalyzerScores().forEach(score -> assertEquals("lemma-absence", score.getAnalyzer(),
+                    "R012: no number of another analyzer on " + key));
+            assertNull(node.getNumbers().getErrors(), "R012: no errors analyzer ran, so no error counts on " + key);
+        });
+        Map<String, Long> byRule = Base299.findings(report).stream()
+                .collect(Collectors.groupingBy(Finding::getRule, TreeMap::new, Collectors.counting()));
+        assertEquals(Map.of("course-coverage", 1L, "level-coverage", 3L, "misplaced-word", 884L,
+                "out-of-catalog-word", 246L), byRule, "R012: its findings on the 29/9 course, by rule");
+        DefaultCourseDiagnoses diagnoses = (DefaultCourseDiagnoses) report.getRoot().getDiagnoses();
+        assertTrue(diagnoses.getLemmaAbsenceDiagnosis().isPresent(), "R012: its coverage of the course");
+        assertTrue(diagnoses.getCocaBucketsDiagnosis().isEmpty() && diagnoses.getLemmaCountDiagnosis().isEmpty()
+                && diagnoses.getQuizInstructionCoverage().isEmpty(), "R012: nobody else's diagnosis or coverage");
+        assertEquals(0.89250300362255, report.getRoot().getNumbers().getVocabularyScore(),
+                "R009: the vocabulary score of a run of lemma-absence alone is its score, 89,3 %");
+        assertTrue(judge.asked().isEmpty(), "the judge was not asked anything");
+        // Gate: F-HALL-R015 -- the files of the course stay identical
+        assertEquals(courseFiles, Base299.hashes(course), "R015: the 886 files of the course, byte for byte");
+
+        // === Node: repetir ===
+        // Gate: F-HALL-R014 -- a second identical run, in the same process
+        Base299.Captured second = Base299.run(analyze, course.toString(), "--analyzers", "lemma-absence", "-f", "raw");
+        assertEquals(0, second.exit(), second.err());
+        AuditReport again = store.load(Base299.savedId(second)).orElseThrow();
+        List<Finding> findings = Base299.findings(report);
+        List<Finding> findingsAgain = Base299.findings(again);
+        assertEquals(findings.stream().map(finding -> finding.getIdentity().getKey()).toList(),
+                findingsAgain.stream().map(finding -> finding.getIdentity().getKey()).toList(),
+                "R014: the same identities, in the same order");
+        assertEquals(findings, findingsAgain, "R014: the same findings, evidence included");
+        // result: success
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador pide get analyzers y obti... → El operador corre analyze pidiendo un... → La corrida se rechaza antes de empeza... [El nombre no figura en el catálogo] → failure")
-    public void path2_elNombreNoFiguraEnElCatlogo_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path2_elNombreNoFiguraEnElCatlogo_failure(
+            @TempDir Path tempDir) {
+        // The operator's working directory and the catalog Main builds; the course is the 29/9 one.
+        Path workdir = tempDir.resolve("workdir");
+        CourseRepository repository = spy(new FileSystemCourseRepository(new CourseValidatorImpl()));
+        AnalyzerCatalog catalog = Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger());
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir);
+        AnalyzeCmd analyze = Base299.analyzeCmd(Base299.runner(catalog, repository, Base299.mapper()), store);
+
+        // === Node: leer_catalogo ===
+        // Gate: F-HALL-R005, F-HALL-R006
+        Base299.Captured cards = Base299.run(Base299.getCmd(store, catalog), "analyzers");
+        assertEquals(0, cards.exit(), cards.err());
+        assertTrue(cards.out().contains("Name:        quiz-instruction"), "R005: the judge, by its name: " + cards.out());
+        assertFalse(cards.out().contains("quiz-instructions"), "no analyzer is called quiz-instructions");
+
+        // === Node: pedir_uno ===
+        // The operator asks for quiz-instructions, a name get analyzers does not list.
+        Base299.Captured run = Base299.run(analyze, Base299.COURSE.toString(), "--analyzers", "quiz-instructions");
+
+        // === Node: rechazo ===
+        // Gate: F-HALL-R012 -- rejected before starting, with the message that points to get analyzers,
+        // and no report written
+        assertNotEquals(0, run.exit(), "result: failure");
+        assertTrue(run.err().contains("Analyzer 'quiz-instructions' not found. "
+                + "Run 'content-audit get analyzers' to see available analyzers."),
+                "R012: the message that points to get analyzers; got: " + run.err());
+        verify(repository, never()).load(any());
+        assertFalse(Files.exists(workdir.resolve(".content-audit")), "R012: no report is written");
+        Base299.Captured audits = Base299.run(Base299.getCmd(store, catalog), "audits");
+        assertTrue(audits.out().contains("No audits found."), audits.out());
     }
 }

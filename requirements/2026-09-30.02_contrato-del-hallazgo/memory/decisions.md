@@ -95,3 +95,14 @@ should not re-litigate. Newest entries on top.
 2026-09-30 — analyst — Sin choques con decisiones existentes. El único número de hoy que cambia (el promedio del ejercicio juzgado) quedó como DOUBT-EJERCICIO-JUZGADO, sin efecto en la base del 29/9.
 
 2026-09-30 — analyst — Diferencia anotada y no resuelta: el largo de oración de A1 es 3–8 en el código y 5–8 en F-SLEN-R012. La ficha muestra lo que aplica el código (regla 4 del brief 087).
+
+2026-09-30 — developer — ContentAnalyzer y AuditNode se editaron a mano: no llevan @Generated, generate los saltea y el parche los cambia. AuditNode conserva el constructor de 7 argumentos; los campos nuevos arrancan vacíos.
+2026-09-30 — developer — IAuditEngine: se sacó del constructor el `contentAnalyzers` que el relleno de generate dejó y el sentinel.yaml borra. `sentinel verify` lo confirma.
+2026-09-30 — developer — Un presupuesto o una política sobre un analizador instantáneo se rechaza antes de cargar el curso, con el mensaje que remite a get analyzers.
+  why: `--budget` es para los que consultan un modelo (R005); callarlo escondería un error de tipeo.
+2026-09-30 — developer — Un informe guardado antes del contrato no tiene número publicado: get audits y get audit muestran «—», nunca un promedio recalculado de las claves.
+2026-09-30 — developer — stats de un juez con `-f json` declara lo no evaluado en stderr, para que stdout siga siendo JSON válido; en texto va debajo de la vista.
+2026-09-30 — developer — knowledge-instructions-length es RANK_ONLY y conserva sus 25 tareas: el plan sigue saliendo del puntaje (F-RCLA-R001); la resolución sólo cuenta en los errores.
+2026-09-30 — test-writer — Las pruebas de audit-cli leen la base del 29/9 por ruta relativa (`../db/english-course`, los fixtures de audit-application y refiner-domain) desde `AnalyzeCmdTest.Base299`; sólo se fingen spaCy (tokens grabados) y el juez pago. Los de formatting llevan las claves del curso y los niveles escritas.
+2026-09-30 — test-writer — J001: con el catálogo de hoy el juez es el único analizador de errores; para «error sin juez» y «sólo ordena» se suma un sustituto de una regla del paquete D (instantáneo, familia errores, sin tipo de tarea), que además prueba el aviso de R004 inv. 3.
+2026-09-30 — test-writer — Dos stubs de FileSystemAuditReportStoreTest reciben `@TempDir Path tempDir`; nombre y traza sin cambios.

@@ -1,6 +1,8 @@
 package com.learney.contentaudit.refinerdomain;
 import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
-import javax.annotation.processing.Generated;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
@@ -11,6 +13,7 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -18,41 +21,28 @@ import java.util.Optional;
 /**
  * Default implementation of {@link RefinerEngine}.
  *
- * Walks the AuditNode tree and emits a {@link RefinementTask} for each
- * leaf-level analyzer score that is below 1.0:
- * <ul>
- *   <li>QUIZ nodes  — sentence-length (and any other quiz-level analyzers)</li>
- *   <li>KNOWLEDGE nodes — knowledge-title-length, knowledge-instructions-length</li>
- *   <li>COURSE nodes — coca-buckets-distribution, lemma-recurrence (course-level)</li>
- *   <li>MILESTONE nodes — coca-buckets-distribution, lemma-recurrence (level-level)</li>
- *   <li>TOPIC nodes — skipped (only aggregated scores)</li>
- * </ul>
+ * Walks the AuditNode tree and emits a {@link RefinementTask} for each analyzer score below
+ * 1.0 (F-RCLA-R001) on a level where that analyzer's plan binding makes tasks. The bindings
+ * come from the catalog, one per provider, so the plan is not edited to add an analyzer: it
+ * only needs the {@link DiagnosisKind} constant. Today they reproduce the old lists exactly
+ * (F-HALL-R013): sentence-length, lemma-absence and quiz-instruction on the quiz,
+ * knowledge-title-length and knowledge-instructions-length on the knowledge,
+ * coca-buckets-distribution on the level and the course, lemma-recurrence on the course and
+ * lemma-count nowhere.
  *
  * Tasks are sorted by score ascending (worst first) and assigned priorities
  * 1, 2, 3 … accordingly.
  */
 public class DefaultRefinerEngine implements RefinerEngine {
 
-private final AnalyzerCatalog analyzerCatalog;
+    private final AnalyzerCatalog analyzerCatalog;
 
-public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog) {
-    this.analyzerCatalog = analyzerCatalog;
-}
+    public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog) {
+        this.analyzerCatalog = analyzerCatalog;
+    }
 
     private static final DateTimeFormatter TIMESTAMP_FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss").withZone(ZoneOffset.UTC);
-
-    // Analyzer names that are meaningful at the KNOWLEDGE node level
-    private static final List<String> KNOWLEDGE_ANALYZERS = List.of(
-            "knowledge-title-length",
-            "knowledge-instructions-length"
-    );
-
-    // Analyzer names that are meaningful at COURSE / MILESTONE level
-    private static final List<String> COURSE_LEVEL_ANALYZERS = List.of(
-            "coca-buckets-distribution",
-            "lemma-recurrence"
-    );
 
     // -------------------------------------------------------------------------
     // RefinerEngine
@@ -99,16 +89,39 @@ public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog) {
                 .findFirst();
     }
 
+    /**
+     * F-HALL-R004 inv. 3: in the errors family the plan never drops a score below 1 in
+     * silence. Every node an errors analyzer evaluated below 1 that {@link #plan} does not turn
+     * into a task is declared here, per analyzer: it has no task kind, its task kind is not a
+     * {@link DiagnosisKind} the plan knows, or its binding makes no tasks on that level. The
+     * vocabulary family keeps today's plan and is not declared (F-HALL-R013).
+     */
+    @Override
+    public List<UnconvertedScoreCount> unconvertedScores(AuditReport report) {
+        List<UnconvertedScoreCount> result = new ArrayList<>();
+        if (report == null || report.getRoot() == null) {
+            return result;
+        }
+        for (AnalyzerDescriptor card : analyzerCatalog.list()) {
+            if (card.getFamily() != AnalyzerFamily.ERRORS) {
+                continue;
+            }
+            Optional<AnalyzerPlanBinding> binding = analyzerCatalog.planBinding(card.getName());
+            Map<String, Integer> countsByReason = new LinkedHashMap<>();
+            countUnconverted(report.getRoot(), card, binding, countsByReason);
+            for (Map.Entry<String, Integer> entry : countsByReason.entrySet()) {
+                result.add(new UnconvertedScoreCount(card.getName(), entry.getValue(), entry.getKey()));
+            }
+        }
+        return result;
+    }
+
     // -------------------------------------------------------------------------
     // Tree traversal
     // -------------------------------------------------------------------------
 
     private void walkNode(AuditNode node, List<ScoredTask> accumulator) {
-        AuditTarget target = node.getTarget();
-
-        if (target != AuditTarget.TOPIC) {
-            collectTasksForNode(node, accumulator);
-        }
+        collectTasksForNode(node, accumulator);
 
         List<AuditNode> children = node.getChildren();
         if (children != null) {
@@ -130,17 +143,13 @@ public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog) {
 
         for (Map.Entry<String, Double> entry : scores.entrySet()) {
             String analyzerName = entry.getKey();
-            double score = entry.getValue();
+            Double score = entry.getValue();
 
-            if (score >= 1.0) {
+            if (score == null || score >= 1.0) {
                 continue;
             }
 
-            if (!isRelevantForTarget(analyzerName, target)) {
-                continue;
-            }
-
-            DiagnosisKind kind = mapToDiagnosisKind(analyzerName);
+            DiagnosisKind kind = taskKindAt(analyzerName, target);
             if (kind == null) {
                 continue;
             }
@@ -150,40 +159,61 @@ public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog) {
     }
 
     /**
-     * Returns true when the given analyzer score is a leaf-level (non-aggregated)
-     * score for the specified target type.
+     * The task kind the analyzer's binding makes on this level, or null when it makes none
+     * there: no binding (lemma-count, a sub-metric such as a COCA quarter, a name the catalog
+     * does not have), a level outside its task targets, or a kind the plan does not know.
      */
-    private boolean isRelevantForTarget(String analyzerName, AuditTarget target) {
-        switch (target) {
-            case QUIZ:
-                // All quiz-level analyzer scores are primary here
-                return !KNOWLEDGE_ANALYZERS.contains(analyzerName)
-                        && !COURSE_LEVEL_ANALYZERS.contains(analyzerName);
-            case KNOWLEDGE:
-                return KNOWLEDGE_ANALYZERS.contains(analyzerName);
-            case MILESTONE:
-            case COURSE:
-                return COURSE_LEVEL_ANALYZERS.contains(analyzerName);
-            default:
-                // TOPIC — already excluded before this method is called
-                return false;
+    private DiagnosisKind taskKindAt(String analyzerName, AuditTarget target) {
+        Optional<AnalyzerPlanBinding> binding = analyzerCatalog.planBinding(analyzerName);
+        if (binding.isEmpty() || binding.get().getTaskTargets() == null
+                || !binding.get().getTaskTargets().contains(target)) {
+            return null;
+        }
+        return knownKind(binding.get().getTaskKind());
+    }
+
+    private void countUnconverted(AuditNode node, AnalyzerDescriptor card,
+            Optional<AnalyzerPlanBinding> binding, Map<String, Integer> countsByReason) {
+        AuditTarget target = node.getTarget();
+        List<AuditTarget> evaluated = card.getEvaluatedTargets() != null ? card.getEvaluatedTargets() : List.of();
+        Double score = node.getScores() != null ? node.getScores().get(card.getName()) : null;
+        if (score != null && score < 1.0 && evaluated.contains(target)) {
+            String reason = unconvertedReason(binding, target);
+            if (reason != null) {
+                countsByReason.merge(reason, 1, Integer::sum);
+            }
+        }
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                countUnconverted(child, card, binding, countsByReason);
+            }
         }
     }
 
-    private DiagnosisKind mapToDiagnosisKind(String analyzerName) {
-        switch (analyzerName) {
-            case "sentence-length":              return DiagnosisKind.SENTENCE_LENGTH;
-            case "lemma-absence":                return DiagnosisKind.LEMMA_ABSENCE;
-            case "coca-buckets-distribution":    return DiagnosisKind.COCA_BUCKETS;
-            case "lemma-recurrence":             return DiagnosisKind.LEMMA_RECURRENCE;
-            case "knowledge-title-length":       return DiagnosisKind.KNOWLEDGE_TITLE_LENGTH;
-            case "knowledge-instructions-length":return DiagnosisKind.KNOWLEDGE_INSTRUCTIONS_LENGTH;
-            // F-QINST-R017: sin este caso el puntaje de consigna se descarta en
-            // silencio y el plan sale vacio de este tipo, por mas que el informe
-            // este lleno de incumplimientos con su evidencia.
-            case "quiz-instruction":             return DiagnosisKind.QUIZ_INSTRUCTION;
-            default:                             return null;
+    private static String unconvertedReason(Optional<AnalyzerPlanBinding> binding, AuditTarget target) {
+        if (binding.isEmpty()) {
+            return "su ficha no declara un tipo de tarea";
         }
+        String taskKind = binding.get().getTaskKind();
+        if (knownKind(taskKind) == null) {
+            return "el tipo de tarea " + taskKind + " no existe en el plan";
+        }
+        if (binding.get().getTaskTargets() == null || !binding.get().getTaskTargets().contains(target)) {
+            return "su ficha no hace tareas en " + target;
+        }
+        return null;
+    }
+
+    private static DiagnosisKind knownKind(String taskKind) {
+        if (taskKind == null) {
+            return null;
+        }
+        for (DiagnosisKind kind : DiagnosisKind.values()) {
+            if (kind.name().equals(taskKind)) {
+                return kind;
+            }
+        }
+        return null;
     }
 
     private String resolveId(AuditNode node) {
@@ -222,10 +252,4 @@ public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog) {
             this.diagnosisKind = diagnosisKind;
         }
     }
-
-    @Override
-    public List<UnconvertedScoreCount> unconvertedScores(AuditReport report) {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
 }

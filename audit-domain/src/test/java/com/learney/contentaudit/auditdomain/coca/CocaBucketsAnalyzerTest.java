@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditdomain.coca;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 
 import com.learney.contentaudit.auditdomain.*;
 import java.util.ArrayList;
@@ -287,7 +289,7 @@ public class CocaBucketsAnalyzerTest {
         when(config.getAnalysisStrategy()).thenReturn(AnalysisStrategy.LEVELS);
         lenient().when(config.getProgressionExpectations()).thenReturn(List.of());
 
-        IAuditEngine engine = new IAuditEngine(List.of(buildAnalyzer()), new IScoreAggregator());
+        IAuditEngine engine = engineOf(List.of(buildAnalyzer()), new IScoreAggregator());
         return engine.runAudit(course).getRoot();
     }
 
@@ -663,7 +665,7 @@ public class CocaBucketsAnalyzerTest {
         lenient().when(config.getProgressionExpectations()).thenReturn(List.of());
 
         CocaBucketsAnalyzer sut = buildAnalyzer();
-        AuditReport report = new IAuditEngine(List.of(sut), new IScoreAggregator())
+        AuditReport report = engineOf(List.of(sut), new IScoreAggregator())
                 .runAudit(course);
 
         AuditNode milestone = report.getRoot().getChildren().get(0);
@@ -695,6 +697,95 @@ public class CocaBucketsAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R003")
     public void shouldGiveTheFindingOfB2WhichItScores322TheShareOfEachFrequencyBandAgainstTheTargetsOfItsLevel() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: B2 of the 29/9 base, as the analyzer leaves it after closing the course: 32,2 %,
+        // top1k 83,2 % of the tokens against at most 50 %, top4k 5,9 % against at least 20 %.
+        AuditNode b2 = buildNode(AuditTarget.MILESTONE, new AuditableMilestone(List.of(), "m-b2", "B2", "B2"), null);
+        b2.getScores().put("coca-buckets-distribution", 0.32223);
+        ((DefaultLevelDiagnoses) b2.getDiagnoses()).setCocaBucketsDiagnosis(new CocaBucketsLevelDiagnosis(13757,
+                List.of(new BucketResult("top1k", 12842, 83.20590903200726, 50.0, 0.0, AssessmentState.EXCESSIVE),
+                        new BucketResult("top4k", 915, 5.928469612543735, 20.0, 0.6371387845017494,
+                                AssessmentState.DEFICIENT)),
+                List.of(new QuarterResult(1, List.of(), 0.39081653431073105),
+                        new QuarterResult(2, List.of(), 0.3528676153514446),
+                        new QuarterResult(3, List.of(), 0.2861816782140108),
+                        new QuarterResult(4, List.of(), 0.25902))));
+
+        List<FindingDraft> drafts = buildAnalyzer().findingsAt(b2);
+
+        assertEquals(1, drafts.size(), "one finding for the level");
+        StringBuilder evidence = new StringBuilder();
+        drafts.get(0).getEvidence().getExamined().forEach(p -> evidence.append(p.getLabel()).append(": ")
+                .append(p.getText()).append('\n'));
+        evidence.append(drafts.get(0).getEvidence().getObservation());
+        assertTrue(evidence.toString().contains("32,2 %"), "R003: the score of B2: " + evidence);
+        assertTrue(evidence.toString().contains("top1k") && evidence.toString().contains("83,2 %")
+                        && evidence.toString().contains("50,0 %"),
+                "R003: the share of top1k against its target: " + evidence);
+        assertTrue(evidence.toString().contains("top4k") && evidence.toString().contains("5,9 %")
+                        && evidence.toString().contains("20,0 %"),
+                "R003: the share of top4k against its target: " + evidence);
+        assertEquals(FindingResolution.RANK_ONLY, drafts.get(0).getResolution());
+    }
+
+    /**
+     * FEAT-HALL: the engine runs what its catalog lists. This wraps the given analyzer instances
+     * in providers that return that same instance, with a minimal card, so the test keeps running
+     * exactly those analyzers in that order; findings are not collected here.
+     */
+    static com.learney.contentaudit.auditdomain.IAuditEngine engineOf(
+            java.util.List<? extends com.learney.contentaudit.auditdomain.ContentAnalyzer> analyzers,
+            com.learney.contentaudit.auditdomain.ScoreAggregator aggregator) {
+        java.util.List<com.learney.contentaudit.auditdomain.AnalyzerProvider> providers = new java.util.ArrayList<>();
+        for (com.learney.contentaudit.auditdomain.ContentAnalyzer analyzer : analyzers) {
+            providers.add(fixedProvider(analyzer));
+        }
+        return new com.learney.contentaudit.auditdomain.IAuditEngine(aggregator,
+                new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(providers),
+                (root, analyzer, card) -> { },
+                new com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator());
+    }
+
+    static com.learney.contentaudit.auditdomain.AnalyzerProvider fixedProvider(
+            com.learney.contentaudit.auditdomain.ContentAnalyzer analyzer) {
+        boolean judge = "quiz-instruction".equals(analyzer.getName());
+        com.learney.contentaudit.auditdomain.finding.AnalysisCost cost = judge
+                ? com.learney.contentaudit.auditdomain.finding.AnalysisCost.PAID_MODEL
+                : com.learney.contentaudit.auditdomain.finding.AnalysisCost.INSTANT;
+        com.learney.contentaudit.auditdomain.AuditTarget target = analyzer.getTarget() != null
+                ? analyzer.getTarget() : com.learney.contentaudit.auditdomain.AuditTarget.QUIZ;
+        com.learney.contentaudit.auditdomain.AnalyzerDescriptor card = new com.learney.contentaudit.auditdomain.AnalyzerDescriptor(
+                analyzer.getName(), analyzer.getDescription() != null ? analyzer.getDescription() : "-", target,
+                "-", "-", java.util.List.of(new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("rule", "-", cost)),
+                "-", judge ? com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS
+                        : com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.VOCABULARY,
+                java.util.List.of(target), java.util.List.of(com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL),
+                cost);
+        return new com.learney.contentaudit.auditdomain.AnalyzerProvider() {
+            @Override
+            public String analyzerName() {
+                return analyzer.getName();
+            }
+
+            @Override
+            public com.learney.contentaudit.auditdomain.AnalyzerDescriptor describe() {
+                return card;
+            }
+
+            @Override
+            public com.learney.contentaudit.auditdomain.ContentAnalyzer create(
+                    com.learney.contentaudit.auditdomain.EvaluationRunPolicy policy) {
+                return analyzer;
+            }
+
+            @Override
+            public java.util.Optional<com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding> planBinding() {
+                return java.util.Optional.empty();
+            }
+
+            @Override
+            public java.util.Optional<com.learney.contentaudit.auditdomain.SelfDescribingConfig> config() {
+                return java.util.Optional.empty();
+            }
+        };
     }
 }

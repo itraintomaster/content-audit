@@ -16,7 +16,16 @@ import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.CourseDiagnoses;
 import com.learney.contentaudit.auditdomain.EmptyReevaluationSetException;
-import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.NlpToken;
 import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
@@ -96,27 +105,21 @@ public class FQinstJ004JourneyTest {
         // set is reused without a query, and its previous verdict stays untouched in the ledger.
         CourseRepository courseRepository = mock(CourseRepository.class);
         CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
-        AuditEngine auditEngine = mock(AuditEngine.class);
-        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
 
         Path coursePath = Path.of("/test/course-j004-path1.json");
         CourseEntity courseEntity = new CourseEntity();
-        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+        AuditableCourse auditableCourse = courseFor("quiz-in-set", "quiz-outside-set");
 
-        AuditReport primingReport = freshReportFor("quiz-in-set", "quiz-outside-set");
-        AuditReport report = freshReportFor("quiz-in-set", "quiz-outside-set");
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(primingReport, report);
 
         FakeEvaluationLedger ledger = new FakeEvaluationLedger();
         FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
 
         // Prime the course: an ordinary run gives every quiz a current verdict.
-        DefaultAuditRunner primingRunner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper,
-                auditEngine, List.of(), scoreAggregator, List.of(realQuizInstructionFactory(ledger, fingerprinter,
-                        new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION))));
+        DefaultAuditRunner primingRunner = runnerWith(courseRepository, courseToAuditableMapper, realQuizInstructionFactory(ledger, fingerprinter,
+                        new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION)));
         primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, null));
         assertEquals(1, ledger.historyBySubjectRef("quiz-in-set").size(),
                 "setup: quiz-in-set must start with a current verdict");
@@ -125,10 +128,9 @@ public class FQinstJ004JourneyTest {
 
         // The tested run: declare a set with only "quiz-in-set", budget enough for it.
         FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION);
-        EvaluationAnalyzerFactory quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
+        AnalyzerProvider quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
                 evaluator);
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         EvaluationRunPolicy setPolicy = new EvaluationRunPolicy(10, false, null, Set.of("quiz-in-set"));
         AuditRunRequest request = new AuditRunRequest(null, null,
@@ -156,41 +158,33 @@ public class FQinstJ004JourneyTest {
         // did not reach keep their previous verdict, keep scoring, and do not end up pending.
         CourseRepository courseRepository = mock(CourseRepository.class);
         CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
-        AuditEngine auditEngine = mock(AuditEngine.class);
-        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
 
         Path coursePath = Path.of("/test/course-j004-path2.json");
         CourseEntity courseEntity = new CourseEntity();
-        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+        AuditableCourse auditableCourse = courseFor("quiz-a", "quiz-b", "quiz-c");
 
         Set<String> declaredSet = Set.of("quiz-a", "quiz-b", "quiz-c");
-        AuditReport primingReport = freshReportFor("quiz-a", "quiz-b", "quiz-c");
-        AuditReport report = freshReportFor("quiz-a", "quiz-b", "quiz-c");
-        AuditNode rootNode = report.getRoot();
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(primingReport, report);
 
         FakeEvaluationLedger ledger = new FakeEvaluationLedger();
         FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
 
-        DefaultAuditRunner primingRunner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper,
-                auditEngine, List.of(), scoreAggregator, List.of(realQuizInstructionFactory(ledger, fingerprinter,
-                        new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION))));
+        DefaultAuditRunner primingRunner = runnerWith(courseRepository, courseToAuditableMapper, realQuizInstructionFactory(ledger, fingerprinter,
+                        new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION)));
         primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, null));
 
         FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION);
-        EvaluationAnalyzerFactory quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
+        AnalyzerProvider quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
                 evaluator);
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         // Budget of 2, smaller than the declared set of 3.
         EvaluationRunPolicy setPolicy = new EvaluationRunPolicy(2, false, null, declaredSet);
         AuditRunRequest request = new AuditRunRequest(null, null,
                 Map.of(quizInstructionFactory.analyzerName(), setPolicy));
-        runner.runAudit(coursePath, request);
+        AuditNode rootNode = runner.runAudit(coursePath, request).getRoot();
 
         List<String> consulted = evaluator.getEvaluatedSubjectRefs();
         // R006: the run must not exceed its budget of new queries...
@@ -223,40 +217,32 @@ public class FQinstJ004JourneyTest {
         // finishes without error, informs those identifiers, and no coverage count includes them.
         CourseRepository courseRepository = mock(CourseRepository.class);
         CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
-        AuditEngine auditEngine = mock(AuditEngine.class);
-        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
 
         Path coursePath = Path.of("/test/course-j004-path3.json");
         CourseEntity courseEntity = new CourseEntity();
-        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+        AuditableCourse auditableCourse = courseFor("quiz-1");
 
-        AuditReport primingReport = freshReportFor("quiz-1");
-        AuditReport report = freshReportFor("quiz-1");
-        AuditNode rootNode = report.getRoot();
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(primingReport, report);
 
         FakeEvaluationLedger ledger = new FakeEvaluationLedger();
         FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
 
-        DefaultAuditRunner primingRunner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper,
-                auditEngine, List.of(), scoreAggregator, List.of(realQuizInstructionFactory(ledger, fingerprinter,
-                        new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION))));
+        DefaultAuditRunner primingRunner = runnerWith(courseRepository, courseToAuditableMapper, realQuizInstructionFactory(ledger, fingerprinter,
+                        new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION)));
         primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, null));
 
         FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION);
-        EvaluationAnalyzerFactory quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
+        AnalyzerProvider quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
                 evaluator);
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         Set<String> declaredSet = Set.of("quiz-1", "quiz-ghost-1", "quiz-ghost-2");
         EvaluationRunPolicy setPolicy = new EvaluationRunPolicy(10, false, null, declaredSet);
         AuditRunRequest request = new AuditRunRequest(null, null,
                 Map.of(quizInstructionFactory.analyzerName(), setPolicy));
-        runner.runAudit(coursePath, request);
+        AuditNode rootNode = runner.runAudit(coursePath, request).getRoot();
 
         // R018: only the identifier that corresponds to a real quiz reaches the judge; the run
         // finishes without error.
@@ -288,32 +274,26 @@ public class FQinstJ004JourneyTest {
         // consulted and scored like any evaluated quiz -- no error, no special treatment.
         CourseRepository courseRepository = mock(CourseRepository.class);
         CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
-        AuditEngine auditEngine = mock(AuditEngine.class);
-        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
 
         Path coursePath = Path.of("/test/course-j004-path4.json");
         CourseEntity courseEntity = new CourseEntity();
-        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+        AuditableCourse auditableCourse = courseFor("quiz-never-judged");
 
-        AuditReport report = freshReportFor("quiz-never-judged");
-        AuditNode rootNode = report.getRoot();
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(report);
 
         FakeEvaluationLedger ledger = new FakeEvaluationLedger();
         FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
         FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION);
-        EvaluationAnalyzerFactory quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
+        AnalyzerProvider quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
                 evaluator);
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         EvaluationRunPolicy setPolicy = new EvaluationRunPolicy(10, false, null, Set.of("quiz-never-judged"));
         AuditRunRequest request = new AuditRunRequest(null, null,
                 Map.of(quizInstructionFactory.analyzerName(), setPolicy));
-        runner.runAudit(coursePath, request);
+        AuditNode rootNode = runner.runAudit(coursePath, request).getRoot();
 
         // R018: the never-judged quiz of the set is consulted just like any other member of it.
         assertEquals(Set.of("quiz-never-judged"), new HashSet<>(evaluator.getEvaluatedSubjectRefs()),
@@ -337,35 +317,28 @@ public class FQinstJ004JourneyTest {
         // observed through the real DefaultAuditRunner + the real factory.
         CourseRepository courseRepository = mock(CourseRepository.class);
         CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
-        AuditEngine auditEngine = mock(AuditEngine.class);
-        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
 
         Path coursePath = Path.of("/test/course-j004-path5.json");
         CourseEntity courseEntity = new CourseEntity();
-        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+        AuditableCourse auditableCourse = courseFor("quiz-1");
 
-        AuditReport primingReport = freshReportFor("quiz-1");
-        AuditReport report = freshReportFor("quiz-1");
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(primingReport, report);
 
         FakeEvaluationLedger ledger = new FakeEvaluationLedger();
         FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
 
-        DefaultAuditRunner primingRunner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper,
-                auditEngine, List.of(), scoreAggregator, List.of(realQuizInstructionFactory(ledger, fingerprinter,
-                        new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION))));
+        DefaultAuditRunner primingRunner = runnerWith(courseRepository, courseToAuditableMapper, realQuizInstructionFactory(ledger, fingerprinter,
+                        new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION)));
         primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, null));
         assertEquals(1, ledger.historyBySubjectRef("quiz-1").size(),
                 "setup: quiz-1 must start with a current verdict");
 
         FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION);
-        EvaluationAnalyzerFactory quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
+        AnalyzerProvider quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
                 evaluator);
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         // An explicitly empty set -- declared, and empty, which R018 never reads as "the whole course".
         EvaluationRunPolicy emptySetPolicy = new EvaluationRunPolicy(10, false, null, Set.of());
@@ -392,35 +365,28 @@ public class FQinstJ004JourneyTest {
         // Same reason as path-5 for going through the real runner + the real factory.
         CourseRepository courseRepository = mock(CourseRepository.class);
         CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
-        AuditEngine auditEngine = mock(AuditEngine.class);
-        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
 
         Path coursePath = Path.of("/test/course-j004-path6.json");
         CourseEntity courseEntity = new CourseEntity();
-        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+        AuditableCourse auditableCourse = courseFor("quiz-1");
 
-        AuditReport primingReport = freshReportFor("quiz-1");
-        AuditReport report = freshReportFor("quiz-1");
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(primingReport, report);
 
         FakeEvaluationLedger ledger = new FakeEvaluationLedger();
         FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
 
-        DefaultAuditRunner primingRunner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper,
-                auditEngine, List.of(), scoreAggregator, List.of(realQuizInstructionFactory(ledger, fingerprinter,
-                        new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION))));
+        DefaultAuditRunner primingRunner = runnerWith(courseRepository, courseToAuditableMapper, realQuizInstructionFactory(ledger, fingerprinter,
+                        new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION)));
         primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, null));
         assertEquals(1, ledger.historyBySubjectRef("quiz-1").size(),
                 "setup: quiz-1 must start with a current verdict");
 
         FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION);
-        EvaluationAnalyzerFactory quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
+        AnalyzerProvider quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
                 evaluator);
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         // A declared set of quizzes AND a course area (reevaluationScope) at the same time.
         EvaluationRunPolicy ambiguousPolicy = new EvaluationRunPolicy(10, true, "knowledge-99", Set.of("quiz-1"));
@@ -456,53 +422,54 @@ public class FQinstJ004JourneyTest {
      * the field that actually has to vary; the other AuditableQuiz fields are still populated
      * (non-null, non-empty) so the fixture stays realistic, but they are not what disambiguates.
      */
-    private static AuditNode quizNode(String quizId) {
-        AuditNode node = new AuditNode();
-        node.setTarget(AuditTarget.QUIZ);
-        node.setChildren(new ArrayList<>());
-        node.setScores(new LinkedHashMap<>());
-        node.setMetadata(new LinkedHashMap<>());
+    private static AuditableQuiz quizFor(String quizId) {
         List<NlpToken> tokens = List.of(new NlpToken(quizId, quizId, "NOUN", null, false, false));
         List<SentencePartEntity> sentenceParts = List.of(
                 new SentencePartEntity(SentencePartKind.TEXT, "Text unique to " + quizId, null));
-        node.setEntity(new AuditableQuiz(tokens, quizId, "Label " + quizId, "code-" + quizId,
+        return new AuditableQuiz(tokens, quizId, "Label " + quizId, "code-" + quizId,
                 "Translation for " + quizId, List.of("Sentence unique to " + quizId + "."),
-                "Quiz sentence for " + quizId, "Instructions unique to " + quizId, sentenceParts, null));
-        return node;
-    }
-
-    private static AuditNode rootWithChildren(AuditNode... children) {
-        AuditNode root = new AuditNode();
-        root.setTarget(AuditTarget.COURSE);
-        List<AuditNode> childList = new ArrayList<>(List.of(children));
-        root.setChildren(childList);
-        root.setScores(new LinkedHashMap<>());
-        root.setMetadata(new LinkedHashMap<>());
-        for (AuditNode child : children) {
-            child.setParent(root);
-        }
-        return root;
-    }
-
-    /**
-     * Builds a fresh AuditReport over brand-new quiz nodes (same ids, new objects) so a report
-     * used for the tested run never carries over scores/diagnoses mutated by an earlier priming
-     * run on the same quiz -- a stale leftover score would otherwise hide a run that incorrectly
-     * leaves a declared-set quiz pending instead of falling back to its reused verdict.
-     */
-    private static AuditReport freshReportFor(String... quizIds) {
-        AuditNode[] children = new AuditNode[quizIds.length];
-        for (int i = 0; i < quizIds.length; i++) {
-            children[i] = quizNode(quizIds[i]);
-        }
-        return new AuditReport(rootWithChildren(children));
+                "Quiz sentence for " + quizId, "Instructions unique to " + quizId, sentenceParts, null);
     }
 
     private static AuditNode findChild(AuditNode root, String quizId) {
-        return root.getChildren().stream()
-                .filter(child -> quizId.equals(child.getEntity().getId()))
-                .findFirst()
-                .orElseThrow(() -> new AssertionError("fixture error: no quiz node with id " + quizId));
+        if (root.getEntity() != null && quizId.equals(root.getEntity().getId())) {
+            return root;
+        }
+        if (root.getChildren() != null) {
+            for (AuditNode child : root.getChildren()) {
+                try {
+                    return findChild(child, quizId);
+                } catch (AssertionError notInThisBranch) {
+                    // keep looking in the next branch
+                }
+            }
+        }
+        throw new AssertionError("fixture error: no quiz node with id " + quizId);
+    }
+
+    /**
+     * FEAT-HALL: the runner delegates to the engine, which builds the judge from its provider in
+     * the catalog and walks the course with it. A real engine over the given providers; the
+     * judge's findings are not what this journey constrains, so they are not collected.
+     */
+    private static DefaultAuditRunner runnerWith(CourseRepository courseRepository,
+            CourseToAuditableMapper courseToAuditableMapper, AnalyzerProvider... providers) {
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(providers));
+        IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), catalog, (root, analyzer, card) -> { },
+                new DefaultContextNumbersCalculator());
+        return new DefaultAuditRunner(courseRepository, courseToAuditableMapper, engine, catalog);
+    }
+
+    /** One A1 milestone, one topic and one knowledge holding a quiz per id, in that order. */
+    private static AuditableCourse courseFor(String... quizIds) {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (String quizId : quizIds) {
+            quizzes.add(quizFor(quizId));
+        }
+        AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Knowledge", "Instructions", true,
+                "k1", "Knowledge", "K1", null, "Topic");
+        AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "Topic", "T1");
+        return new AuditableCourse(List.of(new AuditableMilestone(List.of(topic), "m1", "A1", "A1")));
     }
 
     /**
@@ -511,7 +478,7 @@ public class FQinstJ004JourneyTest {
      * DefaultQuizInstructionConfig -- see the class comment for why R018's rejection must be
      * exercised through the real factory instead of a mock.
      */
-    private static EvaluationAnalyzerFactory realQuizInstructionFactory(EvaluationLedger ledger,
+    private static AnalyzerProvider realQuizInstructionFactory(EvaluationLedger ledger,
             ContentFingerprinter fingerprinter, Evaluator evaluator) {
         return new DefaultQuizInstructionAnalyzerFactory(
                 new DefaultEvaluationSessionFactory(ledger, fingerprinter), evaluator,

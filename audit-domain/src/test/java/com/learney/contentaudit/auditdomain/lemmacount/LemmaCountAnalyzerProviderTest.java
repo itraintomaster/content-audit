@@ -1,4 +1,14 @@
 package com.learney.contentaudit.auditdomain.lemmacount;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
+import com.learney.contentaudit.auditdomain.LemmaCountConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
+import org.junit.jupiter.api.Assertions;
+import org.mockito.Mockito;
 
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +26,40 @@ public class LemmaCountAnalyzerProviderTest {
     @Tag("F-HALL-R006")
     public void shouldDescribeLemmacountInItsCardAsVocabularyEvaluatingTheLevelsAndTheCourseRankonlyAndInstant(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        LemmaCountConfig config = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(config.getThreshold()).thenReturn(4);
+        LemmaCountAnalyzerProvider provider = new LemmaCountAnalyzerProvider(Mockito.mock(EvpCatalogPort.class), config);
+
+        AnalyzerDescriptor card = provider.describe();
+
+        assertCompleteCard(card, "lemma-count");
+        Assertions.assertEquals(AnalyzerFamily.VOCABULARY, card.getFamily());
+        Assertions.assertEquals(List.of(AuditTarget.MILESTONE, AuditTarget.COURSE), card.getEvaluatedTargets());
+        Assertions.assertEquals(List.of(FindingResolution.RANK_ONLY), card.getResolutions());
+        Assertions.assertEquals(AnalysisCost.INSTANT, card.getCost());
+        Assertions.assertTrue(provider.planBinding().isEmpty(), "lemma-count makes no tasks, as before");
+    }
+
+    /** F-HALL-R006 inv. 1 and 2: no field of the card is empty, and its cost is the highest of its rules. */
+    static void assertCompleteCard(com.learney.contentaudit.auditdomain.AnalyzerDescriptor card, String name) {
+        org.junit.jupiter.api.Assertions.assertEquals(name, card.getName(), "the card carries the catalog name");
+        for (String text : java.util.Arrays.asList(card.getDescription(), card.getQuestion(), card.getReads(),
+                card.getGoal())) {
+            org.junit.jupiter.api.Assertions.assertTrue(text != null && !text.isBlank(),
+                    "R006: no text field of the card of " + name + " is empty");
+        }
+        org.junit.jupiter.api.Assertions.assertNotNull(card.getTarget(), "R006: the card of " + name + " has a target");
+        org.junit.jupiter.api.Assertions.assertFalse(card.getRules().isEmpty(), "R006: the card of " + name + " lists its rules");
+        com.learney.contentaudit.auditdomain.finding.AnalysisCost highest = null;
+        for (com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard rule : card.getRules()) {
+            org.junit.jupiter.api.Assertions.assertTrue(rule.getId() != null && !rule.getId().isBlank()
+                    && rule.getDescription() != null && !rule.getDescription().isBlank() && rule.getCost() != null,
+                    "R006: every rule of " + name + " has an id, a description and a cost");
+            if (highest == null || rule.getCost().ordinal() > highest.ordinal()) {
+                highest = rule.getCost();
+            }
+        }
+        org.junit.jupiter.api.Assertions.assertEquals(highest, card.getCost(),
+                "R006 inv. 2: the cost of the card of " + name + " is the highest cost of its rules");
     }
 }

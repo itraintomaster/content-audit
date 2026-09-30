@@ -636,6 +636,42 @@ public class RecursiveNodeFieldDifferTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R014")
     public void shouldReportAsUnchangedTheFindingOnWhereIsMyWalletWhenOnlyHeIsntInTheLivingroomChangedBetweenTheOriginalAndTheConsolidatedSnapshots() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R014 inv. 3 / F-CDIFF-R022: fixing «He isn't in the living-room.» removes its finding;
+        // the finding on «Where is my wallet?», another quiz of the knowledge, is re-stamped by the
+        // engine with the same identity and is reported unchanged.
+        AuditNode livingRoomOriginal = quizNodeWithScore("q-living-room", "sentence-length", 0.8);
+        livingRoomOriginal.setFindings(List.of(stampedFinding("sentence-length", "length-out-of-range",
+                "q-living-room", null)));
+        AuditNode livingRoomConsolidated = quizNodeWithScore("q-living-room", "sentence-length", 1.0);
+        AuditNode walletOriginal = quizNodeWithScore("q-wallet", "lemma-absence", 0.9);
+        walletOriginal.setFindings(List.of(stampedFinding("lemma-absence", "misplaced-word", "q-wallet", "wallet")));
+        AuditNode walletConsolidated = quizNodeWithScore("q-wallet", "lemma-absence", 0.9);
+        walletConsolidated.setFindings(List.of(stampedFinding("lemma-absence", "misplaced-word", "q-wallet", "wallet")));
+
+        Map<String, FieldChange> wallet = differ.diff(walletOriginal, walletConsolidated, walletConsolidated);
+        Map<String, FieldChange> livingRoom = differ.diff(livingRoomOriginal, livingRoomConsolidated,
+                livingRoomConsolidated);
+
+        assertTrue(wallet.keySet().stream().noneMatch(path -> path.startsWith("findings")),
+                "R014: the finding on wallet is reported unchanged: " + wallet.keySet());
+        assertTrue(livingRoom.keySet().stream().anyMatch(path -> path.startsWith(
+                        "findings[analyzer=sentence-length,rule=length-out-of-range,marker=null]")),
+                "the change of the living-room is reported under the identity of its finding: " + livingRoom.keySet());
+    }
+
+    /** A finding as the engine stamps it: identity analyzer|rule|node|marker. */
+    private static com.learney.contentaudit.auditdomain.finding.Finding stampedFinding(String analyzer, String rule,
+            String nodeId, String marker) {
+        return new com.learney.contentaudit.auditdomain.finding.Finding(analyzer, rule,
+                new com.learney.contentaudit.auditdomain.finding.FindingNodeRef(
+                        com.learney.contentaudit.auditdomain.AuditTarget.QUIZ, nodeId, nodeId),
+                com.learney.contentaudit.auditdomain.finding.FindingSeverity.MEDIUM,
+                new com.learney.contentaudit.auditdomain.finding.FindingEvidence(java.util.List.of(
+                        new com.learney.contentaudit.auditdomain.finding.EvidencePart("Palabra",
+                                marker != null ? marker : nodeId)), "Lo que encontró", java.util.List.of()),
+                com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL,
+                com.learney.contentaudit.auditdomain.finding.AnalysisCost.INSTANT,
+                new com.learney.contentaudit.auditdomain.finding.FindingIdentity(
+                        analyzer + "|" + rule + "|" + nodeId + (marker != null ? "|" + marker : ""), marker));
     }
 }

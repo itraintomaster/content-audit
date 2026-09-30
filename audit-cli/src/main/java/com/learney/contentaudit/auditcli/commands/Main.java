@@ -10,30 +10,27 @@ import com.learney.contentaudit.auditapplication.DefaultLemmaRecurrenceConfig;
 import com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig;
 import com.learney.contentaudit.auditapplication.DefaultLemmaCountConfig;
 import com.learney.contentaudit.auditapplication.DefaultLemmaCountConfigLoader;
-import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
 import com.learney.contentaudit.auditdomain.IAuditEngine;
-import com.learney.contentaudit.auditdomain.IScoreAggregator;
-import com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzer;
-import com.learney.contentaudit.auditdomain.KnowledgeTitleLengthAnalyzer;
+import com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.KnowledgeTitleLengthAnalyzerProvider;
 import com.learney.contentaudit.auditdomain.NlpTokenizer;
 import com.learney.contentaudit.auditdomain.ScoreAggregator;
-import com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer;
+import com.learney.contentaudit.auditdomain.SentenceLengthAnalyzerProvider;
 import com.learney.contentaudit.auditdomain.SentenceLengthConfig;
 import com.learney.contentaudit.auditdomain.CocaBucketsConfig;
 import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
 import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
 import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
-import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer;
-import com.learney.contentaudit.auditdomain.coca.DefaultTokenClassifier;
-import com.learney.contentaudit.auditdomain.coca.DefaultProgressionEvaluator;
-import com.learney.contentaudit.auditdomain.coca.DefaultImprovementPlanner;
-import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzerProvider;
 import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
-import com.learney.contentaudit.auditdomain.lrec.DefaultIntervalCalculator;
-import com.learney.contentaudit.auditdomain.lrec.DefaultExposureClassifier;
-import com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer;
-import com.learney.contentaudit.auditdomain.lemmacount.EvpThenNlpLemmaCefrLevelResolver;
-import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
 import com.learney.contentaudit.vocabularyinfrastructure.evp.FileSystemEvpCatalog;
 import com.learney.contentaudit.nlpinfrastructure.NlpTokenizerConfig;
 import com.learney.contentaudit.nlpinfrastructure.spacy.SpacyNlpTokenizerFactory;
@@ -169,7 +166,6 @@ import com.learney.contentaudit.auditcli.formatting.DefaultConsolidatedViewForma
 import com.learney.contentaudit.revisiondomain.PreservationFactory;
 import com.learney.contentaudit.revisiondomain.preservation.PreservationRepair;
 import com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationFactory;
-import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
 import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
 import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
 import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory;
@@ -297,24 +293,8 @@ class Main {
         QuizSentenceConverter quizSentenceConverter = DefaultQuizSentenceConverter.create();
         CourseToAuditableMapper courseToAuditableMapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
 
-        SentenceLengthAnalyzer sentenceLengthAnalyzer = new SentenceLengthAnalyzer(nlpTokenizer, sentenceLengthConfig);
-        KnowledgeTitleLengthAnalyzer knowledgeTitleLengthAnalyzer = new KnowledgeTitleLengthAnalyzer();
-        KnowledgeInstructionsLengthAnalyzer knowledgeInstructionsLengthAnalyzer =
-                new KnowledgeInstructionsLengthAnalyzer();
-
         CocaBucketsConfig cocaBucketsConfig = new DefaultCocaBucketsConfig();
-        CocaBucketsAnalyzer cocaBucketsAnalyzer = new CocaBucketsAnalyzer(
-                nlpTokenizer, cocaBucketsConfig,
-                new DefaultTokenClassifier(),
-                new DefaultProgressionEvaluator(),
-                new DefaultImprovementPlanner()
-        );
-
         LemmaRecurrenceConfig lemmaRecurrenceConfig = new DefaultLemmaRecurrenceConfig();
-        LemmaRecurrenceAnalyzer lemmaRecurrenceAnalyzer = new LemmaRecurrenceAnalyzer(
-                new DefaultContentWordFilter(), lemmaRecurrenceConfig,
-                new DefaultIntervalCalculator(), new DefaultExposureClassifier()
-        );
 
         LemmaAbsenceConfig lemmaAbsenceConfig = new DefaultLemmaAbsenceConfig();
         Path evpCatalogPath = Paths.get(projectRoot,
@@ -326,28 +306,8 @@ class Main {
         com.learney.contentaudit.auditdomain.labs.SentenceLexicalScorer sentenceLexicalScorer =
                 new com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer(
                         evpCatalog, new DefaultContentWordFilter(), lemmaAbsenceConfig);
-        LemmaByLevelAbsenceAnalyzer lemmaAbsenceAnalyzer = new LemmaByLevelAbsenceAnalyzer(
-                evpCatalog, new DefaultContentWordFilter(), lemmaAbsenceConfig, sentenceLexicalScorer);
 
         DefaultLemmaCountConfig lemmaCountConfig = (DefaultLemmaCountConfig) new DefaultLemmaCountConfigLoader().load(null);
-        LemmaCountAnalyzer lemmaCountAnalyzer = new LemmaCountAnalyzer(
-                new DefaultContentWordFilter(),
-                new EvpThenNlpLemmaCefrLevelResolver(evpCatalog),
-                lemmaCountConfig);
-
-        List<ContentAnalyzer> contentAnalyzers = List.of(
-                sentenceLengthAnalyzer,
-                knowledgeTitleLengthAnalyzer,
-                knowledgeInstructionsLengthAnalyzer,
-                cocaBucketsAnalyzer,
-                lemmaRecurrenceAnalyzer,
-                lemmaAbsenceAnalyzer,
-                lemmaCountAnalyzer
-        );
-
-        ScoreAggregator scoreAggregator =
-                new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator();
-        IAuditEngine auditEngine = new IAuditEngine(contentAnalyzers, scoreAggregator);
 
         // ----------------------------------------------------------------
         // Step 4b: FEAT-QINST / FEAT-EVCOST wiring — quiz instruction compliance
@@ -409,15 +369,33 @@ class Main {
         QuizInstructionVerdictReader quizInstructionVerdictReader = new JacksonQuizInstructionVerdictReader();
         QuizInstructionConfig quizInstructionConfig = new DefaultQuizInstructionConfig();
 
-        EvaluationAnalyzerFactory quizInstructionAnalyzerFactory = new DefaultQuizInstructionAnalyzerFactory(
+        AnalyzerProvider quizInstructionProvider = new DefaultQuizInstructionAnalyzerFactory(
                 evaluationSessionFactory, quizInstructionJudge, quizInstructionVerdictReader, quizInstructionConfig);
 
-        List<EvaluationAnalyzerFactory> evaluationAnalyzerFactories =
-                List.of(quizInstructionAnalyzerFactory);
+        // ----------------------------------------------------------------
+        // Step 4c: FEAT-HALL -- the catalog: one provider per analyzer, and the only list of
+        // them. Its order is the order of every run and of the findings within a node
+        // (F-HALL-R014); a new analyzer adds one line here (the third hook of the TECH_SPEC).
+        // The catalog validates every card at startup (F-HALL-R006 inv. 1).
+        // ----------------------------------------------------------------
+        List<AnalyzerProvider> analyzerProviders = List.of(
+                new SentenceLengthAnalyzerProvider(nlpTokenizer, sentenceLengthConfig),
+                new KnowledgeTitleLengthAnalyzerProvider(),
+                new KnowledgeInstructionsLengthAnalyzerProvider(),
+                new CocaBucketsAnalyzerProvider(nlpTokenizer, cocaBucketsConfig),
+                new LemmaRecurrenceAnalyzerProvider(lemmaRecurrenceConfig),
+                new LemmaAbsenceAnalyzerProvider(evpCatalog, lemmaAbsenceConfig, sentenceLexicalScorer),
+                new LemmaCountAnalyzerProvider(evpCatalog, lemmaCountConfig),
+                quizInstructionProvider);
+        AnalyzerCatalog analyzerCatalog = new DefaultAnalyzerCatalog(analyzerProviders);
+
+        ScoreAggregator scoreAggregator =
+                new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator();
+        IAuditEngine auditEngine = new IAuditEngine(scoreAggregator, analyzerCatalog,
+                new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
 
         DefaultAuditRunner auditRunner = new DefaultAuditRunner(
-                courseRepository, courseToAuditableMapper, auditEngine,
-                contentAnalyzers, scoreAggregator, evaluationAnalyzerFactories);
+                courseRepository, courseToAuditableMapper, auditEngine, analyzerCatalog);
 
         // ----------------------------------------------------------------
         // Step 5: CLI formatting
@@ -432,14 +410,7 @@ class Main {
         ReportViewModelTransformer viewModelTransformer = new DefaultReportViewModelTransformer();
         RawReportFormatter rawReportFormatter = new RawJsonReportFormatter();
 
-        List<SelfDescribingConfig> describableConfigs = List.of(
-                (SelfDescribingConfig) sentenceLengthConfig,
-                (SelfDescribingConfig) cocaBucketsConfig,
-                (SelfDescribingConfig) lemmaRecurrenceConfig,
-                (SelfDescribingConfig) lemmaAbsenceConfig,
-                (SelfDescribingConfig) lemmaCountConfig);
-        DefaultAnalyzerRegistry analyzerRegistry = new DefaultAnalyzerRegistry(
-                contentAnalyzers, describableConfigs);
+        DefaultAnalyzerRegistry analyzerRegistry = new DefaultAnalyzerRegistry(analyzerCatalog);
         AnalyzerStatsTransformer analyzerStatsTransformer = new DefaultAnalyzerStatsTransformer();
 
         Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
@@ -462,7 +433,7 @@ class Main {
         // ----------------------------------------------------------------
         // Step 7: Refiner + Revision engines
         // ----------------------------------------------------------------
-        RefinerEngine refinerEngine = new DefaultRefinerEngine();
+        RefinerEngine refinerEngine = new DefaultRefinerEngine(analyzerCatalog);
         SentenceLengthContextResolver sentenceLengthContextResolver = new SentenceLengthContextResolver();
         LemmaAbsenceContextResolver lemmaAbsenceContextResolver = new LemmaAbsenceContextResolver();
         KnowledgeTitleContextResolver knowledgeTitleContextResolver = new KnowledgeTitleContextResolver();

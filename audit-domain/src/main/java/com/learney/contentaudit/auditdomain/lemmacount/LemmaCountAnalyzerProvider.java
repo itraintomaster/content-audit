@@ -2,12 +2,19 @@ package com.learney.contentaudit.auditdomain.lemmacount;
 
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.EvpCatalogPort;
 import com.learney.contentaudit.auditdomain.LemmaCountConfig;
 import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -28,26 +35,41 @@ public class LemmaCountAnalyzerProvider implements AnalyzerProvider {
 
     @Override
     public String analyzerName() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return LemmaCountAnalyzer.ANALYZER_NAME;
     }
 
     @Override
     public AnalyzerDescriptor describe() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new AnalyzerDescriptor(
+                LemmaCountAnalyzer.ANALYZER_NAME,
+                LemmaCountAnalyzer.DESCRIPTION,
+                AuditTarget.COURSE,
+                "¿Cada palabra aparece en suficientes oraciones?",
+                "Las oraciones distintas en que aparece cada lema de contenido, con su nivel CEFR según el EVP",
+                List.of(new AnalyzerRuleCard(LemmaCountAnalyzer.RULE_UNDER_EXPOSED,
+                        "Hay lemas que aparecen en menos oraciones distintas que la meta",
+                        AnalysisCost.INSTANT)),
+                "Cada lema de contenido en al menos " + lemmaCountConfig.getThreshold() + " oraciones distintas",
+                AnalyzerFamily.VOCABULARY,
+                List.of(AuditTarget.MILESTONE, AuditTarget.COURSE),
+                List.of(FindingResolution.RANK_ONLY),
+                AnalysisCost.INSTANT);
     }
 
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new LemmaCountAnalyzer(new DefaultContentWordFilter(),
+                new EvpThenNlpLemmaCefrLevelResolver(evpCatalogPort), lemmaCountConfig);
     }
 
+    /** lemma-count makes no tasks, as before the contract (F-HALL-R013). */
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.empty();
     }
 
     @Override
     public Optional<SelfDescribingConfig> config() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.of(lemmaCountConfig);
     }
 }

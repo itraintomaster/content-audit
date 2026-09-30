@@ -1,10 +1,41 @@
 package com.learney.contentaudit.auditapplication;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.learney.contentaudit.auditdomain.catalog.UnknownAnalyzerException;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerScore;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.courseinfrastructure.CourseValidatorImpl;
+import com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository;
+import com.learney.contentaudit.vocabularyinfrastructure.evp.FileSystemEvpCatalog;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
+import java.util.function.Consumer;
+import java.util.zip.GZIPInputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import com.learney.contentaudit.auditdomain.*;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountCourseDiagnosis;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountLevelDiagnosis;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountResult;
@@ -66,7 +97,6 @@ public class DefaultAuditRunnerTest {
     @Mock private CourseRepository courseRepository;
     @Mock private CourseToAuditableMapper courseToAuditableMapper;
     @Mock private AuditEngine auditEngine;
-    @Mock private ScoreAggregator scoreAggregator;
 
     private DefaultAuditRunner sut;
     private final Path coursePath = Path.of("/test/course.json");
@@ -76,8 +106,7 @@ public class DefaultAuditRunnerTest {
 
     @BeforeEach
     void setUp() {
-        sut = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of());
+        sut = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine, realCatalog());
     }
 
     @Test
@@ -318,6 +347,9 @@ public class DefaultAuditRunnerTest {
         // Use lenient to allow either engine call pattern
         lenient().when(auditEngine.runAudit(any(AuditableCourse.class))).thenReturn(reportWithLemmaCount);
         lenient().when(auditEngine.runAudit(auditableCourse)).thenReturn(reportWithLemmaCount);
+        // FEAT-HALL: an instant analyzer asked by name runs as a selection of the engine
+        lenient().when(auditEngine.runAudit(any(AuditableCourse.class), any(AnalyzerRunSelection.class)))
+                .thenReturn(reportWithLemmaCount);
 
         // Act: invoke runDetailedAudit with "lemma-count" as the analyzer name
         AuditNode result = sut.runDetailedAudit(coursePath, "lemma-count");
@@ -355,18 +387,15 @@ public class DefaultAuditRunnerTest {
     public void shouldIncludeTheQuizInstructionAnalysisWhenTheAuditRequestSaysNothingAboutAnalyzers() {
         // R001: the quiz instruction analysis is part of the audit like any other analysis --
         // it must run without the user having to ask for it. With a request that says nothing
-        // about analyzers, the runner must still build the quiz instruction analyzer from its
-        // factory (the observable proof that it participated in this audit).
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
+        // about analyzers, the run must still build the quiz instruction analyzer from its
+        // provider (the observable proof that it participated in this audit).
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
         when(quizInstructionFactory.create(any())).thenReturn(mock(ContentAnalyzer.class));
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
-        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("quiz-1"));
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(quizInstructionFactory);
 
         AuditRunRequest request = new AuditRunRequest(null, null, null);
         runner.runAudit(coursePath, request);
@@ -382,23 +411,6 @@ public class DefaultAuditRunnerTest {
         // R001: an audit requested with no options must come back with the three things the
         // quiz instruction analysis produces -- score, diagnosis and coverage -- not just proof
         // that the analyzer was built.
-        AuditNode quizNode = new AuditNode();
-        quizNode.setTarget(AuditTarget.QUIZ);
-        quizNode.setChildren(new ArrayList<>());
-        quizNode.setScores(new LinkedHashMap<>());
-        quizNode.setMetadata(new LinkedHashMap<>());
-        quizNode.setDiagnoses(new DefaultQuizDiagnoses());
-
-        AuditNode rootNode = new AuditNode();
-        rootNode.setTarget(AuditTarget.COURSE);
-        rootNode.setChildren(new ArrayList<>(List.of(quizNode)));
-        rootNode.setScores(new LinkedHashMap<>());
-        rootNode.setMetadata(new LinkedHashMap<>());
-        rootNode.setDiagnoses(new DefaultCourseDiagnoses());
-        quizNode.setParent(rootNode);
-
-        AuditReport baseReport = new AuditReport(rootNode);
-
         QuizInstructionVerdict verdict = new QuizInstructionVerdict(
                 true, 0.9, InstructionSeverity.NONE, "Cumple la consigna", List.of(), List.of());
         QuizInstructionDiagnosis quizDiagnosis = new QuizInstructionDiagnosis(verdict, 1.0, false);
@@ -419,26 +431,24 @@ public class DefaultAuditRunnerTest {
             return null;
         }).when(quizInstructionAnalyzer).onCourseComplete(any());
 
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
         when(quizInstructionFactory.create(any())).thenReturn(quizInstructionAnalyzer);
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
-        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("quiz-1"));
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(quizInstructionFactory);
 
         AuditRunRequest request = new AuditRunRequest(null, null, null);
         AuditReport result = runner.runAudit(coursePath, request);
 
-        QuizDiagnoses resultQuizDiagnoses = (QuizDiagnoses) result.getRoot().getChildren().get(0).getDiagnoses();
+        AuditNode quiz = firstQuiz(result);
+        QuizDiagnoses resultQuizDiagnoses = (QuizDiagnoses) quiz.getDiagnoses();
         assertTrue(resultQuizDiagnoses.getQuizInstructionDiagnosis().isPresent(),
                 "R001: the quiz node must carry the quiz instruction diagnosis when the audit runs with no options");
         assertEquals(1.0, resultQuizDiagnoses.getQuizInstructionDiagnosis().get().getScore(),
                 "R001: the diagnosis must carry the score derived from the verdict");
-        assertEquals(1.0, result.getRoot().getChildren().get(0).getScores().get("quiz-instruction"),
+        assertEquals(1.0, quiz.getScores().get("quiz-instruction"),
                 "R001: the generic per-analyzer scores map must also carry the quiz instruction score");
 
         CourseDiagnoses resultCourseDiagnoses = (CourseDiagnoses) result.getRoot().getDiagnoses();
@@ -455,15 +465,12 @@ public class DefaultAuditRunnerTest {
     public void shouldNotBuildTheQuizInstructionAnalyzerWhenTheRequestExcludesIt() {
         // R011: an explicit exclusion must stop the analyzer from ever being built -- excluded
         // means "do not run", not "run and find nothing".
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
-        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("quiz-1"));
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(quizInstructionFactory);
 
         AuditRunRequest request = new AuditRunRequest(null, Set.of("quiz-instruction"), null);
         runner.runAudit(coursePath, request);
@@ -480,41 +487,23 @@ public class DefaultAuditRunnerTest {
         // different from appearing with zero coverage. Zero coverage would mean "I ran and
         // could not evaluate anything"; excluded means "you did not ask me to run". The
         // Optionals must come back empty, never populated with zeros.
-        AuditNode quizNode = new AuditNode();
-        quizNode.setTarget(AuditTarget.QUIZ);
-        quizNode.setChildren(new ArrayList<>());
-        quizNode.setScores(new LinkedHashMap<>());
-        quizNode.setMetadata(new LinkedHashMap<>());
-        quizNode.setDiagnoses(new DefaultQuizDiagnoses());
-
-        AuditNode rootNode = new AuditNode();
-        rootNode.setTarget(AuditTarget.COURSE);
-        rootNode.setChildren(new ArrayList<>(List.of(quizNode)));
-        rootNode.setScores(new LinkedHashMap<>());
-        rootNode.setMetadata(new LinkedHashMap<>());
-        rootNode.setDiagnoses(new DefaultCourseDiagnoses());
-        quizNode.setParent(rootNode);
-        AuditReport baseReport = new AuditReport(rootNode);
-
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
-        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("quiz-1"));
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(quizInstructionFactory);
 
         AuditRunRequest request = new AuditRunRequest(null, Set.of("quiz-instruction"), null);
         AuditReport result = runner.runAudit(coursePath, request);
 
         verify(quizInstructionFactory, never()).create(any());
 
-        QuizDiagnoses resultQuizDiagnoses = (QuizDiagnoses) result.getRoot().getChildren().get(0).getDiagnoses();
+        AuditNode quiz = firstQuiz(result);
+        QuizDiagnoses resultQuizDiagnoses = (QuizDiagnoses) quiz.getDiagnoses();
         assertTrue(resultQuizDiagnoses.getQuizInstructionDiagnosis().isEmpty(),
                 "R011: excluded analysis must leave no quiz instruction diagnosis on the quiz node");
-        assertTrue(result.getRoot().getChildren().get(0).getScores().isEmpty(),
+        assertTrue(quiz.getScores().isEmpty(),
                 "R011: excluded analysis must leave no quiz instruction score on the quiz node");
 
         CourseDiagnoses resultCourseDiagnoses = (CourseDiagnoses) result.getRoot().getDiagnoses();
@@ -529,15 +518,12 @@ public class DefaultAuditRunnerTest {
     public void shouldNotRunTheQuizInstructionAnalysisWhenTheRequestNarrowsTheAuditToOtherAnalyzers() {
         // R011: asking for an audit narrowed to other analyzers has the same effect as
         // excluding the quiz instruction analysis explicitly -- it must not be built either.
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
-        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("quiz-1"));
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(sentenceLengthStandIn(1.0), quizInstructionFactory);
 
         AuditRunRequest request = new AuditRunRequest(Set.of("sentence-length"), null, null);
         runner.runAudit(coursePath, request);
@@ -552,45 +538,28 @@ public class DefaultAuditRunnerTest {
     public void shouldFinishTheAuditAndKeepTheResultsOfTheOtherAnalyzersWhenTheQuizInstructionJudgeFails() {
         // R007: a judge failure mid-run must not abort the audit -- the other analyzers, which
         // do not depend on the judge, must keep their results intact in the returned report.
-        AuditNode quizNode = new AuditNode();
-        quizNode.setTarget(AuditTarget.QUIZ);
-        quizNode.setChildren(new ArrayList<>());
-        LinkedHashMap<String, Double> quizScores = new LinkedHashMap<>();
-        quizScores.put("sentence-length", 0.8);
-        quizNode.setScores(quizScores);
-        quizNode.setMetadata(new LinkedHashMap<>());
-
-        AuditNode rootNode = new AuditNode();
-        rootNode.setTarget(AuditTarget.COURSE);
-        rootNode.setChildren(new ArrayList<>(List.of(quizNode)));
-        rootNode.setScores(new LinkedHashMap<>());
-        rootNode.setMetadata(new LinkedHashMap<>());
-        quizNode.setParent(rootNode);
-        AuditReport baseReport = new AuditReport(rootNode);
-
+        // Since FEAT-HALL the engine runs the judge with the other analyzers and isolates its
+        // failure, so this goes through the real engine.
         ContentAnalyzer quizInstructionAnalyzer = mock(ContentAnalyzer.class);
         doThrow(new RuntimeException("quiz instruction judge unavailable"))
                 .when(quizInstructionAnalyzer).onQuiz(any());
         lenient().doThrow(new RuntimeException("quiz instruction judge unavailable"))
                 .when(quizInstructionAnalyzer).onCourseComplete(any());
 
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
         when(quizInstructionFactory.create(any())).thenReturn(quizInstructionAnalyzer);
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
-        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("quiz-1"));
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(sentenceLengthStandIn(0.8), quizInstructionFactory);
 
         AuditRunRequest request = new AuditRunRequest(null, null, null);
 
         AuditReport result = assertDoesNotThrow(() -> runner.runAudit(coursePath, request),
                 "R007: a judge failure must not abort the audit");
 
-        assertEquals(0.8, result.getRoot().getChildren().get(0).getScores().get("sentence-length"),
+        assertEquals(0.8, firstQuiz(result).getScores().get("sentence-length"),
                 "R007: scores from other analyzers must remain intact after a quiz instruction judge failure");
     }
 
@@ -599,18 +568,15 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R006")
     public void shouldHandTheQuizInstructionAnalyzerTheRunPolicyTheRequestDeclaredForItsJudge() {
-        // R006: each run bounds new judge queries through a configurable policy; the runner
-        // must hand the exact policy the request declared for this evaluator to its factory.
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
+        // R006: each run bounds new judge queries through a configurable policy; the run must
+        // hand the exact policy the request declared for this evaluator to its provider.
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
         when(quizInstructionFactory.create(any())).thenReturn(mock(ContentAnalyzer.class));
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
-        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("quiz-1"));
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(quizInstructionFactory);
 
         EvaluationRunPolicy policy = new EvaluationRunPolicy(200, false, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null, Map.of("quiz-instruction", policy));
@@ -627,20 +593,15 @@ public class DefaultAuditRunnerTest {
     public void shouldNotRunTheQuizInstructionAnalysisWhenTheRunExcludesItByTheVeryNameTheReportPublishesWhileTheJudgeBehindItAnswersToADifferentName() {
         // R015: exclusion must be keyed by the name the report publishes (ANALYZER_NAME).
         // The judge wired behind this analysis answers to a DIFFERENT identity
-        // (EVALUATOR_ID) on purpose -- if the runner ever confused the two (the exact
+        // (EVALUATOR_ID) on purpose -- if the run ever confused the two (the exact
         // blind spot this rule exists to close), excluding by ANALYZER_NAME would fail
         // to stop anything and the judge would still be consulted.
-        AuditNode quizNode = quizInstructionQuizNode("quiz-1");
-        AuditNode rootNode = quizInstructionRootWithChildren(quizNode);
-        AuditReport baseReport = new AuditReport(rootNode);
-
         FakeQuizInstructionEvaluationLedger ledger = new FakeQuizInstructionEvaluationLedger();
         FakeQuizInstructionContentFingerprinter fingerprinter = new FakeQuizInstructionContentFingerprinter();
         EvaluationSessionFactory sessionFactory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
         FakeQuizInstructionEvaluator evaluator = new FakeQuizInstructionEvaluator(EVALUATOR_ID, "v1");
 
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
         lenient().when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
             EvaluationRunPolicy policy = invocation.getArgument(0);
             EvaluationRunPolicy effectivePolicy = policy != null ? policy : new EvaluationRunPolicy(500, false, null, null);
@@ -649,11 +610,9 @@ public class DefaultAuditRunnerTest {
         });
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
-        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("quiz-1"));
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(quizInstructionFactory);
 
         AuditRunRequest request = new AuditRunRequest(null, Set.of(ANALYZER_NAME), null);
         runner.runAudit(coursePath, request);
@@ -671,22 +630,15 @@ public class DefaultAuditRunnerTest {
     public void shouldCapTheJudgeQueriesAtTheNumberRequestedForTheNameTheReportPublishesInsteadOfFallingBackToTheDefaultCapWhileTheJudgeBehindItAnswersToADifferentName() {
         // R015: the cap declared for ANALYZER_NAME (the name the report publishes) must be
         // the one applied -- not the analyzer's default (500). Three quizzes reach the
-        // judge but the request caps new queries at 2: if the runner looked up the policy
+        // judge but the request caps new queries at 2: if the run looked up the policy
         // under any identity other than ANALYZER_NAME, it would find nothing and fall back
         // to the default, and all three quizzes would be consulted instead of two.
-        AuditNode quiz1 = quizInstructionQuizNode("quiz-1");
-        AuditNode quiz2 = quizInstructionQuizNode("quiz-2");
-        AuditNode quiz3 = quizInstructionQuizNode("quiz-3");
-        AuditNode rootNode = quizInstructionRootWithChildren(quiz1, quiz2, quiz3);
-        AuditReport baseReport = new AuditReport(rootNode);
-
         FakeQuizInstructionEvaluationLedger ledger = new FakeQuizInstructionEvaluationLedger();
         FakeQuizInstructionContentFingerprinter fingerprinter = new FakeQuizInstructionContentFingerprinter();
         EvaluationSessionFactory sessionFactory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
         FakeQuizInstructionEvaluator evaluator = new FakeQuizInstructionEvaluator(EVALUATOR_ID, "v1");
 
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
         when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
             EvaluationRunPolicy policy = invocation.getArgument(0);
             EvaluationSession session = sessionFactory.open(quizInstructionBudgetFrom(policy), evaluator);
@@ -694,11 +646,9 @@ public class DefaultAuditRunnerTest {
         });
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
-        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("quiz-1", "quiz-2", "quiz-3"));
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(quizInstructionFactory);
 
         EvaluationRunPolicy cappedPolicy = new EvaluationRunPolicy(2, false, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null, Map.of(ANALYZER_NAME, cappedPolicy));
@@ -718,13 +668,9 @@ public class DefaultAuditRunnerTest {
         // R015: an explicit re-evaluation request keyed by ANALYZER_NAME must reach the
         // judge again for a quiz that already has a current verdict -- even though the
         // judge's own identity in the ledger (EVALUATOR_ID) is a different string. If the
-        // runner looked up the reevaluation policy under any name other than the one the
+        // run looked up the reevaluation policy under any name other than the one the
         // report publishes, the request would silently find nothing and every verdict
         // would just be reused.
-        AuditNode quizNode = quizInstructionQuizNode("quiz-1");
-        AuditNode rootNode = quizInstructionRootWithChildren(quizNode);
-        AuditReport baseReport = new AuditReport(rootNode);
-
         FakeQuizInstructionEvaluationLedger ledger = new FakeQuizInstructionEvaluationLedger();
         FakeQuizInstructionContentFingerprinter fingerprinter = new FakeQuizInstructionContentFingerprinter();
         EvaluationSessionFactory sessionFactory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
@@ -734,8 +680,7 @@ public class DefaultAuditRunnerTest {
         EvaluationKey currentKey = new EvaluationKey(EVALUATOR_ID, fingerprint);
         ledger.seed(new EvaluationRecord(currentKey, "{\"compliant\":true}", "quiz-1", Instant.now(), "v1"));
 
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
         when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
             EvaluationRunPolicy policy = invocation.getArgument(0);
             EvaluationSession session = sessionFactory.open(quizInstructionBudgetFrom(policy), evaluator);
@@ -743,11 +688,9 @@ public class DefaultAuditRunnerTest {
         });
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
-        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("quiz-1"));
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(quizInstructionFactory);
 
         EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null, Map.of(ANALYZER_NAME, reevaluationPolicy));
@@ -762,32 +705,119 @@ public class DefaultAuditRunnerTest {
     }
 
     // -----------------------------------------------------------------------
-    // Fixtures shared across the F-QINST-R015 tests
+    // FEAT-HALL: the runner delegates every run to the engine, which builds each analyzer
+    // of the run from its provider in the catalog -- the judge included. These fixtures wire
+    // a real engine with the given providers; the analyzers here are stand-ins, so their
+    // findings are not collected.
     // -----------------------------------------------------------------------
 
-    private static AuditNode quizInstructionQuizNode(String quizId) {
-        AuditNode node = new AuditNode();
-        node.setTarget(AuditTarget.QUIZ);
-        node.setChildren(new ArrayList<>());
-        node.setScores(new LinkedHashMap<>());
-        node.setMetadata(new LinkedHashMap<>());
-        node.setEntity(new AuditableQuiz(List.of(), quizId, "label", "code", null,
-                List.of("She is happy."), null, null, List.of(), null));
-        return node;
+    private DefaultAuditRunner runnerWith(AnalyzerProvider... providers) {
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(providers));
+        IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), catalog, (root, analyzer, card) -> { },
+                new DefaultContextNumbersCalculator());
+        return new DefaultAuditRunner(courseRepository, courseToAuditableMapper, engine, catalog);
     }
 
-    private static AuditNode quizInstructionRootWithChildren(AuditNode... children) {
-        AuditNode root = new AuditNode();
-        root.setTarget(AuditTarget.COURSE);
-        List<AuditNode> childList = new ArrayList<>(List.of(children));
-        root.setChildren(childList);
-        root.setScores(new LinkedHashMap<>());
-        root.setMetadata(new LinkedHashMap<>());
-        for (AuditNode child : children) {
-            child.setParent(root);
-        }
-        return root;
+    /** The judge's provider under the name the report publishes, with the judge's real card. */
+    private static AnalyzerProvider judgeProvider() {
+        AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null, null,
+                mock(QuizInstructionConfig.class)).describe();
+        AnalyzerProvider provider = mock(AnalyzerProvider.class);
+        lenient().when(provider.analyzerName()).thenReturn(ANALYZER_NAME);
+        lenient().when(provider.describe()).thenReturn(card);
+        return provider;
     }
+
+    /** A sentence-length stand-in, with the real card, that scores every quiz with the given value. */
+    private static AnalyzerProvider sentenceLengthStandIn(double score) {
+        AnalyzerDescriptor card = new SentenceLengthAnalyzerProvider(null, mock(SentenceLengthConfig.class)).describe();
+        ContentAnalyzer analyzer = new ContentAnalyzer() {
+            @Override
+            public Void onQuiz(AuditNode node) {
+                node.getScores().put("sentence-length", score);
+                return null;
+            }
+
+            @Override
+            public Void onKnowledge(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onMilestone(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onTopic(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onCourseComplete(AuditNode rootNode) {
+                return null;
+            }
+
+            @Override
+            public String getName() {
+                return "sentence-length";
+            }
+
+            @Override
+            public AuditTarget getTarget() {
+                return AuditTarget.QUIZ;
+            }
+
+            @Override
+            public String getDescription() {
+                return "sentence-length stand-in";
+            }
+
+            @Override
+            public List<FindingDraft> findingsAt(AuditNode node) {
+                return List.of();
+            }
+        };
+        AnalyzerProvider provider = mock(AnalyzerProvider.class);
+        lenient().when(provider.analyzerName()).thenReturn("sentence-length");
+        lenient().when(provider.describe()).thenReturn(card);
+        lenient().when(provider.create(any())).thenReturn(analyzer);
+        return provider;
+    }
+
+    /** One A1 milestone, one topic and one knowledge with these quizzes. */
+    private static AuditableCourse courseWithQuizzes(String... quizIds) {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (String quizId : quizIds) {
+            quizzes.add(new AuditableQuiz(List.of(), quizId, "label", "code", null,
+                    List.of("She is happy."), null, null, List.of(), null));
+        }
+        AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Knowledge", "Instructions", true,
+                "k1", "Knowledge", "K1", null, "Topic");
+        AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "Topic", "T1");
+        return new AuditableCourse(List.of(new AuditableMilestone(List.of(topic), "m1", "A1", "A1")));
+    }
+
+    private static AuditNode firstQuiz(AuditReport report) {
+        return report.getRoot().getChildren().get(0).getChildren().get(0).getChildren().get(0).getChildren().get(0);
+    }
+
+    /** The eight real providers, as Main registers them; mocked configurations feed their cards. */
+    private static AnalyzerCatalog realCatalog() {
+        return new DefaultAnalyzerCatalog(List.of(
+                new SentenceLengthAnalyzerProvider(null, mock(SentenceLengthConfig.class)),
+                new KnowledgeTitleLengthAnalyzerProvider(),
+                new KnowledgeInstructionsLengthAnalyzerProvider(),
+                new CocaBucketsAnalyzerProvider(null, mock(CocaBucketsConfig.class)),
+                new LemmaRecurrenceAnalyzerProvider(mock(LemmaRecurrenceConfig.class)),
+                new LemmaAbsenceAnalyzerProvider(null, mock(LemmaAbsenceConfig.class), null),
+                new LemmaCountAnalyzerProvider(null, mock(LemmaCountConfig.class)),
+                new DefaultQuizInstructionAnalyzerFactory(null, null, null, mock(QuizInstructionConfig.class))));
+    }
+
+    // -----------------------------------------------------------------------
+    // Fixtures shared across the F-QINST-R015 tests
+    // -----------------------------------------------------------------------
 
     private static Map<String, String> quizInstructionSubjectContent(String quizId) {
         return Map.of("marker", quizId);
@@ -851,6 +881,11 @@ public class DefaultAuditRunnerTest {
             @Override
             public String getDescription() {
                 return "fake quiz instruction analyzer for F-QINST-R015 tests";
+            }
+
+            @Override
+            public List<FindingDraft> findingsAt(AuditNode node) {
+                return List.of();
             }
         };
     }
@@ -932,7 +967,23 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R012")
     public void shouldRunExactlySentencelengthWhenARunAsksOnlyForItLeavingNoScoreFindingOrNumberOfTheOtherSixClassicAnalyzers() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: asking for sentence-length runs exactly it -- before the contract the selection
+        // only filtered the judges and the seven classics ran anyway.
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("q1", "q2"));
+        DefaultAuditRunner runner = realRunnerWith(classicProviders(mock(EvpCatalogPort.class)));
+
+        AuditReport report = runner.runAudit(coursePath, new AuditRunRequest(Set.of("sentence-length"), null, null));
+
+        walkTree(report.getRoot(), node -> {
+            assertTrue(Set.of("sentence-length").containsAll(node.getScores().keySet()),
+                    "R012: no score of another analyzer: " + node.getScores());
+            node.getFindings().forEach(f -> assertEquals("sentence-length", f.getAnalyzer(), "R012: no finding of another"));
+            assertEquals(Set.of("sentence-length"), node.getNumbers().getAnalyzerScores().stream()
+                    .map(AnalyzerScore::getAnalyzer).collect(java.util.stream.Collectors.toSet()),
+                    "R012: no number of another");
+        });
+        assertFalse(firstQuiz(report).getFindings().isEmpty(), "its own findings are there");
     }
 
     @Test
@@ -940,7 +991,27 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R012")
     public void shouldRunExactlyQuizinstructionWhenARunAsksOnlyForItWithItsFindingsNumbersAndCoverageAndNothingFromTheSevenClassicAnalyzers() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: asking for the judge runs exactly the judge, with its findings, its numbers and its
+        // coverage -- and nothing of the seven classics.
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        // Each quiz with its own content: the judge reuses a verdict for identical content (F-EVCOST-R001).
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithDistinctQuizzes("q-breach", "q-ok"));
+        List<AnalyzerProvider> providers = new ArrayList<>(classicProviders(mock(EvpCatalogPort.class)));
+        providers.add(breachingJudge());
+        DefaultAuditRunner runner = realRunnerWith(providers);
+
+        AuditReport report = runner.runAudit(coursePath, new AuditRunRequest(Set.of("quiz-instruction"), null, null));
+
+        walkTree(report.getRoot(), node -> {
+            assertTrue(Set.of("quiz-instruction").containsAll(node.getScores().keySet()),
+                    "R012: nothing of the seven classics: " + node.getScores());
+            node.getFindings().forEach(f -> assertEquals("quiz-instruction", f.getAnalyzer()));
+        });
+        AuditNode breach = firstQuiz(report);
+        assertEquals(1, breach.getFindings().size(), "R012: its findings");
+        assertEquals(1, report.getRoot().getNumbers().getErrors().getWithAnyError(), "R012: its numbers");
+        assertTrue(((CourseDiagnoses) report.getRoot().getDiagnoses()).getQuizInstructionCoverage().isPresent(),
+                "R012: its coverage");
     }
 
     @Test
@@ -948,7 +1019,18 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R012")
     public void shouldRejectBeforeLoadingTheCourseARunThatAsksForQuizinstructionsANameGetAnalyzersDoesNotListWithTheMessageThatPointsToGetAnalyzers() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: a name that get analyzers does not list rejects the run before the course is loaded
+        // (loading it tokenizes it with spaCy), with the message of F-CLIRV-R016.
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                realCatalog());
+
+        UnknownAnalyzerException rejected = assertThrows(UnknownAnalyzerException.class,
+                () -> runner.runAudit(coursePath, new AuditRunRequest(Set.of("quiz-instructions"), null, null)));
+
+        assertEquals("Analyzer 'quiz-instructions' not found. Run 'content-audit get analyzers' to see available analyzers.",
+                rejected.getMessage());
+        verify(courseRepository, never()).load(any());
+        verifyNoInteractions(auditEngine);
     }
 
     @Test
@@ -956,7 +1038,16 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R012")
     public void shouldRejectBeforeLoadingTheCourseARunThatExcludesANameGetAnalyzersDoesNotListInsteadOfIgnoringIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: excluding a name the catalog does not have is rejected too, instead of ignored.
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                realCatalog());
+
+        UnknownAnalyzerException rejected = assertThrows(UnknownAnalyzerException.class,
+                () -> runner.runAudit(coursePath, new AuditRunRequest(null, Set.of("quiz-instructions"), null)));
+
+        assertEquals("quiz-instructions", rejected.getAnalyzerName());
+        verify(courseRepository, never()).load(any());
+        verifyNoInteractions(auditEngine);
     }
 
     @Test
@@ -964,6 +1055,212 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R013")
     public void shouldPublishOnThe299CourseWithTheSevenClassicAnalyzersTheSameScoreOfEachOneOnEachOfIts11760NodesAndTheSameTypedDiagnosesAsTheAnalysis20260930T115402() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R013: the course of the 29/9 base (db/english-course), the spaCy tokens it had then and the
+        // real configurations and EVP catalog give, node by node, the scores and the typed
+        // diagnoses of the analysis 2026-09-30T11-54-02 (fixtures made by scripts/fhall_base_fixtures.py).
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(new RecordedTokenizer(),
+                DefaultQuizSentenceConverter.create());
+        EvpCatalogPort evp = new FileSystemEvpCatalog(Path.of("../analysis/recursos-compartidos/enriched_vocabulary_catalog.json"));
+        List<AnalyzerProvider> classics = classicProviders(evp);
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(classics);
+        DefaultAuditRunner runner = new DefaultAuditRunner(new FileSystemCourseRepository(new CourseValidatorImpl()), mapper,
+                new IAuditEngine(new IScoreAggregator(), catalog, new DefaultFindingCollector(),
+                        new DefaultContextNumbersCalculator()), catalog);
+
+        AuditReport report = runner.runAudit(Path.of("../db/english-course"), (Set<String>) null);
+
+        List<String> expectedNodes = readFixture("nodes.jsonl.gz");
+        List<String> expectedDiagnoses = readFixture("diagnoses.jsonl.gz");
+        List<AuditNode> nodes = new ArrayList<>();
+        walkTree(report.getRoot(), nodes::add);
+        assertEquals(11760, nodes.size(), "R013: the 11.760 nodes of the 29/9 course");
+        assertEquals(expectedNodes.size(), nodes.size());
+        ObjectMapper json = diagnosesMapper();
+        for (int i = 0; i < nodes.size(); i++) {
+            AuditNode node = nodes.get(i);
+            JsonNode expected = parse(json, expectedNodes.get(i));
+            String id = node.getEntity() != null ? node.getEntity().getId() : "root";
+            assertEquals(expected.get(0).asText() + " " + expected.get(1).asText(), node.getTarget() + " " + id,
+                    "the same node in the same place");
+            Map<String, Double> expectedScores = new LinkedHashMap<>();
+            expected.get(2).fields().forEachRemaining(e -> expectedScores.put(e.getKey(), e.getValue().asDouble()));
+            assertEquals(expectedScores, node.getScores(), "R013: the same score of each analyzer on " + id);
+            assertEquals(new ArrayList<>(expectedScores.keySet()), new ArrayList<>(node.getScores().keySet()),
+                    "and in the same order on " + id);
+            assertEquals(parse(json, expectedDiagnoses.get(i)), diagnosesTree(json, node),
+                    "R013: the same typed diagnoses on " + id);
+        }
+        assertEquals(new HashSet<>(List.of("sentence-length", "knowledge-title-length", "knowledge-instructions-length",
+                "coca-buckets-distribution", "lemma-recurrence", "lemma-absence", "lemma-count")),
+                new HashSet<>(report.getRoot().getNumbers().getAnalyzerScores().stream().map(AnalyzerScore::getAnalyzer)
+                        .toList()), "the seven classic analyzers ran");
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-HALL: the seven classics with the configurations the code applies, the real engine
+    // with the real collector, and the 29/9 base
+    // -----------------------------------------------------------------------
+
+    private DefaultAuditRunner realRunnerWith(List<AnalyzerProvider> providers) {
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
+        return new DefaultAuditRunner(courseRepository, courseToAuditableMapper, new IAuditEngine(new IScoreAggregator(),
+                catalog, new DefaultFindingCollector(), new DefaultContextNumbersCalculator()), catalog);
+    }
+
+    /** The seven classic providers as Main builds them, over the given EVP catalog. */
+    private static List<AnalyzerProvider> classicProviders(EvpCatalogPort evp) {
+        DefaultLemmaAbsenceConfig absence = new DefaultLemmaAbsenceConfig();
+        return List.of(
+                new SentenceLengthAnalyzerProvider(null, new DefaultSentenceLengthConfig()),
+                new KnowledgeTitleLengthAnalyzerProvider(),
+                new KnowledgeInstructionsLengthAnalyzerProvider(),
+                new CocaBucketsAnalyzerProvider(null, new DefaultCocaBucketsConfig()),
+                new LemmaRecurrenceAnalyzerProvider(new DefaultLemmaRecurrenceConfig()),
+                new LemmaAbsenceAnalyzerProvider(evp, absence,
+                        new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), absence)),
+                new LemmaCountAnalyzerProvider(evp, new DefaultLemmaCountConfigLoader().load(null)));
+    }
+
+    /** The real judge factory whose judge finds a major breach in q-breach and nothing in any other quiz. */
+    private static AnalyzerProvider breachingJudge() {
+        Evaluator evaluator = new Evaluator() {
+            @Override
+            public String evaluatorId() {
+                return EVALUATOR_ID;
+            }
+
+            @Override
+            public Optional<String> evaluatorVersion() {
+                return Optional.of("v1");
+            }
+
+            @Override
+            public EvaluationOutcome evaluate(EvaluationSubject subject) {
+                return new EvaluationEmitted("q-breach".equals(subject.getSubjectRef()) ? "breach" : "ok");
+            }
+        };
+        QuizInstructionVerdictReader reader = payload -> "breach".equals(payload)
+                ? new QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR, "Incumple la consigna",
+                        List.of(new com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation(
+                                "TENSE", "Pasado", "goes", "Esta en presente")), List.of())
+                : new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "Cumple", List.of(), List.of());
+        return new DefaultQuizInstructionAnalyzerFactory(new DefaultEvaluationSessionFactory(
+                new FakeQuizInstructionEvaluationLedger(), new FakeQuizInstructionContentFingerprinter()), evaluator,
+                reader, new DefaultQuizInstructionConfig());
+    }
+
+    private static void walkTree(AuditNode node, Consumer<AuditNode> action) {
+        action.accept(node);
+        if (node.getChildren() != null) {
+            node.getChildren().forEach(child -> walkTree(child, action));
+        }
+    }
+
+    private static List<String> readFixture(String name) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new GZIPInputStream(
+                DefaultAuditRunnerTest.class.getResourceAsStream("/fhall-base-2026-09-30/" + name)),
+                StandardCharsets.UTF_8))) {
+            return reader.lines().toList();
+        } catch (IOException e) {
+            throw new AssertionError("fixture " + name + " unreadable", e);
+        }
+    }
+
+    private static JsonNode parse(ObjectMapper json, String line) {
+        try {
+            return json.readTree(line);
+        } catch (IOException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    /** The typed diagnoses serialized as the report store does: polymorphic, with Optionals unwrapped. */
+    private static ObjectMapper diagnosesMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new Jdk8Module());
+        mapper.addMixIn(NodeDiagnoses.class, NodeDiagnosesMixin.class);
+        return mapper;
+    }
+
+    private static JsonNode diagnosesTree(ObjectMapper json, AuditNode node) {
+        try {
+            return json.readTree(json.writerFor(NodeDiagnoses.class).writeValueAsString(node.getDiagnoses()));
+        } catch (IOException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "@type")
+    @JsonSubTypes({
+        @JsonSubTypes.Type(value = DefaultCourseDiagnoses.class, name = "CourseDiagnoses"),
+        @JsonSubTypes.Type(value = DefaultLevelDiagnoses.class, name = "LevelDiagnoses"),
+        @JsonSubTypes.Type(value = DefaultTopicDiagnoses.class, name = "TopicDiagnoses"),
+        @JsonSubTypes.Type(value = DefaultKnowledgeDiagnoses.class, name = "KnowledgeDiagnoses"),
+        @JsonSubTypes.Type(value = DefaultQuizDiagnoses.class, name = "QuizDiagnoses")
+    })
+    abstract static class NodeDiagnosesMixin {
+    }
+
+    /** The spaCy tokens each canonical sentence of the 29/9 course had in the analysis 2026-09-30T11-54-02. */
+    private static final class RecordedTokenizer implements NlpTokenizer {
+        private final Map<String, List<NlpToken>> bySentence = new java.util.HashMap<>();
+
+        RecordedTokenizer() {
+            ObjectMapper json = new ObjectMapper();
+            List<NlpToken> table = new ArrayList<>();
+            for (String line : readFixture("tokens.jsonl.gz")) {
+                JsonNode t = parse(json, line);
+                table.add(new NlpToken(t.get(0).asText(), t.get(1).asText(), t.get(2).asText(),
+                        t.get(3).isNull() ? null : t.get(3).asInt(), t.get(4).asBoolean(), t.get(5).asBoolean()));
+            }
+            for (String line : readFixture("sentences.jsonl.gz")) {
+                JsonNode s = parse(json, line);
+                List<NlpToken> tokens = new ArrayList<>();
+                s.get(1).forEach(index -> tokens.add(table.get(index.asInt())));
+                bySentence.put(s.get(0).asText(), tokens);
+            }
+        }
+
+        @Override
+        public Map<String, List<NlpToken>> analyzeTokensBatch(List<String> sentences) {
+            Map<String, List<NlpToken>> result = new java.util.HashMap<>();
+            for (String sentence : sentences) {
+                List<NlpToken> tokens = bySentence.get(sentence);
+                if (tokens == null) {
+                    throw new AssertionError("a sentence the 29/9 course did not have: " + sentence);
+                }
+                result.put(sentence, tokens);
+            }
+            return result;
+        }
+
+        @Override
+        public List<String> tokenize(String text) {
+            throw new UnsupportedOperationException("the audit tokenizes in batch");
+        }
+
+        @Override
+        public int countTokens(String text) {
+            throw new UnsupportedOperationException("the audit tokenizes in batch");
+        }
+
+        @Override
+        public List<NlpToken> analyzeTokens(String text) {
+            throw new UnsupportedOperationException("the audit tokenizes in batch");
+        }
+    }
+
+    /** Like courseWithQuizzes, but each quiz with its own text, so the judge sees different content. */
+    private static AuditableCourse courseWithDistinctQuizzes(String... quizIds) {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (String quizId : quizIds) {
+            quizzes.add(new AuditableQuiz(List.of(), quizId, "label", "code", null, List.of("She is " + quizId + "."),
+                    null, null, List.of(new com.learney.contentaudit.coursedomain.SentencePartEntity(
+                            com.learney.contentaudit.coursedomain.SentencePartKind.TEXT, "She is " + quizId, null)), null));
+        }
+        AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Knowledge", "Instructions", true,
+                "k1", "Knowledge", "K1", null, "Topic");
+        AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "Topic", "T1");
+        return new AuditableCourse(List.of(new AuditableMilestone(List.of(topic), "m1", "A1", "A1")));
     }
 }

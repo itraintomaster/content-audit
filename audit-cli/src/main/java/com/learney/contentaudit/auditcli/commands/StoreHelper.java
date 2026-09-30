@@ -25,6 +25,9 @@ import java.util.stream.Stream;
 final class StoreHelper {
 
     private static final String AUDITS_SUBDIR = ".content-audit/audits";
+    // F-HALL-R010: the digest the store writes next to each analysis, in a sibling directory;
+    // it is part of its analysis, so deleting or pruning the analysis deletes it too.
+    private static final String AUDIT_DIGESTS_SUBDIR = ".content-audit/audit-digests";
     private static final String PLANS_SUBDIR = ".content-audit/plans";
     private static final String AUDIT_PREFIX = "audit-";
     private static final String PLAN_PREFIX = "plan-";
@@ -41,11 +44,13 @@ final class StoreHelper {
             baseDir = Path.of(System.getProperty("user.dir"));
         }
         Path file = baseDir.resolve(AUDITS_SUBDIR).resolve(AUDIT_PREFIX + auditId + JSON_SUFFIX);
+        Path digest = baseDir.resolve(AUDIT_DIGESTS_SUBDIR).resolve(AUDIT_PREFIX + auditId + JSON_SUFFIX);
         if (!Files.exists(file)) {
             return false;
         }
         try {
             Files.delete(file);
+            Files.deleteIfExists(digest);
             return true;
         } catch (IOException e) {
             throw new RuntimeException("Failed to delete audit file: " + file + ": " + e.getMessage(), e);

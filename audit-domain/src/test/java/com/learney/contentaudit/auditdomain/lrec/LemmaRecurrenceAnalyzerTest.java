@@ -1,4 +1,7 @@
 package com.learney.contentaudit.auditdomain.lrec;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -423,6 +426,39 @@ public class LemmaRecurrenceAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R003")
     public void shouldGiveItsCourseFindingTheMeasure80TheShareOfTheMostUsedLemmasThatComeBackAtAHealthyIntervalNextToItsGoal() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: on the 29/9 base 8 of its 100 most used lemmas come back at a healthy interval:
+        // 8,0 %. Here 100 lemmas appear twice; the first 8 come back at a healthy interval.
+        org.mockito.Mockito.lenient().when(config.getTop()).thenReturn(100);
+        org.mockito.Mockito.lenient().when(config.getOverExposedThreshold()).thenReturn(2.0);
+        org.mockito.Mockito.lenient().when(config.getSubExposedThreshold()).thenReturn(50.0);
+        org.mockito.Mockito.lenient().when(contentWordFilter.isContentWord(org.mockito.ArgumentMatchers.any()))
+                .thenReturn(true);
+        org.mockito.Mockito.lenient().when(intervalCalculator.calculateMeanInterval(org.mockito.ArgumentMatchers.anyList()))
+                .thenAnswer(invocation -> ((List<Integer>) invocation.getArgument(0)).get(0).doubleValue());
+        org.mockito.Mockito.lenient().when(exposureClassifier.classify(org.mockito.ArgumentMatchers.anyDouble(),
+                org.mockito.ArgumentMatchers.any())).thenAnswer(invocation ->
+                (double) invocation.getArgument(0) <= 8 ? ExposureStatus.NORMAL : ExposureStatus.SUB_EXPOSED);
+        List<NlpToken> words = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            words.add(new NlpToken("w" + i, "w" + i, "NOUN", 1, false, false));
+        }
+        AuditNode root = makeNode(AuditTarget.COURSE, null);
+        for (String id : List.of("q1", "q2")) {
+            sut.onQuiz(makeNode(AuditTarget.QUIZ, new AuditableQuiz(words, id, id, id, null, List.of(), null, null,
+                    null, null)));
+        }
+        sut.onCourseComplete(root);
+
+        List<FindingDraft> drafts = sut.findingsAt(root);
+
+        assertEquals(0.08, root.getScores().get("lemma-recurrence"), 1e-9);
+        assertEquals(1, drafts.size(), "one finding for the course");
+        StringBuilder evidence = new StringBuilder();
+        drafts.get(0).getEvidence().getExamined().forEach(p -> evidence.append(p.getLabel()).append(": ")
+                .append(p.getText()).append('\n'));
+        assertTrue(evidence.toString().contains("8,0 %"), "R003: the measure it took, 8,0 %: " + evidence);
+        assertTrue(evidence.toString().contains("100"), "R003: of the 100 most used lemmas: " + evidence);
+        assertTrue(evidence.toString().contains("más de 2 y hasta 50"),
+                "R003: next to its goal, the healthy interval: " + evidence);
     }
 }

@@ -21,3 +21,9 @@ symptom read this before trying new approaches. Newest entries on top.
   why: propose no avisa; se ve sólo comparando el parche fusionado con el de HEAD.
 
 2026-09-30 — qa-tester — Un fence de TECH_SPEC que sólo trae `features:` falla en `tech-spec write` («no architectural content»); hay que sumarle un módulo del parche con `_change: modify`, como hizo 0.2.
+
+2026-09-30 — developer — `mvn -o test -pl X` sin `-am` resuelve los módulos hermanos desde ~/.m2, con jars viejos: da errores falsos (FormEntity). Siempre el reactor completo o `-pl X -am`, y `-Dmaven.test.failure.ignore=true` si arriba quedan stubs.
+2026-09-30 — test-writer — AuditNode como clave de `Map.of` o HashMap da StackOverflowError: su hashCode recorre parent y children. Usar IdentityHashMap.
+2026-09-30 — test-writer — El juez reutiliza el veredicto de un contenido idéntico (huella): en una prueba con varios ejercicios, cada uno con su texto, o todos reciben el mismo veredicto.
+2026-09-30 — test-writer — El id de un análisis tiene resolución de segundos: dos `save` en el mismo segundo se pisan. Leer el informe antes de la segunda corrida o usar directorios de trabajo distintos.
+2026-09-30 — test-writer — En Java 25, JaCoCo 0.8.12 llena la salida de «Unsupported class file major version» e IllegalClassFormatException: es ruido; contar por el resumen de Maven o los .txt de surefire.

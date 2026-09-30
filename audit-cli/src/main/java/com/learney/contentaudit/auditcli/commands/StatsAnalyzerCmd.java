@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
+import com.learney.contentaudit.auditapplication.AuditRunRequest;
 import com.learney.contentaudit.auditapplication.AuditRunner;
 import com.learney.contentaudit.auditcli.StatsAnalyzerCommand;
 import com.learney.contentaudit.auditcli.formatting.AnalyzerStatsTransformer;
@@ -8,11 +9,16 @@ import com.learney.contentaudit.auditcli.formatting.AnalyzerStatsView;
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerErrorCounts;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
@@ -101,18 +107,53 @@ final class StatsAnalyzerCmd implements StatsAnalyzerCommand, Callable<Integer> 
         }
 
         try {
-            AuditReport report = auditRunner.runAudit(Path.of(resolvedCoursePath), (java.util.Set<String>) null);
+            // F-HALL-R005/R012: runs only the analyzer asked for. One that consults a paid model
+            // runs with a budget of 0 -- it reuses the verdicts already recorded, never pays for
+            // new ones, and declares how many quizzes lack one (DOUBT-STATS-DE-LOS-JUECES, A).
+            boolean paidModel = descriptorOpt.get().getCost() == AnalysisCost.PAID_MODEL;
+            Map<String, EvaluationRunPolicy> policies = paidModel
+                    ? Map.of(analyzerName, new EvaluationRunPolicy(0, false, null, null))
+                    : null;
+            AuditReport report = auditRunner.runAudit(Path.of(resolvedCoursePath),
+                    new AuditRunRequest(Set.of(analyzerName), null, policies));
             AnalyzerStatsView view = analyzerStatsTransformer.transform(report, analyzerName, analyzerRegistry);
+            String unevaluated = paidModel ? unevaluatedDeclaration(report, analyzerName) : null;
 
             if ("json".equals(formatName)) {
+                if (unevaluated != null) {
+                    System.err.println(unevaluated);
+                }
                 return printJson(view);
             } else {
-                return printText(view);
+                int code = printText(view);
+                if (unevaluated != null) {
+                    System.out.println(unevaluated);
+                }
+                return code;
             }
         } catch (Exception e) {
             System.err.println("Error running stats for analyzer '" + analyzerName + "': " + e.getMessage());
             return 1;
         }
+    }
+
+    /**
+     * How many quizzes the analyzer reached without a recorded verdict, read from the numbers the
+     * engine published on the course (F-HALL-R008, R010).
+     */
+    private static String unevaluatedDeclaration(AuditReport report, String analyzerName) {
+        if (report == null || report.getRoot() == null || report.getRoot().getNumbers() == null
+                || report.getRoot().getNumbers().getErrors() == null
+                || report.getRoot().getNumbers().getErrors().getAnalyzers() == null) {
+            return "Sin veredicto registrado: no se pudo contar (stats no consulta al modelo)";
+        }
+        for (AnalyzerErrorCounts counts : report.getRoot().getNumbers().getErrors().getAnalyzers()) {
+            if (analyzerName.equals(counts.getAnalyzer())) {
+                return "Sin veredicto registrado: " + counts.getNotEvaluated() + " de " + counts.getReached()
+                        + " ejercicios (stats sólo usa los veredictos ya registrados: 0 consultas nuevas)";
+            }
+        }
+        return "Sin veredicto registrado: no se pudo contar (stats no consulta al modelo)";
     }
 
     private int printText(AnalyzerStatsView view) {

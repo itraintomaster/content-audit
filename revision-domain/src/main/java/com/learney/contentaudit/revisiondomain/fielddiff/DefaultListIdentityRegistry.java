@@ -64,5 +64,15 @@ class DefaultListIdentityRegistry implements ListIdentityRegistry {
 
         // ImprovementDirective → identity: (type, bandName, levelName)
         declare("CocaProgressionDiagnosis",   "improvementDirectives", "type", "bandName", "levelName");
+
+        // ── FEAT-HALL: findings and published numbers ───────────────────────
+        // F-HALL-R014: a finding is identified within a node by its analyzer, its rule and what
+        // it marks, so two snapshots compare findings by identity and not by position.
+        declare("AuditNode",       "findings",       "analyzer", "rule", "identity.marker");
+
+        // F-HALL-R010: the published numbers, one row per analyzer, and each sub-metric by name
+        declare("ContextNumbers",  "analyzerScores", "analyzer");
+        declare("ErrorCounts",     "analyzers",      "analyzer");
+        declare("AnalyzerScore",   "subMetrics",     "name");
     }
 }

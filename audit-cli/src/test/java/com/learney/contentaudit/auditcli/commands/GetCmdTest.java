@@ -56,6 +56,18 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditcli.commands.AnalyzeCmdTest.Base299;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Map;
+import java.util.stream.Collectors;
+import org.junit.jupiter.api.io.TempDir;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -4316,15 +4328,108 @@ public class GetCmdTest {
     @DisplayName("should show in get analyzers and in get analyzer quiz-instruction the whole card of each analyzer: question, what it reads, rules, goal, family, evaluated nodes, resolutions and cost")
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R006")
-    public void shouldShowInGetAnalyzersAndInGetAnalyzerQuizinstructionTheWholeCardOfEachAnalyzerQuestionWhatItReadsRulesGoalFamilyEvaluatedNodesResolutionsAndCost() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldShowInGetAnalyzersAndInGetAnalyzerQuizinstructionTheWholeCardOfEachAnalyzerQuestionWhatItReadsRulesGoalFamilyEvaluatedNodesResolutionsAndCost() throws IOException {
+        // R006: get analyzers and get analyzer quiz-instruction show the whole card of every analyzer
+        // of the catalog Main builds, the judge included: question, what it reads, rules, goal,
+        // family, evaluated nodes, resolutions and cost -- in text and in JSON.
+        AnalyzerCatalog catalog = Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger());
+
+        Base299.Captured all = Base299.run(Base299.getCmd(auditReportStore, catalog), "analyzers");
+        Base299.Captured judge = Base299.run(Base299.getCmd(auditReportStore, catalog), "analyzer", "quiz-instruction");
+        Base299.Captured json = Base299.run(Base299.getCmd(auditReportStore, catalog), "analyzers", "-f", "json");
+
+        assertEquals(0, all.exit(), all.err());
+        assertEquals(0, judge.exit(), judge.err());
+        assertEquals(0, json.exit(), json.err());
+        List<AnalyzerDescriptor> cards = catalog.list();
+        assertEquals(8, cards.size(), "the seven classic analyzers and the judge");
+        String[] blocks = all.out().strip().split("\\R\\R");
+        assertEquals(cards.size(), blocks.length, "one card per analyzer, in the order of the catalog");
+        for (int i = 0; i < cards.size(); i++) {
+            assertWholeCard(blocks[i], cards.get(i));
+        }
+        AnalyzerDescriptor judgeCard = catalog.find("quiz-instruction").orElseThrow();
+        assertWholeCard(judge.out(), judgeCard);
+        assertTrue(judge.out().contains("Family:      ERRORS") && judge.out().contains("Cost:        PAID_MODEL"),
+                "R006: the judge's card says it is an errors analyzer that pays a model: " + judge.out());
+        JsonNode listed = new ObjectMapper().readTree(json.out());
+        assertEquals(cards.size(), listed.size());
+        for (int i = 0; i < cards.size(); i++) {
+            AnalyzerDescriptor card = cards.get(i);
+            JsonNode node = listed.get(i);
+            assertEquals(card.getName(), node.get("name").asText());
+            assertEquals(card.getQuestion(), node.get("question").asText(), "R006: question of " + card.getName());
+            assertEquals(card.getReads(), node.get("reads").asText(), "R006: what it reads, " + card.getName());
+            assertEquals(card.getGoal(), node.get("goal").asText(), "R006: goal of " + card.getName());
+            assertEquals(card.getFamily().name(), node.get("family").asText(), "R006: family of " + card.getName());
+            assertEquals(card.getCost().name(), node.get("cost").asText(), "R006: cost of " + card.getName());
+            assertEquals(card.getEvaluatedTargets().stream().map(Enum::name).toList(),
+                    texts(node.get("evaluatedTargets")), "R006: evaluated nodes of " + card.getName());
+            assertEquals(card.getResolutions().stream().map(Enum::name).toList(), texts(node.get("resolutions")),
+                    "R006: resolutions of " + card.getName());
+            assertEquals(card.getRules().stream().map(AnalyzerRuleCard::getId).toList(),
+                    texts(node.get("rules").findValues("id")), "R006: rules of " + card.getName());
+        }
     }
 
     @Test
     @DisplayName("should show in get audit and get audits the vocabulary score published on the course, 73,9 % for the 29/9 base, instead of 73,4 %, the average of its eleven course keys")
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R010")
-    public void shouldShowInGetAuditAndGetAuditsTheVocabularyScorePublishedOnTheCourse739ForThe299BaseInsteadOf734TheAverageOfItsElevenCourseKeys() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldShowInGetAuditAndGetAuditsTheVocabularyScorePublishedOnTheCourse739ForThe299BaseInsteadOf734TheAverageOfItsElevenCourseKeys(
+            @TempDir Path workdir) {
+        // R010: get audits and get audit show the vocabulary score the engine published on the course --
+        // 73,9 % for the 29/9 base -- instead of 73,4 %, the average of its eleven course keys (the
+        // seven analyzers and the four COCA quarters). The analysis: the 29/9 course analyzed with the
+        // seven classic analyzers and saved by the real store.
+        AnalyzerCatalog catalog = Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger());
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir);
+        Base299.Captured analyzed = Base299.run(Base299.analyzeCmd(Base299.runner(catalog), store),
+                Base299.COURSE.toString(), "--exclude-analyzers", "quiz-instruction", "-f", "raw");
+        assertEquals(0, analyzed.exit(), analyzed.err());
+        String id = Base299.savedId(analyzed);
+
+        Base299.Captured audits = Base299.run(Base299.getCmd(store, catalog), "audits");
+        Base299.Captured audit = Base299.run(Base299.getCmd(store, catalog), "audit", id);
+
+        Map<String, Double> courseKeys = store.load(id).orElseThrow().getRoot().getScores();
+        assertEquals(11, courseKeys.size(), "the eleven course keys: " + courseKeys.keySet());
+        assertEquals("73,4 %", GetCmd.scoreText(courseKeys.values().stream().mapToDouble(d -> d).average().orElseThrow()),
+                "their average, what get audits and get audit showed before the contract");
+        assertEquals(0, audits.exit(), audits.err());
+        assertEquals(0, audit.exit(), audit.err());
+        assertTrue(audits.out().lines().anyMatch(line -> line.startsWith(id) && line.endsWith("73,9 %")),
+                "R010: get audits shows 73,9 %: " + audits.out());
+        assertTrue(audit.out().contains("Score:    73,9 %"), "R010: get audit shows 73,9 %: " + audit.out());
+        assertFalse(audits.out().contains("73,4") || audit.out().contains("73,4"), "R010: never the average of the keys");
+    }
+
+    /** F-HALL-R006: the lines of the card that get analyzers prints, every field of it. */
+    private static void assertWholeCard(String printed, AnalyzerDescriptor card) {
+        List<String> lines = new java.util.ArrayList<>(List.of(
+                "Name:        " + card.getName(),
+                "Question:    " + card.getQuestion(),
+                "Reads:       " + card.getReads(),
+                "Goal:        " + card.getGoal(),
+                "Family:      " + card.getFamily().name(),
+                "Evaluates:   " + card.getEvaluatedTargets().stream().map(Enum::name).collect(Collectors.joining(", ")),
+                "Resolutions: " + card.getResolutions().stream().map(Enum::name).collect(Collectors.joining(", ")),
+                "Cost:        " + card.getCost().name()));
+        for (AnalyzerRuleCard rule : card.getRules()) {
+            lines.add("  - " + rule.getId() + " (" + rule.getCost().name() + "): " + rule.getDescription());
+        }
+        for (String line : lines) {
+            assertTrue(printed.contains(line), "R006: the card of " + card.getName() + " shows «" + line + "»:\n" + printed);
+        }
+    }
+
+    private static List<String> texts(JsonNode array) {
+        List<String> result = new java.util.ArrayList<>();
+        array.forEach(item -> result.add(item.asText()));
+        return result;
+    }
+
+    private static List<String> texts(List<JsonNode> values) {
+        return values.stream().map(JsonNode::asText).toList();
     }
 }

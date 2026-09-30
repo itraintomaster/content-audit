@@ -4,6 +4,35 @@ import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import com.learney.contentaudit.auditapplication.DefaultCocaBucketsConfig;
+import com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig;
+import com.learney.contentaudit.auditapplication.DefaultLemmaCountConfigLoader;
+import com.learney.contentaudit.auditapplication.DefaultLemmaRecurrenceConfig;
+import com.learney.contentaudit.auditapplication.DefaultQuizInstructionConfig;
+import com.learney.contentaudit.auditapplication.DefaultSentenceLengthConfig;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.KnowledgeTitleLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.SentenceLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -16,6 +45,113 @@ public class DefaultReportViewModelTransformerTest {
     @Tag("F-HALL-R010")
     public void shouldShowInAnalyzeTheVocabularyScorePublishedOnTheCourseAndOnEachLevel739OnTheCourseEvenWhenTheRunIncludedQuizinstructionInsteadOfAveragingTheKeysOfTheNode(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010: analyze shows the vocabulary score the engine published on the course and on each
+        // level, never an average of the keys of the node. A run over the 29/9 base that included the
+        // judge leaves quiz-instruction among the keys of the course and of the levels; the course
+        // still shows 73,9 % and the levels 96,5, 94,2, 79,5 and 63,5 -- the judge is an error, not
+        // vocabulary (R009), and the COCA quarters are sub-metrics.
+        Map<String, Double> courseKeys = course299();
+        courseKeys.put("quiz-instruction", 0.95);
+        AuditNode course = node(AuditTarget.COURSE, null, courseKeys);
+        List<Map<String, Double>> levelKeys = List.of(
+                keys("coca-buckets-distribution", 1.0, "coca-buckets-distribution/Q1", 1.0,
+                        "coca-buckets-distribution/Q2", 1.0, "coca-buckets-distribution/Q3", 1.0,
+                        "coca-buckets-distribution/Q4", 1.0, "lemma-absence", 0.980205616081019,
+                        "lemma-count", 0.9388349514563107, "knowledge-title-length", 1.0,
+                        "knowledge-instructions-length", 0.9315082644628099, "sentence-length", 0.9419743222686404,
+                        "quiz-instruction", 0.9),
+                keys("coca-buckets-distribution", 1.0, "coca-buckets-distribution/Q1", 1.0,
+                        "coca-buckets-distribution/Q2", 1.0, "coca-buckets-distribution/Q3", 1.0,
+                        "coca-buckets-distribution/Q4", 1.0, "lemma-absence", 1.0, "lemma-count", 0.7114197530864198,
+                        "knowledge-title-length", 1.0, "knowledge-instructions-length", 0.9751157407407408,
+                        "sentence-length", 0.9628114845938375, "quiz-instruction", 1.0),
+                keys("coca-buckets-distribution", 0.5792869389091038, "coca-buckets-distribution/Q1", 0.6785148846025197,
+                        "coca-buckets-distribution/Q2", 0.7209499575911789, "coca-buckets-distribution/Q3", 0.47996785448273177,
+                        "coca-buckets-distribution/Q4", 0.43771505895998447, "lemma-absence", 0.874974670719351,
+                        "lemma-count", 0.5251412429378531, "knowledge-title-length", 0.9754901960784313,
+                        "knowledge-instructions-length", 0.9584558823529411, "sentence-length", 0.8538308658609214,
+                        "quiz-instruction", 1.0),
+                keys("coca-buckets-distribution", 0.3222285108200172, "coca-buckets-distribution/Q1", 0.39081653431073105,
+                        "coca-buckets-distribution/Q2", 0.3528676153514446, "coca-buckets-distribution/Q3", 0.2861816782140108,
+                        "coca-buckets-distribution/Q4", 0.2590482154038823, "lemma-absence", 0.5196321188539111,
+                        "lemma-count", 0.3404947916666667, "knowledge-title-length", 0.9756613756613757,
+                        "knowledge-instructions-length", 0.9534920634920635, "sentence-length", 0.6993031746031746,
+                        "quiz-instruction", 0.95));
+        List<String> levels = List.of("A1", "A2", "B1", "B2");
+        for (int i = 0; i < levels.size(); i++) {
+            AuditNode level = node(AuditTarget.MILESTONE,
+                    new AuditableMilestone(List.of(), "level-" + levels.get(i), levels.get(i), levels.get(i)),
+                    levelKeys.get(i));
+            level.setParent(course);
+            course.getChildren().add(level);
+        }
+        new DefaultContextNumbersCalculator().compute(course, mainCards());
+
+        ReportViewModel view = new DefaultReportViewModelTransformer().transform(new AuditReport(course));
+
+        assertEquals(0.7392339318685259, view.getOverallScore(), 1e-12,
+                "R010: the vocabulary score published on the course, with the judge in the run");
+        assertEquals("73.9", percent(view.getOverallScore()));
+        Map<String, Double> withoutQuarters = new LinkedHashMap<>(courseKeys);
+        withoutQuarters.keySet().removeIf(key -> key.contains("/"));
+        assertNotEquals(percent(averageOfKeys(withoutQuarters)), percent(view.getOverallScore()),
+                "R010: not the average of the keys of the node, which would count the judge as vocabulary");
+        List<String> shown = view.getMilestoneScores().stream().map(row -> percent(row.getOverallScore())).toList();
+        assertEquals(List.of("96.5", "94.2", "79.5", "63.5"), shown, "R010: the vocabulary score published on each level");
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-HALL: the course and levels of the 29/9 base (analysis 2026-09-30T11-54-02)
+    // -----------------------------------------------------------------------
+
+    /** The eleven course keys of the 29/9 base: the seven classic analyzers and the four COCA quarters. */
+    private static Map<String, Double> course299() {
+        return keys("coca-buckets-distribution", 0.7253788624322802, "lemma-recurrence", 0.08,
+                "lemma-absence", 0.89250300362255, "lemma-count", 0.6698448144961168,
+                "coca-buckets-distribution/Q1", 0.7673328547283127, "coca-buckets-distribution/Q2", 0.7684543932356559,
+                "coca-buckets-distribution/Q3", 0.6915373831741857, "coca-buckets-distribution/Q4", 0.6741908185909666,
+                "knowledge-title-length", 0.9877878929349517, "knowledge-instructions-length", 0.9546429877621389,
+                "sentence-length", 0.8644799618316434);
+    }
+
+    /** The cards of the eight analyzers Main registers, in its order. */
+    private static List<AnalyzerDescriptor> mainCards() {
+        DefaultLemmaAbsenceConfig absence = new DefaultLemmaAbsenceConfig();
+        return new DefaultAnalyzerCatalog(List.of(
+                new SentenceLengthAnalyzerProvider(null, new DefaultSentenceLengthConfig()),
+                new KnowledgeTitleLengthAnalyzerProvider(),
+                new KnowledgeInstructionsLengthAnalyzerProvider(),
+                new CocaBucketsAnalyzerProvider(null, new DefaultCocaBucketsConfig()),
+                new LemmaRecurrenceAnalyzerProvider(new DefaultLemmaRecurrenceConfig()),
+                new LemmaAbsenceAnalyzerProvider(null, absence, null),
+                new LemmaCountAnalyzerProvider(null, new DefaultLemmaCountConfigLoader().load(null)),
+                new DefaultQuizInstructionAnalyzerFactory(null, null, null, new DefaultQuizInstructionConfig())))
+                .list();
+    }
+
+    private static AuditNode node(AuditTarget target, AuditableEntity entity, Map<String, Double> scores) {
+        AuditNode node = new AuditNode();
+        node.setTarget(target);
+        node.setEntity(entity);
+        node.setScores(scores);
+        node.setMetadata(new LinkedHashMap<>());
+        node.setChildren(new ArrayList<>());
+        return node;
+    }
+
+    private static Map<String, Double> keys(Object... pairs) {
+        Map<String, Double> scores = new LinkedHashMap<>();
+        for (int i = 0; i < pairs.length; i += 2) {
+            scores.put((String) pairs[i], (Double) pairs[i + 1]);
+        }
+        return scores;
+    }
+
+    private static double averageOfKeys(Map<String, Double> scores) {
+        return scores.values().stream().mapToDouble(d -> d).average().orElseThrow();
+    }
+
+    private static String percent(double score) {
+        return String.format(Locale.ROOT, "%.1f", score * 100);
     }
 }

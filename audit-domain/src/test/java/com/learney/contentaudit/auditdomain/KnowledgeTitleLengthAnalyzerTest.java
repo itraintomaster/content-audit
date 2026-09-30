@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -355,6 +357,28 @@ public class KnowledgeTitleLengthAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R003")
     public void shouldGiveTheFindingOfParticipiosIrregularesRepaso1TheWeightedLengthOfItsTitleAgainstThe28ThatFitInAPhone() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «Participios irregulares: repaso 1», a knowledge of the 29/9 base, weighs 30,7
+        // (the i, the comma and the period 0,5; the t 0,7) against the 28 that fit in a phone.
+        KnowledgeTitleLengthAnalyzer analyzer = new KnowledgeTitleLengthAnalyzer();
+        AuditNode node = buildKnowledgeNode(knowledge("Participios irregulares: repaso 1"));
+
+        analyzer.onKnowledge(node);
+        List<FindingDraft> drafts = analyzer.findingsAt(node);
+
+        assertEquals(0.0, node.getScores().get("knowledge-title-length"), 1e-9, "30,7 is beyond 28 + 1");
+        assertEquals(1, drafts.size(), "one finding for the title");
+        String evidence = evidenceText(drafts.get(0));
+        assertTrue(evidence.contains("Participios irregulares: repaso 1"), "R003: what it looked at: " + evidence);
+        assertTrue(evidence.contains("30,7"), "R003: the weighted length it measured: " + evidence);
+        assertTrue(evidence.contains("28"), "R003: next to the 28 that fit in a phone: " + evidence);
+        assertEquals(FindingResolution.PANEL, drafts.get(0).getResolution());
+    }
+
+    private static String evidenceText(com.learney.contentaudit.auditdomain.finding.FindingDraft finding) {
+        StringBuilder text = new StringBuilder();
+        for (com.learney.contentaudit.auditdomain.finding.EvidencePart part : finding.getEvidence().getExamined()) {
+            text.append(part.getLabel()).append(": ").append(part.getText()).append('\n');
+        }
+        return text.append(finding.getEvidence().getObservation()).toString();
     }
 }

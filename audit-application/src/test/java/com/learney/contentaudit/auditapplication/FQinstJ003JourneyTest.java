@@ -15,7 +15,19 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
-import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
+import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.ScoreAggregator;
 import com.learney.contentaudit.coursedomain.CourseEntity;
@@ -85,29 +97,21 @@ public class FQinstJ003JourneyTest {
         // including one whose knowledge declares no instructions.
         CourseRepository courseRepository = mock(CourseRepository.class);
         CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
-        AuditEngine auditEngine = mock(AuditEngine.class);
-        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
 
         Path coursePath = Path.of("/test/course-j003-path1.json");
         CourseEntity courseEntity = new CourseEntity();
-        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+        AuditableCourse auditableCourse = courseFor("quiz-with-instructions", "quiz-without-instructions");
 
-        AuditNode quizWithInstructions = quizNode("quiz-with-instructions");
-        AuditNode quizWithoutInstructions = quizNode("quiz-without-instructions");
-        AuditNode rootNode = rootWithChildren(quizWithInstructions, quizWithoutInstructions);
-        AuditReport baseReport = new AuditReport(rootNode);
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
 
         FakeEvaluationLedger ledger = new FakeEvaluationLedger();
         ContentFingerprinter fingerprinter = new FakeContentFingerprinter();
         EvaluationSessionFactory sessionFactory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
         FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, "v1");
 
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
         when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
             EvaluationRunPolicy policy = invocation.getArgument(0);
             EvaluationRunPolicy effectivePolicy = withDefaultBudgetWhenAbsent(policy);
@@ -115,8 +119,7 @@ public class FQinstJ003JourneyTest {
             return sessionBackedAnalyzer(session, effectivePolicy);
         });
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         AuditRunRequest request = new AuditRunRequest(null, null, null);
         runner.runAudit(coursePath, request);
@@ -140,20 +143,14 @@ public class FQinstJ003JourneyTest {
         // query, and it must leave every previously recorded verdict untouched.
         CourseRepository courseRepository = mock(CourseRepository.class);
         CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
-        AuditEngine auditEngine = mock(AuditEngine.class);
-        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
 
         Path coursePath = Path.of("/test/course-j003-path2.json");
         CourseEntity courseEntity = new CourseEntity();
-        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+        AuditableCourse auditableCourse = courseFor("quiz-1");
 
-        AuditNode quizNode = quizNode("quiz-1");
-        AuditNode rootNode = rootWithChildren(quizNode);
-        AuditReport baseReport = new AuditReport(rootNode);
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
 
         FakeEvaluationLedger ledger = new FakeEvaluationLedger();
         FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
@@ -161,11 +158,9 @@ public class FQinstJ003JourneyTest {
         EvaluationKey previousKey = new EvaluationKey(EVALUATOR_ID, fingerprint);
         ledger.seed(new EvaluationRecord(previousKey, "{\"compliant\":true}", "quiz-1", Instant.now(), "v1"));
 
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         AuditRunRequest request = new AuditRunRequest(null, Set.of(ANALYZER_NAME), null);
         runner.runAudit(coursePath, request);
@@ -188,20 +183,14 @@ public class FQinstJ003JourneyTest {
         // the previous verdict.
         CourseRepository courseRepository = mock(CourseRepository.class);
         CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
-        AuditEngine auditEngine = mock(AuditEngine.class);
-        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
 
         Path coursePath = Path.of("/test/course-j003-path3.json");
         CourseEntity courseEntity = new CourseEntity();
-        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+        AuditableCourse auditableCourse = courseFor("quiz-1");
 
-        AuditNode quizNode = quizNode("quiz-1");
-        AuditNode rootNode = rootWithChildren(quizNode);
-        AuditReport baseReport = new AuditReport(rootNode);
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
 
         FakeEvaluationLedger ledger = new FakeEvaluationLedger();
         FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
@@ -213,16 +202,14 @@ public class FQinstJ003JourneyTest {
         EvaluationKey currentKey = new EvaluationKey(EVALUATOR_ID, fingerprint);
         ledger.seed(new EvaluationRecord(currentKey, "{\"compliant\":true}", "quiz-1", Instant.now(), "v1"));
 
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
         when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
             EvaluationRunPolicy policy = invocation.getArgument(0);
             EvaluationSession session = sessionFactory.open(budgetFrom(policy), evaluator);
             return sessionBackedAnalyzer(session, policy);
         });
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null, null);
         AuditRunRequest request = new AuditRunRequest(null, null, Map.of(ANALYZER_NAME, reevaluationPolicy));
@@ -249,20 +236,14 @@ public class FQinstJ003JourneyTest {
         // no a la vigente (F-QINST-R005).
         CourseRepository courseRepository = mock(CourseRepository.class);
         CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
-        AuditEngine auditEngine = mock(AuditEngine.class);
-        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
 
         Path coursePath = Path.of("/test/course-j003-path4.json");
         CourseEntity courseEntity = new CourseEntity();
-        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+        AuditableCourse auditableCourse = courseFor("quiz-1");
 
-        AuditNode quizNode = quizNode("quiz-1");
-        AuditNode rootNode = rootWithChildren(quizNode);
-        AuditReport baseReport = new AuditReport(rootNode);
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
 
         FakeEvaluationLedger ledger = new FakeEvaluationLedger();
         FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
@@ -276,8 +257,7 @@ public class FQinstJ003JourneyTest {
         ledger.seed(new EvaluationRecord(key, "{\"compliant\":true}", "quiz-1", Instant.now(), "v1"));
 
         EvaluationSession[] capturedSession = new EvaluationSession[1];
-        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
+        AnalyzerProvider quizInstructionFactory = judgeProvider();
         when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
             EvaluationRunPolicy policy = invocation.getArgument(0);
             EvaluationRunPolicy effectivePolicy = withDefaultBudgetWhenAbsent(policy);
@@ -286,8 +266,7 @@ public class FQinstJ003JourneyTest {
             return sessionBackedAnalyzer(session, effectivePolicy);
         });
 
-        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+        DefaultAuditRunner runner = runnerWith(courseRepository, courseToAuditableMapper, quizInstructionFactory);
 
         // No reevaluation requested -- just an ordinary audit after the judge's version changed.
         AuditRunRequest request = new AuditRunRequest(null, null, null);
@@ -318,28 +297,43 @@ public class FQinstJ003JourneyTest {
     // Fixtures shared across paths
     // -----------------------------------------------------------------------
 
-    private static AuditNode quizNode(String quizId) {
-        AuditNode node = new AuditNode();
-        node.setTarget(AuditTarget.QUIZ);
-        node.setChildren(new ArrayList<>());
-        node.setScores(new LinkedHashMap<>());
-        node.setMetadata(new LinkedHashMap<>());
-        node.setEntity(new AuditableQuiz(List.of(), quizId, "label", "code", null,
-                List.of("She is happy."), null, null, List.of(), null));
-        return node;
+    private static AuditableQuiz quizFor(String quizId) {
+        return new AuditableQuiz(List.of(), quizId, "label", "code", null,
+                List.of("She is happy."), null, null, List.of(), null);
     }
 
-    private static AuditNode rootWithChildren(AuditNode... children) {
-        AuditNode root = new AuditNode();
-        root.setTarget(AuditTarget.COURSE);
-        List<AuditNode> childList = new ArrayList<>(List.of(children));
-        root.setChildren(childList);
-        root.setScores(new LinkedHashMap<>());
-        root.setMetadata(new LinkedHashMap<>());
-        for (AuditNode child : children) {
-            child.setParent(root);
+    /**
+     * FEAT-HALL: the runner delegates to the engine, which builds the judge from its provider in
+     * the catalog and walks the course with it. A real engine over the given providers; the
+     * judge's findings are not what this journey constrains, so they are not collected.
+     */
+    private static DefaultAuditRunner runnerWith(CourseRepository courseRepository,
+            CourseToAuditableMapper courseToAuditableMapper, AnalyzerProvider... providers) {
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(providers));
+        IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), catalog, (root, analyzer, card) -> { },
+                new DefaultContextNumbersCalculator());
+        return new DefaultAuditRunner(courseRepository, courseToAuditableMapper, engine, catalog);
+    }
+
+    /** One A1 milestone, one topic and one knowledge holding a quiz per id, in that order. */
+    private static AuditableCourse courseFor(String... quizIds) {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (String quizId : quizIds) {
+            quizzes.add(quizFor(quizId));
         }
-        return root;
+        AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Knowledge", "Instructions", true,
+                "k1", "Knowledge", "K1", null, "Topic");
+        AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "Topic", "T1");
+        return new AuditableCourse(List.of(new AuditableMilestone(List.of(topic), "m1", "A1", "A1")));
+    }
+    /** The judge's provider under the name the report publishes, with the judge's real card. */
+    private static AnalyzerProvider judgeProvider() {
+        AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null, null,
+                mock(QuizInstructionConfig.class)).describe();
+        AnalyzerProvider provider = mock(AnalyzerProvider.class);
+        when(provider.analyzerName()).thenReturn(ANALYZER_NAME);
+        when(provider.describe()).thenReturn(card);
+        return provider;
     }
 
     private static Map<String, String> subjectContent(String quizId) {
@@ -422,6 +416,11 @@ public class FQinstJ003JourneyTest {
             @Override
             public String getDescription() {
                 return "fake quiz instruction analyzer for journey testing";
+            }
+
+            @Override
+            public List<FindingDraft> findingsAt(AuditNode node) {
+                return List.of();
             }
         };
     }

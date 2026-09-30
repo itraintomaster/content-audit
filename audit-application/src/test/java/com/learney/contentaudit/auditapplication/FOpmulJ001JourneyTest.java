@@ -12,7 +12,12 @@ import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
-import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.SentenceLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
 import com.learney.contentaudit.auditdomain.IAuditEngine;
 import com.learney.contentaudit.auditdomain.IScoreAggregator;
 import com.learney.contentaudit.auditdomain.NlpToken;
@@ -204,20 +209,25 @@ public class FOpmulJ001JourneyTest {
     // The audit
     // ---------------------------------------------------------------------------------------------
 
-    private AuditReport audit(CourseEntity course, List<EvaluationAnalyzerFactory> judges) {
+    private AuditReport audit(CourseEntity course, List<AnalyzerProvider> judges) {
         CourseRepository repository = mock(CourseRepository.class);
         when(repository.load(COURSE_PATH)).thenReturn(course);
         NlpTokenizer tokenizer = new WhitespaceTokenizer();
-        ContentAnalyzer sentenceLength = new SentenceLengthAnalyzer(tokenizer, new DefaultSentenceLengthConfig());
-        IScoreAggregator aggregator = new IScoreAggregator();
+        // FEAT-HALL: every analyzer of the run comes from its provider in the catalog -- the
+        // real sentence-length and the real judges -- and the engine applies them all.
+        List<AnalyzerProvider> providers = new ArrayList<>();
+        providers.add(new SentenceLengthAnalyzerProvider(tokenizer, new DefaultSentenceLengthConfig()));
+        providers.addAll(judges);
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
         DefaultAuditRunner runner = new DefaultAuditRunner(repository,
                 new CourseToAuditableMapper(tokenizer, converter),
-                new IAuditEngine(List.of(sentenceLength), aggregator),
-                List.of(sentenceLength), aggregator, judges);
+                new IAuditEngine(new IScoreAggregator(), catalog, new DefaultFindingCollector(),
+                        new DefaultContextNumbersCalculator()),
+                catalog);
         return runner.runAudit(COURSE_PATH, new AuditRunRequest(null, null, null));
     }
 
-    private static EvaluationAnalyzerFactory judgeFactory(FakeEvaluationLedger ledger, FakeEvaluator judge) {
+    private static AnalyzerProvider judgeFactory(FakeEvaluationLedger ledger, FakeEvaluator judge) {
         return new DefaultQuizInstructionAnalyzerFactory(
                 new DefaultEvaluationSessionFactory(ledger, new FakeContentFingerprinter()), judge,
                 new FakeQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig());

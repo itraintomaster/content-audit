@@ -1,6 +1,11 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import java.util.List;
+import java.util.Locale;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -9,9 +14,13 @@ import javax.annotation.processing.Generated;
 )
 public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
 
-    private static final String ANALYZER_NAME = "knowledge-instructions-length";
-    private static final double SOFT_LIMIT = 70.0;
-    private static final double HARD_LIMIT = 100.0;
+    static final String ANALYZER_NAME = "knowledge-instructions-length";
+    static final String DESCRIPTION =
+            "Scores knowledge instructions by weighted character length against soft/hard limits";
+    /** F-HALL-R006: the one rule of this analyzer, as its card declares it. */
+    static final String RULE_INSTRUCTIONS_LENGTH = "instructions-length";
+    static final double SOFT_LIMIT = 70.0;
+    static final double HARD_LIMIT = 100.0;
 
     @Override
     public String getName() { return ANALYZER_NAME; }
@@ -46,7 +55,7 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
         return null;
     }
 
-    private double computeWeightedLength(String text) {
+    static double computeWeightedLength(String text) {
         double total = 0.0;
         for (int i = 0; i < text.length(); i++) {
             total += charWeight(text.charAt(i));
@@ -54,7 +63,7 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
         return total;
     }
 
-    private double charWeight(char c) {
+    private static double charWeight(char c) {
         switch (c) {
             case '$': case '*': return 0.0;
             case 'i': case ',': case '.': return 0.5;
@@ -71,13 +80,44 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
 
     @Override
     public String getDescription() {
-        return "Scores knowledge instructions by weighted character length against soft/hard limits";
+        return DESCRIPTION;
     }
 
-
+    /**
+     * F-HALL-R001 to R003: a knowledge below 1 has one finding with its instructions and their
+     * weighted length against the limits of 70 and 100. Low severity; it only ranks: the
+     * instructions have no correction of their own (the plan keeps its task as before).
+     */
     @Override
     public List<FindingDraft> findingsAt(AuditNode node) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (node == null || node.getTarget() != AuditTarget.KNOWLEDGE || node.getScores() == null) {
+            return List.of();
+        }
+        Double score = node.getScores().get(ANALYZER_NAME);
+        if (score == null || score >= 1.0 || !(node.getEntity() instanceof AuditableKnowledge knowledge)) {
+            return List.of();
+        }
+        String instructions = knowledge.getInstructions() != null ? knowledge.getInstructions() : "";
+        double weighted = computeWeightedLength(instructions);
+        String goal = "hasta " + decimal(SOFT_LIMIT) + " caracteres ponderados; hasta "
+                + decimal(HARD_LIMIT) + ", a medias";
+        String verdict = weighted <= HARD_LIMIT
+                ? "pasa de " + decimal(SOFT_LIMIT) + " y queda a medias"
+                : "pasa de " + decimal(HARD_LIMIT);
+        List<EvidencePart> examined = List.of(
+                new EvidencePart("Consigna", instructions.isEmpty() ? "(vacía)" : instructions),
+                new EvidencePart("Largo ponderado", decimal(weighted) + " caracteres"),
+                new EvidencePart("Meta", goal));
+        String observation = "La consigna pesa " + decimal(weighted) + " caracteres ponderados: " + verdict;
+        return List.of(new FindingDraft(RULE_INSTRUCTIONS_LENGTH, null, FindingSeverity.LOW,
+                FindingResolution.RANK_ONLY, new FindingEvidence(examined, observation, List.of())));
+    }
+
+    private static String decimal(double value) {
+        if (value == Math.rint(value)) {
+            return String.valueOf((long) value);
+        }
+        return String.format(Locale.ROOT, "%.1f", value).replace('.', ',');
     }
 
 }

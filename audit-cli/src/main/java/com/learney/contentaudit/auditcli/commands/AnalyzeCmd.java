@@ -128,8 +128,15 @@ class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
 
     @Option(names = {"--instruction-budget"},
             description = "Maximum number of new quiz-instruction judge queries for this run. "
-                    + "Already-emitted verdicts are reused for free and never count against this budget.")
+                    + "Already-emitted verdicts are reused for free and never count against this budget. "
+                    + "A shortcut for --budget quiz-instruction=N.")
     private Integer instructionBudget;
+
+    @Option(names = {"--budget"},
+            description = "Maximum number of new queries for an analyzer that consults a model, by the "
+                    + "name 'content-audit get analyzers' lists (e.g. --budget quiz-instruction=50). "
+                    + "Repeatable. Already-recorded verdicts are reused for free.")
+    private Map<String, Integer> analyzerBudgets;
 
     @Option(names = {"--reevaluate-instructions"},
             description = "Explicitly re-judge quiz-instruction verdicts that are already valid. "
@@ -186,7 +193,8 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
 
             AnalyzeOptions options = new AnalyzeOptions(this.formatName, this.level, this.topic,
                     this.knowledge, this.analyzerFilter, this.excludeAnalyzers, this.detailed,
-                    this.instructionBudget, this.reevaluateInstructions, reevaluateInstructionQuizIds, null);
+                    this.instructionBudget, this.reevaluateInstructions, reevaluateInstructionQuizIds,
+                    this.analyzerBudgets);
             return analyze(this.coursePath, options);
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
@@ -408,6 +416,33 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
             }
             analyzerPolicies = new HashMap<>();
             analyzerPolicies.put(QUIZ_INSTRUCTION_ANALYZER_NAME, policy);
+        }
+
+        // F-HALL-R005 / F-QINST-R015: the budget of any analyzer that consults a model, by its
+        // canonical name. The runner rejects a name the catalog does not list and a budget on an
+        // analyzer that does not consult a model; --instruction-budget stays as a shortcut.
+        Map<String, Integer> budgets = options.getAnalyzerBudgets();
+        if (budgets != null) {
+            for (Map.Entry<String, Integer> entry : budgets.entrySet()) {
+                String name = entry.getKey();
+                Integer budget = entry.getValue();
+                if (budget == null || budget < 0) {
+                    throw new IllegalArgumentException("--budget " + name + " needs a number of queries, 0 or more");
+                }
+                if (analyzerPolicies == null) {
+                    analyzerPolicies = new HashMap<>();
+                }
+                EvaluationRunPolicy policy = analyzerPolicies.get(name);
+                if (policy == null) {
+                    analyzerPolicies.put(name, new EvaluationRunPolicy(budget, false, null, null));
+                } else if (QUIZ_INSTRUCTION_ANALYZER_NAME.equals(name) && instructionBudget != null
+                        && !instructionBudget.equals(budget)) {
+                    throw new IllegalArgumentException("--instruction-budget " + instructionBudget + " and --budget "
+                            + name + "=" + budget + " ask for two different budgets");
+                } else {
+                    policy.setMaxNewEvaluations(budget);
+                }
+            }
         }
 
         return new AuditRunRequest(includedNames, excludedNames, analyzerPolicies);

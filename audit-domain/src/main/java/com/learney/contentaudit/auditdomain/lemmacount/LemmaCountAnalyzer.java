@@ -1,5 +1,9 @@
 package com.learney.contentaudit.auditdomain.lemmacount;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -20,6 +24,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -31,7 +36,15 @@ import javax.annotation.processing.Generated;
 )
 public class LemmaCountAnalyzer implements ContentAnalyzer {
 
-    private static final String ANALYZER_NAME = "lemma-count";
+    static final String ANALYZER_NAME = "lemma-count";
+
+    static final String DESCRIPTION =
+            "Counts distinct sentences per content-word lemma and scores exposure by CEFR level";
+
+    /** F-HALL-R006: the one rule of this analyzer, as its card declares it. */
+    static final String RULE_UNDER_EXPOSED = "under-exposed-lemmas";
+
+    private static final int EVIDENCE_EXAMPLES = 10;
 
     private final ContentWordFilter contentWordFilter;
     private final LemmaCefrLevelResolver lemmaCefrLevelResolver;
@@ -198,12 +211,111 @@ public class LemmaCountAnalyzer implements ContentAnalyzer {
 
     @Override
     public String getDescription() {
-        return "Counts distinct sentences per content-word lemma and scores exposure by CEFR level";
+        return DESCRIPTION;
     }
 
+    /**
+     * F-HALL-R001 to R003: a level or the course below 1 has one finding with the lemmas that
+     * appear in fewer sentences than their target, read from its typed diagnosis. Low severity
+     * and rank-only: this analyzer makes no tasks (DOUBT-GRAVEDAD-EXISTENTES).
+     */
     @Override
     public List<FindingDraft> findingsAt(AuditNode node) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (node == null || node.getScores() == null) {
+            return List.of();
+        }
+        Double score = node.getScores().get(ANALYZER_NAME);
+        if (score == null || score >= 1.0) {
+            return List.of();
+        }
+        if (node.getTarget() == AuditTarget.MILESTONE) {
+            return List.of(levelFinding(node, score));
+        }
+        if (node.getTarget() == AuditTarget.COURSE) {
+            return List.of(courseFinding(node, score));
+        }
+        return List.of();
+    }
+
+    private FindingDraft levelFinding(AuditNode node, double score) {
+        int threshold = lemmaCountConfig.getThreshold();
+        String level = node.getEntity() != null && node.getEntity().getLabel() != null
+                ? node.getEntity().getLabel() : "El nivel";
+        Optional<LevelLemmaCountResult> result = node.getDiagnoses() instanceof DefaultLevelDiagnoses levelDiagnoses
+                ? levelDiagnoses.getLemmaCountDiagnosis().map(LemmaCountLevelDiagnosis::getLevelResult)
+                : Optional.empty();
+        List<EvidencePart> examined = new ArrayList<>();
+        String observation;
+        if (result.isPresent()) {
+            LevelLemmaCountResult r = result.get();
+            int below = r.getSubExposedLemmas() != null ? r.getSubExposedLemmas().size() : 0;
+            examined.add(new EvidencePart("Lemas del nivel", String.valueOf(r.getTotalLemmas())));
+            examined.add(new EvidencePart("Por debajo de la meta", String.valueOf(below)));
+            examined.add(new EvidencePart("Meta", "cada lema en al menos " + threshold + " oraciones"));
+            String examples = leastSeen(r.getSubExposedLemmas());
+            if (!examples.isEmpty()) {
+                examined.add(new EvidencePart("Los menos vistos", examples));
+            }
+            observation = level + " da " + percent(score) + ": " + below + " de sus " + r.getTotalLemmas()
+                    + " lemas aparecen en menos de " + threshold + " oraciones";
+        } else {
+            examined.add(new EvidencePart("Puntaje", percent(score)));
+            observation = level + " tiene lemas que aparecen en menos de " + threshold + " oraciones";
+        }
+        return new FindingDraft(RULE_UNDER_EXPOSED, null, FindingSeverity.LOW, FindingResolution.RANK_ONLY,
+                new FindingEvidence(examined, observation, List.of()));
+    }
+
+    private FindingDraft courseFinding(AuditNode root, double score) {
+        int threshold = lemmaCountConfig.getThreshold();
+        Optional<LemmaCountResult> result = root.getDiagnoses() instanceof DefaultCourseDiagnoses courseDiagnoses
+                ? courseDiagnoses.getLemmaCountDiagnosis().map(LemmaCountCourseDiagnosis::getResult)
+                : Optional.empty();
+        List<EvidencePart> examined = new ArrayList<>();
+        int below = 0;
+        int total = 0;
+        List<LemmaCountStats> allBelow = new ArrayList<>();
+        if (result.isPresent() && result.get().getLevels() != null) {
+            for (LevelLemmaCountResult level : result.get().getLevels()) {
+                int levelBelow = level.getSubExposedLemmas() != null ? level.getSubExposedLemmas().size() : 0;
+                below += levelBelow;
+                total += level.getTotalLemmas();
+                if (level.getSubExposedLemmas() != null) {
+                    allBelow.addAll(level.getSubExposedLemmas());
+                }
+                examined.add(new EvidencePart(level.getLevel().name(), percent(level.getScore()) + " ("
+                        + levelBelow + " de " + level.getTotalLemmas() + " lemas por debajo de la meta)"));
+            }
+        }
+        examined.add(new EvidencePart("Meta", "cada lema en al menos " + threshold + " oraciones"));
+        allBelow.sort(Comparator.comparingInt(LemmaCountStats::getCount));
+        String examples = leastSeen(allBelow);
+        if (!examples.isEmpty()) {
+            examined.add(new EvidencePart("Los menos vistos", examples));
+        }
+        String observation = "El curso da " + percent(score) + ": " + below + " de sus " + total
+                + " lemas aparecen en menos oraciones que su meta de " + threshold;
+        return new FindingDraft(RULE_UNDER_EXPOSED, null, FindingSeverity.LOW, FindingResolution.RANK_ONLY,
+                new FindingEvidence(examined, observation, List.of()));
+    }
+
+    private static String leastSeen(List<LemmaCountStats> stats) {
+        List<String> examples = new ArrayList<>();
+        if (stats != null) {
+            for (LemmaCountStats s : stats) {
+                if (examples.size() >= EVIDENCE_EXAMPLES) {
+                    break;
+                }
+                if (s.getLemmaAndPos() != null && s.getLemmaAndPos().getLemma() != null) {
+                    examples.add(s.getLemmaAndPos().getLemma() + " (" + s.getCount() + ")");
+                }
+            }
+        }
+        return String.join(", ", examples);
+    }
+
+    private static String percent(double fraction) {
+        return String.format(Locale.ROOT, "%.1f", fraction * 100).replace('.', ',') + " %";
     }
 
 }

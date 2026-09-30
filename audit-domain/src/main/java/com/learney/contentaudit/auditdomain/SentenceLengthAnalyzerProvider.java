@@ -1,6 +1,12 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -20,26 +26,53 @@ public class SentenceLengthAnalyzerProvider implements AnalyzerProvider {
 
     @Override
     public String analyzerName() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return SentenceLengthAnalyzer.ANALYZER_NAME;
     }
 
+    /**
+     * F-HALL-R006: the goal is the one the code applies, read from the configuration (A1 from
+     * 3 to 8 tokens), not the 5 to 8 of F-SLEN-R012 (rule 4 of brief 087).
+     */
     @Override
     public AnalyzerDescriptor describe() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new AnalyzerDescriptor(
+                SentenceLengthAnalyzer.ANALYZER_NAME,
+                SentenceLengthAnalyzer.DESCRIPTION,
+                AuditTarget.QUIZ,
+                "¿La oración tiene el largo de su nivel?",
+                "La oración de cada ejercicio, contada en tokens como la cuenta spaCy, y el nivel del ejercicio",
+                List.of(new AnalyzerRuleCard(SentenceLengthAnalyzer.RULE_LENGTH,
+                        "La oración tiene menos tokens que el mínimo de su nivel o más que el máximo",
+                        AnalysisCost.INSTANT)),
+                goal(),
+                AnalyzerFamily.VOCABULARY,
+                List.of(AuditTarget.QUIZ),
+                List.of(FindingResolution.PANEL),
+                AnalysisCost.INSTANT);
     }
 
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new SentenceLengthAnalyzer(nlpTokenizer, config);
     }
 
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.of(new AnalyzerPlanBinding("SENTENCE_LENGTH", List.of(AuditTarget.QUIZ)));
     }
 
     @Override
     public Optional<SelfDescribingConfig> config() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.of(config);
+    }
+
+    private String goal() {
+        List<String> ranges = new ArrayList<>();
+        for (CefrLevel level : CefrLevel.values()) {
+            config.getTargetRange(level).ifPresent(range -> ranges.add(
+                    level.name() + " de " + range.getMinTokens() + " a " + range.getMaxTokens()));
+        }
+        return "Tokens por oración: " + String.join("; ", ranges)
+                + " (tolerancia de " + config.getToleranceMargin() + " tokens)";
     }
 }

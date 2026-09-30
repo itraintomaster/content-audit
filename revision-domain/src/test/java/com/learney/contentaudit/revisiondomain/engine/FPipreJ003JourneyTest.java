@@ -93,6 +93,12 @@ public class FPipreJ003JourneyTest {
         AuditNode courseSim = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizSim),
                 Map.of("lemma-absence", 0.60), Map.of(), null);
         AuditReport simulatedReport = new AuditReport(courseSim);
+        // FEAT-HALL (F-HALL-R010): every report the engine produces publishes the vocabulary
+        // score of each node, and the aggregate of the preview reads it from there.
+        publishVocabularyScore(quizBaseline, 0.50);
+        publishVocabularyScore(courseBaseline, 0.55);
+        publishVocabularyScore(quizSim, 0.65);
+        publishVocabularyScore(courseSim, 0.60);
 
         when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(snapshot));
@@ -183,5 +189,10 @@ public class FPipreJ003JourneyTest {
                 "detail must be a non-blank human-readable cause (R009)");
         assertTrue(preview.getLevelImpacts().isEmpty(),
                 "levelImpacts must be empty for UNAVAILABLE preview");
+    }
+
+    private static void publishVocabularyScore(AuditNode node, double score) {
+        node.setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(
+                score, List.of(), null));
     }
 }

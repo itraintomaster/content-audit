@@ -29,6 +29,9 @@ import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditdomain.AuditReportSummary;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.contextnumbers.AuditDigest;
+import com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
@@ -329,14 +332,32 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                 default -> printAuditListText(summaries);
             };
         } else {
-            // get one
+            // get one -- F-HALL-R010: from the digest when the analysis has one, instead of
+            // parsing the whole report; the score shown is the published one either way.
+            Optional<AuditDigest> digestOpt = auditReportStore.loadDigest(name);
+            if (digestOpt.isPresent()) {
+                AuditDigest digest = digestOpt.get();
+                return printAuditOne(name, null,
+                        digest.getRoot() != null ? digest.getRoot().getNumbers() : null);
+            }
             Optional<AuditReport> reportOpt = auditReportStore.load(name);
             if (reportOpt.isEmpty()) {
                 System.err.println("No audits found with id '" + name + "'");
                 return 1;
             }
-            return printAuditOne(name, reportOpt.get());
+            AuditReport report = reportOpt.get();
+            String course = report.getRoot() != null && report.getRoot().getEntity() != null
+                    ? report.getRoot().getEntity().getLabel() : null;
+            return printAuditOne(name, course, report.getRoot() != null ? report.getRoot().getNumbers() : null);
         }
+    }
+
+    /** The published vocabulary score as a percentage (73,9 %), or a dash when none was published. */
+    static String scoreText(double score) {
+        if (Double.isNaN(score)) {
+            return "—";
+        }
+        return String.format(Locale.ROOT, "%.1f", score * 100).replace('.', ',') + " %";
     }
 
     private int printAuditListText(List<AuditReportSummary> summaries) {
@@ -344,11 +365,11 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         System.out.printf("%-25s  %-19s  %-30s  %s%n", "ID", "Created At", "Course", "Score");
         System.out.println("─────────────────────────  ───────────────────  ──────────────────────────────  ──────");
         for (AuditReportSummary s : summaries) {
-            System.out.printf("%-25s  %-19s  %-30s  %.2f%n",
+            System.out.printf("%-25s  %-19s  %-30s  %s%n",
                     s.getId(),
                     s.getTimestamp() != null ? fmt.format(s.getTimestamp()) : "",
                     truncate(s.getCourseName(), 30),
-                    s.getOverallScore());
+                    scoreText(s.getOverallScore()));
         }
         return 0;
     }
@@ -359,11 +380,11 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         System.out.println("├───────────────────────────┼─────────────────────┼────────────────────────────────┼────────┤");
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC);
         for (AuditReportSummary s : summaries) {
-            System.out.printf("│ %-25s │ %-19s │ %-30s │ %6.2f │%n",
+            System.out.printf("│ %-25s │ %-19s │ %-30s │ %6s │%n",
                     s.getId(),
                     s.getTimestamp() != null ? fmt.format(s.getTimestamp()) : "",
                     truncate(s.getCourseName(), 30),
-                    s.getOverallScore());
+                    scoreText(s.getOverallScore()));
         }
         System.out.println("└───────────────────────────┴─────────────────────┴────────────────────────────────┴────────┘");
         return 0;
@@ -380,7 +401,7 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                 m.put("id", s.getId());
                 m.put("createdAt", s.getTimestamp() != null ? s.getTimestamp().toString() : null);
                 m.put("courseName", s.getCourseName());
-                m.put("overallScore", s.getOverallScore());
+                m.put("overallScore", Double.isNaN(s.getOverallScore()) ? null : s.getOverallScore());
                 return m;
             }).collect(Collectors.toList());
             System.out.println(om.writeValueAsString(items));
@@ -391,15 +412,18 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         }
     }
 
-    private int printAuditOne(String id, AuditReport report) {
+    private int printAuditOne(String id, String course, ContextNumbers numbers) {
         System.out.println("Audit ID: " + id);
-        if (report.getRoot() != null && report.getRoot().getEntity() != null) {
-            System.out.println("Course:   " + report.getRoot().getEntity().getLabel());
+        if (course != null) {
+            System.out.println("Course:   " + course);
         }
-        if (report.getRoot() != null && report.getRoot().getScores() != null) {
-            double avg = report.getRoot().getScores().values().stream()
-                    .mapToDouble(Double::doubleValue).average().orElse(0.0);
-            System.out.printf("Score:    %.2f%n", avg);
+        double score = numbers != null && numbers.getVocabularyScore() != null
+                ? numbers.getVocabularyScore() : Double.NaN;
+        System.out.println("Score:    " + scoreText(score));
+        if (numbers != null && numbers.getErrors() != null) {
+            System.out.println("Errors:   " + numbers.getErrors().getWithAnyError() + " of "
+                    + numbers.getErrors().getQuizzes() + " quizzes with some error ("
+                    + numbers.getErrors().getNotFullyEvaluated() + " not fully evaluated)");
         }
         return 0;
     }
@@ -1330,33 +1354,44 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                 System.err.println("No analyzers found with id '" + name + "'");
                 return 1;
             }
+            if ("json".equals(formatName)) {
+                try {
+                    ObjectMapper om = new ObjectMapper();
+                    om.enable(SerializationFeature.INDENT_OUTPUT);
+                    System.out.println(om.writeValueAsString(cardJson(found.get())));
+                    return 0;
+                } catch (Exception e) {
+                    System.err.println("Error formatting JSON: " + e.getMessage());
+                    return 1;
+                }
+            }
             return printAnalyzerOne(found.get());
         }
     }
 
+    /** F-HALL-R006: the whole card of every analyzer of the catalog, judges included. */
     private int printAnalyzerListText(List<AnalyzerDescriptor> descriptors) {
-        System.out.printf("%-40s  %-11s  %s%n", "Name", "Target", "Description");
-        System.out.println("────────────────────────────────────────  ───────────  ──────────────────────────────────");
-        for (AnalyzerDescriptor d : descriptors) {
-            System.out.printf("%-40s  %-11s  %s%n",
-                    d.getName(),
-                    d.getTarget() != null ? d.getTarget().name() : "",
-                    d.getDescription());
+        for (int i = 0; i < descriptors.size(); i++) {
+            if (i > 0) {
+                System.out.println();
+            }
+            printAnalyzerOne(descriptors.get(i));
         }
         return 0;
     }
 
     private int printAnalyzerListTable(List<AnalyzerDescriptor> descriptors) {
-        System.out.println("┌──────────────────────────────────────────┬─────────────┬──────────────────────────────────────┐");
-        System.out.println("│ Name                                     │ Target      │ Description                          │");
-        System.out.println("├──────────────────────────────────────────┼─────────────┼──────────────────────────────────────┤");
+        System.out.println("┌──────────────────────────────────────────┬────────────┬──────────────┬──────────────────────────────────────┐");
+        System.out.println("│ Name                                     │ Family     │ Cost         │ Question                             │");
+        System.out.println("├──────────────────────────────────────────┼────────────┼──────────────┼──────────────────────────────────────┤");
         for (AnalyzerDescriptor d : descriptors) {
-            System.out.printf("│ %-40s │ %-11s │ %-36s │%n",
+            System.out.printf("│ %-40s │ %-10s │ %-12s │ %-36s │%n",
                     truncate(d.getName(), 40),
-                    d.getTarget() != null ? d.getTarget().name() : "",
-                    truncate(d.getDescription(), 36));
+                    d.getFamily() != null ? d.getFamily().name() : "",
+                    d.getCost() != null ? d.getCost().name() : "",
+                    truncate(d.getQuestion(), 36));
         }
-        System.out.println("└──────────────────────────────────────────┴─────────────┴──────────────────────────────────────┘");
+        System.out.println("└──────────────────────────────────────────┴────────────┴──────────────┴──────────────────────────────────────┘");
         return 0;
     }
 
@@ -1364,13 +1399,9 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         try {
             ObjectMapper om = new ObjectMapper();
             om.enable(SerializationFeature.INDENT_OUTPUT);
-            List<Map<String, Object>> items = descriptors.stream().map(d -> {
-                Map<String, Object> m = new LinkedHashMap<>();
-                m.put("name", d.getName());
-                m.put("target", d.getTarget() != null ? d.getTarget().name() : null);
-                m.put("description", d.getDescription());
-                return m;
-            }).collect(Collectors.toList());
+            List<Map<String, Object>> items = descriptors.stream()
+                    .map(GetCmd::cardJson)
+                    .collect(Collectors.toList());
             System.out.println(om.writeValueAsString(items));
             return 0;
         } catch (Exception e) {
@@ -1383,7 +1414,52 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         System.out.println("Name:        " + d.getName());
         System.out.println("Target:      " + (d.getTarget() != null ? d.getTarget().name() : ""));
         System.out.println("Description: " + d.getDescription());
+        System.out.println("Question:    " + nullToEmpty(d.getQuestion()));
+        System.out.println("Reads:       " + nullToEmpty(d.getReads()));
+        System.out.println("Goal:        " + nullToEmpty(d.getGoal()));
+        System.out.println("Family:      " + (d.getFamily() != null ? d.getFamily().name() : ""));
+        System.out.println("Evaluates:   " + (d.getEvaluatedTargets() != null
+                ? d.getEvaluatedTargets().stream().map(Enum::name).collect(Collectors.joining(", ")) : ""));
+        System.out.println("Resolutions: " + (d.getResolutions() != null
+                ? d.getResolutions().stream().map(Enum::name).collect(Collectors.joining(", ")) : ""));
+        System.out.println("Cost:        " + (d.getCost() != null ? d.getCost().name() : ""));
+        System.out.println("Rules:");
+        if (d.getRules() != null) {
+            for (AnalyzerRuleCard rule : d.getRules()) {
+                System.out.println("  - " + rule.getId() + " (" + (rule.getCost() != null ? rule.getCost().name() : "")
+                        + "): " + rule.getDescription());
+            }
+        }
         return 0;
+    }
+
+    /** F-HALL-R006: the card as JSON, every field of it. */
+    private static Map<String, Object> cardJson(AnalyzerDescriptor d) {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("name", d.getName());
+        m.put("target", d.getTarget() != null ? d.getTarget().name() : null);
+        m.put("description", d.getDescription());
+        m.put("question", d.getQuestion());
+        m.put("reads", d.getReads());
+        m.put("goal", d.getGoal());
+        m.put("family", d.getFamily() != null ? d.getFamily().name() : null);
+        m.put("evaluatedTargets", d.getEvaluatedTargets() != null
+                ? d.getEvaluatedTargets().stream().map(Enum::name).collect(Collectors.toList()) : List.of());
+        m.put("resolutions", d.getResolutions() != null
+                ? d.getResolutions().stream().map(Enum::name).collect(Collectors.toList()) : List.of());
+        m.put("cost", d.getCost() != null ? d.getCost().name() : null);
+        List<Map<String, Object>> rules = new java.util.ArrayList<>();
+        if (d.getRules() != null) {
+            for (AnalyzerRuleCard rule : d.getRules()) {
+                Map<String, Object> r = new LinkedHashMap<>();
+                r.put("id", rule.getId());
+                r.put("description", rule.getDescription());
+                r.put("cost", rule.getCost() != null ? rule.getCost().name() : null);
+                rules.add(r);
+            }
+        }
+        m.put("rules", rules);
+        return m;
     }
 
     // -------------------------------------------------------------------------

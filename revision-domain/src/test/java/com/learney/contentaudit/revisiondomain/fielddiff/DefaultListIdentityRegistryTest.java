@@ -115,6 +115,42 @@ public class DefaultListIdentityRegistryTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R014")
     public void shouldIdentifyAFindingWithinAListByItsAnalyzerItsRuleAndWhatItMarksSoThatSnapshotsAreComparedByIdentityAndNotByPosition() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R014 / F-CDIFF-R022: the list of findings of a node declares its identity -- analyzer,
+        // rule and what it marks -- so the consolidated view compares findings by identity.
+        java.util.Optional<ListIdentityKeySpec> spec = registry.getKeySpec("AuditNode", "findings");
+
+        org.junit.jupiter.api.Assertions.assertTrue(spec.isPresent(), "R014: findings have a declared identity");
+        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("analyzer", "rule", "identity.marker"),
+                spec.get().getFieldNames());
+
+        // Not by position: the same two findings in the other order are no change at all.
+        RecursiveNodeFieldDiffer differ = new RecursiveNodeFieldDiffer(new DefaultFieldExclusionRegistry(), registry);
+        com.learney.contentaudit.auditdomain.finding.Finding wallet =
+                stampedFinding("lemma-absence", "misplaced-word", "q1", "wallet");
+        com.learney.contentaudit.auditdomain.finding.Finding purse =
+                stampedFinding("lemma-absence", "misplaced-word", "q1", "purse");
+        com.learney.contentaudit.auditdomain.AuditNode before = new com.learney.contentaudit.auditdomain.AuditNode();
+        before.setFindings(java.util.List.of(wallet, purse));
+        com.learney.contentaudit.auditdomain.AuditNode after = new com.learney.contentaudit.auditdomain.AuditNode();
+        after.setFindings(java.util.List.of(purse, wallet));
+
+        org.junit.jupiter.api.Assertions.assertTrue(differ.diff(before, after, after).isEmpty(),
+                "R014: compared by identity, a reordering is no change");
+    }
+
+    /** A finding as the engine stamps it: identity analyzer|rule|node|marker. */
+    private static com.learney.contentaudit.auditdomain.finding.Finding stampedFinding(String analyzer, String rule,
+            String nodeId, String marker) {
+        return new com.learney.contentaudit.auditdomain.finding.Finding(analyzer, rule,
+                new com.learney.contentaudit.auditdomain.finding.FindingNodeRef(
+                        com.learney.contentaudit.auditdomain.AuditTarget.QUIZ, nodeId, nodeId),
+                com.learney.contentaudit.auditdomain.finding.FindingSeverity.MEDIUM,
+                new com.learney.contentaudit.auditdomain.finding.FindingEvidence(java.util.List.of(
+                        new com.learney.contentaudit.auditdomain.finding.EvidencePart("Palabra",
+                                marker != null ? marker : nodeId)), "Lo que encontró", java.util.List.of()),
+                com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL,
+                com.learney.contentaudit.auditdomain.finding.AnalysisCost.INSTANT,
+                new com.learney.contentaudit.auditdomain.finding.FindingIdentity(
+                        analyzer + "|" + rule + "|" + nodeId + (marker != null ? "|" + marker : ""), marker));
     }
 }

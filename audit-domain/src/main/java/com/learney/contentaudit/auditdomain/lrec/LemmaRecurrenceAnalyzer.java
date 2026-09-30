@@ -1,5 +1,9 @@
 package com.learney.contentaudit.auditdomain.lrec;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -12,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import javax.annotation.processing.Generated;
 
@@ -21,7 +26,19 @@ import javax.annotation.processing.Generated;
 )
 public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
 
-    private static final String ANALYZER_NAME = "lemma-recurrence";
+    static final String ANALYZER_NAME = "lemma-recurrence";
+
+    static final String DESCRIPTION = "Tracks lemma repetition intervals to detect sub/over-exposed vocabulary";
+
+    /** F-HALL-R006: the one rule of this analyzer, as its card declares it. */
+    static final String RULE_RECURRENCE = "unhealthy-recurrence";
+
+    // What onCourseComplete measured, kept for the course finding: this analyzer writes no
+    // typed diagnosis, and a new instance is built for every run (F-HALL-R014).
+    private int measuredLemmas = 0;
+    private int normalLemmas = 0;
+    private int subExposedLemmas = 0;
+    private int overExposedLemmas = 0;
     private final ContentWordFilter contentWordFilter;
     private final LemmaRecurrenceConfig lemmaRecurrenceConfig;
     private final IntervalCalculator intervalCalculator;
@@ -125,6 +142,10 @@ public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter, LemmaRecurre
                 : Math.round((double) normalCount / totalCount * 100.0) / 100.0;
 
         ExposureSummary exposureSummary = new ExposureSummary(normalCount, subExposedCount, overExposedCount);
+        measuredLemmas = totalCount;
+        normalLemmas = normalCount;
+        subExposedLemmas = subExposedCount;
+        overExposedLemmas = overExposedCount;
 
         // lemmaStats is ordered by count descending (already sorted above)
         rootNode.getScores().put(ANALYZER_NAME, overallScore);
@@ -143,13 +164,50 @@ public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter, LemmaRecurre
 
     @Override
     public String getDescription() {
-        return "Tracks lemma repetition intervals to detect sub/over-exposed vocabulary";
+        return DESCRIPTION;
     }
 
-
+    /**
+     * F-HALL-R001 to R003: the course below 1 has one finding with the measure -- the share of
+     * the most used lemmas that come back at a healthy interval -- next to its goal. Low
+     * severity and rank-only (DOUBT-GRAVEDAD-EXISTENTES).
+     */
     @Override
     public List<FindingDraft> findingsAt(AuditNode node) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (node == null || node.getTarget() != AuditTarget.COURSE || node.getScores() == null) {
+            return List.of();
+        }
+        Double score = node.getScores().get(ANALYZER_NAME);
+        if (score == null || score >= 1.0) {
+            return List.of();
+        }
+        int top = lemmaRecurrenceConfig.getTop();
+        double share = measuredLemmas == 0 ? 0.0 : (double) normalLemmas / measuredLemmas;
+        String goal = "que vuelvan con un intervalo medio de más de "
+                + decimal(lemmaRecurrenceConfig.getOverExposedThreshold()) + " y hasta "
+                + decimal(lemmaRecurrenceConfig.getSubExposedThreshold()) + " tokens";
+        List<EvidencePart> examined = List.of(
+                new EvidencePart("Medida", percent(share) + " de las " + measuredLemmas
+                        + " palabras más usadas vuelve a un intervalo sano"),
+                new EvidencePart("Meta", goal + ", las " + top + " palabras más usadas"),
+                new EvidencePart("Demasiado espaciadas", String.valueOf(subExposedLemmas)),
+                new EvidencePart("Demasiado seguidas", String.valueOf(overExposedLemmas)));
+        String observation = "Sólo el " + percent(share) + " de las " + measuredLemmas
+                + " palabras más usadas vuelve a un intervalo sano: " + subExposedLemmas
+                + " vuelven demasiado espaciadas y " + overExposedLemmas + " demasiado seguidas";
+        return List.of(new FindingDraft(RULE_RECURRENCE, null, FindingSeverity.LOW, FindingResolution.RANK_ONLY,
+                new FindingEvidence(examined, observation, List.of())));
+    }
+
+    private static String percent(double fraction) {
+        return String.format(Locale.ROOT, "%.1f", fraction * 100).replace('.', ',') + " %";
+    }
+
+    private static String decimal(double value) {
+        if (value == Math.rint(value)) {
+            return String.valueOf((long) value);
+        }
+        return String.format(Locale.ROOT, "%.1f", value).replace('.', ',');
     }
 
 }

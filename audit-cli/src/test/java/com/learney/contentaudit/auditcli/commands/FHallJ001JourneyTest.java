@@ -7,6 +7,36 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import com.learney.contentaudit.auditcli.commands.AnalyzeCmdTest.Base299;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerErrorCounts;
+import com.learney.contentaudit.auditdomain.contextnumbers.ErrorCounts;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Pattern;
+import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -21,8 +51,60 @@ public class FHallJ001JourneyTest {
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze sobre el cu... → El informe trae, para un ejercicio, l... → El ejercicio queda con puntaje menor ... [El ejercicio tiene un hallazgo de la familia de errores que se resuelve con una regla o con la mesa] → El informe publica en cada nodo el pu... → Los incumplimientos juzgados cuentan ... [La corrida incluyó al juez de consigna] → success")
     public void path1_elEjercicioTieneUnHallazgoDeLaFamiliaDeErroresQueSeResuelveConUnaReglaOConLaMesa_laCorridaIncluyAlJuezDeConsigna_success(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            @TempDir Path workdir) {
+        // === Node: correr_analisis ===
+        Analysis analysis = analyze(workdir, true);
+        AuditNode quiz = Base299.node(analysis.report(), ERRORS_QUIZ);
+
+        // === Node: leer_ejercicio ===
+        // Gate: F-HALL-R001, F-HALL-R002, F-HALL-R003 -- the findings of each analyzer that evaluated
+        // the quiz, all with the same shape and with their evidence
+        assertEquals(Set.of("sentence-length", "lemma-absence", Base299.JUDGE, Base299.RuleStandIn.NAME),
+                quiz.getScores().keySet(), "the four analyzers that evaluated the quiz");
+        assertEquals(List.of(Base299.JUDGE + "|instruction-breach|" + ERRORS_QUIZ,
+                Base299.RuleStandIn.NAME + "|breaks-rule|" + ERRORS_QUIZ), identities(quiz),
+                "R001: a finding of each analyzer that found something, in the order of the catalog");
+        quiz.getFindings().forEach(finding -> assertSameShape(finding, quiz));
+        Finding judged = quiz.getFindings().get(0);
+        assertEquals(List.of(FindingSeverity.HIGH, FindingResolution.PANEL, AnalysisCost.PAID_MODEL),
+                List.of(judged.getSeverity(), judged.getResolution(), judged.getCost()),
+                "R002: a major breach is high, is solved at the panel and cost a paid model");
+        List<EvidencePart> examined = judged.getEvidence().getExamined();
+        assertTrue(examined.stream().anyMatch(part -> "Consigna".equals(part.getLabel())), "R003: " + examined);
+        assertTrue(examined.contains(new EvidencePart("Traducción", "Ella es inglesa.")),
+                "R003: the quiz as the student sees it: " + examined);
+        assertTrue(examined.contains(new EvidencePart("La forma que pide la consigna", "La respuesta aceptada")),
+                "R003: the breach the judge found: " + examined);
+        Finding rule = quiz.getFindings().get(1);
+        assertEquals(List.of(FindingSeverity.MEDIUM, FindingResolution.RULE, AnalysisCost.INSTANT),
+                List.of(rule.getSeverity(), rule.getResolution(), rule.getCost()), "R002: the rule's own");
+
+        // === Node: cuenta_como_error ===
+        // Gate: F-HALL-R004, F-HALL-R008
+        assertEquals(0.3, quiz.getScores().get(Base299.JUDGE), "R004: an error leaves the judge's score below 1");
+        assertEquals(0.0, quiz.getScores().get(Base299.RuleStandIn.NAME), "R004: and the rule's");
+        List<AuditNode> contexts = Base299.upwards(quiz);
+        assertEquals(5, contexts.size(), "the quiz, its theme, its topic, its level and the course");
+        for (AuditNode node : contexts) {
+            ErrorCounts errors = node.getNumbers().getErrors();
+            String key = Base299.key(node);
+            assertEquals(1, errors.getWithAnyError(), "R008: counted once in «algún error» of " + key
+                    + ", with two analyzers that found an error in it");
+            assertEquals(List.of(0, 1, 0, 0), severities(errors), "R008: by its highest severity, on " + key);
+            assertEquals(1, Base299.countsOf(node, Base299.JUDGE).getWithError(), "R008: the judge's, on " + key);
+            assertEquals(1, Base299.countsOf(node, Base299.RuleStandIn.NAME).getWithError(), "R008: the rule's, on " + key);
+        }
+
+        // === Node: leer_vocabulario ===
+        // Gate: F-HALL-R009, F-HALL-R010
+        assertVocabularyOfTheCourse(analysis);
+
+        // === Node: juez_en_los_numeros ===
+        // Gate: F-HALL-R011 -- the judged breach counts in the errors of its theme, topic, level and
+        // course (above), with what was not judged declared, and the vocabulary score is the one of the
+        // run without the judge (above: what analyze showed before the contract, which never ran it)
+        assertJudgeInTheNumbers(analysis);
+        // result: success
     }
 
     @Test
@@ -30,8 +112,44 @@ public class FHallJ001JourneyTest {
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze sobre el cu... → El informe trae, para un ejercicio, l... → El ejercicio queda con puntaje menor ... [El ejercicio tiene un hallazgo de la familia de errores que se resuelve con una regla o con la mesa] → El informe publica en cada nodo el pu... → El puntaje de vocabulario de cada nod... [La corrida excluyó al juez de consigna] → success")
     public void path2_elEjercicioTieneUnHallazgoDeLaFamiliaDeErroresQueSeResuelveConUnaReglaOConLaMesa_laCorridaExcluyAlJuezDeConsigna_success(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            @TempDir Path workdir) {
+        // === Node: correr_analisis ===
+        Analysis analysis = analyze(workdir, false);
+        AuditNode quiz = Base299.node(analysis.report(), ERRORS_QUIZ);
+
+        // === Node: leer_ejercicio ===
+        // Gate: F-HALL-R001, F-HALL-R002, F-HALL-R003
+        assertEquals(Set.of("sentence-length", "lemma-absence", Base299.RuleStandIn.NAME), quiz.getScores().keySet(),
+                "the three analyzers that evaluated the quiz: the judge did not run");
+        assertEquals(List.of(Base299.RuleStandIn.NAME + "|breaks-rule|" + ERRORS_QUIZ), identities(quiz),
+                "R001: the finding of the rule");
+        quiz.getFindings().forEach(finding -> assertSameShape(finding, quiz));
+        Finding rule = quiz.getFindings().get(0);
+        assertEquals(List.of(FindingSeverity.MEDIUM, FindingResolution.RULE, AnalysisCost.INSTANT),
+                List.of(rule.getSeverity(), rule.getResolution(), rule.getCost()), "R002");
+
+        // === Node: cuenta_como_error ===
+        // Gate: F-HALL-R004, F-HALL-R008
+        assertEquals(0.0, quiz.getScores().get(Base299.RuleStandIn.NAME), "R004: an error leaves the score below 1");
+        for (AuditNode node : Base299.upwards(quiz)) {
+            ErrorCounts errors = node.getNumbers().getErrors();
+            String key = Base299.key(node);
+            assertEquals(1, errors.getWithAnyError(), "R008: counted once in «algún error» of " + key);
+            assertEquals(List.of(0, 0, 1, 0), severities(errors), "R008: by its highest severity, on " + key);
+            assertEquals(List.of(Base299.RuleStandIn.NAME), errors.getAnalyzers().stream()
+                    .map(AnalyzerErrorCounts::getAnalyzer).toList(), "R008: the errors analyzers that ran, on " + key);
+            assertEquals(0, errors.getNotFullyEvaluated(), "every quiz evaluated by every errors analyzer that ran");
+        }
+
+        // === Node: leer_vocabulario ===
+        // Gate: F-HALL-R009, F-HALL-R010
+        assertVocabularyOfTheCourse(analysis);
+
+        // === Node: numeros_de_hoy ===
+        // Gate: F-HALL-R013 -- the vocabulary score of every node (above) and the tasks of the plan, the
+        // ones the same course gave before the contract
+        assertPlanOfTheCourse(analysis);
+        // result: success
     }
 
     @Test
@@ -39,8 +157,51 @@ public class FHallJ001JourneyTest {
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze sobre el cu... → El informe trae, para un ejercicio, l... → El ejercicio no suma en «algún error»... [El ejercicio sólo tiene hallazgos de vocabulario o hallazgos que sólo ordenan] → El informe publica en cada nodo el pu... → Los incumplimientos juzgados cuentan ... [La corrida incluyó al juez de consigna] → success")
     public void path3_elEjercicioSloTieneHallazgosDeVocabularioOHallazgosQueSloOrdenan_laCorridaIncluyAlJuezDeConsigna_success(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            @TempDir Path workdir) {
+        // === Node: correr_analisis ===
+        Analysis analysis = analyze(workdir, true);
+        AuditNode quiz = Base299.node(analysis.report(), VOCABULARY_QUIZ);
+
+        // === Node: leer_ejercicio ===
+        // Gate: F-HALL-R001, F-HALL-R002, F-HALL-R003
+        assertEquals(List.of("sentence-length|length-out-of-range|" + VOCABULARY_QUIZ,
+                Base299.RuleStandIn.NAME + "|ranks-only|" + VOCABULARY_QUIZ), identities(quiz),
+                "R001: the finding of sentence-length, of the vocabulary family, and the one the rule only ranks");
+        quiz.getFindings().forEach(finding -> assertSameShape(finding, quiz));
+        Finding length = quiz.getFindings().get(0);
+        assertEquals(AnalyzerFamily.VOCABULARY, analysis.catalog().find("sentence-length").orElseThrow().getFamily());
+        assertEquals(List.of(FindingSeverity.LOW, FindingResolution.PANEL, AnalysisCost.INSTANT),
+                List.of(length.getSeverity(), length.getResolution(), length.getCost()), "R002");
+        assertTrue(length.getEvidence().getObservation().startsWith("Largo: "), "R003: " + length.getEvidence().getObservation());
+        Finding ranked = quiz.getFindings().get(1);
+        assertEquals(FindingResolution.RANK_ONLY, ranked.getResolution(), "R002: it only ranks");
+        assertEquals(1.0, quiz.getScores().get(Base299.JUDGE), "the judge judged it and found it follows its instructions");
+
+        // === Node: no_cuenta_como_error ===
+        // Gate: F-HALL-R004, F-HALL-R008
+        assertEquals(1.0, quiz.getScores().get(Base299.RuleStandIn.NAME), "R004: a finding that only ranks does not lower the score");
+        List<AuditNode> contexts = Base299.upwards(quiz);
+        for (AuditNode node : contexts) {
+            String key = Base299.key(node);
+            assertEquals(1, Base299.countsOf(node, Base299.RuleStandIn.NAME).getMarked(),
+                    "R008: the finding that only ranks is published as marked, on " + key);
+        }
+        assertEquals(0, contexts.get(0).getNumbers().getErrors().getWithAnyError(), "R008: the quiz has no error");
+        assertEquals(0, contexts.get(1).getNumbers().getErrors().getWithAnyError(),
+                "R008: nor does its theme, «" + contexts.get(1).getEntity().getLabel() + "»");
+        for (AuditNode node : contexts.subList(2, contexts.size())) {
+            assertEquals(1, node.getNumbers().getErrors().getWithAnyError(),
+                    "R008: on " + Base299.key(node) + " only the quiz with errors counts, not this one");
+        }
+
+        // === Node: leer_vocabulario ===
+        // Gate: F-HALL-R009, F-HALL-R010
+        assertVocabularyOfTheCourse(analysis);
+
+        // === Node: juez_en_los_numeros ===
+        // Gate: F-HALL-R011
+        assertJudgeInTheNumbers(analysis);
+        // result: success
     }
 
     @Test
@@ -48,7 +209,183 @@ public class FHallJ001JourneyTest {
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze sobre el cu... → El informe trae, para un ejercicio, l... → El ejercicio no suma en «algún error»... [El ejercicio sólo tiene hallazgos de vocabulario o hallazgos que sólo ordenan] → El informe publica en cada nodo el pu... → El puntaje de vocabulario de cada nod... [La corrida excluyó al juez de consigna] → success")
     public void path4_elEjercicioSloTieneHallazgosDeVocabularioOHallazgosQueSloOrdenan_laCorridaExcluyAlJuezDeConsigna_success(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            @TempDir Path workdir) {
+        // === Node: correr_analisis ===
+        Analysis analysis = analyze(workdir, false);
+        AuditNode quiz = Base299.node(analysis.report(), VOCABULARY_QUIZ);
+
+        // === Node: leer_ejercicio ===
+        // Gate: F-HALL-R001, F-HALL-R002, F-HALL-R003
+        assertEquals(List.of("sentence-length|length-out-of-range|" + VOCABULARY_QUIZ,
+                Base299.RuleStandIn.NAME + "|ranks-only|" + VOCABULARY_QUIZ), identities(quiz),
+                "R001: the finding of sentence-length, of the vocabulary family, and the one the rule only ranks");
+        quiz.getFindings().forEach(finding -> assertSameShape(finding, quiz));
+        Finding length = quiz.getFindings().get(0);
+        assertEquals(AnalyzerFamily.VOCABULARY, analysis.catalog().find("sentence-length").orElseThrow().getFamily());
+        assertEquals(List.of(FindingSeverity.LOW, FindingResolution.PANEL, AnalysisCost.INSTANT),
+                List.of(length.getSeverity(), length.getResolution(), length.getCost()), "R002");
+        assertTrue(length.getEvidence().getObservation().startsWith("Largo: "), "R003: " + length.getEvidence().getObservation());
+        Finding ranked = quiz.getFindings().get(1);
+        assertEquals(FindingResolution.RANK_ONLY, ranked.getResolution(), "R002: it only ranks");
+        assertFalse(quiz.getScores().containsKey(Base299.JUDGE), "the judge did not run");
+
+        // === Node: no_cuenta_como_error ===
+        // Gate: F-HALL-R004, F-HALL-R008
+        assertEquals(1.0, quiz.getScores().get(Base299.RuleStandIn.NAME), "R004: a finding that only ranks does not lower the score");
+        List<AuditNode> contexts = Base299.upwards(quiz);
+        for (AuditNode node : contexts) {
+            String key = Base299.key(node);
+            assertEquals(1, Base299.countsOf(node, Base299.RuleStandIn.NAME).getMarked(),
+                    "R008: the finding that only ranks is published as marked, on " + key);
+        }
+        assertEquals(0, contexts.get(0).getNumbers().getErrors().getWithAnyError(), "R008: the quiz has no error");
+        assertEquals(0, contexts.get(1).getNumbers().getErrors().getWithAnyError(),
+                "R008: nor does its theme, «" + contexts.get(1).getEntity().getLabel() + "»");
+        for (AuditNode node : contexts.subList(2, contexts.size())) {
+            assertEquals(1, node.getNumbers().getErrors().getWithAnyError(),
+                    "R008: on " + Base299.key(node) + " only the quiz with errors counts, not this one");
+        }
+
+        // === Node: leer_vocabulario ===
+        // Gate: F-HALL-R009, F-HALL-R010
+        assertVocabularyOfTheCourse(analysis);
+
+        // === Node: numeros_de_hoy ===
+        // Gate: F-HALL-R013
+        assertPlanOfTheCourse(analysis);
+        // result: success
+    }
+
+    /** The quiz with errors: the first of the course, «She __ English.», where the judge and the rule find one. */
+    private static final String ERRORS_QUIZ = Base299.FIRST_QUIZ;
+
+    /**
+     * A quiz with only vocabulary findings: an A1 sentence one token longer than its range
+     * (sentence-length 0,8 in the 29/9 base), that the rule only ranks.
+     */
+    private static final String VOCABULARY_QUIZ = "67fab6d599301022953425ae";
+
+    /** The judge's budget: the first 64 quizzes of the course, the vocabulary quiz among them. */
+    private static final int BUDGET = 64;
+
+    /** What the operator has after running analyze over the 29/9 course. */
+    private record Analysis(Path workdir, AnalyzerCatalog catalog, FileSystemAuditReportStore store, String id,
+            Base299.Captured output, AuditReport report, Base299.FakeJudge judge) {
+    }
+
+    /**
+     * analyze over the whole 29/9 course, with the catalog Main builds plus the stand-in of a rule of
+     * package D: with the judge, capped at its budget, or excluding it.
+     */
+    private static Analysis analyze(Path workdir, boolean withJudge) {
+        Base299.FakeJudge judge = new Base299.FakeJudge(ERRORS_QUIZ);
+        List<AnalyzerProvider> providers = new ArrayList<>(Base299.mainProviders(judge, new Base299.MapLedger()));
+        providers.add(new Base299.RuleStandIn(Set.of(ERRORS_QUIZ), Set.of(VOCABULARY_QUIZ)));
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir);
+        Base299.Captured output = Base299.run(Base299.analyzeCmd(Base299.runner(catalog), store), withJudge
+                ? new String[] {Base299.COURSE.toString(), "--budget", Base299.JUDGE + "=" + BUDGET}
+                : new String[] {Base299.COURSE.toString(), "--exclude-analyzers", Base299.JUDGE});
+        assertEquals(0, output.exit(), output.err());
+        String id = Base299.savedId(output);
+        return new Analysis(workdir, catalog, store, id, output, store.load(id).orElseThrow(), judge);
+    }
+
+    /**
+     * F-HALL-R009/R010: every node of the report publishes its vocabulary score -- the average of its
+     * vocabulary analyzers, never the judge, the rule or a COCA quarter -- which is what analyze showed of
+     * the 29/9 course before the contract; on the course, 73,9 %, the same get audit and analyze show.
+     */
+    private static void assertVocabularyOfTheCourse(Analysis analysis) {
+        Map<String, Double> before = Base299.preContractVocabulary();
+        List<AuditNode> nodes = new ArrayList<>();
+        Base299.walk(analysis.report().getRoot(), nodes::add);
+        assertEquals(Base299.NODES, nodes.size(), "the 11.760 nodes of the 29/9 course");
+        for (AuditNode node : nodes) {
+            String key = Base299.key(node);
+            assertEquals(before.get(key).doubleValue(), node.getNumbers().getVocabularyScore().doubleValue(), 1e-12,
+                    "R009: the vocabulary score of " + key);
+        }
+        AuditNode course = analysis.report().getRoot();
+        assertEquals("73,9 %", GetCmd.scoreText(course.getNumbers().getVocabularyScore()), "R010: on the course");
+        assertEquals(List.of("96,5 %", "94,2 %", "79,5 %", "63,5 %"), course.getChildren().stream()
+                .map(level -> GetCmd.scoreText(level.getNumbers().getVocabularyScore())).toList(), "R010: on the levels");
+        Base299.Captured audit = Base299.run(Base299.getCmd(analysis.store(), analysis.catalog()), "audit", analysis.id());
+        assertTrue(audit.out().contains("Score:    73,9 %"), "R010: the one get audit shows: " + audit.out());
+        assertTrue(Pattern.compile("Score: 73[.,]9%").matcher(analysis.output().out()).find(),
+                "R010: the one analyze shows: " + analysis.output().out());
+    }
+
+    /**
+     * F-HALL-R011: the judge reached every quiz, judged the ones its budget allowed and declared the rest
+     * not judged, so «algún error» reads as a floor; get audit says so.
+     */
+    private static void assertJudgeInTheNumbers(Analysis analysis) {
+        AuditNode course = analysis.report().getRoot();
+        AnalyzerErrorCounts judge = Base299.countsOf(course, Base299.JUDGE);
+        assertEquals(Base299.QUIZZES, judge.getReached(), "R011: the judge reached every quiz");
+        assertEquals(BUDGET, judge.getEvaluated(), "the quizzes its budget allowed");
+        assertEquals(Base299.QUIZZES - BUDGET, judge.getNotEvaluated(), "R011: the rest, declared not judged");
+        assertEquals(1, judge.getWithError(), "R011: the breach it found");
+        assertEquals(Base299.QUIZZES - BUDGET, course.getNumbers().getErrors().getNotFullyEvaluated(),
+                "R011: «algún error» is a floor");
+        assertEquals(BUDGET, analysis.judge().asked().size(), "the judge was asked about as many quizzes as its budget");
+        Base299.Captured audit = Base299.run(Base299.getCmd(analysis.store(), analysis.catalog()), "audit", analysis.id());
+        assertTrue(audit.out().contains("Errors:   1 of 11287 quizzes with some error (11223 not fully evaluated)"),
+                "R011: get audit says it: " + audit.out());
+    }
+
+    /**
+     * F-HALL-R013: the plan of the report has the 4.036 tasks the same course gave before the contract,
+     * task by task; the rule, whose card declares no task kind yet, is declared, not dropped (R004).
+     */
+    private static void assertPlanOfTheCourse(Analysis analysis) {
+        FileSystemRefinementPlanStore plans = new FileSystemRefinementPlanStore(analysis.workdir());
+        PlanCmd plan = new PlanCmd(analysis.store(), new DefaultRefinerEngine(analysis.catalog()), plans,
+                mock(EphemeralPlanRenderer.class));
+
+        Base299.Captured run = Base299.run(plan, "--audit", analysis.id());
+
+        assertEquals(0, run.exit(), run.err());
+        List<String> tasks = plans.loadLatest().orElseThrow().getTasks().stream()
+                .map(task -> task.getNodeTarget() + "\t" + task.getNodeId() + "\t" + task.getNodeLabel() + "\t"
+                        + task.getDiagnosisKind())
+                .toList();
+        assertEquals(4036, tasks.size(), "R013: 3.051 + 950 + 25 + 6 + 3 + 1 tasks");
+        assertEquals(Base299.preContractPlan(), tasks, "R013: the tasks of the plan made before the contract");
+        assertTrue(run.err().contains("Aviso: rule-stand-in dejó 1 nodo con puntaje menor que 1 sin convertir en "
+                + "tareas: su ficha no declara un tipo de tarea"), "R004: " + run.err());
+    }
+
+    /** F-HALL-R001/R003: who, what rule, where, how severe, how solved, at what cost, its identity -- and its evidence. */
+    private static void assertSameShape(Finding finding, AuditNode quiz) {
+        String quizId = quiz.getEntity().getId();
+        assertFalse(finding.getAnalyzer().isBlank());
+        assertFalse(finding.getRule().isBlank());
+        assertEquals(AuditTarget.QUIZ, finding.getNode().getTarget());
+        assertEquals(quizId, finding.getNode().getNodeId());
+        assertFalse(finding.getNode().getLabel().isBlank(), "R001: the node, by its label");
+        assertNotNull(finding.getSeverity(), "R002");
+        assertNotNull(finding.getResolution(), "R002");
+        assertNotNull(finding.getCost(), "R002");
+        assertEquals(finding.getAnalyzer() + "|" + finding.getRule() + "|" + quizId
+                + (finding.getIdentity().getMarker() != null ? "|" + finding.getIdentity().getMarker() : ""),
+                finding.getIdentity().getKey(), "R014: its identity");
+        assertFalse(finding.getEvidence().getExamined().isEmpty(), "R003: what it examined");
+        finding.getEvidence().getExamined().forEach(part -> {
+            assertFalse(part.getLabel().isBlank(), "R003");
+            assertFalse(part.getText().isBlank(), "R003");
+        });
+        assertFalse(finding.getEvidence().getObservation().isBlank(), "R003: what it observed");
+    }
+
+    private static List<String> identities(AuditNode node) {
+        return node.getFindings().stream().map(finding -> finding.getIdentity().getKey()).toList();
+    }
+
+    /** Blocking, high, medium and low. */
+    private static List<Integer> severities(ErrorCounts errors) {
+        return List.of(errors.getBySeverity().getBlocking(), errors.getBySeverity().getHigh(),
+                errors.getBySeverity().getMedium(), errors.getBySeverity().getLow());
     }
 }
