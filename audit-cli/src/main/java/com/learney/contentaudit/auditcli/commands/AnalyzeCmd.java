@@ -20,6 +20,7 @@ import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -162,6 +163,23 @@ class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
                     + "inline. Mutually exclusive with --reevaluate-instruction-quizzes.")
     private String reevaluateInstructionQuizzesFile;
 
+    @Option(names = {"--reevaluate"},
+            description = "Explicitly re-judge a declared set of quiz (or, for mini-theory, knowledge) ids "
+                    + "for one judge, by the name 'content-audit get analyzers' lists "
+                    + "(e.g. --reevaluate single-answer=id1,id2). Repeatable, one per judge. Still respects "
+                    + "that judge's --budget. --reevaluate-instruction-quizzes is its shortcut for quiz-instruction.")
+    private Map<String, String> reevaluateSets;
+
+    @Option(names = {"--reevaluate-file"},
+            description = "Like --reevaluate, with the ids read from a file (comma- or newline-separated): "
+                    + "--reevaluate-file single-answer=ids.txt. For one judge, mutually exclusive with --reevaluate.")
+    private Map<String, String> reevaluateSetFiles;
+
+    @Option(names = {"--concurrency"},
+            description = "Consultations at a time for every judge the run declares a budget or a re-evaluation "
+                    + "for (default: 4). A judge with no budget consults nothing.")
+    private Integer concurrency;
+
 private final ReevaluationQuizSetResolver reevaluationQuizSetResolver;
 
 public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter, DrillDownResolver drillDownResolver, Map<String, DetailedFormatter> detailedFormatters, AuditReportStore auditReportStore, Function<String, String> pathResolver, ReevaluationQuizSetResolver reevaluationQuizSetResolver) {
@@ -191,10 +209,14 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
                                     this.reevaluateInstructionQuizzes, this.reevaluateInstructionQuizzesFile)
                             : null;
 
+            // C-17 (FEAT-RONDA1): the declared set of every judge, resolved here like the one of
+            // the quiz-instruction judge, so analyze(path, options) keeps taking it already read.
+            Map<String, Set<String>> reevaluationSets = resolveReevaluationSets();
+
             AnalyzeOptions options = new AnalyzeOptions(this.formatName, this.level, this.topic,
                     this.knowledge, this.analyzerFilter, this.excludeAnalyzers, this.detailed,
                     this.instructionBudget, this.reevaluateInstructions, reevaluateInstructionQuizIds,
-                    this.analyzerBudgets, null, null);
+                    this.analyzerBudgets, reevaluationSets, this.concurrency);
             return analyze(this.coursePath, options);
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
@@ -203,6 +225,27 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
             System.err.println("Error running audit: " + e.getMessage());
             return 1;
         }
+    }
+
+    /** Null when no set was declared, so an ordinary run never declares an empty one. */
+    private Map<String, Set<String>> resolveReevaluationSets() {
+        if (reevaluateSets == null && reevaluateSetFiles == null) {
+            return null;
+        }
+        Set<String> names = new LinkedHashSet<>();
+        if (reevaluateSets != null) {
+            names.addAll(reevaluateSets.keySet());
+        }
+        if (reevaluateSetFiles != null) {
+            names.addAll(reevaluateSetFiles.keySet());
+        }
+        Map<String, Set<String>> sets = new LinkedHashMap<>();
+        for (String name : names) {
+            String inline = reevaluateSets != null ? reevaluateSets.get(name) : null;
+            String file = reevaluateSetFiles != null ? reevaluateSetFiles.get(name) : null;
+            sets.put(name, reevaluationQuizSetResolver.resolve(inline, file));
+        }
+        return sets;
     }
 
     @Override
@@ -441,6 +484,43 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
                             + name + "=" + budget + " ask for two different budgets");
                 } else {
                     policy.setMaxNewEvaluations(budget);
+                }
+            }
+        }
+
+        // C-17 (FEAT-RONDA1): a declared set per judge, by its name, into that judge's policy;
+        // --reevaluate-instruction-quizzes stays as the shortcut of quiz-instruction.
+        Map<String, Set<String>> reevaluationSets = options.getAnalyzerReevaluationSets();
+        if (reevaluationSets != null) {
+            for (Map.Entry<String, Set<String>> entry : reevaluationSets.entrySet()) {
+                String name = entry.getKey();
+                if (analyzerPolicies == null) {
+                    analyzerPolicies = new HashMap<>();
+                }
+                EvaluationRunPolicy policy = analyzerPolicies.get(name);
+                if (policy == null) {
+                    policy = new EvaluationRunPolicy();
+                    analyzerPolicies.put(name, policy);
+                } else if (policy.getReevaluationSubjectIds() != null
+                        && !policy.getReevaluationSubjectIds().equals(entry.getValue())) {
+                    throw new IllegalArgumentException("--reevaluate-instruction-quizzes and --reevaluate "
+                            + name + " declare two different sets");
+                }
+                policy.setReevaluationSubjectIds(entry.getValue());
+            }
+        }
+
+        // C-17: consultations at a time, for every judge the run declares a policy for; without
+        // it, null, which the judges read as 4 (F-JEXAM-R006). A judge without a budget consults
+        // nothing (F-JEXAM-R010), so it needs no policy just to carry this number.
+        Integer concurrency = options.getMaxConcurrentEvaluations();
+        if (concurrency != null) {
+            if (concurrency < 1) {
+                throw new IllegalArgumentException("--concurrency needs a number of consultations at a time, 1 or more");
+            }
+            if (analyzerPolicies != null) {
+                for (EvaluationRunPolicy policy : analyzerPolicies.values()) {
+                    policy.setMaxConcurrentEvaluations(concurrency);
                 }
             }
         }

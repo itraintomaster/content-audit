@@ -190,6 +190,67 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerinfrastructure.FileSystemEvaluationLedger;
 import com.learney.contentaudit.auditapplication.DefaultQuizInstructionConfig;
+import com.learney.contentaudit.auditapplication.DefaultChoiceAlternativeConfig;
+import com.learney.contentaudit.auditapplication.DefaultJudgeExamService;
+import com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig;
+import com.learney.contentaudit.auditapplication.DefaultMiniTheoryConfig;
+import com.learney.contentaudit.auditapplication.DefaultSingleAnswerConfig;
+import com.learney.contentaudit.auditapplication.DefaultTranslationSenseConfig;
+import com.learney.contentaudit.auditapplication.JudgeExamService;
+import com.learney.contentaudit.auditcli.bootstrap.DefaultAgentJudgeConfigResolver;
+import com.learney.contentaudit.auditcli.formatting.LemmaRecurrenceDetailedFormatter;
+import com.learney.contentaudit.auditdomain.AudioRecordingRegistry;
+import com.learney.contentaudit.auditdomain.CorrectorMatcher;
+import com.learney.contentaudit.auditdomain.FormEquivalenceTableSource;
+import com.learney.contentaudit.auditdomain.IrregularFormsCatalog;
+import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
+import com.learney.contentaudit.auditdomain.ProductionSentenceSource;
+import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
+import com.learney.contentaudit.auditdomain.TopicStudentViewQuery;
+import com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJudgeRunFactory;
+import com.learney.contentaudit.auditdomain.choicealternativeengine.DefaultChoiceAlternativeJudgeRunFactory;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher;
+import com.learney.contentaudit.auditdomain.correctormatch.GapContext;
+import com.learney.contentaudit.auditdomain.datacoherence.AudioRecording;
+import com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.exactduplicates.ExactDuplicatesAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamVerdictExporter;
+import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeExamVerdictExporter;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
+import com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver;
+import com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.offlevelwords.TopicTeachingResolver;
+import com.learney.contentaudit.auditdomain.singleanswerengine.SingleAnswerAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.auditdomain.studentview.DefaultTopicStudentViewQuery;
+import com.learney.contentaudit.auditdomain.translationsenseengine.TranslationSenseAnalyzerProvider;
+import com.learney.contentaudit.auditinfrastructure.FileSystemJudgeExamRegistry;
+import com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemAudioRecordingRegistry;
+import com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemProductionSentenceSource;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory;
+import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeConfig;
+import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeFactory;
+import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeSpec;
+import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadinessProbe;
+import com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultAgentJudgeFactory;
+import com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultJudgeProviderReadinessProbe;
+import com.learney.contentaudit.quizinstructioninfrastructure.choicealternativeverdict.JacksonChoiceAlternativeVerdictReader;
+import com.learney.contentaudit.quizinstructioninfrastructure.minitheoryverdict.JacksonMiniTheoryVerdictReader;
+import com.learney.contentaudit.quizinstructioninfrastructure.singleanswerverdict.JacksonSingleAnswerVerdictReader;
+import com.learney.contentaudit.quizinstructioninfrastructure.translationsenseverdict.JacksonTranslationSenseVerdictReader;
+import com.learney.contentaudit.refinerdomain.topicwords.DefaultTopicWordLightsQuery;
+import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLightsQuery;
+import com.learney.contentaudit.vocabularyinfrastructure.correctortable.FileSystemFormEquivalenceTableSource;
+import com.learney.contentaudit.vocabularyinfrastructure.irregularforms.FileSystemIrregularFormsCatalog;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -197,6 +258,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Supplier;
 
 /**
  * CLI entry point. Resolves the workdir, manually assembles all dependencies,
@@ -293,6 +357,10 @@ class Main {
         QuizSentenceConverter quizSentenceConverter = DefaultQuizSentenceConverter.create();
         CourseToAuditableMapper courseToAuditableMapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
 
+        // FEAT-RONDA1 (F-RONDA1-R001, hook A-01): the one view of an exercise as the student sees
+        // it. The new analyzers and judges, the digest of the report and get student-view read it.
+        QuizStudentViewRenderer studentViewRenderer = new DefaultQuizStudentViewRenderer(quizSentenceConverter);
+
         CocaBucketsConfig cocaBucketsConfig = new DefaultCocaBucketsConfig();
         LemmaRecurrenceConfig lemmaRecurrenceConfig = new DefaultLemmaRecurrenceConfig();
 
@@ -355,38 +423,170 @@ class Main {
         AgentDefinitionLocator quizInstructionAgentDefinitionLocator =
                 new DefaultAgentDefinitionLocatorFactory().create(quizInstructionAgentGraphRunnerConfig);
 
+        // FEAT-JEXAM (hook C-13, R011): the free check of the provider's session, the same for the
+        // quiz-instruction judge and the four new ones. It asks `claude auth status`, which calls
+        // no model; the command is injected so a test can give a fake one.
+        JudgeProviderReadinessProbe judgeProviderReadinessProbe =
+                new DefaultJudgeProviderReadinessProbe(List.of("claude", "auth", "status"));
+
         QuizInstructionJudgeFactory quizInstructionJudgeFactory =
-                new DefaultQuizInstructionJudgeFactory(llmProviderResolver);
+                new DefaultQuizInstructionJudgeFactory(llmProviderResolver, judgeProviderReadinessProbe);
         Evaluator quizInstructionJudge = quizInstructionJudgeFactory.create(
                 quizInstructionJudgeConfig, quizInstructionAgentGraphRunner,
                 quizInstructionAgentDefinitionLocator);
 
         ContentFingerprinter evaluationContentFingerprinter = new Sha256ContentFingerprinter();
-        EvaluationLedger evaluationLedger = new FileSystemEvaluationLedger(baseDir);
+        // The file ledger is also the timeline the judge runtime measures the rate with (C-12).
+        FileSystemEvaluationLedger evaluationLedger = new FileSystemEvaluationLedger(baseDir);
         EvaluationSessionFactory evaluationSessionFactory =
                 new DefaultEvaluationSessionFactory(evaluationLedger, evaluationContentFingerprinter);
+
+        // ----------------------------------------------------------------
+        // Step 4b': FEAT-RONDA1 -- the common runtime of the judges (hook C-12). It is the only
+        // one that opens their sessions: the exam's brake and budget 0 without a request live
+        // there (F-JEXAM-R003, R010).
+        // ----------------------------------------------------------------
+        EvaluationSessionFactory examSessionFactory =
+                new ExamEvaluationSessionFactory(evaluationLedger, evaluationContentFingerprinter);
+        JudgeExamRegistry judgeExamRegistry = new FileSystemJudgeExamRegistry(baseDir);
+        JudgeRuntimeConfig judgeRuntimeConfig = new DefaultJudgeRuntimeConfig();
+        JudgeRuntime judgeRuntime = new DefaultJudgeRuntime(evaluationSessionFactory, examSessionFactory,
+                judgeExamRegistry, evaluationLedger, judgeRuntimeConfig);
+        JudgeExamVerdictExporter judgeExamVerdictExporter = new DefaultJudgeExamVerdictExporter();
 
         QuizInstructionVerdictReader quizInstructionVerdictReader = new JacksonQuizInstructionVerdictReader();
         QuizInstructionConfig quizInstructionConfig = new DefaultQuizInstructionConfig();
 
         AnalyzerProvider quizInstructionProvider = new DefaultQuizInstructionAnalyzerFactory(
-                evaluationSessionFactory, quizInstructionJudge, quizInstructionVerdictReader, quizInstructionConfig);
+                evaluationSessionFactory, quizInstructionJudge, quizInstructionVerdictReader, quizInstructionConfig,
+                judgeRuntime);
+
+        // ----------------------------------------------------------------
+        // Step 4b'': FEAT-RONDA1 -- what the analyzers of round 1 need (hooks A-06, C-14, C-16,
+        // D-03). Everything is built here once; what reads a file or asks a factory for a judge
+        // does it on first use, so a command that does not need it never pays for it and an
+        // analyzer its package has not built yet breaks nothing.
+        // ----------------------------------------------------------------
+        Path sharedResources = Paths.get(projectRoot, "analysis/recursos-compartidos");
+        IrregularFormsCatalog irregularForms =
+                new FileSystemIrregularFormsCatalog(sharedResources.resolve("formas-irregulares.json"));
+        FormEquivalenceTableSource formEquivalenceTableSource =
+                new FileSystemFormEquivalenceTableSource(sharedResources.resolve("corrector/formas-equivalentes.json"));
+        CorrectorMatcher correctorMatcher = lazyCorrectorMatcher(
+                () -> new DefaultCorrectorMatcher(formEquivalenceTableSource.load()));
+
+        // <db> is the folder of the course being analyzed (A-06): the default course's, since the
+        // catalog is built before the command reads its arguments.
+        Path courseDb = defaultCourseDb(projectRoot);
+        Path recordingsPath = courseDb.resolve("grabaciones.json");
+        // A registry that does not exist yet knows no key: get student-view then leaves the
+        // recorded text empty instead of failing (F-RONDA1-R003 inv. 2). DATOS builds the file.
+        AudioRecordingRegistry recordings = Files.exists(recordingsPath)
+                ? new FileSystemAudioRecordingRegistry(recordingsPath)
+                : emptyRecordingRegistry();
+        ProductionSentenceSource productionSentences =
+                new FileSystemProductionSentenceSource(courseDb.resolve("quiz-templates.json"));
+
+        TopicTeachingResolver topicTeachingResolver = new DefaultTopicTeachingResolver();
+
+        // Hook C-16: one configuration for the four new judges, CONTENT_AUDIT_JUDGE_* (claude-cli by
+        // default); the quiz-instruction judge keeps CONTENT_AUDIT_QINST_JUDGE_*. Hook C-14: the
+        // evaluators, with the runner and locator of the quiz-instruction judge.
+        AgentJudgeConfig agentJudgeConfig = new DefaultAgentJudgeConfigResolver().resolve(System.getenv());
+        AgentJudgeFactory agentJudgeFactory =
+                new DefaultAgentJudgeFactory(llmProviderResolver, judgeProviderReadinessProbe);
+        Evaluator fromEnglishJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+                new AgentJudgeSpec("translation-sense-from-english", "translationSenseVerdict",
+                        "juez de traducción y sentido, desde el inglés"),
+                quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
+        Evaluator fromTranslationJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+                new AgentJudgeSpec("translation-sense-from-translation", "translationSenseVerdict",
+                        "juez de traducción y sentido, desde la traducción"),
+                quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
+        Evaluator singleAnswerJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+                new AgentJudgeSpec("single-answer-judge", "singleAnswerVerdict", "juez de una sola respuesta"),
+                quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
+        Evaluator miniTheoryJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+                new AgentJudgeSpec("mini-theory-judge", "miniTheoryVerdict", "juez de la miniteoría"),
+                quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
+        Evaluator choiceAlternativeJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+                new AgentJudgeSpec("choice-alternative-judge", "choiceAlternativeVerdict",
+                        "juez de otra opción que también vale"),
+                quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
+
+        // Hook C-15: the judge of package C lives in Opción múltiple, never the factory "without
+        // judge" (F-RONDA1 decision: one contract, in two steps).
+        ChoiceAlternativeJudgeRunFactory choiceAlternativeJudgeRunFactory = new DefaultChoiceAlternativeJudgeRunFactory(
+                "multiple-choice-validity", judgeRuntime, choiceAlternativeJudge,
+                new JacksonChoiceAlternativeVerdictReader(), new DefaultChoiceAlternativeConfig(),
+                studentViewRenderer, correctorMatcher);
+
+        AnalyzerProvider offLevelWordsProvider = new OffLevelWordsAnalyzerProvider(
+                sentenceLexicalScorer, lemmaAbsenceConfig, topicTeachingResolver, studentViewRenderer);
+        AnalyzerProvider hintCoherenceProvider = new HintCoherenceAnalyzerProvider(irregularForms, studentViewRenderer);
+        AnalyzerProvider answerCompletenessProvider =
+                new AnswerCompletenessAnalyzerProvider(correctorMatcher, irregularForms, studentViewRenderer);
+        AnalyzerProvider multipleChoiceValidityProvider = new MultipleChoiceValidityAnalyzerProvider(
+                correctorMatcher, choiceAlternativeJudgeRunFactory, studentViewRenderer);
+        AnalyzerProvider dataCoherenceProvider = new DataCoherenceAnalyzerProvider(
+                correctorMatcher, recordings, productionSentences, studentViewRenderer);
+        AnalyzerProvider exactDuplicatesProvider = new ExactDuplicatesAnalyzerProvider(correctorMatcher, studentViewRenderer);
+        AnalyzerProvider translationSenseProvider = new TranslationSenseAnalyzerProvider(judgeRuntime,
+                fromEnglishJudge, fromTranslationJudge, new JacksonTranslationSenseVerdictReader(),
+                new DefaultTranslationSenseConfig(), studentViewRenderer);
+        AnalyzerProvider singleAnswerProvider = new SingleAnswerAnalyzerProvider(judgeRuntime, singleAnswerJudge,
+                new JacksonSingleAnswerVerdictReader(), new DefaultSingleAnswerConfig(), studentViewRenderer,
+                correctorMatcher);
+        AnalyzerProvider miniTheoryProvider = new MiniTheoryAnalyzerProvider(judgeRuntime, miniTheoryJudge,
+                new JacksonMiniTheoryVerdictReader(), new DefaultMiniTheoryConfig(), studentViewRenderer);
 
         // ----------------------------------------------------------------
         // Step 4c: FEAT-HALL -- the catalog: one provider per analyzer, and the only list of
         // them. Its order is the order of every run and of the findings within a node
         // (F-HALL-R014); a new analyzer adds one line here (the third hook of the TECH_SPEC).
         // The catalog validates every card at startup (F-HALL-R006 inv. 1).
+        //
+        // FEAT-RONDA1 (F-RONDA1-R004): the seventeen of round 1, in this order. The analyzers of
+        // packages A, C and D are built above; each one enters the catalog when its package
+        // implements it -- the catalog reads every card at startup, so an unimplemented provider
+        // would stop every command. To turn one on, uncomment its line (they are kept apart so
+        // the three packages never touch the same lines).
         // ----------------------------------------------------------------
-        List<AnalyzerProvider> analyzerProviders = List.of(
-                new SentenceLengthAnalyzerProvider(nlpTokenizer, sentenceLengthConfig),
-                new KnowledgeTitleLengthAnalyzerProvider(),
-                new KnowledgeInstructionsLengthAnalyzerProvider(),
-                new CocaBucketsAnalyzerProvider(nlpTokenizer, cocaBucketsConfig),
-                new LemmaRecurrenceAnalyzerProvider(lemmaRecurrenceConfig),
-                new LemmaAbsenceAnalyzerProvider(evpCatalog, lemmaAbsenceConfig, sentenceLexicalScorer),
-                new LemmaCountAnalyzerProvider(evpCatalog, lemmaCountConfig),
-                quizInstructionProvider);
+        List<AnalyzerProvider> analyzerProviders = new ArrayList<>();
+        analyzerProviders.add(new SentenceLengthAnalyzerProvider(nlpTokenizer, sentenceLengthConfig));     //  1
+
+        analyzerProviders.add(new KnowledgeTitleLengthAnalyzerProvider());                                 //  2
+
+        analyzerProviders.add(new KnowledgeInstructionsLengthAnalyzerProvider());                          //  3
+
+        analyzerProviders.add(new CocaBucketsAnalyzerProvider(nlpTokenizer, cocaBucketsConfig));           //  4
+
+        analyzerProviders.add(new LemmaRecurrenceAnalyzerProvider(lemmaRecurrenceConfig));                 //  5
+
+        analyzerProviders.add(new LemmaAbsenceAnalyzerProvider(evpCatalog, lemmaAbsenceConfig, sentenceLexicalScorer)); //  6
+
+        // analyzerProviders.add(offLevelWordsProvider);          //  7 · D · FEAT-NIVFR, pendiente
+
+        analyzerProviders.add(new LemmaCountAnalyzerProvider(evpCatalog, lemmaCountConfig));               //  8
+
+        analyzerProviders.add(quizInstructionProvider);                                                   //  9
+
+        // analyzerProviders.add(hintCoherenceProvider);          // 10 · A · FEAT-PISTA, pendiente
+
+        // analyzerProviders.add(answerCompletenessProvider);     // 11 · A · FEAT-RESPC, pendiente
+
+        // analyzerProviders.add(multipleChoiceValidityProvider); // 12 · A · FEAT-OMVAL (+ C · FEAT-MCVALE), pendiente
+
+        // analyzerProviders.add(dataCoherenceProvider);          // 13 · A · FEAT-DATOS, pendiente
+
+        // analyzerProviders.add(exactDuplicatesProvider);        // 14 · A · FEAT-DUPEX, pendiente
+
+        // analyzerProviders.add(translationSenseProvider);       // 15 · C · FEAT-TRSEN, pendiente
+
+        // analyzerProviders.add(singleAnswerProvider);           // 16 · C · FEAT-UNICA, pendiente
+
+        // analyzerProviders.add(miniTheoryProvider);             // 17 · C · FEAT-MINIT, pendiente
+
         AnalyzerCatalog analyzerCatalog = new DefaultAnalyzerCatalog(analyzerProviders);
 
         ScoreAggregator scoreAggregator =
@@ -396,6 +596,10 @@ class Main {
 
         DefaultAuditRunner auditRunner = new DefaultAuditRunner(
                 courseRepository, courseToAuditableMapper, auditEngine, analyzerCatalog);
+
+        // Hook C-12: the exam of the judges, over the same runner as analyze (F-JEXAM-R001).
+        JudgeExamService judgeExamService = new DefaultJudgeExamService(auditRunner, analyzerCatalog,
+                judgeExamVerdictExporter, judgeExamRegistry, judgeRuntime);
 
         // ----------------------------------------------------------------
         // Step 5: CLI formatting
@@ -419,11 +623,19 @@ class Main {
         // QuizInstructionDetailedFormatter is package-private (visibility escalated to
         // @architect, see its bootstrap's Javadoc); obtained via the same-package bridge.
         detailedFormatters.put("quiz-instruction", QuizInstructionDetailedFormatterBootstrap.create());
+        // Hooks D-11 and D-15: lemma-recurrence shows its detail in analyze --detailed and in stats
+        // analyzer. Turned on with FEAT-RECUR (package D), which builds the formatter.
+        LemmaRecurrenceDetailedFormatter lemmaRecurrenceDetailedFormatter = new LemmaRecurrenceDetailedFormatter();
+        Map<String, DetailedFormatter> statsDetailedFormatters = new HashMap<>();
+
+        // detailedFormatters.put("lemma-recurrence", lemmaRecurrenceDetailedFormatter);       // D · FEAT-RECUR, pendiente
+
+        // statsDetailedFormatters.put("lemma-recurrence", lemmaRecurrenceDetailedFormatter);  // D · FEAT-RECUR, pendiente
 
         // ----------------------------------------------------------------
         // Step 6: Persistence stores — all constructed with resolved baseDir
         // ----------------------------------------------------------------
-        AuditReportStore auditReportStore = new FileSystemAuditReportStore(baseDir);
+        AuditReportStore auditReportStore = new FileSystemAuditReportStore(baseDir, studentViewRenderer);
         RefinementPlanStore refinementPlanStore = new FileSystemRefinementPlanStore(baseDir);
         RevisionArtifactStore revisionArtifactStore = new FileSystemRevisionArtifactStore(baseDir);
         ImpactPreviewStore impactPreviewStore = new FileSystemImpactPreviewStore(baseDir);
@@ -816,7 +1028,7 @@ class Main {
 
         // stats
         StatsAnalyzerCmd statsAnalyzerCmd = new StatsAnalyzerCmd(
-                analyzerRegistry, analyzerStatsTransformer, auditRunner);
+                analyzerRegistry, analyzerStatsTransformer, auditRunner, statsDetailedFormatters);
         cmd.addSubcommand("stats", new picocli.CommandLine(statsAnalyzerCmd));
 
         // get — inject baseDir for plan listing; revisionArtifactStore para proposals;
@@ -825,9 +1037,15 @@ class Main {
         LemmaAbsenceContextSuggestedLemmaQueryPort suggestedLemmaQueryPort =
                 LemmaAbsenceContextSuggestedLemmaQueryPort.create(
                         lemmaAbsenceContextResolver, evpCatalog, lemmaCountConfig);
+        // FEAT-RONDA1: get student-view (F-RONDA1-R003) reads the active analysis or the latest;
+        // get word-lights (hooks D-05, D-06) asks the lights of FEAT-SEMAF (package D).
+        TopicStudentViewQuery topicStudentViewQuery = new DefaultTopicStudentViewQuery(studentViewRenderer, recordings);
+        TopicWordLightsQuery topicWordLightsQuery = new DefaultTopicWordLightsQuery(
+                sentenceLexicalEvaluator, suggestedLemmaQueryPort, topicTeachingResolver);
         GetCmd getCmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
                 correctionContextResolver, impactPreviewStore, new DefaultImpactPreviewFormatter(),
-                correctionContextJsonMapper, suggestedLemmaQueryPort);
+                correctionContextJsonMapper, suggestedLemmaQueryPort, topicWordLightsQuery,
+                topicStudentViewQuery, activeAnalysisSelectionStore);
         getCmd.setBaseDir(baseDir);
         getCmd.setRevisionArtifactStore(revisionArtifactStore);
         cmd.addSubcommand("get", new picocli.CommandLine(getCmd));
@@ -888,6 +1106,11 @@ class Main {
         cmd.addSubcommand("repair", new picocli.CommandLine(
                 new RepairCmd(preservationRepair, (CourseRepository) courseRepository)));
 
+        // exam -- hook C-18 (FEAT-JEXAM, package C): exam run / record / status. Turned on when
+        // ExamCmd carries its picocli command, which picocli needs to register it.
+
+        // cmd.addSubcommand("exam", new picocli.CommandLine(new ExamCmd(judgeExamService)));   // C · FEAT-JEXAM, pendiente
+
         // ----------------------------------------------------------------
         // Step 9: Execute
         // ----------------------------------------------------------------
@@ -941,6 +1164,111 @@ class Main {
                     com.learney.contentaudit.revisiondomain.candidatecriteria.CandidateAssessmentInput input) {
                 return new CriterionVerdict(criterion, CriterionOutcome.NOT_EVALUABLE,
                         "sin juez configurado: " + reason);
+            }
+        };
+    }
+
+    /**
+     * FEAT-RONDA1 (hook A-06): the folder of the default course, where the recordings registry and
+     * the production copy live next to it; {@code db/} of the project when none is configured.
+     */
+    private static Path defaultCourseDb(String projectRoot) {
+        String course = CoursePathResolver.resolve(null);
+        if (course != null) {
+            Path parent = Paths.get(course).toAbsolutePath().normalize().getParent();
+            if (parent != null) {
+                return parent;
+            }
+        }
+        return Paths.get(projectRoot, "db");
+    }
+
+    /** A recordings registry that knows no key, for when the registry file does not exist yet. */
+    private static AudioRecordingRegistry emptyRecordingRegistry() {
+        return new AudioRecordingRegistry() {
+            @Override
+            public Optional<AudioRecording> recordingOf(String audioKey) {
+                return Optional.empty();
+            }
+
+            @Override
+            public String version() {
+                return "sin registro";
+            }
+        };
+    }
+
+    /**
+     * The corrector's comparison, built on first use: loading its table reads a file only the
+     * analyzers of round 1 need, so no other command reads it (hook A-06).
+     */
+    private static CorrectorMatcher lazyCorrectorMatcher(Supplier<CorrectorMatcher> factory) {
+        return new CorrectorMatcher() {
+            private CorrectorMatcher delegate;
+
+            private synchronized CorrectorMatcher delegate() {
+                if (delegate == null) {
+                    delegate = factory.get();
+                }
+                return delegate;
+            }
+
+            @Override
+            public Set<String> canonicalForms(String text) {
+                return delegate().canonicalForms(text);
+            }
+
+            @Override
+            public boolean accepts(GapContext context, List<String> acceptedOptions, String written) {
+                return delegate().accepts(context, acceptedOptions, written);
+            }
+
+            @Override
+            public boolean sameAnswer(String first, String second) {
+                return delegate().sameAnswer(first, second);
+            }
+
+            @Override
+            public boolean sameAnswer(GapContext context, String first, String second) {
+                return delegate().sameAnswer(context, first, second);
+            }
+
+            @Override
+            public String tableVersion() {
+                return delegate().tableVersion();
+            }
+        };
+    }
+
+    /**
+     * A judge of round 1, asked of its factory on first use (hook C-14): its id is the spec's, so
+     * reading it never builds the judge, and a run that does not ask the judge never builds it.
+     */
+    private static Evaluator lazyAgentJudge(AgentJudgeFactory factory, AgentJudgeConfig config,
+            AgentJudgeSpec spec, AgentGraphRunner agentGraphRunner, AgentDefinitionLocator agentDefinitionLocator) {
+        return new Evaluator() {
+            private Evaluator delegate;
+
+            private synchronized Evaluator delegate() {
+                if (delegate == null) {
+                    delegate = factory.create(spec, config, agentGraphRunner, agentDefinitionLocator);
+                }
+                return delegate;
+            }
+
+            @Override
+            public String evaluatorId() {
+                return spec.getEvaluatorId();
+            }
+
+            @Override
+            public EvaluationOutcome evaluate(EvaluationSubject subject) {
+                return delegate().evaluate(subject);
+            }
+
+            @Override
+            public Optional<String> evaluatorVersion() {
+                return delegate().evaluatorVersion();
             }
         };
     }

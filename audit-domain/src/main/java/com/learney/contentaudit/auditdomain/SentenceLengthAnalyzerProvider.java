@@ -41,14 +41,19 @@ public class SentenceLengthAnalyzerProvider implements AnalyzerProvider {
                 AuditTarget.QUIZ,
                 "¿La oración tiene el largo de su nivel?",
                 "La oración de cada ejercicio, contada en tokens como la cuenta spaCy, y el nivel del ejercicio",
-                List.of(new AnalyzerRuleCard(SentenceLengthAnalyzer.RULE_LENGTH,
-                        "La oración tiene menos tokens que el mínimo de su nivel o más que el máximo",
-                        AnalysisCost.INSTANT)),
+                // F-RONDA1-R005 inv. 4: one rule for each side of the goal, so the level can say
+                // how many sentences are shorter and how many longer without computing anything.
+                List.of(new AnalyzerRuleCard(SentenceLengthAnalyzer.RULE_SHORTER,
+                                "La oración tiene menos tokens que el mínimo de su nivel",
+                                AnalysisCost.INSTANT),
+                        new AnalyzerRuleCard(SentenceLengthAnalyzer.RULE_LONGER,
+                                "La oración tiene más tokens que el máximo de su nivel",
+                                AnalysisCost.INSTANT)),
                 goal(),
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
-                AnalysisCost.INSTANT, null);
+                AnalysisCost.INSTANT, "Largo de oración");
     }
 
     @Override

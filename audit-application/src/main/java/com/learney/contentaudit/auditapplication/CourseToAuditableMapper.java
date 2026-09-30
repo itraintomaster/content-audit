@@ -137,7 +137,10 @@ public class CourseToAuditableMapper implements CourseMapper {
         FormEntity form = qt.getForm();
         List<SentencePartEntity> sentenceParts = form != null ? form.getSentenceParts() : null;
         MultipleChoiceEntity multipleChoice = form != null ? form.getMultipleChoice() : null;
-        return new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, qt.getInstructions(), sentenceParts, multipleChoice, null, null);
+        // FEAT-RONDA1 (hooks A-02/A-03): the mini theory and the audio key travel to the report as
+        // they are in the course, in the same pass that copies the instructions; nothing is
+        // derived from them, so no fingerprint moves.
+        return new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, qt.getInstructions(), sentenceParts, multipleChoice, qt.getMiniTheory(), qt.getAnswerAudioUrl());
     }
 
     private List<String> deriveSentences(QuizTemplateEntity qt) {

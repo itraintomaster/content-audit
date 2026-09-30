@@ -1,9 +1,13 @@
 package com.learney.contentaudit.auditdomain;
 
 import com.learney.contentaudit.auditdomain.coca.CocaProgressionDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceCourseDiagnosis;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountCourseDiagnosis;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceCourseDiagnosis;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionCoverageDiagnosis;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public final class DefaultCourseDiagnoses implements CourseDiagnoses {
@@ -15,6 +19,13 @@ public final class DefaultCourseDiagnoses implements CourseDiagnoses {
     private LemmaCountCourseDiagnosis lemmaCountDiagnosis;
 
     private QuizInstructionCoverageDiagnosis quizInstructionCoverage;
+
+    // FEAT-RONDA1 (hook C-04): the coverage of every judge that ran, in the order they
+    // published it; each judge adds its own and never touches another's.
+    private List<JudgeCoverageDiagnosis> judgeCoverages = new ArrayList<>();
+
+    // FEAT-RONDA1 (hook D-10)
+    private LemmaRecurrenceCourseDiagnosis lemmaRecurrenceDiagnosis;
 
     @Override
     public Optional<LemmaAbsenceCourseDiagnosis> getLemmaAbsenceDiagnosis() {
@@ -50,5 +61,31 @@ public final class DefaultCourseDiagnoses implements CourseDiagnoses {
 
     public void setQuizInstructionCoverage(QuizInstructionCoverageDiagnosis diagnosis) {
         this.quizInstructionCoverage = diagnosis;
+    }
+
+    @Override
+    public List<JudgeCoverageDiagnosis> getJudgeCoverages() {
+        return judgeCoverages;
+    }
+
+    /** Needed to read the list back from a stored report. */
+    public void setJudgeCoverages(List<JudgeCoverageDiagnosis> judgeCoverages) {
+        this.judgeCoverages = judgeCoverages != null ? new ArrayList<>(judgeCoverages) : new ArrayList<>();
+    }
+
+    /** What a judge calls to publish its coverage of the run. */
+    public void addJudgeCoverage(JudgeCoverageDiagnosis coverage) {
+        if (coverage != null) {
+            judgeCoverages.add(coverage);
+        }
+    }
+
+    @Override
+    public Optional<LemmaRecurrenceCourseDiagnosis> getLemmaRecurrenceDiagnosis() {
+        return Optional.ofNullable(lemmaRecurrenceDiagnosis);
+    }
+
+    public void setLemmaRecurrenceDiagnosis(LemmaRecurrenceCourseDiagnosis diagnosis) {
+        this.lemmaRecurrenceDiagnosis = diagnosis;
     }
 }

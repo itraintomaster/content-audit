@@ -68,7 +68,7 @@ import picocli.CommandLine.Parameters;
 @Command(
         name = "get",
         description = "Read one or many resources.%n%n"
-                + "Resources: audits, plans, tasks, analyzers, suggested-lemmas.%n"
+                + "Resources: audits, plans, tasks, analyzers, suggested-lemmas, student-view, word-lights.%n"
                 + "Singular and plural forms are interchangeable (R006).%n%n"
                 + "With no <name>, lists all instances of the resource.%n"
                 + "With <name>, shows the single matching instance (R001).",
@@ -95,10 +95,20 @@ import picocli.CommandLine.Parameters;
                 "  content-audit get suggested-lemmas <taskId> --limit 5 --part-of-speech NOUN",
                 "  content-audit get suggested-lemmas <taskId> --level B1",
                 "  content-audit get suggested-lemmas <taskId> --regex 'ing$' --limit 10",
+                "",
+                "  # A whole topic as the student sees it, from the active analysis (or the latest)",
+                "  content-audit get student-view <knowledgeId>",
+                "",
+                "  # The words of a topic with their lights, from the source analysis of the latest plan",
+                "  content-audit get word-lights <knowledgeId> --limit 10",
         }
 )
 final class GetCmd implements GetCommand, Callable<Integer> {
-    private static final Set<String> VALID_RESOURCES = Set.of("audits", "plans", "tasks", "analyzers", "proposals");
+    private static final Set<String> VALID_RESOURCES = Set.of("audits", "plans", "tasks", "analyzers", "proposals",
+            "student-view");
+
+    private static final String KNOWN_RESOURCES =
+            "audits, plans, tasks, analyzers, proposals, suggested-lemmas, student-view, word-lights";
 
     private final AuditReportStore auditReportStore;
 
@@ -114,7 +124,8 @@ final class GetCmd implements GetCommand, Callable<Integer> {
     /** Injected by Main (or via setter) to enable proposal/proposals resource queries. */
     private RevisionArtifactStore revisionArtifactStore;
 
-    @Parameters(index = "0", description = "Resource type: audits, plans, tasks, analyzers, suggested-lemmas")
+    @Parameters(index = "0", description = "Resource type: audits, plans, tasks, analyzers, suggested-lemmas, "
+            + "student-view, word-lights")
     private String resource;
 
     @Parameters(index = "1", arity = "0..1",
@@ -229,7 +240,8 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         // Route suggested-lemma/suggested-lemmas before building GetTasksFilter
         if (resource != null) {
             String resourceLower = resource.toLowerCase(Locale.ROOT);
-            if ("suggested-lemma".equals(resourceLower) || "suggested-lemmas".equals(resourceLower)) {
+            if ("suggested-lemma".equals(resourceLower) || "suggested-lemmas".equals(resourceLower)
+                    || "word-light".equals(resourceLower) || "word-lights".equals(resourceLower)) {
                 SuggestedLemmasFilter slFilter = new SuggestedLemmasFilter(
                         Optional.ofNullable(limit),
                         Optional.ofNullable(partOfSpeech),
@@ -282,6 +294,9 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         if ("suggested-lemma".equals(normalized) || "suggested-lemmas".equals(normalized)) {
             return handleSuggestedLemmas(name, filter);
         }
+        if ("word-light".equals(normalized) || "word-lights".equals(normalized)) {
+            return handleWordLights(name, filter);
+        }
         System.err.println("Unknown resource '" + resource + "' for suggested-lemmas query.");
         return 1;
     }
@@ -289,12 +304,12 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
     @Override
     public Integer get(String resource, String name, GetTasksFilter filter) {
         if (resource == null || resource.isBlank()) {
-            System.err.println("Error: resource is required. Known resources: audits, plans, tasks, analyzers, proposals");
+            System.err.println("Error: resource is required. Known resources: " + KNOWN_RESOURCES);
             return 1;
         }
         String normalized = normalizeResource(resource);
         if (normalized == null) {
-            System.err.println("Unknown resource '" + resource + "'. Known resources: audits, plans, tasks, analyzers, proposals");
+            System.err.println("Unknown resource '" + resource + "'. Known resources: " + KNOWN_RESOURCES);
             return 1;
         }
 
@@ -304,8 +319,9 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
             case "tasks" -> handleTasks(name, filter);
             case "analyzers" -> handleAnalyzers(name, filter);
             case "proposals" -> handleProposals(name, filter);
+            case "student-view" -> handleStudentView(name);
             default -> {
-                System.err.println("Unknown resource '" + resource + "'. Known resources: audits, plans, tasks, analyzers, proposals");
+                System.err.println("Unknown resource '" + resource + "'. Known resources: " + KNOWN_RESOURCES);
                 yield 1;
             }
         };
@@ -322,6 +338,7 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
             case "task", "tasks" -> "tasks";
             case "analyzer", "analyzers" -> "analyzers";
             case "proposal", "proposals" -> "proposals";
+            case "student-view", "student-views" -> "student-view";
             default -> null;
         };
     }
@@ -1393,17 +1410,18 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
     }
 
     private int printAnalyzerListTable(List<AnalyzerDescriptor> descriptors) {
-        System.out.println("┌──────────────────────────────────────────┬────────────┬──────────────┬──────────────────────────────────────┐");
-        System.out.println("│ Name                                     │ Family     │ Cost         │ Question                             │");
-        System.out.println("├──────────────────────────────────────────┼────────────┼──────────────┼──────────────────────────────────────┤");
+        System.out.println("┌──────────────────────────────────────────┬──────────────────────────┬────────────┬──────────────┬──────────────────────────────────────┐");
+        System.out.println("│ Name                                     │ Nombre                   │ Family     │ Cost         │ Question                             │");
+        System.out.println("├──────────────────────────────────────────┼──────────────────────────┼────────────┼──────────────┼──────────────────────────────────────┤");
         for (AnalyzerDescriptor d : descriptors) {
-            System.out.printf("│ %-40s │ %-10s │ %-12s │ %-36s │%n",
+            System.out.printf("│ %-40s │ %-24s │ %-10s │ %-12s │ %-36s │%n",
                     truncate(d.getName(), 40),
+                    truncate(d.getDisplayName() != null ? d.getDisplayName() : "", 24),
                     d.getFamily() != null ? d.getFamily().name() : "",
                     d.getCost() != null ? d.getCost().name() : "",
                     truncate(d.getQuestion(), 36));
         }
-        System.out.println("└──────────────────────────────────────────┴────────────┴──────────────┴──────────────────────────────────────┘");
+        System.out.println("└──────────────────────────────────────────┴──────────────────────────┴────────────┴──────────────┴──────────────────────────────────────┘");
         return 0;
     }
 
@@ -1423,7 +1441,10 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
     }
 
     private int printAnalyzerOne(AnalyzerDescriptor d) {
-        System.out.println("Name:        " + d.getName());
+        // F-RONDA1-R004: the Spanish name of the card next to its unique name, which stays the
+        // only one that names the analyzer (F-HALL-R005).
+        System.out.println("Name:        " + d.getName()
+                + (d.getDisplayName() != null && !d.getDisplayName().isBlank() ? " (" + d.getDisplayName() + ")" : ""));
         System.out.println("Target:      " + (d.getTarget() != null ? d.getTarget().name() : ""));
         System.out.println("Description: " + d.getDescription());
         System.out.println("Question:    " + nullToEmpty(d.getQuestion()));
@@ -1449,6 +1470,7 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
     private static Map<String, Object> cardJson(AnalyzerDescriptor d) {
         Map<String, Object> m = new LinkedHashMap<>();
         m.put("name", d.getName());
+        m.put("displayName", d.getDisplayName());
         m.put("target", d.getTarget() != null ? d.getTarget().name() : null);
         m.put("description", d.getDescription());
         m.put("question", d.getQuestion());
@@ -1472,6 +1494,122 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         }
         m.put("rules", rules);
         return m;
+    }
+
+    // -------------------------------------------------------------------------
+    // Student view (F-RONDA1-R003)
+    // -------------------------------------------------------------------------
+
+    /**
+     * A whole topic as the student sees it, as JSON. It reads the analysis chosen with
+     * set-active-analysis or, with none chosen, the latest one (inv. 1); a topic that is not in
+     * it is an error with code 1 (inv. 3); it writes nothing (inv. 4).
+     */
+    private int handleStudentView(String knowledgeId) {
+        if (knowledgeId == null || knowledgeId.isBlank()) {
+            System.err.println("Error: a knowledge id is required for 'student-view'. Usage: get student-view <knowledgeId>");
+            return 1;
+        }
+        String auditId;
+        Optional<com.learney.contentaudit.auditdomain.ActiveAnalysisSelection> active =
+                activeAnalysisSelectionStore != null ? activeAnalysisSelectionStore.read() : Optional.empty();
+        if (active.isPresent() && active.get().getAuditId() != null && !active.get().getAuditId().isBlank()) {
+            auditId = active.get().getAuditId();
+        } else {
+            Optional<String> latest = latestAuditId();
+            if (latest.isEmpty()) {
+                System.err.println("No audits found. Run 'content-audit analyze' first.");
+                return 1;
+            }
+            auditId = latest.get();
+        }
+        Optional<AuditReport> report = auditReportStore.load(auditId);
+        if (report.isEmpty()) {
+            System.err.println("Audit report '" + auditId + "' not found.");
+            return 1;
+        }
+        com.learney.contentaudit.auditdomain.studentview.TopicStudentView view;
+        try {
+            view = topicStudentViewQuery.viewOf(report.get(), knowledgeId);
+        } catch (com.learney.contentaudit.auditdomain.studentview.StudentViewKnowledgeNotFoundException e) {
+            System.err.println(e.getMessage());
+            return 1;
+        }
+        view.setAuditId(auditId);
+        return printJsonValue(view);
+    }
+
+    /** The id of the most recent analysis, the one {@code loadLatest} reads. */
+    private Optional<String> latestAuditId() {
+        List<AuditReportSummary> summaries = auditReportStore.list();
+        return summaries.stream()
+                .map(AuditReportSummary::getId)
+                .filter(id -> id != null && !id.isBlank())
+                .max(Comparator.naturalOrder());
+    }
+
+    private static int printJsonValue(Object value) {
+        try {
+            ObjectMapper om = new ObjectMapper();
+            om.registerModule(new JavaTimeModule());
+            om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            om.enable(SerializationFeature.INDENT_OUTPUT);
+            System.out.println(om.writeValueAsString(value));
+            return 0;
+        } catch (Exception e) {
+            System.err.println("Error formatting JSON: " + e.getMessage());
+            return 1;
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Word lights (hook D-05, F-SEMAF-R001)
+    // -------------------------------------------------------------------------
+
+    /**
+     * The words of a topic with their lights, as JSON. It reads the source analysis of the latest
+     * plan, like get suggested-lemmas, or the latest analysis when there is no plan; it takes the
+     * filters of the suggested lemmas except the level, which is the topic's. The two rejections of
+     * the query are errors with their message and code 1.
+     */
+    private int handleWordLights(String knowledgeId, SuggestedLemmasFilter filter) {
+        if (knowledgeId == null || knowledgeId.isBlank()) {
+            System.err.println("Error: a knowledge id is required for 'word-lights'. Usage: get word-lights <knowledgeId>");
+            return 1;
+        }
+        if (filter != null && filter.getLevel() != null && filter.getLevel().isPresent()) {
+            System.err.println("Error: --level does not apply to 'word-lights': the level is the topic's own.");
+            return 1;
+        }
+        String auditId = null;
+        Optional<RefinementPlan> plan = refinementPlanStore.loadLatest();
+        if (plan.isPresent() && plan.get().getSourceAuditId() != null && !plan.get().getSourceAuditId().isBlank()) {
+            auditId = plan.get().getSourceAuditId();
+        } else {
+            auditId = latestAuditId().orElse(null);
+        }
+        if (auditId == null) {
+            System.err.println("No audits found. Run 'content-audit analyze' first.");
+            return 1;
+        }
+        Optional<AuditReport> report = auditReportStore.load(auditId);
+        if (report.isEmpty()) {
+            System.err.println("Audit report '" + auditId + "' not found.");
+            return 1;
+        }
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
+                filter != null ? filter.getLimit() : Optional.empty(),
+                filter != null ? filter.getPartOfSpeech() : Optional.empty(),
+                Optional.empty(),
+                filter != null && filter.isIncludeExposed(),
+                filter != null ? filter.getRegex() : Optional.empty());
+        try {
+            return printJsonValue(topicWordLightsQuery.lightsFor(report.get(), auditId, knowledgeId, criteria));
+        } catch (com.learney.contentaudit.refinerdomain.topicwords.KnowledgeNotInAnalysisException
+                | com.learney.contentaudit.refinerdomain.topicwords.LemmaCountDataMissingException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 1;
+        }
     }
 
     // -------------------------------------------------------------------------

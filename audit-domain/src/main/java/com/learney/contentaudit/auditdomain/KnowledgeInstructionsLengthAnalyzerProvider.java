@@ -34,7 +34,7 @@ public class KnowledgeInstructionsLengthAnalyzerProvider implements AnalyzerProv
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.KNOWLEDGE),
                 List.of(FindingResolution.RANK_ONLY),
-                AnalysisCost.INSTANT, null);
+                AnalysisCost.INSTANT, "Largo de la consigna");
     }
 
     @Override

@@ -68,6 +68,18 @@ public class DefaultFindingCollector implements FindingCollector {
     private void collectAt(AuditNode node, ContentAnalyzer analyzer, AnalyzerDescriptor card) {
         String analyzerName = card.getName();
         Double score = node.getScores() != null ? node.getScores().get(analyzerName) : null;
+        // F-RONDA1-R006: a node the analyzer evaluated halfway (some of its rules ran, as the
+        // multiple choice with its judge pending) counts as evaluated, so it has its score and
+        // its findings are collected like any other; it is never also declared not evaluated.
+        boolean partial = contains(node.getPartiallyEvaluatedBy(), analyzerName);
+        if (partial && contains(node.getUnevaluatedBy(), analyzerName)) {
+            throw new FindingContractViolationException(analyzerName, nodeRef(node).getNodeId(),
+                    "el nodo lo declara evaluado a medias y sin evaluar a la vez");
+        }
+        if (partial && score == null) {
+            throw new FindingContractViolationException(analyzerName, nodeRef(node).getNodeId(),
+                    "el nodo lo declara evaluado a medias sin dejar su puntaje");
+        }
         if (score == null) {
             // Not evaluated here: a container that only receives an average, a quiz the judge
             // left pending or failed (F-HALL-R001 inv. 2). Nothing to ask.
@@ -211,5 +223,9 @@ public class DefaultFindingCollector implements FindingCollector {
 
     private static boolean isBlank(String value) {
         return value == null || value.isBlank();
+    }
+
+    private static boolean contains(List<String> names, String name) {
+        return names != null && names.contains(name);
     }
 }

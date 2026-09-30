@@ -18,8 +18,13 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
 
     static final String DESCRIPTION = "Scores quiz sentence length against per-CEFR target token ranges";
 
-    /** F-HALL-R006: the one rule of this analyzer, as its card declares it. */
-    static final String RULE_LENGTH = "length-out-of-range";
+    /**
+     * F-HALL-R006 and F-RONDA1-R005 inv. 4: the two rules of this analyzer, as its card declares
+     * them -- a sentence shorter than the goal of its level, and one longer than it.
+     */
+    static final String RULE_SHORTER = "shorter-than-goal";
+
+    static final String RULE_LONGER = "longer-than-goal";
 
     private final SentenceLengthConfig config;
 
@@ -167,6 +172,7 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
         Optional<SentenceLengthDiagnosis> diagnosis = node.getDiagnoses() instanceof DefaultQuizDiagnoses quizDiagnoses
                 ? quizDiagnoses.getSentenceLengthDiagnosis()
                 : Optional.empty();
+        String rule = isShorter(node, diagnosis) ? RULE_SHORTER : RULE_LONGER;
         List<EvidencePart> examined;
         String observation;
         if (diagnosis.isPresent()) {
@@ -184,8 +190,30 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
             examined = List.of(new EvidencePart("Oración", sentence));
             observation = "La oración no tiene el largo de su nivel";
         }
-        return List.of(new FindingDraft(RULE_LENGTH, null, FindingSeverity.LOW, FindingResolution.PANEL,
+        return List.of(new FindingDraft(rule, null, FindingSeverity.LOW, FindingResolution.PANEL,
                 new FindingEvidence(examined, observation, List.of())));
+    }
+
+    /**
+     * Which side of the goal the sentence falls on: read from its diagnosis, which onQuiz always
+     * writes with the score; without one, measured again from its tokens and the range of its
+     * level. A sentence that cannot be placed counts as longer, the side of the old single rule's
+     * most frequent case.
+     */
+    private boolean isShorter(AuditNode node, Optional<SentenceLengthDiagnosis> diagnosis) {
+        if (diagnosis.isPresent()) {
+            return diagnosis.get().getDelta() < 0;
+        }
+        if (node.getEntity() instanceof AuditableQuiz quiz && node.getParent() != null
+                && node.getParent().getParent() != null) {
+            CefrLevel level = parseCefrLevel(node.getParent().getParent().getParent());
+            Optional<TargetRange> range = level != null ? config.getTargetRange(level) : Optional.empty();
+            if (range.isPresent()) {
+                int tokens = quiz.getTokens() != null ? quiz.getTokens().size() : 0;
+                return tokens < range.get().getMinTokens();
+            }
+        }
+        return false;
     }
 
     private static String sentenceOf(AuditNode node) {

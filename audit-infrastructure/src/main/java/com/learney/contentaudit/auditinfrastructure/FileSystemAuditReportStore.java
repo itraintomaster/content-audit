@@ -10,6 +10,8 @@ import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditdomain.AuditReportSummary;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -56,13 +58,18 @@ public class FileSystemAuditReportStore implements AuditReportStore {
     private final Path baseDir;
     private final ObjectMapper objectMapper;
 
-private final QuizStudentViewRenderer studentViewRenderer;
+    /**
+     * F-RONDA1-R002: names every exercise of the digest by its statement as the student sees it.
+     * The saved report keeps the exercise label of today: the quiz-instruction judge reads it as a
+     * title, and changing it would charge its verdicts again.
+     */
+    private final QuizStudentViewRenderer studentViewRenderer;
 
-public FileSystemAuditReportStore(Path baseDir, QuizStudentViewRenderer studentViewRenderer) {
-    this.baseDir = baseDir;
-    this.objectMapper = AuditReportObjectMapper.create();
-    this.studentViewRenderer = studentViewRenderer;
-}
+    public FileSystemAuditReportStore(Path baseDir, QuizStudentViewRenderer studentViewRenderer) {
+        this.baseDir = baseDir;
+        this.objectMapper = AuditReportObjectMapper.create();
+        this.studentViewRenderer = studentViewRenderer;
+    }
 
     // -------------------------------------------------------------------------
     // AuditReportStore
@@ -100,17 +107,24 @@ public FileSystemAuditReportStore(Path baseDir, QuizStudentViewRenderer studentV
         }
     }
 
-    /** Copies, never computes: every number, finding and declaration comes from the report. */
-    static AuditDigest toDigest(String id, AuditReport report) {
+    /**
+     * Copies, never computes: every number, finding and declaration comes from the report. The
+     * only thing it adds is the label of each exercise, its statement as the student sees it
+     * (F-RONDA1-R002); the course, the levels, the topic groups and the topics keep theirs.
+     */
+    AuditDigest toDigest(String id, AuditReport report) {
         return new AuditDigest(id, report.getRoot() != null ? toDigestNode(report.getRoot()) : null);
     }
 
-    private static DigestNode toDigestNode(AuditNode node) {
+    private DigestNode toDigestNode(AuditNode node) {
         String nodeId = COURSE_NODE_ID;
         String label = COURSE_NODE_LABEL;
         if (node.getEntity() != null) {
             nodeId = node.getEntity().getId() != null ? node.getEntity().getId() : COURSE_NODE_ID;
             label = node.getEntity().getLabel() != null ? node.getEntity().getLabel() : nodeId;
+        }
+        if (node.getTarget() == AuditTarget.QUIZ && node.getEntity() instanceof AuditableQuiz quiz) {
+            label = exerciseLabel(quiz, label);
         }
         List<DigestNode> children = new ArrayList<>();
         if (node.getChildren() != null) {
@@ -121,7 +135,17 @@ public FileSystemAuditReportStore(Path baseDir, QuizStudentViewRenderer studentV
         return new DigestNode(nodeId, node.getTarget(), label, node.getNumbers(),
                 node.getFindings() != null ? node.getFindings() : List.of(),
                 node.getUnevaluatedBy() != null ? node.getUnevaluatedBy() : List.of(),
-                children, null);
+                children,
+                node.getPartiallyEvaluatedBy() != null ? node.getPartiallyEvaluatedBy() : List.of());
+    }
+
+    /** The statement of the exercise; its own label only when it has no text to show. */
+    private String exerciseLabel(AuditableQuiz quiz, String fallback) {
+        if (studentViewRenderer == null) {
+            return fallback;
+        }
+        String statement = studentViewRenderer.render(quiz).getStatement();
+        return statement != null && !statement.isBlank() ? statement : fallback;
     }
 
     @Override

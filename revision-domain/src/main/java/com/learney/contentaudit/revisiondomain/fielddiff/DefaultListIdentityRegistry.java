@@ -74,5 +74,38 @@ class DefaultListIdentityRegistry implements ListIdentityRegistry {
         declare("ContextNumbers",  "analyzerScores", "analyzer");
         declare("ErrorCounts",     "analyzers",      "analyzer");
         declare("AnalyzerScore",   "subMetrics",     "name");
+
+        // ── FEAT-RONDA1: the new lists of round 1 ───────────────────────────
+        // F-RONDA1-R005: one row per analyzer and node type, and one per rule of its card
+        declare("ContextNumbers",        "findingCounts", "analyzer", "target");
+        declare("AnalyzerFindingCounts", "byRule",        "rule");
+
+        // Hook C-04: the common coverage of the judges on the course, one per judge
+        declare("DefaultCourseDiagnoses", "judgeCoverages", "judgeName");
+        declare("JudgeCoverageDiagnosis", "evaluators",     "evaluatorId");
+        declare("JudgeCoverageDiagnosis", "versions",       "judgeVersion");
+
+        // Package A (hook A-10); the judge of the multiple choice travels in its diagnosis with
+        // the contract of the integration (C-09) instead of A-07's alsoValidOptions.
+        declare("HintCoherenceDiagnosis",          "issues",            "kind", "word");
+        declare("AnswerCompletenessDiagnosis",     "missingForms",      "gapIndex", "missingForm");
+        declare("AnswerCompletenessDiagnosis",     "formRequests",      "source", "phrase");
+        declare("MultipleChoiceValidityDiagnosis", "issues",            "kind", "option");
+        declare("ChoiceAlternativeVerdict",        "validAlternatives", "label");
+        declare("ChoiceAlternativeJudgment",       "findings",          "rule", "marker");
+        declare("DataCoherenceDiagnosis",          "issues",            "kind", "copy");
+
+        // Package C: the judges' verdicts, by what each one names
+        declare("TranslationSenseVerdict", "failures",     "condition", "fragment");
+        declare("SingleAnswerVerdict",     "alternatives", "answer", "gap");
+        declare("SingleAnswerDiagnosis",   "counted",      "answer", "gap");
+        declare("MiniTheoryVerdict",       "assessments",  "miniTheory");
+        declare("MiniTheoryDiagnosis",     "assessments",  "miniTheory");
+
+        // Package D: words by lemma and category, levels by level, bands by name
+        declare("OffLevelWordsDiagnosis",         "words",     "lemma", "pos");
+        declare("LemmaRecurrenceCourseDiagnosis", "levels",    "level");
+        declare("LemmaCountResult",               "exposures", "lemmaAndPos.lemma", "lemmaAndPos.pos");
+        declare("LemmaCountResult",               "bands",     "name");
     }
 }

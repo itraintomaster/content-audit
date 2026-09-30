@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 import com.learney.contentaudit.auditdomain.catalog.UnknownAnalyzerException;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
@@ -34,12 +35,14 @@ public class IAuditEngine implements AuditEngine {
 
     /**
      * The base run: every analyzer of the catalog whose card costs INSTANT, in catalog order
-     * (today the seven classic ones). The consolidated view and the impact preview rely on it,
-     * so they compute exactly what they computed before the contract and never pay a judge.
+     * (today the seven classic ones), plus every analyzer with a model whose card has at least
+     * one instant rule, run with budget 0 so its rules always run and of its judge only what is
+     * already recorded counts (F-RONDA1-R007: today only multiple-choice-validity). The
+     * consolidated view and the impact preview rely on it, so they never pay a judge.
      */
     @Override
     public AuditReport runAudit(AuditableCourse auditableCourse) {
-        return runAudit(auditableCourse, new AnalyzerRunSelection(baseSelection(), Map.of()));
+        return runAudit(auditableCourse, new AnalyzerRunSelection(baseSelection(), basePolicies()));
     }
 
     /**
@@ -52,12 +55,18 @@ public class IAuditEngine implements AuditEngine {
      */
     @Override
     public AuditReport runAudit(AuditableCourse auditableCourse, AnalyzerRunSelection selection) {
-        List<String> requested = selection != null && selection.getAnalyzers() != null
-                ? selection.getAnalyzers()
-                : baseSelection();
+        boolean base = selection == null || selection.getAnalyzers() == null;
+        List<String> requested = base ? baseSelection() : selection.getAnalyzers();
         Map<String, EvaluationRunPolicy> policies = selection != null && selection.getPolicies() != null
                 ? selection.getPolicies()
                 : Map.of();
+        if (base) {
+            // R007: without an explicit selection it is the base run, and what the base run
+            // runs with a model runs with budget 0 unless the selection declared otherwise.
+            Map<String, EvaluationRunPolicy> merged = new LinkedHashMap<>(basePolicies());
+            merged.putAll(policies);
+            policies = merged;
+        }
 
         // Step 1: every name has to be in the catalog -- the run is rejected before anything
         // is built or touched (F-HALL-R005/R012).
@@ -111,11 +120,34 @@ public class IAuditEngine implements AuditEngine {
     private List<String> baseSelection() {
         List<String> names = new ArrayList<>();
         for (AnalyzerDescriptor card : analyzerCatalog.list()) {
-            if (card.getCost() == AnalysisCost.INSTANT) {
+            if (card.getCost() == AnalysisCost.INSTANT || hasInstantRule(card)) {
                 names.add(card.getName());
             }
         }
         return names;
+    }
+
+    /** R007: budget 0 for every analyzer of the base run that consults a model. */
+    private Map<String, EvaluationRunPolicy> basePolicies() {
+        Map<String, EvaluationRunPolicy> policies = new LinkedHashMap<>();
+        for (AnalyzerDescriptor card : analyzerCatalog.list()) {
+            if (card.getCost() != AnalysisCost.INSTANT && hasInstantRule(card)) {
+                policies.put(card.getName(), new EvaluationRunPolicy(0, false, null, null, null, null));
+            }
+        }
+        return policies;
+    }
+
+    private static boolean hasInstantRule(AnalyzerDescriptor card) {
+        if (card.getRules() == null) {
+            return false;
+        }
+        for (AnalyzerRuleCard rule : card.getRules()) {
+            if (rule != null && rule.getCost() == AnalysisCost.INSTANT) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private AuditNode buildTree(AuditableCourse course) {

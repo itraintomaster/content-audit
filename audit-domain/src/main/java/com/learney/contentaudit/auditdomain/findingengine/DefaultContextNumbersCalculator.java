@@ -5,10 +5,13 @@ import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.ContextNumbersCalculator;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
 import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerErrorCounts;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerFindingCounts;
 import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerScore;
 import com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers;
 import com.learney.contentaudit.auditdomain.contextnumbers.ErrorCounts;
+import com.learney.contentaudit.auditdomain.contextnumbers.RuleFindingCount;
 import com.learney.contentaudit.auditdomain.contextnumbers.SeverityCounts;
 import com.learney.contentaudit.auditdomain.contextnumbers.SubMetricScore;
 import com.learney.contentaudit.auditdomain.finding.Finding;
@@ -30,6 +33,14 @@ import javax.annotation.processing.Generated;
  *   <li>F-HALL-R008: the errors are counted per quiz, once, and summed up the tree; every
  *       percentage is recomputed from the sums. A finding on a container (a knowledge, as the
  *       mini-theory) counts in every quiz below it (DOUBT-HALLAZGO-DE-TEMA, option A).</li>
+ *   <li>F-RONDA1-R006: a quiz an analyzer evaluated halfway counts as evaluated, its findings
+ *       count, and it enters the analyzer's halfway count and the quizzes not fully evaluated,
+ *       so "some error" reads as a floor.</li>
+ *   <li>F-RONDA1-R005: on every knowledge, topic, level and on the course, for every analyzer
+ *       that ran -- of both families -- and every node type it evaluates at or below the context,
+ *       the nodes it reaches, evaluates and marks, its findings, the marked nodes by their highest
+ *       severity and every rule of its card with its nodes and findings. The count of a context
+ *       is the sum of its children plus the node itself when the analyzer evaluates it.</li>
  * </ul>
  */
 @Generated(
@@ -52,9 +63,10 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
         computeNode(root, cards, errorCards, new ArrayList<>());
     }
 
-    private Tally computeNode(AuditNode node, List<AnalyzerDescriptor> cards,
+    private Result computeNode(AuditNode node, List<AnalyzerDescriptor> cards,
             List<AnalyzerDescriptor> errorCards, List<AuditNode> ancestors) {
         Tally tally;
+        FindingTally findingTally = new FindingTally(cards);
         if (node.getTarget() == AuditTarget.QUIZ) {
             tally = quizTally(node, errorCards, ancestors);
         } else {
@@ -62,15 +74,28 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
             if (node.getChildren() != null) {
                 ancestors.add(node);
                 for (AuditNode child : node.getChildren()) {
-                    tally.add(computeNode(child, cards, errorCards, ancestors));
+                    Result childResult = computeNode(child, cards, errorCards, ancestors);
+                    tally.add(childResult.tally());
+                    findingTally.add(childResult.findingTally());
                 }
                 ancestors.remove(ancestors.size() - 1);
             }
         }
+        findingTally.countOwnNode(node);
+
         List<AnalyzerScore> analyzerScores = analyzerScores(node, cards);
         ErrorCounts errors = errorCards.isEmpty() ? null : tally.toErrorCounts(errorCards);
-        node.setNumbers(new ContextNumbers(vocabularyScore(analyzerScores), analyzerScores, errors, null));
-        return tally;
+        // R005: published on every knowledge, topic, level and on the course -- a quiz is the
+        // unit being counted, not a context.
+        List<AnalyzerFindingCounts> findingCounts = node.getTarget() == AuditTarget.QUIZ
+                ? null
+                : findingTally.toFindingCounts(node.getTarget());
+        node.setNumbers(new ContextNumbers(vocabularyScore(analyzerScores), analyzerScores, errors,
+                findingCounts));
+        return new Result(tally, findingTally);
+    }
+
+    private record Result(Tally tally, FindingTally findingTally) {
     }
 
     // -------------------------------------------------------------------------
@@ -115,7 +140,7 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
     }
 
     // -------------------------------------------------------------------------
-    // Errors (F-HALL-R008, R011)
+    // Errors (F-HALL-R008, R011; F-RONDA1-R006)
     // -------------------------------------------------------------------------
 
     private static Tally quizTally(AuditNode quiz, List<AnalyzerDescriptor> errorCards,
@@ -133,12 +158,14 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
 
             boolean evaluatedHere = false;
             boolean notEvaluated = false;
+            boolean partial = false;
             boolean withError = false;
             boolean marked = false;
             FindingSeverity analyzerHighest = null;
 
             // The quiz itself and every ancestor at a level the card evaluates: a finding
-            // there counts in this quiz, and so does a declaration of "not evaluated".
+            // there counts in this quiz, and so does a declaration of "not evaluated" or of
+            // "evaluated halfway".
             List<AuditNode> chain = new ArrayList<>(ancestors);
             chain.add(quiz);
             for (AuditNode node : chain) {
@@ -147,6 +174,9 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
                 }
                 if (node.getUnevaluatedBy() != null && node.getUnevaluatedBy().contains(name)) {
                     notEvaluated = true;
+                }
+                if (node.getPartiallyEvaluatedBy() != null && node.getPartiallyEvaluatedBy().contains(name)) {
+                    partial = true;
                 }
                 if (node.getScores() != null && node.getScores().containsKey(name)) {
                     evaluatedHere = true;
@@ -166,7 +196,7 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
                 }
             }
 
-            boolean reached = evaluatedHere || notEvaluated;
+            boolean reached = evaluatedHere || notEvaluated || partial;
             if (!reached) {
                 continue;
             }
@@ -176,7 +206,13 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
                 notFullyEvaluated = true;
                 continue;
             }
+            // R006: evaluated halfway is evaluated -- its findings count -- and it is also
+            // declared, so the node reads "some error" as a floor.
             tally.evaluated[i]++;
+            if (partial) {
+                tally.partiallyEvaluated[i]++;
+                notFullyEvaluated = true;
+            }
             if (withError) {
                 tally.withError[i]++;
                 anyError = true;
@@ -221,6 +257,7 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
         final int[] notEvaluated;
         final int[] withError;
         final int[] marked;
+        final int[] partiallyEvaluated;
 
         Tally(int analyzers) {
             reached = new int[analyzers];
@@ -228,6 +265,7 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
             notEvaluated = new int[analyzers];
             withError = new int[analyzers];
             marked = new int[analyzers];
+            partiallyEvaluated = new int[analyzers];
         }
 
         void add(Tally other) {
@@ -244,6 +282,7 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
                 notEvaluated[i] += other.notEvaluated[i];
                 withError[i] += other.withError[i];
                 marked[i] += other.marked[i];
+                partiallyEvaluated[i] += other.partiallyEvaluated[i];
             }
         }
 
@@ -264,11 +303,206 @@ public class DefaultContextNumbersCalculator implements ContextNumbersCalculator
             for (int i = 0; i < errorCards.size(); i++) {
                 double share = evaluated[i] > 0 ? (double) withError[i] / evaluated[i] : 0.0;
                 perAnalyzer.add(new AnalyzerErrorCounts(errorCards.get(i).getName(), reached[i],
-                        evaluated[i], notEvaluated[i], withError[i], share, marked[i], 0));
+                        evaluated[i], notEvaluated[i], withError[i], share, marked[i],
+                        partiallyEvaluated[i]));
             }
             double anyShare = quizzes > 0 ? (double) withAnyError / quizzes : 0.0;
             return new ErrorCounts(quizzes, withAnyError, anyShare,
                     new SeverityCounts(blocking, high, medium, low), notFullyEvaluated, perAnalyzer);
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Findings by severity and by rule, both families (F-RONDA1-R005)
+    // -------------------------------------------------------------------------
+
+    /**
+     * For every card that ran and every node type it evaluates, what the nodes of that type in
+     * the subtree add up to. Additive by construction (inv. 3): a context adds its children's
+     * tallies and then its own node, once, when the card evaluates its type.
+     */
+    private static final class FindingTally {
+        private final List<AnalyzerDescriptor> cards;
+        /** [card][target ordinal] */
+        private final Row[][] rows;
+
+        FindingTally(List<AnalyzerDescriptor> cards) {
+            this.cards = cards;
+            this.rows = new Row[cards.size()][AuditTarget.values().length];
+        }
+
+        void add(FindingTally other) {
+            for (int i = 0; i < rows.length; i++) {
+                for (int t = 0; t < rows[i].length; t++) {
+                    Row theirs = other.rows[i][t];
+                    if (theirs != null) {
+                        row(i, t).add(theirs);
+                    }
+                }
+            }
+        }
+
+        void countOwnNode(AuditNode node) {
+            AuditTarget target = node.getTarget();
+            if (target == null) {
+                return;
+            }
+            for (int i = 0; i < cards.size(); i++) {
+                AnalyzerDescriptor card = cards.get(i);
+                if (card.getEvaluatedTargets() == null || !card.getEvaluatedTargets().contains(target)) {
+                    continue;
+                }
+                String name = card.getName();
+                boolean evaluated = node.getScores() != null && node.getScores().containsKey(name);
+                boolean notEvaluated = node.getUnevaluatedBy() != null && node.getUnevaluatedBy().contains(name);
+                if (!evaluated && !notEvaluated) {
+                    continue;
+                }
+                Row row = row(i, target.ordinal());
+                row.reached++;
+                if (notEvaluated) {
+                    continue;
+                }
+                row.evaluated++;
+                int findings = 0;
+                FindingSeverity highest = null;
+                int[] ruleFindings = new int[row.ruleWithFinding.length];
+                if (node.getFindings() != null) {
+                    for (Finding finding : node.getFindings()) {
+                        if (!name.equals(finding.getAnalyzer())) {
+                            continue;
+                        }
+                        findings++;
+                        highest = higher(highest, finding.getSeverity());
+                        int r = ruleIndex(card, finding.getRule());
+                        if (r >= 0) {
+                            ruleFindings[r]++;
+                        }
+                    }
+                }
+                if (findings == 0) {
+                    continue;
+                }
+                row.withFinding++;
+                row.findings += findings;
+                row.countSeverity(highest);
+                for (int r = 0; r < ruleFindings.length; r++) {
+                    if (ruleFindings[r] > 0) {
+                        row.ruleWithFinding[r]++;
+                        row.ruleFindings[r] += ruleFindings[r];
+                    }
+                }
+            }
+        }
+
+        /** In catalog order, and for each card its evaluated types in the order it declares them. */
+        List<AnalyzerFindingCounts> toFindingCounts(AuditTarget context) {
+            List<AnalyzerFindingCounts> result = new ArrayList<>();
+            for (int i = 0; i < cards.size(); i++) {
+                AnalyzerDescriptor card = cards.get(i);
+                if (card.getEvaluatedTargets() == null) {
+                    continue;
+                }
+                List<AuditTarget> seen = new ArrayList<>();
+                for (AuditTarget target : card.getEvaluatedTargets()) {
+                    // Only the types that can appear in this context: its own and the ones below.
+                    if (target == null || seen.contains(target) || target.ordinal() > context.ordinal()) {
+                        continue;
+                    }
+                    seen.add(target);
+                    Row row = rows[i][target.ordinal()];
+                    if (row == null) {
+                        row = new Row(ruleCount(card));
+                    }
+                    result.add(row.toCounts(card, target));
+                }
+            }
+            return result;
+        }
+
+        private Row row(int card, int target) {
+            Row row = rows[card][target];
+            if (row == null) {
+                row = new Row(ruleCount(cards.get(card)));
+                rows[card][target] = row;
+            }
+            return row;
+        }
+
+        private static int ruleCount(AnalyzerDescriptor card) {
+            return card.getRules() != null ? card.getRules().size() : 0;
+        }
+
+        private static int ruleIndex(AnalyzerDescriptor card, String ruleId) {
+            if (card.getRules() == null || ruleId == null) {
+                return -1;
+            }
+            for (int r = 0; r < card.getRules().size(); r++) {
+                AnalyzerRuleCard rule = card.getRules().get(r);
+                if (rule != null && ruleId.equals(rule.getId())) {
+                    return r;
+                }
+            }
+            return -1;
+        }
+    }
+
+    private static final class Row {
+        int reached;
+        int evaluated;
+        int withFinding;
+        int findings;
+        int blocking;
+        int high;
+        int medium;
+        int low;
+        final int[] ruleWithFinding;
+        final int[] ruleFindings;
+
+        Row(int rules) {
+            ruleWithFinding = new int[rules];
+            ruleFindings = new int[rules];
+        }
+
+        void add(Row other) {
+            reached += other.reached;
+            evaluated += other.evaluated;
+            withFinding += other.withFinding;
+            findings += other.findings;
+            blocking += other.blocking;
+            high += other.high;
+            medium += other.medium;
+            low += other.low;
+            for (int r = 0; r < ruleWithFinding.length; r++) {
+                ruleWithFinding[r] += other.ruleWithFinding[r];
+                ruleFindings[r] += other.ruleFindings[r];
+            }
+        }
+
+        void countSeverity(FindingSeverity severity) {
+            if (severity == null) {
+                return;
+            }
+            switch (severity) {
+                case BLOCKING -> blocking++;
+                case HIGH -> high++;
+                case MEDIUM -> medium++;
+                case LOW -> low++;
+            }
+        }
+
+        AnalyzerFindingCounts toCounts(AnalyzerDescriptor card, AuditTarget target) {
+            List<RuleFindingCount> byRule = new ArrayList<>();
+            if (card.getRules() != null) {
+                for (int r = 0; r < card.getRules().size(); r++) {
+                    AnalyzerRuleCard rule = card.getRules().get(r);
+                    byRule.add(new RuleFindingCount(rule != null ? rule.getId() : null,
+                            ruleWithFinding[r], ruleFindings[r]));
+                }
+            }
+            return new AnalyzerFindingCounts(card.getName(), card.getFamily(), target, reached,
+                    evaluated, withFinding, findings, new SeverityCounts(blocking, high, medium, low),
+                    byRule);
         }
     }
 }

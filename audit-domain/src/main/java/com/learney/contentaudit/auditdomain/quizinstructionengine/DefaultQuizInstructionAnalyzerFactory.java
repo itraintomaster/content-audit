@@ -85,9 +85,12 @@ public DefaultQuizInstructionAnalyzerFactory(EvaluationSessionFactory sessionFac
         EvaluationBudget budget = new EvaluationBudget(effectivePolicy.getMaxNewEvaluations());
         EvaluationSession session = sessionFactory.open(budget, evaluator);
 
+        // FEAT-JEXAM (package C) moves the opening of the sessions to the common judge runtime;
+        // until it is built the analyzer keeps opening its own session as today, so it gets no
+        // JudgeSessions yet and the runtime it will use.
         return new QuizInstructionAnalyzer(session, new DefaultQuizInstructionSubjectBuilder(),
                 new DefaultQuizInstructionScorer(config), new DefaultQuizInstructionScopeMatcher(),
-                verdictReader, effectivePolicy);
+                verdictReader, effectivePolicy, null, runtime);
     }
 
     @Override
@@ -118,7 +121,7 @@ public DefaultQuizInstructionAnalyzerFactory(EvaluationSessionFactory sessionFac
                 AnalyzerFamily.ERRORS,
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
-                AnalysisCost.PAID_MODEL, null);
+                AnalysisCost.PAID_MODEL, "Consigna");
     }
 
     /** F-QINST-R017: its scores below 1 become QUIZ_INSTRUCTION tasks on the quiz. */

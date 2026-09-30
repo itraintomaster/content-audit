@@ -45,6 +45,15 @@ public class DefaultRefinerEngine implements RefinerEngine {
     private static final DateTimeFormatter TIMESTAMP_FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss").withZone(ZoneOffset.UTC);
 
+    /**
+     * F-NIVFR-R006 (DOUBT-TAREA-COMPARTIDA, José 30/9): an analyzer without a task kind of its own
+     * whose errors are fixed by another analyzer's task on the same node. The plan opens no task
+     * for it and declares its scores below 1 as covered by that task, never as dropped
+     * (F-HALL-R004 inv. 3; F-RONDA1-R008). Which task each new analyzer makes is package E's.
+     */
+    private static final Map<String, DiagnosisKind> COVERED_BY_TASK_OF = Map.of(
+            "off-level-words", DiagnosisKind.LEMMA_ABSENCE);
+
     // -------------------------------------------------------------------------
     // RefinerEngine
     // -------------------------------------------------------------------------
@@ -94,8 +103,10 @@ public class DefaultRefinerEngine implements RefinerEngine {
      * F-HALL-R004 inv. 3: in the errors family the plan never drops a score below 1 in
      * silence. Every node an errors analyzer evaluated below 1 that {@link #plan} does not turn
      * into a task is declared here, per analyzer: it has no task kind, its task kind is not a
-     * {@link DiagnosisKind} the plan knows, or its binding makes no tasks on that level. The
-     * vocabulary family keeps today's plan and is not declared (F-HALL-R013).
+     * {@link DiagnosisKind} the plan knows, or its binding makes no tasks on that level -- or it is
+     * covered by the task another analyzer makes on the same node, as off-level-words by the
+     * LEMMA_ABSENCE of the quiz (F-NIVFR-R006, F-RONDA1-R008). The vocabulary family keeps today's
+     * plan and is not declared (F-HALL-R013).
      */
     @Override
     public List<UnconvertedScoreCount> unconvertedScores(AuditReport report) {
@@ -179,7 +190,10 @@ public class DefaultRefinerEngine implements RefinerEngine {
         List<AuditTarget> evaluated = card.getEvaluatedTargets() != null ? card.getEvaluatedTargets() : List.of();
         Double score = node.getScores() != null ? node.getScores().get(card.getName()) : null;
         if (score != null && score < 1.0 && evaluated.contains(target)) {
-            String reason = unconvertedReason(binding, target);
+            String reason = coveredReason(card.getName(), node);
+            if (reason == null) {
+                reason = unconvertedReason(binding, target);
+            }
             if (reason != null) {
                 countsByReason.merge(reason, 1, Integer::sum);
             }
@@ -189,6 +203,25 @@ public class DefaultRefinerEngine implements RefinerEngine {
                 countUnconverted(child, card, binding, countsByReason);
             }
         }
+    }
+
+    /**
+     * The reason a score below 1 is covered by the task another analyzer makes on the same node,
+     * or null when the analyzer is not covered by another's task or the node has no such task.
+     */
+    private String coveredReason(String analyzerName, AuditNode node) {
+        DiagnosisKind coveringKind = COVERED_BY_TASK_OF.get(analyzerName);
+        if (coveringKind == null || node.getScores() == null) {
+            return null;
+        }
+        for (Map.Entry<String, Double> entry : node.getScores().entrySet()) {
+            Double other = entry.getValue();
+            if (other != null && other < 1.0 && coveringKind == taskKindAt(entry.getKey(), node.getTarget())) {
+                String where = node.getTarget() == AuditTarget.QUIZ ? "del ejercicio" : "del nodo";
+                return "cubierto por la tarea " + coveringKind.name() + " " + where;
+            }
+        }
+        return null;
     }
 
     private static String unconvertedReason(Optional<AnalyzerPlanBinding> binding, AuditTarget target) {

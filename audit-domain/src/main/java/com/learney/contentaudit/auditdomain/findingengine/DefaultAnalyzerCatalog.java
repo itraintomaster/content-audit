@@ -21,8 +21,9 @@ import javax.annotation.processing.Generated;
 
 /**
  * F-HALL-R005/R006: the one list of analyzers. Every card is read once and validated when the
- * catalog is built, at startup: an incomplete card, a duplicated name or a card whose name is
- * not the one its provider publishes never reaches a run. The registration order is the order
+ * catalog is built, at startup: an incomplete card, a duplicated name, a card without its Spanish
+ * name or with one another card already uses (F-RONDA1-R004), or a card whose name is not the
+ * one its provider publishes never reaches a run. The registration order is the order
  * of the catalog, of every run and of the findings within a node (F-HALL-R014).
  */
 @Generated(
@@ -37,6 +38,9 @@ public class DefaultAnalyzerCatalog implements AnalyzerCatalog {
     private final Map<String, AnalyzerDescriptor> cardsByName = new LinkedHashMap<>();
 
     private final Map<String, Optional<AnalyzerPlanBinding>> bindingsByName = new LinkedHashMap<>();
+
+    /** F-RONDA1-R004 inv. 1: the Spanish name of every card, to reject a second card using it. */
+    private final Map<String, String> analyzersByDisplayName = new LinkedHashMap<>();
 
     public DefaultAnalyzerCatalog(List<AnalyzerProvider> providers) {
         this.providers = providers;
@@ -91,6 +95,11 @@ public class DefaultAnalyzerCatalog implements AnalyzerCatalog {
                     "la ficha se llama '" + card.getName() + "' y su proveedor publica '" + name + "'");
         }
         validateCard(name, card);
+        String owner = analyzersByDisplayName.get(card.getDisplayName().strip());
+        if (owner != null) {
+            throw new InvalidAnalyzerCardException(name,
+                    "el nombre en castellano '" + card.getDisplayName() + "' ya es el de '" + owner + "'");
+        }
         Optional<AnalyzerPlanBinding> binding = provider.planBinding();
         if (binding == null) {
             binding = Optional.empty();
@@ -100,9 +109,13 @@ public class DefaultAnalyzerCatalog implements AnalyzerCatalog {
         providersByName.put(name, provider);
         cardsByName.put(name, card);
         bindingsByName.put(name, binding);
+        analyzersByDisplayName.put(card.getDisplayName().strip(), name);
     }
 
     private static void validateCard(String name, AnalyzerDescriptor card) {
+        // F-RONDA1-R004: every card brings its Spanish name, the one get analyzers shows next to
+        // the unique name; it never replaces the unique name (F-HALL-R005).
+        requireText(name, "displayName", card.getDisplayName());
         requireText(name, "description", card.getDescription());
         requireValue(name, "target", card.getTarget());
         requireText(name, "question", card.getQuestion());

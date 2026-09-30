@@ -71,14 +71,20 @@ final class StatsAnalyzerCmd implements StatsAnalyzerCommand, Callable<Integer> 
             defaultValue = "text")
     private String formatName;
 
-private final Map<String, DetailedFormatter> detailedFormatters;
+    /**
+     * Hooks D-11 and D-15 (FEAT-RONDA1): the detailed view an analyzer shows under its stats, read
+     * from the report the run just published and never recomputed (F-RECUR-R003). Main decides
+     * which analyzers have one here.
+     */
+    private final Map<String, DetailedFormatter> detailedFormatters;
 
-public StatsAnalyzerCmd(AnalyzerRegistry analyzerRegistry, AnalyzerStatsTransformer analyzerStatsTransformer, AuditRunner auditRunner, Map<String, DetailedFormatter> detailedFormatters) {
-    this.analyzerRegistry = analyzerRegistry;
-    this.analyzerStatsTransformer = analyzerStatsTransformer;
-    this.auditRunner = auditRunner;
-    this.detailedFormatters = detailedFormatters;
-}
+    public StatsAnalyzerCmd(AnalyzerRegistry analyzerRegistry, AnalyzerStatsTransformer analyzerStatsTransformer,
+            AuditRunner auditRunner, Map<String, DetailedFormatter> detailedFormatters) {
+        this.analyzerRegistry = analyzerRegistry;
+        this.analyzerStatsTransformer = analyzerStatsTransformer;
+        this.auditRunner = auditRunner;
+        this.detailedFormatters = detailedFormatters;
+    }
 
     @Override
     public Integer call() {
@@ -121,14 +127,22 @@ public StatsAnalyzerCmd(AnalyzerRegistry analyzerRegistry, AnalyzerStatsTransfor
                     new AuditRunRequest(Set.of(analyzerName), null, policies));
             AnalyzerStatsView view = analyzerStatsTransformer.transform(report, analyzerName, analyzerRegistry);
             String unevaluated = paidModel ? unevaluatedDeclaration(report, analyzerName) : null;
+            DetailedFormatter detailed = detailedFormatters != null ? detailedFormatters.get(analyzerName) : null;
 
             if ("json".equals(formatName)) {
                 if (unevaluated != null) {
                     System.err.println(unevaluated);
                 }
+                if (detailed != null) {
+                    return printJsonWithDetail(view, detailed.format(analyzerName, report.getRoot(), "json"));
+                }
                 return printJson(view);
             } else {
                 int code = printText(view);
+                if (detailed != null) {
+                    System.out.println();
+                    System.out.println(detailed.format(analyzerName, report.getRoot(), "text"));
+                }
                 if (unevaluated != null) {
                     System.out.println(unevaluated);
                 }
@@ -166,6 +180,22 @@ public StatsAnalyzerCmd(AnalyzerRegistry analyzerRegistry, AnalyzerStatsTransfor
         }
         System.out.println(view.toString());
         return 0;
+    }
+
+    /** One JSON document: the stats view and, next to it, the detailed view as its formatter wrote it. */
+    private int printJsonWithDetail(AnalyzerStatsView view, String detailJson) {
+        try {
+            ObjectMapper om = new ObjectMapper();
+            om.enable(SerializationFeature.INDENT_OUTPUT);
+            Map<String, Object> combined = new java.util.LinkedHashMap<>();
+            combined.put("stats", view);
+            combined.put("detail", om.readTree(detailJson));
+            System.out.println(om.writeValueAsString(combined));
+            return 0;
+        } catch (Exception e) {
+            System.err.println("Error formatting JSON: " + e.getMessage());
+            return 1;
+        }
     }
 
     private int printJson(AnalyzerStatsView view) {

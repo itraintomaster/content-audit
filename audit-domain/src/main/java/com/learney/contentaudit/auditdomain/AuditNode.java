@@ -33,6 +33,11 @@ public class AuditNode {
     // pending or failed quiz, or a model-backed analyzer whose failure the engine isolated).
     private List<String> unevaluatedBy = new ArrayList<>();
 
+    // F-RONDA1-R006: analyzers that evaluated this node with some of their rules and not all of
+    // them, as multiple-choice-validity with its judge pending. The node counts as evaluated by
+    // them and their findings count; a name is never here and in unevaluatedBy at once.
+    private List<String> partiallyEvaluatedBy = new ArrayList<>();
+
     public AuditNode() {
     }
 
@@ -128,6 +133,14 @@ public class AuditNode {
         this.unevaluatedBy = unevaluatedBy;
     }
 
+    public List<String> getPartiallyEvaluatedBy() {
+        return this.partiallyEvaluatedBy;
+    }
+
+    public void setPartiallyEvaluatedBy(List<String> partiallyEvaluatedBy) {
+        this.partiallyEvaluatedBy = partiallyEvaluatedBy;
+    }
+
     public Optional<AuditNode> ancestor(AuditTarget level) {
         AuditNode current = this.parent;
         while (current != null) {
@@ -153,12 +166,13 @@ public class AuditNode {
                     && Objects.equals(this.diagnoses, that.diagnoses)
                     && Objects.equals(this.findings, that.findings)
                     && Objects.equals(this.numbers, that.numbers)
-                    && Objects.equals(this.unevaluatedBy, that.unevaluatedBy);
+                    && Objects.equals(this.unevaluatedBy, that.unevaluatedBy)
+                    && Objects.equals(this.partiallyEvaluatedBy, that.partiallyEvaluatedBy);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(entity, target, parent, children, scores, metadata, diagnoses,
-                findings, numbers, unevaluatedBy);
+                findings, numbers, unevaluatedBy, partiallyEvaluatedBy);
     }
 }
