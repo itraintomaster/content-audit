@@ -5,6 +5,26 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Declaración de corrección por analizador (`AnalyzerCorrection`, raíz de audit-domain): alcance por
+  resolución en `ExercisePart`, cobertura, agrupar por tema, reglas de desempate y dos arreglos. La implementa cada analizador
+  en su paquete (ganchos E-03 a E-05); E escribe las de quiz-instruction y lemma-absence.
+  why: no tocar `AnalyzerProvider` (17 proveedores entre 0.3 y la ronda 1) y que sumar un analizador no toque el plan ni la tanda.
+
+2026-09-30 — architect — `RefinementTask.origin` (TaskOrigin con el hallazgo entero, nivel, tema, alcanzados y cubiertos),
+  nulo en vocabulario; la cuenta de R001 es `RefinerEngine.findingTally`, aparte, y `RefinementPlan` no cambia.
+  why: un archivo aparte junto al plan podía desalinearse; el costo son 206 + 1 construcciones con un nulo más.
+
+2026-09-30 — architect — D-04 se resuelve con `OffLevelWordsCorrection.coveringAnalyzer = lemma-absence`, no con la
+  regla general de D (que cubriría con la tarea de largo lo que el largo no arregla).
+
+2026-09-30 — analyst — R003 alineada con el paquete C y con José, 30/9 (miniteoría una vez para todos los que la muestran):
+  `mini-theory` deja un hallazgo por ejercicio con la misma marca (F-MINIT-R003); el plan los junta en una tarea por
+  miniteoría sobre el tema, con uno propio y los demás cubiertos por ella (VALIDATED).
+  why: la versión anterior suponía un hallazgo sobre el tema, que C no produce; así R001 sigue cerrando la cuenta.
+
+2026-09-30 — analyst — José, 30/9: la opción múltiple se corrige en las tandas (DOUBT-MC-REARMA A) y el desacuerdo de los
+  jueces va a la bandeja (DOUBT-QUIEN-APRUEBA A): R005 y la tabla de R006 quedan como estaban, con esa nota.
+
 2026-09-30 — analyst — Código FEAT-TAREA / F-TAREA: nuevo, sin choques en ningún worktree.
 
 2026-09-30 — analyst — «Una tarea por hallazgo» rige sólo en la familia de errores; vocabulario queda como hoy (R007).

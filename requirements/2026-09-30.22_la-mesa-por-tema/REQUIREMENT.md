@@ -76,9 +76,10 @@ juzgar. Esa medición del original es también contra la que se compara cada can
 
 > Quien propone recibe, para cada ejercicio de su mesa: el tema entero como lo ve el alumno, con lo ya aceptado en la
 > tanda; los hallazgos del ejercicio con su evidencia; el [nivel CEFR](glossary:Nivel CEFR); lo que cada tarea permite
-> tocar ([F-TAREA-R006](#F-TAREA-R006)); el semáforo de palabras del tema ([F-SEMAF-R001](#F-SEMAF-R001)); y, desde el
-> segundo intento, los motivos del rechazo anterior. Si el inglés y la traducción no dicen lo mismo, entrega dos
-> candidatos: uno que cambia sólo la traducción y otro que cambia el inglés.
+> tocar ([F-TAREA-R006](#F-TAREA-R006)); el semáforo de palabras del tema ([F-SEMAF-R001](#F-SEMAF-R001)); el encargo de
+> José sobre el tema, si lo hay ([F-MESA-R015](#F-MESA-R015)); y, desde el segundo intento, los motivos del rechazo
+> anterior. Si el inglés y la traducción no dicen lo mismo, entrega dos candidatos: uno que cambia sólo la traducción y
+> otro que cambia el inglés.
 
 Los dos arreglos son la regla que dejó el 077 («si inglés y traducción no coinciden se arman los dos arreglos»): en las
 verduras, cambiar sólo la traducción no alcanzó y cambiar el inglés sí. Quien propone nunca recibe veredictos de un
@@ -168,42 +169,51 @@ guarda el antes y el después, y el curso cambia sólo al publicar ([F-TANDA-R00
 > 1. nunca hay más de N temas abiertos ni más de C consultas en curso;
 > 2. tras una falla del servicio no empieza ninguna consulta más; las que estaban en curso se registran si el modelo
 >    respondió, y los ejercicios sin decisión quedan «sin intentar», sin gastar intentos;
-> 3. con los mismos candidatos y veredictos, las decisiones son las mismas con cualquier N y C.
+> 3. con los mismos candidatos y veredictos, las decisiones son las mismas con cualquier N y C;
+> 4. sin otro pedido, N es 4 y C es 4.
 
-Mantiene [F-JEXAM-R006](#F-JEXAM-R006) para cada juez. N y C los elige José ([DOUBT-TEMAS-A-LA-VEZ](#DOUBT-TEMAS-A-LA-VEZ)).
+Mantiene [F-JEXAM-R006](#F-JEXAM-R006) para cada juez. José eligió 4 y 4 el 30/9, las mismas 4 consultas de los jueces, y
+pasar a 8 y 8 sólo si la tanda de A1 corre sin cortes ([DOUBT-TEMAS-A-LA-VEZ](#DOUBT-TEMAS-A-LA-VEZ)): el cambio es un
+pedido al abrir la tanda, no un valor nuevo por omisión.
 
 <a id="F-MESA-R011"></a>
 ### Rule[F-MESA-R011] - Una opción múltiple sale de la mesa como opción múltiple, con una sola correcta
-**Severity**: critical | **Validation**: ASSUMPTION
+**Severity**: critical | **Validation**: VALIDATED
 
 > Un candidato de una opción múltiple sigue siendo de opción múltiple, con exactamente una opción correcta y la misma
 > cantidad de opciones; cambia la oración o la opción que sobra, y cada opción nueva, puesta en el hueco, no suma
 > palabras rojas. Lo juzgan las reglas de `multiple-choice-validity` y su juez de «otra opción también vale».
 
 Es «siempre una sola correcta, y la mesa rearma» (José, 30/9; [F-OMVAL-R001](#F-OMVAL-R001), [F-MCVALE-R007](#F-MCVALE-R007)).
-Cambia [F-OPMUL-R006](#F-OPMUL-R006) dentro de las tandas: [DOUBT-MC-REARMA](#DOUBT-MC-REARMA).
+Cambia [F-OPMUL-R006](#F-OPMUL-R006) dentro de las tandas, como decidió José el 30/9 en
+[DOUBT-MC-REARMA](#DOUBT-MC-REARMA): las reglas de forma se aplican primero ([F-TANDA-R004](#F-TANDA-R004)) y la mesa
+rearma lo que queda. Fuera de las tandas, F-OPMUL-R006 sigue valiendo.
 
 <a id="F-MESA-R012"></a>
 ### Rule[F-MESA-R012] - La miniteoría se reescribe una vez, en los ejercicios que la muestran
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: VALIDATED
 
 > La tarea de una miniteoría produce un solo candidato: el texto nuevo, que llega a todos los ejercicios del tema que
-> muestran ese texto, y a ningún otro. Lo juzga el juez de miniteoría sobre el tema como quedaría.
+> muestran ese texto, y a ningún otro. Lo juzga el juez de miniteoría sobre el tema como quedaría. La mesa la resuelve
+> antes que los candidatos de los ejercicios del tema, que ya la ven cambiada.
 
 Mantiene [F-MINIT-R007](#F-MINIT-R007). Es una segunda excepción a [F-RPRES-R003](#F-RPRES-R003), después de la del título
-([F-RPRES-R004](#F-RPRES-R004)): [DOUBT-MINITEORIA-ALCANCE](#DOUBT-MINITEORIA-ALCANCE).
+([F-RPRES-R004](#F-RPRES-R004)), que José aceptó el 30/9 ([DOUBT-MINITEORIA-ALCANCE](#DOUBT-MINITEORIA-ALCANCE)). Ir
+primero es lo que pide [F-MESA-R001](#F-MESA-R001): cada candidato del tema ve lo ya aceptado, y el juez de miniteoría lee
+los ejercicios del tema con la miniteoría nueva.
 
 <a id="F-MESA-R013"></a>
 ### Rule[F-MESA-R013] - Refutan los jueces que ya buscan un contraejemplo
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: VALIDATED
 
 > Refutar un candidato es buscarle un contraejemplo, y lo hacen los controles que ya lo buscan: otra respuesta que
 > también vale (el juez de una sola respuesta, o el de «otra opción también vale»), una palabra de otro nivel (la
 > no-regresión léxica, [F-NOEMP-R002](#F-NOEMP-R002)) y una forma que un nativo no usaría (la condición 2 de traducción y
 > sentido). Un contraejemplo que el original no tenía rechaza el candidato ([F-NOEMP-R001](#F-NOEMP-R001)).
 
-La propuesta dibuja un quinto puesto, «el abogado del diablo». Ponerlo como agente aparte suma una consulta por candidato:
-[DOUBT-QUIEN-REFUTA](#DOUBT-QUIEN-REFUTA).
+La propuesta dibuja un quinto puesto, «el abogado del diablo». Ponerlo como agente aparte sumaba una consulta por
+candidato, y José eligió el 30/9 que no haya agente nuevo ([DOUBT-QUIEN-REFUTA](#DOUBT-QUIEN-REFUTA)): si la muestra ciega
+de A1 no cumple su meta, se vuelve a preguntar.
 
 <a id="F-MESA-R014"></a>
 ### Rule[F-MESA-R014] - Fuera de una tanda, la corrección de hoy no cambia
@@ -215,6 +225,30 @@ La propuesta dibuja un quinto puesto, «el abogado del diablo». Ponerlo como ag
 Mantiene FEAT-QICOR entero, FEAT-LASAG ([F-LASAG-R007](#F-LASAG-R007)) y FEAT-KTLR. Las dos varas de «traducción fiel»
 —la comparativa de la consigna y la absoluta de la mesa— conviven, como pidió el paquete C
 ([DOUBT-TRSEN-CATALOGO](#DOUBT-TRSEN-CATALOGO), opción A).
+
+<a id="F-MESA-R015"></a>
+### Rule[F-MESA-R015] - Un tema que José manda pasar a opción múltiple sale en opción múltiple
+**Severity**: major | **Validation**: VALIDATED
+
+> Si al abrir la tanda José encarga pasar un tema a opción múltiple, la mesa de ese tema entrega, para cada ejercicio de
+> hueco para escribir, un candidato de opción múltiple que cumple:
+> 1. la opción correcta es la primera respuesta aceptada de hoy, así que la oración que se escucha no cambia;
+> 2. las otras opciones son contracciones distintas de la correcta, ninguna es la correcta en otra forma
+>    ([F-OMVAL-R002](#F-OMVAL-R002)), y hay tres opciones en total [ASSUMPTION];
+> 3. la traducción y la miniteoría no cambian; la consigna del ejercicio y la del tema pasan a pedir elegir, sin pedir
+>    una forma, y la del tema se reescribe una vez.
+>
+> Lo juzgan las reglas de `multiple-choice-validity` y su juez de «otra opción también vale», y lo decide el mismo script
+> ([F-MESA-R006](#F-MESA-R006)): se acepta si no empeora nada y cumple 1 a 3. Un ejercicio sin candidato aceptado queda
+> como estaba y va a la bandeja como sin ganador.
+
+Es la decisión de José del 30/9 para el tema «Contracciones» de A1 (40 ejercicios): «pasa a opción múltiple, con
+contracciones distintas como opciones; lo arma la mesa». En la copia del curso del 29/9 son dos temas con ese nombre, de
+20 ejercicios cada uno, todos de hueco para escribir: el de *Present Simple* y el de *Present Continuous*. Sus consignas
+de hoy piden escribir («Escribe la $short form$ de lo que está entre paréntesis.»). Cambiar el tipo de ejercicio es una
+excepción más a lo que un cambio conserva ([F-RPRES-R001](#F-RPRES-R001)), acotada a los temas encargados. Tres
+opciones es el mínimo que contrasta contracciones; hoy las opciones múltiples de A1 tienen de 2 a 6
+([DOUBT-OPCIONES-CONTRACCIONES](#DOUBT-OPCIONES-CONTRACCIONES)).
 
 ## Contexto
 
@@ -241,8 +275,8 @@ Más temas que consultas no acelera: el límite es la cuota del proveedor. Y nin
 
 ## Alcance
 
-- **Adentro**: la mesa de un tema, sus cinco puestos, la decisión, los intentos, el paralelismo, la opción múltiple y la
-  miniteoría dentro de la mesa.
+- **Adentro**: la mesa de un tema, sus cinco puestos, la decisión, los intentos, el paralelismo, la opción múltiple, la
+  miniteoría y el encargo de pasar un tema a opción múltiple dentro de la mesa.
 - **Afuera**: qué juzga cada juez y su examen (paquete C); qué marca cada regla (paquete A); el semáforo (paquete D);
   lo que se aplica con una regla, sin mesa ([F-TANDA-R004](#F-TANDA-R004)); qué es «no empeorar» (FEAT-NOEMP); la bandeja
   (FEAT-BANDEJA); el proveedor del agente que propone, que se decide con el de los jueces
@@ -306,58 +340,70 @@ journeys:
 
 <a id="DOUBT-TEMAS-A-LA-VEZ"></a>
 ### Doubt[DOUBT-TEMAS-A-LA-VEZ] - ¿Cuántos temas van a la vez, y con cuántas consultas?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
 - [ ] Opción A: un tema y 4 consultas a la vez. A1 en 5,6 h, A2 en 9,1 h, el curso en unas 38 h.
-- [ ] Opción B (recomendada): 4 temas y 4 consultas a la vez, las mismas 4 que José ya eligió para los jueces. A1 en
+- [x] Opción B (recomendada): 4 temas y 4 consultas a la vez, las mismas 4 que José ya eligió para los jueces. A1 en
   2,9 h, A2 en 4,7 h, el curso en unas 20 h.
 - [ ] Opción C: 8 temas y 8 consultas. A1 en 1,5 h, A2 en 2,4 h, el curso en unas 10 h, con más riesgo de cortes por
   cuota.
 
-**Answer**: Pendiente. Recomiendo B: es la cuota que ya se decidió para los jueces, y con 4 temas no queda capacidad
-ociosa. Pasar a C tiene sentido sólo si la tanda A1 corre sin cortes; bajar a 2 consultas si la cuota corta
-([DOUBT-JUECES-PARALELO](#DOUBT-JUECES-PARALELO)). Las horas no incluyen juzgar el nivel antes de la tanda (A1: unas
-7.300 consultas de los jueces), que es el gasto mayor.
+**Answer**: **Opción B** (José, 30/9): 4 temas y 4 consultas a la vez. Se pasa a 8 y 8 si la tanda de A1 corre sin
+cortes; se pide al abrir la tanda siguiente ([F-MESA-R010](#F-MESA-R010)). Las horas no incluyen juzgar el nivel antes
+de la tanda (A1: unas 7.300 consultas de los jueces), que es el gasto mayor.
 
 <a id="DOUBT-MC-REARMA"></a>
 ### Doubt[DOUBT-MC-REARMA] - ¿Se corrigen las opciones múltiples en las tandas?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-Contesta, para las tandas, [DOUBT-CORREGIR-MC](#DOUBT-CORREGIR-MC) de FEAT-OPMUL, que sigue abierta: hoy ninguna
-corrección toca una opción múltiple ([F-OPMUL-R006](#F-OPMUL-R006)).
+Contesta, para las tandas, [DOUBT-CORREGIR-MC](#DOUBT-CORREGIR-MC) de FEAT-OPMUL, que sigue abierta fuera de ellas: hoy
+ninguna corrección toca una opción múltiple ([F-OPMUL-R006](#F-OPMUL-R006)).
 
-- [ ] Opción A (recomendada): sí. Las reglas de forma (en `escribir/`, 170 de los 186 casos de A1 y A2 son mayúsculas)
+- [x] Opción A (recomendada): sí. Las reglas de forma (en `escribir/`, 170 de los 186 casos de A1 y A2 son mayúsculas)
   y la mesa cuando hay dos correctas, como dijo José («la mesa rearma»): sigue siendo opción múltiple, con una sola
   correcta y la misma cantidad de opciones ([F-MESA-R011](#F-MESA-R011)).
 - [ ] Opción B: sólo las reglas de forma; las dos correctas esperan.
 - [ ] Opción C: ninguna; los 315 ejercicios de opción múltiple con error siguen contados, sin arreglo.
 
-**Answer**: Pendiente. Recomiendo A: es lo que José ya eligió en el paquete A (C de DOUBT-CORREGIR-MC: corregir el
-ejercicio entero, con el juez vetando distractores que también valen). F-OPMUL-R006 sigue valiendo fuera de las tandas.
+**Answer**: **Opción A** (José, 30/9): reglas de forma más mesa; sigue siendo opción múltiple, con una sola correcta y la
+misma cantidad de opciones. Dentro de las tandas cambia F-OPMUL-R006; fuera, sigue valiendo. José sumó ese día un
+encargo: el tema «Contracciones» de A1 pasa a opción múltiple con contracciones distintas como opciones, y lo arma la mesa
+([F-MESA-R015](#F-MESA-R015)).
 
 <a id="DOUBT-MINITEORIA-ALCANCE"></a>
 ### Doubt[DOUBT-MINITEORIA-ALCANCE] - ¿La reescritura de una miniteoría puede tocar varios ejercicios a la vez?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): sí, a todos los del tema que muestran ese texto y a ninguno más: una segunda excepción a
+- [x] Opción A (recomendada): sí, a todos los del tema que muestran ese texto y a ninguno más: una segunda excepción a
   [F-RPRES-R003](#F-RPRES-R003), como la del título.
 - [ ] Opción B: no; una propuesta por ejercicio, con el mismo texto repetido.
 - [ ] Opción C: las miniteorías quedan fuera de las tandas.
 
-**Answer**: Pendiente. Recomiendo A: el error es uno y se arregla una vez (335 ejercicios del 077, en pocos temas); con B,
-José aprobaría 40 veces lo mismo en *In time u on time*, y un texto podría quedar a medias.
+**Answer**: **Opción A** (José, 30/9): la miniteoría se reescribe una vez para todos los ejercicios que la muestran; es
+la segunda excepción a F-RPRES-R003 ([F-MESA-R012](#F-MESA-R012)).
 
 <a id="DOUBT-QUIEN-REFUTA"></a>
 ### Doubt[DOUBT-QUIEN-REFUTA] - ¿El que refuta es un agente aparte?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): no: refutan los controles que ya buscan contraejemplos ([F-MESA-R013](#F-MESA-R013)), y la
+- [x] Opción A (recomendada): no: refutan los controles que ya buscan contraejemplos ([F-MESA-R013](#F-MESA-R013)), y la
   muestra ciega dice si hace falta más.
 - [ ] Opción B: sí, un agente por candidato: una consulta más por candidato, un 20 % más (A1: unas 2.600 consultas en vez
   de 2.200, y 0,6 h más con 4 a la vez).
 
-**Answer**: Pendiente. Recomiendo A: las tres cosas que busca el abogado del diablo ya tienen quien las busque, y dos de
-ellas sin modelo. Si la muestra ciega de la tanda A1 no cumple su meta ([F-CIEGA-R004](#F-CIEGA-R004)), se suma B.
+**Answer**: **Opción A** (José, 30/9): sin agente nuevo que refute. Si la muestra ciega de la tanda A1 no cumple su meta
+([F-CIEGA-R004](#F-CIEGA-R004)), se vuelve a preguntar por B.
+
+<a id="DOUBT-OPCIONES-CONTRACCIONES"></a>
+### Doubt[DOUBT-OPCIONES-CONTRACCIONES] - ¿Cuántas opciones lleva un ejercicio de «Contracciones» pasado a opción múltiple?
+**Status**: OPEN
+
+- [ ] Opción A (recomendada): tres, la correcta y dos contracciones distintas: el mínimo que las contrasta.
+- [ ] Opción B: cuatro, como el 29 % de las opciones múltiples de A1 (209 de 710).
+- [ ] Opción C: las que la mesa crea necesarias, entre dos y cuatro.
+
+**Answer**: Pendiente. Recomiendo A: con tres hay contraste y menos riesgo de que dos opciones valgan, que en *Present
+Continuous* es real («isn't» y «'s not» valen las dos). Hasta que José conteste, rige A ([F-MESA-R015](#F-MESA-R015)).
 
 ## References
 

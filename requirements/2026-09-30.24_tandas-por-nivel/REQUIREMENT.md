@@ -47,12 +47,18 @@ el plan, las propuestas pendientes, la proyección única del paquete F y la apr
 > del curso que dejó la tanda anterior, para las demás— y toma del plan de ese análisis:
 > 1. todas las tareas de la familia de errores de ese nivel con resolución *regla* o *mesa*;
 > 2. las tareas `LEMMA_ABSENCE` que cubren un hallazgo de errores de ese nivel ([F-TAREA-R004](#F-TAREA-R004));
-> 3. ninguna otra tarea de vocabulario.
+> 3. ninguna otra tarea de vocabulario;
+> 4. los encargos de José sobre temas del nivel que pide al abrirla, como pasar un tema a opción múltiple
+>    ([F-MESA-R015](#F-MESA-R015)).
 >
-> Al abrir declara, por analizador, cuántos ejercicios del nivel quedaron sin evaluar ([F-HALL-R008](#F-HALL-R008)).
+> Al abrir declara, por analizador, cuántos ejercicios del nivel quedaron sin evaluar ([F-HALL-R008](#F-HALL-R008)). La
+> línea base queda fija mientras las tandas avanzan: cada tanda la hereda de la anterior, y sólo cambia su punto de
+> partida, que es el análisis que dejó la última publicada.
 
 Las 3.051 tareas de largo y el resto del vocabulario quedan fuera a propósito: José decidió el 11/8 que el largo no
-rechaza una corrección, el 077 no corrigió largos, y triplicarían el trabajo de la mesa. Siguen con `revise` como hoy.
+rechaza una corrección, el 077 no corrigió largos, y triplicarían el trabajo de la mesa. Siguen con `revise` como hoy. La
+línea base fija es la que mide el vocabulario acumulado ([F-NOEMP-R006](#F-NOEMP-R006)); el punto de partida, los
+hallazgos y los conteos de la tanda ([F-NOEMP-R005](#F-NOEMP-R005)).
 
 <a id="F-TANDA-R002"></a>
 ### Rule[F-TANDA-R002] - Una sola tanda abierta, y cada tarea en una sola tanda
@@ -91,8 +97,8 @@ Mantiene [F-JEXAM-R004](#F-JEXAM-R004) (cada juez dice cuánto cuesta, sin consu
 Son las reglas que fija cada analizador: la mayúscula en todas las opciones ([F-OMVAL-R003](#F-OMVAL-R003)), la forma
 que falta con «|» ([F-RESPC-R005](#F-RESPC-R005)), la pista que sale de la respuesta ([F-PISTA-R005](#F-PISTA-R005)), la
 oración guardada que se rearma y la «/» que pasa a «|» ([F-DATOS-R001](#F-DATOS-R001), [F-DATOS-R002](#F-DATOS-R002)). Las
-de opción múltiple dependen de [DOUBT-MC-REARMA](#DOUBT-MC-REARMA). Van primero porque son baratas y porque la mesa
-revalida contra el ejercicio ya arreglado ([F-MESA-R002](#F-MESA-R002)).
+de opción múltiple entran: José tomó la A de [DOUBT-MC-REARMA](#DOUBT-MC-REARMA) el 30/9. Van primero porque son baratas
+y porque la mesa revalida contra el ejercicio ya arreglado ([F-MESA-R002](#F-MESA-R002)).
 
 <a id="F-TANDA-R005"></a>
 ### Rule[F-TANDA-R005] - Después, las mesas de sus temas
@@ -107,14 +113,20 @@ revalida contra el ejercicio ya arreglado ([F-MESA-R002](#F-MESA-R002)).
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > Cuando todas sus tareas tienen desenlace, o se llegó al tope, la tanda aplica todos sus cambios aceptados a una copia
-> del curso, corre el análisis completo con todos los analizadores del catálogo y pasa la compuerta por tanda
-> ([F-NOEMP-R005](#F-NOEMP-R005) a [F-NOEMP-R008](#F-NOEMP-R008)). Si frena, recalcula sin lo devuelto hasta que pase.
-> Una tarea está resuelta cuando la identidad de su hallazgo ya no aparece en el curso recalculado.
+> del curso del que partió, corre el análisis completo con los mismos analizadores que ese análisis y pasa la compuerta
+> por tanda ([F-NOEMP-R005](#F-NOEMP-R005) a [F-NOEMP-R008](#F-NOEMP-R008)). Si frena, recalcula sin lo devuelto hasta
+> que pase. Invariantes:
+> 1. la copia lleva las propuestas pendientes de la tanda y ninguna otra, aunque el plan tenga otras pendientes;
+> 2. una tarea está resuelta cuando la identidad de su hallazgo, y las de los hallazgos que cubre, ya no aparecen en el
+>    curso recalculado.
 
-La copia y el análisis son la proyección única del paquete F ([F-PROYU-R001](#F-PROYU-R001)), y la comparación con la
-línea base es la suya ([F-METAS-R001](#F-METAS-R001)): la tanda no calcula por su cuenta. Los jueces reutilizan
-lo que juzgaron en la mesa ([F-JEXAM-R005](#F-JEXAM-R005)); se paga sólo lo que cambió y nadie juzgó, como la miniteoría
-de cada tema tocado (una consulta por tema). El análisis sin jueces tarda unos 38 segundos (medido).
+La copia y el análisis son la proyección única del paquete F ([F-PROYU-R001](#F-PROYU-R001)), y la comparación es la
+suya ([F-METAS-R001](#F-METAS-R001)): la tanda no calcula por su cuenta. Lo que la tanda le pasa a F es qué es la tanda:
+sus propuestas pendientes, el análisis del que partió y la línea base fija; no «las pendientes del plan activo», que
+pueden incluir correcciones de vocabulario hechas con `revise` fuera de la tanda. Los jueces reutilizan lo que juzgaron
+en la mesa ([F-JEXAM-R005](#F-JEXAM-R005)); se paga sólo lo que cambió y nadie juzgó, como la miniteoría de cada tema
+tocado (una consulta por tema). El análisis sin jueces tarda unos 38 segundos con el caché de hoy, y unos 5 con un caché
+por oración (medido el 30/9).
 
 <a id="F-TANDA-R007"></a>
 ### Rule[F-TANDA-R007] - Una tanda interrumpida se retoma donde quedó
@@ -131,10 +143,16 @@ Mantiene [F-EVCOST-R004](#F-EVCOST-R004) (cada resultado queda disponible apenas
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
 > Mientras la tanda no se publica, José puede sacar un cambio, o todos los de una regla: su propuesta queda rechazada,
-> el ejercicio queda como estaba y su tarea vuelve a pendiente. La tanda se recalcula y vuelve a pasar la compuerta.
+> el ejercicio queda como estaba antes de ese cambio y su tarea vuelve a pendiente. La tanda se recalcula y vuelve a
+> pasar la compuerta. Invariantes:
+> 1. los cambios posteriores del mismo ejercicio que tocaron lo mismo que el que sale, salen con él, y el informe los
+>    nombra; los que tocaron otras partes se conservan [ASSUMPTION];
+> 2. sacar un cambio de un ejercicio no saca la miniteoría reescrita de su tema, que se saca sólo por sí misma.
 
 Mantiene [F-REVAPR-R012](#F-REVAPR-R012): rechazar no toca el curso. Es lo que hace reversibles a las reglas antes de que
-nada entre al curso.
+nada entre al curso. Un cambio de la mesa se armó y se juzgó sobre el ejercicio con las reglas ya aplicadas: si comparte
+partes con el que sale, ya no se puede sostener solo ([DOUBT-SACAR-ENCADENADO](#DOUBT-SACAR-ENCADENADO)). Lo que se
+conserva se vuelve a medir y a juzgar al recalcular.
 
 <a id="F-TANDA-R009"></a>
 ### Rule[F-TANDA-R009] - Publicar aplica todo junto, y sólo así cambia el curso
@@ -146,7 +164,8 @@ nada entre al curso.
 > 2. sus tareas quedan completadas;
 > 3. el análisis del curso publicado da los mismos hallazgos y números que el recálculo que pasó la compuerta, y es desde
 >    donde abre la tanda siguiente;
-> 4. no escribe en producción.
+> 4. la línea base no se mueve ([F-TANDA-R001](#F-TANDA-R001));
+> 5. no escribe en producción.
 
 Mantiene [F-REVAPR-R011](#F-REVAPR-R011) (aprobar aplica al curso) y la preservación de FEAT-RPRES al aplicar. Llevar el
 curso a producción y regrabar los audios siguen siendo pasos de José, fuera de content-audit.
@@ -157,8 +176,9 @@ curso a producción y regrabar los audios siguen siendo pasos de José, fuera de
 
 > El informe de una tanda da cuántas tareas terminaron resueltas por regla, resueltas por la mesa, ya no se sostienen,
 > cubiertas, sin ganador, en desempate, devueltas sin intentos, sin alcance declarado y sin intentar, y la suma da sus
-> tareas. Da además, por analizador y nivel, los ejercicios con error antes y después; la lista de audios para
-> regrabar; las consultas gastadas por puesto y las horas; y las decisiones de José.
+> tareas. Da aparte cuántos ejercicios de cada encargo de José quedaron hechos y cuántos sin ganador. Da además, por
+> analizador y nivel, los ejercicios con error antes y después; la lista de audios para regrabar; las consultas gastadas
+> por puesto y las horas; y las decisiones de José.
 
 Sigue a [F-QICOR-R008](#F-QICOR-R008), que ya distingue sus desenlaces y los hace cerrar contra lo intentado.
 
@@ -170,7 +190,9 @@ cambio. Cada propuesta de la tanda conserva su vista previa ([F-PIPRE-R001](#F-P
 ([F-PIPRE-R011](#F-PIPRE-R011)); la tanda suma lo que ninguna vista previa ve: todos los cambios juntos. Con el caché de
 hoy cada vista previa cuesta lo mismo que un análisis con una oración cambiada, unos 38 segundos (medido), porque
 cambiar una oración vuelve a tokenizar el curso entero: para unas 2.900 propuestas son unas 30 horas de cómputo, sin
-modelos. Con el curso ya tokenizado, el mismo análisis tarda 1,7 segundos.
+modelos. Con el curso ya tokenizado, el mismo análisis tarda 1,7 segundos (2,4 re-medido el 30/9 con `analyze` desde la
+línea de comandos). Los 4 segundos que midió el paquete F son otra cosa: `get consolidated` con el curso en caché, que
+carga el informe activo, corre el motor dos veces y compara cada nodo.
 
 **Qué reusa y qué suma el paquete E, pieza por pieza.** Lo que cambia una decisión existente va como duda, nunca como
 efecto colateral.
@@ -179,14 +201,14 @@ efecto colateral.
 |---|---|---|---|
 | El plan | tareas, estados, `get tasks`, `get task` | una tarea por hallazgo de errores, cubiertas y filtros (FEAT-TAREA) | se mantienen F-RCLA-R001, F-HALL-R004 y F-HALL-R013 |
 | `revise` | propuestas pendientes, artefactos, `approve` y `reject` | la mesa como forma de producir propuestas dentro de la tanda (FEAT-MESA) | se mantiene: `revise`, `revise-instructions` y `assess-candidate` no cambian fuera de las tandas |
-| La preservación | lo que no se declara no se toca (FEAT-RPRES) | lo que puede tocar cada tipo nuevo, unido por ejercicio | cambia F-RPRES-R003 para la miniteoría: [DOUBT-MINITEORIA-ALCANCE](#DOUBT-MINITEORIA-ALCANCE) |
+| La preservación | lo que no se declara no se toca (FEAT-RPRES) | lo que puede tocar cada tipo nuevo, unido por ejercicio | cambia F-RPRES-R003 para la miniteoría (José, 30/9: [DOUBT-MINITEORIA-ALCANCE](#DOUBT-MINITEORIA-ALCANCE)) |
 | La revalidación | la de la consigna (F-QICOR-R009) y el reuso de veredictos | para todo analizador, antes de proponer | se mantiene |
 | La no-regresión léxica | la de F-LASAG-R007 y la consulta léxica | veta en la mesa y se cuenta por nivel en la tanda (FEAT-NOEMP) | se mantiene; en la mesa pasa a vetar |
 | Los jueces | los del paquete C, con candidato y consultas a la vez (F-JEXAM-R005, R006) | juzgar el ejercicio como queda, dentro de la mesa | se mantiene |
 | La vista previa | una por propuesta (F-PIPRE-R001) | el recálculo de todos los cambios juntos, al cerrar | se mantiene |
 | La proyección | la única del paquete F | la compuerta y lo que se devuelve | se mantiene |
-| La opción múltiple | sus reglas y su juez (paquetes A y C) | corregirla en la tanda | cambia F-OPMUL-R006: [DOUBT-MC-REARMA](#DOUBT-MC-REARMA) |
-| La aprobación | el modo humano: todo queda pendiente | un solo OK por tanda, desde la bandeja (FEAT-BANDEJA) | se mantiene: [DOUBT-QUIEN-APRUEBA](#DOUBT-QUIEN-APRUEBA) |
+| La opción múltiple | sus reglas y su juez (paquetes A y C) | corregirla en la tanda, y el encargo de «Contracciones» | cambia F-OPMUL-R006 dentro de las tandas (José, 30/9: [DOUBT-MC-REARMA](#DOUBT-MC-REARMA)) |
+| La aprobación | el modo humano: todo queda pendiente | un solo OK por tanda, desde la bandeja (FEAT-BANDEJA) | se mantiene (José, 30/9: [DOUBT-QUIEN-APRUEBA](#DOUBT-QUIEN-APRUEBA)) |
 
 **Una tanda de A1, de punta a punta** (estimado con los casos de `escribir/` y el ritmo medido de los jueces):
 
@@ -248,9 +270,25 @@ journeys:
 
 ## Open Questions
 
-Las dos decisiones de José que pasan por la tanda están en sus requirements: cuántos temas y consultas van a la vez
-([DOUBT-TEMAS-A-LA-VEZ](#DOUBT-TEMAS-A-LA-VEZ), en FEAT-MESA) y quién aprueba qué antes de publicar
-([DOUBT-QUIEN-APRUEBA](#DOUBT-QUIEN-APRUEBA), en FEAT-BANDEJA).
+Las dos decisiones de José que pasan por la tanda están en sus requirements y las contestó el 30/9: 4 temas y 4
+consultas a la vez ([DOUBT-TEMAS-A-LA-VEZ](#DOUBT-TEMAS-A-LA-VEZ), en FEAT-MESA) y la mesa acepta, José decide la
+bandeja ([DOUBT-QUIEN-APRUEBA](#DOUBT-QUIEN-APRUEBA), en FEAT-BANDEJA).
+
+<a id="DOUBT-SACAR-ENCADENADO"></a>
+### Doubt[DOUBT-SACAR-ENCADENADO] - Si José saca un cambio, ¿qué pasa con los que se armaron encima?
+**Status**: OPEN
+
+Un ejercicio puede tener un cambio por regla (la mayúscula de una opción) y, después, uno de la mesa (la oración), que se
+juzgó sobre el ejercicio con la regla aplicada.
+
+- [ ] Opción A (recomendada): salen con él los cambios posteriores del mismo ejercicio que tocaron lo mismo; los que
+  tocaron otras partes se conservan y se vuelven a medir y juzgar al recalcular. La miniteoría del tema no sale.
+- [ ] Opción B: sale todo lo del ejercicio en la tanda, y sus tareas vuelven a pendiente.
+- [ ] Opción C: no se puede sacar un cambio que otro usó; primero hay que sacar el de encima.
+
+**Answer**: Pendiente. Recomiendo A: sacar la regla de mayúsculas no tira la oración que arregló la mesa si no la tocó, y
+lo que se conserva pasa otra vez por los jueces al recalcular. B descarta trabajo pagado; C obliga a José a deshacer en
+orden. Hasta que conteste, rige A ([F-TANDA-R008](#F-TANDA-R008)).
 
 ## References
 

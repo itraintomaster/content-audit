@@ -79,16 +79,19 @@ El [tipo de diagnóstico](glossary:Tipo de diagnóstico) sigue siendo uno por an
 su ficha, [F-HALL-R006](#F-HALL-R006)); lo que distingue a dos tareas del mismo tipo en un ejercicio es su hallazgo.
 
 <a id="F-TAREA-R003"></a>
-### Rule[F-TAREA-R003] - Un hallazgo de tema es una tarea del tema
-**Severity**: major | **Validation**: AUTO_VALIDATED
+### Rule[F-TAREA-R003] - Una miniteoría con problema es una sola tarea, del tema
+**Severity**: major | **Validation**: VALIDATED
 
-> Un hallazgo cuyo nodo es el tema, como el de una miniteoría falsa, da una sola tarea, sobre el tema y nunca una por
-> ejercicio, y esa tarea nombra los ejercicios que alcanza.
+> Los hallazgos que una misma miniteoría deja en los ejercicios de un tema que la muestran —mismo analizador, misma marca,
+> mismo tema— dan una sola tarea, sobre el tema y nunca una por ejercicio. Esa tarea nombra los ejercicios que alcanza,
+> lleva uno de esos hallazgos como propio y declara los demás cubiertos por ella ([F-TAREA-R001](#F-TAREA-R001)).
 
-Mantiene [F-MINIT-R007](#F-MINIT-R007) («se resuelve una vez por tema») y la decisión de José del 30/9 de que la
-miniteoría cuenta sólo donde se muestra: los ejercicios que alcanza son los que muestran ese texto. Los números del
-contexto siguen contándolo en cada uno de esos ejercicios ([F-HALL-R008](#F-HALL-R008)); lo que no se multiplica es el
-trabajo: la miniteoría se arregla una vez.
+Mantiene [F-MINIT-R007](#F-MINIT-R007) («se resuelve una vez por miniteoría») y dos decisiones de José del 30/9: la
+miniteoría cuenta sólo donde se muestra, así que `mini-theory` deja un hallazgo en cada ejercicio que la muestra,
+identificado por su texto ([F-MINIT-R003](#F-MINIT-R003)); y se reescribe una vez para todos esos ejercicios
+([DOUBT-MINITEORIA-ALCANCE](#DOUBT-MINITEORIA-ALCANCE)). Los números del contexto siguen contándolo en cada ejercicio
+([F-HALL-R008](#F-HALL-R008)); lo que no se multiplica es el trabajo. Un tema con dos miniteorías con problema tiene dos
+tareas: hay 1.488 miniteorías en el curso, no una por tema.
 
 <a id="F-TAREA-R004"></a>
 ### Rule[F-TAREA-R004] - Lo que ya marca otra tarea no abre una segunda
@@ -130,12 +133,12 @@ así que su corrección no podría cambiar nada; la regla lo vuelve visible en v
 |---|---|---|
 | `hint-coherence` | regla; mesa si está mal la respuesta | la pista; en la mesa, también las respuestas y el audio |
 | `answer-completeness` | regla | las respuestas aceptadas (agrega con «\|») |
-| `multiple-choice-validity` | regla (mayúsculas); mesa (dos correctas) | las opciones; en la mesa, también el enunciado, la traducción y el audio |
+| `multiple-choice-validity` | regla (mayúsculas); mesa (dos correctas; sigue siendo opción múltiple, José 30/9) | las opciones; en la mesa, también el enunciado, la traducción y el audio |
 | `data-coherence` | regla; mesa si el audio no coincide | la oración guardada, la «/» de las respuestas, el pedido de regrabar |
 | `exact-duplicates` | mesa | el ejercicio que sobra entero, con su audio |
 | `translation-sense` | mesa | la traducción, o el inglés con su audio (los dos arreglos) |
 | `single-answer` | regla (otra forma); mesa | las respuestas, la pista o la oración con su audio |
-| `mini-theory` | mesa, una vez por tema | la miniteoría de los ejercicios del tema que la muestran |
+| `mini-theory` | mesa, una vez por miniteoría | la miniteoría de los ejercicios del tema que la muestran |
 | `quiz-instruction` | mesa | lo que alcanza hoy la corrección de consigna ([F-QICOR-R003](#F-QICOR-R003)) |
 | `off-level-words` | cubierto por `LEMMA_ABSENCE` | lo que alcanza hoy la [corrección de lemas](glossary:Corrección de lemas) |
 

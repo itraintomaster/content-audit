@@ -5,6 +5,20 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — La bandeja es una vista que arma content-audit y convierte cada respuesta en un ajuste de la tanda
+  (`BatchService.adjust`); la muestra ciega es la de F (`BlindSampleService`, `BlindPairView`, `PairAnswer`), sin puerto propio.
+
+2026-09-30 — architect — Lo decidido se recuerda con la identidad del hallazgo y la huella del ejercicio como lo ve el
+  alumno, con el `ContentFingerprinter` del libro de evaluaciones: revision-domain pasa a depender de evaluation-ledger-domain.
+
+2026-09-30 — analyst — José, 30/9: DOUBT-QUIEN-APRUEBA → A (la mesa acepta; José decide desempates y sin ganador, mira
+  las muestras y publica con un solo OK).
+
+2026-09-30 — analyst — Orden de la bandeja alineado con F (DOUBT-QUIEN-CIEGA A, José 30/9): primero la muestra ciega y,
+  mientras no se cierra, nada más de la tanda; después las decisiones por gravedad; al final las muestras de regla (R001,
+  R005, J001 reordenado).
+  why: si José ve un cambio en otra cosa de la bandeja antes de la ciega, deja de ser ciega.
+
 2026-09-30 — analyst — La muestra ciega es la de FEAT-CIEGA (paquete F): la bandeja sólo la presenta; publicar exige el
   veredicto «pasa» de F-METAS-R008 además de la compuerta.
   why: F ya define sorteo, tamaño, respuestas y margen; repetirlo acá daba dos definiciones.

@@ -41,11 +41,16 @@ regla y muestra ciega—, una decisión por cosa, y publicar la tanda entera con
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > La bandeja de la tanda abierta lista todo lo que la tanda necesita de José, y nada más. Cada cosa dice su clase
-> —desempate, sin ganador, muestra de una regla o muestra ciega—, muestra el ejercicio como lo ve el alumno y dice qué se
-> le pregunta y con qué respuestas. Primero van las que piden una decisión, por gravedad; después, las muestras.
+> —muestra ciega, desempate, sin ganador o muestra de una regla—, muestra el ejercicio como lo ve el alumno y dice qué se
+> le pregunta y con qué respuestas. El orden es:
+> 1. primero, la muestra ciega; mientras no se cierra, la bandeja no muestra nada más de la tanda;
+> 2. después, las que piden una decisión —desempates y sin ganador—, por gravedad;
+> 3. al final, las muestras de cada regla.
 
 La bandeja es de content-audit: el tablero (paquete G) la dibuja, no la arma ([F-HALL-R010](#F-HALL-R010), regla 5 del
-brief 089).
+brief 089). La ciega va primero para que siga siendo ciega: si José ya vio un cambio en otra cosa de la bandeja, sabe
+cuál es el nuevo. Es la opción A de [DOUBT-QUIEN-CIEGA](#DOUBT-QUIEN-CIEGA) del paquete F, que José tomó el 30/9: la
+responde José antes de abrir la tanda en la bandeja.
 
 <a id="F-BANDEJA-R002"></a>
 ### Rule[F-BANDEJA-R002] - Un desempate muestra los dos veredictos y lo resuelve José
@@ -90,8 +95,9 @@ reglas: mayúsculas de la opción múltiple, formas que faltan, la pista y los d
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > La muestra ciega de la tanda —la que sortea, muestra y cuenta el paquete F ([F-CIEGA-R001](#F-CIEGA-R001) a
-> [F-CIEGA-R004](#F-CIEGA-R004))— se responde desde la bandeja, par por par, y su resultado entra al veredicto de la
-> tanda ([F-METAS-R008](#F-METAS-R008)). La bandeja no sortea ni cuenta por su cuenta.
+> [F-CIEGA-R004](#F-CIEGA-R004))— se responde desde la bandeja, par por par y antes que todo lo demás
+> ([F-BANDEJA-R001](#F-BANDEJA-R001)), y su resultado entra al veredicto de la tanda ([F-METAS-R008](#F-METAS-R008)). La
+> bandeja no sortea ni cuenta por su cuenta.
 
 Su tamaño, su meta y quién la responde los decide José en el paquete F ([DOUBT-QUIEN-CIEGA](#DOUBT-QUIEN-CIEGA),
 [DOUBT-TAMANO-CIEGA](#DOUBT-TAMANO-CIEGA)). Es «la única medida que no depende de ningún agente» (propuesta v2) y la que
@@ -160,16 +166,20 @@ journeys:
     name: Vaciar la bandeja y publicar la tanda
     flow:
       - id: abrir_bandeja
-        action: "José pide la bandeja de la tanda abierta y ve primero lo que hay que decidir, por gravedad"
+        action: "José pide la bandeja de la tanda abierta y ve sólo la muestra ciega, sin ningún otro cambio de la tanda"
         gate: [F-BANDEJA-R001]
+        then: ciega
+      - id: ciega
+        action: "José responde la muestra ciega par por par y la cierra"
+        gate: [F-BANDEJA-R005]
         then: decidir
       - id: decidir
-        action: "José contesta los desempates y los ejercicios sin ganador"
-        gate: [F-BANDEJA-R002, F-BANDEJA-R003, F-BANDEJA-R006]
+        action: "La bandeja muestra ahora los desempates y los ejercicios sin ganador, por gravedad, y José los contesta"
+        gate: [F-BANDEJA-R001, F-BANDEJA-R002, F-BANDEJA-R003, F-BANDEJA-R006]
         then: muestras
       - id: muestras
-        action: "José mira la muestra de cada regla y hace la muestra ciega"
-        gate: [F-BANDEJA-R004, F-BANDEJA-R005]
+        action: "José mira la muestra de cada regla"
+        gate: [F-BANDEJA-R004]
         outcomes:
           - when: "Las muestras de regla quedan aprobadas y la compuerta pasa con las decisiones incorporadas"
             then: publicar
@@ -189,17 +199,18 @@ journeys:
 
 <a id="DOUBT-QUIEN-APRUEBA"></a>
 ### Doubt[DOUBT-QUIEN-APRUEBA] - ¿Quién aprueba qué antes de publicar una tanda?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): la mesa acepta lo que pasa la compuerta; José decide sólo los desempates y los sin
+- [x] Opción A (recomendada): la mesa acepta lo que pasa la compuerta; José decide sólo los desempates y los sin
   ganador, aprueba la muestra de cada regla, hace la muestra ciega y publica con un solo OK. En A1, unas 200 cosas.
 - [ ] Opción B: José aprueba cada cambio, como el modo humano de hoy ([F-REVAPR-R007](#F-REVAPR-R007)): unas 450
   aprobaciones en A1 y unas 2.900 en el curso.
 - [ ] Opción C: todo automático salvo desempates y sin ganador, sin muestras: más rápido, pero sin ninguna medida que no
   dependa de un agente.
 
-**Answer**: Pendiente. Recomiendo A: el criterio de José va a lo que necesita criterio, y la muestra ciega mide a la mesa
-entera en vez de confiar en ella. B vuelve al problema de hoy; C deja la calidad de la corrección sin testigo.
+**Answer**: **Opción A** (José, 30/9): la mesa acepta; José decide los desempates y los ejercicios sin ganador, mira las
+muestras y publica con un solo OK. La muestra ciega va primero ([F-BANDEJA-R001](#F-BANDEJA-R001)), alineado con la
+opción A de [DOUBT-QUIEN-CIEGA](#DOUBT-QUIEN-CIEGA) del paquete F.
 
 ## References
 

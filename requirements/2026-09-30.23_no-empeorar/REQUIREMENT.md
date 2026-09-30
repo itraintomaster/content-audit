@@ -80,10 +80,12 @@ no suma ninguna y queda.
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
 > Un cambio que deja el ejercicio fuera del rango de largo de su nivel no se rechaza por eso: la decisión declara el largo
-> medido y el rango, y el cambio cuenta en el largo del nivel al cerrar la tanda ([F-NOEMP-R006](#F-NOEMP-R006)).
+> medido y el rango, y el cambio cuenta en el largo del nivel al cerrar la tanda ([F-NOEMP-R006](#F-NOEMP-R006)). Un
+> hallazgo nuevo de largo nunca devuelve un cambio, ni en la mesa ni al cerrar la tanda.
 
 Mantiene [F-QICOR-R011](#F-QICOR-R011) y la decisión de José del 11/8: «es más importante que el ejercicio esté bien
-escrito que si entra o no en el rango».
+escrito que si entra o no en el rango». La última oración es la reconciliación con el paquete F del 30/9: un cambio vuelve
+por palabras de otro nivel y por errores, nunca por el largo ([DOUBT-NO-EMPEORAR](#DOUBT-NO-EMPEORAR)).
 
 <a id="F-NOEMP-R004"></a>
 ### Rule[F-NOEMP-R004] - Lo que se escucha cambia sólo declarado
@@ -99,16 +101,19 @@ Regrabar es trabajo fuera de content-audit y tiene que hacerse antes de que el t
 
 ### Grupo B — Por tanda, con el curso recalculado
 
-La tanda no compara por su cuenta: lee la comparación de su proyección con la línea base que publica el paquete F
+La tanda no compara por su cuenta: lee la comparación de su proyección que publica el paquete F
 ([F-METAS-R001](#F-METAS-R001), [F-METAS-R003](#F-METAS-R003)). Estas reglas dicen qué tiene que decir esa comparación
-para que la tanda no empeore; son los pisos por defecto que propone F ([F-METAS-R005](#F-METAS-R005)).
+para que la tanda no empeore; son los pisos por defecto que propone F ([F-METAS-R005](#F-METAS-R005)). Hay dos puntos de
+referencia: los hallazgos y los conteos se comparan con el análisis del que partió la tanda —el último publicado—, y el
+vocabulario, con la línea base fijada antes de la primera tanda, que no se mueve al publicar.
 
 <a id="F-NOEMP-R005"></a>
 ### Rule[F-NOEMP-R005] - Al cerrar una tanda, ningún error nuevo y ningún conteo que suba
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> La tanda pasa esta regla sólo si, en su comparación con la línea base:
-> 1. ningún nodo que la tanda cambió gana un hallazgo que cuente como error ni una palabra roja;
+> La tanda pasa esta regla sólo si, en su comparación con el análisis del que partió:
+> 1. ningún nodo que la tanda cambió gana un hallazgo que cuente como error ni una palabra roja; un hallazgo nuevo de
+>    largo no cuenta acá ([F-NOEMP-R003](#F-NOEMP-R003));
 > 2. en ningún nodo sube la cantidad de ejercicios con error de ningún analizador, ni la de «algún error», ni la de
 >    bloqueantes ([F-HALL-R008](#F-HALL-R008));
 > 3. en ningún nivel sube la cantidad de ejercicios con palabras rojas.
@@ -122,14 +127,15 @@ tema que cambiaron, o un ejercicio que ahora contradice la miniteoría. La 3 es 
 
 <a id="F-NOEMP-R006"></a>
 ### Rule[F-NOEMP-R006] - Al cerrar una tanda, el vocabulario baja como mucho medio punto
-**Severity**: critical | **Validation**: ASSUMPTION
+**Severity**: critical | **Validation**: VALIDATED
 
 > Cada analizador de vocabulario, en cada nivel y en el curso, y el puntaje de vocabulario de cada nivel y del curso
 > ([F-HALL-R009](#F-HALL-R009)), quedan como mucho 0,5 puntos por debajo de la línea base fijada antes de la primera
 > tanda. La tolerancia es acumulada: la gasta la suma de todas las tandas, no cada una.
 
 Es el piso por defecto de vocabulario de [F-METAS-R005](#F-METAS-R005) y la tolerancia de la propuesta («el vocabulario no
-puede bajar más de medio punto en ningún nivel»); el valor lo confirma José en [DOUBT-NO-EMPEORAR](#DOUBT-NO-EMPEORAR).
+puede bajar más de medio punto en ningún nivel»); José confirmó el valor y que sea acumulado el 30/9
+([DOUBT-NO-EMPEORAR](#DOUBT-NO-EMPEORAR)).
 
 <details><summary>Cuánto es medio punto (medido sobre la base del 29/9)</summary>
 
@@ -166,7 +172,8 @@ y la miniteoría del tema ([F-MESA-R012](#F-MESA-R012)).
 
 > Si falla [F-NOEMP-R005](#F-NOEMP-R005), [F-NOEMP-R006](#F-NOEMP-R006) o [F-NOEMP-R007](#F-NOEMP-R007), la tanda no se
 > publica y la compuerta devuelve a la mesa los cambios responsables:
-> 1. el de cada nodo que la comparación marca como que vuelve: donde aparece el hallazgo nuevo o la palabra roja nueva;
+> 1. el de cada nodo que la comparación marca como que vuelve: donde aparece el error nuevo o la palabra roja nueva, y
+>    nunca por un hallazgo nuevo de largo ([F-NOEMP-R003](#F-NOEMP-R003));
 > 2. para un número fuera de su piso, los cambios que la comparación ordena por cuánto lo empeoran solos
 >    ([F-METAS-R004](#F-METAS-R004)), del primero en adelante, hasta que vuelva a entrar.
 >
@@ -175,7 +182,8 @@ y la miniteoría del tema ([F-MESA-R012](#F-MESA-R012)).
 
 Es «lo que empeora se devuelve» (brief 089). Devolver no cuesta consultas nuevas: el ejercicio vuelve a su contenido de
 antes, cuyos veredictos ya están ([F-EVCOST-R003](#F-EVCOST-R003)). Recalcular el curso entero tarda unos 38 segundos
-(medido; 1,7 si ninguna oración cambió).
+(medido; 1,7 a 2,4 si ninguna oración cambió), porque hoy cambiar una oración vuelve a tokenizar el curso entero; con el
+caché por oración que piden E y F, unos 5 (2,4 del análisis más 2,2 de un solo lanzamiento de spaCy, medidos el 30/9).
 
 <a id="F-NOEMP-R009"></a>
 ### Rule[F-NOEMP-R009] - La compuerta es determinista y dice por qué
@@ -217,11 +225,15 @@ medio punto queda sólo para el vocabulario, que es un promedio a propósito.
 **Con el paquete F.** F publica la comparación, sus pisos y metas y el veredicto de la tanda (FEAT-METAS), la proyección
 única (FEAT-PROYU) y la muestra ciega (FEAT-CIEGA). Este requirement dice qué es empeorar: en la mesa, para cada cambio
 (grupo A, que F no ve), y en la tanda, qué pisos tiene que cumplir esa comparación (grupo B), que coinciden con los que
-F propone por defecto. Hay una diferencia: F recomienda devolver también un cambio que gana un hallazgo de largo
-(opción A de [DOUBT-VUELVE-VOCABULARIO](#DOUBT-VUELVE-VOCABULARIO)); acá el largo se declara y sólo cuenta en el piso del
-nivel ([F-NOEMP-R003](#F-NOEMP-R003)), que es su opción C: vuelve la palabra de otro nivel, de gravedad media, y no el
-largo, de gravedad baja ([DOUBT-GRAVEDAD-EXISTENTES](#DOUBT-GRAVEDAD-EXISTENTES)). Las metas de avance —menos de 5 % de ejercicios con error, 90 % en la muestra ciega—
-dicen adónde se quiere llegar y no deciden.
+F propone por defecto. José contestó las dos preguntas con la recomendada el 30/9: la A de
+[DOUBT-VUELVE-VOCABULARIO](#DOUBT-VUELVE-VOCABULARIO) —un cambio vuelve también por un hallazgo nuevo de vocabulario,
+«grandmother» vuelve— y la A de [DOUBT-NO-EMPEORAR](#DOUBT-NO-EMPEORAR). Se reconcilian así: un cambio vuelve por palabras
+de otro nivel y por errores, y el largo nunca devuelve un cambio ([F-NOEMP-R003](#F-NOEMP-R003)); se declara y cuenta sólo
+en el piso del nivel. La palabra de otro nivel es de gravedad media y el largo, baja
+([DOUBT-GRAVEDAD-EXISTENTES](#DOUBT-GRAVEDAD-EXISTENTES)). Para que las dos compuertas digan lo mismo,
+[F-METAS-R003](#F-METAS-R003) tiene que exceptuar el largo como exceptúa lo que sólo ordena: queda anotado para el
+integrador. Las metas de avance —menos de 5 % de ejercicios con error, 90 % en la muestra ciega— dicen adónde se quiere
+llegar y no deciden.
 
 ## Alcance
 
@@ -272,9 +284,9 @@ journeys:
 
 <a id="DOUBT-NO-EMPEORAR"></a>
 ### Doubt[DOUBT-NO-EMPEORAR] - ¿Qué significa «no empeorar»?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): lo de este requirement. Por cambio: ningún error nuevo, ninguna palabra roja nueva y lo que
+- [x] Opción A (recomendada): lo de este requirement. Por cambio: ningún error nuevo, ninguna palabra roja nueva y lo que
   se escucha sólo declarado; el largo se declara. Por tanda: ninguna identidad nueva ni ningún conteo que suba, y cada
   número de vocabulario, como mucho 0,5 puntos bajo la línea base, acumulado. Si frena, vuelve sólo lo que empeora.
 - [ ] Opción B: sólo los números por analizador y nivel, con 0,5 de tolerancia también para los errores. No ve
@@ -282,10 +294,12 @@ journeys:
 - [ ] Opción C: la A, pero con tolerancia 0 en vocabulario. Un solo ejercicio de B2 que sale del rango por un token baja
   el largo del nivel unos 0,01 puntos y ya frena: el largo vuelve a decidir, contra lo que José decidió el 11/8.
 
-**Answer**: Pendiente. Recomiendo A: cuenta por ejercicio lo que un promedio esconde, deja el medio punto sólo para lo
-que es promedio a propósito, y no descarta la tanda por un cambio. Se contesta junto con
-[DOUBT-VUELVE-VOCABULARIO](#DOUBT-VUELVE-VOCABULARIO) y [DOUBT-METAS](#DOUBT-METAS) de FEAT-METAS (paquete F): esta A es
-su opción C —un hallazgo nuevo de largo no devuelve el cambio (José, 11/8)— y sus pisos por defecto.
+**Answer**: **Opción A** (José, 30/9). Por cambio: ningún error nuevo, ninguna palabra roja nueva salvo las que enseña el
+tema, el largo se declara y no veta (José, 11/8), y el audio que cambia lleva su pedido de regrabar. Por tanda: la
+comparación de F, ningún conteo que suba, el vocabulario baja 0,5 como mucho, acumulado, y nada fuera de la tanda cambia.
+José tomó también la A de [DOUBT-VUELVE-VOCABULARIO](#DOUBT-VUELVE-VOCABULARIO) (FEAT-METAS): un cambio vuelve por un
+hallazgo nuevo de vocabulario. Las dos se reconcilian en [F-NOEMP-R003](#F-NOEMP-R003) y
+[F-NOEMP-R005](#F-NOEMP-R005): vuelve por palabras de otro nivel y por errores; el largo nunca devuelve un cambio.
 
 ## References
 
