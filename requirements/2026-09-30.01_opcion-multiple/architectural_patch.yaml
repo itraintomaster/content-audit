@@ -5,7 +5,10 @@ description: "Deuda de 83228e54 (FEAT-OPMUL): declara en sentinel.yaml lo que el
   \ nuevos en FormEntity, QuizTemplateEntity, AuditableQuiz, QuizInstructionSubjectView\
   \ y QuizInstructionCorrectionRunReport; el desenlace MULTIPLE_CHOICE_UNSUPPORTED\
   \ en tres enums; y el registro de FEAT-OPMUL. No agrega comportamiento ni cambia\
-  \ firmas de interfaces."
+  \ firmas de interfaces.; qa-tester: traza las 8 reglas de FEAT-OPMUL a 32 handwrittenTests\
+  \ (27 portan un test MC existente de 83228e54, 5 son nuevos) y ubica F-OPMUL-J001\
+  \ a J003. Declarar un test es llevar su cuerpo a la clase {Impl}Test: generate ignora\
+  \ className y sourceFile."
 modules:
 - name: course-domain
   models:
@@ -91,6 +94,51 @@ modules:
         \ F-OPMUL-R002)."
       _change: add
     _change: modify
+  packages:
+  - name: quizsentenceengine
+    implementations:
+    - name: DefaultQuizSentenceConverter
+      handwrittenTests:
+      - name: should keep the data the system does not interpret of the base form
+          when a corrected quiz sentence is parsed onto it
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R002
+      - name: "should derive the plain sentence of a multiple choice quiz as its stem\
+          \ with the text of the correct option in the gap, as written"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+      - name: should derive for a multiple choice quiz the same plain sentence as
+          the CLOZE whose only accepted answer is its correct option
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+      - name: should keep the sentence before the gap in the plain sentence of a multiple
+          choice quiz even when its knowledge is in REWRITE mode
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+      - name: should take a pipe inside the correct option of a multiple choice quiz
+          as literal text and derive a single plain sentence
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+      - name: should leave the quiz sentence of a multiple choice form empty instead
+          of failing on its gap without options
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+      - name: should fail to derive the plain sentence of a multiple choice quiz that
+          has no correct option
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+      - name: should fail to derive the plain sentence of a multiple choice quiz that
+          has more than one gap
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
   _change: modify
 - name: audit-domain
   models:
@@ -118,6 +166,35 @@ modules:
         _change: add
       _change: modify
     _change: modify
+  - name: quizinstructionengine
+    implementations:
+    - name: DefaultQuizInstructionSubjectBuilder
+      handwrittenTests:
+      - name: "should show the judge every option of a multiple choice quiz in its\
+          \ gap, in the order the student sees them, with the correct one marked"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R005
+      - name: should render a multiple choice quiz for the judge on the revalidation
+          and candidate path exactly as on the analysis path
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R005
+      - name: should give different judged content to two multiple choice quizzes
+          that differ only in their correct option
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R005
+      - name: should render a CLOZE quiz for the judge character for character as
+          it did before multiple choice existed
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R005
+      - name: "should render a quiz whose gap has no options and that carries no multiple\
+          \ choice options the CLOZE way, as before"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R005
   _change: modify
 - name: revision-domain
   models:
@@ -162,7 +239,144 @@ modules:
         _change: add
       _change: modify
     _change: modify
+  - name: engine
+    implementations:
+    - name: DefaultRevisionEngine
+      handwrittenTests:
+      - name: "should reject revising a task on a multiple choice quiz before any\
+          \ reviser runs, writing nothing but the plan and leaving the task SKIPPED"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R006
+    - name: DefaultQuizInstructionCorrectionRunner
+      handwrittenTests:
+      - name: "should count a task on a multiple choice quiz apart, neither corrected\
+          \ nor failed, and leave it SKIPPED at the end of the run"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R006
+    - name: DefaultQuizInstructionCandidateAssessor
+      handwrittenTests:
+      - name: should declare the consultation unavailable for a task on a multiple
+          choice quiz without judging any candidate
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R006
+    - name: DefaultProposalDecisionService
+      handwrittenTests:
+      - name: should leave undecided and unapplied a proposal on a quiz that is multiple
+          choice in today's course even if the proposal saw it as a CLOZE
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R006
+      - name: should leave undecided and unapplied a proposal whose corrected quiz
+          is itself multiple choice
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R006
+      - name: should write nothing when approving a correction would drop the data
+          the system does not interpret that the quiz carries in today's course
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R008
+    - name: DefaultCourseElementLocator
+      handwrittenTests:
+      - name: should change nothing but the title of a multiple choice sibling when
+          aligning quiz titles to a corrected knowledge label
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R002
+    - name: DefaultLemmaAbsenceProposalDeriver
+      handwrittenTests:
+      - name: should keep the quiz and form data the system does not interpret when
+          deriving the lexical correction of a CLOZE quiz
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R002
+  - name: preservationengine
+    implementations:
+    - name: DefaultPreservationCheck
+      handwrittenTests:
+      - name: should report a violation when a correction drops the data the system
+          does not interpret or changes the multiple choice options the reference
+          carries
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R008
+      - name: should not take as a violation the absence of options or of data the
+          system does not interpret in a reference recorded before they existed
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R008
+    - name: DefaultPreservationRepair
+      handwrittenTests:
+      - name: "should never restore a multiple choice quiz from a snapshot recorded\
+          \ when it was a CLOZE, leaving its options and its data as they are"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R007
+      - name: should report a multiple choice quiz that lost its options as unrepairable
+          without filling them in
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R007
+      - name: should keep the data the system does not interpret of a CLOZE quiz when
+          repairing it from a snapshot that did not know them
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R008
   _change: modify
+- name: course-infrastructure
+  implementations:
+  - name: FileSystemCourseRepository
+    handwrittenTests:
+    - name: should write every file of a course with multiple choice quizzes back
+        byte for byte when it is loaded and saved without changes
+      traceability:
+        feature: FEAT-OPMUL
+        rule: F-OPMUL-R001
+    - name: "should keep selection and items on a form that is not multiple choice\
+        \ as data it does not interpret, with their value, when saving"
+      traceability:
+        feature: FEAT-OPMUL
+        rule: F-OPMUL-R002
+    - name: "should write back the quiz and form data it does not interpret after\
+        \ the data it does, with their value and in their original order"
+      traceability:
+        feature: FEAT-OPMUL
+        rule: F-OPMUL-R002
+- name: audit-application
+  implementations:
+  - name: CourseToAuditableMapper
+    handwrittenTests:
+    - name: should map a course that mixes CLOZE and multiple choice quizzes without
+        failing and hand every quiz to measurement
+      traceability:
+        feature: FEAT-OPMUL
+        rule: F-OPMUL-R003
+    - name: should map a quiz whose form declares a kind the system does not recognize
+        exactly like a CLOZE quiz
+      traceability:
+        feature: FEAT-OPMUL
+        rule: F-OPMUL-R003
+    - name: should measure a multiple choice quiz on the plain sentence stored with
+        it and never on one derived during the audit
+      traceability:
+        feature: FEAT-OPMUL
+        rule: F-OPMUL-R004
 features:
 - id: FEAT-OPMUL
   code: F-OPMUL
+  journeys:
+  - id: F-OPMUL-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-application
+    testPackage: com.learney.contentaudit.auditapplication
+  - id: F-OPMUL-J002
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine
+  - id: F-OPMUL-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

@@ -43,3 +43,15 @@
 
 2026-09-30 — architect — Glosario: dos sugerencias (Ejercicio de opcion multiple sobre MultipleChoiceEntity, Dato no interpretado sobre FormEntity) y ningun domainLink.
   why: ningun termino existente cubre los dos conceptos que usan todas las reglas; promoverlos es del analista.
+
+2026-09-30 — qa-tester — Declarar un test MC existente = portar su cuerpo al stub que generate crea en {Impl}Test y borrar el original de la clase *MultipleChoiceTest.
+  why: generate ignora className/sourceFile (el stub va siempre a {Impl}Test) y el reporte busca {Impl}Test.{nombre normalizado}; declararlos "en su lugar" deja stubs rojos duplicados.
+
+2026-09-30 — qa-tester — 32 handwrittenTests: 27 portan tests de 83228e54 y 5 son nuevos (R002 orden al guardar, R003 kind desconocido = CLOZE, R004 la auditoria lee la oracion guardada, R006 propuesta cuyo quiz ya es MC, R008 approve que perderia datos de hoy). 12 tests MC quedan sin declarar.
+  why: OG1; solo se traza lo que verifica la regla. Los 12 son soporte de carga, internos de modelo o guardas de FEAT-QSENT, y las clausulas sin test van como test nuevo.
+
+2026-09-30 — qa-tester — Journeys: J001 en audit-application (com.learney.contentaudit.auditapplication), J002 en revision-domain (...revisiondomain.engine), J003 en audit-cli (com.learney.contentaudit.journeys).
+  why: modulo con visibilidad a todos los participantes y paquete exacto; mismo criterio que F-QINST-J003/J004, F-REVBYP-J001 y F-RPRES-J001..J003.
+
+2026-09-30 — qa-tester — Los 2 tests de CourseElementFieldDiff (helper estatico no declarado) se declaran en DefaultPreservationCheck y se portan por verify().
+  why: handwrittenTests solo cuelgan de implementaciones declaradas.

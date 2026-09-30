@@ -20,3 +20,15 @@
 2026-09-30 — architect — Con el parche (simulado): verify deja de marcar los 3 enums y marca 25 derivas (FormEntity, QuizTemplateEntity, AuditableQuiz, QuizInstructionSubjectView, RunReport por 1 comentario, 2 tests generados y docs administradas). generate real aborta por J001-J003 sin testModule; si corriera, tocaria 8 implementaciones (4 sin compilar) y dejaria unas 420 llamadas de tests con aridad vieja.
 
 2026-09-30 — architect — Proximo paso: José (1) aplica el parche y corre verify y mvn test, sin generate; (2) decide como cerrar la brecha de los 4 modelos y de las 5 llamadas a constructores de copia; (3) recien despues @qa-tester ubica J001-J003 y traza los 39 tests MC; (4) generate y verificacion completa.
+
+2026-09-30 — qa-tester — patch propose OK sobre esta carpeta, fusionado con el del arquitecto (3 altas, 23 modificaciones, 0 conflictos; `patch validate` igual). Aporte: 32 handwrittenTests en 12 implementaciones y J001-J003 ubicados. No aplicado.
+  why: José eligio la opcion A (adaptar el codigo al generador), asi que tests y ubicacion van en el mismo parche para aplicar una sola vez.
+
+2026-09-30 — qa-tester — Simulacion en memoria de apply + generate, escribiendo solo en scratch: los 32 tests aterrizan, J001-J003 quedan ubicados, `feature status` OK, 8/8 reglas [covered]. generate crearia 3 journey tests (12 caminos) y 32 stubs en 12 {Impl}Test existentes, sin choques de nombre.
+
+2026-09-30 — qa-tester — Censo (JavaParser) de tests que rompe generate: 419 llamadas en 83 archivos. Son 288 AuditableQuiz 9->10, 82 FormEntity 5->7, 32 QuizTemplateEntity 21->22, 7 QuizInstructionSubjectView 6->7, 5 constructores de copia y 5 formKind(). De ellas, 4 se regeneran solas (FileSystemCourseRepositorySentinelTest) y quedan 415 a mano en 82 archivos; en main hay 20.
+
+2026-09-30 — qa-tester — Al aplicar aparece un aviso esperado: "Rule F-OPMUL-R00x has no test coverage". No bloquea.
+  why: TestCoverageValidator solo cuenta tests declarativos de implementaciones de raiz; la cobertura real la da `tool listModules --with-coverage`.
+
+2026-09-30 — qa-tester — Proximo paso: José resuelve las dudas de traza (OG1) y aplica sin --as; despues corre generate. El equipo de implementacion adapta el codigo y los 415 sitios. @test-writer porta 27 cuerpos, borra los originales y escribe los 5 nuevos y los 12 caminos. Meta: ~1.713 tests en verde (1.696 + 5 + 12).
