@@ -34,6 +34,7 @@ TEMAS = [
     (r"base del curso|backup|línea base", "Base del curso y línea base"),
     (r"consigna|qicor|juez", "Consignas"),
     (r"audio", "Audios"),
+    (r"opción múltiple", "Opción múltiple"),
     (r"", "Otros"),
 ]
 # Ejemplo real, del proyecto impostor:
