@@ -145,7 +145,7 @@ public class QuizInstructionContextResolverTest {
                 List.of(), "quiz-1", "Present Perfect", "Q1", "Ya he desayunado.",
                 List.of("I have eaten breakfast already."),
                 "I ____ [have eaten|'ve eaten] (eat) breakfast already.",
-                "Complete with present perfect", parts("have eaten", "'ve eaten"));
+                "Complete with present perfect", parts("have eaten", "'ve eaten"), null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(quiz), "Present Perfect", "Complete with present perfect", true,
                 "know-1", "Present Perfect", "PP", null, "Verb Tenses");
@@ -200,15 +200,15 @@ public class QuizInstructionContextResolverTest {
         AuditableQuiz targetQuiz = new AuditableQuiz(
                 List.of(), "quiz-2a", "Present Perfect", "Q2A", "Ya he desayunado.",
                 List.of("I have eaten breakfast already."), targetQuizSentence,
-                "Complete with present perfect", parts("have eaten", "'ve eaten"));
+                "Complete with present perfect", parts("have eaten", "'ve eaten"), null);
         AuditableQuiz sibling1 = new AuditableQuiz(
                 List.of(), "quiz-2b", "Present Perfect", "Q2B", "Ya ha almorzado.",
                 List.of("She has eaten lunch already."), sibling1QuizSentence,
-                "Complete with present perfect", parts("has eaten", "'s eaten"));
+                "Complete with present perfect", parts("has eaten", "'s eaten"), null);
         AuditableQuiz sibling2 = new AuditableQuiz(
                 List.of(), "quiz-2c", "Present Perfect", "Q2C", "Ya se han ido.",
                 List.of("They have left already."), sibling2QuizSentence,
-                "Complete with present perfect", parts("have left", "'ve left"));
+                "Complete with present perfect", parts("have left", "'ve left"), null);
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(targetQuiz, sibling1, sibling2), "Present Perfect",

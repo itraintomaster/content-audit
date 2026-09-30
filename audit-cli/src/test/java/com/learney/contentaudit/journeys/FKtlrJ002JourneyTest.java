@@ -203,7 +203,7 @@ public class FKtlrJ002JourneyTest {
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella lee libros sobre temas avanzados.",
                 List.of("She reads books about advanced topics."),
-                BEFORE_QUIZ_SENTENCE, null, null);
+                BEFORE_QUIZ_SENTENCE, null, null, null);
 
         AuditNode courseNode = buildCourseNode();
         AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone);
@@ -219,7 +219,7 @@ public class FKtlrJ002JourneyTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("reads")),
                 new SentencePartEntity(SentencePartKind.TEXT, "(read) books about advanced topics.", null)
-        ));
+        ), null, null);
         QuizTemplateEntity quiz = new QuizTemplateEntity(
                 QUIZ_ID, QUIZ_ID, "CLOZE", "knowledge-ktlr-j002",
                 "She reads books about advanced topics.",
@@ -227,7 +227,7 @@ public class FKtlrJ002JourneyTest {
                 "Ella lee libros sobre temas avanzados.",
                 "basics.01.Reading", "Reading Comprehension",
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
-                List.of("She reads books about advanced topics."));
+                List.of("She reads books about advanced topics."), null);
         return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
     }
 

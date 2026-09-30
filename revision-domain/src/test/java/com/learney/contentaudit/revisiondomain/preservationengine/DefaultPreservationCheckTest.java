@@ -81,7 +81,7 @@ public class DefaultPreservationCheckTest {
 
     private static FormEntity form(String kind, double incidence, String label, String name,
                                     SentencePartEntity... parts) {
-        return new FormEntity(kind, incidence, label, name, Arrays.asList(parts));
+        return new FormEntity(kind, incidence, label, name, Arrays.asList(parts), null, null);
     }
 
     private static QuizTemplateEntity quiz(String id, String knowledgeId, String title,

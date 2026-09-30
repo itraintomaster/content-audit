@@ -116,7 +116,7 @@ public class FLapsJ004JourneyTest {
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella utiliza vocabulario avanzado.",
                 List.of("She uses advanced vocabulary."),
-                "She ____ [uses] (use) advanced vocabulary.", null, null);
+                "She ____ [uses] (use) advanced vocabulary.", null, null, null);
 
         AbsentLemma absent = new AbsentLemma(
                 new LemmaAndPos("advanced", "ADJ"), CefrLevel.B2,
@@ -168,7 +168,7 @@ public class FLapsJ004JourneyTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("uses")),
                 new SentencePartEntity(SentencePartKind.TEXT, "(use) advanced vocabulary.", null)
-        ));
+        ), null, null);
         QuizTemplateEntity quiz = new QuizTemplateEntity(
                 QUIZ_ID, QUIZ_ID, "CLOZE", "knowledge-laps-j004",
                 "She uses advanced vocabulary.",
@@ -176,7 +176,7 @@ public class FLapsJ004JourneyTest {
                 "Ella utiliza vocabulario avanzado.",
                 "basics.01.Vocabulary", "Vocabulary",
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
-                List.of("She uses advanced vocabulary."));
+                List.of("She uses advanced vocabulary."), null);
         return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
     }
 

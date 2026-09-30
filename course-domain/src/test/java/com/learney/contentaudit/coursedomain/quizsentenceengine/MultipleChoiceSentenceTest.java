@@ -44,7 +44,7 @@ class MultipleChoiceSentenceTest {
             items.add(new MultipleChoiceItemEntity(label, 0.0, label));
         }
         items.add(new MultipleChoiceItemEntity(correct, 1.0, correct));
-        FormEntity form = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", Arrays.asList(parts));
+        FormEntity form = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", Arrays.asList(parts), null, null);
         form.setMultipleChoice(new MultipleChoiceEntity("SINGLE", items));
         return form;
     }
@@ -59,14 +59,14 @@ class MultipleChoiceSentenceTest {
     @Test
     @DisplayName("A CLOZE form still serializes exactly as before")
     void serializeClozeUnchanged() {
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of(text("She"), cloze("is"), text("English.")));
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of(text("She"), cloze("is"), text("English.")), null, null);
         assertEquals("She ____ [is] English.", converter.serialize(form));
     }
 
     @Test
     @DisplayName("A CLOZE gap without options still fails fast (R004): only multiple choice is exempt")
     void clozeWithoutOptionsStillFails() {
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of(text("She"), gap(), text("English.")));
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of(text("She"), gap(), text("English.")), null, null);
         assertThrows(QuizSentenceSerializationException.class, () -> converter.serialize(form));
         assertThrows(QuizSentenceSerializationException.class, () -> converter.toPlainSentences(form));
     }
@@ -84,7 +84,7 @@ class MultipleChoiceSentenceTest {
     void plainSentenceMatchesEquivalentCloze() {
         FormEntity mc = multipleChoice("loudly", List.of("loud"), text("She sang"), gap(), text("(loud / loudly)."));
         FormEntity cloze = new FormEntity("CLOZE", 1.0, "", "",
-                List.of(text("She sang"), cloze("loudly"), text("(loud / loudly).")));
+                List.of(text("She sang"), cloze("loudly"), text("(loud / loudly).")), null, null);
         assertEquals(converter.toPlainSentences(cloze, SentenceMode.FILL),
                 converter.toPlainSentences(mc, SentenceMode.FILL));
         assertEquals(List.of("She sang loudly."), converter.toPlainSentences(mc, SentenceMode.FILL));
@@ -123,7 +123,7 @@ class MultipleChoiceSentenceTest {
     @Test
     @DisplayName("parseOnto keeps what the DSL does not encode: the multiple-choice payload and the unmodeled fields of the base")
     void parseOntoKeepsNewFields() {
-        FormEntity base = new FormEntity("CLOZE", 1.0, "", "", List.of(text("She"), cloze("is"), text("English.")));
+        FormEntity base = new FormEntity("CLOZE", 1.0, "", "", List.of(text("She"), cloze("is"), text("English.")), null, null);
         MultipleChoiceEntity payload = new MultipleChoiceEntity("SINGLE",
                 List.of(new MultipleChoiceItemEntity("is", 1.0, "is")));
         base.setMultipleChoice(payload);

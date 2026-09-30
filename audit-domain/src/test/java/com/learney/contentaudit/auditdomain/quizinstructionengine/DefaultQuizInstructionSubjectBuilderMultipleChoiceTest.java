@@ -62,7 +62,7 @@ class DefaultQuizInstructionSubjectBuilderMultipleChoiceTest {
 
     private static AuditableQuiz quiz(List<SentencePartEntity> parts) {
         return new AuditableQuiz(List.of(), "q1", "Be", "", null, List.of("She is English."), null,
-                "Elige la forma de be.", parts);
+                "Elige la forma de be.", parts, null);
     }
 
     private static MultipleChoiceEntity choices(String correct) {
@@ -106,7 +106,7 @@ class DefaultQuizInstructionSubjectBuilderMultipleChoiceTest {
     @Test
     @DisplayName("The revalidation and candidate path renders a multiple-choice quiz exactly as the analysis does")
     void viewPathRendersMultipleChoiceLikeTheAnalysis() {
-        FormEntity form = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", stem(null));
+        FormEntity form = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", stem(null), null, null);
         form.setMultipleChoice(choices("is"));
         QuizTemplateEntity template = new QuizTemplateEntity();
         template.setId("q1");

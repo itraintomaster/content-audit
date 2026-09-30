@@ -86,7 +86,7 @@ class MultipleChoiceRevisionTest {
         FormEntity form = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", List.of(
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", null),
-                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)));
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
         form.setMultipleChoice(new MultipleChoiceEntity("SINGLE", List.of(
                 new MultipleChoiceItemEntity("am", 0.0, "am"),
                 new MultipleChoiceItemEntity("is", 1.0, "is"))));
@@ -227,7 +227,7 @@ class MultipleChoiceRevisionTest {
         FormEntity oldCloze = new FormEntity("CLOZE", 1.0, "", "", List.of(
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("was")),
-                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)));
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
         CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, "mc-1", quiz("mc-1", oldCloze), null);
         RevisionProposal proposal = new RevisionProposal("p-1", "task-1", PLAN_ID, "audit-mc",
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, "mc-1", after, after, "old", "lemma-absence-llm",
@@ -286,7 +286,7 @@ class MultipleChoiceRevisionTest {
         FormEntity cloze = new FormEntity("CLOZE", 1.0, "", "", List.of(
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("is")),
-                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)));
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
         Map<String, Object> formExtra = new LinkedHashMap<>();
         formExtra.put("futureKey", "kept");
         cloze.setUnmodeledFields(formExtra);

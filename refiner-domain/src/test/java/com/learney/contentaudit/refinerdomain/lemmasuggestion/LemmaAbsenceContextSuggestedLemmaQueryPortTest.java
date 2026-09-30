@@ -159,7 +159,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
     private AuditableQuiz buildQuiz(String id) {
         return new AuditableQuiz(List.of(), id, null, null,
-                "El gato duerme.", List.of("The cat sleeps."), null, null, null);
+                "El gato duerme.", List.of("The cat sleeps."), null, null, null, null);
     }
 
     private DefaultLevelDiagnoses buildMilestoneDiagnoses(CefrLevel level, List<AbsentLemma> absentLemmas) {

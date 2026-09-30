@@ -56,11 +56,11 @@ public class InstructionComplianceCriterionTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She ", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(clozeOption)),
                 new SentencePartEntity(SentencePartKind.TEXT, " breakfast every morning.", null));
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts, null, null);
         return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1", "Daily routines",
                 "Complete with the past simple form", "Ella desayuno todas las mañanas.",
                 "milestone.1.routines", "Daily Routines", form, 0.0, 0.0, 0.0, "", "", "", "", "",
-                "", "", List.of(sentenceText));
+                "", "", List.of(sentenceText), null);
     }
 
     private static CourseElementSnapshot snapshot(QuizTemplateEntity quiz) {
@@ -83,7 +83,7 @@ public class InstructionComplianceCriterionTest {
         QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
         CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("eats"));
         QuizInstructionSubjectView view = new QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines",
-                "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts());
+                "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts(), null);
         when(subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Past simple narration",
                 "Complete with the past simple form")).thenReturn(view);
         QuizInstructionVerdict compliantVerdict = new QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE,
@@ -110,7 +110,7 @@ public class InstructionComplianceCriterionTest {
         QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
         CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("eats", "one word"));
         QuizInstructionSubjectView view = new QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines",
-                "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts());
+                "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts(), null);
         when(subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Past simple narration",
                 "Complete with the past simple form")).thenReturn(view);
         QuizInstructionVerdict stillBreaches = new QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR,
@@ -136,7 +136,7 @@ public class InstructionComplianceCriterionTest {
         CandidateAssessmentInput assessmentInput = input(original, candidate,
                 List.of("eats", "one word", "past tense"));
         QuizInstructionSubjectView view = new QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines",
-                "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts());
+                "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts(), null);
         when(subjectViewFactory.fromQuiz(any(), any(), any(), any(), any())).thenReturn(view);
         QuizInstructionVerdict compliantVerdict = new QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE,
                 "Cumple la consigna.", List.of(), List.of());
@@ -170,7 +170,7 @@ public class InstructionComplianceCriterionTest {
         QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
         CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("eats"));
         QuizInstructionSubjectView view = new QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines",
-                "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts());
+                "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts(), null);
         when(subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Past simple narration",
                 "Complete with the past simple form")).thenReturn(view);
         when(complianceChecker.check(view)).thenReturn(new QuizInstructionComplianceResult(

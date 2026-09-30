@@ -55,7 +55,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("reads")),
                 new SentencePartEntity(SentencePartKind.TEXT, "(read) books.", null)
-        ));
+        ), null, null);
         QuizTemplateEntity quiz = new QuizTemplateEntity(
                 "quiz-id-001",             // id
                 "quiz-id-001",             // oidId
@@ -77,7 +77,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 "",                        // answerImageUrl
                 "",                        // miniTheory
                 "",                        // successMessage
-                List.of("She reads (read) books.") // sentences
+                List.of("She reads (read) books."), null // sentences
         );
         return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-id-001", quiz, null);
     }
@@ -365,7 +365,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         FormEntity originalForm = new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(
                 new SentencePartEntity(SentencePartKind.TEXT, "You should watch the DVD.", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("Watch the DVD."))
-        ));
+        ), null, null);
         QuizTemplateEntity originalQuiz = new QuizTemplateEntity(
                 "quiz-dvd-001",
                 "quiz-dvd-001",
@@ -379,7 +379,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 originalForm,
                 0.0, 0.0, 0.0,
                 "", "", "", "", "", "", "",
-                List.of("Watch the DVD.")            // sentences[0]: frase canonica original (4 tokens)
+                List.of("Watch the DVD."), null            // sentences[0]: frase canonica original (4 tokens)
         );
         CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-001", originalQuiz, null);
 
@@ -427,7 +427,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         FormEntity originalForm = new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(
                 new SentencePartEntity(SentencePartKind.TEXT, "You should watch the DVD.", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("Watch the DVD."))
-        ));
+        ), null, null);
         QuizTemplateEntity originalQuiz = new QuizTemplateEntity(
                 "quiz-dvd-002",
                 "quiz-dvd-002",
@@ -441,7 +441,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 originalForm,
                 0.0, 0.0, 0.0,
                 "", "", "", "", "", "", "",
-                List.of("Watch the DVD.")                // sentences[0] original: 4 tokens
+                List.of("Watch the DVD."), null                // sentences[0] original: 4 tokens
         );
         CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-002", originalQuiz, null);
 

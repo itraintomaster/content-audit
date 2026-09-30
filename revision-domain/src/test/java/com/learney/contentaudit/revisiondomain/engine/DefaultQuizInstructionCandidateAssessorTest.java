@@ -326,11 +326,11 @@ public class DefaultQuizInstructionCandidateAssessorTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("Do I want")),
                 new SentencePartEntity(SentencePartKind.TEXT, " (I / need) a pen?", null));
-        FormEntity realForm = new FormEntity("CLOZE", 1.0, "", "", realParts);
+        FormEntity realForm = new FormEntity("CLOZE", 1.0, "", "", realParts, null, null);
         QuizTemplateEntity realOriginalQuiz = new QuizTemplateEntity(nodeId, nodeId, "CLOZE", "knowledge-1",
                 "Yes/No Questions", "Answer the yes/no question", "¿Quiero un bolígrafo?",
                 "milestone.1.questions", "Questions", realForm, 0.0, 0.0, 0.0, "", "", "", "", "",
-                "", "", List.of("Do I want a pen?"));
+                "", "", List.of("Do I want a pen?"), null);
         CourseElementSnapshot realOriginal = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId,
                 realOriginalQuiz, null);
         when(collaborators.elementLocator.snapshot(course, AuditTarget.QUIZ, nodeId))

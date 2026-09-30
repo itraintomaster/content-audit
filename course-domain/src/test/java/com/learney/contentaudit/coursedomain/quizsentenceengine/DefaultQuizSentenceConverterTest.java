@@ -41,7 +41,7 @@ public class DefaultQuizSentenceConverterTest {
     // ── helpers ──────────────────────────────────────────────────────────────
 
     private static FormEntity form(SentencePartEntity... parts) {
-        return new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(parts));
+        return new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(parts), null, null);
     }
 
     private static SentencePartEntity text(String t) {
@@ -364,7 +364,7 @@ public class DefaultQuizSentenceConverterTest {
                 List.of(
                         new SentencePartEntity(SentencePartKind.TEXT, "He is", List.of("wrong")),
                         new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("great"))
-                )
+                ), null, null
         );
 
         QuizSentenceSerializationException ex = assertThrows(
@@ -1074,7 +1074,7 @@ public class DefaultQuizSentenceConverterTest {
                         text("He"),
                         cloze("is"),
                         text(" a teacher.")
-                ));
+                ), null, null);
 
         String quizSentence = "She sang ____ [loudly] (loud / loudly).";
 

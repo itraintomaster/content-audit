@@ -842,7 +842,7 @@ public class DefaultProposalDecisionServiceTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("reads")),
                 new SentencePartEntity(SentencePartKind.TEXT, "(read) books.", null)
-        ));
+        ), null, null);
         QuizTemplateEntity quizBefore = new QuizTemplateEntity(
                 quizId, quizId, "CLOZE", knowledgeId,
                 "She reads (read) books.",     // title
@@ -851,7 +851,7 @@ public class DefaultProposalDecisionServiceTest {
                 "basics.01.Present_Tense", "Present Tense", formBefore,
                 0.0, 0.0, 0.0,
                 "", "", "", "", "", "", "",
-                List.of("She reads (read) books.")
+                List.of("She reads (read) books."), null
         );
         CourseElementSnapshot elementBefore = new CourseElementSnapshot(AuditTarget.QUIZ, quizId, quizBefore, null);
 

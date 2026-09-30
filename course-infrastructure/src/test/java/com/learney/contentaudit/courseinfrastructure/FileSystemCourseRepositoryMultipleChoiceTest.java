@@ -11,6 +11,7 @@ import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.FormKind;
 import com.learney.contentaudit.coursedomain.KnowledgeEntity;
 import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntities;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -74,7 +75,7 @@ class FileSystemCourseRepositoryMultipleChoiceTest {
     void loadsMultipleChoicePayload() throws Exception {
         QuizTemplateEntity quiz = quiz(repository.load(fixture()), MULTIPLE_CHOICE_ID);
 
-        assertEquals(FormKind.MULTIPLE_CHOICE, quiz.formKind());
+        assertEquals(FormKind.MULTIPLE_CHOICE, QuizTemplateEntities.formKind(quiz));
         assertEquals("SINGLE", quiz.getForm().getMultipleChoice().getSelection());
         List<MultipleChoiceItemEntity> items = quiz.getForm().getMultipleChoice().getItems();
         assertEquals(3, items.size());

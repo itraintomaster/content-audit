@@ -72,7 +72,7 @@ class CourseToAuditableMapperMultipleChoiceTest {
         FormEntity multipleChoice = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", List.of(
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", null),
-                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)));
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
         MultipleChoiceEntity options = new MultipleChoiceEntity("SINGLE", List.of(
                 new MultipleChoiceItemEntity("am", 0.0, "am"),
                 new MultipleChoiceItemEntity("is", 1.0, "is")));
@@ -80,7 +80,7 @@ class CourseToAuditableMapperMultipleChoiceTest {
         FormEntity cloze = new FormEntity("CLOZE", 1.0, "", "", List.of(
                 new SentencePartEntity(SentencePartKind.TEXT, "They", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("are")),
-                new SentencePartEntity(SentencePartKind.TEXT, "here.", null)));
+                new SentencePartEntity(SentencePartKind.TEXT, "here.", null)), null, null);
 
         NlpTokenizer tokenizer = mock(NlpTokenizer.class);
         NlpToken she = new NlpToken("She", "she", "PRON", 0, true, false);

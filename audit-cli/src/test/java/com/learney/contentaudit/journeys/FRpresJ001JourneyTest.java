@@ -155,7 +155,7 @@ public class FRpresJ001JourneyTest {
         String quizId = "quiz-j001-path1";
         FormEntity originalForm = new FormEntity("CLOZE", 1.0, "", "",
                 List.of(new SentencePartEntity(SentencePartKind.TEXT, "She ", null),
-                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("plays tennis."))));
+                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("plays tennis."))), null, null);
         QuizTemplateEntity originalQuiz = baseQuiz(quizId, originalForm, "Ella juega tenis.",
                 List.of("She plays tennis."));
         CourseEntity courseBefore = buildCourse(originalQuiz);
@@ -164,7 +164,7 @@ public class FRpresJ001JourneyTest {
         // (the sentence, its parts, and the translation); form.kind/incidence are untouched.
         FormEntity revisedForm = new FormEntity("CLOZE", 1.0, "", "",
                 List.of(new SentencePartEntity(SentencePartKind.TEXT, "He ", null),
-                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("plays football."))));
+                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("plays football."))), null, null);
         QuizTemplateEntity revisedQuiz = baseQuiz(quizId, revisedForm, "El juega futbol.",
                 List.of("He plays football."));
         CourseEntity courseAfter = buildCourse(revisedQuiz);
@@ -205,7 +205,7 @@ public class FRpresJ001JourneyTest {
         String quizId = "quiz-j001-path2";
         FormEntity originalForm = new FormEntity("CLOZE", 1.0, "", "",
                 List.of(new SentencePartEntity(SentencePartKind.TEXT, "She ", null),
-                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("plays tennis."))));
+                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("plays tennis."))), null, null);
         QuizTemplateEntity originalQuiz = baseQuiz(quizId, originalForm, "Ella juega tenis.",
                 List.of("She plays tennis."));
         CourseEntity courseBefore = buildCourse(originalQuiz);
@@ -214,7 +214,7 @@ public class FRpresJ001JourneyTest {
         // form.label, form.name and the CLOZE part's own empty text stay untouched.
         FormEntity revisedForm = new FormEntity("CLOZE", 1.0, "", "",
                 List.of(new SentencePartEntity(SentencePartKind.TEXT, "He ", null),
-                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("plays football."))));
+                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("plays football."))), null, null);
         QuizTemplateEntity revisedQuiz = baseQuiz(quizId, revisedForm, "El juega futbol.",
                 List.of("He plays football."));
         CourseEntity courseAfter = buildCourse(revisedQuiz);
@@ -268,7 +268,7 @@ public class FRpresJ001JourneyTest {
         SentencePartEntity cloze = new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("watch"));
         SentencePartEntity newText = new SentencePartEntity(SentencePartKind.TEXT, " a movie", null);
         FormEntity revisedForm = new FormEntity("CLOZE", 1.0, "", "",
-                List.of(siblingText, cloze, newText));
+                List.of(siblingText, cloze, newText), null, null);
         QuizTemplateEntity revisedQuiz = baseQuiz(quizId, revisedForm, "Tu miras una pelicula.",
                 List.of("You watch a movie."));
         CourseEntity courseAfter = buildCourse(revisedQuiz);

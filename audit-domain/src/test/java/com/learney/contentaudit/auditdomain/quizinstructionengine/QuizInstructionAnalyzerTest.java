@@ -47,7 +47,7 @@ public class QuizInstructionAnalyzerTest {
 
     private AuditableQuiz buildQuiz(String id) {
         return new AuditableQuiz(List.of(), id, "label-" + id, null, null,
-                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of());
+                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of(), null);
     }
 
     private AuditNode buildQuizNode(AuditableQuiz quiz) {
@@ -851,7 +851,7 @@ public class QuizInstructionAnalyzerTest {
         // Ejercicio cuyo knowledge no declara instrucciones (instructions=null): gramatica,
         // significado y resolubilidad se revisan igual, sin restricciones explicitas (R014)
         AuditableQuiz quizWithoutInstructions = new AuditableQuiz(List.of(), "q1", "label", null, null,
-                List.of("a sentence"), null, null, List.of());
+                List.of("a sentence"), null, null, List.of(), null);
         AuditNode node = buildQuizNode(quizWithoutInstructions);
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(node)).thenReturn(subject);

@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.FormEntities;
 import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.KnowledgeEntity;
 import com.learney.contentaudit.coursedomain.MilestoneEntity;
@@ -44,7 +45,7 @@ class MultipleChoicePreservationTest {
         return new FormEntity(kind, 1.0, "", "", new ArrayList<>(List.of(
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", gapOptions),
-                new SentencePartEntity(SentencePartKind.TEXT, "English.", null))));
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null))), null, null);
     }
 
     private static MultipleChoiceEntity choices(String correct) {
@@ -108,7 +109,7 @@ class MultipleChoicePreservationTest {
         mc.setMultipleChoice(choices("is"));
         QuizTemplateEntity before = quiz(mc, backups());
 
-        FormEntity changed = new FormEntity(mc);
+        FormEntity changed = FormEntities.copyOf(mc);
         changed.setMultipleChoice(choices("am"));
         QuizTemplateEntity after = quiz(changed, null);
 

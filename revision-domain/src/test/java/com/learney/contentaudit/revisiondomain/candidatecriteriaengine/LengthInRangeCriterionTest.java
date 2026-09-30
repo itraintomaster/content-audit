@@ -49,11 +49,11 @@ public class LengthInRangeCriterionTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She ", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(clozeOption)),
                 new SentencePartEntity(SentencePartKind.TEXT, " (eat) breakfast every morning.", null));
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts, null, null);
         return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1", "Daily routines",
                 "Complete with the present simple form", "Ella desayuna todas las mañanas.",
                 "milestone.1.routines", "Daily Routines", form, 0.0, 0.0, 0.0, "", "", "", "", "",
-                "", "", List.of(sentenceText));
+                "", "", List.of(sentenceText), null);
     }
 
     private static CourseElementSnapshot snapshot(QuizTemplateEntity quiz) {
