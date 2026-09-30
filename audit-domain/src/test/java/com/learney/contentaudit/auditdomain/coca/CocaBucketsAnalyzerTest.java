@@ -183,7 +183,7 @@ public class CocaBucketsAnalyzerTest {
         AuditNode topic = milestone.getChildren().get(0);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "l", "c", null, null);
         AuditNode knowledgeNode = buildNode(AuditTarget.KNOWLEDGE, knowledge, topic);
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null, null, null, null);
         AuditNode quizNode = buildNode(AuditTarget.QUIZ, quiz, knowledgeNode);
 
         sut.onKnowledge(knowledgeNode);
@@ -265,7 +265,7 @@ public class CocaBucketsAnalyzerTest {
         for (int i = 0; i < top4kCount; i++)
             tokens.add(new NlpToken("rare", "rare", "NOUN", 5000, false, false));
 
-        AuditableQuiz quiz = new AuditableQuiz(tokens, "q1", "Q", null, null, List.of("s"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(tokens, "q1", "Q", null, null, List.of("s"), null, null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(quiz), "K", "Complete", true, "k1", "K", "K", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "T", "T");
@@ -636,7 +636,7 @@ public class CocaBucketsAnalyzerTest {
 
         java.util.List<AuditableTopic> topics = new java.util.ArrayList<>();
         for (int i = 0; i < topicCount; i++) {
-            AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "Q", null, null, List.of("s"), null, null, null);
+            AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "Q", null, null, List.of("s"), null, null, null, null);
             AuditableKnowledge k = new AuditableKnowledge(
                     List.of(quiz), "K" + i, "C", true, "k" + i, "K" + i, null, null, null);
             topics.add(new AuditableTopic(List.of(k), "t" + i, "T" + i, "T" + i));
@@ -688,5 +688,13 @@ public class CocaBucketsAnalyzerTest {
         assertEquals(levelTop1kCount, quarterTop1kCountSum,
                 "R017: sum of top1k counts across all quarters must equal level top1k count "
                 + "(every topic assigned to exactly one quarter, no gaps or duplicates)");
+    }
+
+    @Test
+    @DisplayName("should give the finding of B2, which it scores 32,2 %, the share of each frequency band against the targets of its level")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R003")
+    public void shouldGiveTheFindingOfB2WhichItScores322TheShareOfEachFrequencyBandAgainstTheTargetsOfItsLevel() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

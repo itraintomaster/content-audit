@@ -467,7 +467,7 @@ public class FQinstJ004JourneyTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "Text unique to " + quizId, null));
         node.setEntity(new AuditableQuiz(tokens, quizId, "Label " + quizId, "code-" + quizId,
                 "Translation for " + quizId, List.of("Sentence unique to " + quizId + "."),
-                "Quiz sentence for " + quizId, "Instructions unique to " + quizId, sentenceParts));
+                "Quiz sentence for " + quizId, "Instructions unique to " + quizId, sentenceParts, null));
         return node;
     }
 

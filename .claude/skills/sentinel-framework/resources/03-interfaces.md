@@ -42,6 +42,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `runAudit(AuditableCourse course): AuditReport` | (none) |
+| `runAudit(AuditableCourse course, AnalyzerRunSelection selection): AuditReport` | UnknownAnalyzerException |
 
 #### ContentAnalyzer (port)
 
@@ -59,6 +60,7 @@ Examples:
 | `getName(): String` | (none) |
 | `getTarget(): AuditTarget` | (none) |
 | `getDescription(): String` | (none) |
+| `findingsAt(AuditNode node): List<FindingDraft>` | (none) |
 
 #### AnalysisResult (port)
 
@@ -261,6 +263,7 @@ Examples:
 | `load(String id): Optional<AuditReport>` | (none) |
 | `loadLatest(): Optional<AuditReport>` | (none) |
 | `list(): List<AuditReportSummary>` | (none) |
+| `loadDigest(String id): Optional<AuditDigest>` | (none) |
 
 #### CourseMapper (port)
 
@@ -310,15 +313,6 @@ Examples:
 |--------|--------|
 | `getThreshold(): int` | (none) |
 
-#### EvaluationAnalyzerFactory (factory)
-
-**Package:** `com.learney.contentaudit.auditdomain`
-
-| Method | Throws |
-|--------|--------|
-| `create(EvaluationRunPolicy policy): ContentAnalyzer` | (none) |
-| `analyzerName(): String` | (none) |
-
 #### QuizInstructionVerdictReader (port)
 
 **Package:** `com.learney.contentaudit.auditdomain`
@@ -337,6 +331,47 @@ Examples:
 |--------|--------|
 | `getDefaultMaxNewEvaluations(): int` | (none) |
 | `getScoreFor(InstructionSeverity severity): double` | (none) |
+
+#### AnalyzerProvider (factory)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** SentenceLengthAnalyzerProvider (audit-domain), KnowledgeTitleLengthAnalyzerProvider (audit-domain), KnowledgeInstructionsLengthAnalyzerProvider (audit-domain)
+
+| Method | Throws |
+|--------|--------|
+| `analyzerName(): String` | (none) |
+| `describe(): AnalyzerDescriptor` | (none) |
+| `create(EvaluationRunPolicy policy): ContentAnalyzer` | (none) |
+| `planBinding(): Optional<AnalyzerPlanBinding>` | (none) |
+| `config(): Optional<SelfDescribingConfig>` | (none) |
+
+#### AnalyzerCatalog (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `list(): List<AnalyzerDescriptor>` | (none) |
+| `find(String analyzerName): Optional<AnalyzerDescriptor>` | (none) |
+| `provider(String analyzerName): Optional<AnalyzerProvider>` | (none) |
+| `planBinding(String analyzerName): Optional<AnalyzerPlanBinding>` | (none) |
+
+#### FindingCollector (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `collect(AuditNode root, ContentAnalyzer analyzer, AnalyzerDescriptor card): void` | FindingContractViolationException |
+
+#### ContextNumbersCalculator (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `compute(AuditNode root, List<AnalyzerDescriptor> analyzers): void` | (none) |
 
 #### TokenClassifier (package: coca)
 
@@ -514,6 +549,7 @@ Examples:
 |--------|--------|
 | `plan(AuditReport report, String auditId): RefinementPlan` | (none) |
 | `nextTask(RefinementPlan plan): Optional<RefinementTask>` | (none) |
+| `unconvertedScores(AuditReport report): List<UnconvertedScoreCount>` | (none) |
 
 #### RefinementPlanStore (port)
 

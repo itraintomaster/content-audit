@@ -1,5 +1,6 @@
 package com.learney.contentaudit.coursedomain.quizsentenceengine;
 
+import com.learney.contentaudit.coursedomain.FormEntities;
 import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.FormKind;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
@@ -46,7 +47,7 @@ class QuizSentenceSerializer {
      * @throws QuizSentenceSerializationException if the sentenceParts are invalid
      */
     String serialize(FormEntity form) {
-        if (form != null && form.formKind() == FormKind.MULTIPLE_CHOICE) {
+        if (form != null && FormEntities.formKind(form) == FormKind.MULTIPLE_CHOICE) {
             return null;
         }
         if (form == null || form.getSentenceParts() == null || form.getSentenceParts().isEmpty()) {

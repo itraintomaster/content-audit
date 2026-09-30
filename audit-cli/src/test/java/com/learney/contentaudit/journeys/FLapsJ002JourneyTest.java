@@ -125,7 +125,7 @@ public class FLapsJ002JourneyTest {
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella hace ejercicio avanzado cada manana.",
                 List.of("She does advanced exercise every morning."),
-                "She ____ [does] (do) advanced exercise every morning.", null, null);
+                "She ____ [does] (do) advanced exercise every morning.", null, null, null);
 
         AbsentLemma absent = new AbsentLemma(
                 new LemmaAndPos("advanced", "ADJ"), CefrLevel.B2,
@@ -177,7 +177,7 @@ public class FLapsJ002JourneyTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("does")),
                 new SentencePartEntity(SentencePartKind.TEXT, "(do) advanced exercise every morning.", null)
-        ));
+        ), null, null);
         QuizTemplateEntity quiz = new QuizTemplateEntity(
                 QUIZ_ID, QUIZ_ID, "CLOZE", "knowledge-laps-j002",
                 "She does advanced exercise every morning.",
@@ -185,7 +185,7 @@ public class FLapsJ002JourneyTest {
                 "Ella hace ejercicio avanzado cada manana.",
                 "basics.01.DailyRoutines", "Daily Routines",
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
-                List.of("She does advanced exercise every morning."));
+                List.of("She does advanced exercise every morning."), null);
         return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
     }
 

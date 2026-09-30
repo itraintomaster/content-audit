@@ -1501,3 +1501,67 @@ correccion que aprobar.
 
 - **F-QICOR-J002**: Corregir un tramo acotado de las tareas de consigna del plan
 
+### FEAT-OPMUL: Ejercicios de opcion multiple - cargar, conservar y medir sin corregir [F-OPMUL]
+
+> **Que**: ContentAudit carga y guarda los ejercicios de opcion multiple (MC) sin perder
+nada, los mide, se los muestra al juez de consigna con sus opciones y no los corrige.
+
+**Por que**: Es lo que el sistema hace desde el 30/9 sin ninguna regla que lo diga; sin
+reglas, nada impide volver a perder las opciones al guardar o corregir un MC.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-OPMUL-R001 | Cargar y guardar el curso sin cambios lo deja identico byte a byte | critical | - |
+| F-OPMUL-R002 | Lo que el sistema no interpreta de un ejercicio sobrevive, con su valor y en su orden | critical | - |
+| F-OPMUL-R003 | La auditoria mide todos los ejercicios, los de opcion multiple incluidos | critical | - |
+| F-OPMUL-R004 | La oracion medible de un MC es el enunciado con la opcion correcta en el hueco, tal cual | critical | - |
+| F-OPMUL-R005 | El juez ve las opciones de un MC con la correcta marcada, y un CLOZE igual que antes | critical | - |
+| F-OPMUL-R006 | Ninguna correccion toca un ejercicio de opcion multiple | critical | - |
+| F-OPMUL-R007 | repair nunca restaura un MC desde una foto de la era CLOZE | critical | - |
+| F-OPMUL-R008 | Los datos nuevos se comparan solo si la referencia ya los conocia | critical | - |
+| F-OPMUL-R009 | Si el formulario no dice de que tipo es el ejercicio, vale el tipo del ejercicio | critical | - |
+
+**User Journeys:**
+
+- **F-OPMUL-J001**: Auditar un curso con ejercicios de opcion multiple
+
+- **F-OPMUL-J002**: Pedir una correccion sobre un ejercicio de opcion multiple
+
+- **F-OPMUL-J003**: Guardar, revisar al lado y reparar sin perder nada
+
+### FEAT-HALL: Contrato del hallazgo, catálogo de analizadores y números por contexto [F-HALL]
+
+> **Qué**: Todo analizador informa lo que no pasa con un hallazgo de forma fija, se describe solo en `get analyzers`, y
+content-audit publica en cada tema, nivel y curso los errores contados y el puntaje de vocabulario de hoy.
+
+**Por qué**: Sin un contrato común, cada uno de los 11 analizadores nuevos pide pantallas y cuentas propias, el curso
+da 73,9 % o 73,4 % según quién sume, y lo que decide el juez de consigna no llega a ningún tema, nivel ni curso.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-HALL-R001 | Todo nodo que no pasa deja hallazgos, y todos tienen la misma forma | critical | - |
+| F-HALL-R002 | Gravedad, resolución y costo toman valores cerrados | critical | - |
+| F-HALL-R003 | La evidencia deja verificar el hallazgo sin volver a correr el analizador | critical | - |
+| F-HALL-R004 | Los errores llegan al plan sin cambiar la regla del plan | critical | - |
+| F-HALL-R005 | `get analyzers` lista todos los analizadores, cada uno con un solo nombre | critical | - |
+| F-HALL-R006 | Cada analizador se describe solo, en su ficha del catálogo | critical | - |
+| F-HALL-R007 | Dos familias, y cada analizador pertenece a una sola | critical | - |
+| F-HALL-R008 | Los errores se cuentan en content-audit, por analizador y en total | critical | - |
+| F-HALL-R009 | El puntaje de vocabulario es el de hoy | critical | - |
+| F-HALL-R010 | Un solo número por nodo, publicado por content-audit | critical | - |
+| F-HALL-R011 | Los jueces llegan a los números del tema, el nivel y el curso | critical | - |
+| F-HALL-R012 | Se puede correr un analizador solo | major | Analyzer '<name>' not found. Run 'content-audit get analyzers' to see available analyzers. |
+| F-HALL-R013 | Lo que ya existe no cambia de número | critical | - |
+| F-HALL-R014 | La salida es determinista y cada hallazgo tiene una identidad estable | critical | - |
+| F-HALL-R015 | Analizar no escribe nada sobre el curso | critical | - |
+
+**User Journeys:**
+
+- **F-HALL-J001**: Analizar el curso y leer qué está mal en cada contexto
+
+- **F-HALL-J002**: Examinar un analizador solo
+

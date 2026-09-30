@@ -42,14 +42,18 @@ When you run `sentinel generate` after modifying an implementation:
 
 | Name | Type |
 |------|------|
-| `contentAnalyzers` | `List<ContentAnalyzer>` |
 | `scoreAggregator` | `ScoreAggregator` |
+| `analyzerCatalog` | `AnalyzerCatalog` |
+| `findingCollector` | `FindingCollector` |
+| `contextNumbersCalculator` | `ContextNumbersCalculator` |
 
 **Generated constructor:**
 ```java
-public IAuditEngine(List<ContentAnalyzer> contentAnalyzers, ScoreAggregator scoreAggregator) {
-    this.contentAnalyzers = contentAnalyzers;
+public IAuditEngine(ScoreAggregator scoreAggregator, AnalyzerCatalog analyzerCatalog, FindingCollector findingCollector, ContextNumbersCalculator contextNumbersCalculator) {
     this.scoreAggregator = scoreAggregator;
+    this.analyzerCatalog = analyzerCatalog;
+    this.findingCollector = findingCollector;
+    this.contextNumbersCalculator = contextNumbersCalculator;
 }
 ```
 
@@ -110,6 +114,39 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 
 **Implements:** ScoreAggregator
 
+#### SentenceLengthAnalyzerProvider
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implements:** AnalyzerProvider
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `nlpTokenizer` | `NlpTokenizer` |
+| `config` | `SentenceLengthConfig` |
+
+**Generated constructor:**
+```java
+public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthConfig config) {
+    this.nlpTokenizer = nlpTokenizer;
+    this.config = config;
+}
+```
+
+#### KnowledgeTitleLengthAnalyzerProvider
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implements:** AnalyzerProvider
+
+#### KnowledgeInstructionsLengthAnalyzerProvider
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implements:** AnalyzerProvider
+
 #### CocaBucketsAnalyzer (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
@@ -150,6 +187,19 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 **Visibility:** internal
 **Implements:** ImprovementPlanner
 
+#### CocaBucketsAnalyzerProvider (package: coca)
+
+**Package:** `com.learney.contentaudit.auditdomain.coca`
+**Visibility:** internal
+**Implements:** AnalyzerProvider
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `nlpTokenizer` | `NlpTokenizer` |
+| `cocaBucketsConfig` | `CocaBucketsConfig` |
+
 #### LemmaRecurrenceAnalyzer (package: lrec)
 
 **Package:** `com.learney.contentaudit.auditdomain.lrec`
@@ -187,6 +237,18 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 **Visibility:** internal
 **Implements:** ExposureClassifier
 
+#### LemmaRecurrenceAnalyzerProvider (package: lrec)
+
+**Package:** `com.learney.contentaudit.auditdomain.lrec`
+**Visibility:** internal
+**Implements:** AnalyzerProvider
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `lemmaRecurrenceConfig` | `LemmaRecurrenceConfig` |
+
 #### LemmaByLevelAbsenceAnalyzer (package: labs)
 
 **Package:** `com.learney.contentaudit.auditdomain.labs`
@@ -221,6 +283,20 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 | `evpCatalogPort` | `EvpCatalogPort` |
 | `contentWordFilter` | `ContentWordFilter` |
 | `lemmaAbsenceConfig` | `LemmaAbsenceConfig` |
+
+#### LemmaAbsenceAnalyzerProvider (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Implements:** AnalyzerProvider
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `evpCatalogPort` | `EvpCatalogPort` |
+| `lemmaAbsenceConfig` | `LemmaAbsenceConfig` |
+| `sentenceLexicalScorer` | `SentenceLexicalScorer` |
 
 #### DefaultAuditNodeIndexFactory (package: auditnodeindex)
 
@@ -260,6 +336,19 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 | `lemmaCefrLevelResolver` | `LemmaCefrLevelResolver` |
 | `lemmaCountConfig` | `LemmaCountConfig` |
 
+#### LemmaCountAnalyzerProvider (package: lemmacount)
+
+**Package:** `com.learney.contentaudit.auditdomain.lemmacount`
+**Visibility:** internal
+**Implements:** AnalyzerProvider
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `evpCatalogPort` | `EvpCatalogPort` |
+| `lemmaCountConfig` | `LemmaCountConfig` |
+
 #### DefaultSentenceLexicalEvaluator (package: lexicalflags)
 
 **Package:** `com.learney.contentaudit.auditdomain.lexicalflags`
@@ -276,7 +365,7 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 
 **Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
 **Visibility:** public
-**Implements:** EvaluationAnalyzerFactory
+**Implements:** AnalyzerProvider
 
 **Constructor dependencies:**
 
@@ -353,6 +442,30 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 | `session` | `EvaluationSession` |
 | `subjectBuilder` | `QuizInstructionSubjectBuilder` |
 | `verdictReader` | `QuizInstructionVerdictReader` |
+
+#### DefaultAnalyzerCatalog (package: findingengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.findingengine`
+**Visibility:** public
+**Implements:** AnalyzerCatalog
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `providers` | `List<AnalyzerProvider>` |
+
+#### DefaultFindingCollector (package: findingengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.findingengine`
+**Visibility:** public
+**Implements:** FindingCollector
+
+#### DefaultContextNumbersCalculator (package: findingengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.findingengine`
+**Visibility:** public
+**Implements:** ContextNumbersCalculator
 
 ### Module: course-domain
 
@@ -444,6 +557,19 @@ public DispatchingCorrectionContextResolver(SentenceLengthContextResolver senten
 **Package:** `com.learney.contentaudit.refinerdomain`
 
 **Implements:** RefinerEngine
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `analyzerCatalog` | `AnalyzerCatalog` |
+
+**Generated constructor:**
+```java
+public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog) {
+    this.analyzerCatalog = analyzerCatalog;
+}
+```
 
 #### KnowledgeTitleContextResolver
 
@@ -571,19 +697,15 @@ public CourseToAuditableMapper(NlpTokenizer nlpTokenizer, QuizSentenceConverter 
 | `courseRepository` | `CourseRepository` |
 | `courseToAuditableMapper` | `CourseToAuditableMapper` |
 | `auditEngine` | `AuditEngine` |
-| `allAnalyzers` | `List<ContentAnalyzer>` |
-| `scoreAggregator` | `ScoreAggregator` |
-| `evaluationAnalyzerFactories` | `List<EvaluationAnalyzerFactory>` |
+| `analyzerCatalog` | `AnalyzerCatalog` |
 
 **Generated constructor:**
 ```java
-public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, AuditEngine auditEngine, List<ContentAnalyzer> allAnalyzers, ScoreAggregator scoreAggregator, List<EvaluationAnalyzerFactory> evaluationAnalyzerFactories) {
+public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, AuditEngine auditEngine, AnalyzerCatalog analyzerCatalog) {
     this.courseRepository = courseRepository;
     this.courseToAuditableMapper = courseToAuditableMapper;
     this.auditEngine = auditEngine;
-    this.allAnalyzers = allAnalyzers;
-    this.scoreAggregator = scoreAggregator;
-    this.evaluationAnalyzerFactories = evaluationAnalyzerFactories;
+    this.analyzerCatalog = analyzerCatalog;
 }
 ```
 
@@ -635,14 +757,12 @@ public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMa
 
 | Name | Type |
 |------|------|
-| `analyzers` | `List<ContentAnalyzer>` |
-| `configs` | `List<SelfDescribingConfig>` |
+| `analyzerCatalog` | `AnalyzerCatalog` |
 
 **Generated constructor:**
 ```java
-public DefaultAnalyzerRegistry(List<ContentAnalyzer> analyzers, List<SelfDescribingConfig> configs) {
-    this.analyzers = analyzers;
-    this.configs = configs;
+public DefaultAnalyzerRegistry(AnalyzerCatalog analyzerCatalog) {
+    this.analyzerCatalog = analyzerCatalog;
 }
 ```
 

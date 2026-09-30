@@ -47,7 +47,7 @@ public class QuizInstructionAnalyzerTest {
 
     private AuditableQuiz buildQuiz(String id) {
         return new AuditableQuiz(List.of(), id, "label-" + id, null, null,
-                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of());
+                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of(), null);
     }
 
     private AuditNode buildQuizNode(AuditableQuiz quiz) {
@@ -851,7 +851,7 @@ public class QuizInstructionAnalyzerTest {
         // Ejercicio cuyo knowledge no declara instrucciones (instructions=null): gramatica,
         // significado y resolubilidad se revisan igual, sin restricciones explicitas (R014)
         AuditableQuiz quizWithoutInstructions = new AuditableQuiz(List.of(), "q1", "label", null, null,
-                List.of("a sentence"), null, null, List.of());
+                List.of("a sentence"), null, null, List.of(), null);
         AuditNode node = buildQuizNode(quizWithoutInstructions);
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(node)).thenReturn(subject);
@@ -1214,5 +1214,61 @@ public class QuizInstructionAnalyzerTest {
                 "R018: both ids of the declared set that matched no quiz must be reported, separately from the coverage counts");
         assertTrue(declared.getUnmatchedReevaluationIds().containsAll(List.of("ghost-a", "ghost-b")),
                 "R018: both unmatched ids must be reported, whatever their order");
+    }
+
+    @Test
+    @DisplayName("should leave no finding on a quiz the judge left pending or failed")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R001")
+    public void shouldLeaveNoFindingOnAQuizTheJudgeLeftPendingOrFailed() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should grade blocking a critical breach, high a major one and medium a minor one, the breaches it scores 0,0, 0,3 and 0,6")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R002")
+    public void shouldGradeBlockingACriticalBreachHighAMajorOneAndMediumAMinorOneTheBreachesItScores0003And06() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should put in the evidence of its finding every violation the judge reported, with the constraint it breaks and its textual evidence")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R003")
+    public void shouldPutInTheEvidenceOfItsFindingEveryViolationTheJudgeReportedWithTheConstraintItBreaksAndItsTextualEvidence() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave a finding that counts as error on every quiz it scores below 1 and none on a quiz it scores 1")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R004")
+    public void shouldLeaveAFindingThatCountsAsErrorOnEveryQuizItScoresBelow1AndNoneOnAQuizItScores1() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should mark as not evaluated by quiz-instruction the quizzes it leaves pending for budget or failed")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R008")
+    public void shouldMarkAsNotEvaluatedByQuizinstructionTheQuizzesItLeavesPendingForBudgetOrFailed() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave on a quiz whose verdict was reused from an earlier run the same finding as on one judged in this run")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R011")
+    public void shouldLeaveOnAQuizWhoseVerdictWasReusedFromAnEarlierRunTheSameFindingAsOnOneJudgedInThisRun() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave a single finding per breaching quiz, whose identity depends neither on the violation codes the model writes nor on the judge version")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R014")
+    public void shouldLeaveASingleFindingPerBreachingQuizWhoseIdentityDependsNeitherOnTheViolationCodesTheModelWritesNorOnTheJudgeVersion() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

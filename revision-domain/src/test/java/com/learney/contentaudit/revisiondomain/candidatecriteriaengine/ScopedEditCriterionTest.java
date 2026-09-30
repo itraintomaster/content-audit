@@ -40,11 +40,11 @@ public class ScopedEditCriterionTest {
     }
 
     private static QuizTemplateEntity quizWithParts(List<SentencePartEntity> sentenceParts) {
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts, null, null);
         return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1", "Breakfast routine",
                 "Complete with the correct verb form", "Ella desayuna y luego va a la escuela.",
                 "milestone.1.routines", "Daily Routines", form, 0.0, 0.0, 0.0, "", "", "", "", "",
-                "", "", List.of("She has eaten breakfast and then goes to school already."));
+                "", "", List.of("She has eaten breakfast and then goes to school already."), null);
     }
 
     // Same shape as quizWithParts, with the Spanish translation exposed as a parameter:
@@ -53,11 +53,11 @@ public class ScopedEditCriterionTest {
     // cuando esta cambia legitimamente").
     private static QuizTemplateEntity quizWithPartsAndTranslation(List<SentencePartEntity> sentenceParts,
             String translation) {
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts, null, null);
         return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1", "Breakfast routine",
                 "Complete with the correct verb form", translation,
                 "milestone.1.routines", "Daily Routines", form, 0.0, 0.0, 0.0, "", "", "", "", "",
-                "", "", List.of("She has eaten breakfast and then goes to school already."));
+                "", "", List.of("She has eaten breakfast and then goes to school already."), null);
     }
 
     // Fixture for R003's own acceptance criterion (b), reused verbatim: "Why [gap]?" — the
@@ -75,11 +75,11 @@ public class ScopedEditCriterionTest {
 
     private static QuizTemplateEntity questionQuiz(List<SentencePartEntity> sentenceParts, String translation,
             String plainSentence) {
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts, null, null);
         return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1", "Present continuous questions",
                 "Complete with the correct verb form", translation,
                 "milestone.2.continuous", "Present Continuous", form, 0.0, 0.0, 0.0, "", "", "", "", "",
-                "", "", List.of(plainSentence));
+                "", "", List.of(plainSentence), null);
     }
 
     // Fixture from F-QICOR-R010's own worked example: an empty leading TEXT part — it
@@ -109,12 +109,12 @@ public class ScopedEditCriterionTest {
 
     private static QuizTemplateEntity yesNoQuestionQuiz(List<SentencePartEntity> sentenceParts, String translation,
             String plainSentence) {
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts, null, null);
         return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1",
                 "Mixed practice with the present simple forms",
                 "Complete with the correct auxiliary form", translation,
                 "milestone.3.presentsimple", "Present Simple", form, 0.0, 0.0, 0.0, "", "", "", "", "",
-                "", "", List.of(plainSentence));
+                "", "", List.of(plainSentence), null);
     }
 
     private static CourseElementSnapshot snapshot(QuizTemplateEntity quiz) {

@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 
+
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
@@ -19,6 +20,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -114,6 +121,35 @@ public class DefaultQuizInstructionSubjectBuilderTest {
         return buildQuizNode(knowledgeNode, quiz);
     }
 
+    // FEAT-OPMUL helpers: "She ___ English." under an A1 knowledge, as the judge receives it.
+
+    private static String judgedQuiz(DefaultQuizInstructionSubjectBuilder builder, AuditableQuiz quiz) {
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Be", "Elige la forma de be.", true,
+                "k1", "Be", "K", null, "Present Simple");
+        return builder.build(quizNodeUnder("A1", knowledge, quiz)).getContent().get("quiz");
+    }
+
+    private static List<SentencePartEntity> stem(List<String> gapOptions) {
+        return List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", gapOptions),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null));
+    }
+
+    private static AuditableQuiz quiz(List<SentencePartEntity> parts) {
+        return new AuditableQuiz(List.of(), "q1", "Be", "", null, List.of("She is English."), null,
+                "Elige la forma de be.", parts, null);
+    }
+
+    /** am / is / are, in the order the student sees them, with {@code correct} marked. */
+    private static MultipleChoiceEntity choices(String correct) {
+        List<MultipleChoiceItemEntity> items = new ArrayList<>();
+        for (String label : List.of("am", "is", "are")) {
+            items.add(new MultipleChoiceItemEntity(label, label.equals(correct) ? 1.0 : 0.0, label));
+        }
+        return new MultipleChoiceEntity("SINGLE", items);
+    }
+
     // ------------------------------------------------------------------
     // Tests
     // ------------------------------------------------------------------
@@ -129,7 +165,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                 "k1", "Present Perfect", "PP", null, "Verb Tenses");
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "q1", "Present Perfect", "Q1", null, List.of("I have eaten"), null,
-                "Complete with present perfect", parts("have eaten", "'ve eaten"));
+                "Complete with present perfect", parts("have eaten", "'ve eaten"), null);
         AuditNode quizNode = quizNodeUnder("B1", knowledge, quiz);
 
         EvaluationSubject subject = sut.build(quizNode);
@@ -159,7 +195,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                 List.of(), "K", "Instructions", true, "knowledge-id-777", "K label", "K", null, "Topic X");
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "quiz-id-999", "Quiz label", "Q", null, List.of("sentence"), null,
-                "Instructions", parts("answer"));
+                "Instructions", parts("answer"), null);
         AuditNode quizNode = quizNodeUnder("A1", knowledge, quiz);
 
         EvaluationSubject subject = sut.build(quizNode);
@@ -179,10 +215,10 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                 List.of(), "K", "Instructions", true, "k1", "K label", "K", null, "Topic");
         AuditableQuiz quizOriginal = new AuditableQuiz(
                 List.of(), "q1", "Q", "Q", null, List.of("I have eaten"), null, "Instructions",
-                parts("have eaten"));
+                parts("have eaten"), null);
         AuditableQuiz quizChanged = new AuditableQuiz(
                 List.of(), "q1", "Q", "Q", null, List.of("I have eaten"), null, "Instructions",
-                parts("has eaten"));
+                parts("has eaten"), null);
 
         EvaluationSubject original = sut.build(quizNodeUnder("B1", knowledge, quizOriginal));
         EvaluationSubject changed = sut.build(quizNodeUnder("B1", knowledge, quizChanged));
@@ -198,9 +234,9 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     public void shouldProduceDifferentJudgedContentForEveryQuizOfAKnowledgeWhenTheKnowledgeInstructionsChange(
             ) {
         AuditableQuiz quiz1 = new AuditableQuiz(
-                List.of(), "q1", "Q1", "Q", null, List.of("s1"), null, "Original instructions", parts("a1"));
+                List.of(), "q1", "Q1", "Q", null, List.of("s1"), null, "Original instructions", parts("a1"), null);
         AuditableQuiz quiz2 = new AuditableQuiz(
-                List.of(), "q2", "Q2", "Q", null, List.of("s2"), null, "Original instructions", parts("a2"));
+                List.of(), "q2", "Q2", "Q", null, List.of("s2"), null, "Original instructions", parts("a2"), null);
 
         AuditableKnowledge originalKnowledge = new AuditableKnowledge(
                 List.of(quiz1, quiz2), "K", "Original instructions", true, "k1", "K label", "K", null, "Topic");
@@ -227,13 +263,13 @@ public class DefaultQuizInstructionSubjectBuilderTest {
         AuditableKnowledge knowledgeFirstPass = new AuditableKnowledge(
                 List.of(), "K", "Instructions", true, "k1", "K label", "K", null, "Topic");
         AuditableQuiz quizFirstPass = new AuditableQuiz(
-                List.of(), "q1", "Q", "Q", null, List.of("s"), null, "Instructions", parts("a"));
+                List.of(), "q1", "Q", "Q", null, List.of("s"), null, "Instructions", parts("a"), null);
 
         // Independently rebuilt entities with equal content, simulating reprocessing the same course.
         AuditableKnowledge knowledgeSecondPass = new AuditableKnowledge(
                 List.of(), "K", "Instructions", true, "k1", "K label", "K", null, "Topic");
         AuditableQuiz quizSecondPass = new AuditableQuiz(
-                List.of(), "q1", "Q", "Q", null, List.of("s"), null, "Instructions", parts("a"));
+                List.of(), "q1", "Q", "Q", null, List.of("s"), null, "Instructions", parts("a"), null);
 
         EvaluationSubject firstPass = sut.build(quizNodeUnder("B1", knowledgeFirstPass, quizFirstPass));
         EvaluationSubject secondPass = sut.build(quizNodeUnder("B1", knowledgeSecondPass, quizSecondPass));
@@ -252,7 +288,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                 List.of(), "Knowledge title", "Knowledge instructions", true, "k1", "Knowledge label", "K", null, "Topic");
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "q1", "Stale quiz label", "Q", null, List.of("s"), null,
-                "Stale quiz instructions", parts("a"));
+                "Stale quiz instructions", parts("a"), null);
 
         EvaluationSubject subject = sut.build(quizNodeUnder("B1", knowledge, quiz));
 
@@ -270,7 +306,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "K", null, true, "k1", "K label", "K", null, "Topic");
         AuditableQuiz quiz = new AuditableQuiz(
-                List.of(), "q1", "Q", "Q", null, List.of("s"), null, null, parts("a"));
+                List.of(), "q1", "Q", "Q", null, List.of("s"), null, null, parts("a"), null);
 
         EvaluationSubject subject = Assertions.assertDoesNotThrow(
                 () -> sut.build(quizNodeUnder("A1", knowledge, quiz)),
@@ -295,14 +331,14 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                 "k1", "Present Perfect", "PP", null, "Verb Tenses");
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "q1", "Present Perfect", "Q1", null, List.of("I have eaten"), null,
-                "Complete with present perfect", sentenceParts);
+                "Complete with present perfect", sentenceParts, null);
         AuditNode quizNode = quizNodeUnder("B1", knowledge, quiz);
 
         // Same underlying quiz, expressed as the standalone view a correction would build
         // instead of walking the audit tree: same milestone label, same knowledge-derived
         // topic/title/instructions, same sentence parts.
         QuizInstructionSubjectView view = new QuizInstructionSubjectView(
-                "q1", "B1", "Verb Tenses", "Present Perfect", "Complete with present perfect", sentenceParts);
+                "q1", "B1", "Verb Tenses", "Present Perfect", "Complete with present perfect", sentenceParts, null);
 
         EvaluationSubject fromNode = sut.build(quizNode);
         EvaluationSubject fromView = sut.buildFromView(view);
@@ -311,5 +347,62 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                 "R005: buildFromView must derive exactly the same judged content as build(quizNode) for the "
                         + "same quiz, or the fingerprint computed while verifying a correction diverges from the "
                         + "one the next audit computes and the verdict is never reused");
+    }
+
+    @Test
+    @DisplayName("should show the judge every option of a multiple choice quiz in its gap, in the order the student sees them, with the correct one marked")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R005")
+    public void shouldShowTheJudgeEveryOptionOfAMultipleChoiceQuizInItsGapInTheOrderTheStudentSeesThemWithTheCorrectOneMarked() {
+        AuditableQuiz quiz = quiz(stem(null));
+        quiz.setMultipleChoice(choices("is"));
+        assertEquals("TEXT:She:|MULTIPLE_CHOICE::am,is[CORRECT],are|TEXT:English.:|", judgedQuiz(sut, quiz));
+    }
+
+    @Test
+    @DisplayName("should render a multiple choice quiz for the judge on the revalidation and candidate path exactly as on the analysis path")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R005")
+    public void shouldRenderAMultipleChoiceQuizForTheJudgeOnTheRevalidationAndCandidatePathExactlyAsOnTheAnalysisPath() {
+        FormEntity form = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", stem(null), null, null);
+        form.setMultipleChoice(choices("is"));
+        QuizTemplateEntity template = new QuizTemplateEntity();
+        template.setId("q1");
+        template.setForm(form);
+        AuditableQuiz audited = quiz(stem(null));
+        audited.setMultipleChoice(choices("is"));
+
+        QuizInstructionSubjectView view = new DefaultQuizInstructionSubjectViewFactory()
+                .fromQuiz(template, "A1", "Present Simple", "Be", "Elige la forma de be.");
+
+        assertEquals(judgedQuiz(sut, audited), sut.buildFromView(view).getContent().get("quiz"));
+    }
+
+    @Test
+    @DisplayName("should give different judged content to two multiple choice quizzes that differ only in their correct option")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R005")
+    public void shouldGiveDifferentJudgedContentToTwoMultipleChoiceQuizzesThatDifferOnlyInTheirCorrectOption() {
+        AuditableQuiz first = quiz(stem(null));
+        first.setMultipleChoice(choices("is"));
+        AuditableQuiz second = quiz(stem(null));
+        second.setMultipleChoice(choices("am"));
+        assertNotEquals(judgedQuiz(sut, first), judgedQuiz(sut, second));
+    }
+
+    @Test
+    @DisplayName("should render a CLOZE quiz for the judge character for character as it did before multiple choice existed")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R005")
+    public void shouldRenderACLOZEQuizForTheJudgeCharacterForCharacterAsItDidBeforeMultipleChoiceExisted() {
+        assertEquals("TEXT:She:|CLOZE::is|TEXT:English.:|", judgedQuiz(sut, quiz(stem(List.of("is")))));
+    }
+
+    @Test
+    @DisplayName("should render a quiz whose gap has no options and that carries no multiple choice options the CLOZE way, as before")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R005")
+    public void shouldRenderAQuizWhoseGapHasNoOptionsAndThatCarriesNoMultipleChoiceOptionsTheCLOZEWayAsBefore() {
+        assertEquals("TEXT:She:|CLOZE::|TEXT:English.:|", judgedQuiz(sut, quiz(stem(null))));
     }
 }

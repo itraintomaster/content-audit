@@ -4311,4 +4311,20 @@ public class GetCmdTest {
         verify(correctionContextResolver, never()).resolve(any(AuditReport.class), eq(sentenceLengthTask));
         verify(auditReportStore, times(1)).load(sourceAuditId);
     }
+
+    @Test
+    @DisplayName("should show in get analyzers and in get analyzer quiz-instruction the whole card of each analyzer: question, what it reads, rules, goal, family, evaluated nodes, resolutions and cost")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R006")
+    public void shouldShowInGetAnalyzersAndInGetAnalyzerQuizinstructionTheWholeCardOfEachAnalyzerQuestionWhatItReadsRulesGoalFamilyEvaluatedNodesResolutionsAndCost() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should show in get audit and get audits the vocabulary score published on the course, 73,9 % for the 29/9 base, instead of 73,4 %, the average of its eleven course keys")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R010")
+    public void shouldShowInGetAuditAndGetAuditsTheVocabularyScorePublishedOnTheCourse739ForThe299BaseInsteadOf734TheAverageOfItsElevenCourseKeys() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

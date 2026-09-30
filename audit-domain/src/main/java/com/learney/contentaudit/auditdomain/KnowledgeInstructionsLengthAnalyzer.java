@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -70,6 +72,12 @@ public class KnowledgeInstructionsLengthAnalyzer implements ContentAnalyzer {
     @Override
     public String getDescription() {
         return "Scores knowledge instructions by weighted character length against soft/hard limits";
+    }
+
+
+    @Override
+    public List<FindingDraft> findingsAt(AuditNode node) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
 }

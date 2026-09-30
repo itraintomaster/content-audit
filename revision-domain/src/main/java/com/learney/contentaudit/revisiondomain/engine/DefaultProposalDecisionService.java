@@ -4,6 +4,7 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.coursedomain.FormKind;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntities;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
@@ -194,6 +195,6 @@ public DefaultProposalDecisionService(RevisionArtifactStore artifactStore, Cours
     }
 
     private static boolean isMultipleChoice(QuizTemplateEntity quiz) {
-        return quiz != null && quiz.formKind() == FormKind.MULTIPLE_CHOICE;
+        return quiz != null && QuizTemplateEntities.formKind(quiz) == FormKind.MULTIPLE_CHOICE;
     }
 }

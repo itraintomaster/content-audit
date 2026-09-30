@@ -125,7 +125,7 @@ public class FLapsJ005JourneyTest {
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella aprende palabras complicadas a diario.",
                 List.of("She learns complicated words daily."),
-                "She ____ [learns] (learn) complicated words daily.", null, null);
+                "She ____ [learns] (learn) complicated words daily.", null, null, null);
 
         AbsentLemma absent = new AbsentLemma(
                 new LemmaAndPos("complicated", "ADJ"), CefrLevel.B1,
@@ -177,7 +177,7 @@ public class FLapsJ005JourneyTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("learns")),
                 new SentencePartEntity(SentencePartKind.TEXT, "(learn) complicated words daily.", null)
-        ));
+        ), null, null);
         QuizTemplateEntity quiz = new QuizTemplateEntity(
                 QUIZ_ID, QUIZ_ID, "CLOZE", "knowledge-laps-j005",
                 "She learns complicated words daily.",
@@ -185,7 +185,7 @@ public class FLapsJ005JourneyTest {
                 "Ella aprende palabras complicadas a diario.",
                 "basics.01.Learning", "Learning",
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
-                List.of("She learns complicated words daily."));
+                List.of("She learns complicated words daily."), null);
         return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
     }
 

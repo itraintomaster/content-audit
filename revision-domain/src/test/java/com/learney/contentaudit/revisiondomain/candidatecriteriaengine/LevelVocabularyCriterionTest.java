@@ -50,11 +50,11 @@ public class LevelVocabularyCriterionTest {
     }
 
     private static QuizTemplateEntity quiz(List<SentencePartEntity> sentenceParts, String sentenceText) {
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts, null, null);
         return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1", "Daily routines",
                 "Complete with the correct verb", "Traduccion de la oracion.",
                 "milestone.1.routines", "Daily Routines", form, 0.0, 0.0, 0.0, "", "", "", "", "",
-                "", "", List.of(sentenceText));
+                "", "", List.of(sentenceText), null);
     }
 
     private static CourseElementSnapshot snapshot(QuizTemplateEntity quiz) {
