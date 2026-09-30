@@ -1,0 +1,156 @@
+code: FEAT-SEMAF
+description: "FEAT-SEMAF: semaforo de palabras por tema. Consulta de solo lectura\
+  \ sobre un analisis guardado que junta tres cosas que content-audit ya publica o\
+  \ ya calcula: el rojo es la consulta lexica (F-CLEX) al nivel del tema, el verde\
+  \ propio sale de la tabla de lemma-count (FEAT-POCOV, con el umbral de la banda\
+  \ de cada palabra) y el verde para sumar son las palabras sugeridas (F-SLEM/F-CSLATDC)\
+  \ sin las que el tema ya usa. La regla de lo que ensena el tema es la de off-level-words\
+  \ (FEAT-NIVFR). No es un analizador: sin ficha, puntaje, hallazgos ni tareas. El\
+  \ recurso de get y el cableado en Main son enganches (ronda1/ganchos-D.md)."
+modules:
+- name: refiner-domain
+  packages:
+  - name: topicwords
+    description: "Semaforo de palabras por tema (FEAT-SEMAF). Lee un AuditReport ya\
+      \ guardado y no escribe nada: ni el informe, ni el plan, ni el curso (F-SEMAF-R007).\
+      \ Vive en refiner-domain porque el verde para sumar son las palabras sugeridas\
+      \ de este modulo; el rojo lo pide a la consulta lexica publica de audit-domain\
+      \ y la excepcion del tema, a off-level-words. Su unico cliente es la raiz de\
+      \ composicion (audit-cli)."
+    visibility: public
+    models:
+    - name: TopicWordLights
+      type: record
+      fields:
+      - name: auditId
+        type: String
+        description: "Analisis del que se leyo: el mismo analisis fuente que las sugeridas\
+          \ (F-CSLATDC-R015)."
+      - name: knowledgeId
+        type: String
+      - name: knowledgeLabel
+        type: String
+      - name: level
+        type: CefrLevel
+        description: "Nivel del tema: el de su milestone."
+      - name: words
+        type: List<TopicWord>
+        description: "Cada palabra de contenido de los ejercicios del tema, una vez\
+          \ por lema y categoria: rojas, verdes y neutras (F-SEMAF-R001)."
+      - name: toAdd
+        type: List<SuggestedLemma>
+        description: "Verde para sumar: las sugeridas del nivel del tema en su orden\
+          \ de seis grupos, con los mismos filtros, sin las palabras que el tema ya\
+          \ usa; el limite se aplica despues de sacarlas (F-SEMAF-R003). Nunca trae\
+          \ una roja (F-SEMAF-R007)."
+      _change: add
+    - name: TopicWord
+      type: record
+      fields:
+      - name: lemma
+        type: String
+      - name: pos
+        type: String
+      - name: level
+        type: CefrLevel
+        description: "El de la consulta lexica si la marca; si no, el que le asigna\
+          \ lemma-count. Null si no tiene nivel o esta fuera del EVP."
+      - name: outOfCatalog
+        type: boolean
+        description: "La consulta lexica la marca fuera del EVP: se muestra «fuera\
+          \ del EVP» con su puesto, nunca un nivel inventado."
+      - name: frequencyRank
+        type: Integer
+        description: "Puesto COCA: el del catalogo si esta en el EVP, el del token\
+          \ si esta fuera."
+      - name: sentenceCount
+        type: int
+        description: "Oraciones del curso donde aparece, contadas por lemma-count."
+      - name: threshold
+        type: Integer
+        description: "Umbral N de la palabra en lemma-count, el de su banda; null\
+          \ si lemma-count no le asigna nivel."
+      - name: light
+        type: WordLight
+      - name: greenState
+        type: GreenState
+        description: "Solo en las verdes: poco vista (1 a N-1) o escasa (N a 2N-1)."
+      - name: taughtByTopic
+        type: boolean
+        description: "La ensena el tema (F-SEMAF-R004): nunca es roja."
+      - name: offLevelError
+        type: Boolean
+        description: La roja es ademas un error de off-level-words en algun ejercicio
+          del tema. Null cuando el analisis no corrio off-level-words.
+      _change: add
+    - name: WordLight
+      type: enum
+      fields:
+      - name: GREEN
+        description: Del nivel del tema segun lemma-count y en menos de 2N oraciones
+          (F-SEMAF-R002).
+      - name: RED
+        description: La consulta lexica la marca para el nivel del tema y el tema
+          no la ensena (F-SEMAF-R005).
+      - name: NEUTRAL
+        description: Ni roja ni verde. Aparecer mucho nunca la hace roja (F-SEMAF-R006).
+      _change: add
+    - name: GreenState
+      type: enum
+      fields:
+      - name: UNDER_EXPOSED
+        description: "Poco vista: de 1 a N-1 oraciones. Coincide con un hallazgo de\
+          \ lemma-count en su nivel."
+      - name: SCARCE
+        description: "Escasa: de N a 2N-1 oraciones."
+      _change: add
+    - name: KnowledgeNotInAnalysisException
+      type: exception
+      fields:
+      - name: knowledgeId
+        type: String
+      message: Knowledge '%s' not found in the analysis.
+      _change: add
+      extends: RuntimeException
+    - name: LemmaCountDataMissingException
+      type: exception
+      fields:
+      - name: auditId
+        type: String
+      message: The analysis '%s' has no lemma-count data. Run 'content-audit analyze'
+        with lemma-count.
+      _change: add
+      extends: RuntimeException
+    interfaces:
+    - name: TopicWordLightsQuery
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "lightsFor(AuditReport report, String auditId, String knowledgeId,\
+          \ SuggestedLemmaQueryCriteria criteria): TopicWordLights"
+      _change: add
+    implementations:
+    - name: DefaultTopicWordLightsQuery
+      requiresInject:
+      - name: sentenceLexicalEvaluator
+        type: SentenceLexicalEvaluator
+        description: El rojo es exactamente lo que marca lexis para el nivel del tema
+          (F-CLEX-R006).
+      - name: suggestedLemmaQueryPort
+        type: SuggestedLemmaQueryPort
+        description: "El verde para sumar: la misma consulta que get suggested-lemmas,\
+          \ anclada a un ejercicio del tema."
+      - name: topicTeachingResolver
+        type: TopicTeachingResolver
+        description: "La excepcion del tema, la misma de off-level-words (F-NIVFR-R003)."
+      visibility: public
+      implements:
+      - TopicWordLightsQuery
+      _change: add
+    allowedClients:
+    - audit-cli
+    _change: add
+  _change: modify
+features:
+- id: FEAT-SEMAF
+  code: F-SEMAF

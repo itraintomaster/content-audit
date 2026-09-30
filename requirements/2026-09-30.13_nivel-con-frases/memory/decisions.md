@@ -5,6 +5,19 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Paquete público `offlevelwords` (audit-domain, allowedClients audit-cli y refiner-domain): diagnóstico, regla del tema (`TopicTeachingResolver`, compartida con el semáforo) y proveedor; el analizador es package-private, recalcula con `SentenceLexicalScorer` (no lee lo de lemma-absence) y puntúa 0 o 1.
+  why: correr solo (F-HALL-R012), paridad con lexis por construcción (R001 inv. 3) y una sola regla del tema para dos piezas.
+
+2026-09-30 — architect — El proveedor va declarado como clase con las cinco firmas de `AnalyzerProvider`: `patch propose` no resuelve un `implements` hacia un puerto de 0.3. Enganche D-01: al integrar pasa a `implements: [AnalyzerProvider]`.
+
+2026-09-30 — architect — Medido con un prototipo sobre el análisis del 29/9: 170 ejercicios (18/33/81/38), 175 palabras, R003 saca 37, R004 saca 19; `medir.py --parte escribir --categoria nivel` da 26 de 52.
+
+2026-09-30 — analyst — José resolvió DOUBT-UMBRAL-DE-ERROR → A, dos niveles, y DOUBT-FRASES-SUPERIORES → A, no por ahora (José, 30/9). R002 pasa a VALIDATED.
+
+2026-09-30 — analyst — DOUBT-REBAJA-EN-CONTEXTO, DOUBT-TAREA-COMPARTIDA y DOUBT-LECTURAS-NUEVAS → A, la recomendada (José, 30/9: «por lo demás, continúa»). R003 y R004 pasan a AUTO_VALIDATED; R006 dice que el plan declara los errores como cubiertos por LEMMA_ABSENCE.
+
+2026-09-30 — analyst — Anotado sin arreglar: 1 de los 170 es falso por el lematizador compartido («hoped» → hop, C1, en un ejercicio B1).
+
 2026-09-30 — analyst — Código FEAT-NIVFR / F-NIVFR, analizador `off-level-words`, familia errores (decisión de José del 30/9: lemma-absence queda entero en vocabulario).
   why: el error lo cuenta un analizador aparte; así el 73,9 % y las 4.036 tareas no se mueven (F-HALL-R013).
 

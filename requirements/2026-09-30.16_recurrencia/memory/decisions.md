@@ -5,6 +5,15 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — analyst — José resolvió DOUBT-PUNTAJE-POR-NIVEL → A, en cada nivel es detalle y no puntaje, y DOUBT-UNA-SOLA-VEZ → A, no cuenta las palabras vistas una vez (José, 30/9). R004 pasa a VALIDATED.
+
+2026-09-30 — analyst — R003: `get audit` sale de la regla (muestra sólo el resumen del curso, para todo analizador); los datos por palabra los muestra `stats analyzer lemma-recurrence` y los publica el informe.
+
+2026-09-30 — architect — El detalle por nivel viaja dentro del diagnóstico de curso de lemma-recurrence, nunca como clave de puntaje del nivel.
+  why: una clave «lemma-recurrence/…» en el nivel subiría al curso por la agregación genérica y sería un número más que nadie pidió; el diagnóstico tipado es lo propio del analizador (F-HALL-R001 inv. 3).
+
+2026-09-30 — architect — Lematizador medido: con las 17 formas corregidas vuelven 1.744 lemas, 134 normales; el puntaje sigue en 0,08.
+
 2026-09-30 — analyst — Código FEAT-RECUR / F-RECUR; el analizador conserva su nombre `lemma-recurrence`.
   why: F-HALL-R005 (un solo nombre).
 

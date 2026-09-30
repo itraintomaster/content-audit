@@ -74,7 +74,7 @@ Mantiene [F-HALL-R013](#F-HALL-R013) y la ligadura de FEAT-HALL: `lemma-recurren
 > Para cada lema analizado, el informe del curso publica: cuántas veces aparece, cada cuántas palabras vuelve en promedio,
 > su estado (normal, poco vista o sobre-expuesta), la desviación de esos intervalos, su hueco más largo con los niveles
 > donde empieza y termina, y los niveles donde aparece. Van de más a menos veces, como [F-LREC-R013](#F-LREC-R013), y
-> `stats analyzer lemma-recurrence`, `get audit` y la vista muestran esos mismos datos.
+> `stats analyzer lemma-recurrence` muestra esos mismos datos, leídos del informe sin recalcularlos.
 
 <details><summary>Detalle: ejemplos del curso del 29/9</summary>
 
@@ -88,13 +88,14 @@ Mantiene [F-HALL-R013](#F-HALL-R013) y la ligadura de FEAT-HALL: `lemma-recurren
 
 La desviación, que José preguntó qué es (DOUBT-STDDEV-SCORING de FEAT-LREC), dice si los huecos son parejos: «suppose»
 vuelve en promedio cada 696 palabras, pero de a racimos, con un hueco de 27.379. El hueco más largo dice lo mismo en
-palabras de la pantalla. Cumple [F-HALL-R010](#F-HALL-R010): un número publicado, el mismo en todos los verbos.
+palabras de la pantalla. Cumple [F-HALL-R010](#F-HALL-R010): un número publicado, el mismo en todos los verbos. La vista
+del tablero lo lee del informe (paquete G); `get audit` muestra sólo el resumen del curso, como con todo analizador.
 
 </details>
 
 <a id="F-RECUR-R004"></a>
 ### Rule[F-RECUR-R004] - La recurrencia dentro de cada nivel, como detalle
-**Severity**: critical | **Validation**: ASSUMPTION
+**Severity**: critical | **Validation**: VALIDATED
 
 > Para cada nivel, el informe publica la recurrencia medida sólo con los ejercicios de ese nivel, con los mismos umbrales:
 > cuántos lemas vuelven al menos una vez en el nivel, cuántos son normales, poco vistos y sobre-expuestos, y qué parte
@@ -110,8 +111,9 @@ palabras de la pantalla. Cumple [F-HALL-R010](#F-HALL-R010): un número publicad
 | B2 | 18.155 | 819 | 165 | 607 | 47 | 20,1 % |
 
 Es lo que pedía DOUBT-PER-LEVEL-ANALYSIS de FEAT-LREC (José marcó B), sin mover números: cumple [F-HALL-R010](#F-HALL-R010),
-las sub-métricas no se promedian. Convertirlo en puntaje de nivel: [DOUBT-PUNTAJE-POR-NIVEL](#DOUBT-PUNTAJE-POR-NIVEL). El
-semáforo lo espera para usar la recurrencia en el verde ([F-SEMAF-R002](#F-SEMAF-R002)).
+las sub-métricas no se promedian. José decidió el 30/9 que quede como detalle y no como puntaje
+([DOUBT-PUNTAJE-POR-NIVEL](#DOUBT-PUNTAJE-POR-NIVEL)): se publica dentro del diagnóstico de curso, nunca como clave de
+puntaje del nivel. El semáforo lo espera para usar la recurrencia en el verde ([F-SEMAF-R002](#F-SEMAF-R002)).
 
 </details>
 
@@ -146,6 +148,9 @@ necesario para decidirlo con datos.
 
 **El examen.** No tiene casos en el 077. Se prueba con los números: `analyze` antes y después da 0,08, 73,9 % y 4.036
 tareas, y la suma de normales, poco vistas y sobre-expuestas da 1.750 ([F-LREC-R009](#F-LREC-R009)). **Costo**: segundos.
+
+**El lematizador compartido** (anotado, no se arregla en esta ronda) casi no la toca: con las 17 formas mal leídas
+corregidas («hated» → hate, «drunk» → drink) vuelven 1.744 lemas, 134 normales, y el puntaje sigue en 0,08.
 
 ## Alcance
 
@@ -189,18 +194,22 @@ journeys:
 
 <a id="DOUBT-PUNTAJE-POR-NIVEL"></a>
 ### Doubt[DOUBT-PUNTAJE-POR-NIVEL] - ¿La recurrencia dentro del nivel pasa a ser el puntaje de ese nivel?
-- [ ] A (recomendada): no; se publica como detalle (R004) y ningún número cambia.
+**Status**: RESOLVED (2026-09-30)
+
+- [x] A (recomendada): no; se publica como detalle (R004) y ningún número cambia.
 - [ ] B: sí, como marcaste en FEAT-LREC: el curso sigue en 73,9 %, pero bajan los niveles.
 
-**Answer**: Pendiente. Recomiendo A hasta que la corrección muestre que se puede mejorar. Con B, el vocabulario de cada
-nivel pasa de A1 96,5 a 88,4, A2 94,2 a 83,6, B1 79,5 a 70,1 y B2 63,5 a 57,3.
+**Answer**: **A** (José, 30/9): «en cada nivel es detalle, no puntaje». Con B, el vocabulario de cada nivel pasaba de A1
+96,5 a 88,4, A2 94,2 a 83,6, B1 79,5 a 70,1 y B2 63,5 a 57,3. [F-RECUR-R004](#F-RECUR-R004) queda validada.
 
 <a id="DOUBT-UNA-SOLA-VEZ"></a>
 ### Doubt[DOUBT-UNA-SOLA-VEZ] - ¿Los 1.041 lemas que aparecen una sola vez cuentan como poco vistos?
-- [ ] A (recomendada): no, como hoy ([F-LREC-R006](#F-LREC-R006)); ya los cuenta `lemma-count` como poco vistos.
+**Status**: RESOLVED (2026-09-30)
+
+- [x] A (recomendada): no, como hoy ([F-LREC-R006](#F-LREC-R006)); ya los cuenta `lemma-count` como poco vistos.
 - [ ] B: sí, como te inclinabas en FEAT-LREC: el puntaje baja a 0,05 y el vocabulario a 73,5 %.
 
-**Answer**: Pendiente. Recomiendo A: es la superposición que temías; una palabra vista una vez ya es hallazgo de
+**Answer**: **A** (José, 30/9): «no cuenta las palabras vistas una sola vez». Una palabra vista una vez ya es hallazgo de
 `lemma-count` ([F-POCOV-R003](#F-POCOV-R003)).
 
 ## References

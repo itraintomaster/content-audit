@@ -1,0 +1,126 @@
+code: FEAT-POCOV
+description: "FEAT-POCOV: lemma-count con umbral por banda de frecuencia y con hallazgos\
+  \ que solo ordenan. El umbral de cada palabra sale de una tabla de bandas por puesto\
+  \ COCA del catalogo EVP (configuracion: lista vacia = el umbral uniforme de hoy;\
+  \ recomendada 8/6/4/3). El resultado publica la tabla usada y una fila por palabra\
+  \ con su banda, su umbral y sus temas, que leen los hallazgos, el semaforo y las\
+  \ sugeridas. Sin tareas y sin cambiar los constructores de LemmaCountStats ni de\
+  \ LevelLemmaCountResult. findingsAt viene de FEAT-HALL (0.3); los cambios en las\
+  \ sugeridas y en las palabras escasas son enganches (ronda1/ganchos-D.md).; FEAT-POCOV:\
+  \ lemma-count con umbral por banda de frecuencia y con hallazgos que solo ordenan.\
+  \ El umbral de cada palabra sale de una tabla de cuatro bandas por puesto COCA del\
+  \ catalogo EVP (configuracion: «4 para todas» da exactamente lo de hoy; recomendada\
+  \ 8/6/4/3). El resultado publica la tabla usada y una fila por palabra con su banda,\
+  \ su umbral y sus temas, que leen los hallazgos, el semaforo y las sugeridas. Sin\
+  \ tareas y sin cambiar los constructores de LemmaCountStats ni de LevelLemmaCountResult.\
+  \ findingsAt viene de FEAT-HALL (0.3); los cambios en las sugeridas y en las palabras\
+  \ escasas son enganches (ronda1/ganchos-D.md)."
+modules:
+- name: audit-domain
+  models:
+  - name: LemmaCountBand
+    type: record
+    fields:
+    - name: name
+      type: String
+      description: "Nombre en pantalla: «las 1.000 más comunes», «hasta 2.000», «\
+        hasta 3.000», «más allá»."
+    - name: maxCocaRank
+      type: Integer
+      description: "Tope inclusive del puesto COCA. Null solo en la ultima banda,\
+        \ que toma todo puesto mayor y las palabras sin puesto."
+    - name: threshold
+      type: int
+      description: Oraciones distintas que pide cada palabra de la banda (N). Entero
+        positivo.
+    _change: add
+  interfaces:
+  - name: LemmaCountConfig
+    sealed: false
+    exposes:
+    - signature: "getBands(): List<LemmaCountBand>"
+      _change: add
+    _change: modify
+  packages:
+  - name: lemmacount
+    visibility: internal
+    models:
+    - name: LemmaExposure
+      type: record
+      fields:
+      - name: lemmaAndPos
+        type: LemmaAndPos
+      - name: assignedLevel
+        type: CefrLevel
+        description: Nivel que le asigna lemma-count (F-LCOUNT-R009).
+      - name: count
+        type: int
+        description: Oraciones distintas del curso que lo contienen (F-LCOUNT-R004).
+      - name: cocaRank
+        type: Integer
+        description: "Puesto COCA del catalogo EVP para el lema y su categoria, el\
+          \ mismo que muestran las sugeridas; null sin puesto (F-POCOV-R001 inv. 3)."
+      - name: band
+        type: String
+        description: "Nombre de su banda por puesto COCA (F-POCOV-R004). Vacio solo\
+          \ con una configuracion sin bandas, que es la de las pruebas."
+      - name: threshold
+        type: int
+        description: "N que se le aplico: el de su banda, o el uniforme."
+      - name: score
+        type: double
+        description: "min(count / threshold, 1): el mismo que entra al puntaje de\
+          \ su nivel."
+      - name: knowledgeIds
+        type: List<String>
+        description: "Temas (knowledge) cuyos ejercicios la usan, en orden del curso\
+          \ (F-POCOV-R005)."
+      _change: add
+    - name: LemmaCountResult
+      type: record
+      fields:
+      - name: thresholdN
+        type: int
+        description: "Umbral de referencia: el uniforme de la configuracion (hoy 4).\
+          \ Con bandas, cada palabra usa el de su banda y lo informa en su LemmaExposure;\
+          \ este valor queda para quien todavia no lee la banda."
+        _change: modify
+      - name: bands
+        type: List<LemmaCountBand>
+        description: "Tabla de bandas que uso la corrida, con el umbral de cada una\
+          \ (F-POCOV-R006). Con «4 para todas» son las mismas cuatro bandas, todas\
+          \ con 4."
+        _change: add
+      - name: exposures
+        type: List<LemmaExposure>
+        description: "Una fila por lema con nivel asignado, ordenadas por nivel y,\
+          \ dentro de cada nivel, por banda (1.000, 2.000, 3.000, mas alla, sin puesto),\
+          \ oraciones ascendentes y puesto ascendente (F-POCOV-R004). Las poco vistas\
+          \ son las de score menor que 1."
+        _change: add
+      _change: modify
+    interfaces:
+    - name: LemmaCefrLevelResolver
+      sealed: false
+      exposes:
+      - signature: "resolveCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>"
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultLemmaCountConfig
+    requiresInject:
+    - name: bands
+      type: List<LemmaCountBand>
+      description: "Las cuatro bandas por puesto COCA con su umbral, validadas por\
+        \ el cargador: topes crecientes, la ultima sin tope, umbrales positivos. «\
+        4 para todas» = las cuatro con 4; recomendada = 8, 6, 4 y 3. Vacia solo en\
+        \ configuraciones de prueba: entonces toda palabra usa getThreshold()."
+      _change: add
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-POCOV
+  code: F-POCOV

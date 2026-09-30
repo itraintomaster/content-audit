@@ -53,23 +53,38 @@ El recurso y sus parámetros los decide la arquitectura. Lee el mismo análisis 
 ([F-CSLATDC-R015](#F-CSLATDC-R015)). Ejemplo: A2 «Posición del adjetivo», 157 palabras: 42 rojas (bench, brick, spread,
 quilt, shed, y B1 como metal y stone) y 27 verdes propias (lamp, leather y pillow en 4 oraciones; rubber y silver en 3).
 
+El nivel que se muestra de cada palabra es el de la consulta léxica cuando la marca (su nivel, o «fuera del EVP» con su
+puesto) y, si no, el que le asigna `lemma-count` ([F-SEMAF-R002](#F-SEMAF-R002)); una palabra que `lemma-count` no puede
+ubicar sale «sin nivel». Las oraciones son las que cuenta `lemma-count`, así que el análisis tiene que incluirlo.
+
 **Error**: "Knowledge '<id>' not found in the analysis."
+
+**Error** (análisis sin `lemma-count`): "The analysis '<id>' has no lemma-count data. Run 'content-audit analyze' with lemma-count."
 
 </details>
 
 <a id="F-SEMAF-R002"></a>
 ### Rule[F-SEMAF-R002] - Verde propio: la palabra del tema que conviene que vuelva
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+**Severity**: critical | **Validation**: ASSUMPTION
 
-> Una palabra del tema es verde cuando su nivel, resuelto como en `lemma-absence`, es el del tema y el curso la usa en
-> menos de 2N oraciones. Lleva su estado: *poco vista* (1 a N−1) o *escasa* (N a 2N−1), los mismos cortes de
-> [F-SLEM-R014](#F-SLEM-R014). Ninguna palabra roja es verde.
+> Una palabra del tema es verde cuando `lemma-count` le asigna el nivel del tema y el curso la usa en menos de 2N
+> oraciones, con N el umbral de la palabra en `lemma-count`, el de su banda ([F-POCOV-R001](#F-POCOV-R001)). Lleva su
+> estado: *poco vista* (1 a N−1) o *escasa* (N a 2N−1), los mismos cortes de [F-SLEM-R014](#F-SLEM-R014). Ninguna
+> palabra roja es verde, y toda palabra *poco vista* verde es un hallazgo de `lemma-count` en su nivel ([F-POCOV-R003](#F-POCOV-R003)).
 
 <details><summary>Detalle</summary>
 
-Por nivel: A1 154 palabras verdes en 60 de 83 temas, A2 653 en 89 de 91, B1 1.039 en 137 de 147 y B2 316 en 70 de 92. En
-A1 hay pocas porque sus palabras se repiten: el tema de las verduras, «Afirmativas regulares», no tiene ninguna (vegetable
-aparece en 10 oraciones). Contar también la recurrencia: [DOUBT-VERDE-POR-RECURRENCIA](#DOUBT-VERDE-POR-RECURRENCIA).
+Por nivel, con 4 para todas (hoy): A1 134 palabras verdes en 57 de 83 temas, A2 633 en 88 de 91, B1 1.012 en 137 de 147
+y B2 307 en 69 de 92. Con las bandas 8 · 6 · 4 · 3: A1 242, A2 771, B1 1.080 y B2 307. En A1 hay pocas porque sus palabras
+se repiten: el tema de las verduras, «Afirmativas regulares», no tiene ninguna (vegetable aparece en 10 oraciones, y con
+su banda, la de hasta 3.000, sigue pidiendo 4). Contar también la recurrencia:
+[DOUBT-VERDE-POR-RECURRENCIA](#DOUBT-VERDE-POR-RECURRENCIA).
+
+**Por qué el nivel de `lemma-count` y no el de `lemma-absence`** (arquitecto, 30/9; [ASSUMPTION] que José puede vetar):
+es el nivel con que se cuentan las oraciones de la palabra, así que el verde dice lo mismo que el hallazgo de palabras
+poco vistas. Con el de `lemma-absence` eran 154 · 653 · 1.039 · 316: los 70 pares palabra-tema de diferencia son
+categorías mal etiquetadas o que el EVP no trae, como «pizza» y «orange» como verbos, «our» y «write» como sustantivos o
+«drum» como verbo, que el 077 marcó como error.
 
 </details>
 
@@ -87,7 +102,8 @@ aparece en 10 oraciones). Contar también la recurrencia: [DOUBT-VERDE-POR-RECUR
 
 Sin incluir expuestas, salen de los lemas ausentes y de los poco vistos del nivel: A1 24 y 62 (January, Saturday; nose,
 husband), A2 92 y 418, B1 594 y 688, B2 1.574 y 366. «wear» (A1, 42 oraciones) no es verde, pero tampoco roja: por eso
-«She wears hats» puede reemplazar a «She sports hats».
+«She wears hats» puede reemplazar a «She sports hats». El límite se aplica después de sacar las palabras que el tema ya
+usa, así que pedir 10 devuelve 10 mientras alcancen.
 
 </details>
 
@@ -117,13 +133,15 @@ respuesta. Sale del curso, nunca de una lista escrita a mano ([F-LABS-R035](#F-L
 Mantiene [F-CLEX-R006](#F-CLEX-R006) y el eval #7 de [F-LASAG-R007](#F-LASAG-R007), que ya impide sumar una roja. Hay
 951 palabras rojas en 183 temas (A1 359 en 37, A2 231 en 27, B1 293 en 82, B2 68 en 37); 168 son además error (19 en
 A1). A1 tiene tantas por la fusión del 26/9: «Verbos de movimiento» trae arrive, airport y tourist, que son A2, junto a
-reside y disembark, que están fuera del EVP. El tema enseña 8 de las marcadas.
+reside y disembark, que están fuera del EVP. El tema enseña 8 de las marcadas. Que una roja sea además error se lee del
+hallazgo de `off-level-words` en ese ejercicio; si el análisis no corrió ese analizador, la marca sale «sin dato» y el
+color no cambia. El lematizador compartido pone 6 de las rojas: «drunk», «swam» y «hop» (de «hoped»).
 
 </details>
 
 <a id="F-SEMAF-R006"></a>
 ### Rule[F-SEMAF-R006] - Una palabra nunca es roja por aparecer mucho
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: VALIDATED
 
 > Ninguna palabra es roja por la cantidad de oraciones en que aparece ni por lo seguido que vuelve: el rojo es sólo
 > [F-SEMAF-R005](#F-SEMAF-R005). Una palabra del nivel que el curso repite mucho es neutral.
@@ -197,27 +215,34 @@ journeys:
 
 <a id="DOUBT-SOBREEXPOSICION"></a>
 ### Doubt[DOUBT-SOBREEXPOSICION] - ¿El rojo incluye la palabra que aparece demasiado?
-- [ ] A (recomendada): no; el rojo es sólo lo que está arriba del nivel (R006).
+**Status**: RESOLVED (2026-09-30)
+
+- [x] A (recomendada): no; el rojo es sólo lo que está arriba del nivel (R006).
 - [ ] B: sí, con los umbrales por banda que proponga [DOUBT-UMBRALES-POR-BANDA](#DOUBT-UMBRALES-POR-BANDA).
 - [ ] C: sí, con los del brief 085: más de 15 oraciones o menos de 50 palabras entre una y otra.
 
-**Answer**: Pendiente. Recomiendo A: C pinta de rojo 440 lemas, casi todos la base de A1, y el resto son palabras que el
-tema enseña. El problema del curso es el opuesto.
+**Answer**: **A** (José, 30/9): «una palabra muy repetida no se pinta de rojo». C pintaba de rojo 440 lemas, casi todos
+la base de A1. [F-SEMAF-R006](#F-SEMAF-R006) queda validada.
 
 <a id="DOUBT-VERDE-POR-RECURRENCIA"></a>
 ### Doubt[DOUBT-VERDE-POR-RECURRENCIA] - ¿El verde propio cuenta también la palabra que vuelve poco, aunque esté en 8 o más oraciones?
-- [ ] A (recomendada): todavía no; primero la recurrencia por nivel ([F-RECUR-R004](#F-RECUR-R004)).
+**Status**: RESOLVED (2026-09-30)
+
+- [x] A (recomendada): todavía no; primero la recurrencia por nivel ([F-RECUR-R004](#F-RECUR-R004)).
 - [ ] B: sí, como el brief 085: más de 1.000 palabras entre una y otra.
 
-**Answer**: Pendiente. Recomiendo A. Con B, el tema de las verduras tiene 17 verdes de 42 (vegetable vuelve cada 9.149
-palabras), pero en A1 es verde la mitad de todo (1.878 de 3.717 palabras propias) y el verde deja de orientar.
+**Answer**: **A**, la recomendada (José, 30/9: «por lo demás, continúa»). Con B, en A1 era verde la mitad de todo (1.878
+de 3.717 palabras propias) y el verde dejaba de orientar.
 
 <a id="DOUBT-CONSULTA-O-ANALIZADOR"></a>
 ### Doubt[DOUBT-CONSULTA-O-ANALIZADOR] - ¿El semáforo es una consulta o un analizador del catálogo?
-- [ ] A (recomendada): una consulta, como `lexis` y las sugeridas: sin ficha, puntaje ni hallazgos.
+**Status**: RESOLVED (2026-09-30)
+
+- [x] A (recomendada): una consulta, como `lexis` y las sugeridas: sin ficha, puntaje ni hallazgos.
 - [ ] B: un analizador que sólo ordena, con un hallazgo por palabra roja en cada tema.
 
-**Answer**: Pendiente. Recomiendo A: no tiene meta, y sus hallazgos repetirían los de `lemma-absence` y `off-level-words`.
+**Answer**: **A** (José, 30/9): «es una consulta, no un analizador». No tiene meta, y sus hallazgos repetirían los de
+`lemma-absence` y `off-level-words` ([F-SEMAF-R007](#F-SEMAF-R007)).
 
 ## References
 
@@ -225,4 +250,5 @@ palabras), pero en A1 es verde la mitad de todo (1.878 de 3.717 palabras propias
 - **FEAT-CLEX, FEAT-LASAG** — El rojo y el eval #7: R005.
 - **FEAT-NIVFR** — La excepción del tema y qué rojas son error: R004, R005.
 - **FEAT-HALL, FEAT-LABS** — Nada cambia de número; nunca listas a mano: R004, R007.
-- **FEAT-POCOV, FEAT-RECUR** — Los umbrales de `lemma-count` y la recurrencia por nivel: dudas.
+- **FEAT-POCOV** — El nivel, las oraciones y el umbral de cada palabra, el de su banda: R001, R002.
+- **FEAT-RECUR** — La recurrencia por nivel, que el verde todavía no usa: dudas.

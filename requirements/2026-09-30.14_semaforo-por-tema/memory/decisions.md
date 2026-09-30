@@ -5,6 +5,13 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — analyst — José resolvió DOUBT-CONSULTA-O-ANALIZADOR → A, consulta, y DOUBT-SOBREEXPOSICION → A, una palabra muy repetida no es roja (José, 30/9). R006 pasa a VALIDATED.
+
+2026-09-30 — analyst — DOUBT-VERDE-POR-RECURRENCIA → A, la recomendada (José, 30/9: «por lo demás, continúa»).
+
+2026-09-30 — architect — El verde propio usa el nivel y el umbral que `lemma-count` le da a cada palabra (EVP exacto, N de su banda), no la resolución de lemma-absence (R002 pasa a ASSUMPTION, avisado a José).
+  why: el verde tiene que decir lo mismo que el hallazgo de poco vistas; los 70 pares palabra-tema de diferencia son etiquetado malo («pizza», «orange» como verbos, «our» sustantivo). Hoy 134/633/1.012/307; con bandas 242/771/1.080/307.
+
 2026-09-30 — analyst — Código FEAT-SEMAF / F-SEMAF. El semáforo es una consulta de sólo lectura por tema (knowledge), no un analizador (DOUBT-CONSULTA-O-ANALIZADOR, recomendado A).
   why: no tiene meta ni puntaje; sus hallazgos repetirían los de lemma-absence y off-level-words; así no toca el 73,9 %.
 

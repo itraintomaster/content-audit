@@ -5,6 +5,21 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — analyst — José eligió DOUBT-UMBRALES-POR-BANDA → B, 8 · 6 · 4 · 3 (José, 30/9), a confirmar antes de construir. R001 pasa a «el umbral es el de la banda»: con 4 para todas da lo de hoy (67,0 / 73,9 / 1.535) y con las bandas, 66,5 / 73,86 / 1.616.
+  why: mueve el número del curso; los umbrales quedan como configuración y volver atrás es un valor.
+
+2026-09-30 — analyst — José resolvió DOUBT-TAREAS → A, no piden tareas (José, 30/9).
+
+2026-09-30 — architect — La banda sale del puesto COCA del catálogo EVP para el lema y su categoría, no de la primera oración (R001 inv. 3, ASSUMPTION); nueva DOUBT-PUESTO-DE-LA-BANDA.
+  why: es el puesto de las sugeridas y del semáforo, y no depende del orden de los ejercicios. El 73,5 que vio José salía de la primera oración; la diferencia es C1: «hop» (de «hoped») toma el puesto de «hope».
+
+2026-09-30 — architect — Las sugeridas y las palabras escasas usan el N de la banda de cada palabra (nueva R007, ASSUMPTION): poco vista para las sugeridas ⇔ hallazgo de lemma-count.
+  why: pedido del orquestador; mantener 4 ahí contradice al hallazgo y ni siquiera se puede calcular con lo que publica lemma-count. Efecto medido: A1 62 → 89, A2 418 → 461, B1 688 → 707, B2 366 → 358.
+
+2026-09-30 — architect — R004: el orden por banda viaja en la tabla del nivel y en la evidencia; el orden de los hallazgos dentro del nodo es el del contrato (F-HALL-R014). C1 no tiene nodo: su palabra se nombra en el hallazgo del curso.
+
+2026-09-30 — architect — Lematizador medido, no arreglado: 17 formas, 69 palabras; la palabra falsa de C1 («hop») baja el curso de 70,3 a 67,0 y el vocabulario de 74,4 a 73,9. Nueva DOUBT-LEMATIZADOR (recomendado: ronda 2).
+
 2026-09-30 — analyst — Código FEAT-POCOV / F-POCOV; el analizador conserva su nombre `lemma-count` («palabras poco vistas» es el nombre en pantalla).
   why: F-HALL-R005 exige un solo nombre; cambiarlo rompería informes y fichas.
 

@@ -57,7 +57,7 @@ London» («live» B1, «live in/at» A1, 44 veces). Dudas: [DOUBT-REBAJA-EN-CON
 
 <a id="F-NIVFR-R002"></a>
 ### Rule[F-NIVFR-R002] - Cuenta como error sólo lo que queda lejos del nivel
-**Severity**: critical | **Validation**: ASSUMPTION
+**Severity**: critical | **Validation**: VALIDATED
 
 > Una palabra de contenido es de otro nivel cuando: 1. su nivel del catálogo está dos o más niveles arriba del ejercicio
 > (C1 = 5 y C2 = 6, como [F-LABS-R033](#F-LABS-R033)); o 2. no está en el catálogo y cae en la banda de descuento fuerte
@@ -75,13 +75,13 @@ pasó a A1 (el 14/8, A1 tenía 56 marcados de 1.868). Las más marcadas son úti
 | `off-level-words`, con R003 y R004 | 18 | 33 | 81 | 38 | 170 |
 
 En A1 marca 11 palabras fuera del EVP y 9 de B1 o B2; en B1 y B2, casi todo es fuera del EVP. Umbral:
-[DOUBT-UMBRAL-DE-ERROR](#DOUBT-UMBRAL-DE-ERROR).
+[DOUBT-UMBRAL-DE-ERROR](#DOUBT-UMBRAL-DE-ERROR), que José resolvió el 30/9: dos niveles.
 
 </details>
 
 <a id="F-NIVFR-R003"></a>
 ### Rule[F-NIVFR-R003] - Lo que el tema enseña no es error
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: AUTO_VALIDATED
 
 > Una palabra no cuenta en un ejercicio cuando su tema la enseña: 1. figura entre los términos en inglés del título del
 > tema, los que van entre `$`; o 2. es parte de la respuesta de al menos 3 ejercicios del tema y del 20 % o más de ellos.
@@ -93,7 +93,7 @@ excepción ([F-SEMAF-R004](#F-SEMAF-R004)).
 
 <a id="F-NIVFR-R004"></a>
 ### Rule[F-NIVFR-R004] - La palabra que la traducción repite no es error
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: AUTO_VALIDATED
 
 > Una palabra fuera del catálogo no cuenta cuando aparece igual, entera y sin tildes, en la [traducción](glossary:Traducción)
 > del ejercicio: un préstamo o un nombre que el alumno lee en castellano.
@@ -128,7 +128,9 @@ múltiple, sobre la oración que mide `lemma-absence`.
 
 Mantiene [F-HALL-R007](#F-HALL-R007), [F-HALL-R009](#F-HALL-R009) y [F-HALL-R013](#F-HALL-R013). Los 170 ya tienen tarea
 LEMMA_ABSENCE: el plan abre una en cada uno de los 950 ejercicios con alguna marca de `lemma-absence`. Quién corrige
-cuando los dos marcan la misma palabra: [DOUBT-TAREA-COMPARTIDA](#DOUBT-TAREA-COMPARTIDA).
+cuando los dos marcan la misma palabra: [DOUBT-TAREA-COMPARTIDA](#DOUBT-TAREA-COMPARTIDA), resuelta el 30/9: la tarea
+LEMMA_ABSENCE que ya existe. El plan no abre tarea de `off-level-words` y declara sus ejercicios con error como cubiertos
+por esa tarea, nunca como descartados ([F-HALL-R004](#F-HALL-R004), invariante 3).
 
 <a id="F-NIVFR-R007"></a>
 ### Rule[F-NIVFR-R007] - Se describe en su ficha con un solo nombre
@@ -150,6 +152,14 @@ se ven por palabra: 9 son un sentido o una categoría que el EVP no distingue (s
 tokenizador («implies'hope», singed → sing); y 1, la excepción de R004. Marca 25 que el 077 no tiene: a mi lectura, unos
 9 son reales (disorganized, smelly, takeout, bedtime) y el resto cognados o internacionales (ceramic, spaghetti) o
 adverbios del tema «Adverbios de modo» (nicely, sadly).
+
+**Cómo se mide.** Se corre `analyze` pidiendo sólo `off-level-words` sobre el curso del 29/9; cada ejercicio con un
+hallazgo suyo es una marca de la categoría «nivel» del examen, y `medir.py marcas.json --parte escribir --categoria
+nivel` tiene que dar 26 de 52. Reproducido el 30/9 con un prototipo sobre el análisis 2026-09-30T11-54-02: 26 de 52, con
+51 marcas dentro de la parte y 25 fuera del oro.
+
+**El lematizador compartido** (anotado, no se arregla en esta ronda): de los 170, uno es falso por él. En «We especially
+hoped to see the concert.» (B1) «hoped» queda como «hop», que es C1; con el verbo bien leído, «hope» es A2 y no es error.
 
 **Meta propuesta** en `examinar/` (B1 y B2, 73 casos): encontrar al menos 4 de cada 10, y que en la muestra de marcas
 nuevas al menos 6 de cada 10 sean reales. **Costo**: segundos, en la pasada de `lemma-absence`, sin modelo.
@@ -195,46 +205,57 @@ journeys:
 
 <a id="DOUBT-UMBRAL-DE-ERROR"></a>
 ### Doubt[DOUBT-UMBRAL-DE-ERROR] - ¿Desde qué distancia una palabra es un error?
-- [ ] A (recomendada): dos niveles arriba o fuera del EVP en la banda fuerte: 170 ejercicios, 26 de 52 del examen.
+**Status**: RESOLVED (2026-09-30)
+
+- [x] A (recomendada): dos niveles arriba o fuera del EVP en la banda fuerte: 170 ejercicios, 26 de 52 del examen.
 - [ ] B: un nivel arriba ya es error: 797 ejercicios (318 en A1, casi todos palabras A2 de la fusión), 33 de 52.
 - [ ] C: sólo fuera del EVP: 156 ejercicios, 20 de 52; pierde switch, bench, brick, spread, bounce y shed.
 
-**Answer**: Pendiente. Recomiendo A, la vara del 077: B gana 7 casos a cambio de 627 ejercicios más en «algún error».
+**Answer**: **A** (José, 30/9): «es error desde dos niveles de distancia». B ganaba 7 casos a cambio de 627 ejercicios
+más en «algún error». [F-NIVFR-R002](#F-NIVFR-R002) queda validada.
 
 <a id="DOUBT-FRASES-SUPERIORES"></a>
 ### Doubt[DOUBT-FRASES-SUPERIORES] - ¿Marca también frases del EVP de nivel superior, como «run out» (B1) en A1?
-- [ ] A (recomendada): no por ahora; [F-LABS-R005](#F-LABS-R005) ya dice que una frase no sube una palabra.
+**Status**: RESOLVED (2026-09-30)
+
+- [x] A (recomendada): no por ahora; [F-LABS-R005](#F-LABS-R005) ya dice que una frase no sube una palabra.
 - [ ] B: sólo verbos frasales sin objeto después de la partícula, dos niveles arriba, como error.
 - [ ] C: lo mismo que B, pero sólo ordena.
 
-**Answer**: Pendiente. Recomiendo A. B marca 23 ejercicios del curso, cerca de la mitad falsos («take videos in», «have
-got to», «Let's go out»), y encuentra 1 de los 52. Sin esa restricción salen 1.654 en A1.
+**Answer**: **A** (José, 30/9): «no se marcan por ahora». B marcaba 23 ejercicios del curso, cerca de la mitad falsos
+(«take videos in», «have got to», «Let's go out»), y encontraba 1 de los 52.
 
 <a id="DOUBT-REBAJA-EN-CONTEXTO"></a>
 ### Doubt[DOUBT-REBAJA-EN-CONTEXTO] - ¿La frase que baja una palabra vale siempre, o sólo si está en la oración?
-- [ ] A (recomendada): siempre, como [F-LABS-R042](#F-LABS-R042), igual que `lexis` y el eval #7.
+**Status**: RESOLVED (2026-09-30)
+
+- [x] A (recomendada): siempre, como [F-LABS-R042](#F-LABS-R042), igual que `lexis` y el eval #7.
 - [ ] B: sólo si está: «wish to come» deja de heredar el A2 de «best wishes».
 
-**Answer**: Pendiente. Recomiendo A. Hoy, en el 65 % de las 381 palabras que baja R042 la frase está en la oración. B
-suma 34 palabras y 1 caso del examen, pero da falsos como «Where do you live?» (live B1) y rompe la paridad con `lexis`.
+**Answer**: **A**, la recomendada (José, 30/9: «por lo demás, continúa»). La paridad con `lexis` se mantiene; B sumaba
+34 palabras y 1 caso del examen, con falsos como «Where do you live?» (live B1).
 
 <a id="DOUBT-TAREA-COMPARTIDA"></a>
 ### Doubt[DOUBT-TAREA-COMPARTIDA] - Cuando los dos marcan la misma palabra, ¿quién abre la tarea?
-- [ ] A (recomendada): la tarea LEMMA_ABSENCE que ya existe; el hallazgo se declara cubierto por ella.
+**Status**: RESOLVED (2026-09-30)
+
+- [x] A (recomendada): la tarea LEMMA_ABSENCE que ya existe; el hallazgo se declara cubierto por ella.
 - [ ] B: cada analizador su tarea, y la corrección las junta por ejercicio y palabra.
 - [ ] C: este analizador sólo cuenta y no pide tarea.
 
-**Answer**: Pendiente. Recomiendo A: el plan no cambia. El paquete E tiene que aceptar «cubierto por otra tarea» junto a
-las dos salidas de [F-HALL-R004](#F-HALL-R004).
+**Answer**: **A**, la recomendada (José, 30/9: «por lo demás, continúa»). El plan sigue en 4.036 tareas; el paquete E
+acepta «cubierto por otra tarea» junto a las dos salidas de [F-HALL-R004](#F-HALL-R004) ([F-NIVFR-R006](#F-NIVFR-R006)).
 
 <a id="DOUBT-LECTURAS-NUEVAS"></a>
 ### Doubt[DOUBT-LECTURAS-NUEVAS] - ¿Suma lecturas que lemma-absence no hace, como «sport» usado como verbo?
-- [ ] A (recomendada): no; el sentido lo mira el juez de traducción y sentido (paquete C).
+**Status**: RESOLVED (2026-09-30)
+
+- [x] A (recomendada): no; el sentido lo mira el juez de traducción y sentido (paquete C).
 - [ ] B: marcar, como sólo ordena, el verbo de un lema que el EVP trae sólo como sustantivo.
 - [ ] C: buscar además por la forma de la palabra cuando su lema no está (concerned, B2).
 
-**Answer**: Pendiente. Recomiendo A. B aparece en 214 ejercicios, casi todos por el etiquetado (rain, «hates» → hat,
-practise), aunque suma 5 casos; C rescata 127 palabras, suma 1 caso y da falsos como «living-room» (living B2).
+**Answer**: **A**, la recomendada (José, 30/9: «por lo demás, continúa»). B aparecía en 214 ejercicios, casi todos por
+el etiquetado (rain, «hates» → hat, practise); C rescataba 127 palabras con falsos como «living-room».
 
 ## References
 

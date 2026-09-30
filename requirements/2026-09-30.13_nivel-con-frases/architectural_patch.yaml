@@ -1,0 +1,132 @@
+code: FEAT-NIVFR
+description: "FEAT-NIVFR: analizador de errores off-level-words. Cuenta las palabras\
+  \ que el alumno de su nivel no puede conocer (dos niveles arriba, o fuera del EVP\
+  \ en la banda de descuento fuerte), leidas con el mismo puntuador lexico que lemma-absence\
+  \ y lexis, salvo lo que el tema ensena y lo que la traduccion repite. Un paquete\
+  \ publico con su diagnostico, su proveedor y la regla del tema, que comparte con\
+  \ el semaforo; el analizador queda package-private. Disenado contra el modelo de\
+  \ 0.2 y 0.3: AnalyzerProvider, FindingDraft y findingsAt vienen de FEAT-HALL. Lo\
+  \ compartido (slot en QuizDiagnoses, linea en Main, declaracion de cubierto en el\
+  \ plan) va en ronda1/ganchos-D.md."
+modules:
+- name: audit-domain
+  packages:
+  - name: offlevelwords
+    description: "Palabras de otro nivel (FEAT-NIVFR). Contrato y portador publicos:\
+      \ el diagnostico de cada ejercicio, el proveedor que lo registra en el catalogo\
+      \ (FEAT-HALL) y la regla de lo que ensena un tema (F-NIVFR-R003), que el semaforo\
+      \ usa igual (F-SEMAF-R004). El analizador es package-private: solo lo construye\
+      \ su proveedor, una vez por corrida. Clientes: audit-cli (raiz de composicion)\
+      \ y refiner-domain (semaforo)."
+    visibility: public
+    models:
+    - name: OffLevelWordsDiagnosis
+      type: record
+      fields:
+      - name: level
+        type: CefrLevel
+        description: "Nivel del ejercicio: el de su milestone."
+      - name: words
+        type: List<OffLevelWord>
+        description: "Palabras que cuentan como error, en el orden de la oracion,\
+          \ sin repetir lema y categoria. Vacia si ninguna (puntaje 1)."
+      _change: add
+    - name: OffLevelWord
+      type: record
+      fields:
+      - name: lemma
+        type: String
+        description: Lema con que el puntuador lexico la resolvio (R042 incluida).
+      - name: pos
+        type: String
+        description: Categoria gramatical observada en la oracion.
+      - name: reason
+        type: OffLevelReason
+      - name: catalogLevel
+        type: CefrLevel
+        description: Nivel del catalogo EVP cuando reason es ABOVE_LEVEL; null cuando
+          esta fuera del EVP. Nunca se inventa (F-LABS-R038).
+      - name: frequencyRank
+        type: Integer
+        description: "Puesto COCA: el del catalogo si esta en el EVP, el del token\
+          \ si no; null sin puesto."
+      _change: add
+    - name: OffLevelReason
+      type: enum
+      fields:
+      - name: ABOVE_LEVEL
+        description: "Su nivel del catalogo esta dos o mas niveles arriba del ejercicio\
+          \ (C1 = 5, C2 = 6)."
+      - name: OUT_OF_CATALOG
+        description: No esta en el catalogo y cae en la banda de descuento fuerte
+          de F-LABS-R034 para el nivel del ejercicio.
+      _change: add
+    - name: TaughtWords
+      type: record
+      fields:
+      - name: knowledgeId
+        type: String
+      - name: titleTerms
+        type: List<String>
+        description: "Palabras de los terminos en ingles del titulo, los que van entre\
+          \ $, en minuscula; let's cuenta como let."
+      - name: frequentAnswers
+        type: List<String>
+        description: "Lemas que son parte de la respuesta de al menos 3 ejercicios\
+          \ del tema y del 20 % o mas de ellos. Respuesta: la del hueco o la opcion\
+          \ correcta de la opcion multiple (0.2), leida en los tokens del ejercicio."
+      _change: add
+    interfaces:
+    - name: TopicTeachingResolver
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "taughtWords(AuditNode knowledgeNode): TaughtWords"
+      _change: add
+    implementations:
+    - name: DefaultTopicTeachingResolver
+      visibility: public
+      implements:
+      - TopicTeachingResolver
+      _change: add
+    - name: OffLevelWordsAnalyzerProvider
+      requiresInject:
+      - name: sentenceLexicalScorer
+        type: SentenceLexicalScorer
+        description: "El mismo puntuador de lemma-absence y lexis: paridad por construccion\
+          \ (F-NIVFR-R001 inv. 3)."
+      - name: lemmaAbsenceConfig
+        type: LemmaAbsenceConfig
+        description: Para reconocer la banda fuerte de fuera de catalogo (F-LABS-R034)
+          sin copiar sus numeros.
+      - name: topicTeachingResolver
+        type: TopicTeachingResolver
+      visibility: public
+      stereotype: class
+      exposes:
+      - signature: "analyzerName(): String"
+      - signature: "describe(): AnalyzerDescriptor"
+      - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
+      - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
+      - signature: "config(): Optional<SelfDescribingConfig>"
+      _change: add
+    - name: OffLevelWordsAnalyzer
+      requiresInject:
+      - name: sentenceLexicalScorer
+        type: SentenceLexicalScorer
+      - name: lemmaAbsenceConfig
+        type: LemmaAbsenceConfig
+      - name: topicTeachingResolver
+        type: TopicTeachingResolver
+      visibility: internal
+      implements:
+      - ContentAnalyzer
+      _change: add
+    allowedClients:
+    - audit-cli
+    - refiner-domain
+    _change: add
+  _change: modify
+features:
+- id: FEAT-NIVFR
+  code: F-NIVFR

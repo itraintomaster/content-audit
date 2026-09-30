@@ -1,0 +1,87 @@
+code: FEAT-RECUR
+description: "FEAT-RECUR: lemma-recurrence publica lo que ya calcula. Un diagnostico\
+  \ de curso con las estadisticas de cada lema (con su hueco mas largo y sus niveles)\
+  \ y la recurrencia medida dentro de cada nivel como detalle, nunca como puntaje;\
+  \ hallazgos de curso que solo ordenan por cada lema fuera de rango (findingsAt de\
+  \ FEAT-HALL, 0.3); y un formateador para stats analyzer. Umbrales, puntaje de curso\
+  \ (0,08) y plan quedan como hoy. El slot en CourseDiagnoses y la linea del formateador\
+  \ en Main son enganches (ronda1/ganchos-D.md)."
+modules:
+- name: audit-domain
+  packages:
+  - name: lrec
+    visibility: internal
+    models:
+    - name: LemmaStats
+      type: record
+      fields:
+      - name: longestGap
+        type: int
+        description: "Intervalo mas largo entre dos apariciones seguidas, en posiciones\
+          \ del curso (F-RECUR-R003)."
+        _change: add
+      - name: longestGapFromLevel
+        type: CefrLevel
+        description: Nivel del ejercicio donde empieza el hueco mas largo.
+        _change: add
+      - name: longestGapToLevel
+        type: CefrLevel
+        description: Nivel del ejercicio donde termina el hueco mas largo.
+        _change: add
+      - name: levels
+        type: List<CefrLevel>
+        description: "Niveles donde aparece, de A1 a B2, sin repetir."
+        _change: add
+      _change: modify
+    - name: LevelRecurrence
+      type: record
+      fields:
+      - name: level
+        type: CefrLevel
+      - name: positions
+        type: int
+        description: "Posiciones del nivel: todos sus tokens, como en el curso."
+      - name: returningLemmas
+        type: int
+        description: Lemas que vuelven al menos una vez dentro del nivel.
+      - name: normalCount
+        type: int
+      - name: subExposedCount
+        type: int
+      - name: overExposedCount
+        type: int
+      - name: normalShare
+        type: double
+        description: "normalCount / returningLemmas. Detalle, no puntaje: no se escribe\
+          \ en scores ni entra al vocabulario del nivel (F-RECUR-R004)."
+      _change: add
+    - name: LemmaRecurrenceCourseDiagnosis
+      type: record
+      fields:
+      - name: result
+        type: LemmaRecurrenceResult
+        description: "Lo de todo el curso: una LemmaStats por lema analizado, de mas\
+          \ a menos veces, el resumen y el puntaje publicado (F-LREC-R012, R013; F-RECUR-R003)."
+      - name: levels
+        type: List<LevelRecurrence>
+        description: "La recurrencia dentro de cada nivel del curso, de A1 a B2, con\
+          \ los mismos umbrales y el mismo tope (F-RECUR-R004)."
+      _change: add
+    _change: modify
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: formatting
+    implementations:
+    - name: LemmaRecurrenceDetailedFormatter
+      types:
+      - Component
+      visibility: public
+      implements:
+      - DetailedFormatter
+      _change: add
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-RECUR
+  code: F-RECUR
