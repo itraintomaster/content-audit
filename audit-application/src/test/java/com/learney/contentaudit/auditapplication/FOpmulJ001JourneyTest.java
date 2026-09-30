@@ -1,5 +1,59 @@
 package com.learney.contentaudit.auditapplication;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.NlpTokenizer;
+import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
+import com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
+import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.coursedomain.MilestoneEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.RootNodeEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.TopicEntity;
+import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.TreeMap;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,12 +70,48 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-OPMUL-J001")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FOpmulJ001JourneyTest {
+
+    // The audit runs for real: the course is read through the real CourseToAuditableMapper (with
+    // the real sentence converter), measured by the real IAuditEngine with the sentence-length
+    // analyzer, and judged by the real DefaultQuizInstructionAnalyzerFactory. Only the true
+    // external boundaries are faked: the disk (the repository hands the course over), the NLP
+    // tokenizer, and the judge with its ledger. Each course is prepared the way production stores
+    // it: every quiz carries the plain sentence the converter derives from it (F-DBSENT), which
+    // is what the audit then reads (F-OPMUL-R004.3).
+
+    private static final Path COURSE_PATH = Path.of("/test/course-opmul-j001");
+    private static final String EVALUATOR_ID = "quiz-instruction-validator";
+    private static final String JUDGE_VERSION = "v1";
+    private static final String INSTRUCTIONS = "Elige la forma correcta.";
+
+    private final QuizSentenceConverter converter = DefaultQuizSentenceConverter.create();
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El usuario audita un curso que mezcla... → El MC se mide sobre su enunciado con ... [Un MC esta en un knowledge FILL] → success")
     public void path1_unMCEstaEnUnKnowledgeFILL_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: auditar (gate F-OPMUL-R003) -- a FILL knowledge that mixes a CLOZE and a MC.
+        QuizTemplateEntity cloze = quiz("cloze-1", clozeForm(List.of(text("They"), clozeGap("are"), text("here."))));
+        QuizTemplateEntity mc = quiz("mc-1", multipleChoiceForm(List.of(text("She"), gap(), text("English.")),
+                "is", "am", "is", "are"));
+        CourseEntity course = storedAsProduction(SentenceMode.FILL, cloze, mc);
+
+        AuditReport report = audit(course, List.of());
+
+        // R003: the audit ends and every quiz, the multiple-choice one included, is measured.
+        List<AuditNode> quizzes = quizNodes(report.getRoot());
+        assertEquals(2, quizzes.size(), "R003: the audit reaches every quiz of the course");
+        for (AuditNode quiz : quizzes) {
+            assertNotNull(quiz.getScores().get("sentence-length"),
+                    "R003: quiz " + quiz.getEntity().getId() + " must be measured");
+        }
+
+        // Step: mide_enunciado (gate F-OPMUL-R004) -- the stem with the correct option, as written.
+        AuditableQuiz measured = (AuditableQuiz) quizNode(report.getRoot(), "mc-1").getEntity();
+        assertEquals(List.of("She is English."), measured.getSentences(),
+                "R004: a multiple-choice quiz is measured on its stem with the correct option in the gap");
+        assertEquals(List.of("She", "is", "English."), measured.getTokens().stream().map(NlpToken::getText).toList());
     }
 
     @Test
@@ -29,7 +119,28 @@ public class FOpmulJ001JourneyTest {
     @Tag("path-2")
     @DisplayName("path-2: El usuario audita un curso que mezcla... → La oracion medida conserva la oracion... [Un MC esta en un knowledge REWRITE y tiene una oracion antes del hueco] → success")
     public void path2_unMCEstaEnUnKnowledgeREWRITEYTieneUnaOracionAntesDelHueco_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: auditar (gate F-OPMUL-R003) -- a REWRITE knowledge whose MC has a sentence before
+        // the gap; a CLOZE with the same parts sits next to it.
+        List<SentencePartEntity> clozeParts = List.of(text("It was raining."), clozeGap("So"), text("we stayed home."));
+        List<SentencePartEntity> mcParts = List.of(text("It was raining."), gap(), text("we stayed home."));
+        QuizTemplateEntity cloze = quiz("cloze-1", clozeForm(clozeParts));
+        QuizTemplateEntity mc = quiz("mc-1", multipleChoiceForm(mcParts, "So", "Although", "So"));
+        CourseEntity course = storedAsProduction(SentenceMode.REWRITE, cloze, mc);
+
+        AuditReport report = audit(course, List.of());
+
+        assertEquals(2, quizNodes(report.getRoot()).size(), "R003: the audit reaches every quiz of the course");
+
+        // Step: mide_entero (gate F-OPMUL-R004.1) -- REWRITE leaves the MC sentence whole, while
+        // the CLOZE next to it loses the sentence before its gap, as REWRITE always did.
+        AuditableQuiz measuredMc = (AuditableQuiz) quizNode(report.getRoot(), "mc-1").getEntity();
+        AuditableQuiz measuredCloze = (AuditableQuiz) quizNode(report.getRoot(), "cloze-1").getEntity();
+        assertEquals(List.of("It was raining. So we stayed home."), measuredMc.getSentences(),
+                "R004.1: REWRITE does not cut the sentence before the gap of a multiple-choice quiz");
+        assertEquals(7, measuredMc.getTokens().size(), "the whole sentence is what gets measured");
+        assertEquals(List.of("So we stayed home."), measuredCloze.getSentences(),
+                "a CLOZE in the same REWRITE knowledge still leaves the sentence before its gap out");
+        assertNotNull(quizNode(report.getRoot(), "mc-1").getScores().get("sentence-length"));
     }
 
     @Test
@@ -37,7 +148,22 @@ public class FOpmulJ001JourneyTest {
     @Tag("path-3")
     @DisplayName("path-3: El usuario audita un curso que mezcla... → El juez recibe todas las opciones en ... [El juez de consigna evalua un MC sin veredicto registrado] → success")
     public void path3_elJuezDeConsignaEvaluaUnMCSinVeredictoRegistrado_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: auditar -- nothing has been judged yet: the ledger is empty.
+        QuizTemplateEntity cloze = quiz("cloze-1", clozeForm(List.of(text("They"), clozeGap("are"), text("here."))));
+        QuizTemplateEntity mc = quiz("mc-1", multipleChoiceForm(List.of(text("She"), gap(), text("English.")),
+                "is", "am", "is", "are"));
+        CourseEntity course = storedAsProduction(SentenceMode.FILL, cloze, mc);
+        FakeEvaluationLedger ledger = new FakeEvaluationLedger();
+        FakeEvaluator judge = new FakeEvaluator();
+
+        audit(course, List.of(judgeFactory(ledger, judge)));
+
+        // Step: juez_ve_opciones (gate F-OPMUL-R005) -- every option in the gap, in the order the
+        // student sees them, the correct one marked.
+        List<String> judgedQuizzes = judge.judgedQuizzes();
+        assertTrue(judgedQuizzes.contains("TEXT:She:|MULTIPLE_CHOICE::am,is[CORRECT],are|TEXT:English.:|"),
+                "R005: the judge must see the options of the multiple-choice quiz: " + judgedQuizzes);
+        assertEquals(1, ledger.historyBySubjectRef("mc-1").size(), "the verdict of the MC is recorded");
     }
 
     @Test
@@ -45,6 +171,243 @@ public class FOpmulJ001JourneyTest {
     @Tag("path-4")
     @DisplayName("path-4: El usuario audita un curso que mezcla... → El juez no recibe ninguna consulta po... [Un CLOZE ya tiene veredicto de consigna registrado] → success")
     public void path4_unCLOZEYaTieneVeredictoDeConsignaRegistrado_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Step: auditar -- the CLOZE already has a verdict, recorded before multiple choice
+        // existed: its key is the content the judge received then, character for character.
+        QuizTemplateEntity cloze = quiz("cloze-1", clozeForm(List.of(text("They"), clozeGap("are"), text("here."))));
+        QuizTemplateEntity mc = quiz("mc-1", multipleChoiceForm(List.of(text("She"), gap(), text("English.")),
+                "is", "am", "is", "are"));
+        CourseEntity course = storedAsProduction(SentenceMode.FILL, cloze, mc);
+        Map<String, String> clozeAsJudgedBefore = Map.of(
+                "cefrLevel", "A1",
+                "topic", "Present Simple",
+                "title", "Be",
+                "instructions", INSTRUCTIONS,
+                "quiz", "TEXT:They:|CLOZE::are|TEXT:here.:|");
+        EvaluationKey clozeKey = new EvaluationKey(EVALUATOR_ID,
+                new FakeContentFingerprinter().fingerprint(clozeAsJudgedBefore));
+        FakeEvaluationLedger ledger = new FakeEvaluationLedger();
+        ledger.append(new EvaluationRecord(clozeKey, "{\"compliant\":true}", "cloze-1",
+                Instant.parse("2026-09-01T00:00:00Z"), JUDGE_VERSION));
+        FakeEvaluator judge = new FakeEvaluator();
+
+        audit(course, List.of(judgeFactory(ledger, judge)));
+
+        // Step: reusa_cloze (gate F-OPMUL-R005.2) -- no query for the CLOZE: its verdict is reused.
+        assertFalse(judge.judgedSubjectRefs().contains("cloze-1"),
+                "R005: a CLOZE whose verdict is recorded must not be judged again: " + judge.judgedQuizzes());
+        assertEquals(1, ledger.history(clozeKey).size(), "the recorded verdict of the CLOZE is reused as-is");
+        assertTrue(judge.judgedSubjectRefs().contains("mc-1"),
+                "the multiple-choice quiz, never judged before, is still judged");
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    // The audit
+    // ---------------------------------------------------------------------------------------------
+
+    private AuditReport audit(CourseEntity course, List<EvaluationAnalyzerFactory> judges) {
+        CourseRepository repository = mock(CourseRepository.class);
+        when(repository.load(COURSE_PATH)).thenReturn(course);
+        NlpTokenizer tokenizer = new WhitespaceTokenizer();
+        ContentAnalyzer sentenceLength = new SentenceLengthAnalyzer(tokenizer, new DefaultSentenceLengthConfig());
+        IScoreAggregator aggregator = new IScoreAggregator();
+        DefaultAuditRunner runner = new DefaultAuditRunner(repository,
+                new CourseToAuditableMapper(tokenizer, converter),
+                new IAuditEngine(List.of(sentenceLength), aggregator),
+                List.of(sentenceLength), aggregator, judges);
+        return runner.runAudit(COURSE_PATH, new AuditRunRequest(null, null, null));
+    }
+
+    private static EvaluationAnalyzerFactory judgeFactory(FakeEvaluationLedger ledger, FakeEvaluator judge) {
+        return new DefaultQuizInstructionAnalyzerFactory(
+                new DefaultEvaluationSessionFactory(ledger, new FakeContentFingerprinter()), judge,
+                new FakeQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig());
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    // The course
+    // ---------------------------------------------------------------------------------------------
+
+    /** One A1 knowledge ("Be", in the given mode) holding the quizzes, each with its stored sentence. */
+    private CourseEntity storedAsProduction(SentenceMode mode, QuizTemplateEntity... quizzes) {
+        for (QuizTemplateEntity quiz : quizzes) {
+            quiz.setSentences(converter.toPlainSentences(quiz.getForm(), mode));
+        }
+        KnowledgeEntity knowledge = new KnowledgeEntity();
+        knowledge.setId("k1");
+        knowledge.setLabel("Be");
+        knowledge.setInstructions(INSTRUCTIONS);
+        knowledge.setSentenceMode(mode);
+        knowledge.setQuizTemplates(List.of(quizzes));
+        TopicEntity topic = new TopicEntity();
+        topic.setId("t1");
+        topic.setLabel("Present Simple");
+        topic.setKnowledges(List.of(knowledge));
+        MilestoneEntity milestone = new MilestoneEntity();
+        milestone.setId("m1");
+        milestone.setLabel("A1");
+        milestone.setTopics(List.of(topic));
+        RootNodeEntity root = new RootNodeEntity();
+        root.setMilestones(List.of(milestone));
+        CourseEntity course = new CourseEntity();
+        course.setRoot(root);
+        return course;
+    }
+
+    private static QuizTemplateEntity quiz(String id, FormEntity form) {
+        QuizTemplateEntity quiz = new QuizTemplateEntity();
+        quiz.setId(id);
+        quiz.setKind(form.getKind());
+        quiz.setForm(form);
+        return quiz;
+    }
+
+    private static FormEntity clozeForm(List<SentencePartEntity> parts) {
+        return new FormEntity("CLOZE", 1.0, "", "", parts, null, null);
+    }
+
+    /** A multiple-choice form whose options are {@code labels}, in that order, with {@code correct} marked. */
+    private static FormEntity multipleChoiceForm(List<SentencePartEntity> parts, String correct, String... labels) {
+        List<MultipleChoiceItemEntity> items = new ArrayList<>();
+        for (String label : labels) {
+            items.add(new MultipleChoiceItemEntity(label, label.equals(correct) ? 1.0 : 0.0, label));
+        }
+        return new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", parts, new MultipleChoiceEntity("SINGLE", items), null);
+    }
+
+    private static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    private static SentencePartEntity clozeGap(String answer) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(answer));
+    }
+
+    /** The gap of a multiple-choice form: no options of its own, the answer is an item. */
+    private static SentencePartEntity gap() {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", null);
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    // The report
+    // ---------------------------------------------------------------------------------------------
+
+    private static List<AuditNode> quizNodes(AuditNode node) {
+        List<AuditNode> found = new ArrayList<>();
+        if (node.getTarget() == AuditTarget.QUIZ) {
+            found.add(node);
+        }
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                found.addAll(quizNodes(child));
+            }
+        }
+        return found;
+    }
+
+    private static AuditNode quizNode(AuditNode root, String quizId) {
+        return quizNodes(root).stream().filter(n -> quizId.equals(n.getEntity().getId())).findFirst().orElseThrow();
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    // External boundaries
+    // ---------------------------------------------------------------------------------------------
+
+    /** Stands in for spaCy: one token per whitespace-separated word. */
+    private static final class WhitespaceTokenizer implements NlpTokenizer {
+        @Override
+        public List<String> tokenize(String text) {
+            return text == null || text.isBlank() ? List.of() : List.of(text.trim().split("\\s+"));
+        }
+
+        @Override
+        public int countTokens(String text) {
+            return tokenize(text).size();
+        }
+
+        @Override
+        public List<NlpToken> analyzeTokens(String text) {
+            return tokenize(text).stream()
+                    .map(word -> new NlpToken(word, word.toLowerCase(), "X", null, false, false))
+                    .toList();
+        }
+
+        @Override
+        public Map<String, List<NlpToken>> analyzeTokensBatch(List<String> sentences) {
+            Map<String, List<NlpToken>> tokens = new LinkedHashMap<>();
+            for (String sentence : sentences) {
+                tokens.put(sentence, analyzeTokens(sentence));
+            }
+            return tokens;
+        }
+    }
+
+    /** Deterministic fake fingerprinter: the same content always yields the same fingerprint. */
+    private static final class FakeContentFingerprinter implements ContentFingerprinter {
+        @Override
+        public String fingerprint(Map<String, String> content) {
+            return new TreeMap<>(content).toString();
+        }
+    }
+
+    /** In-memory ledger: a journey test must not touch disk. */
+    private static final class FakeEvaluationLedger implements EvaluationLedger {
+        private final List<EvaluationRecord> records = new ArrayList<>();
+
+        @Override
+        public Optional<EvaluationRecord> findLatest(EvaluationKey key) {
+            return records.stream().filter(r -> r.getKey().equals(key)).reduce((first, second) -> second);
+        }
+
+        @Override
+        public void append(EvaluationRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public List<EvaluationRecord> history(EvaluationKey key) {
+            return records.stream().filter(r -> r.getKey().equals(key)).toList();
+        }
+
+        private List<EvaluationRecord> historyBySubjectRef(String subjectRef) {
+            return records.stream().filter(r -> subjectRef.equals(r.getSubjectRef())).toList();
+        }
+    }
+
+    /** The judge -- never a real model. Records what it was asked to judge. */
+    private static final class FakeEvaluator implements Evaluator {
+        private final List<EvaluationSubject> judged = new ArrayList<>();
+
+        @Override
+        public String evaluatorId() {
+            return EVALUATOR_ID;
+        }
+
+        @Override
+        public Optional<String> evaluatorVersion() {
+            return Optional.of(JUDGE_VERSION);
+        }
+
+        @Override
+        public EvaluationOutcome evaluate(EvaluationSubject subject) {
+            judged.add(subject);
+            return new EvaluationEmitted("{\"compliant\":true}");
+        }
+
+        private List<String> judgedQuizzes() {
+            return judged.stream().map(s -> s.getContent().get("quiz")).toList();
+        }
+
+        private List<String> judgedSubjectRefs() {
+            return judged.stream().map(EvaluationSubject::getSubjectRef).toList();
+        }
+    }
+
+    /** Every payload reads as a compliant verdict: parsing verdicts is not what this journey checks. */
+    private static final class FakeQuizInstructionVerdictReader implements QuizInstructionVerdictReader {
+        @Override
+        public QuizInstructionVerdict read(String payload) {
+            return new QuizInstructionVerdict(true, 1.0, InstructionSeverity.NONE, "compliant", List.of(),
+                    List.of());
+        }
     }
 }
