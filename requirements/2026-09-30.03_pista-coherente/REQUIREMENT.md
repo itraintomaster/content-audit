@@ -11,7 +11,7 @@ feature:
 ## TL;DR
 
 **Qué**: Un analizador de la familia de errores compara la pista de cada ejercicio con su respuesta —el verbo, el
-sujeto y la negación— y marca los ejercicios sin pista en un tema donde casi todos la llevan.
+sujeto y la negación— y marca los ejercicios sin pista en un tema donde tres cuartos o más la llevan.
 
 **Por qué**: Una pista que no coincide con la respuesta hace imposible acertar: «Who ___ (I / see)?» sólo acepta «are
 you seeing». El 077 encontró 188 ejercicios imposibles y content-audit los muestra en verde.
@@ -39,16 +39,17 @@ respuesta es la oración entera, el texto entre paréntesis del enunciado y el e
 respuesta aceptada**, la que dice el audio.
 
 <a id="F-PISTA-R001"></a>
-### Rule[F-PISTA-R001] - Si la mitad o más del tema lleva pista, la llevan todos
-**Severity**: critical | **Validation**: ASSUMPTION
+### Rule[F-PISTA-R001] - Si tres cuartos o más del tema llevan pista, la llevan todos
+**Severity**: critical | **Validation**: VALIDATED
 
 > Entre los ejercicios de hueco para escribir de un tema y del mismo tipo —hueco dentro de la oración, o respuesta que
-> es la oración entera—, si la mitad o más lleva pista, cada uno que no la lleva tiene un hallazgo *alta*.
+> es la oración entera—, si tres cuartos o más llevan pista, cada uno que no la lleva tiene un hallazgo *alta*.
 
 «I ___ a lot of vegetables.» (`67fab6d59930102295341ecd`, A1, *Afirmativas regulares*: 19 de 20 con pista) y «She put
 a ___ of sugar in her tea.» (`67fab6d59930102295342a02`, A2, 9 de 10). El tipo separa los temas mixtos: en *El
 posesivo* (A1), las 20 transformaciones sin pista no se comparan con los 20 huecos que sí la llevan. La opción múltiple
-no entra: sus opciones ya dicen qué elegir. El umbral: [DOUBT-PISTA-UMBRAL](#DOUBT-PISTA-UMBRAL).
+no entra: sus opciones ya dicen qué elegir. El umbral lo decidió José el 30/9: tres cuartos
+([DOUBT-PISTA-UMBRAL](#DOUBT-PISTA-UMBRAL)).
 
 <a id="F-PISTA-R002"></a>
 ### Rule[F-PISTA-R002] - Las palabras de la pista están en la respuesta, y la respuesta no trae un verbo sin anunciar
@@ -71,8 +72,9 @@ no entra: sus opciones ya dicen qué elegir. El umbral: [DOUBT-PISTA-UMBRAL](#DO
 
 Comparar sólo por lema no alcanza: el lematizador compartido ([F-NLP-R010](#F-NLP-R010)) da *hated* → *hat* y
 *drunk*, *swum* o *rang* sin su verbo. Por eso cuenta también la [forma flexionada](glossary:Forma flexionada), y el diseño tiene que reconocer los
-irregulares. Una pista de elección («(good / well)», «Our / ours») no se compara palabra por palabra: la respuesta es
-una de sus opciones.
+irregulares ([DOUBT-PISTA-LEMATIZADOR](#DOUBT-PISTA-LEMATIZADOR)). Una pista de elección («(good / well)», «Our /
+ours») no se compara palabra por palabra: la respuesta es una de sus opciones. La oración que se transforma no es pista
+(José, 30/9; [DOUBT-PISTA-TRANSFORMAR](#DOUBT-PISTA-TRANSFORMAR)).
 
 </details>
 
@@ -112,8 +114,9 @@ Hoy: 0. Que una respuesta negativa no tenga «not» en la pista no es hallazgo: 
 
 La evidencia es el ejercicio como lo ve el alumno, la respuesta y la línea que nombra la falta: «Who ___ (I / see)? →
 are you seeing: el sujeto I no es you» ([F-HALL-R003](#F-HALL-R003)). La identidad lleva la regla y la palabra
-([F-HALL-R014](#F-HALL-R014)). Cuándo va a la mesa: [DOUBT-PISTA-RESPUESTA](#DOUBT-PISTA-RESPUESTA). El nombre es el del
-brief 089.
+([F-HALL-R014](#F-HALL-R014)). José decidió el 30/9 que, si lo que está mal es la respuesta, va a la *mesa* aunque haya
+que regrabar ([DOUBT-PISTA-RESPUESTA](#DOUBT-PISTA-RESPUESTA)); cómo lo sabe una regla instantánea:
+[DOUBT-PISTA-CUANDO-MESA](#DOUBT-PISTA-CUANDO-MESA). El nombre es el del brief 089.
 
 ## Contexto
 
@@ -167,7 +170,7 @@ journeys:
         action: "El informe lee la pista y la primera respuesta de cada ejercicio, y cuántos del tema llevan pista"
         gate: [F-PISTA-R005]
         outcomes:
-          - {when: "El ejercicio no tiene pista y la mitad o más de su tema, del mismo tipo, sí", then: falta}
+          - {when: "El ejercicio no tiene pista y tres cuartos o más de su tema, del mismo tipo, sí", then: falta}
           - {when: "La pista nombra otro verbo, otro sujeto u otra negación que la respuesta", then: no_coincide}
           - {when: "La pista coincide con la respuesta", then: coincide}
       - {id: falta, action: "Hallazgo alta, con los ejercicios del tema que sí llevan pista como evidencia", gate: [F-PISTA-R001], result: success}
@@ -179,38 +182,73 @@ journeys:
 
 <a id="DOUBT-PISTA-UMBRAL"></a>
 ### Doubt[DOUBT-PISTA-UMBRAL] - ¿Desde qué parte del tema con pista se exige a todos?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
 - [ ] Opción A: desde la mitad, como propone el brief 089 (102 hallazgos).
-- [ ] Opción B (recomendada): desde tres cuartos (15 hallazgos).
+- [x] Opción B (recomendada): desde tres cuartos (15 hallazgos).
 - [ ] Opción C: siempre, en todo ejercicio.
 
-**Answer**: Pendiente. Recomiendo B. En A1–A2, A marca 39 y sólo 9 son del 077; B marca 11 y 9 lo son. Lo que A suma
+**Answer**: **Opción B** (José, 30/9): se exige desde tres cuartos del tema. En A1–A2, A marcaba 39 y sólo 9 eran del
+077; B marca 11 y 9 lo son. Lo que A suma
 son temas mixtos como *One y ones* (12 de 20), donde «I'd love ___ .» → «one» no necesita pista. C marca temas de
 respuesta libre.
 
 <a id="DOUBT-PISTA-RESPUESTA"></a>
 ### Doubt[DOUBT-PISTA-RESPUESTA] - Si lo que está mal es la respuesta, ¿va a la mesa aunque cambie el audio?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): sí; la regla arregla la pista por defecto, y la mesa decide cuando la respuesta rompe lo
+- [x] Opción A (recomendada): sí; la regla arregla la pista por defecto, y la mesa decide cuando la respuesta rompe lo
   que enseña el tema, y entonces se regraba el audio.
 - [ ] Opción B: nunca se toca la respuesta: siempre se arregla la pista.
 
-**Answer**: Pendiente. Recomiendo A, como el brief 089. En «That was ___ (bad) holiday ever!» → «the best», arreglar
-la pista a «(good)» da un ejercicio válido pero deja un tema de superlativos con el irregular equivocado; eso lo ve la
-mesa.
+**Answer**: **Opción A** (José, 30/9): si lo que está mal es la respuesta, va a la mesa aunque haya que regrabar. En
+«That was ___ (bad) holiday ever!» → «the best», arreglar la pista a «(good)» da un ejercicio válido pero deja un tema
+de superlativos con el irregular equivocado; eso lo ve la mesa.
 
 <a id="DOUBT-PISTA-TRANSFORMAR"></a>
 ### Doubt[DOUBT-PISTA-TRANSFORMAR] - ¿La oración que se transforma cuenta como pista?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): no; queda para los jueces del paquete C.
+- [x] Opción A (recomendada): no; queda para los jueces del paquete C.
 - [ ] Opción B: sí; sus verbos tienen que estar en la respuesta.
 
-**Answer**: Pendiente. Recomiendo A. B encuentra 10 imposibles más de la mitad para escribir, como «I want to eat some
+**Answer**: **Opción A** (José, 30/9): la oración que se transforma no cuenta como pista. B encontraba 10 imposibles más de la mitad para escribir, como «I want to eat some
 cake.» → «Could I have some cake?», pero marca también «I want a sandwich.» → «I would like a sandwich.», donde cambiar
 el verbo es la lección, y todo el estilo indirecto, que suma *said*.
+
+<a id="DOUBT-PISTA-CUANDO-MESA"></a>
+### Doubt[DOUBT-PISTA-CUANDO-MESA] - ¿Cómo sabe una regla instantánea que lo que está mal es la respuesta?
+**Status**: OPEN
+
+- [ ] Opción A (recomendada): va a la *mesa* todo hallazgo en que la palabra de la pista no está en la respuesta
+  (R002, invariante 1): arreglar la pista cambiaría lo que pide el ejercicio. El resto va por *regla*: la pista que
+  falta, el verbo sin anunciar, el sujeto y el «not».
+- [ ] Opción B: todo va por *regla*, y la mesa sólo ve lo que alguien le mande a mano.
+- [ ] Opción C: todo va a la *mesa*.
+
+**Answer**: Pendiente. José eligió que la regla arregle la pista por defecto y que la mesa decida cuando lo que está
+mal es la respuesta, pero una regla sin modelo no sabe qué enseña el tema. Recomiendo A: «That was ___ (bad) holiday
+ever!» → «the best» y «This sentence ___ (mean) 'hope'.» → «implies» caen en la mesa, donde se ve si se arregla la
+pista o la respuesta; «Who ___ (I / see)?» → «are you seeing» y «It ___ (be) soon.» → «'s going to rain» se
+arreglan completando la pista, sin cambiar lo que pide. Con el prototipo del analista, de los 67 de R002, 60 son de la
+invariante 1 y van a la mesa; por regla quedan 7 de la invariante 2, 15 sin pista y 5 de sujeto. Muchos de esos 60 de
+B1 y B2 son irregulares o instrucciones que el prototipo confundía: en la mesa cuestan una mirada, no un arreglo
+equivocado. Con B, «(bad)» pasaría a «(good)» sin que nadie mire el tema.
+
+<a id="DOUBT-PISTA-LEMATIZADOR"></a>
+### Doubt[DOUBT-PISTA-LEMATIZADOR] - ¿Se arregla el lematizador compartido, que falla con algunos irregulares?
+**Status**: OPEN
+
+- [ ] Opción A (recomendada): no en esta ronda; `hint-coherence` compara igual, flexionada, por lema y con una tabla
+  cerrada de formas irregulares que usa sólo para comparar pista y respuesta.
+- [ ] Opción B: se arregla ahora en el lematizador compartido, con la misma tabla.
+
+**Answer**: Pendiente. Medido sobre el curso del 29/9 con el mismo modelo del lematizador: de 4.490 palabras de pista,
+761 se encuentran sólo por el lema (*went* → *go*, *men* → *man*), 75 con el lema equivocado pero flexionadas regulares
+(*hated* → *hat*, *quickly* → *quickly*) y 24 sólo con la tabla de irregulares (*good* → *well*, *better*; *swum* sale
+adjetivo). Recomiendo A: con la forma flexionada y la tabla, la regla no depende del arreglo, y arreglar el lematizador
+mueve los números de vocabulario de todos (el 73,9 % y los niveles), así que va en un requirement aparte, medido antes
+y después.
 
 ## References
 

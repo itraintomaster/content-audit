@@ -5,6 +5,25 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — hint-coherence compara con AuditableQuiz.tokens (lemas del tokenizador compartido) más flexión regular y una
+  tabla cerrada de formas irregulares (IrregularFormsCatalog, raíz de audit-domain; adaptador en vocabulary-infrastructure). No
+  lematiza nada nuevo ni toca el lematizador compartido (DOUBT-PISTA-LEMATIZADOR).
+2026-09-30 — architect — El umbral de tres cuartos se cuenta en onKnowledge (el motor lo llama antes que a los ejercicios del tema).
+2026-09-30 — architect — Resolución por tipo de falta: HINT_WORD_ABSENT → mesa; el resto → regla con la pista propuesta ya calculada
+  (recomendación de DOUBT-PISTA-CUANDO-MESA, en un solo mapeo). Con el prototipo del analista: 60 de 87 a la mesa.
+
+2026-09-30 — analyst — DOUBT-PISTA-UMBRAL → B (José, 30/9): se exige desde tres cuartos del tema. R001 y el journey dicen tres cuartos.
+
+2026-09-30 — analyst — DOUBT-PISTA-RESPUESTA → A (José, 30/9): si lo que está mal es la respuesta, va a la mesa aunque haya que regrabar.
+  Una regla instantánea no sabe qué enseña el tema → DOUBT-PISTA-CUANDO-MESA (recomendado: mesa cuando la palabra de la pista
+  no está en la respuesta; regla para pista que falta, verbo sin anunciar, sujeto y not).
+
+2026-09-30 — analyst — DOUBT-PISTA-TRANSFORMAR → A (José, 30/9): la oración que se transforma no cuenta como pista.
+
+2026-09-30 — analyst — Lematizador compartido (pedido del orquestador: no arreglarlo en esta ronda) → DOUBT-PISTA-LEMATIZADOR.
+  Medido 29/9 con en_core_web_sm: de 4.490 palabras de pista, 761 sólo por lema, 75 con lema errado pero flexión regular
+  (hated→hat), 24 sólo con una tabla cerrada de irregulares (good→well/better, swum). Sólo hint-coherence usa lemas en el paquete A.
+
 2026-09-30 — analyst — Código FEAT-PISTA / F-PISTA; nombre `hint-coherence`, el del brief 089.
 
 2026-09-30 — analyst — Pista = paréntesis pegado al hueco (F-QSENT-R007) o, si la respuesta es la oración entera, el paréntesis del

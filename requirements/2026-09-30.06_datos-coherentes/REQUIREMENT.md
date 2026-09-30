@@ -34,23 +34,25 @@ grabaciones**: por cada clave de audio, el texto con que se grabó por última v
 ## Reglas de Negocio
 
 Tres copias de un ejercicio: sus **partes** (el texto fijo y las respuestas aceptadas), su **oración guardada** (la
-primera de `sentences`, la que mide content-audit) y su **audio** (se oye después de contestar). Comparar **como el
+primera de `sentences`: la del árbol de content-audit, que es la que mide, y la de la copia de producción que deja el
+importador) y su **audio** (se oye después de contestar). Comparar **como el
 corrector** es sin mayúsculas, espacios, signos ni tildes ([F-RESPC-R001](#F-RESPC-R001)).
 
 <a id="F-DATOS-R001"></a>
-### Rule[F-DATOS-R001] - La oración guardada es el ejercicio armado con su primera respuesta
-**Severity**: major | **Validation**: ASSUMPTION
+### Rule[F-DATOS-R001] - Las dos oraciones guardadas son el ejercicio armado con su primera respuesta
+**Severity**: major | **Validation**: VALIDATED
 
-> La oración guardada es igual, comparada como el corrector, a la que resulta de poner la primera respuesta en el hueco:
-> las partes enteras sin la pista, o sólo la respuesta en un tema de reescritura o en una transformación
-> ([F-SMODE-R003](#F-SMODE-R003)); en opción múltiple, el enunciado con la correcta ([F-OPMUL-R004](#F-OPMUL-R004)). Si
-> no, hallazgo *media*, que se resuelve con una *regla*: se vuelve a armar desde las partes.
+> La oración guardada en el árbol de content-audit y la de la copia de producción son iguales, comparadas como el
+> corrector, a la que resulta de poner la primera respuesta en el hueco: las partes enteras sin la pista, o sólo la
+> respuesta en un tema de reescritura o en una transformación ([F-SMODE-R003](#F-SMODE-R003)); en opción múltiple, el
+> enunciado con la correcta ([F-OPMUL-R004](#F-OPMUL-R004)). Por cada una que no, hallazgo *media*, que se resuelve con
+> una *regla*: se vuelve a armar desde las partes.
 
 Hoy da 0 en el árbol del curso: al importar, content-audit vuelve a armar la oración si cambió el contenido. Las 9
 oraciones con barra del 077 sólo están en la copia de producción, que el importador dejó en
-`db/quiz-templates.json` (A2 5, B1 4), como «The tree has not grown/hasn't grown yet.» (`67fab6d5993010229534287e`):
-[DOUBT-DATOS-PRODUCCION](#DOUBT-DATOS-PRODUCCION). Que espacios y reescrituras no cuenten:
-[DOUBT-DATOS-718](#DOUBT-DATOS-718).
+`db/quiz-templates.json` (A2 5, B1 4), como «The tree has not grown/hasn't grown yet.» (`67fab6d5993010229534287e`).
+José decidió el 30/9 que se leen las dos ([DOUBT-DATOS-PRODUCCION](#DOUBT-DATOS-PRODUCCION)) y que espacios y
+reescrituras no cuentan ([DOUBT-DATOS-718](#DOUBT-DATOS-718)).
 
 <a id="F-DATOS-R002"></a>
 ### Rule[F-DATOS-R002] - Ni las respuestas ni el audio llevan «/»
@@ -99,6 +101,9 @@ audio dice sólo «If not». Todo esto es [ASSUMPTION].
 
 > Todo ejercicio tiene clave de audio, ninguna clave la comparten dos ejercicios, y el registro de grabaciones sabe con
 > qué texto se grabó. Si no, hallazgo *baja* que se resuelve con una *regla*: se graba con el texto de hoy.
+
+El registro vive en `db/` de content-audit, se arma una vez desde las dos fuentes y lo actualiza cada regrabación
+(José, 30/9; [DOUBT-DATOS-REGISTRO](#DOUBT-DATOS-REGISTRO)).
 
 Hoy: 1, «Are we eating soon?» (`67fab6d599301022953426ac`, A2), cuya clave se vació el 27/9 para regrabarlo. Claves
 compartidas: 0. Si el archivo existe en el almacenamiento de audios no se mira: content-audit corre sin red.
@@ -181,34 +186,34 @@ journeys:
 
 <a id="DOUBT-DATOS-PRODUCCION"></a>
 ### Doubt[DOUBT-DATOS-PRODUCCION] - ¿Qué oración guardada se compara: la de content-audit o la de producción?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): las dos: la del árbol y la del export de producción que deja el importador.
+- [x] Opción A (recomendada): las dos: la del árbol y la del export de producción que deja el importador.
 - [ ] Opción B: sólo la del árbol, y el importador avisa las viejas de producción.
 
-**Answer**: Pendiente. Recomiendo A. La del árbol es la que mide content-audit y hoy está bien; la de producción es la
+**Answer**: **Opción A** (José, 30/9): se leen las dos oraciones guardadas. La del árbol es la que mide content-audit y hoy está bien; la de producción es la
 que leerá la próxima regrabación, y en 9 tiene barra. Con B esos 9 no cuentan como error y el examen pierde 5 de 39.
 
 <a id="DOUBT-DATOS-718"></a>
 ### Doubt[DOUBT-DATOS-718] - ¿Cuentan las diferencias de espacios y de reescritura?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): no; se compara como el corrector y, en reescritura, vale la respuesta sola o el
+- [x] Opción A (recomendada): no; se compara como el corrector y, en reescritura, vale la respuesta sola o el
   ejercicio entero (0 hallazgos hoy).
 - [ ] Opción B: sí; se compara tal cual contra lo que content-audit deriva hoy.
 
-**Answer**: Pendiente. Recomiendo A. B marca las 718 de DOUBT-718-CLOZE de FEAT-OPMUL (325 por espacios como «We 've»,
+**Answer**: **Opción A** (José, 30/9, con la recomendación): espacios y reescrituras no cuentan. B marcaba las 718 de DOUBT-718-CLOZE de FEAT-OPMUL (325 por espacios como «We 've»,
 352 diálogos sin recortar), que no son lo que el 077 llamó error. A no cierra esa duda: sólo no la cuenta.
 
 <a id="DOUBT-DATOS-REGISTRO"></a>
 ### Doubt[DOUBT-DATOS-REGISTRO] - ¿Dónde vive el registro de grabaciones?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): en `db/` de content-audit, armado una vez desde las dos fuentes y actualizado por cada
+- [x] Opción A (recomendada): en `db/` de content-audit, armado una vez desde las dos fuentes y actualizado por cada
   regrabación.
 - [ ] Opción B: content-audit lee cada vez las dos fuentes, en sus repositorios.
 
-**Answer**: Pendiente. Recomiendo A: queda versionado con el curso, y la próxima regrabación, que ya sale de
+**Answer**: **Opción A** (José, 30/9, con la recomendación): el registro vive en `db/` de content-audit. Queda versionado con el curso, y la próxima regrabación, que ya sale de
 content-audit, lo actualiza en el mismo paso. B depende de un worktree que se puede borrar.
 
 ## References

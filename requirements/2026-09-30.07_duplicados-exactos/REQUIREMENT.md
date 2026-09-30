@@ -39,7 +39,7 @@ opción correcta.
 
 <a id="F-DUPEX-R001"></a>
 ### Rule[F-DUPEX-R001] - Dos ejercicios del mismo tema que terminan igual son duplicados exactos
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: VALIDATED
 
 > Dos ejercicios de un mismo tema son duplicados exactos si su ejercicio terminado es igual comparado como compara el
 > corrector: sin mayúsculas, espacios, signos ni tildes. Invariantes:
@@ -59,14 +59,15 @@ opción correcta.
 - No es duplicado exacto: «I don't have ___ time.» y «I didn't have ___ time.» (`67fab6d59930102295342b7f`): es un
   parecido, del paquete B.
 
-Que la pista no entre es [ASSUMPTION]: ver [DOUBT-DUPEX-PISTA](#DOUBT-DUPEX-PISTA). Comparar como el corrector es la
-misma normalización de [F-RESPC-R001](#F-RESPC-R001).
+Que la pista no entre lo decidió José el 30/9 ([DOUBT-DUPEX-PISTA](#DOUBT-DUPEX-PISTA)), y también que los iguales de
+temas distintos quedan afuera ([DOUBT-DUPEX-ENTRE-TEMAS](#DOUBT-DUPEX-ENTRE-TEMAS)). Comparar como el corrector es la
+misma comparación de [F-RESPC-R001](#F-RESPC-R001), con su tabla de formas equivalentes: medido, da las mismas 23.
 
 </details>
 
 <a id="F-DUPEX-R002"></a>
 ### Rule[F-DUPEX-R002] - Un hallazgo por copia, nunca en el ejercicio que queda
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: VALIDATED
 
 > En un grupo de *n* ejercicios iguales del tema, el primero en el orden del tema queda sin hallazgo y cada uno de los
 > otros *n* − 1 lleva uno. Invariantes:
@@ -74,7 +75,7 @@ misma normalización de [F-RESPC-R001](#F-RESPC-R001).
 > 2. el hallazgo nombra al ejercicio que queda ([F-HALL-R003](#F-HALL-R003), «con qué otro nodo»);
 > 3. el orden del tema es el del curso, así que dos corridas marcan las mismas copias ([F-HALL-R014](#F-HALL-R014)).
 
-Cuál queda es [ASSUMPTION]: [DOUBT-DUPEX-CUAL-QUEDA](#DOUBT-DUPEX-CUAL-QUEDA). El 077 marcó la copia sin un criterio
+Cuál queda lo decidió José el 30/9: la copia es la que viene después ([DOUBT-DUPEX-CUAL-QUEDA](#DOUBT-DUPEX-CUAL-QUEDA)). El 077 marcó la copia sin un criterio
 fijo: en un par eligió la de identificador menor y en otro la mayor.
 
 <a id="F-DUPEX-R003"></a>
@@ -182,36 +183,39 @@ journeys:
 
 <a id="DOUBT-DUPEX-PISTA"></a>
 ### Doubt[DOUBT-DUPEX-PISTA] - ¿La pista entra en la comparación?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): no; se compara lo que el alumno escribe con el texto que lo rodea. Da 23 copias.
+- [x] Opción A (recomendada): no; se compara lo que el alumno escribe con el texto que lo rodea. Da 23 copias.
 - [ ] Opción B: sí; dos ejercicios con distinta pista no son duplicados. Da 22.
 
-**Answer**: Pendiente. Recomiendo A: «rice ___ (no plural form)» y «rice ___» (`67fab6d59930102295342313` y `…2314`,
-*Contable o incontable*) piden la misma respuesta con las mismas opciones; la pista sólo lo hace más fácil.
+**Answer**: **Opción A** (José, 30/9): no se compara la pista, y da 23 copias. «rice ___ (no plural form)» y
+«rice ___» (`67fab6d59930102295342313` y `…2314`, *Contable o incontable*) piden la misma respuesta con las mismas
+opciones; la pista sólo lo hace más fácil.
 
 <a id="DOUBT-DUPEX-CUAL-QUEDA"></a>
 ### Doubt[DOUBT-DUPEX-CUAL-QUEDA] - En un par, ¿cuál lleva el hallazgo?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): la copia es la que viene después en el orden del tema.
+- [x] Opción A (recomendada): la copia es la que viene después en el orden del tema.
 - [ ] Opción B: los dos llevan hallazgo.
 - [ ] Opción C: el que tenga más hallazgos de otros analizadores.
 
-**Answer**: Pendiente. Recomiendo A: es estable entre corridas y cuenta un error por copia. B cuenta 46 en vez de 23,
-y C ata este analizador a los demás.
+**Answer**: **Opción A** (José, 30/9, con la recomendación): la copia es la que viene después en el orden del tema.
+Es estable entre corridas y cuenta un error por copia; B contaba 46 en vez de 23, y C ataba este analizador a los
+demás.
 
 <a id="DOUBT-DUPEX-ENTRE-TEMAS"></a>
 ### Doubt[DOUBT-DUPEX-ENTRE-TEMAS] - ¿Y los iguales de temas distintos?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): quedan afuera de este analizador.
+- [x] Opción A (recomendada): quedan afuera de este analizador.
 - [ ] Opción B: se marcan como «sólo ordena», sin contar como error.
 - [ ] Opción C: cuentan como error.
 
-**Answer**: Pendiente. Recomiendo A: la pregunta de la propuesta es «¿dos ejercicios del mismo tema?», y entre temas
-repetir puede ser a propósito, como en los repasos (*Clasificación: repaso* repite «cold water» de *Contable o
-incontable*). Son 33 grupos: si molestan, B los muestra sin tocar los números.
+**Answer**: **Opción A** (José, 30/9, con la recomendación): los iguales de temas distintos quedan afuera de este
+analizador. La pregunta de la propuesta es «¿dos ejercicios del mismo tema?», y entre temas repetir puede ser a
+propósito, como en los repasos (*Clasificación: repaso* repite «cold water» de *Contable o incontable*). Son 33
+grupos: si molestan, B los muestra sin tocar los números.
 
 ## References
 

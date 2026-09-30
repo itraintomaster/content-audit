@@ -5,6 +5,25 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — El juez de C entra por MultipleChoiceJudgeFactory/Session (raíz de audit-domain, para que C implemente desde
+  cualquier módulo): sesión por corrida con la política del analizador; judgeRule() da a la ficha la regla del juez con su id y costo.
+  UnavailableMultipleChoiceJudgeFactory hasta que C conecte el suyo. La interfaz va a los ganchos (A-07) para reconciliar con C.
+2026-09-30 — architect — Choque con 0.3: un ejercicio con reglas corridas y juez pendiente → «a medias» (gancho A-08, DOUBT-OMVAL-JUEZ-A-MEDIAS);
+  la ficha es de modelo pago y la corrida base la dejaría afuera → tope 0 (gancho A-09, DOUBT-OMVAL-CORRIDA-BASE).
+2026-09-30 — architect — R002 compara con CorrectorMatcher.sameAnswer (contraída/larga y grafías de la lista = misma respuesta).
+
+2026-09-30 — analyst — R002 (José, 30/9): dos opciones que sólo difieren en contraída y larga, o en una grafía de la lista, son la
+  misma respuesta; si una es la correcta hay dos correctas (alta, mesa); si las dos son incorrectas, sobra una (baja, mesa).
+  Medido 29/9: 0 con la correcta; 28 con dos incorrectas (A1 20 «Elegir la forma natural», A2 8 «Obligación»).
+  why: José lo cambió; se compara con la tabla de F-RESPC-R001, así que hasta que se actualice la copia sólo cuentan mayúsculas y signos.
+
+2026-09-30 — analyst — DOUBT-OMVAL-DOS-CORRECTAS → A (José, 30/9): siempre una sola correcta, y la mesa rearma.
+
+2026-09-30 — analyst — DOUBT-OMVAL-JUEZ → A (José, 30/9): el juez de «otra opción también vale» (FEAT-MCVALE, paquete C) es parte de
+  multiple-choice-validity: una sola fila y una sola ficha, con costo modelo pago.
+
+2026-09-30 — analyst — DOUBT-OMVAL-FORMA → A y DOUBT-OMVAL-CORREGIR → A (José, 30/9, con la recomendación).
+
 2026-09-30 — analyst — Código FEAT-OMVAL / F-OMVAL: nuevo.
 
 2026-09-30 — analyst — «Abre la oración» exige que lo que sigue al hueco termine en punto, pregunta o exclamación.

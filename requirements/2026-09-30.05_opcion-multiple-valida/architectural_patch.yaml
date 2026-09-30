@@ -1,0 +1,207 @@
+code: FEAT-OMVAL
+description: "FEAT-OMVAL: multiple-choice-validity, el analizador de errores que revisa\
+  \ las opciones de cada ejercicio de opción múltiple —una sola correcta, todas distintas\
+  \ también en la forma, la mayúscula que pide la oración y el artículo que no delata—\
+  \ y por donde entran los veredictos del juez de «otra opción también vale» (FEAT-MCVALE,\
+  \ paquete C): una sola fila y una sola ficha (José, 30/9). Este parche declara el\
+  \ analizador y el lugar del juez; el juez mismo lo diseña C. Diseñado contra el\
+  \ modelo después de 0.2 (AuditableQuiz.multipleChoice, MultipleChoiceEntity) y 0.3\
+  \ (AnalyzerProvider, findingsAt, FindingSeverity); usa la comparación del corrector\
+  \ del parche de FEAT-RESPC y el renderizador QuizStudentViewRenderer del integrador."
+modules:
+- name: audit-domain
+  interfaces:
+  - name: MultipleChoiceJudgeFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "open(EvaluationRunPolicy policy): MultipleChoiceJudgeSession"
+    - signature: "judgeRule(): AnalyzerRuleCard"
+    visibility: public
+    _change: add
+  - name: MultipleChoiceJudgeSession
+    sealed: false
+    exposes:
+    - signature: "judge(AuditNode quizNode): MultipleChoiceJudgement"
+    - signature: "coverage(): EvaluationCoverage"
+    - signature: "consultedJudgeVersion(): Optional<String>"
+    visibility: public
+    _change: add
+  packages:
+  - name: multiplechoicevalidity
+    description: "Analizador multiple-choice-validity (FEAT-OMVAL), familia errores,\
+      \ evalúa QUIZ de opción múltiple. Corre sus cuatro reglas instantáneas sobre\
+      \ las opciones como las ve el alumno y, por cada ejercicio, le pide al juez\
+      \ de C su veredicto por la sesión de la corrida (MultipleChoiceJudgeSession),\
+      \ abierta con la política y el tope de este analizador. Si el juez está pendiente,\
+      \ falló o no está conectado, el ejercicio queda evaluado por las reglas y a\
+      \ medias por el juez: sus hallazgos de regla cuentan y «algún error» se lee\
+      \ como piso (gancho del contrato para el integrador). Públicos: el proveedor,\
+      \ el diagnóstico, el veredicto del juez y la fábrica «sin juez», que usa la\
+      \ raíz de composición hasta que C conecte el suyo."
+    visibility: public
+    models:
+    - name: MultipleChoiceValidityDiagnosis
+      type: record
+      fields:
+      - name: issues
+        type: List<OptionIssue>
+        description: "Una por cosa que no se cumple en las opciones, en orden de regla\
+          \ y de opción."
+      - name: judgement
+        type: MultipleChoiceJudgement
+        description: "Lo que dijo el juez de «otra opción también vale» en esta corrida,\
+          \ con su estado."
+      - name: score
+        type: double
+        description: "0 con algún hallazgo que cuenta, de regla o del juez; 1 si no\
+          \ hay ninguno conocido (F-OMVAL-R005)."
+      _change: add
+    - name: OptionIssue
+      type: record
+      fields:
+      - name: rule
+        type: String
+        description: La regla de FEAT-OMVAL que no se cumple (R001 a R004).
+      - name: kind
+        type: OptionIssueKind
+      - name: option
+        type: String
+        description: "La opción marcada, como la ve el alumno. Es la marca de la identidad\
+          \ del hallazgo."
+      - name: relatedOption
+        type: String
+        description: "La otra opción involucrada: la gemela de R002; null si no hay."
+      - name: involvesCorrect
+        type: boolean
+        description: "Si una de las dos opciones es la correcta: decide alta o baja\
+          \ en R002."
+      _change: add
+    - name: OptionIssueKind
+      type: enum
+      fields:
+      - name: NO_VALID_OPTION
+        description: "R001: ninguna opción vale el puntaje entero. Bloqueante."
+      - name: SEVERAL_VALID_OPTIONS
+        description: "R001: valen dos o más. Bloqueante."
+      - name: IDENTICAL_OPTIONS
+        description: "R002: dos opciones se ven idénticas. Bloqueante si una es la\
+          \ correcta; baja si no."
+      - name: SAME_ANSWER_OTHER_FORM
+        description: "R002: dos opciones son la misma respuesta con otra mayúscula,\
+          \ signo, contracción o grafía de la lista (José, 30/9). Alta si una es la\
+          \ correcta —hay dos correctas—; baja si no, sobra una. Mesa."
+      - name: LOWERCASE_SENTENCE_START
+        description: "R003.1: el hueco abre la oración y alguna opción empieza en\
+          \ minúscula. Regla, sobre todas las opciones a la vez."
+      - name: LOWERCASE_I
+        description: "R003.1: el pronombre I en minúscula en una opción. Regla."
+      - name: DASH_AT_SENTENCE_START
+        description: "R003.2: el guion de «no poner nada» en un hueco que abre la\
+          \ oración. Mesa."
+      - name: ARTICLE_GIVES_AWAY
+        description: "R004: el a o an de antes del hueco sólo encaja con alguna opció\
+          n. Media, mesa."
+      _change: add
+    - name: MultipleChoiceJudgement
+      type: record
+      fields:
+      - name: status
+        type: MultipleChoiceJudgementStatus
+      - name: alsoValidOptions
+        type: List<AlsoValidOption>
+        description: Opciones incorrectas que el juez también da por válidas en el
+          contexto. Vacía si el juez no encontró ninguna o no juzgó.
+      - name: judgeVersion
+        type: String
+        description: "Procedencia del veredicto (F-QINST-R010): no decide qué vale.\
+          \ null si no hubo veredicto."
+      - name: reused
+        type: boolean
+        description: Si el veredicto salió del libro de evaluaciones sin consultar
+          (F-EVCOST-R003).
+      _change: add
+    - name: MultipleChoiceJudgementStatus
+      type: enum
+      fields:
+      - name: JUDGED
+        description: "Hay veredicto, nuevo o reutilizado."
+      - name: PENDING
+        description: "Sin veredicto: se agotó el tope de la corrida o no se pidió\
+          \ pagar."
+      - name: FAILED
+        description: "El juez no respondió o respondió algo inusable (F-QINST-R007,\
+          \ R013)."
+      - name: NOT_AVAILABLE
+        description: "No hay juez conectado: la fábrica «sin juez» de este paquete."
+      _change: add
+    - name: AlsoValidOption
+      type: record
+      fields:
+      - name: option
+        type: String
+        description: "La opción incorrecta que también vale, como la ve el alumno."
+      - name: explanation
+        type: String
+        description: "Por qué vale, en una línea en castellano: la evidencia del hallazgo\
+          \ del juez."
+      _change: add
+    - name: MultipleChoiceJudgeCoverageDiagnosis
+      type: record
+      fields:
+      - name: coverage
+        type: EvaluationCoverage
+        description: "Cuántos ejercicios de opción múltiple juzgó el juez en la corrida,\
+          \ cuántos reutilizó y cuántos quedaron pendientes o fallidos."
+      - name: consultedJudgeVersion
+        type: String
+        description: Versión del juez consultado en esta corrida; null si no se consultó.
+      _change: add
+    interfaces:
+    - name: OptionRuleCheck
+      sealed: false
+      exposes:
+      - signature: "check(AuditableQuiz quiz): List<OptionIssue>"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: MultipleChoiceValidityAnalyzerProvider
+      requiresInject:
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      - name: judgeFactory
+        type: MultipleChoiceJudgeFactory
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      visibility: public
+      implements:
+      - AnalyzerProvider
+      _change: add
+    - name: MultipleChoiceValidityAnalyzer
+      requiresInject:
+      - name: optionRules
+        type: OptionRuleCheck
+      - name: judgeSession
+        type: MultipleChoiceJudgeSession
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      implements:
+      - ContentAnalyzer
+      _change: add
+    - name: DefaultOptionRuleCheck
+      requiresInject:
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      implements:
+      - OptionRuleCheck
+      _change: add
+    - name: UnavailableMultipleChoiceJudgeFactory
+      visibility: public
+      implements:
+      - MultipleChoiceJudgeFactory
+      _change: add
+    _change: add
+  _change: modify
+features:
+- id: FEAT-OMVAL
+  code: F-OMVAL

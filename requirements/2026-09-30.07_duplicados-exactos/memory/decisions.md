@@ -5,6 +5,19 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — La búsqueda es en onKnowledge, en el orden del curso: cada ejercicio contra los anteriores con
+  CorrectorMatcher.sameAnswer; el primero que termina igual queda (estable entre corridas). Diagnóstico sólo en la copia.
+2026-09-30 — architect — El ejercicio terminado lo arma el renderizador del integrador (finishedSentence con FILL: texto entero, sin
+  pista, con la primera respuesta o la correcta).
+
+2026-09-30 — analyst — DOUBT-DUPEX-PISTA → A (José, 30/9): no se compara la pista (23 copias). R001 VALIDATED.
+
+2026-09-30 — analyst — DOUBT-DUPEX-CUAL-QUEDA → A y DOUBT-DUPEX-ENTRE-TEMAS → A (José, 30/9, con la recomendación): se marca la copia
+  que viene después en el orden del tema; los iguales de temas distintos quedan afuera. R002 VALIDATED.
+
+2026-09-30 — analyst — «Como el corrector» ahora incluye la tabla de formas equivalentes (F-RESPC-R001): medido sobre el 29/9, siguen
+  siendo 23 copias (A1 17, A2 2, B1 4); ningún par del mismo tema difiere sólo en contraída y larga.
+
 2026-09-30 — analyst — Código FEAT-DUPEX / F-DUPEX: nuevo, no aparece en ningún requirement de las ramas de ronda 1.
 
 2026-09-30 — analyst — Se compara el ejercicio terminado como lo ve el alumno (texto fijo + primera respuesta), no la oración guardada.

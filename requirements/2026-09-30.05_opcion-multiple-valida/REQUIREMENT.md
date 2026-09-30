@@ -11,7 +11,8 @@ feature:
 ## TL;DR
 
 **Qué**: Un analizador de la familia de errores revisa las opciones de cada ejercicio de opción múltiple: una sola
-correcta, todas distintas, con la mayúscula que pide la oración y sin un artículo que delate la respuesta.
+correcta, todas distintas —también en la forma—, con la mayúscula que pide la oración y sin un artículo que delate la
+respuesta.
 
 **Por qué**: El 077 marcó 315 de los 2.810 ejercicios de opción múltiple (11,2 %), casi todos por forma, y hoy
 content-audit los mide pero no mira sus opciones.
@@ -34,8 +35,8 @@ requirement. El juez de «otra opción también vale» es del paquete C.
 ## Reglas de Negocio
 
 Las reglas leen las opciones como las ve el alumno, cuál es la correcta, el enunciado y dónde está el hueco. Una opción
-**vale** si el curso le da puntaje; comparar **como el corrector** es sin mayúsculas, espacios, signos ni tildes
-([F-RESPC-R001](#F-RESPC-R001)).
+**vale** si el curso le da puntaje; comparar **como el corrector** es sin mayúsculas, espacios, signos ni tildes, y
+tomando como iguales las formas que iguala la tabla de formas equivalentes del corrector ([F-RESPC-R001](#F-RESPC-R001)).
 
 <a id="F-OMVAL-R001"></a>
 ### Rule[F-OMVAL-R001] - Una sola opción vale, y vale el puntaje entero
@@ -51,15 +52,21 @@ no suman eso (`checkEvaluationMultipleChoice`). Hoy: 0 de 2.810. Que una incorre
 ([DOUBT-OMVAL-DOS-CORRECTAS](#DOUBT-OMVAL-DOS-CORRECTAS)).
 
 <a id="F-OMVAL-R002"></a>
-### Rule[F-OMVAL-R002] - Las opciones son distintas entre sí
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+### Rule[F-OMVAL-R002] - Las opciones son distintas entre sí, también en la forma
+**Severity**: critical | **Validation**: VALIDATED
 
-> Ninguna opción es igual a otra comparadas como el corrector. Si son iguales y una es la correcta: *bloqueante* si se
-> ven idénticas, porque el alumno no puede distinguirlas; *alta* si sólo cambia la mayúscula o un signo, porque marca
-> mal a quien eligió la palabra correcta. Si las dos son incorrectas: *baja*, sobra una.
+> Ninguna opción es igual a otra comparadas como el corrector: dos opciones que sólo difieren en la forma contraída y
+> la larga («isn't» e «is not»), o en una grafía de la lista, son la misma respuesta. Si son iguales y una es la
+> correcta, hay dos correctas: *bloqueante* si se ven idénticas, porque el alumno no puede distinguirlas; *alta* si
+> cambia la mayúscula, un signo, la contracción o la grafía, porque marca mal a quien eligió la otra. Si las dos son
+> incorrectas: *baja*, sobra una.
 
 Es también la lectura segura de «ninguna distinta de la correcta sólo en la forma»
-([DOUBT-OMVAL-FORMA](#DOUBT-OMVAL-FORMA)). Hoy: 0 de 2.810.
+([DOUBT-OMVAL-FORMA](#DOUBT-OMVAL-FORMA)). Contraída y larga, y las grafías, lo decidió José el 30/9: son la misma
+respuesta, como en el corrector nuevo. Hoy: 0 con la correcta; 28 con dos incorrectas que son la misma, *baja* (A1 20
+en *Elegir la forma natural*: «'re going to» y «are going to»; A2 8 en *Obligación*: «'ve got to» y «have got to»).
+Se resuelven en la *mesa*, que rearma el ejercicio con una sola correcta. La tabla es la de
+[F-RESPC-R001](#F-RESPC-R001): mientras la copia sea la de hoy, sólo cuentan la mayúscula y los signos.
 
 <a id="F-OMVAL-R003"></a>
 ### Rule[F-OMVAL-R003] - Si el hueco abre la oración, todas las opciones abren con mayúscula
@@ -106,10 +113,11 @@ Hoy: 2, los dos de B2 en *Grados de énfasis*: «He's an ___ amazing man.» con 
 > *mesa*. Alcanza sólo a los de opción múltiple (2.810), y un ejercicio de hueco para escribir nunca tiene hallazgo
 > suyo. Con hallazgo, el ejercicio tiene puntaje 0 en este analizador; sin ninguno, 1.
 
-Las cuatro reglas cuestan *instantáneo*. El juez del paquete C se suma como otra regla del mismo analizador, con costo
-*modelo pago*, y la ficha pasa a declarar ése, el mayor ([F-HALL-R006](#F-HALL-R006));
-ver [DOUBT-OMVAL-JUEZ](#DOUBT-OMVAL-JUEZ). La identidad del hallazgo es regla + ejercicio + la opción marcada
-([F-HALL-R014](#F-HALL-R014)). El nombre es [ASSUMPTION].
+Las cuatro reglas cuestan *instantáneo*. El juez de «otra opción también vale» (FEAT-MCVALE, paquete C) se suma como
+otra regla del mismo analizador, con costo *modelo pago*, y la ficha pasa a declarar ése, el mayor
+([F-HALL-R006](#F-HALL-R006)): una sola fila y una sola ficha (José, 30/9; [DOUBT-OMVAL-JUEZ](#DOUBT-OMVAL-JUEZ)). La
+identidad del hallazgo es regla + ejercicio + la opción marcada ([F-HALL-R014](#F-HALL-R014)). El nombre es
+[ASSUMPTION].
 
 ## Contexto
 
@@ -126,7 +134,8 @@ Base: curso vivo del 29/9 en `db/english-course`, medido con un prototipo de las
 | R003, mayúscula al abrir la oración | 89 | 107 | 87 | 41 | 324 |
 | … de ellos, con el guion (R003.2) | 14 | 40 | 6 | 9 | 69 |
 | R004, artículo que delata | 0 | 0 | 0 | 2 | 2 |
-| R001 y R002 | 0 | 0 | 0 | 0 | 0 |
+| R001, y R002 con la correcta | 0 | 0 | 0 | 0 | 0 |
+| R002, dos incorrectas que son la misma (José, 30/9) | 20 | 8 | 0 | 0 | 28 |
 
 Hay opción múltiple en 98 de los 413 temas; R003 marca en 32. «i» en minúscula aparece en 40 de A1, 20 de ellos sin
 abrir la oración, como «A: Can you call Miss Green? B: No, ___ .» con *i can't* (`67fab6d5993010229534250b`).
@@ -140,8 +149,9 @@ reales en una muestra. **Costo**: segundos, sin modelo.
 
 ## Alcance
 
-- **Adentro**: R001 a R004 sobre las opciones, sus hallazgos y la ficha.
-- **Afuera**: si otra opción también vale en el contexto (juez del paquete C); aplicar el arreglo, que choca con
+- **Adentro**: R001 a R004 sobre las opciones, sus hallazgos y la ficha, y el lugar por donde entran los veredictos
+  del juez de «otra opción también vale».
+- **Afuera**: el juez mismo —evaluador, libro de evaluaciones, prompt y examen— (paquete C); aplicar el arreglo, que choca con
   [F-OPMUL-R006](#F-OPMUL-R006) ([DOUBT-OMVAL-CORREGIR](#DOUBT-OMVAL-CORREGIR)); la consigna y la [traducción](glossary:Traducción) (otros
   analizadores); y escribir el curso al analizar ([F-HALL-R015](#F-HALL-R015)).
 
@@ -163,10 +173,14 @@ journeys:
         gate: [F-OMVAL-R005]
         outcomes:
           - {when: "No vale ninguna opción, o valen dos", then: bloqueante}
+          - {when: "Dos opciones son la misma respuesta con otra forma, y una es la correcta", then: dos_correctas}
+          - {when: "Dos opciones incorrectas son la misma respuesta", then: sobra_una}
           - {when: "El hueco abre la oración y las opciones van en minúscula", then: mayuscula}
           - {when: "El artículo antes del hueco sólo encaja con la correcta", then: delata}
           - {when: "Una sola vale, son distintas y la forma no delata nada", then: sin_hallazgo}
       - {id: bloqueante, action: "Hallazgo bloqueante que cuenta en los errores de su tema, su nivel y el curso", gate: [F-OMVAL-R001, F-OMVAL-R002], result: success}
+      - {id: dos_correctas, action: "Hallazgo alta para la mesa, con las dos opciones que son la misma respuesta como evidencia", gate: [F-OMVAL-R002], result: success}
+      - {id: sobra_una, action: "Hallazgo baja para la mesa: sobra una de las dos opciones incorrectas", gate: [F-OMVAL-R002], result: success}
       - {id: mayuscula, action: "Hallazgo de gravedad baja que se resuelve con una regla sobre todas las opciones a la vez", gate: [F-OMVAL-R003], result: success}
       - {id: delata, action: "Hallazgo de gravedad media para la mesa, con el artículo y las opciones como evidencia", gate: [F-OMVAL-R004], result: success}
       - {id: sin_hallazgo, action: "Sin hallazgo de este analizador; el ejercicio queda con puntaje 1", gate: [F-OMVAL-R005], result: success}
@@ -176,51 +190,83 @@ journeys:
 
 <a id="DOUBT-OMVAL-DOS-CORRECTAS"></a>
 ### Doubt[DOUBT-OMVAL-DOS-CORRECTAS] - Cuando otra opción también vale, ¿qué se hace?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): se deja una sola correcta: la mesa cambia la oración o la opción que sobra, y deciden
+- [x] Opción A (recomendada): se deja una sola correcta: la mesa cambia la oración o la opción que sobra, y deciden
   los jueces.
 - [ ] Opción B: se pasa a «elegí todas las que valen», con selección múltiple.
 - [ ] Opción C: se saca la opción que sobra, sin reemplazarla.
 
-**Answer**: Pendiente. Recomiendo A, que es lo que dice la propuesta. Dar puntaje a las dos no es una salida: con una
-sola selección el alumno nunca llega al puntaje entero (R001). B cambia el tipo de ejercicio; C sirve como atajo si
-quedan tres opciones o más.
+**Answer**: **Opción A** (José, 30/9): siempre una sola correcta, y la mesa rearma. Dar puntaje a las dos no es una
+salida: con una sola selección el alumno nunca llega al puntaje entero (R001).
 
 <a id="DOUBT-OMVAL-FORMA"></a>
 ### Doubt[DOUBT-OMVAL-FORMA] - ¿Qué es «distinta de la correcta sólo en la forma»?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): mayúscula o signos (R002) y el artículo «a/an» de antes del hueco (R004).
+- [x] Opción A (recomendada): mayúscula o signos (R002) y el artículo «a/an» de antes del hueco (R004).
 - [ ] Opción B: además, las opciones que difieren de la correcta sólo en el artículo o en singular y plural.
 
-**Answer**: Pendiente. Recomiendo A. Con B se marcan 73 ejercicios de cuatro temas donde esa diferencia es justo lo
+**Answer**: **Opción A** (José, 30/9, con la recomendación), a la que José sumó la forma contraída y la larga y las
+grafías de la lista (R002). Con B se marcaban 73 ejercicios de cuatro temas donde esa diferencia es justo lo
 que se enseña: *one* o *ones* (A2, `67fab6d59930102295343951`, «Could I get another ___, please?»), *other* o *the
 other* (B1, *Con o sin artículo*), *few* o *a few* (B2, *Escasez*) y *other*, *another* o *the other* (B2).
 
 <a id="DOUBT-OMVAL-CORREGIR"></a>
 ### Doubt[DOUBT-OMVAL-CORREGIR] - El arreglo por regla choca con que no se corrige ninguna opción múltiple
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): el hallazgo declara su resolución (*regla* o *mesa*) y el paquete E la aplica recién
+- [x] Opción A (recomendada): el hallazgo declara su resolución (*regla* o *mesa*) y el paquete E la aplica recién
   cuando José conteste DOUBT-CORREGIR-MC de FEAT-OPMUL.
 - [ ] Opción B: mientras tanto, los hallazgos se declaran *sólo ordena*.
 
-**Answer**: Pendiente. Recomiendo A. Analizar no escribe nada, así que detectar no choca con
-[F-OPMUL-R006](#F-OPMUL-R006); aplicar sí. B sacaría 324 ejercicios de «algún error» sin que cambie el curso.
+**Answer**: **Opción A** (José, 30/9, con la recomendación): el hallazgo declara su resolución y el arreglo espera a
+que José conteste DOUBT-CORREGIR-MC de FEAT-OPMUL. Analizar no escribe nada, así que detectar no choca con
+[F-OPMUL-R006](#F-OPMUL-R006); aplicar sí.
 
 <a id="DOUBT-OMVAL-JUEZ"></a>
 ### Doubt[DOUBT-OMVAL-JUEZ] - ¿El juez de «otra opción también vale» es una regla de este analizador?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): sí, una regla más de `multiple-choice-validity`, con su costo.
+- [x] Opción A (recomendada): sí, una regla más de `multiple-choice-validity`, con su costo.
 - [ ] Opción B: es un analizador aparte, con su propio nombre y su fila.
 
-**Answer**: Pendiente. Recomiendo A: la propuesta lo dibuja como un solo analizador («regla + juez», 315) y así lo
-nombra [F-HALL-R002](#F-HALL-R002). El paquete C tiene que usar el mismo nombre.
+**Answer**: **Opción A** (José, 30/9): el juez es parte de Opción múltiple, con una sola fila y una sola ficha. Este
+paquete diseña el analizador y el lugar por donde entran los veredictos; el paquete C diseña el juez (FEAT-MCVALE) y usa
+el mismo nombre.
+
+<a id="DOUBT-OMVAL-JUEZ-A-MEDIAS"></a>
+### Doubt[DOUBT-OMVAL-JUEZ-A-MEDIAS] - ¿Cómo cuenta un ejercicio cuyas reglas corrieron pero el juez no?
+**Status**: OPEN
+
+- [ ] Opción A (recomendada): evaluado a medias: sus hallazgos de regla cuentan, el nodo declara que el juez no lo vio
+  y «algún error» se lee como piso. Pide un campo más en el contrato del hallazgo, que suma el integrador.
+- [ ] Opción B: evaluado del todo: los hallazgos de regla cuentan y lo que el juez no vio sólo figura en su cobertura.
+- [ ] Opción C: sin evaluar hasta que el juez lo vea.
+
+**Answer**: Pendiente. Con el juez adentro, choca el contrato: un ejercicio está evaluado o no, y no hay hallazgos en
+uno sin evaluar ([F-HALL-R001](#F-HALL-R001)). Sin pedido explícito no se paga, así que en una corrida normal el juez
+no ve ninguno de los 2.810. Recomiendo A: la fila muestra los unos 354 con error de regla y avisa que falta el juez.
+Con B la fila parece completa sin serlo ([F-HALL-R008](#F-HALL-R008), invariante 3); con C diría que el 100 % de lo
+evaluado tiene error, porque sólo quedarían evaluados los que ya tienen un error de regla.
+
+<a id="DOUBT-OMVAL-CORRIDA-BASE"></a>
+### Doubt[DOUBT-OMVAL-CORRIDA-BASE] - ¿La vista consolidada muestra los errores de opción múltiple?
+**Status**: OPEN
+
+- [ ] Opción A (recomendada): sí: la corrida base corre `multiple-choice-validity` con tope 0, sin pagar: sus reglas
+  siempre y del juez sólo lo que ya está registrado.
+- [ ] Opción B: no: la corrida base sigue siendo sólo de analizadores instantáneos, y la opción múltiple aparece sólo
+  en `analyze`.
+
+**Answer**: Pendiente. Por el juez, la ficha declara *modelo pago* ([F-HALL-R006](#F-HALL-R006)), y el contrato deja
+fuera de la corrida base —la de la vista consolidada y la vista previa— a todo lo que no es instantáneo. Con B esas
+dos vistas pierden los unos 354 errores de regla, que no cuestan nada. Recomiendo A: no paga nada y es la misma lectura
+que José eligió para `stats analyzer` de un juez (tope 0 con reuso libre).
 
 ## References
 
 - **FEAT-HALL** — Hallazgo, gravedad, resolución, costo, ficha, conteo e identidad: R001 a R005.
 - **FEAT-OPMUL** — Qué es un ejercicio de opción múltiple, su oración medible y que no se corrige: R005 y dudas.
-- **FEAT-RESPC** — Comparar como el corrector: R002.
+- **FEAT-RESPC** — Comparar como el corrector, con su tabla de formas equivalentes: R002.
+- **FEAT-MCVALE** (paquete C) — El juez de «otra opción también vale», que entra como regla de este analizador: R005.

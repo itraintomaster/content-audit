@@ -1,0 +1,61 @@
+code: FEAT-DUPEX
+description: "FEAT-DUPEX: exact-duplicates, el analizador de errores que marca cada\
+  \ ejercicio que repite, tal cual, a otro de su mismo tema: el ejercicio terminado\
+  \ (texto fijo sin la pista, con la primera respuesta o la opción correcta) comparado\
+  \ como el corrector. La copia es la que viene después en el orden del tema; los\
+  \ iguales de temas distintos quedan afuera (José, 30/9). Diseñado contra el modelo\
+  \ después de 0.2 y 0.3; usa la comparación del corrector del parche de FEAT-RESPC\
+  \ y el renderizador QuizStudentViewRenderer del integrador, que arma el ejercicio\
+  \ terminado."
+modules:
+- name: audit-domain
+  packages:
+  - name: exactduplicates
+    description: "Analizador exact-duplicates (FEAT-DUPEX), familia errores, evalú\
+      a QUIZ. En onKnowledge arma el ejercicio terminado de cada ejercicio del tema,\
+      \ en el orden del curso, y busca para cada uno un anterior igual comparado como\
+      \ el corrector; en onQuiz deja el puntaje y el diagnóstico sólo en las copias\
+      \ (el primero queda con 1). Todo es dentro del tema: no mira otros temas. Pú\
+      blicos: el proveedor y el diagnóstico."
+    visibility: public
+    models:
+    - name: ExactDuplicateDiagnosis
+      type: record
+      fields:
+      - name: keptQuizId
+        type: String
+        description: "El ejercicio que queda: el primero del tema que termina igual\
+          \ (F-DUPEX-R002). Va en la evidencia como el otro nodo del hallazgo."
+      - name: finishedExercise
+        type: String
+        description: "El ejercicio terminado que comparten, como lo ve el alumno."
+      - name: score
+        type: double
+        description: 0 en la copia; el ejercicio que queda no lleva diagnóstico y
+          tiene 1 (F-DUPEX-R005).
+      _change: add
+    implementations:
+    - name: ExactDuplicatesAnalyzerProvider
+      requiresInject:
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      visibility: public
+      implements:
+      - AnalyzerProvider
+      _change: add
+    - name: ExactDuplicatesAnalyzer
+      requiresInject:
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      implements:
+      - ContentAnalyzer
+      _change: add
+    _change: add
+  _change: modify
+features:
+- id: FEAT-DUPEX
+  code: F-DUPEX
