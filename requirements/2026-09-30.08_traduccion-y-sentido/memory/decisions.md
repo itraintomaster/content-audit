@@ -4,6 +4,11 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-TRSEN-J001 en audit-domain, `com.learney.contentaudit.auditdomain.translationsenseengine`, como los del juez de consigna.
+  why: ahí son visibles el analizador, el combinador y el constructor del sujeto; ArchUnit no mira las clases de test.
+2026-09-30 — qa-tester — Dos pruebas sobre AgentJudge (de FEAT-JEXAM): salida inutilizable (R005) y entradas tal cual (R001).
+  why: son de todo juez nuevo pero sólo se pueden trazar a uno; si TRSEN se aplicara antes que JEXAM, AgentJudge entraría vacía.
+
 2026-09-30 — architect — Dos evaluadores (translation-sense-from-english / -from-translation) con el mismo mapa de
   contenido: cefrLevel, instructions (la del ejercicio), exercise, acceptedSentences, translation. El analizador reparte el
   tope de a pares con `recorded()` en el orden del recorrido y resuelve cada juez con resolveAll.

@@ -1,7 +1,7 @@
 ---
 patch: FEAT-UNICA
 requirement: 2026-09-30.09_una-sola-respuesta
-generated: 2026-09-30T18:45:00Z
+generated: 2026-09-30T19:35:00Z
 ---
 
 # Tech Spec: Juez de una sola respuesta (FEAT-UNICA)
@@ -270,4 +270,49 @@ features:
 modules:
   - name: audit-domain
     _change: modify
+```
+
+## Declarar las 28 pruebas y ubicar el journey
+Las 28 son nuevas y cubren las siete reglas (R001 4, R002 6, R003 2, R004 6, R005 6, R006 1, R007 3). **Ninguna
+consulta un modelo pago**: el juez es un doble que devuelve veredictos grabados, con la forma del artifact
+`singleAnswerVerdict`, y cuenta cuántas veces lo llaman.
+
+**De dónde sale cada prueba.**
+- **Los casos del requirement**: «He was in Italy ___ .» (…2464), donde «from Friday until Sunday» y «from Friday till
+  Sunday» son opciones que ofrece la consigna y dan un hallazgo que sólo ordena; las verduras (…1ecd), bloqueante;
+  «Does he need water? He ___ .» (…1f57), alta por «doesn't»; «She ___ (not / come).» (…2189), media por «won't come».
+- **La forma contraída y la larga**: un ejercicio que acepta «isn't» y cuyo único reparo sería «is not» no tiene hallazgo.
+  Es el criterio de F-JEXAM-R012 y se prueba acá, bajo F-UNICA-R002, porque `patch propose` no acepta trazar a otra
+  feature. Lo mismo las grafías de la lista cerrada y until o till.
+- **El examen** (R006): juzga los CLOZE del archivo; uno de opción múltiple que venga en el archivo queda sin veredicto.
+
+**Dependencias.** El clasificador usa `CorrectorMatcher` (C-08, del paquete A): las pruebas lo reemplazan por un doble,
+porque con la tabla vacía de hoy «is not» no es «isn't»; con la tabla de verdad dependen de A-15 y A-16. El render (C-07),
+la ranura del diagnóstico (C-05), la cobertura común (C-04), `AuditableQuiz.multipleChoice` de 0.2 para dejar afuera la
+opción múltiple, y los hallazgos y la ficha de 0.3. Con C-02 el proveedor pasa a `implements AnalyzerProvider` y sus
+pruebas no cambian.
+
+**El journey** va a `audit-domain`, en `com.learney.contentaudit.auditdomain.singleanswerengine`, como los del juez de
+consigna. `generate` crearía `FUnicaJ001JourneyTest` con 4 caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: singleanswerengine
+        _change: add
+        visibility: public
+        implementations:
+          - name: DefaultSingleAnswerClassifier
+            _change: add
+            implements: [SingleAnswerClassifier]
+            handwrittenTests:
+              - name: "should drop «is not» listed by the judge for a quiz that accepts «isn't», leaving it without single-answer finding"
+                traceability: { feature: FEAT-UNICA, rule: F-UNICA-R002 }
+features:
+  - id: FEAT-UNICA
+    code: F-UNICA
+    journeys:
+      - { id: F-UNICA-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.singleanswerengine }
 ```

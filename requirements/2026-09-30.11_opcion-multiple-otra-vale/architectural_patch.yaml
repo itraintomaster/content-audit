@@ -8,7 +8,11 @@ description: "FEAT-MCVALE: el juez «¿otra opción también vale?» de la opci�
   \ para la ficha del analizador y su lector. Lo que difiere sólo en la forma, contraí\
   da o larga incluida, se descarta con CorrectorMatcher (paquete A). Usa el runtime\
   \ común de FEAT-JEXAM: el nombre, el tope, el freno del examen y el examen son los\
-  \ del analizador que lo aloja."
+  \ del analizador que lo aloja.; qa-tester: traza las 7 reglas de FEAT-MCVALE a handwrittenTests\
+  \ nuevas, con juez falso o grabado y sin modelo pago; la opción que difiere sólo\
+  \ como «isn't» e «is not» se prueba bajo F-MCVALE-R002. F-MCVALE-J001 va a audit-domain,\
+  \ paquete multiplechoicevalidity, donde el paquete A ubica F-OMVAL-J001: depende\
+  \ de reconciliar la interfaz del juez con A-07 (gancho C-09)."
 modules:
 - name: audit-domain
   interfaces:
@@ -178,6 +182,22 @@ modules:
       - name: correctorMatcher
         type: CorrectorMatcher
       visibility: public
+      handwrittenTests:
+      - name: should give for the card of multiple-choice-validity the judge rule
+          another-option-valid with paid model cost
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R004
+      - name: "should open the judge's sessions under the name multiple-choice-validity,\
+          \ so its budget, exam brake and exam are those of that analyzer"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R004
+      - name: "should consult nothing when the run asks no budget for multiple-choice-validity,\
+          \ reusing what was judged"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R004
       implements:
       - ChoiceAlternativeJudgeRunFactory
       _change: add
@@ -193,6 +213,52 @@ modules:
         type: ChoiceAlternativeClassifier
       - name: verdictReader
         type: ChoiceAlternativeVerdictReader
+      handwrittenTests:
+      - name: "should ignore a CLOZE quiz requested to it, neither judging it nor\
+          \ counting it"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R001
+      - name: "should judge a quiz from its recorded verdict without consulting, as\
+          \ JUDGED and reused"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R005
+      - name: "should leave PENDING, without score and without findings, the quizzes\
+          \ the budget did not reach"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R005
+      - name: "should leave FAILED with its reason, without score and without findings,\
+          \ a quiz whose judge failed or answered something unusable, and finish"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R005
+      - name: "should leave every quiz NOT_AVAILABLE, without score and without findings,\
+          \ when the judge states no version"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R005
+      - name: "should declare in its coverage the multiple choice quizzes reached,\
+          \ evaluated and unevaluated"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R005
+      - name: should resolve all requested quizzes together within the budget and
+          give the same judgment of a quiz however many times it is asked
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R005
+      - name: "should judge in an EXAM run only the multiple choice exercises of the\
+          \ file, …47cc among them, and not the CLOZE verduras"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R006
+      - name: "should judge a candidate with the same judge and version, and reuse\
+          \ its verdict once the candidate enters the course"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R007
       implements:
       - ChoiceAlternativeJudgeRun
       _change: add
@@ -202,6 +268,23 @@ modules:
         type: QuizStudentViewRenderer
         description: "Las claves y su orden son la huella: title, instructions (la\
           \ del ejercicio), exercise, options. Cambiar la correcta cambia la huella."
+      handwrittenTests:
+      - name: "should build for «There's a cat ___ the window.» the content title,\
+          \ instructions, exercise and options at, in and on in the order shown with\
+          \ at marked correct, and nothing else"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R001
+      - name: should build different contents for two quizzes that differ only in
+          which option is correct
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R001
+      - name: "should build the same content when only the translation, the mini-theory\
+          \ or the audio of the quiz changes"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R001
       implements:
       - ChoiceAlternativeSubjectBuilder
       _change: add
@@ -213,6 +296,42 @@ modules:
           la correcta (isn't / is not). Es el CorrectorMatcher del paquete A (FEAT-RESPC).
       - name: config
         type: ChoiceAlternativeConfig
+      handwrittenTests:
+      - name: "should drop «is not» listed as also valid for a quiz whose correct\
+          \ option is «isn't», leaving it without finding of another-option-valid"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R002
+      - name: "should keep «a» of «She wants ___ hot tea.» as an option that also\
+          \ counts, with the judge's reason in its evidence"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R002
+      - name: "should give «Are you thirsty? ___ , let's drink water soon.» a blocking\
+          \ finding marked «(correcta)» and score 0 when the judge says «if not» is\
+          \ not valid and «if so» is"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R003
+      - name: should give «I don't enjoy extra food ___ .» a high finding for «a lot»
+          and score 0.3
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R003
+      - name: should give «There's a cat ___ the window.» a medium finding for «in»
+          and score 0.6
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R003
+      - name: "should give one finding of the rule another-option-valid per option\
+          \ that also counts, marked with the option"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R003
+      - name: should pass a candidate whose options leave only the correct one valid
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R007
       implements:
       - ChoiceAlternativeClassifier
       _change: add
@@ -226,6 +345,12 @@ modules:
     implementations:
     - name: JacksonChoiceAlternativeVerdictReader
       visibility: public
+      handwrittenTests:
+      - name: "should read whether the correct option is valid and why not, and each\
+          \ valid alternative with its severity and reason"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R002
       implements:
       - ChoiceAlternativeVerdictReader
       _change: add
@@ -237,6 +362,12 @@ modules:
     types:
     - Component
     visibility: public
+    handwrittenTests:
+    - name: "should score a quiz 0 for a blocking, 0.3 for a high and 0.6 for a medium\
+        \ worst severity"
+      traceability:
+        feature: FEAT-MCVALE
+        rule: F-MCVALE-R003
     implements:
     - ChoiceAlternativeConfig
     _change: add
@@ -244,3 +375,8 @@ modules:
 features:
 - id: FEAT-MCVALE
   code: F-MCVALE
+  journeys:
+  - id: F-MCVALE-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.multiplechoicevalidity

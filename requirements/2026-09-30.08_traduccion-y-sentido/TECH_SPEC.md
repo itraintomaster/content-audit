@@ -1,7 +1,7 @@
 ---
 patch: FEAT-TRSEN
 requirement: 2026-09-30.08_traduccion-y-sentido
-generated: 2026-09-30T18:30:00Z
+generated: 2026-09-30T19:35:00Z
 ---
 
 # Tech Spec: Juez de traducción y sentido (FEAT-TRSEN)
@@ -295,4 +295,53 @@ features:
 modules:
   - name: audit-domain
     _change: modify
+```
+
+## Declarar las 32 pruebas y ubicar el journey
+Las 32 son nuevas y cubren las siete reglas (R001 5, R002 3, R003 6, R004 5, R005 10, R006 1, R007 2). **Ninguna
+consulta un modelo pago**: los dos jueces son dobles que devuelven veredictos grabados, con la forma del artifact
+`translationSenseVerdict`, y cuentan cuántas veces los llaman.
+
+**De dónde sale cada prueba.**
+- **Los casos del requirement**: las verduras (…1ecd), que los dos jueces reprueban y dan un hallazgo por condición; «It's
+  the moment ___ dinner!» (…2d9e), que reprueba uno solo y da un único `judges-disagree` que sólo ordena, con puntaje 1: el
+  caso que va a la bandeja (José, 30/9); Yakarta (…350b), la oración con la opción correcta; «a lot of» contra «mucho»,
+  la evidencia.
+- **El tope de a pares**, del parche: con tope 10 y veinte ejercicios nuevos quedan cinco con los dos veredictos, no diez
+  con uno; y a un ejercicio que ya tiene el veredicto de un juez sólo se le consulta el otro.
+- **El examen** (R006): los dos jueces juzgan cada ejercicio del archivo y ningún otro de la foto; la aprobación la
+  calcula quien tiene el oro.
+- **Dos pruebas van sobre `AgentJudge`**, de FEAT-JEXAM: la salida conservadora (`outputUnusable`) como salida
+  inutilizable y el mapa de contenido tal cual como entradas. Son de todo juez nuevo, pero sólo se pueden trazar a uno;
+  entran porque FEAT-JEXAM se aplica antes: si no, `AgentJudge` entraría como una implementación vacía.
+
+**Dependencias.** El render (C-07, A-01) en el constructor del sujeto; la ranura del diagnóstico (C-05) y la cobertura
+común (C-04); los hallazgos, la ficha y `unevaluatedBy` de 0.3; el runtime común de FEAT-JEXAM. Con C-01 el proveedor
+pasa a `implements AnalyzerProvider` y sus pruebas no cambian; sin `TRANSLATION_SENSE` en `DiagnosisKind` (C-21) la
+ligadura se prueba igual, por su nombre.
+
+**El journey** va a `audit-domain`, en `com.learney.contentaudit.auditdomain.translationsenseengine`, como los del juez
+de consigna: ahí son visibles el analizador, el combinador y el constructor del sujeto, que no son públicos.
+`generate` crearía `FTrsenJ001JourneyTest` con 4 caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: translationsenseengine
+        _change: add
+        visibility: public
+        implementations:
+          - name: DefaultTranslationSenseCombiner
+            _change: add
+            implements: [TranslationSenseCombiner]
+            handwrittenTests:
+              - name: "should give a single rank-only judges-disagree finding with both verdicts in its evidence, and score 1, when only one judge fails «It's the moment ___ dinner!»"
+                traceability: { feature: FEAT-TRSEN, rule: F-TRSEN-R003 }
+features:
+  - id: FEAT-TRSEN
+    code: F-TRSEN
+    journeys:
+      - { id: F-TRSEN-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.translationsenseengine }
 ```

@@ -10,7 +10,10 @@ description: "FEAT-MINIT: el analizador mini-theory. Una consulta por tema: el j
   n de FEAT-JEXAM (el tope cuenta temas) y el evaluador genérico por agente. Necesita\
   \ la miniteoría en AuditableQuiz, que va como gancho del integrador. El proveedor\
   \ se declara como clase con las cinco firmas de AnalyzerProvider (0.3); el integrador\
-  \ lo pasa a implements AnalyzerProvider."
+  \ lo pasa a implements AnalyzerProvider.; qa-tester: traza las 7 reglas de FEAT-MINIT\
+  \ a handwrittenTests nuevas, con juez falso o grabado y sin modelo pago; «sólo donde\
+  \ se muestra» y «en todo el tema» se prueban con la miniteoría de «enjoy» de «Contraste\
+  \ inicial» (9 de 80). F-MINIT-J001 va a audit-domain, paquete minitheoryengine."
 modules:
 - name: audit-domain
   interfaces:
@@ -172,6 +175,27 @@ modules:
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
       visibility: public
+      handwrittenTests:
+      - name: "should publish the name mini-theory and open its judge through the\
+          \ judges runtime under that name, so a version without an approved exam\
+          \ gets budget 0"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R005
+      - name: "should publish a card with family errors, paid model cost, the quiz\
+          \ as evaluated level and the rules false-rule, overstated-rule, contradicting-exercise\
+          \ and uncovered-exercise"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R002
+      - name: should declare in its card the panel as resolution of its four rules
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R007
+      - name: should bind its scores below 1 to the plan as MINI_THEORY tasks on quizzes
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R004
       stereotype: class
       exposes:
       - signature: "analyzerName(): String"
@@ -192,6 +216,52 @@ modules:
         type: MiniTheoryDistributor
       - name: verdictReader
         type: MiniTheoryVerdictReader
+      handwrittenTests:
+      - name: "should consult the judge once per topic, never once per exercise"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R001
+      - name: "should count topics against its budget, so with budget 1 and two new\
+          \ topics it judges one and leaves every exercise of the other unevaluated"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R005
+      - name: should reuse the verdict of a topic whose content did not change without
+          consulting and without spending budget
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R005
+      - name: "should leave the exercises of an unevaluated topic without mini-theory\
+          \ score and finding, marked as unevaluated by mini-theory"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R005
+      - name: "should finish the run and record nothing when the judge's service fails\
+          \ or its output is unusable, leaving those topics unevaluated"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R005
+      - name: "should declare the topics reached, evaluated and unevaluated, and the\
+          \ exercises they contain, in its coverage"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R005
+      - name: "should consult the judge on no topic when the run asks no budget for\
+          \ mini-theory, and declare what the pending topics cost"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R005
+      - name: should judge in an EXAM run the topics of the exercises of the file
+          and no other topic
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R006
+      - name: "should judge a candidate that rewrites a mini-theory with the same\
+          \ judge and version, and reuse its verdict once the candidate enters the\
+          \ course"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R007
       implements:
       - ContentAnalyzer
       _change: add
@@ -202,6 +272,30 @@ modules:
         description: "Las claves y su orden son la huella: cefrLevel, topic, instructions\
           \ (la del tema), miniTheories, exercises. Cualquier cambio de una miniteorí\
           a o de un ejercicio vuelve a juzgar el tema entero (F-MINIT-R001)."
+      handwrittenTests:
+      - name: "should build one content per topic with cefrLevel, topic, the topic's\
+          \ instructions, its mini-theories and its exercises, in that order and nothing\
+          \ else"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R001
+      - name: "should list each distinct mini-theory once, numbered by first appearance\
+          \ with the exercises that show it, as the they/them one of 16 exercises\
+          \ of «Sujeto u objeto» and the she/her one of 12"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R001
+      - name: "should number the exercises in topic order, each with its statement,\
+          \ hint and accepted answers, or its options with the correct one marked"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R001
+      - name: "should build the same content when only a translation or an audio of\
+          \ the topic changes, and a different one when a mini-theory or an exercise\
+          \ changes"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R001
       implements:
       - MiniTheorySubjectBuilder
       _change: add
@@ -210,6 +304,49 @@ modules:
       - name: config
         type: MiniTheoryConfig
         description: "De acá sale el alcance del error: SHOWN_ONLY o WHOLE_TOPIC."
+      handwrittenTests:
+      - name: should put a finding of the false «enjoy» mini-theory in the 9 exercises
+          of «Contraste inicial» that show it and in none of its other 71
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R003
+      - name: should put that finding in the 80 exercises of «Contraste inicial» when
+          the error scope is the whole topic
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R003
+      - name: "should put the finding of an exercise that contradicts its mini-theory,\
+          \ or falls outside it, only on that exercise, whatever the error scope"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R003
+      - name: "should give HIGH to a false or contradicted mini-theory, MEDIUM to\
+          \ an overstated one and LOW to one that does not cover its exercise, and\
+          \ never BLOCKING"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R004
+      - name: "should score each exercise 1 without finding and 0.3, 0.6 or 0.8 by\
+          \ its gravest mini-theory finding"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R004
+      - name: "should put in the evidence the text of the mini-theory, what it has\
+          \ false with its counterexample «Are you enjoying the party?», and the exercises\
+          \ involved"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R002
+      - name: "should mark every finding of one mini-theory with its text, so the\
+          \ exercises that show it are resolved together with a single candidate"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R007
+      - name: "should leave the verduras without mini-theory finding when the judge\
+          \ holds their mini-theory «Con he, she, it el verbo lleva -s…» true"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R006
       implements:
       - MiniTheoryDistributor
       _change: add
@@ -223,6 +360,12 @@ modules:
     implementations:
     - name: JacksonMiniTheoryVerdictReader
       visibility: public
+      handwrittenTests:
+      - name: "should read one assessment per mini-theory with whether it holds, its\
+          \ problem, severity, counterexample, exercises and explanation"
+        traceability:
+          feature: FEAT-MINIT
+          rule: F-MINIT-R002
       implements:
       - MiniTheoryVerdictReader
       _change: add
@@ -234,6 +377,17 @@ modules:
     types:
     - Component
     visibility: public
+    handwrittenTests:
+    - name: should count a false mini-theory only where it is shown unless the whole-topic
+        scope is configured
+      traceability:
+        feature: FEAT-MINIT
+        rule: F-MINIT-R003
+    - name: "should score an exercise 0.3 for a high, 0.6 for a medium and 0.8 for\
+        \ a low worst severity"
+      traceability:
+        feature: FEAT-MINIT
+        rule: F-MINIT-R004
     implements:
     - MiniTheoryConfig
     _change: add
@@ -241,3 +395,8 @@ modules:
 features:
 - id: FEAT-MINIT
   code: F-MINIT
+  journeys:
+  - id: F-MINIT-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.minitheoryengine

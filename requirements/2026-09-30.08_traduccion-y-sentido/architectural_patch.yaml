@@ -8,7 +8,11 @@ description: "FEAT-TRSEN: el analizador translation-sense. Dos jueces que no se 
   \ examen, tope 0 por omisión, consultas a la vez, costo pendiente) y el evaluador\
   \ genérico por agente; acá sólo lo propio: veredicto, combinación, puntaje, ficha\
   \ y lector. El proveedor se declara como clase con las cinco firmas de AnalyzerProvider\
-  \ (0.3); el integrador lo pasa a implements AnalyzerProvider."
+  \ (0.3); el integrador lo pasa a implements AnalyzerProvider.; qa-tester: traza\
+  \ las 7 reglas de FEAT-TRSEN a handwrittenTests nuevas, con jueces falsos o grabados\
+  \ y sin modelo pago; dos van sobre AgentJudge (de FEAT-JEXAM, que se aplica antes)\
+  \ porque la salida inutilizable y las entradas tal cual sólo se pueden trazar a\
+  \ un juez nuevo. F-TRSEN-J001 va a audit-domain, paquete translationsenseengine."
 modules:
 - name: audit-domain
   interfaces:
@@ -162,6 +166,29 @@ modules:
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
       visibility: public
+      handwrittenTests:
+      - name: "should publish the name translation-sense and open its two judges through\
+          \ the judges runtime under that name, so a version without an approved exam\
+          \ gets budget 0"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R005
+      - name: "should publish a card with family errors, paid model cost, the quiz\
+          \ as evaluated level and the rules same-meaning, native-would-say, words-go-together,\
+          \ level-register and judges-disagree"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R002
+      - name: should declare in its card the panel as resolution of the four conditions
+          and rank only for judges-disagree
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R007
+      - name: should bind its scores below 1 to the plan as TRANSLATION_SENSE tasks
+          on quizzes
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R004
       stereotype: class
       exposes:
       - signature: "analyzerName(): String"
@@ -182,6 +209,73 @@ modules:
         type: TranslationSenseCombiner
       - name: verdictReader
         type: TranslationSenseVerdictReader
+      handwrittenTests:
+      - name: "should hand both judges the same content, each in its own session,\
+          \ and never one judge's verdict to the other"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R003
+      - name: "should record each judge's verdict under its own evaluator, so one\
+          \ never overwrites the other and each is reused on its own"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R003
+      - name: should count a quiz as evaluated only when it has the verdicts of both
+          judges
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R003
+      - name: "should spend a budget of 10 over twenty new quizzes on five quizzes\
+          \ with both verdicts, not on ten quizzes with one"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R005
+      - name: "should consult only the missing judge for a quiz that already has the\
+          \ other judge's verdict, counting that single consultation against the budget"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R005
+      - name: should reuse both recorded verdicts of a quiz without consulting and
+          without spending budget
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R005
+      - name: "should leave a quiz lacking a judge's verdict without score and without\
+          \ finding, marked as unevaluated by translation-sense"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R005
+      - name: "should finish the run and record nothing when a judge's service fails\
+          \ or its output is unusable, leaving those quizzes unevaluated"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R005
+      - name: "should declare the quizzes reached, evaluated and unevaluated in its\
+          \ coverage"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R005
+      - name: "should consult no judge when the run asks no budget for translation-sense,\
+          \ and declare two consultations for each pending quiz"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R005
+      - name: should have at most four consultations of its two judges in flight at
+          once when the run says nothing
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R005
+      - name: "should ask both judges about every exercise of the exam file in an\
+          \ EXAM run, and about no other exercise of the photo"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R006
+      - name: "should judge a candidate that changes only the translation of a marked\
+          \ quiz with the same two judges and versions, and reuse both verdicts once\
+          \ it enters the course"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R007
       implements:
       - ContentAnalyzer
       _change: add
@@ -192,6 +286,30 @@ modules:
         description: "Las claves y su orden son la huella: cefrLevel, instructions\
           \ (la del ejercicio), exercise, acceptedSentences, translation. Cambiar\
           \ el render re-cobra todo."
+      handwrittenTests:
+      - name: "should build for «I ___ a lot of vegetables.» the content cefrLevel,\
+          \ instructions, exercise, acceptedSentences and translation «Me gustan mucho\
+          \ las verduras.», in that order and nothing else"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R001
+      - name: "should take the instructions from the quiz copy the app shows, not\
+          \ from its knowledge"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R001
+      - name: "should put in acceptedSentences the sentence completed with each accepted\
+          \ answer, and for a multiple choice quiz only the one with its correct option,\
+          \ as «Jakarta is the capital of the Philippines.»"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R001
+      - name: "should build the same content for a quiz whose mini-theory or audio\
+          \ changed, and a different one when its translation or an accepted answer\
+          \ changed"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R001
       implements:
       - TranslationSenseSubjectBuilder
       _change: add
@@ -199,6 +317,42 @@ modules:
       requiresInject:
       - name: config
         type: TranslationSenseConfig
+      handwrittenTests:
+      - name: should give no finding and score 1 when both judges pass the quiz
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R003
+      - name: "should give one finding per condition either judge marked, counting\
+          \ as error, when both judges fail the verduras (…1ecd)"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R003
+      - name: "should give a single rank-only judges-disagree finding with both verdicts\
+          \ in its evidence, and score 1, when only one judge fails «It's the moment\
+          \ ___ dinner!»"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R003
+      - name: should give a condition both judges marked the higher of their two severities
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R004
+      - name: "should score 0.3, 0.6 or 0.8 by the highest severity among the findings\
+          \ that count"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R004
+      - name: should give no blocking finding even when a judge reports a blocking
+          failure
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R004
+      - name: "should put in the evidence of each finding the failing fragment and\
+          \ its line in Spanish, as «a lot of» counting vegetables while «mucho» says\
+          \ how much they are liked"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R002
       implements:
       - TranslationSenseCombiner
       _change: add
@@ -214,10 +368,30 @@ modules:
     implementations:
     - name: JacksonTranslationSenseVerdictReader
       visibility: public
+      handwrittenTests:
+      - name: "should read a failing verdict with each failed condition, its severity,\
+          \ its fragment and its evidence line"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R002
       implements:
       - TranslationSenseVerdictReader
       _change: add
     _change: add
+  - name: agentjudge
+    implementations:
+    - name: AgentJudge
+      handwrittenTests:
+      - name: "should report the conservative outputUnusable verdict of a translation-sense\
+          \ judge as an unusable output, not as a verdict"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R005
+      - name: "should hand the agent of a translation-sense judge each entry of the\
+          \ content map verbatim as its inputs, and nothing else"
+        traceability:
+          feature: FEAT-TRSEN
+          rule: F-TRSEN-R001
   _change: modify
 - name: audit-application
   implementations:
@@ -225,6 +399,12 @@ modules:
     types:
     - Component
     visibility: public
+    handwrittenTests:
+    - name: "should score a quiz 0.3 for a high, 0.6 for a medium and 0.8 for a low\
+        \ worst severity"
+      traceability:
+        feature: FEAT-TRSEN
+        rule: F-TRSEN-R004
     implements:
     - TranslationSenseConfig
     _change: add
@@ -232,3 +412,8 @@ modules:
 features:
 - id: FEAT-TRSEN
   code: F-TRSEN
+  journeys:
+  - id: F-TRSEN-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.translationsenseengine

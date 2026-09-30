@@ -4,6 +4,10 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-MINIT-J001 en audit-domain, `com.learney.contentaudit.auditdomain.minitheoryengine`.
+2026-09-30 — qa-tester — «Sólo donde se muestra» y «en todo el tema» se prueban con alcance explícito en el repartidor («enjoy», 9 de 80 en «Contraste inicial»); el valor por omisión, en la configuración.
+  why: si José vuelve a «en todo el tema» (DOUBT-MINIT-VARIAS, a confirmar) cambia una sola prueba.
+
 2026-09-30 — architect — Consulta por tema (onKnowledge arma el sujeto; el tope cuenta temas), pero puntaje, hallazgo y
   diagnóstico en cada ejercicio: así «sólo donde se muestra» sale sin tocar F-HALL-R008 (el hallazgo de tema contaría en
   todo el tema). `MiniTheoryErrorScope` (SHOWN_ONLY por omisión, WHOLE_TOPIC) en la config es el parámetro de José.

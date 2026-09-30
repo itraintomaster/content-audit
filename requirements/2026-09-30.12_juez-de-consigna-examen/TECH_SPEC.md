@@ -1,7 +1,7 @@
 ---
 patch: FEAT-JEXAM
 requirement: 2026-09-30.12_juez-de-consigna-examen
-generated: 2026-09-30T18:20:00Z
+generated: 2026-09-30T19:35:00Z
 ---
 
 # Tech Spec: El examen fijo de los jueces y el juez de consigna, sin tocar su huella (FEAT-JEXAM)
@@ -772,4 +772,73 @@ features:
 modules:
   - name: audit-domain
     _change: modify
+```
+
+## Declarar las 90 pruebas y ubicar el journey
+Las 90 son nuevas y cubren de R001 a R011 (R001 25, R002 9, R003 8, R004 6, R005 5, R006 7, R007 4, R008 3, R009 2,
+R010 6, R011 15). Van sobre las implementaciones del parche y sobre `DefaultEvaluationSession`, que el parche no nombra
+pero es la que cumple el contrato nuevo de `EvaluationSession`: consultas a la vez, la primera sola y el motivo de la
+falla. **Ninguna consulta un modelo pago**: el evaluador es un doble que devuelve veredictos grabados, con la forma que
+emite cada agente, y cuenta cuántas veces lo llaman; la sesión de `claude-cli` se verifica contra una respuesta grabada de
+`claude auth status`, nunca contra la de la máquina.
+
+**De dónde sale cada prueba.**
+- **Los casos del requirement**: el tope 0 sin pedido (R010, 500 → 0 para el de consigna); la sesión vencida con tope 100,
+  que llama a lo sumo una vez y dice «sesión vencida: renovala con claude auth login» (R011); el ritmo como promedio entre
+  veredictos seguidos, cortado en pausas de más de 10 minutos (R004, con números chicos: 352 pendientes a 176 por hora
+  son 2 horas de a una y media hora con 4); las verduras (…1ecd), que el juez de consigna dio por buenas en agosto (R009).
+- **La huella del juez de consigna** (R007): un libro grabado antes de FEAT-JEXAM, con la huella que calcula el código de
+  hoy, se tiene que seguir encontrando sin consultar, y la versión del juez de consigna no cambia con la verificación nueva.
+- **El examen** (R001, R002, gancho C-24): un archivo sintético del qa-tester —las verduras, cuatro ejercicios de
+  `escribir/` y un id que no está en la foto—, nunca el examen fijo, que tiene el orquestador. Su entrada es
+  `[{"ejercicio": "67fab6d59930102295341ecd"}, …]` y cada línea de salida
+  `{"ejercicio", "juez", "version", "resultado", "gravedad", "reglas", "detalle"}`; con el id que falta sale
+  `NOT_JUDGED`, la versión no queda TAKEN y `exam record` rechaza su resultado.
+
+**Dependencias.** Los hallazgos, la ficha y `unevaluatedBy` son de 0.3 (R001 en el exportador, R008). Del integrador:
+C-04 (la cobertura común en `CourseDiagnoses`), C-12 y C-13 (cableado), C-16 (la configuración del entorno) y, para el
+journey, C-17 (`--budget`, `--reevaluate` por nombre y `--concurrency`), C-18 (el comando `exam`) y C-25 (la foto).
+`DefaultJudgeProviderReadinessProbe` no recibe con qué correr `claude auth status`: sus dos pruebas de `claude-cli` necesitan
+que el arquitecto se lo dé por inyección, o un `claude` falso en el PATH de la prueba. La prueba de hoy
+«should build the analyzer with the configured default budget when the run declares no policy for the judge»
+(F-QINST-R006) afirma 500 y R010 lo lleva a 0: se reescribe su cuerpo, igual que el constructor de las 27 de
+`QuizInstructionAnalyzer` y las 4 de su fábrica. R012 no tiene prueba propia: la cumplen los clasificadores de FEAT-UNICA y
+FEAT-MCVALE, donde se prueba su criterio, y `patch propose` no acepta trazar a otra feature. Con
+DOUBT-EXAMEN-Y-CANDIDATOS abierta, la prueba del candidato usa una versión aprobada y el freno sobre candidatos no se
+declara.
+
+**El journey** va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: sus pasos son `exam run`,
+`exam record` y `analyze`, y `ExamCmd` y `AnalyzeCmd` son package-private ahí, como en F-CLEX-J001. `generate` crearía
+`FJexamJ001JourneyTest` con 2 caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: judgingengine
+        _change: add
+        visibility: public
+        implementations:
+          - name: DefaultJudgeRuntime
+            _change: add
+            visibility: public
+            implements: [JudgeRuntime]
+            handwrittenTests:
+              - name: "should open the sessions of a judge with budget 0 when the run asks no budget for it, even when its version passed the exam"
+                traceability: { feature: FEAT-JEXAM, rule: F-JEXAM-R010 }
+      - name: quizinstructionengine
+        _change: modify
+        visibility: public
+        implementations:
+          - name: QuizInstructionAnalyzer
+            _change: modify
+            handwrittenTests:
+              - name: "should look up each quiz under the same fingerprint the ledger recorded for it before FEAT-JEXAM"
+                traceability: { feature: FEAT-JEXAM, rule: F-JEXAM-R007 }
+features:
+  - id: FEAT-JEXAM
+    code: F-JEXAM
+    journeys:
+      - { id: F-JEXAM-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
 ```

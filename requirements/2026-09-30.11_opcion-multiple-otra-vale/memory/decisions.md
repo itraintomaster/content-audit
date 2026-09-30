@@ -4,6 +4,10 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-MCVALE-J001 en audit-domain, `com.learney.contentaudit.auditdomain.multiplechoicevalidity`, donde A ubica F-OMVAL-J001.
+  why: corre analyze con el analizador de A, que aloja al juez; implementarlo necesita el parche de A y el gancho C-09.
+2026-09-30 — qa-tester — Las pruebas del run y de la factory siguen la interfaz de C (request, resolveAll, judgmentOf, coverage), sin reconciliar con A-07; el puntaje del juez se fija como dato (C-10).
+
 2026-09-30 — architect — Sin analizador ni proveedor: el juez se ofrece a A por `ChoiceAlternativeJudgeRunFactory`
   (judgeRule, open(policy)) y `ChoiceAlternativeJudgeRun` (request, resolveAll, judgmentOf, coverage). Alineado con A-07
   en estados (JUDGED/PENDING/FAILED/NOT_AVAILABLE), una sola regla y open(policy); distinto en los dos tiempos (sin ellos

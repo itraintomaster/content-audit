@@ -1,7 +1,7 @@
 ---
 patch: FEAT-MINIT
 requirement: 2026-09-30.10_miniteoria
-generated: 2026-09-30T18:55:00Z
+generated: 2026-09-30T19:35:00Z
 ---
 
 # Tech Spec: Juez de miniteoría (FEAT-MINIT)
@@ -290,4 +290,50 @@ features:
 modules:
   - name: audit-domain
     _change: modify
+```
+
+## Declarar las 28 pruebas y ubicar el journey
+Las 28 son nuevas y cubren las siete reglas (R001 5, R002 3, R003 4, R004 4, R005 7, R006 2, R007 3). **Ninguna
+consulta un modelo pago**: el juez es un doble que devuelve veredictos grabados, con la forma del artifact
+`miniTheoryVerdict`, y cuenta cuántas veces lo llaman.
+
+**De dónde sale cada prueba.**
+- **«Sólo donde se muestra» y «en todo el tema»**, los dos valores del alcance: en «Contraste inicial» (A1, 80
+  ejercicios) la miniteoría falsa de «enjoy» da hallazgo en los 9 que la muestran y en ninguno de los otros 71; con «en
+  todo el tema», en los 80. El ejercicio que la contradice cuenta siempre sólo donde está.
+- **Los demás casos del requirement**: «Sujeto u objeto» (28 ejercicios, 16 con la de they/them y 12 con la de she/her)
+  para numerar cada miniteoría una sola vez; el contraejemplo «Are you enjoying the party?» en la evidencia; las verduras,
+  cuya miniteoría es cierta y no da hallazgo (R006).
+- **El tope cuenta temas**: con tope 1 y dos temas nuevos se juzga uno y todos los ejercicios del otro quedan sin evaluar.
+
+**Dependencias.** La miniteoría de cada ejercicio en `AuditableQuiz` (C-06, A-02 y A-03): sin ella no hay qué leer. El
+render (C-07), la ranura del diagnóstico (C-05), la cobertura común (C-04) y los hallazgos y la ficha de 0.3. Con C-03 el
+proveedor pasa a `implements AnalyzerProvider` y sus pruebas no cambian. DOUBT-MINIT-VARIAS se confirma con José: si
+vuelve a «en todo el tema», cambia el valor por omisión y la prueba de la configuración, no las dos del alcance.
+
+**El journey** va a `audit-domain`, en `com.learney.contentaudit.auditdomain.minitheoryengine`, como los del juez de
+consigna. `generate` crearía `FMinitJ001JourneyTest` con 3 caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: minitheoryengine
+        _change: add
+        visibility: public
+        implementations:
+          - name: DefaultMiniTheoryDistributor
+            _change: add
+            implements: [MiniTheoryDistributor]
+            handwrittenTests:
+              - name: "should put a finding of the false «enjoy» mini-theory in the 9 exercises of «Contraste inicial» that show it and in none of its other 71"
+                traceability: { feature: FEAT-MINIT, rule: F-MINIT-R003 }
+              - name: "should put that finding in the 80 exercises of «Contraste inicial» when the error scope is the whole topic"
+                traceability: { feature: FEAT-MINIT, rule: F-MINIT-R003 }
+features:
+  - id: FEAT-MINIT
+    code: F-MINIT
+    journeys:
+      - { id: F-MINIT-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.minitheoryengine }
 ```

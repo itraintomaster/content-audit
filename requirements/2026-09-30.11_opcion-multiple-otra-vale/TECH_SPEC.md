@@ -1,7 +1,7 @@
 ---
 patch: FEAT-MCVALE
 requirement: 2026-09-30.11_opcion-multiple-otra-vale
-generated: 2026-09-30T19:05:00Z
+generated: 2026-09-30T19:35:00Z
 ---
 
 # Tech Spec: Juez de opción múltiple, ¿otra opción también vale? (FEAT-MCVALE)
@@ -260,4 +260,50 @@ features:
 modules:
   - name: audit-domain
     _change: modify
+```
+
+## Declarar las 24 pruebas y ubicar el journey
+Las 24 son nuevas y cubren las siete reglas (R001 4, R002 3, R003 5, R004 3, R005 6, R006 1, R007 2). **Ninguna
+consulta un modelo pago**: el juez es un doble que devuelve veredictos grabados, con la forma del artifact
+`choiceAlternativeVerdict`, y cuenta cuántas veces lo llaman.
+
+**De dónde sale cada prueba.**
+- **Los casos del requirement**: «Are you thirsty? ___ , let's drink water soon.» (…47cc, la clave invertida del examen
+  fijo), bloqueante con la marca «(correcta)»; «I don't enjoy extra food ___ .» (…2f1b), alta por «a lot»; «There's a cat
+  ___ the window.» (…2cb8), media por «in»; «She wants ___ hot tea.» (…232e), donde «a» también vale.
+- **La forma contraída y la larga**: una opción que difiere de la correcta sólo como «isn't» e «is not» no es otra opción
+  que vale; la marca una regla del paquete A.
+- **El examen** (R006): juzga sólo la opción múltiple del archivo, con …47cc, y no las verduras, que son CLOZE.
+
+**Dependencias.** Las pruebas de `LedgerBackedChoiceAlternativeJudgeRun` y de la factory siguen la interfaz que ofrece C
+(`request`, `resolveAll`, `judgmentOf`, `coverage`), todavía sin reconciliar con la que espera A (gancho C-09 contra A-07):
+si el integrador conserva los nombres de A, cambian los métodos que llaman, no lo que fijan. El puntaje del ejercicio lo
+decide A (C-10): estas pruebas fijan `ChoiceAlternativeJudgment.score` como dato. El clasificador usa `sameAnswer` de
+`CorrectorMatcher` (C-08) a través de un doble. También dependen de C-11 (el ejercicio a medias), del render (C-07), de
+`AuditableQuiz.multipleChoice` de 0.2 y de los hallazgos de 0.3.
+
+**El journey** va a `audit-domain`, en `com.learney.contentaudit.auditdomain.multiplechoicevalidity`, donde el paquete A
+ubica F-OMVAL-J001: corre `analyze` con el analizador de A, que aloja al juez. El stub se genera aunque falte el parche de
+A, pero implementarlo necesita ese parche y C-09. `generate` crearía `FMcvaleJ001JourneyTest` con 4 caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: choicealternativeengine
+        _change: add
+        visibility: public
+        implementations:
+          - name: DefaultChoiceAlternativeClassifier
+            _change: add
+            implements: [ChoiceAlternativeClassifier]
+            handwrittenTests:
+              - name: "should drop «is not» listed as also valid for a quiz whose correct option is «isn't», leaving it without finding of another-option-valid"
+                traceability: { feature: FEAT-MCVALE, rule: F-MCVALE-R002 }
+features:
+  - id: FEAT-MCVALE
+    code: F-MCVALE
+    journeys:
+      - { id: F-MCVALE-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.multiplechoicevalidity }
 ```

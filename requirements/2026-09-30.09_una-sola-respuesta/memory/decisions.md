@@ -4,6 +4,11 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-UNICA-J001 en audit-domain, `com.learney.contentaudit.auditdomain.singleanswerengine`.
+2026-09-30 — qa-tester — El criterio de F-JEXAM-R012 («isn't» aceptada, «is not» como único reparo: sin hallazgo) se prueba acá bajo F-UNICA-R002, con CorrectorMatcher doble.
+  why: propose no deja trazar a FEAT-JEXAM desde este parche; con la tabla vacía de hoy «is not» no es «isn't» (A-15, A-16).
+2026-09-30 — qa-tester — Duda para el analista, sin prueba: si el juez lista «won't come» y «will not come» para «She ___ (not / come).», ¿son una respuesta o dos? R002 descarta lo que el corrector acepta para el ejercicio, y no acepta ninguna de las dos.
+
 2026-09-30 — architect — Mapa de contenido: title, instructions (la del ejercicio), exercise, acceptedAnswers; sólo
   CLOZE. El clasificador descarta con `CorrectorMatcher.accepts` (paquete A) lo que el corrector ya acepta antes de contar:
   la regla de las formas no depende del modelo. Un hallazgo por respuesta, con la respuesta como marca.

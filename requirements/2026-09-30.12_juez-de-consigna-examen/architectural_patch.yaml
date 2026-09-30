@@ -13,7 +13,13 @@ description: "FEAT-JEXAM: lo común de los cinco jueces con modelo y lo que camb
   n sin costo de la sesión del proveedor. Los tipos de 0.2 y 0.3 (AnalyzerDescriptor\
   \ ampliado, AnalyzerCatalog, AnalyzerRuleCard, FindingSeverity, AuditableQuiz.multipleChoice)\
   \ se usan sin declararse acá; el render de los jueces es QuizStudentViewRenderer\
-  \ (gancho A-01) y la tabla del corrector, CorrectorMatcher (paquete A)."
+  \ (gancho A-01) y la tabla del corrector, CorrectorMatcher (paquete A).; qa-tester:\
+  \ traza R001 a R011 de FEAT-JEXAM a handwrittenTests nuevas sobre las implementaciones\
+  \ del parche y sobre DefaultEvaluationSession, que realiza el contrato nuevo de\
+  \ EvaluationSession; todas con juez falso o grabado, ninguna consulta un modelo\
+  \ pago. R012 no tiene prueba propia: la cumplen los clasificadores de FEAT-UNICA\
+  \ y FEAT-MCVALE, y propose no acepta trazas a otra feature. F-JEXAM-J001 va a audit-cli,\
+  \ paquete commands."
 modules:
 - name: evaluation-ledger-domain
   models:
@@ -76,6 +82,18 @@ modules:
         description: "La misma huella que el curso: un ejercicio del examen se reconoce\
           \ igual que en el curso."
       visibility: public
+      handwrittenTests:
+      - name: "should open exam sessions that reuse without consulting what the same\
+          \ version already judged on the same content, in an earlier exam or on the\
+          \ course"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R002
+      - name: "should open exam sessions that consult, within the budget, a content\
+          \ the taking version never judged even when another version judged it"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R002
       implements:
       - EvaluationSessionFactory
       _change: add
@@ -89,14 +107,71 @@ modules:
           \ registros de esta versión, primero del espacio de examen y después del\
           \ curso; append escribe sólo en el espacio de examen (evaluatorId con prefijo\
           \ exam:)."
+      handwrittenTests:
+      - name: "should find only records of the version taking the exam, first in its\
+          \ exam space and then in the course's, and none of another version"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R002
+      - name: "should append the exam verdicts only under the evaluator prefixed exam:,\
+          \ leaving the course ledger as it was"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R002
       implements:
       - EvaluationLedger
       _change: add
+    - name: DefaultEvaluationSession
+      handwrittenTests:
+      - name: "should consult with four at a time exactly the three contents it consults\
+          \ one at a time when five new contents meet a budget of 3, in the order\
+          \ of the requests"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R006
+      - name: "should resolve a batch mixing reuse-or-evaluate, forced, prefer-new\
+          \ and reuse-only requests exactly as the one-at-a-time methods resolve them\
+          \ in the same order"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R006
+      - name: "should start no consultation after a service failure while resolving\
+          \ at a time, and record the verdict of each consultation already in flight\
+          \ that the evaluator emitted"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R006
+      - name: "should return the same resolution for every content with one and with\
+          \ four consultations at a time, given the same ledger and the same verdicts"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R006
+      - name: "should send the first consultation of a batch alone, so an evaluator\
+          \ whose provider session expired is called once and not four times"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
+      - name: should keep as unavailable reason the cause and the remedy the evaluator
+          gave on its first service failure
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
     _change: modify
   _change: modify
 - name: evaluation-ledger-infrastructure
   implementations:
   - name: FileSystemEvaluationLedger
+    handwrittenTests:
+    - name: "should return the recorded times of an evaluator in the order they were\
+        \ appended, and none of another evaluator"
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R004
+    - name: "should not return to the course evaluator a verdict recorded for the\
+        \ same content under its exam: evaluator"
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R002
     implements:
     - EvaluationLedger
     - EvaluationTimeline
@@ -449,11 +524,159 @@ modules:
       - name: config
         type: JudgeRuntimeConfig
       visibility: public
+      handwrittenTests:
+      - name: "should open on the course the sessions of a judge whose version never\
+          \ took the exam with budget 0, whatever budget the run asked, giving «sin\
+          \ examen» as reason"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R003
+      - name: "should open with budget 0 and reason «reprobada» the sessions of a\
+          \ version whose last exam record failed, even when the run asks 500"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R003
+      - name: should open with budget 0 the sessions of a version that took the whole
+          exam but whose measured result was not recorded yet
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R003
+      - name: should open with the budget the run asked only the sessions of a version
+          whose exam was approved
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R003
+      - name: "should open no consulting session for a judge one of whose evaluators\
+          \ states no version, and declare it not available"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R003
+      - name: "should open the sessions of a judge with budget 0 when the run asks\
+          \ no budget for it, even when its version passed the exam"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R010
+      - name: "should open with four consultations at a time when the run says nothing,\
+          \ and with the number the run asks otherwise"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R006
+      - name: "should compose the version of a judge from the version of each of its\
+          \ evaluators, in order, joined by «+», as for the two judges of translation-sense"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: "should open the sessions of an EXAM run on the exam ledger and never\
+          \ on the course's, without the exam brake"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R002
+      - name: "should open a run on a candidate course with the course purpose, the\
+          \ same judge version and the course ledger, so the candidate's verdict is\
+          \ reused once it enters the course"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R005
+      - name: "should reject, for any judge, a declared empty set and a set declared\
+          \ together with a course area before opening any session"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R005
+      - name: "should ask for a new verdict exactly on the units of a declared set\
+          \ and only reuse on every other unit, for any judge"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R005
+      - name: should declare as unmatched every id of the declared set that no unit
+          of the course corresponds to
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R005
+      - name: should take a topic into a declared set of mini-theory when its id or
+          the id of one of its exercises is declared
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R005
+      - name: "should ask in an EXAM run only the units of the exam file, and neither\
+          \ ask nor count any other unit of the photo"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: "should declare 352 pending quizzes as 352 consultations, 2 hours one\
+          \ at a time at a measured 176 per hour and half an hour with four at a time,\
+          \ without consulting"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R004
+      - name: "should count two consultations for each quiz pending for translation-sense,\
+          \ one per judge"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R004
+      - name: "should measure the rate as the mean interval between consecutive verdicts\
+          \ of a run, cutting at pauses longer than 10 minutes, so verdicts 20 seconds\
+          \ apart around a 3-hour pause give 180 per hour"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R004
+      - name: "should fall back to the configured rate, 189 per hour or 60 for mini-theory,\
+          \ and say the rate is not measured, when the judge has no recorded history"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R004
+      - name: "should declare next to the judge's numbers the exam of the version\
+          \ it consulted and of every version that contributed verdicts, as approved,\
+          \ failed or without exam"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: should carry into the judge's coverage the cause and the remedy of the
+          first service failure of any of its sessions
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
+      - name: "should take the last exam record of a version as its standing, so an\
+          \ approval recorded after a failure lets it consult"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
       implements:
       - JudgeRuntime
       _change: add
     - name: DefaultJudgeExamVerdictExporter
       visibility: public
+      handwrittenTests:
+      - name: "should export FAILS for an exam exercise with a finding of a paid-model\
+          \ rule of the judge that counts as error, with its worst severity, its rules\
+          \ and its observation"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: "should export MARKED for an exam exercise whose only findings of the\
+          \ judge rank only, as judges-disagree"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: "should export PASSES for an exam exercise without findings of the judge's\
+          \ paid-model rules, ignoring the findings of the instant rules of multiple-choice-validity"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: should export NOT_JUDGED for an exam exercise the judge left unevaluated
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: should export exactly one verdict per exercise of the exam file and
+          none for any other exercise of the photo
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: "should export PASSES for the verduras (…1ecd) from the «cumple» that\
+          \ quiz-instruction recorded for them in August, so today's consigna judge\
+          \ does not fail them"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R009
       implements:
       - JudgeExamVerdictExporter
       _change: add
@@ -502,6 +725,17 @@ modules:
         description: "Abre la sesión con el freno del examen (DOUBT-CONSIGNA-HABILITA,\
           \ José 30/9), el tope 0 por omisión (F-JEXAM-R010) y las consultas a la\
           \ vez. El rechazo de un conjunto ininterpretable sigue antes de abrir nada."
+      handwrittenTests:
+      - name: "should build the consigna analyzer with budget 0 when the run declares\
+          \ no budget for quiz-instruction, instead of the 500 of its configuration"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R010
+      - name: "should open the consigna judge through the judges runtime, so a version\
+          \ that did not pass the exam gets budget 0 whatever the run asked"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R003
       _change: modify
     - name: QuizInstructionAnalyzer
       requiresInject:
@@ -514,6 +748,76 @@ modules:
         description: "Arma en onCourseComplete la parte común de la cobertura. onQuiz\
           \ junta los pedidos y onCourseComplete los resuelve con resolveAll: lo que\
           \ lee y la huella no cambian (F-JEXAM-R007)."
+      handwrittenTests:
+      - name: "should resolve every quiz of a course judged before FEAT-JEXAM from\
+          \ its recorded verdicts without a single consultation, with budget 100 and\
+          \ an approved version"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R007
+      - name: should look up each quiz under the same fingerprint the ledger recorded
+          for it before FEAT-JEXAM
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R007
+      - name: "should reuse without consulting the recorded verdict of a quiz whose\
+          \ translation or mini-theory changed, since the consigna judge reads neither"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R007
+      - name: "should reuse the recorded verdicts of a consigna judge version that\
+          \ failed its exam and leave the rest unevaluated, declaring the failed exam,\
+          \ even with budget 500"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R003
+      - name: "should not consult the consigna judge in a run that asks no budget\
+          \ for quiz-instruction, and declare its pending quizzes and what they cost"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R010
+      - name: "should declare the same scores, diagnoses, findings and coverage for\
+          \ a course resolved with one and with four consultations at a time"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R006
+      - name: "should put in the evidence of the finding of a breaching quiz each\
+          \ violation, each checked constraint that passed with its state, and the\
+          \ confidence of the judge"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R008
+      - name: should give a compliant quiz no finding and show in its detail every
+          constraint the judge checked with its state
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R008
+      - name: should give a breaching quiz the same score whatever confidence the
+          judge reported
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R008
+      - name: "should call the consigna judge at most once and leave every quiz pending,\
+          \ with «sesión vencida: renovala con claude auth login» in its coverage,\
+          \ when the claude-cli session expired and the budget is 100"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
+      - name: "should carry in its coverage, next to today's counts, the exam of its\
+          \ version and of every version whose verdicts it reused"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: "should neither ask nor count, in an EXAM run, a quiz that is not in\
+          \ the exam file"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: "should resolve without consulting, in an EXAM run, an exam quiz the\
+          \ same version already judged on the same content"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R002
       _change: modify
     _change: modify
   _change: modify
@@ -646,6 +950,12 @@ modules:
       - name: readinessProbe
         type: JudgeProviderReadinessProbe
       visibility: public
+      handwrittenTests:
+      - name: should create for claude-cli an evaluator that answers unavailable without
+          running its agent when `claude auth status` says the session expired
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
       implements:
       - AgentJudgeFactory
       _change: add
@@ -665,6 +975,22 @@ modules:
         type: LlmProviderResolved
       - name: readinessProbe
         type: JudgeProviderReadinessProbe
+      handwrittenTests:
+      - name: "should check its provider session once, before its first consultation,\
+          \ even with four consultations at a time"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
+      - name: "should answer EVALUATOR_UNAVAILABLE with the cause and the remedy,\
+          \ without running its agent, when its provider session expired"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
+      - name: should answer EVALUATOR_UNAVAILABLE with the explained cause when its
+          first consultation comes back for lack of session or of quota
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
       implements:
       - Evaluator
       _change: add
@@ -672,6 +998,18 @@ modules:
       requiresInject:
       - name: agentDefinitionLocator
         type: AgentDefinitionLocator
+      handwrittenTests:
+      - name: "should derive a new version when the agent definition, the model or\
+          \ the provider of a judge changes, and the same version otherwise, so a\
+          \ changed judge takes the exam again"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: should derive no version when the agent definition of the judge cannot
+          be located
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R003
       implements:
       - AgentJudgeVersionResolver
       _change: add
@@ -681,6 +1019,33 @@ modules:
       _change: add
     - name: DefaultJudgeProviderReadinessProbe
       visibility: public
+      handwrittenTests:
+      - name: should report SESSION_EXPIRED with the remedy «renovala con claude auth
+          login» when a recorded `claude auth status` says nobody is logged in to
+          claude-cli
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
+      - name: "should report claude-cli ready when a recorded `claude auth status`\
+          \ says a session is logged in, without consulting any model"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
+      - name: "should report a remote service provider ready without running any check,\
+          \ since it cannot know without consulting"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
+      - name: "should explain a first failure about an exhausted usage limit as QUOTA_EXHAUSTED\
+          \ and one about an expired login as SESSION_EXPIRED, each with its remedy"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
+      - name: "should explain a refused connection or an unreachable host as SERVICE_UNREACHABLE,\
+          \ with its remedy"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
       implements:
       - JudgeProviderReadinessProbe
       _change: add
@@ -694,11 +1059,29 @@ modules:
         type: JudgeProviderReadinessProbe
         description: La misma verificación sin costo que los jueces nuevos (F-JEXAM-R011).
           No cambia la versión ni la huella.
+      handwrittenTests:
+      - name: "should give the consigna judge the same session check, so an expired\
+          \ claude-cli session leaves it unavailable with «renovala con claude auth\
+          \ login» before any consultation"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
+      - name: "should derive for the consigna judge the same version it derived before\
+          \ FEAT-JEXAM, so its recorded verdicts keep being reused"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R007
       _change: modify
     - name: QuizInstructionAgentJudge
       requiresInject:
       - name: readinessProbe
         type: JudgeProviderReadinessProbe
+      handwrittenTests:
+      - name: "should answer unavailable with the cause and the remedy, without running\
+          \ its agent, when the provider session expired"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R011
       _change: modify
     _change: modify
   _change: modify
@@ -712,6 +1095,22 @@ modules:
         \ una línea por registro, sólo en modo append, como el libro de evaluaciones.\
         \ Borrar informes no lo toca."
     visibility: public
+    handwrittenTests:
+    - name: should append each exam record of a judge as one line of .content-audit/judge-exams/<judge>.jsonl
+        and never rewrite an earlier one
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R001
+    - name: "should give as latest of a version its last record, and nothing for a\
+        \ version that never took the exam"
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R001
+    - name: should keep every exam record readable after the analysis reports under
+        the same base directory are deleted
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R001
     implements:
     - JudgeExamRegistry
     _change: add
@@ -794,6 +1193,58 @@ modules:
     - name: runtime
       type: JudgeRuntime
     visibility: public
+    handwrittenTests:
+    - name: "should take the exam of a judge over the photo, running only its analyzer,\
+        \ and give one verdict per exercise of the file"
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R001
+    - name: should judge the exam exercises as they are in the photo of 29/9 even
+        when the live course changed them since
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R001
+    - name: "should record TAKEN for the version when every exercise of the file got\
+        \ a verdict, and not when one stayed without verdict or is not in the photo"
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R001
+    - name: "should leave analyze on the course with the same scores, findings and\
+        \ pending quizzes before and after a version takes the exam"
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R002
+    - name: should let a version that already took the exam take it again without
+        a single consultation
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R002
+    - name: "should rehearse the exam with budget 0 without consulting, reusing what\
+        \ that version judged and saying how many consultations are missing"
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R010
+    - name: should record the result measured outside for a version that took the
+        whole exam and make it the standing of that version
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R001
+    - name: "should reject with JudgeExamNotTakenException the measured result of\
+        \ a version that did not take the whole exam, recording nothing"
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R001
+    - name: "should list every exam record of a judge, across its versions, in the\
+        \ order they were recorded"
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R001
+    - name: "should give one verdict to every exercise of a quiz-instruction exam\
+        \ file that mixes CLOZE and multiple choice exercises, without knowing their\
+        \ groups"
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R009
     implements:
     - JudgeExamService
     _change: add
@@ -801,6 +1252,20 @@ modules:
     types:
     - Component
     visibility: public
+    handwrittenTests:
+    - name: "should give budget 0 as the default of quiz-instruction, translation-sense,\
+        \ single-answer, mini-theory and multiple-choice-validity"
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R010
+    - name: should give four consultations at a time by default
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R006
+    - name: should give 189 per hour as default rate and 60 per hour for mini-theory
+      traceability:
+        feature: FEAT-JEXAM
+        rule: F-JEXAM-R004
     implements:
     - JudgeRuntimeConfig
     _change: add
@@ -828,6 +1293,34 @@ modules:
           \ un veredicto por línea y delega todo lo demás."
       types:
       - Component
+      handwrittenTests:
+      - name: "should read a synthetic exam file of the form [{ejercicio}] and write\
+          \ one JSON line per exercise with ejercicio, juez, version, resultado, gravedad,\
+          \ reglas and detalle"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: should take the exam as a rehearsal with budget 0 when --budget is not
+          given
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R010
+      - name: "should record a measured result read as {juez, version, estado, grupos,\
+          \ noDieronLoEsperado, alcanzoLaMeta, foto, medidoPor}, taking APROBADO as\
+          \ approved and REPROBADO as failed"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: "should refuse, with a non-zero exit and nothing recorded, a measured\
+          \ result for a version that did not take the whole exam"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
+      - name: "should show the exam history of a judge, one line per record with its\
+          \ version, its status and when it was recorded"
+        traceability:
+          feature: FEAT-JEXAM
+          rule: F-JEXAM-R001
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -838,3 +1331,8 @@ modules:
 features:
 - id: FEAT-JEXAM
   code: F-JEXAM
+  journeys:
+  - id: F-JEXAM-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands

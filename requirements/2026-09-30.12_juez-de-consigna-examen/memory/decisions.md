@@ -4,6 +4,15 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — qa-tester — F-JEXAM-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
+  why: sus pasos son `exam run`, `exam record` y `analyze`; ExamCmd y AnalyzeCmd son package-private ahí (como F-CLEX-J001).
+2026-09-30 — qa-tester — R012 queda sin prueba propia: su criterio («isn't» / «is not») se prueba bajo F-UNICA-R002 y F-MCVALE-R002. Duda de traza para el orquestador (OG1).
+  why: la cumplen los clasificadores de UNICA y MCVALE, y `propose` rechaza trazar a otra feature.
+2026-09-30 — qa-tester — R006 y la primera consulta sola (R011) se prueban en DefaultEvaluationSession, que el parche no nombra.
+  why: es la implementación del contrato nuevo de EvaluationSession (resolveAll, recorded, unavailableReason).
+2026-09-30 — qa-tester — Ninguna prueba consulta un modelo pago: evaluador doble con veredictos grabados que cuenta llamadas; `claude auth status` grabado.
+2026-09-30 — qa-tester — Hallazgos para otros roles: (1) analista: el criterio de R004 dice 39 horas para 7.400 pendientes, que es a 189/h; al ritmo medido (176/h) son 42. (2) test-writer: la prueba de hoy de F-QINST-R006 en la fábrica afirma 500 y R010 lo lleva a 0. (3) arquitecto: DefaultJudgeProviderReadinessProbe no recibe con qué correr `claude auth status`. (4) SentinelAgentsAgentJudgeChatModelFactory sin pruebas: es cableado sin regla, como el del juez de consigna.
+
 2026-09-30 — architect — Runtime común `JudgeRuntime` (audit-domain.judging; impl en judgingengine, allowedClients
   audit-cli): único lugar que abre sesiones con el freno del examen (tope 0 sin APPROVED), el tope 0 por omisión, las 4 a
   la vez, el plan (conjunto, re-evaluación, EXAM) y la cobertura común (examen por versión, costo, causa).
