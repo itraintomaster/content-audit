@@ -33,6 +33,22 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditapplication.AuditRunRequest;
+import com.learney.contentaudit.auditapplication.DefaultAnalyzerRegistry;
+import com.learney.contentaudit.auditapplication.DefaultAuditRunner;
+import com.learney.contentaudit.auditcli.commands.AnalyzeCmdTest.Base299;
+import com.learney.contentaudit.auditcli.formatting.DefaultAnalyzerStatsTransformer;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerScore;
+import com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers;
+import com.learney.contentaudit.auditdomain.contextnumbers.SubMetricScore;
+import com.learney.contentaudit.evaluationledgerinfrastructure.FileSystemEvaluationLedger;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -188,15 +204,81 @@ public class StatsAnalyzerCmdTest {
     @DisplayName("should show the stats of quiz-instruction from the verdicts already recorded, with no new judge query, and declare how many quizzes lack a verdict")
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R005")
-    public void shouldShowTheStatsOfQuizinstructionFromTheVerdictsAlreadyRecordedWithNoNewJudgeQueryAndDeclareHowManyQuizzesLackAVerdict() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldShowTheStatsOfQuizinstructionFromTheVerdictsAlreadyRecordedWithNoNewJudgeQueryAndDeclareHowManyQuizzesLackAVerdict(
+            @TempDir Path workdir) throws IOException {
+        // R005 (DOUBT-STATS-DE-LOS-JUECES, A): stats of the judge over the 29/9 course uses the verdicts
+        // already recorded -- the three an earlier analyze paid for -- makes no new query, and declares
+        // how many quizzes lack a verdict.
+        Base299.FakeJudge judge = new Base299.FakeJudge(Base299.FIRST_QUIZ);
+        AnalyzerCatalog catalog = Base299.mainCatalog(judge, new FileSystemEvaluationLedger(workdir));
+        DefaultAuditRunner runner = Base299.runner(catalog);
+        Base299.Captured analyzed = Base299.run(Base299.analyzeCmd(runner, mock(AuditReportStore.class)),
+                Base299.COURSE.toString(), "--analyzers", "quiz-instruction", "--budget", "quiz-instruction=3",
+                "-f", "raw");
+        assertEquals(0, analyzed.exit(), analyzed.err());
+        assertEquals(3, judge.asked().size(), "the three verdicts analyze paid for");
+        StatsAnalyzerCmd stats = new StatsAnalyzerCmd(new DefaultAnalyzerRegistry(catalog),
+                new DefaultAnalyzerStatsTransformer(), runner);
+
+        Base299.Captured run = Base299.run(stats, "analyzer", "quiz-instruction", Base299.COURSE.toString(), "-f", "json");
+
+        assertEquals(0, run.exit(), run.err());
+        assertEquals(3, judge.asked().size(), "R005: stats asked the judge nothing new");
+        assertTrue(run.err().contains("Sin veredicto registrado: 11284 de 11287 ejercicios (stats sólo usa los "
+                + "veredictos ya registrados: 0 consultas nuevas)"), "R005: how many lack a verdict: " + run.err());
+        JsonNode view = new ObjectMapper().readTree(run.out());
+        assertEquals("quiz-instruction", view.get("analyzerName").asText());
+        assertEquals(3, view.get("itemCount").asInt(), "R005: the stats of the three recorded verdicts");
+        assertEquals(Base299.FIRST_QUIZ, view.get("worstItems").get(0).get("quizId").asText(),
+                "the breach recorded for the first quiz");
+        assertEquals(0.3, view.get("worstItems").get(0).get("score").asDouble(), "a major breach scores 0,3");
     }
 
     @Test
     @DisplayName("should show in stats analyzer coca-buckets-distribution the course score 72,5 % published for it, with its quarters Q1 to Q4 as sub-metrics outside any average")
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R010")
-    public void shouldShowInStatsAnalyzerCocabucketsdistributionTheCourseScore725PublishedForItWithItsQuartersQ1ToQ4AsSubmetricsOutsideAnyAverage() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldShowInStatsAnalyzerCocabucketsdistributionTheCourseScore725PublishedForItWithItsQuartersQ1ToQ4AsSubmetricsOutsideAnyAverage() throws IOException {
+        // R010: stats of coca-buckets-distribution over the 29/9 course shows the course score the engine
+        // published for it, 72,5 %, with its quarters Q1 to Q4 nested under it as sub-metrics -- never
+        // as analyzers of their own, so no average takes them.
+        AnalyzerCatalog catalog = Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger());
+        DefaultAuditRunner runner = spy(Base299.runner(catalog));
+        List<AuditReport> reports = new java.util.ArrayList<>();
+        doAnswer(invocation -> {
+            AuditReport report = (AuditReport) invocation.callRealMethod();
+            reports.add(report);
+            return report;
+        }).when(runner).runAudit(any(Path.class), any(AuditRunRequest.class));
+        StatsAnalyzerCmd stats = new StatsAnalyzerCmd(new DefaultAnalyzerRegistry(catalog),
+                new DefaultAnalyzerStatsTransformer(), runner);
+
+        Base299.Captured run = Base299.run(stats, "analyzer", "coca-buckets-distribution", Base299.COURSE.toString(),
+                "-f", "json");
+
+        assertEquals(0, run.exit(), run.err());
+        JsonNode view = new ObjectMapper().readTree(run.out());
+        assertEquals(0.7253788624322802, view.get("courseScore").asDouble(),
+                "R010: the course score published for it in the 29/9 base");
+        assertEquals("72,5 %", GetCmd.scoreText(view.get("courseScore").asDouble()));
+        Map<String, Double> levels = new java.util.LinkedHashMap<>();
+        view.get("levelScores").fields().forEachRemaining(level -> levels.put(level.getKey(), level.getValue().asDouble()));
+        assertEquals(Map.of(Base299.LEVELS.get(0), 1.0, Base299.LEVELS.get(1), 1.0,
+                Base299.LEVELS.get(2), 0.5792869389091038, Base299.LEVELS.get(3), 0.3222285108200172), levels,
+                "its score on each level, and no quarter among them");
+        for (String level : Base299.LEVELS) {
+            List<String> quarters = new java.util.ArrayList<>();
+            view.get("subMetricsByLevel").get(level).fieldNames().forEachRemaining(quarters::add);
+            assertEquals(List.of("Q1", "Q2", "Q3", "Q4"), quarters, "R010: its quarters, as sub-metrics of " + level);
+        }
+        ContextNumbers course = reports.get(0).getRoot().getNumbers();
+        assertEquals(1, course.getAnalyzerScores().size(), "R010: the quarters are not analyzers of their own");
+        AnalyzerScore coca = course.getAnalyzerScores().get(0);
+        assertEquals("coca-buckets-distribution", coca.getAnalyzer());
+        assertEquals(Map.of("Q1", 0.7673328547283127, "Q2", 0.7684543932356559, "Q3", 0.6915373831741857,
+                "Q4", 0.6741908185909666), coca.getSubMetrics().stream()
+                .collect(java.util.stream.Collectors.toMap(SubMetricScore::getName, SubMetricScore::getScore)),
+                "R010: nested under it, the quarters of the 29/9 base");
+        assertEquals(0.7253788624322802, course.getVocabularyScore(), "R009: the average of one analyzer, not of five keys");
     }
 }

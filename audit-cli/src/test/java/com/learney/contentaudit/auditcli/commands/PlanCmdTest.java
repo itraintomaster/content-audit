@@ -29,6 +29,16 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import com.learney.contentaudit.auditcli.commands.AnalyzeCmdTest.Base299;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
+import java.util.ArrayList;
+import java.util.Set;
+import org.mockito.ArgumentCaptor;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -450,6 +460,29 @@ public class PlanCmdTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R004")
     public void shouldWarnAfterDerivingAPlanWhichAnalyzerAndHowManyNodesHadScoresBelow1ItCouldNotTurnIntoTasks() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 3: the plan never drops a score below 1 in silence. A new errors analyzer whose
+        // card declares no task kind yet -- the stand-in of a rule of package D -- breaks its rule in
+        // two quizzes of the 29/9 course: the plan keeps its 4.036 tasks and warns which analyzer
+        // and how many nodes it could not turn into tasks.
+        List<AnalyzerProvider> providers = new ArrayList<>(Base299.classicProviders());
+        providers.add(new Base299.RuleStandIn(Set.of(Base299.FIRST_QUIZ, "67fab6d599301022953425ae"), Set.of()));
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
+        AuditReport report = Base299.runner(catalog).runAudit(Base299.COURSE, (Set<String>) null);
+        AuditReportStore store = mock(AuditReportStore.class);
+        when(store.load("2026-09-30T11-54-02")).thenReturn(Optional.of(report));
+        RefinementPlanStore plans = mock(RefinementPlanStore.class);
+        when(plans.save(any())).thenReturn("plan-2026-09-30");
+        PlanCmd plan = new PlanCmd(store, new DefaultRefinerEngine(catalog), plans, mock(EphemeralPlanRenderer.class));
+
+        Base299.Captured run = Base299.run(plan, "--audit", "2026-09-30T11-54-02");
+
+        assertEquals(0, run.exit(), run.err());
+        assertTrue(run.err().contains("Aviso: rule-stand-in dejó 2 nodos con puntaje menor que 1 sin convertir "
+                + "en tareas: su ficha no declara un tipo de tarea"), "R004 inv. 3: which analyzer and how many nodes: "
+                + run.err());
+        ArgumentCaptor<RefinementPlan> saved = ArgumentCaptor.forClass(RefinementPlan.class);
+        verify(plans).save(saved.capture());
+        assertEquals(4036, saved.getValue().getTasks().size(), "the plan keeps the 4.036 tasks of the seven classics");
+        assertTrue(run.out().contains("4036 improvements identified"), run.out());
     }
 }

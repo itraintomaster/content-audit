@@ -13,6 +13,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+import com.learney.contentaudit.auditapplication.DefaultAnalyzerRegistry;
+import com.learney.contentaudit.auditcli.commands.AnalyzeCmdTest.Base299;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -71,7 +75,18 @@ public class ConfigAnalyzerCmdTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R005")
     public void shouldPrintTheConfigurationOfQuizinstructionInsteadOfReportingAnalyzerQuizinstructionNotFound() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: config analyzer reads the catalog, where the judge is like any other analyzer, so it
+        // shows the judge's configuration instead of "Analyzer 'quiz-instruction' not found".
+        ConfigAnalyzerCmd cmd = new ConfigAnalyzerCmd(new DefaultAnalyzerRegistry(
+                Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger())));
+
+        Base299.Captured run = Base299.run(cmd, "analyzer", "quiz-instruction");
+
+        assertEquals(0, run.exit(), run.err());
+        assertFalse(run.err().contains("not found"), "R005: the judge is found; got: " + run.err());
+        assertTrue(run.out().contains("Analyzer: quiz-instruction"), run.out());
+        assertTrue(run.out().contains("defaultMaxNewEvaluations: 500"), "R005: its configuration: " + run.out());
+        assertTrue(run.out().contains("scoresBySeverity: "), "R005: its configuration: " + run.out());
     }
 
     @Test
@@ -79,6 +94,16 @@ public class ConfigAnalyzerCmdTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R005")
     public void shouldAnswerConfigAnalyzerKnowledgetitlelengthWhichHasNoConfigurationWithoutReportingItNotFound() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: an analyzer of the catalog without configuration is still an analyzer: config analyzer
+        // answers that it has none, instead of reporting it not found.
+        ConfigAnalyzerCmd cmd = new ConfigAnalyzerCmd(new DefaultAnalyzerRegistry(
+                Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger())));
+
+        Base299.Captured run = Base299.run(cmd, "analyzer", "knowledge-title-length");
+
+        assertEquals(0, run.exit(), run.err());
+        assertFalse(run.err().contains("not found"), "R005: knowledge-title-length is found; got: " + run.err());
+        assertTrue(run.out().contains("Analyzer: knowledge-title-length"), run.out());
+        assertTrue(run.out().contains("(no configuration)"), "R005: it has no configuration: " + run.out());
     }
 }
