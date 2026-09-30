@@ -1,7 +1,7 @@
 ---
 patch: FEAT-POCOV
 requirement: 2026-09-30.15_palabras-poco-vistas
-generated: 2026-09-30T19:50:00Z
+generated: 2026-09-30T21:30:00Z
 ---
 
 # Tech Spec: Palabras poco vistas, con umbral por banda (FEAT-POCOV)
@@ -12,11 +12,13 @@ Diseñado contra el modelo de 0.2 y 0.3: **vienen de 0.3** `ContentAnalyzer.find
 hallazgo, y el `LemmaCountAnalyzerProvider` con su ficha, que no cambia de forma. Lo compartido está en
 `ronda1/ganchos-D.md`: las sugeridas, las palabras escasas y el orden dentro de su grupo (D-07 a D-09). Todo lo medido sale del
 análisis 2026-09-30T11-54-02, que el prototipo reproduce exacto: curso 0,6698448 y A1 515/62, A2 810/418, B1 885/688, B2
-384/366, C1 3/1.
+384/366, C1 3/1. Rebasado el 30/9 sobre el `sentinel.yaml` real, con 0.2 y 0.3 aplicados, y sobre el parche de
+integración de la ronda 1 (FEAT-RONDA1), que se aplica antes; `sentinel-baseline.yaml` queda como foto del diseño.
 
 ## Poner el umbral en una tabla de bandas, y dejarla como configuración
-José eligió 8 · 6 · 4 · 3 y lo confirma antes de construir, porque mueve el número del curso: por eso el umbral es una
-tabla de cuatro bandas por puesto COCA en la configuración, no un cálculo. «4 para todas» son las mismas cuatro bandas con
+José eligió 8 · 6 · 4 · 3 y lo confirmó el 30/9 a la noche: es el valor por omisión, y el curso pasa de 73,92 a 73,86
+(F-RONDA1-R008). Como mueve el número del curso, el umbral es una tabla de cuatro bandas por puesto COCA en la
+configuración, no un cálculo. «4 para todas» son las mismas cuatro bandas con
 4 y da exactamente lo de hoy (R001 inv. 1), así que volver atrás es cambiar un valor: el cargador sigue siendo
 `load(String)`, entiende «4» y «8/6/4/3», y su valor por omisión es la única línea que cambia. La última banda no tiene
 tope y toma también las palabras sin puesto, que son raras por definición. La lista vacía existe sólo para configuraciones
@@ -38,6 +40,7 @@ modules:
     interfaces:
       - name: LemmaCountConfig
         _change: modify
+        sealed: true
         exposes:
           - signature: "getBands(): List<LemmaCountBand>"
             _change: add
@@ -207,7 +210,7 @@ FEAT-LCOUNT, que R001 mantiene con el N de cada banda. Donde la regla trae un n�
 | `EvpThenNlpLemmaCefrLevelResolver` | R001 | 2 | el puesto sale del catálogo, o no hay |
 | `LemmaCountAnalyzerProvider` (de 0.3) | R002, R006 | 3 | sin ligadura al plan; la ficha; la meta con el umbral de cada banda |
 | `IAuditEngine` | R001 | 2 | 73,92 % y 96,54 · 94,16 · 79,45 · 63,51 con 4 para todas; 73,86 % y 96,02 · 93,60 · 78,87 · 63,86 con las bandas |
-| `DefaultLemmaCountConfigLoader` | R001 | 4 | «4»; «8/6/4/3»; sin valor, cuatro bandas de 4; «8/0/4/3» rechazado |
+| `DefaultLemmaCountConfigLoader` | R001 | 4 | «4»; «8/6/4/3»; sin valor, las bandas 8 · 6 · 4 · 3 que confirmó José; «8/0/4/3» rechazado |
 | `DefaultRefinerEngine` | R002 | 1 | 4.036 tareas y ninguna de `lemma-count`, con las dos configuraciones |
 | `LemmaAbsenceContextResolver`, `LevelWideLemmaInventory` | R007 | 5 | number poco vista con 8 y escasa con 4; escasas con su N; poco vista ⇔ hallazgo; con 4 para todas, lo de hoy; incluir expuestas con el N de su banda |
 
@@ -232,4 +235,24 @@ features:
     code: F-POCOV
     journeys:
       - { id: F-POCOV-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
+```
+
+## Qué cambió al rebasar sobre la integración
+Dos cosas, sin tocar ninguna regla. `LemmaCountConfig` es `sealed` en `sentinel.yaml` y el parche lo modificaba sin decirlo:
+`patch apply` toma el `sealed` del parche al modificar una interfaz, así que lo habría abierto; ahora el parche lo repite. Y
+la prueba del valor por omisión del cargador pasó de «cuatro bandas de 4» a 8 · 6 · 4 · 3, que José confirmó: es la misma
+prueba de R001, con el valor nuevo. La descripción de `ScarceContentWord.threshold` («el mismo para todas» deja de valer
+con bandas, D-07) la cambia el parche de integración.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    interfaces:
+      - name: LemmaCountConfig
+        _change: modify
+        sealed: true
+        exposes:
+          - signature: "getBands(): List<LemmaCountBand>"
+            _change: add
 ```

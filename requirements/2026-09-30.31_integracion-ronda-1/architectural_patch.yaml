@@ -1,0 +1,497 @@
+code: FEAT-RONDA1
+description: "FEAT-RONDA1, integración de la ronda 1 de «corregir sin empeorar»: lo\
+  \ que comparten los catorce parches de A (reglas), C (jueces) y D (vocabulario)\
+  \ y los pedidos 1 a 3 de la UI. Trae el ejercicio como lo ve el alumno (un renderizador,\
+  \ un verbo y la etiqueta del resumen), el nombre en castellano en la ficha, los\
+  \ conteos por gravedad y por regla, el ejercicio evaluado a medias, un solo contrato\
+  \ para el juez de opción múltiple (el de C, en dos tiempos), los lugares tipados\
+  \ de los diagnósticos nuevos, la cobertura común de los jueces, las opciones de\
+  \ analyze por juez, la configuración de los jueces desde el entorno y las inyecciones\
+  \ de get y stats. Se aplica primero: los catorce se rebasaron sobre él. Los lugares\
+  \ tipados y algunas inyecciones nombran tipos que declaran los parches de los paquetes,\
+  \ así que generate corre recién con la ronda entera aplicada."
+modules:
+- name: audit-domain
+  models:
+  - name: AuditableQuiz
+    type: record
+    fields:
+    - name: miniTheory
+      type: String
+      description: "Miniteoría del ejercicio, copiada tal cual de QuizTemplateEntity.miniTheory\
+        \ por CourseToAuditableMapper; null si no tiene. La leen Respuestas completas,\
+        \ el juez de miniteoría y la vista del alumno (F-RONDA1-R001)."
+      _change: add
+    - name: answerAudioKey
+      type: String
+      description: "Clave del audio que se oye al contestar, copiada tal cual de QuizTemplateEntity.answerAudioUrl;\
+        \ null si no tiene. La leen Datos coherentes y get student-view (F-RONDA1-R003)."
+      _change: add
+    _change: modify
+  - name: AuditNode
+    type: record
+    fields:
+    - name: partiallyEvaluatedBy
+      type: List<String>
+      description: "Analizadores que evaluaron este nodo con algunas de sus reglas\
+        \ y no con todas, como la opción múltiple con su juez sin correr: el nodo\
+        \ cuenta como evaluado y sus hallazgos valen. Un nombre nunca está acá y en\
+        \ unevaluatedBy a la vez (F-RONDA1-R006)."
+      _change: add
+    _change: modify
+  - name: AnalyzerDescriptor
+    type: record
+    fields:
+    - name: displayName
+      type: String
+      description: "Nombre en castellano con que la UI muestra al analizador, como\
+        \ «Largo de oración»: nunca vacío y distinto en cada ficha. No reemplaza a\
+        \ name, el único con que se lo nombra (F-RONDA1-R004, F-HALL-R005)."
+      _change: add
+    _change: modify
+  interfaces:
+  - name: QuizDiagnoses
+    sealed: false
+    exposes:
+    - signature: "getHintCoherenceDiagnosis(): Optional<HintCoherenceDiagnosis>"
+      _change: add
+    - signature: "getAnswerCompletenessDiagnosis(): Optional<AnswerCompletenessDiagnosis>"
+      _change: add
+    - signature: "getMultipleChoiceValidityDiagnosis(): Optional<MultipleChoiceValidityDiagnosis>"
+      _change: add
+    - signature: "getDataCoherenceDiagnosis(): Optional<DataCoherenceDiagnosis>"
+      _change: add
+    - signature: "getExactDuplicateDiagnosis(): Optional<ExactDuplicateDiagnosis>"
+      _change: add
+    - signature: "getTranslationSenseDiagnosis(): Optional<TranslationSenseDiagnosis>"
+      _change: add
+    - signature: "getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>"
+      _change: add
+    - signature: "getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>"
+      _change: add
+    - signature: "getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>"
+      _change: add
+    _change: modify
+  - name: CourseDiagnoses
+    sealed: false
+    exposes:
+    - signature: "getJudgeCoverages(): List<JudgeCoverageDiagnosis>"
+      _change: add
+    - signature: "getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>"
+      _change: add
+    _change: modify
+  - name: QuizStudentViewRenderer
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "render(AuditableQuiz quiz): QuizStudentView"
+    - signature: "finishedSentence(AuditableQuiz quiz,SentenceMode mode): String"
+    _change: add
+  - name: TopicStudentViewQuery
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "viewOf(AuditReport report,String knowledgeId): TopicStudentView"
+      throwsExceptions:
+      - StudentViewKnowledgeNotFoundException
+    _change: add
+  packages:
+  - name: studentview
+    description: "El ejercicio como lo ve el alumno (pedido 2 de la UI y gancho A-01):\
+      \ una sola vista por ejercicio, determinista, de la que salen la evidencia de\
+      \ los hallazgos, el contenido de los jueces nuevos, la etiqueta del resumen\
+      \ y get student-view. Públicos: los registros y las dos implementaciones, que\
+      \ arma Main."
+    visibility: public
+    models:
+    - name: QuizStudentView
+      type: record
+      fields:
+      - name: statement
+        type: String
+        description: "El enunciado con «___» en cada hueco y la pista como aparece,\
+          \ como «You ___ (see) cats.»; nunca el formato interno del curso (F-RONDA1-R001\
+          \ inv. 1 y 3)."
+      - name: gaps
+        type: List<StudentGapView>
+        description: Los huecos en orden.
+      - name: options
+        type: List<StudentOptionView>
+        description: Las opciones de una opción múltiple en el orden del alumno; vacía
+          en cualquier otro ejercicio.
+      - name: instructions
+        type: String
+        description: La consigna del ejercicio.
+      - name: translation
+        type: String
+        domainLinks:
+        - term: Traducción
+          role: carries
+      - name: miniTheory
+        type: String
+      glossarySuggestions:
+      - name: Ejercicio como lo ve el alumno
+        technicalName: QuizStudentView
+        kind: value-object-candidate
+        basedOn: audit-domain/studentview/QuizStudentView
+        derivedFrom:
+        - Oración de quiz
+        - Traducción
+        rationale: "La UI y los jueces lo nombran así: el enunciado con el hueco y\
+          \ la pista, las opciones, las respuestas, la traducción y la miniteoría,\
+          \ nunca el formato interno del curso."
+      _change: add
+    - name: StudentGapView
+      type: record
+      fields:
+      - name: index
+        type: int
+      - name: hint
+        type: String
+        description: "La pista de ese hueco como aparece, como «(see)»; null si no\
+          \ tiene."
+      - name: acceptedAnswers
+        type: List<String>
+        description: "Las respuestas que acepta el corrector, separadas en «|» y nunca\
+          \ en «/»."
+      - name: firstAnswer
+        type: String
+      _change: add
+    - name: StudentOptionView
+      type: record
+      fields:
+      - name: label
+        type: String
+      - name: correct
+        type: boolean
+      _change: add
+    - name: TopicStudentView
+      type: record
+      fields:
+      - name: auditId
+        type: String
+        description: El análisis del que se leyó el tema.
+      - name: knowledgeId
+        type: String
+      - name: label
+        type: String
+      - name: instructions
+        type: String
+        description: La consigna del tema.
+      - name: sentenceMode
+        type: SentenceMode
+      - name: quizzes
+        type: List<StudentQuizEntry>
+        description: Los ejercicios del tema en el orden del curso.
+      _change: add
+    - name: StudentQuizEntry
+      type: record
+      fields:
+      - name: quizId
+        type: String
+      - name: view
+        type: QuizStudentView
+      - name: finishedSentence
+        type: String
+        description: "La oración con la primera respuesta, o la correcta, y sin la\
+          \ pista (F-RONDA1-R001 inv. 2)."
+      - name: answerAudioKey
+        type: String
+      - name: recordedAudioText
+        type: String
+        description: El texto con que se grabó el audio según el registro de grabaciones;
+          null si el registro no conoce la clave. Nunca se arma desde la oración (F-RONDA1-R003
+          inv. 2).
+      _change: add
+    - name: StudentViewKnowledgeNotFoundException
+      type: exception
+      fields:
+      - name: knowledgeId
+        type: String
+      message: Knowledge %s not found in the analysis.
+      _change: add
+      extends: RuntimeException
+    implementations:
+    - name: DefaultQuizStudentViewRenderer
+      requiresInject:
+      - name: quizSentenceConverter
+        type: QuizSentenceConverter
+      visibility: public
+      implements:
+      - QuizStudentViewRenderer
+      _change: add
+    - name: DefaultTopicStudentViewQuery
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      - name: recordings
+        type: AudioRecordingRegistry
+      visibility: public
+      implements:
+      - TopicStudentViewQuery
+      _change: add
+    _change: add
+  - name: choicealternative
+    description: "El contrato del juez de «otra opción también vale», reconciliado\
+      \ en la integración (ganchos A-07 y C-09): lo implementa el paquete C (FEAT-MCVALE)\
+      \ y lo usa el analizador de Opción múltiple del paquete A (FEAT-OMVAL). En dos\
+      \ tiempos: el analizador pide cada ejercicio en onQuiz y los resuelve todos\
+      \ juntos en onCourseComplete, lo único que deja hacer consultas a la vez (F-JEXAM-R006).\
+      \ Pendiente, fallido o no disponible vuelven como estado, nunca como excepció\
+      n."
+    visibility: public
+    models:
+    - name: ChoiceAlternativeOption
+      type: record
+      fields:
+      - name: label
+        type: String
+        description: La opción como la ve el alumno.
+      - name: severity
+        type: FindingSeverity
+        description: HIGH si vale igual que la correcta; MEDIUM si es defendible pero
+          menos natural.
+      - name: reason
+        type: String
+      _change: add
+    - name: ChoiceAlternativeVerdict
+      type: record
+      fields:
+      - name: correctIsValid
+        type: boolean
+        description: "False con la clave invertida: la marcada como correcta no vale\
+          \ y otra sí (BLOCKING)."
+      - name: validAlternatives
+        type: List<ChoiceAlternativeOption>
+        description: Las incorrectas que también valen en el contexto del enunciado.
+      - name: correctProblem
+        type: String
+        description: Por qué no vale la correcta; null si vale.
+      - name: rationale
+        type: String
+      _change: add
+    - name: ChoiceAlternativeJudgmentStatus
+      type: enum
+      fields:
+      - name: JUDGED
+        description: "Hay veredicto, nuevo o reusado."
+      - name: PENDING
+        description: "Sin veredicto: sin tope, o la versión no aprobó su examen (F-JEXAM-R003,\
+          \ R010)."
+      - name: FAILED
+        description: "El juez no respondió o respondió algo inusable, incluida la\
+          \ sesión vencida (F-QINST-R007, R013, F-JEXAM-R011)."
+      - name: NOT_AVAILABLE
+        description: "El juez no enuncia versión o no está conectado. Los tres sin\
+          \ veredicto no tienen puntaje ni hallazgo del juez, y el analizador marca\
+          \ el ejercicio a medias (F-MCVALE-R005, F-RONDA1-R006)."
+      _change: add
+    - name: ChoiceAlternativeJudgment
+      type: record
+      fields:
+      - name: quizId
+        type: String
+      - name: status
+        type: ChoiceAlternativeJudgmentStatus
+      - name: verdict
+        type: ChoiceAlternativeVerdict
+        description: Null si no hay veredicto.
+      - name: droppedAsForm
+        type: List<String>
+        description: "Opciones que el juez listó y el corrector acepta como la misma\
+          \ respuesta: las marca el paquete A, no este juez (F-MCVALE-R002)."
+      - name: findings
+        type: List<FindingDraft>
+        description: "Listos para el analizador de A, todos de la regla another-option-valid:\
+          \ uno por opción que también vale, con la opción como marca (HIGH o MEDIUM),\
+          \ y uno con la marca «(correcta)» si la correcta no vale (BLOCKING). Vací\
+          a si pasa o si no hay veredicto."
+      - name: score
+        type: Double
+        description: "1, 0,6, 0,3 o 0 según la más grave (F-MCVALE-R003); null si\
+          \ no hay veredicto. Es un dato: el puntaje del ejercicio es el de Opció\
+          n múltiple, 0 o 1 (F-OMVAL-R005)."
+      - name: evaluatorVersion
+        type: String
+      - name: reused
+        type: boolean
+      - name: notJudgedReason
+        type: String
+      _change: add
+    interfaces:
+    - name: ChoiceAlternativeJudgeRunFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "judgeRule(): AnalyzerRuleCard"
+      - signature: "open(EvaluationRunPolicy policy): ChoiceAlternativeJudgeRun"
+        throwsExceptions:
+        - EmptyReevaluationSetException
+        - AmbiguousReevaluationScopeException
+      _change: add
+    - name: ChoiceAlternativeJudgeRun
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "request(AuditNode quizNode): void"
+      - signature: "resolveAll(): void"
+      - signature: "judgmentOf(AuditNode quizNode): ChoiceAlternativeJudgment"
+      - signature: "coverage(): JudgeCoverageDiagnosis"
+      _change: add
+    _change: add
+  - name: contextnumbers
+    models:
+    - name: ContextNumbers
+      type: record
+      fields:
+      - name: findingCounts
+        type: List<AnalyzerFindingCounts>
+        description: "Por cada analizador que corrió y cada tipo de nodo que evalú\
+          a, en el orden del catálogo: alcanzados, evaluados, con hallazgo, por gravedad\
+          \ y por regla. También los de vocabulario (F-RONDA1-R005)."
+        _change: add
+      _change: modify
+    - name: AnalyzerErrorCounts
+      type: record
+      fields:
+      - name: partiallyEvaluated
+        type: int
+        description: Ejercicios que el analizador evaluó a medias; están también en
+          evaluated y cuentan en notFullyEvaluated del nodo (F-RONDA1-R006).
+        _change: add
+      _change: modify
+    - name: DigestNode
+      type: record
+      fields:
+      - name: partiallyEvaluatedBy
+        type: List<String>
+        description: Copia de AuditNode.partiallyEvaluatedBy (F-RONDA1-R006).
+        _change: add
+      _change: modify
+    - name: AnalyzerFindingCounts
+      type: record
+      fields:
+      - name: analyzer
+        type: String
+      - name: family
+        type: AnalyzerFamily
+      - name: target
+        type: AuditTarget
+        description: "El tipo de nodo que cuenta: uno de los que el analizador evalú\
+          a."
+        domainLinks:
+        - term: Objetivo de auditoría
+          role: carries
+      - name: reached
+        type: int
+      - name: evaluated
+        type: int
+      - name: withFinding
+        type: int
+        description: "Nodos con al menos un hallazgo del analizador, también de los\
+          \ que sólo ordenan."
+      - name: findings
+        type: int
+        description: Cuántos hallazgos son.
+      - name: bySeverity
+        type: SeverityCounts
+        description: "Los nodos con hallazgo, por la gravedad más alta de sus hallazgos:\
+          \ suman withFinding."
+      - name: byRule
+        type: List<RuleFindingCount>
+        description: "Por cada regla de la ficha, en su orden; sus hallazgos suman\
+          \ findings."
+      _change: add
+    - name: RuleFindingCount
+      type: record
+      fields:
+      - name: rule
+        type: String
+      - name: withFinding
+        type: int
+      - name: findings
+        type: int
+      _change: add
+    _change: modify
+  _change: modify
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemAuditReportStore
+    requiresInject:
+    - name: studentViewRenderer
+      type: QuizStudentViewRenderer
+      _change: add
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: ScarceContentWord
+    type: record
+    fields:
+    - name: threshold
+      type: Integer
+      description: "Umbral de exposición de lemma-count para esta palabra: el N de\
+        \ su banda de frecuencia (8 · 6 · 4 · 3 por omisión desde el 30/9). Con bandas\
+        \ cada palabra tiene el suyo; con 4 para todas es el mismo para todas, como\
+        \ antes (F-POCOV-R007, F-RCLA-R003b)."
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  models:
+  - name: AnalyzeOptions
+    type: record
+    fields:
+    - name: analyzerReevaluationSets
+      type: "Map<String,Set<String>>"
+      description: "--reevaluate <nombre>=<ids> y --reevaluate-file <nombre>=<archivo>,\
+        \ resueltos con ReevaluationQuizSetResolver: el conjunto a re-evaluar de cada\
+        \ juez, por su nombre canónico; en mini-theory valen ids de tema o de ejercicio\
+        \ (F-JEXAM-R005). --reevaluate-instruction-quizzes queda como atajo de quiz-instruction."
+      _change: add
+    - name: maxConcurrentEvaluations
+      type: Integer
+      description: "--concurrency N: consultas a la vez de cada juez de la corrida;\
+        \ null es el valor por omisión, 4 (F-JEXAM-R006)."
+      _change: add
+    _change: modify
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      requiresInject:
+      - name: topicWordLightsQuery
+        type: TopicWordLightsQuery
+        _change: add
+      - name: topicStudentViewQuery
+        type: TopicStudentViewQuery
+        _change: add
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+        _change: add
+      _change: modify
+    - name: StatsAnalyzerCmd
+      requiresInject:
+      - name: detailedFormatters
+        type: "Map<String,DetailedFormatter>"
+        _change: add
+      _change: modify
+    _change: modify
+  - name: bootstrap
+    interfaces:
+    - name: AgentJudgeConfigResolver
+      sealed: false
+      exposes:
+      - signature: "resolve(Map<String,String> env): AgentJudgeConfig"
+      _change: add
+    implementations:
+    - name: DefaultAgentJudgeConfigResolver
+      visibility: public
+      implements:
+      - AgentJudgeConfigResolver
+      _change: add
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-RONDA1
+  code: F-RONDA1

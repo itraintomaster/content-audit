@@ -1,7 +1,7 @@
 ---
 patch: FEAT-RESPC
 requirement: 2026-09-30.04_respuestas-completas
-generated: 2026-09-30T19:05:00Z
+generated: 2026-09-30T21:30:00Z
 ---
 
 # Tech Spec: Respuestas completas (FEAT-RESPC), paquete A de la ronda 1
@@ -17,15 +17,21 @@ sale cada tipo que el parche usa y no declara:
   queda fuera de este analizador.
 - **Del parche de FEAT-PISTA** (este mismo paquete): `IrregularFormsCatalog`.
 - **Del integrador de la ronda 1**: `QuizStudentViewRenderer`, el renderizador del ejercicio como lo ve el alumno que
-  0.3 le dejó; y `AuditableQuiz.miniTheory`. Están en `ronda1/ganchos-A.md` del tablero.
+  0.3 le dejó; y `AuditableQuiz.miniTheory`. Están en `ronda1/ganchos-A.md` del tablero y en el parche de integración
+  (FEAT-RONDA1), que se aplica antes. Rebasado el 30/9 sobre el `sentinel.yaml` real, con 0.2 y 0.3 aplicados;
+  `sentinel-baseline.yaml` queda como foto del diseño.
 
 ## Comparar como el corrector, con su tabla, en un solo lugar
 Cuatro de las cinco reglas del paquete dicen «comparado como el corrector», y José decidió que haya una sola tabla de
 formas equivalentes, la del corrector de Go. `CorrectorMatcher` es esa comparación: la normalización de
 `cloze_sentence_part.go` más la tabla. `canonicalForms` es la primitiva —el conjunto de formas canónicas de un texto—
 porque Datos necesita «uno contiene al otro» y Duplicados agrupa; `accepts` y `sameAnswer` son lo que piden
-Respuestas completas y Opción múltiple. Si el paquete C la usa para su juez de «una sola respuesta», pasa a
-compartida sin cambios.
+Respuestas completas y Opción múltiple. La usan también dos jueces del paquete C (una sola respuesta y opción múltiple),
+así que es compartida, y por eso se aplica antes que ellos. Al integrar, `accepts` pasó a recibir el texto que rodea al
+hueco (`GapContext`, antes y después, sin las pistas), como `ClozeContext` del corrector de Go: sin él «'s» y «'d» no se
+pueden leer por lo que sigue («'s» con participio es *has*, «'d» con participio es *had*). Por lo mismo, comparar dos
+opciones de un mismo hueco tiene su `sameAnswer` con contexto; el de dos textos enteros, que usan Datos y Duplicados,
+queda como estaba.
 
 ```architecture
 modules:
@@ -37,13 +43,21 @@ modules:
         stereotype: port
         exposes:
           - signature: "canonicalForms(String text): Set<String>"
-          - signature: "accepts(List<String> acceptedOptions,String written): boolean"
+          - signature: "accepts(GapContext context,List<String> acceptedOptions,String written): boolean"
           - signature: "sameAnswer(String first,String second): boolean"
+          - signature: "sameAnswer(GapContext context,String first,String second): boolean"
           - signature: "tableVersion(): String"
     packages:
       - name: correctormatch
         _change: add
         visibility: public
+        models:
+          - name: GapContext
+            _change: add
+            type: record
+            fields:
+              - { name: before, type: String }
+              - { name: after, type: String }
         implementations:
           - name: DefaultCorrectorMatcher
             _change: add
@@ -339,7 +353,7 @@ cubiertas (R001 7, R002 7, R003 2, R004 3, R005 8, R006 3, R007 8). De dónde sa
   Dependen de A-15, que no trae una tabla sino casos (la tabla del corrector es código Go, así que la copia de
   content-audit es propia y los casos son el único contrato); de A-16, que tiene que copiar los cuatro archivos tal
   cual; y del contexto del hueco: el corrector lee «'s» y «'d» por lo que sigue (antes y después, sin pistas), y
-  `CorrectorMatcher.accepts` no lo recibe.
+  desde la integración `CorrectorMatcher.accepts` lo recibe (`GapContext`).
 - **Lo demás que depende de otros**: la evidencia (A-01); la miniteoría (A-02, A-03) en la gravedad alta y en R007;
   dos del detector siguen la recomendación de DOUBT-RESPC-CONTRACCIONES y DOUBT-RESPC-DESCRIBE, abiertas; «has trained»
   lee R005 así: lo que el corrector nuevo sigue rechazando (su clase «límite») se agrega con «|».

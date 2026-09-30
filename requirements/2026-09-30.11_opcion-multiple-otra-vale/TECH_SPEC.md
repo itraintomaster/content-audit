@@ -1,7 +1,7 @@
 ---
 patch: FEAT-MCVALE
 requirement: 2026-09-30.11_opcion-multiple-otra-vale
-generated: 2026-09-30T19:35:00Z
+generated: 2026-09-30T21:30:00Z
 ---
 
 # Tech Spec: Juez de opción múltiple, ¿otra opción también vale? (FEAT-MCVALE)
@@ -10,10 +10,12 @@ Paquete C, ronda 1. José decidió el 30/9 que este juez va dentro del analizado
 sola fila y una sola ficha. Por eso acá no hay analizador ni proveedor: hay un juez entero —huella, evaluador en el
 libro, veredicto, clasificación, puntaje, reglas para la ficha, lector y examen— y una sola puerta por la que el
 analizador de A lo usa. Viene de **0.3 (FEAT-HALL)**: `AnalyzerRuleCard`, `FindingDraft` y `FindingSeverity`. De
-**FEAT-JEXAM**: el runtime común, la cobertura común y el examen. Del paquete A y del integrador: el render
-`QuizStudentViewRenderer` (gancho A-01) y `CorrectorMatcher` (FEAT-RESPC). De **0.2
-(FEAT-OPMUL)**: `AuditableQuiz.multipleChoice` y `MultipleChoiceEntity`, de donde salen las opciones en su orden y la
-correcta. Se aplica después de FEAT-JEXAM.
+**FEAT-JEXAM**: el runtime común, la cobertura común y el examen. Del **parche de integración de la ronda 1
+(FEAT-RONDA1)**: el render `QuizStudentViewRenderer` (gancho A-01) y el contrato del juez con el analizador de A
+(paquete `choicealternative`: las dos interfaces, el juicio y el veredicto). Del paquete A: `CorrectorMatcher`
+(FEAT-RESPC). De **0.2 (FEAT-OPMUL)**: `AuditableQuiz.multipleChoice` y `MultipleChoiceEntity`, de donde salen las
+opciones en su orden y la correcta. Se aplica después de la integración y de FEAT-JEXAM: rebasado el 30/9 sobre el
+`sentinel.yaml` real, con 0.2 y 0.3 aplicados; `sentinel-baseline.yaml` queda como foto del diseño.
 
 **Fuera del parche** (`ronda1/ganchos-C.md`): el analizador de A, que inyecta `ChoiceAlternativeJudgeRunFactory`, suma sus
 reglas a su ficha, guarda el juicio en su diagnóstico y publica la cobertura del juez en la ranura común; y el cableado
@@ -33,35 +35,16 @@ sumar sus hallazgos y su puntaje a los de sus reglas instantáneas; `coverage` l
 informe. Como el nombre es el del analizador que lo aloja, el tope `--budget`, el freno del examen, el examen y la
 exclusión son los de ese analizador (F-HALL-R005, F-MCVALE-R004), y A no necesita saber nada del libro ni del modelo.
 `judgeRule` devuelve la regla del juez —`another-option-valid`, costo modelo pago— para que la ficha de A la declare
-igual a como la emite el juez. Los nombres y los estados siguen lo que A espera (A-07) salvo en lo que haría imposible
-consultar a la vez: A pide un veredicto por ejercicio dentro de `onQuiz`; acá se piden todos y se resuelven juntos.
+igual a como la emite el juez. Al integrar quedó este contrato en dos tiempos, y no el `judge()` por ejercicio que
+esperaba A (A-07): es el único que deja consultar a la vez (F-JEXAM-R006) y su juicio trae la gravedad de cada opción y la
+clave invertida. Por ser la frontera entre dos paquetes, las interfaces y el juicio pasaron al parche de integración
+(FEAT-RONDA1); acá quedan sus implementaciones.
 
 ```architecture
 modules:
   - name: audit-domain
     _change: modify
     packages:
-      - name: choicealternative
-        _change: add
-        visibility: public
-        interfaces:
-          - name: ChoiceAlternativeJudgeRunFactory
-            _change: add
-            stereotype: factory
-            sealed: false
-            exposes:
-              - signature: "judgeRule(): AnalyzerRuleCard"
-              - signature: "open(EvaluationRunPolicy policy): ChoiceAlternativeJudgeRun"
-                throwsExceptions: [EmptyReevaluationSetException, AmbiguousReevaluationScopeException]
-          - name: ChoiceAlternativeJudgeRun
-            _change: add
-            stereotype: port
-            sealed: false
-            exposes:
-              - signature: "request(AuditNode quizNode): void"
-              - signature: "resolveAll(): void"
-              - signature: "judgmentOf(AuditNode quizNode): ChoiceAlternativeJudgment"
-              - signature: "coverage(): JudgeCoverageDiagnosis"
       - name: choicealternativeengine
         _change: add
         visibility: public
@@ -126,6 +109,8 @@ modules:
 Son las dos cosas que decide el juez (F-MCVALE-R002): las incorrectas que también valen, cada una con su gravedad —alta
 si vale igual, media si es defendible pero menos natural—, y si la correcta vale; la clave invertida, como el imposible
 `…47cc` del examen fijo, es bloqueante porque el alumno no puede acertar. El lector vive junto al de los otros jueces.
+El veredicto (`ChoiceAlternativeVerdict`, con sus `ChoiceAlternativeOption`) viaja dentro del juicio que lee A, así que
+vive con el contrato en el parche de integración; acá queda sólo su lector, que suma al paquete que crea la integración.
 
 ```architecture
 modules:
@@ -133,24 +118,7 @@ modules:
     _change: modify
     packages:
       - name: choicealternative
-        _change: add
-        visibility: public
-        models:
-          - name: ChoiceAlternativeOption
-            _change: add
-            type: record
-            fields:
-              - { name: label, type: String }
-              - { name: severity, type: FindingSeverity }
-              - { name: reason, type: String }
-          - name: ChoiceAlternativeVerdict
-            _change: add
-            type: record
-            fields:
-              - { name: correctIsValid, type: boolean }
-              - { name: validAlternatives, type: "List<ChoiceAlternativeOption>" }
-              - { name: correctProblem, type: String }
-              - { name: rationale, type: String }
+        _change: modify
         interfaces:
           - name: ChoiceAlternativeVerdictReader
             _change: add
@@ -178,9 +146,9 @@ El clasificador convierte el veredicto en lo que el analizador de A necesita y n
 no vale—, un puntaje 1 / 0,6 / 0,3 / 0 según el más
 grave (F-MCVALE-R003) y la procedencia. Antes descarta con `CorrectorMatcher.sameAnswer` la opción que es la misma
 respuesta que la correcta en otra forma, como «isn't» e «is not»: esa la marca una regla de A y no se cuenta dos veces
-(F-JEXAM-R012). Un ejercicio sin veredicto queda `PENDING`, `FAILED` o `NOT_AVAILABLE`, los estados que espera A, sin puntaje ni
-hallazgo del juez; se recomienda que A lo
-declare como no evaluado del todo (`unevaluatedBy`), para que «algún error» se lea como piso (F-MCVALE-R005).
+(F-JEXAM-R012). Un ejercicio sin veredicto queda `PENDING`, `FAILED` o `NOT_AVAILABLE`, sin puntaje ni hallazgo del juez,
+y A lo declara evaluado a medias (`AuditNode.partiallyEvaluatedBy`, F-RONDA1-R006), para que «algún error» se lea como
+piso (F-MCVALE-R005). El juicio y sus estados son parte del contrato de la integración.
 
 ```architecture
 modules:
@@ -195,31 +163,6 @@ modules:
         exposes:
           - signature: "getScoreFor(FindingSeverity severity): double"
     packages:
-      - name: choicealternative
-        _change: add
-        visibility: public
-        models:
-          - name: ChoiceAlternativeJudgmentStatus
-            _change: add
-            type: enum
-            fields:
-              - name: JUDGED
-              - name: PENDING
-              - name: FAILED
-              - name: NOT_AVAILABLE
-          - name: ChoiceAlternativeJudgment
-            _change: add
-            type: record
-            fields:
-              - { name: quizId, type: String }
-              - { name: status, type: ChoiceAlternativeJudgmentStatus }
-              - { name: verdict, type: ChoiceAlternativeVerdict }
-              - { name: droppedAsForm, type: "List<String>" }
-              - { name: findings, type: "List<FindingDraft>" }
-              - { name: score, type: Double }
-              - { name: evaluatorVersion, type: String }
-              - { name: reused, type: boolean }
-              - { name: notJudgedReason, type: String }
       - name: choicealternativeengine
         _change: add
         visibility: public
@@ -249,9 +192,10 @@ modules:
 
 ## Registrar FEAT-MCVALE
 
-Al aplicar, Sentinel copia de REQUIREMENT.md la compuerta con F-MCVALE-J001; ubicarlo es del qa-tester, y el integrador
-suma la carpeta a `definitions` y corre `feature sync --feature FEAT-MCVALE`. El journey corre `analyze` con el
-analizador de A, así que se ubica donde A ubique los suyos.
+Al aplicar, Sentinel copia de REQUIREMENT.md la compuerta con F-MCVALE-J001, ya ubicado por el qa-tester: no hace falta
+sumar la carpeta a `definitions` ni correr `feature sync`, porque `patch apply` registra la feature y Sentinel lee cada
+REQUIREMENT.md de `requirements/`. El journey corre `analyze` con el analizador de A, así que se ubica donde A ubica los
+suyos.
 
 ```architecture
 features:

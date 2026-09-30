@@ -12,7 +12,9 @@ description: "FEAT-PISTA: hint-coherence, el analizador de errores que compara l
   \ caso real del curso, y ubica F-PISTA-J001 en audit-domain, paquete hintcoherence.\
   \ Dependen del integrador: la evidencia (A-01, QuizStudentViewRenderer); la tabla\
   \ instalada, si la prueba del adaptador la lee (A-16). La que manda a la mesa la\
-  \ palabra ausente sigue la opcion A de DOUBT-PISTA-CUANDO-MESA, abierta."
+  \ palabra ausente sigue la opcion A de DOUBT-PISTA-CUANDO-MESA, abierta. Rebasado\
+  \ el 30/9 sobre el sentinel.yaml real (0.2 y 0.3 aplicados) y el parche de integració\
+  n de la ronda 1 (FEAT-RONDA1), que se aplica antes, sin cambios de estructura."
 modules:
 - name: audit-domain
   interfaces:

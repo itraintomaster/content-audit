@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): CorrectorMatcher.accepts recibe GapContext (antes y después del hueco, sin pistas) y suma sameAnswer(GapContext, …) para opciones de un hueco; modelo GapContext en correctormatch (pendiente del qa-tester de A).
+
 2026-09-30 — qa-tester — F-RESPC-J001 en audit-domain, paquete answercompleteness: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.
 2026-09-30 — qa-tester — Casos de oro: dos pruebas de DefaultCorrectorMatcher, columna «hoy» con la tabla vacía y «acepta» con la copia de la tabla nueva; fallan si copia y casos no coinciden.
   why: los casos de Go (testdata/, 4 archivos, 153 casos hoy) no traen tabla: la tabla del corrector es código; los casos son el único contrato.

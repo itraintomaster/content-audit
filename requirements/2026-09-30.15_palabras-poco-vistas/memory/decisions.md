@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): LemmaCountConfig repite sealed true (el modify lo habría abierto); la prueba del valor por omisión del cargador pasa a 8·6·4·3, confirmado por José (misma regla).
+
 2026-09-30 — qa-tester — F-POCOV-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
   why: su último paso mira el plan, que audit-domain no ve; AnalyzeCmd y PlanCmd son package-private ahí.
 

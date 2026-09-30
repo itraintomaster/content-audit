@@ -4,6 +4,8 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): MiniTheoryAnalyzerProvider implements AnalyzerProvider (C-03).
+
 2026-09-30 — qa-tester — F-MINIT-J001 en audit-domain, `com.learney.contentaudit.auditdomain.minitheoryengine`.
 2026-09-30 — qa-tester — «Sólo donde se muestra» y «en todo el tema» se prueban con alcance explícito en el repartidor («enjoy», 9 de 80 en «Contraste inicial»); el valor por omisión, en la configuración.
   why: si José vuelve a «en todo el tema» (DOUBT-MINIT-VARIAS, a confirmar) cambia una sola prueba.

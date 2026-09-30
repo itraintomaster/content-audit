@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): el juez entra por el contrato de C que vive en la integración (choicealternative): salen MultipleChoiceJudgeFactory/Session, MultipleChoiceJudgement(+Status), AlsoValidOption y MultipleChoiceJudgeCoverageDiagnosis; judgeRun, judgeRunFactory, diagnosis.judgment y UnavailableChoiceAlternativeJudgeRunFactory. DOUBT-OMVAL-JUEZ-A-MEDIAS y CORRIDA-BASE: A (F-RONDA1-R006, R007).
+
 2026-09-30 — qa-tester — F-OMVAL-J001 en audit-domain, paquete multiplechoicevalidity: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.
 2026-09-30 — qa-tester — Las gemelas por contracción («'re going to»/«are going to», 26ef; «'ve got to»/«have got to», 2e0c) usan la tabla del corrector nuevo: con la de hoy sólo cuentan mayúscula y signos.
 2026-09-30 — qa-tester — La prueba del ejercicio que el juez no vio sigue la opción A de DOUBT-OMVAL-JUEZ-A-MEDIAS (abierta) y el gancho A-08.

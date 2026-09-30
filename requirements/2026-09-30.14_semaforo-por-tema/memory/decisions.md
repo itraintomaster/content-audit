@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): sin cambios de estructura (la inyección de GetCmd, D-05, va en la integración).
+
 2026-09-30 — qa-tester — F-SEMAF-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
   why: GetCmd es package-private ahí; mismo paquete que F-SLEM-J001 y F-CLEX-J001.
 

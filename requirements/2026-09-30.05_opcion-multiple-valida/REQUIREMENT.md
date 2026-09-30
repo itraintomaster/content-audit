@@ -237,29 +237,32 @@ el mismo nombre.
 
 <a id="DOUBT-OMVAL-JUEZ-A-MEDIAS"></a>
 ### Doubt[DOUBT-OMVAL-JUEZ-A-MEDIAS] - ¿Cómo cuenta un ejercicio cuyas reglas corrieron pero el juez no?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): evaluado a medias: sus hallazgos de regla cuentan, el nodo declara que el juez no lo vio
+- [x] Opción A (recomendada): evaluado a medias: sus hallazgos de regla cuentan, el nodo declara que el juez no lo vio
   y «algún error» se lee como piso. Pide un campo más en el contrato del hallazgo, que suma el integrador.
 - [ ] Opción B: evaluado del todo: los hallazgos de regla cuentan y lo que el juez no vio sólo figura en su cobertura.
 - [ ] Opción C: sin evaluar hasta que el juez lo vea.
 
-**Answer**: Pendiente. Con el juez adentro, choca el contrato: un ejercicio está evaluado o no, y no hay hallazgos en
-uno sin evaluar ([F-HALL-R001](#F-HALL-R001)). Sin pedido explícito no se paga, así que en una corrida normal el juez
+**Answer**: **Opción A** (José, 30/9: va con su recomendación, entre las once dudas chicas del tablero). La implementa
+la integración de la ronda 1 ([F-RONDA1-R006](#F-RONDA1-R006)): el ejercicio cuenta como evaluado, sus hallazgos de
+regla valen y el nodo declara al analizador «a medias». El razonamiento: con el juez adentro, choca el contrato: un
+ejercicio está evaluado o no, y no hay hallazgos en uno sin evaluar ([F-HALL-R001](#F-HALL-R001)). Sin pedido explícito no se paga, así que en una corrida normal el juez
 no ve ninguno de los 2.810. Recomiendo A: la fila muestra los unos 354 con error de regla y avisa que falta el juez.
 Con B la fila parece completa sin serlo ([F-HALL-R008](#F-HALL-R008), invariante 3); con C diría que el 100 % de lo
 evaluado tiene error, porque sólo quedarían evaluados los que ya tienen un error de regla.
 
 <a id="DOUBT-OMVAL-CORRIDA-BASE"></a>
 ### Doubt[DOUBT-OMVAL-CORRIDA-BASE] - ¿La vista consolidada muestra los errores de opción múltiple?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): sí: la corrida base corre `multiple-choice-validity` con tope 0, sin pagar: sus reglas
+- [x] Opción A (recomendada): sí: la corrida base corre `multiple-choice-validity` con tope 0, sin pagar: sus reglas
   siempre y del juez sólo lo que ya está registrado.
 - [ ] Opción B: no: la corrida base sigue siendo sólo de analizadores instantáneos, y la opción múltiple aparece sólo
   en `analyze`.
 
-**Answer**: Pendiente. Por el juez, la ficha declara *modelo pago* ([F-HALL-R006](#F-HALL-R006)), y el contrato deja
+**Answer**: **Opción A** (José, 30/9: va con su recomendación, entre las once dudas chicas del tablero). La implementa
+la integración de la ronda 1 ([F-RONDA1-R007](#F-RONDA1-R007)). El razonamiento: por el juez, la ficha declara *modelo pago* ([F-HALL-R006](#F-HALL-R006)), y el contrato deja
 fuera de la corrida base —la de la vista consolidada y la vista previa— a todo lo que no es instantáneo. Con B esas
 dos vistas pierden los unos 354 errores de regla, que no cuestan nada. Recomiendo A: no paga nada y es la misma lectura
 que José eligió para `stats analyzer` de un juez (tope 0 con reuso libre).

@@ -19,7 +19,9 @@ description: "FEAT-JEXAM: lo común de los cinco jueces con modelo y lo que camb
   \ EvaluationSession; todas con juez falso o grabado, ninguna consulta un modelo\
   \ pago. R012 no tiene prueba propia: la cumplen los clasificadores de FEAT-UNICA\
   \ y FEAT-MCVALE, y propose no acepta trazas a otra feature. F-JEXAM-J001 va a audit-cli,\
-  \ paquete commands."
+  \ paquete commands. Rebasado el 30/9 sobre el sentinel.yaml real (0.2 y 0.3 aplicados)\
+  \ y el parche de integración de la ronda 1 (FEAT-RONDA1), que se aplica antes: DefaultJudgeProviderReadinessProbe\
+  \ inyecta authStatusCommand: List<String>."
 modules:
 - name: evaluation-ledger-domain
   models:
@@ -1018,6 +1020,12 @@ modules:
       - AgentJudgeChatModelFactory
       _change: add
     - name: DefaultJudgeProviderReadinessProbe
+      requiresInject:
+      - name: authStatusCommand
+        type: List<String>
+        description: "El comando que pregunta si la sesión local del proveedor sigue\
+          \ viva, como [\"claude\", \"auth\", \"status\"]; lo pasa Main. Inyectado\
+          \ para poder probar sin el claude real (pendiente del qa-tester de C)."
       visibility: public
       handwrittenTests:
       - name: should report SESSION_EXPIRED with the remedy «renovala con claude auth

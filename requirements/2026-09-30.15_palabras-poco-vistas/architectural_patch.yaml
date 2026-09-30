@@ -20,7 +20,12 @@ description: "FEAT-POCOV: lemma-count con umbral por banda de frecuencia y con h
   \ LemmaCountAnalyzerProvider (de 0.3), IAuditEngine, DefaultLemmaCountConfigLoader,\
   \ DefaultRefinerEngine, LemmaAbsenceContextResolver y LevelWideLemmaInventory, y\
   \ ubica F-POCOV-J001 en audit-cli, paquete commands. Las que dependen de 0.3 o de\
-  \ un gancho D-xx lo dicen en el TECH_SPEC."
+  \ un gancho D-xx lo dicen en el TECH_SPEC. Rebasado el 30/9 sobre el sentinel.yaml\
+  \ real (0.2 y 0.3 aplicados) y el parche de integración de la ronda 1 (FEAT-RONDA1),\
+  \ que se aplica antes: la prueba del valor por omisión de las bandas pasa de «4\
+  \ para todas» a 8 · 6 · 4 · 3, confirmado por José el 30/9 (misma regla, F-POCOV-R001);\
+  \ LemmaCountConfig sigue sealed: el parche lo modificaba con sealed false y el apply\
+  \ lo habría abierto."
 modules:
 - name: audit-domain
   models:
@@ -42,7 +47,7 @@ modules:
     _change: add
   interfaces:
   - name: LemmaCountConfig
-    sealed: false
+    sealed: true
     exposes:
     - signature: "getBands(): List<LemmaCountBand>"
       _change: add
@@ -289,7 +294,8 @@ modules:
       traceability:
         feature: FEAT-POCOV
         rule: F-POCOV-R001
-    - name: should load four bands of 4 when no threshold is configured
+    - name: "should load the bands 8, 6, 4 and 3 when no threshold is configured,\
+        \ the default José confirmed on 30/9"
       traceability:
         feature: FEAT-POCOV
         rule: F-POCOV-R001

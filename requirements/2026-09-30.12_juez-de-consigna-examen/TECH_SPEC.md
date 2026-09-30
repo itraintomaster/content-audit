@@ -1,7 +1,7 @@
 ---
 patch: FEAT-JEXAM
 requirement: 2026-09-30.12_juez-de-consigna-examen
-generated: 2026-09-30T19:35:00Z
+generated: 2026-09-30T21:30:00Z
 ---
 
 # Tech Spec: El examen fijo de los jueces y el juez de consigna, sin tocar su huella (FEAT-JEXAM)
@@ -9,7 +9,9 @@ generated: 2026-09-30T19:35:00Z
 Paquete C, ronda 1. Este parche lleva lo común a los cinco jueces con modelo —el de consigna, `translation-sense`,
 `single-answer`, `mini-theory` y el juez de opción múltiple que aloja el analizador del paquete A— y lo que cambia del
 juez de consigna. Se diseñó contra el modelo que queda después de 0.2 y 0.3; los otros cuatro parches del paquete usan
-sus tipos, así que éste se aplica antes que ellos.
+sus tipos, así que éste se aplica antes que ellos. Rebasado el 30/9 sobre el `sentinel.yaml` real, con 0.2 y 0.3
+aplicados, y sobre el parche de integración de la ronda 1 (FEAT-RONDA1), que se aplica primero y trae los ganchos de este
+paquete que caen en archivos comunes (C-04, C-05, C-09, C-16, C-17); `sentinel-baseline.yaml` queda como foto del diseño.
 
 **Tipos que vienen de 0.3 (FEAT-HALL) y no se declaran acá**: `AnalyzerProvider` (que `DefaultQuizInstructionAnalyzerFactory`
 implementa desde 0.3), `AnalyzerDescriptor` con sus campos nuevos (reglas, familia, `evaluatedTargets`, costo),
@@ -703,7 +705,9 @@ herramienta de estado del propio CLI (`claude auth status`), que no llama a ning
 saberlo sin consultar y lo deja pasar. Si la verificación no alcanza y la primera consulta vuelve por falta de sesión o
 de cuota, `explain` clasifica el texto de la falla. En los dos casos el evaluador devuelve `EVALUATOR_UNAVAILABLE` con
 la causa y el remedio («sesión vencida: renovala con `claude auth login`»), la sesión deja de consultar (F-EVCOST-R009)
-y el motivo llega a la cobertura. El juez de consigna usa la misma verificación: no cambia su versión ni su huella.
+y el motivo llega a la cobertura. El juez de consigna usa la misma verificación: no cambia su versión ni su huella. El
+comando que pregunta por la sesión (`claude auth status`) se inyecta: lo pasa `Main`, y una prueba puede darle uno falso
+sin tocar el PATH (pendiente que dejó el qa-tester del paquete, resuelto al integrar).
 
 ```architecture
 modules:
@@ -745,6 +749,8 @@ modules:
             _change: add
             visibility: public
             implements: [JudgeProviderReadinessProbe]
+            requiresInject:
+              - { name: authStatusCommand, type: "List<String>" }
       - name: instructionjudge
         _change: modify
         visibility: public
@@ -798,8 +804,8 @@ emite cada agente, y cuenta cuántas veces lo llaman; la sesión de `claude-cli`
 **Dependencias.** Los hallazgos, la ficha y `unevaluatedBy` son de 0.3 (R001 en el exportador, R008). Del integrador:
 C-04 (la cobertura común en `CourseDiagnoses`), C-12 y C-13 (cableado), C-16 (la configuración del entorno) y, para el
 journey, C-17 (`--budget`, `--reevaluate` por nombre y `--concurrency`), C-18 (el comando `exam`) y C-25 (la foto).
-`DefaultJudgeProviderReadinessProbe` no recibe con qué correr `claude auth status`: sus dos pruebas de `claude-cli` necesitan
-que el arquitecto se lo dé por inyección, o un `claude` falso en el PATH de la prueba. La prueba de hoy
+`DefaultJudgeProviderReadinessProbe` recibe por inyección el comando de `claude auth status` (`authStatusCommand`, del
+rebase): sus dos pruebas de `claude-cli` le pasan uno falso. La prueba de hoy
 «should build the analyzer with the configured default budget when the run declares no policy for the judge»
 (F-QINST-R006) afirma 500 y R010 lo lleva a 0: se reescribe su cuerpo, igual que el constructor de las 27 de
 `QuizInstructionAnalyzer` y las 4 de su fábrica. R012 no tiene prueba propia: la cumplen los clasificadores de FEAT-UNICA y

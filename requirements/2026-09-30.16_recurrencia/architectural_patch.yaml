@@ -10,7 +10,9 @@ description: "FEAT-RECUR: lemma-recurrence publica lo que ya calcula. Un diagnos
   \ trazados a sus reglas) en LemmaRecurrenceAnalyzer, LemmaRecurrenceAnalyzerProvider\
   \ (de 0.3), LemmaRecurrenceDetailedFormatter, StatsAnalyzerCmd, DefaultRefinerEngine\
   \ e IAuditEngine, y ubica F-RECUR-J001 en audit-cli, paquete commands. Las que dependen\
-  \ de 0.3 o de un gancho D-xx lo dicen en el TECH_SPEC."
+  \ de 0.3 o de un gancho D-xx lo dicen en el TECH_SPEC. Rebasado el 30/9 sobre el\
+  \ sentinel.yaml real (0.2 y 0.3 aplicados) y el parche de integración de la ronda\
+  \ 1 (FEAT-RONDA1), que se aplica antes, sin cambios de estructura."
 modules:
 - name: audit-domain
   implementations:

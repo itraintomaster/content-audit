@@ -1,7 +1,7 @@
 ---
 patch: FEAT-MINIT
 requirement: 2026-09-30.10_miniteoria
-generated: 2026-09-30T19:35:00Z
+generated: 2026-09-30T21:30:00Z
 ---
 
 # Tech Spec: Juez de miniteoría (FEAT-MINIT)
@@ -10,7 +10,7 @@ Paquete C, ronda 1. El analizador `mini-theory` juzga cada tema de una vez —su
 ejercicios— y cuenta el error en los ejercicios que muestran la miniteoría con problema. Viene de **0.3 (FEAT-HALL)**:
 `AnalyzerProvider`, la ficha, `FindingDraft` y `FindingSeverity`. De **FEAT-JEXAM**: el runtime común, el evaluador
 genérico por agente y la cobertura común, que acá cuenta temas. Del integrador: el render `QuizStudentViewRenderer`
-(gancho A-01). Se aplica después de FEAT-JEXAM.
+(gancho A-01) y la miniteoría de cada ejercicio (`AuditableQuiz.miniTheory`, A-02). Se aplica después de FEAT-JEXAM. Rebasado el 30/9 sobre el `sentinel.yaml` real, con 0.2 y 0.3 aplicados, y sobre el parche de integración de la ronda 1 (FEAT-RONDA1), que se aplica antes; `sentinel-baseline.yaml` queda como foto del diseño.
 
 **Fuera del parche** (`ronda1/ganchos-C.md`): la miniteoría en `AuditableQuiz` —hoy el curso la tiene en cada ejercicio
 (`QuizTemplateEntity.miniTheory`) pero no llega a la auditoría—, que el mapeador copia tal cual; la ranura del
@@ -27,9 +27,9 @@ La ficha declara familia errores, costo modelo pago y niveles evaluados `[QUIZ]`
 y los hallazgos van en el ejercicio, que es donde cuenta el error. Reglas: `false-rule` y `contradicting-exercise`
 (alta), `overstated-rule` (media) y `uncovered-exercise` (baja), todas a la mesa. La ligadura al plan nombra
 `MINI_THEORY` sobre el ejercicio; que la mesa resuelva una vez por miniteoría sale de la marca del hallazgo. El
-proveedor se declara como clase con las cinco firmas de `AnalyzerProvider` porque `patch propose` no acepta un
-`implements` hacia un puerto que todavía no está en `sentinel.yaml`; el integrador lo pasa a
-`implements AnalyzerProvider`, con el mismo gancho que los paquetes A y D.
+proveedor implementa `AnalyzerProvider`: se había declarado como clase con sus cinco firmas porque el puerto todavía no
+estaba en `sentinel.yaml`, y al rebasar sobre 0.3 pasó a `implements` (gancho C-03). En esta ronda `MINI_THEORY` no es
+constante de `DiagnosisKind` y el plan lo declara (F-RONDA1-R008).
 
 ```architecture
 modules:
@@ -43,13 +43,7 @@ modules:
           - name: MiniTheoryAnalyzerProvider
             _change: add
             visibility: public
-            stereotype: class
-            exposes:
-              - signature: "analyzerName(): String"
-              - signature: "describe(): AnalyzerDescriptor"
-              - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
-              - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
-              - signature: "config(): Optional<SelfDescribingConfig>"
+            implements: [AnalyzerProvider]
             requiresInject:
               - { name: runtime, type: JudgeRuntime }
               - { name: judge, type: Evaluator }
@@ -308,7 +302,7 @@ consulta un modelo pago**: el juez es un doble que devuelve veredictos grabados,
 
 **Dependencias.** La miniteoría de cada ejercicio en `AuditableQuiz` (C-06, A-02 y A-03): sin ella no hay qué leer. El
 render (C-07), la ranura del diagnóstico (C-05), la cobertura común (C-04) y los hallazgos y la ficha de 0.3. Con C-03 el
-proveedor pasa a `implements AnalyzerProvider` y sus pruebas no cambian. DOUBT-MINIT-VARIAS se confirma con José: si
+proveedor ya implementa `AnalyzerProvider` y sus pruebas no cambian. DOUBT-MINIT-VARIAS se confirma con José: si
 vuelve a «en todo el tema», cambia el valor por omisión y la prueba de la configuración, no las dos del alcance.
 
 **El journey** va a `audit-domain`, en `com.learney.contentaudit.auditdomain.minitheoryengine`, como los del juez de

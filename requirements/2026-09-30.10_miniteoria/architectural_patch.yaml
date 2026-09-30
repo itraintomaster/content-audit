@@ -13,7 +13,10 @@ description: "FEAT-MINIT: el analizador mini-theory. Una consulta por tema: el j
   \ lo pasa a implements AnalyzerProvider.; qa-tester: traza las 7 reglas de FEAT-MINIT\
   \ a handwrittenTests nuevas, con juez falso o grabado y sin modelo pago; «sólo donde\
   \ se muestra» y «en todo el tema» se prueban con la miniteoría de «enjoy» de «Contraste\
-  \ inicial» (9 de 80). F-MINIT-J001 va a audit-domain, paquete minitheoryengine."
+  \ inicial» (9 de 80). F-MINIT-J001 va a audit-domain, paquete minitheoryengine.\
+  \ Rebasado el 30/9 sobre el sentinel.yaml real (0.2 y 0.3 aplicados) y el parche\
+  \ de integración de la ronda 1 (FEAT-RONDA1), que se aplica antes: MiniTheoryAnalyzerProvider\
+  \ implements AnalyzerProvider (antes stereotype class con cinco exposes)."
 modules:
 - name: audit-domain
   interfaces:
@@ -196,13 +199,8 @@ modules:
         traceability:
           feature: FEAT-MINIT
           rule: F-MINIT-R004
-      stereotype: class
-      exposes:
-      - signature: "analyzerName(): String"
-      - signature: "describe(): AnalyzerDescriptor"
-      - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
-      - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
-      - signature: "config(): Optional<SelfDescribingConfig>"
+      implements:
+      - AnalyzerProvider
       _change: add
     - name: MiniTheoryAnalyzer
       requiresInject:

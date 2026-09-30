@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): OffLevelWordsAnalyzerProvider implements AnalyzerProvider (D-01); proveedor y analizador inyectan QuizStudentViewRenderer (D-14).
+
 2026-09-30 — qa-tester — F-NIVFR-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
   why: cruza analyze y el plan; AnalyzeCmd y PlanCmd son package-private ahí (como F-CLEX-J001) y el analizador se alcanza por su proveedor público.
 

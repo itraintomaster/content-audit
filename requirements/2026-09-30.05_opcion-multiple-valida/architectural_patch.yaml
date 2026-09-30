@@ -13,38 +13,30 @@ description: "FEAT-OMVAL: multiple-choice-validity, el analizador de errores que
   \ en audit-domain, paquete multiplechoicevalidity. Dependen del integrador y de\
   \ C: el juez (A-07), el ejercicio a medias (A-08, DOUBT-OMVAL-JUEZ-A-MEDIAS) y la\
   \ evidencia (A-01); las opciones gemelas por contraccion usan la tabla del corrector\
-  \ nuevo (A-15): con la copia de hoy solo cuentan mayuscula y signos."
+  \ nuevo (A-15): con la copia de hoy solo cuentan mayuscula y signos. Rebasado el\
+  \ 30/9 sobre el sentinel.yaml real (0.2 y 0.3 aplicados) y el parche de integració\
+  n de la ronda 1 (FEAT-RONDA1), que se aplica antes: sale MultipleChoiceJudgeFactory;\
+  \ sale MultipleChoiceJudgeSession; sale MultipleChoiceJudgement; sale MultipleChoiceJudgementStatus;\
+  \ sale AlsoValidOption; sale MultipleChoiceJudgeCoverageDiagnosis; MultipleChoiceValidityDiagnosis.judgement\
+  \ pasa a judgment: ChoiceAlternativeJudgment; MultipleChoiceValidityAnalyzer: judgeSession\
+  \ pasa a judgeRun: ChoiceAlternativeJudgeRun; MultipleChoiceValidityAnalyzerProvider:\
+  \ judgeFactory pasa a judgeRunFactory: ChoiceAlternativeJudgeRunFactory; UnavailableMultipleChoiceJudgeFactory\
+  \ pasa a UnavailableChoiceAlternativeJudgeRunFactory, implements ChoiceAlternativeJudgeRunFactory\
+  \ (sus pruebas quedan)."
 modules:
 - name: audit-domain
-  interfaces:
-  - name: MultipleChoiceJudgeFactory
-    stereotype: factory
-    sealed: false
-    exposes:
-    - signature: "open(EvaluationRunPolicy policy): MultipleChoiceJudgeSession"
-    - signature: "judgeRule(): AnalyzerRuleCard"
-    visibility: public
-    _change: add
-  - name: MultipleChoiceJudgeSession
-    sealed: false
-    exposes:
-    - signature: "judge(AuditNode quizNode): MultipleChoiceJudgement"
-    - signature: "coverage(): EvaluationCoverage"
-    - signature: "consultedJudgeVersion(): Optional<String>"
-    visibility: public
-    _change: add
   packages:
   - name: multiplechoicevalidity
     description: "Analizador multiple-choice-validity (FEAT-OMVAL), familia errores,\
       \ evalúa QUIZ de opción múltiple. Corre sus cuatro reglas instantáneas sobre\
-      \ las opciones como las ve el alumno y, por cada ejercicio, le pide al juez\
-      \ de C su veredicto por la sesión de la corrida (MultipleChoiceJudgeSession),\
-      \ abierta con la política y el tope de este analizador. Si el juez está pendiente,\
-      \ falló o no está conectado, el ejercicio queda evaluado por las reglas y a\
-      \ medias por el juez: sus hallazgos de regla cuentan y «algún error» se lee\
-      \ como piso (gancho del contrato para el integrador). Públicos: el proveedor,\
-      \ el diagnóstico, el veredicto del juez y la fábrica «sin juez», que usa la\
-      \ raíz de composición hasta que C conecte el suyo."
+      \ las opciones como las ve el alumno y aloja al juez de C por el contrato de\
+      \ choicealternative (FEAT-RONDA1): pide cada ejercicio en onQuiz, los resuelve\
+      \ todos juntos en onCourseComplete, con la política y el tope de este analizador,\
+      \ y ahí escribe puntaje, hallazgos y diagnóstico. Si el juez está pendiente,\
+      \ falló o no está conectado, el ejercicio queda evaluado a medias (F-RONDA1-R006):\
+      \ sus hallazgos de regla cuentan y «algún error» se lee como piso. Públicos:\
+      \ el proveedor, el diagnóstico y la fábrica «sin juez», que sirve para construir\
+      \ y probar sin el juez de C."
     visibility: public
     models:
     - name: MultipleChoiceValidityDiagnosis
@@ -54,10 +46,10 @@ modules:
         type: List<OptionIssue>
         description: "Una por cosa que no se cumple en las opciones, en orden de regla\
           \ y de opción."
-      - name: judgement
-        type: MultipleChoiceJudgement
+      - name: judgment
+        type: ChoiceAlternativeJudgment
         description: "Lo que dijo el juez de «otra opción también vale» en esta corrida,\
-          \ con su estado."
+          \ con su estado (contrato de choicealternative, FEAT-RONDA1)."
       - name: score
         type: double
         description: "0 con algún hallazgo que cuenta, de regla o del juez; 1 si no\
@@ -109,60 +101,6 @@ modules:
         description: "R004: el a o an de antes del hueco sólo encaja con alguna opció\
           n. Media, mesa."
       _change: add
-    - name: MultipleChoiceJudgement
-      type: record
-      fields:
-      - name: status
-        type: MultipleChoiceJudgementStatus
-      - name: alsoValidOptions
-        type: List<AlsoValidOption>
-        description: Opciones incorrectas que el juez también da por válidas en el
-          contexto. Vacía si el juez no encontró ninguna o no juzgó.
-      - name: judgeVersion
-        type: String
-        description: "Procedencia del veredicto (F-QINST-R010): no decide qué vale.\
-          \ null si no hubo veredicto."
-      - name: reused
-        type: boolean
-        description: Si el veredicto salió del libro de evaluaciones sin consultar
-          (F-EVCOST-R003).
-      _change: add
-    - name: MultipleChoiceJudgementStatus
-      type: enum
-      fields:
-      - name: JUDGED
-        description: "Hay veredicto, nuevo o reutilizado."
-      - name: PENDING
-        description: "Sin veredicto: se agotó el tope de la corrida o no se pidió\
-          \ pagar."
-      - name: FAILED
-        description: "El juez no respondió o respondió algo inusable (F-QINST-R007,\
-          \ R013)."
-      - name: NOT_AVAILABLE
-        description: "No hay juez conectado: la fábrica «sin juez» de este paquete."
-      _change: add
-    - name: AlsoValidOption
-      type: record
-      fields:
-      - name: option
-        type: String
-        description: "La opción incorrecta que también vale, como la ve el alumno."
-      - name: explanation
-        type: String
-        description: "Por qué vale, en una línea en castellano: la evidencia del hallazgo\
-          \ del juez."
-      _change: add
-    - name: MultipleChoiceJudgeCoverageDiagnosis
-      type: record
-      fields:
-      - name: coverage
-        type: EvaluationCoverage
-        description: "Cuántos ejercicios de opción múltiple juzgó el juez en la corrida,\
-          \ cuántos reutilizó y cuántos quedaron pendientes o fallidos."
-      - name: consultedJudgeVersion
-        type: String
-        description: Versión del juez consultado en esta corrida; null si no se consultó.
-      _change: add
     interfaces:
     - name: OptionRuleCheck
       sealed: false
@@ -175,8 +113,8 @@ modules:
       requiresInject:
       - name: correctorMatcher
         type: CorrectorMatcher
-      - name: judgeFactory
-        type: MultipleChoiceJudgeFactory
+      - name: judgeRunFactory
+        type: ChoiceAlternativeJudgeRunFactory
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
       visibility: public
@@ -195,8 +133,8 @@ modules:
       requiresInject:
       - name: optionRules
         type: OptionRuleCheck
-      - name: judgeSession
-        type: MultipleChoiceJudgeSession
+      - name: judgeRun
+        type: ChoiceAlternativeJudgeRun
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
       handwrittenTests:
@@ -334,7 +272,7 @@ modules:
       implements:
       - OptionRuleCheck
       _change: add
-    - name: UnavailableMultipleChoiceJudgeFactory
+    - name: UnavailableChoiceAlternativeJudgeRunFactory
       visibility: public
       handwrittenTests:
       - name: "should give the card the judge's rule with the paid model cost while\
@@ -343,7 +281,7 @@ modules:
           feature: FEAT-OMVAL
           rule: F-OMVAL-R005
       implements:
-      - MultipleChoiceJudgeFactory
+      - ChoiceAlternativeJudgeRunFactory
       _change: add
     _change: add
   _change: modify

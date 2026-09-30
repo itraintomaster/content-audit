@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): sin cambios de estructura.
+
 2026-09-30 — qa-tester — F-PISTA-J001 en audit-domain, paquete hintcoherence: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.
 2026-09-30 — qa-tester — Umbral: una prueba propia (tres cuartos exactos alcanzan; One y ones, 12 de 20, sin hallazgo).
 2026-09-30 — qa-tester — «bad» → «the best» a la mesa sigue la opción A de DOUBT-PISTA-CUANDO-MESA (abierta): si José elige otra, cambia esa prueba.

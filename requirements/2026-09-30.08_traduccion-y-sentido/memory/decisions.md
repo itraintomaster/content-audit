@@ -4,6 +4,8 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): TranslationSenseAnalyzerProvider implements AnalyzerProvider (C-01).
+
 2026-09-30 — qa-tester — F-TRSEN-J001 en audit-domain, `com.learney.contentaudit.auditdomain.translationsenseengine`, como los del juez de consigna.
   why: ahí son visibles el analizador, el combinador y el constructor del sujeto; ArchUnit no mira las clases de test.
 2026-09-30 — qa-tester — Dos pruebas sobre AgentJudge (de FEAT-JEXAM): salida inutilizable (R005) y entradas tal cual (R001).

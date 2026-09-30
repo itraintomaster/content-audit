@@ -1,19 +1,19 @@
 ---
 patch: FEAT-TRSEN
 requirement: 2026-09-30.08_traduccion-y-sentido
-generated: 2026-09-30T19:35:00Z
+generated: 2026-09-30T21:30:00Z
 ---
 
 # Tech Spec: Juez de traducción y sentido (FEAT-TRSEN)
 
 Paquete C, ronda 1. El analizador `translation-sense` juzga cada ejercicio como queda, sin compararlo con un original,
 con dos jueces que no se hablan. Todo lo que no es propio de este juez viene de otros parches: de **0.3 (FEAT-HALL)**
-`AnalyzerProvider` (el proveedor lo implementa cuando el integrador lo engancha), la ficha (`AnalyzerDescriptor` con
+`AnalyzerProvider` (el proveedor lo implementa), la ficha (`AnalyzerDescriptor` con
 reglas, familia, niveles evaluados y costo), `AnalyzerRuleCard`, `AnalyzerPlanBinding`, `FindingDraft` y
 `FindingSeverity`; de **FEAT-JEXAM** el runtime común (`JudgeRuntime`, `JudgeSessions`, `JudgeUnitTally`), el evaluador
 genérico por agente y la cobertura común; del integrador, el render `QuizStudentViewRenderer` (gancho A-01); de **0.2
 (FEAT-OPMUL)** la oración guardada de la opción múltiple, que ya trae la opción correcta en el hueco. Se aplica después
-de FEAT-JEXAM.
+de FEAT-JEXAM. Rebasado el 30/9 sobre el `sentinel.yaml` real, con 0.2 y 0.3 aplicados, y sobre el parche de integración de la ronda 1 (FEAT-RONDA1), que se aplica antes; `sentinel-baseline.yaml` queda como foto del diseño.
 
 **Fuera del parche** (`ronda1/ganchos-C.md`): la ranura del diagnóstico en `QuizDiagnoses`, la constante
 `TRANSLATION_SENSE` de `DiagnosisKind` si el paquete E decide que produce tareas, y el cableado en `Main` de los dos
@@ -33,9 +33,9 @@ Desde 0.3 un analizador existe si y sólo si tiene un proveedor registrado; el c
 modelo pago, niveles evaluados `[QUIZ]`, resoluciones mesa y sólo ordena, y cinco reglas: `same-meaning`,
 `native-would-say`, `words-go-together`, `level-register` y `judges-disagree`. La ligadura al plan nombra
 `TRANSLATION_SENSE`: si el paquete E todavía no agregó esa constante, el plan lo declara en vez de perder las tareas
-(F-HALL-R004 inv. 3). El proveedor se declara como clase con las cinco firmas de `AnalyzerProvider` porque
-`patch propose` no acepta un `implements` hacia un puerto que todavía no está en `sentinel.yaml`; el integrador lo pasa a
-`implements AnalyzerProvider`, con el mismo gancho que los paquetes A y D.
+(F-HALL-R004 inv. 3); en esta ronda no hay constante (F-RONDA1-R008). El proveedor implementa `AnalyzerProvider`: se
+había declarado como clase con sus cinco firmas porque el puerto todavía no estaba en `sentinel.yaml`, y al rebasar sobre
+0.3 pasó a `implements` (gancho C-01), como los proveedores de A y D.
 
 ```architecture
 modules:
@@ -49,13 +49,7 @@ modules:
           - name: TranslationSenseAnalyzerProvider
             _change: add
             visibility: public
-            stereotype: class
-            exposes:
-              - signature: "analyzerName(): String"
-              - signature: "describe(): AnalyzerDescriptor"
-              - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
-              - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
-              - signature: "config(): Optional<SelfDescribingConfig>"
+            implements: [AnalyzerProvider]
             requiresInject:
               - { name: runtime, type: JudgeRuntime }
               - { name: fromEnglishJudge, type: Evaluator }
@@ -317,7 +311,7 @@ consulta un modelo pago**: los dos jueces son dobles que devuelven veredictos gr
 
 **Dependencias.** El render (C-07, A-01) en el constructor del sujeto; la ranura del diagnóstico (C-05) y la cobertura
 común (C-04); los hallazgos, la ficha y `unevaluatedBy` de 0.3; el runtime común de FEAT-JEXAM. Con C-01 el proveedor
-pasa a `implements AnalyzerProvider` y sus pruebas no cambian; sin `TRANSLATION_SENSE` en `DiagnosisKind` (C-21) la
+ya implementa `AnalyzerProvider` y sus pruebas no cambian; sin `TRANSLATION_SENSE` en `DiagnosisKind` (C-21) la
 ligadura se prueba igual, por su nombre.
 
 **El journey** va a `audit-domain`, en `com.learney.contentaudit.auditdomain.translationsenseengine`, como los del juez

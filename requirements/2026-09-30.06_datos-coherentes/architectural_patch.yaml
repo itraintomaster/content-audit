@@ -12,7 +12,9 @@ description: "FEAT-DATOS: data-coherence, el analizador de errores que compara l
   \ a 21 handwrittenTests nuevas (no hay tests previos que portar), cada una con un\
   \ caso real del curso, y ubica F-DATOS-J001 en audit-domain, paquete datacoherence.\
   \ Dependen del integrador: la oracion armada y la evidencia (A-01), la clave de\
-  \ audio (A-02, A-03) y el registro de grabaciones instalado (A-16)."
+  \ audio (A-02, A-03) y el registro de grabaciones instalado (A-16). Rebasado el\
+  \ 30/9 sobre el sentinel.yaml real (0.2 y 0.3 aplicados) y el parche de integració\
+  n de la ronda 1 (FEAT-RONDA1), que se aplica antes, sin cambios de estructura."
 modules:
 - name: audit-domain
   interfaces:

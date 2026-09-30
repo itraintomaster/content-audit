@@ -4,6 +4,8 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): SingleAnswerAnalyzerProvider implements AnalyzerProvider (C-02).
+
 2026-09-30 — qa-tester — F-UNICA-J001 en audit-domain, `com.learney.contentaudit.auditdomain.singleanswerengine`.
 2026-09-30 — qa-tester — El criterio de F-JEXAM-R012 («isn't» aceptada, «is not» como único reparo: sin hallazgo) se prueba acá bajo F-UNICA-R002, con CorrectorMatcher doble.
   why: propose no deja trazar a FEAT-JEXAM desde este parche; con la tabla vacía de hoy «is not» no es «isn't» (A-15, A-16).

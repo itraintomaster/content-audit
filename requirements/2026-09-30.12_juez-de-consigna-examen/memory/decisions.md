@@ -4,6 +4,8 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): DefaultJudgeProviderReadinessProbe inyecta authStatusCommand: List<String> (pendiente del qa-tester de C).
+
 2026-09-30 — qa-tester — F-JEXAM-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
   why: sus pasos son `exam run`, `exam record` y `analyze`; ExamCmd y AnalyzeCmd son package-private ahí (como F-CLEX-J001).
 2026-09-30 — qa-tester — R012 queda sin prueba propia: su criterio («isn't» / «is not») se prueba bajo F-UNICA-R002 y F-MCVALE-R002. Duda de traza para el orquestador (OG1).

@@ -1,7 +1,7 @@
 ---
 patch: FEAT-NIVFR
 requirement: 2026-09-30.13_nivel-con-frases
-generated: 2026-09-30T19:30:00Z
+generated: 2026-09-30T21:30:00Z
 ---
 
 # Tech Spec: Palabras de otro nivel, `off-level-words` (FEAT-NIVFR)
@@ -12,7 +12,7 @@ Paquete D, ronda 1. Diseñado contra el modelo que queda después de 0.2 (FEAT-O
 `FindingSeverity`, `FindingResolution`, `AnalysisCost` y `ContentAnalyzer.findingsAt`. **Viene de 0.2**:
 `AuditableQuiz.multipleChoice`, para leer la respuesta de un ejercicio de opción múltiple. Lo compartido que este diseño
 necesita está en `docs/propuestas/tablero-corregir-sin-empeorar/ronda1/ganchos-D.md` (D-01 a D-04). Todo lo medido sale
-del análisis 2026-09-30T11-54-02 (curso del 29/9) con un prototipo que reproduce exacto sus marcas.
+del análisis 2026-09-30T11-54-02 (curso del 29/9) con un prototipo que reproduce exacto sus marcas. Rebasado el 30/9 sobre el `sentinel.yaml` real, con 0.2 y 0.3 aplicados, y sobre el parche de integración de la ronda 1 (FEAT-RONDA1), que se aplica antes; `sentinel-baseline.yaml` queda como foto del diseño.
 
 ## Contar las palabras de otro nivel con el mismo puntuador que lemma-absence
 El nivel de cada palabra tiene que ser el que ya resuelve `lemma-absence` (R001), así que el analizador puntúa la oración
@@ -114,11 +114,12 @@ trae su ficha (R007): pregunta «¿Hay palabras que el alumno de este nivel no p
 título y las respuestas del tema y la traducción, familia errores, evalúa QUIZ, una regla (F-NIVFR-R002), meta 0,
 resolución mesa, costo instantáneo. No tiene ligadura al plan: José eligió el 30/9 que la tarea sea la LEMMA_ABSENCE que ya
 existe (DOUBT-TAREA-COMPARTIDA), y los 170 están entre los 950 que la tienen porque toda palabra que marca es una marca de
-`lemma-absence` (R001 inv. 3); el plan sigue en 4.036 y declara el puntaje como cubierto (enganche D-04). Va declarado como
-clase con las cinco firmas de `AnalyzerProvider` sólo porque ese puerto llega con 0.3 y `patch propose` no resuelve un
-`implements` hacia él: al integrar sobre 0.3 pasa a `implements: [AnalyzerProvider]` (enganche D-01). El paquete es
-público con `allowedClients` porque tiene dos clientes, la raíz de composición y el semáforo; el analizador queda
-package-private.
+`lemma-absence` (R001 inv. 3); el plan sigue en 4.036 y declara el puntaje como cubierto (enganche D-04). Implementa
+`AnalyzerProvider`: se había declarado como clase con sus cinco firmas porque ese puerto llega con 0.3, y al rebasar pasó
+a `implements` (enganche D-01). Con el renderizador de la integración inyecta `QuizStudentViewRenderer` (enganche D-14).
+El paquete es público con `allowedClients` porque tiene dos clientes, la raíz de composición y el semáforo; el analizador
+queda package-private. Ojo: el `patch apply` del jar de hoy descarta el `allowedClients` de un paquete nuevo (pasó igual
+con `findingengine` de 0.3), así que esa restricción queda sólo en este diseño hasta que Sentinel lo arregle.
 
 ```architecture
 modules:
@@ -133,17 +134,12 @@ modules:
           - name: OffLevelWordsAnalyzerProvider
             _change: add
             visibility: public
-            stereotype: class
-            exposes:
-              - signature: "analyzerName(): String"
-              - signature: "describe(): AnalyzerDescriptor"
-              - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
-              - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
-              - signature: "config(): Optional<SelfDescribingConfig>"
+            implements: [AnalyzerProvider]
             requiresInject:
               - { name: sentenceLexicalScorer, type: SentenceLexicalScorer }
               - { name: lemmaAbsenceConfig, type: LemmaAbsenceConfig }
               - { name: topicTeachingResolver, type: TopicTeachingResolver }
+              - { name: studentViewRenderer, type: QuizStudentViewRenderer }
 features:
   - id: FEAT-NIVFR
     code: F-NIVFR
@@ -155,8 +151,9 @@ features:
 nada: la oración terminada, la palabra, su nivel o «fuera del EVP» con su puesto, y el nivel del ejercicio, con una
 observación en castellano: «spread y quilt son B2; el ejercicio es A2», «reside está fuera del EVP (puesto 5.333); el
 ejercicio es A1». El diagnóstico tipado guarda lo mismo como datos (F-HALL-R001 inv. 3) y es lo que lee el semáforo para
-decir si una roja es además error. Cuando exista el renderizador «como lo ve el alumno» (pedido 2 del paquete G), la
-evidencia suma la oración con el hueco; hoy la terminada es la que mide `lemma-absence`, también en opción múltiple.
+decir si una roja es además error. Con el renderizador «como lo ve el alumno» del parche de integración (pedido 2 del
+paquete G, F-RONDA1-R001), la evidencia suma la oración con el hueco; la terminada sigue siendo la que mide
+`lemma-absence`, también en opción múltiple.
 
 ```architecture
 modules:
@@ -225,8 +222,8 @@ pieza que la cumple, y donde la regla trae un número, la prueba lo fija.
 **Dependencias.** Todo se implementa sobre 0.3 (`findingsAt`, la ficha, el puntaje de vocabulario, `unconvertedScores`);
 la opción múltiple del resolutor y del analizador, sobre 0.2. Además: el diagnóstico tipado del ejercicio, D-02; `Main`,
 D-03; «cubierto», D-04; los números del 29/9, el fixture de D-12 (los puntajes publicados y el plan del análisis
-2026-09-30T11-54-02); la evidencia con el hueco, D-14 (hasta entonces, la oración terminada). El proveedor pasa a
-`implements: [AnalyzerProvider]` con D-01.
+2026-09-30T11-54-02); la evidencia con el hueco, D-14, con el renderizador de la integración. El proveedor ya implementa
+`AnalyzerProvider` (D-01).
 
 F-NIVFR-J001 va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: su camino cruza `analyze` y el plan,
 `AnalyzeCmd` y `PlanCmd` son package-private ahí, como en F-CLEX-J001, y el analizador se alcanza por su proveedor, que

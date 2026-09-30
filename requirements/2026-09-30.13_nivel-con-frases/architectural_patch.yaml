@@ -12,7 +12,11 @@ description: "FEAT-NIVFR: analizador de errores off-level-words. Cuenta las pala
   \ en OffLevelWordsAnalyzer, DefaultTopicTeachingResolver, OffLevelWordsAnalyzerProvider,\
   \ IAuditEngine, DefaultRefinerEngine y Main, y ubica F-NIVFR-J001 en audit-cli,\
   \ paquete commands. Las que dependen de 0.2, 0.3 o de un gancho D-xx lo dicen en\
-  \ el TECH_SPEC."
+  \ el TECH_SPEC. Rebasado el 30/9 sobre el sentinel.yaml real (0.2 y 0.3 aplicados)\
+  \ y el parche de integración de la ronda 1 (FEAT-RONDA1), que se aplica antes: OffLevelWordsAnalyzerProvider\
+  \ implements AnalyzerProvider (antes stereotype class con cinco exposes); OffLevelWordsAnalyzerProvider\
+  \ inyecta studentViewRenderer: QuizStudentViewRenderer; OffLevelWordsAnalyzer inyecta\
+  \ studentViewRenderer: QuizStudentViewRenderer."
 modules:
 - name: audit-domain
   implementations:
@@ -158,6 +162,10 @@ modules:
           sin copiar sus numeros.
       - name: topicTeachingResolver
         type: TopicTeachingResolver
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "Para la evidencia: la oración con el hueco, como la ve el alumno\
+          \ (gancho D-14, pedido 2 de la UI)."
       visibility: public
       handwrittenTests:
       - name: "should describe off-level-words in its card: whether there are words\
@@ -177,13 +185,8 @@ modules:
         traceability:
           feature: FEAT-NIVFR
           rule: F-NIVFR-R006
-      stereotype: class
-      exposes:
-      - signature: "analyzerName(): String"
-      - signature: "describe(): AnalyzerDescriptor"
-      - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
-      - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
-      - signature: "config(): Optional<SelfDescribingConfig>"
+      implements:
+      - AnalyzerProvider
       _change: add
     - name: OffLevelWordsAnalyzer
       requiresInject:
@@ -193,6 +196,8 @@ modules:
         type: LemmaAbsenceConfig
       - name: topicTeachingResolver
         type: TopicTeachingResolver
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
       visibility: internal
       handwrittenTests:
       - name: "should not mark 'live' (B1) in the A1 quiz 'She lives in London.',\

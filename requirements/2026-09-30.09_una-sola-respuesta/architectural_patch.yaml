@@ -13,7 +13,10 @@ description: "FEAT-UNICA: el analizador single-answer. Un juez lee cada ejercici
   \ las 7 reglas de FEAT-UNICA a handwrittenTests nuevas, con juez falso o grabado\
   \ y sin modelo pago; la forma contraída y la larga («isn't» e «is not»), el criterio\
   \ de F-JEXAM-R012, se prueba bajo F-UNICA-R002. F-UNICA-J001 va a audit-domain,\
-  \ paquete singleanswerengine."
+  \ paquete singleanswerengine. Rebasado el 30/9 sobre el sentinel.yaml real (0.2\
+  \ y 0.3 aplicados) y el parche de integración de la ronda 1 (FEAT-RONDA1), que se\
+  \ aplica antes: SingleAnswerAnalyzerProvider implements AnalyzerProvider (antes\
+  \ stereotype class con cinco exposes)."
 modules:
 - name: audit-domain
   interfaces:
@@ -173,13 +176,8 @@ modules:
         traceability:
           feature: FEAT-UNICA
           rule: F-UNICA-R004
-      stereotype: class
-      exposes:
-      - signature: "analyzerName(): String"
-      - signature: "describe(): AnalyzerDescriptor"
-      - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
-      - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
-      - signature: "config(): Optional<SelfDescribingConfig>"
+      implements:
+      - AnalyzerProvider
       _change: add
     - name: SingleAnswerAnalyzer
       requiresInject:

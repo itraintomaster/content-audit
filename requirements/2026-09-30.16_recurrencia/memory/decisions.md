@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): sin cambios de estructura (lugar en CourseDiagnoses y formateador en stats, D-10 y D-15, van en la integración).
+
 2026-09-30 — qa-tester — F-RECUR-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
   why: pide analyze y stats analyzer, package-private ahí, y su último paso mira el plan.
 

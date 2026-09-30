@@ -10,7 +10,9 @@ description: "FEAT-DUPEX: exact-duplicates, el analizador de errores que marca c
   \ nuevas (no hay tests previos que portar), cada una con un caso real del curso,\
   \ entre ellas las 23 copias exactas del curso del 29/9, y ubica F-DUPEX-J001 en\
   \ audit-domain, paquete exactduplicates. Dependen del integrador: el ejercicio terminado\
-  \ y la evidencia (A-01)."
+  \ y la evidencia (A-01). Rebasado el 30/9 sobre el sentinel.yaml real (0.2 y 0.3\
+  \ aplicados) y el parche de integración de la ronda 1 (FEAT-RONDA1), que se aplica\
+  \ antes, sin cambios de estructura."
 modules:
 - name: audit-domain
   packages:

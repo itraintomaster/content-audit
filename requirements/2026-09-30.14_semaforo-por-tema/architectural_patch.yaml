@@ -10,7 +10,9 @@ description: "FEAT-SEMAF: semaforo de palabras por tema. Consulta de solo lectur
   \ traza las 7 reglas de FEAT-SEMAF a 32 handwrittenTests nuevos (ninguno portado:\
   \ no hay codigo previo del semaforo) en DefaultTopicWordLightsQuery y GetCmd, y\
   \ ubica F-SEMAF-J001 en audit-cli, paquete commands. Las que dependen de FEAT-NIVFR,\
-  \ FEAT-POCOV o de un gancho D-xx lo dicen en el TECH_SPEC."
+  \ FEAT-POCOV o de un gancho D-xx lo dicen en el TECH_SPEC. Rebasado el 30/9 sobre\
+  \ el sentinel.yaml real (0.2 y 0.3 aplicados) y el parche de integración de la ronda\
+  \ 1 (FEAT-RONDA1), que se aplica antes, sin cambios de estructura."
 modules:
 - name: refiner-domain
   packages:

@@ -1,7 +1,7 @@
 ---
 patch: FEAT-UNICA
 requirement: 2026-09-30.09_una-sola-respuesta
-generated: 2026-09-30T19:35:00Z
+generated: 2026-09-30T21:30:00Z
 ---
 
 # Tech Spec: Juez de una sola respuesta (FEAT-UNICA)
@@ -11,7 +11,7 @@ también valdrían y el corrector no acepta. Viene de **0.3 (FEAT-HALL)**: `Anal
 `FindingSeverity`. De **FEAT-JEXAM**: el runtime común, el evaluador genérico por agente y la cobertura común. Del paquete A y
 del integrador: el render `QuizStudentViewRenderer` (gancho A-01) y la comparación del corrector `CorrectorMatcher`
 (FEAT-RESPC). De **0.2 (FEAT-OPMUL)**: saber qué ejercicio es de opción múltiple para dejarlo afuera. Se
-aplica después de FEAT-JEXAM.
+aplica después de FEAT-JEXAM. Rebasado el 30/9 sobre el `sentinel.yaml` real, con 0.2 y 0.3 aplicados, y sobre el parche de integración de la ronda 1 (FEAT-RONDA1), que se aplica antes; `sentinel-baseline.yaml` queda como foto del diseño.
 
 **Fuera del parche** (`ronda1/ganchos-C.md`): la ranura del diagnóstico en `QuizDiagnoses`, la constante
 `SINGLE_ANSWER` de `DiagnosisKind` si E decide que produce tareas, el cableado en `Main`. **La definición de agente** que escribe quien
@@ -25,9 +25,9 @@ consultas, práctica sobre `escribir/` 386, curso entero 8.477 (A1 1.692).
 
 La ficha declara familia errores, costo modelo pago, niveles evaluados `[QUIZ]` y dos reglas: `different-valid-answer`,
 que va a la mesa, y `offered-alternative`, que sólo ordena y nombra a respuestas completas (paquete A) como quien la
-arregla con una regla. La ligadura al plan nombra `SINGLE_ANSWER`. El proveedor se declara como clase con las cinco
-firmas de `AnalyzerProvider` porque `patch propose` no acepta un `implements` hacia un puerto que todavía no está en
-`sentinel.yaml`; el integrador lo pasa a `implements AnalyzerProvider`, con el mismo gancho que los paquetes A y D.
+arregla con una regla. La ligadura al plan nombra `SINGLE_ANSWER`; en esta ronda no hay constante y el plan lo declara
+(F-RONDA1-R008). El proveedor implementa `AnalyzerProvider`: se había declarado como clase con sus cinco firmas porque el
+puerto todavía no estaba en `sentinel.yaml`, y al rebasar sobre 0.3 pasó a `implements` (gancho C-02).
 
 ```architecture
 modules:
@@ -41,13 +41,7 @@ modules:
           - name: SingleAnswerAnalyzerProvider
             _change: add
             visibility: public
-            stereotype: class
-            exposes:
-              - signature: "analyzerName(): String"
-              - signature: "describe(): AnalyzerDescriptor"
-              - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
-              - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
-              - signature: "config(): Optional<SelfDescribingConfig>"
+            implements: [AnalyzerProvider]
             requiresInject:
               - { name: runtime, type: JudgeRuntime }
               - { name: judge, type: Evaluator }
@@ -289,8 +283,9 @@ consulta un modelo pago**: el juez es un doble que devuelve veredictos grabados,
 **Dependencias.** El clasificador usa `CorrectorMatcher` (C-08, del paquete A): las pruebas lo reemplazan por un doble,
 porque con la tabla vacía de hoy «is not» no es «isn't»; con la tabla de verdad dependen de A-15 y A-16. El render (C-07),
 la ranura del diagnóstico (C-05), la cobertura común (C-04), `AuditableQuiz.multipleChoice` de 0.2 para dejar afuera la
-opción múltiple, y los hallazgos y la ficha de 0.3. Con C-02 el proveedor pasa a `implements AnalyzerProvider` y sus
-pruebas no cambian.
+opción múltiple, y los hallazgos y la ficha de 0.3. Con C-02 el proveedor ya implementa `AnalyzerProvider` y sus
+pruebas no cambian. El clasificador llama a `accepts` con el contexto del hueco (`GapContext`, del rebase de
+FEAT-RESPC), que arma con el enunciado del ejercicio.
 
 **El journey** va a `audit-domain`, en `com.learney.contentaudit.auditdomain.singleanswerengine`, como los del juez de
 consigna. `generate` crearía `FUnicaJ001JourneyTest` con 4 caminos.
