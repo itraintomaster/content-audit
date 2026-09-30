@@ -1,6 +1,11 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -11,26 +16,40 @@ import javax.annotation.processing.Generated;
 public class KnowledgeTitleLengthAnalyzerProvider implements AnalyzerProvider {
     @Override
     public String analyzerName() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return KnowledgeTitleLengthAnalyzer.ANALYZER_NAME;
     }
 
     @Override
     public AnalyzerDescriptor describe() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new AnalyzerDescriptor(
+                KnowledgeTitleLengthAnalyzer.ANALYZER_NAME,
+                KnowledgeTitleLengthAnalyzer.DESCRIPTION,
+                AuditTarget.KNOWLEDGE,
+                "¿El título del tema entra en el teléfono?",
+                "El título de cada tema, con el ancho de cada letra",
+                List.of(new AnalyzerRuleCard(KnowledgeTitleLengthAnalyzer.RULE_TITLE_LENGTH,
+                        "El título falta o pesa más de 28 caracteres ponderados",
+                        AnalysisCost.INSTANT)),
+                "Hasta 28 caracteres ponderados (la i, la coma y el punto pesan 0,5; la f, la t y "
+                        + "las comillas, 0,7; el resto, 1)",
+                AnalyzerFamily.VOCABULARY,
+                List.of(AuditTarget.KNOWLEDGE),
+                List.of(FindingResolution.PANEL),
+                AnalysisCost.INSTANT);
     }
 
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new KnowledgeTitleLengthAnalyzer();
     }
 
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.of(new AnalyzerPlanBinding("KNOWLEDGE_TITLE_LENGTH", List.of(AuditTarget.KNOWLEDGE)));
     }
 
     @Override
     public Optional<SelfDescribingConfig> config() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.empty();
     }
 }

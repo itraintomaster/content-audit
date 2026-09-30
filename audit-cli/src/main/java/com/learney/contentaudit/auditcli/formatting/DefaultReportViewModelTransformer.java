@@ -34,7 +34,9 @@ public class DefaultReportViewModelTransformer implements ReportViewModelTransfo
 
         Map<String, Double> analyzerScores = extractScores(root != null ? root.getScores() : null);
 
-        double overallScore = avg(analyzerScores);
+        // F-HALL-R010: the vocabulary score the engine published on the course -- never an
+        // average of the keys of the node, which would count the judge as vocabulary.
+        double overallScore = published(root);
 
         return new ReportViewModel(
                 overallScore,
@@ -52,7 +54,7 @@ public class DefaultReportViewModelTransformer implements ReportViewModelTransfo
                 topicRows.add(toTopicRow(topic));
             }
         }
-        return new MilestoneScoreRow(idOf(milestone), scores, avg(scores), topicRows,
+        return new MilestoneScoreRow(idOf(milestone), scores, published(milestone), topicRows,
                 milestone.getEntity());
     }
 
@@ -64,7 +66,7 @@ public class DefaultReportViewModelTransformer implements ReportViewModelTransfo
                 knowledgeRows.add(toKnowledgeRow(knowledge));
             }
         }
-        return new TopicScoreRow(idOf(topic), avg(scores), scores, knowledgeRows,
+        return new TopicScoreRow(idOf(topic), published(topic), scores, knowledgeRows,
                 topic.getEntity());
     }
 
@@ -76,13 +78,13 @@ public class DefaultReportViewModelTransformer implements ReportViewModelTransfo
                 quizRows.add(toQuizRow(quiz));
             }
         }
-        return new KnowledgeScoreRow(idOf(knowledge), avg(scores), scores, quizRows,
+        return new KnowledgeScoreRow(idOf(knowledge), published(knowledge), scores, quizRows,
                 knowledge.getEntity());
     }
 
     private QuizScoreRow toQuizRow(AuditNode quiz) {
         Map<String, Double> scores = extractScores(quiz.getScores());
-        return new QuizScoreRow(idOf(quiz), avg(scores), scores, quiz.getEntity());
+        return new QuizScoreRow(idOf(quiz), published(quiz), scores, quiz.getEntity());
     }
 
     private Map<String, Double> extractScores(Map<String, Double> rawScores) {
@@ -96,8 +98,12 @@ public class DefaultReportViewModelTransformer implements ReportViewModelTransfo
         return filtered;
     }
 
-    private double avg(Map<String, Double> scores) {
-        return scores.values().stream().mapToDouble(d -> d).average().orElse(0);
+    /** The vocabulary score published on the node; 0 when the node published none. */
+    private static double published(AuditNode node) {
+        if (node == null || node.getNumbers() == null || node.getNumbers().getVocabularyScore() == null) {
+            return 0;
+        }
+        return node.getNumbers().getVocabularyScore();
     }
 
     private String idOf(AuditNode node) {

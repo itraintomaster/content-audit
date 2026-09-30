@@ -2,11 +2,18 @@ package com.learney.contentaudit.auditdomain.lrec;
 
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
 import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -23,26 +30,54 @@ public class LemmaRecurrenceAnalyzerProvider implements AnalyzerProvider {
 
     @Override
     public String analyzerName() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return LemmaRecurrenceAnalyzer.ANALYZER_NAME;
     }
 
     @Override
     public AnalyzerDescriptor describe() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new AnalyzerDescriptor(
+                LemmaRecurrenceAnalyzer.ANALYZER_NAME,
+                LemmaRecurrenceAnalyzer.DESCRIPTION,
+                AuditTarget.COURSE,
+                "¿Las palabras vuelven a intervalos sanos?",
+                "La posición de cada palabra de contenido en el recorrido del curso, de la primera oración a la última",
+                List.of(new AnalyzerRuleCard(LemmaRecurrenceAnalyzer.RULE_RECURRENCE,
+                        "Parte de las palabras más usadas vuelve demasiado seguido o demasiado espaciada",
+                        AnalysisCost.INSTANT)),
+                "Que las " + lemmaRecurrenceConfig.getTop() + " palabras más usadas vuelvan con un intervalo "
+                        + "medio de más de " + decimal(lemmaRecurrenceConfig.getOverExposedThreshold())
+                        + " y hasta " + decimal(lemmaRecurrenceConfig.getSubExposedThreshold()) + " tokens",
+                AnalyzerFamily.VOCABULARY,
+                List.of(AuditTarget.COURSE),
+                List.of(FindingResolution.RANK_ONLY),
+                AnalysisCost.INSTANT);
     }
 
+    /** A fresh analyzer per run, with its stateless collaborators built here, not in Main (P4). */
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new LemmaRecurrenceAnalyzer(new DefaultContentWordFilter(), lemmaRecurrenceConfig,
+                new DefaultIntervalCalculator(), new DefaultExposureClassifier());
     }
 
+    /**
+     * Its tasks stay where they were: the course. The old list also named the level, where
+     * this analyzer never writes a score, so the plan is the same (decisions.md, 2026-09-30).
+     */
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.of(new AnalyzerPlanBinding("LEMMA_RECURRENCE", List.of(AuditTarget.COURSE)));
     }
 
     @Override
     public Optional<SelfDescribingConfig> config() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.of(lemmaRecurrenceConfig);
+    }
+
+    private static String decimal(double value) {
+        if (value == Math.rint(value)) {
+            return String.valueOf((long) value);
+        }
+        return String.format(Locale.ROOT, "%.1f", value).replace('.', ',');
     }
 }

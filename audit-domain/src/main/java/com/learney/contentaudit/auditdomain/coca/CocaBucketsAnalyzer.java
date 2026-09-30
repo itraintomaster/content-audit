@@ -1,5 +1,9 @@
 package com.learney.contentaudit.auditdomain.coca;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -14,7 +18,9 @@ import com.learney.contentaudit.auditdomain.NlpTokenizer;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -23,7 +29,14 @@ import javax.annotation.processing.Generated;
 )
 public class CocaBucketsAnalyzer implements ContentAnalyzer {
 
-    private static final String ANALYZER_NAME = "coca-buckets-distribution";
+    static final String ANALYZER_NAME = "coca-buckets-distribution";
+
+    static final String DESCRIPTION = "Evaluates COCA frequency band distribution per level/quarter";
+
+    /** F-HALL-R006: the rules of this analyzer, as its card declares them. */
+    static final String RULE_LEVEL_DISTRIBUTION = "level-distribution";
+
+    static final String RULE_COURSE_DISTRIBUTION = "course-distribution";
 
     private final NlpTokenizer nlpTokenizer;
     private final CocaBucketsConfig cocaBucketsConfig;
@@ -504,13 +517,100 @@ public CocaBucketsAnalyzer(NlpTokenizer nlpTokenizer, CocaBucketsConfig cocaBuck
 
     @Override
     public String getDescription() {
-        return "Evaluates COCA frequency band distribution per level/quarter";
+        return DESCRIPTION;
     }
 
-
+    /**
+     * F-HALL-R001 to R003: a level below 1 has one finding with the share of each frequency
+     * band against the targets of the level and the score of each quarter, read from its typed
+     * diagnosis; the course below 1 has one with the score of each level. Only the levels and the
+     * course are evaluated: the score of a topic has no goal and is not asked (F-HALL-R001 inv. 2).
+     * Low severity and rank-only (DOUBT-GRAVEDAD-EXISTENTES).
+     */
     @Override
     public List<FindingDraft> findingsAt(AuditNode node) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (node == null || node.getScores() == null) {
+            return List.of();
+        }
+        Double score = node.getScores().get(ANALYZER_NAME);
+        if (score == null || score >= 1.0) {
+            return List.of();
+        }
+        if (node.getTarget() == AuditTarget.MILESTONE) {
+            return List.of(levelFinding(node, score));
+        }
+        if (node.getTarget() == AuditTarget.COURSE) {
+            return List.of(courseFinding(node, score));
+        }
+        return List.of();
+    }
+
+    private FindingDraft levelFinding(AuditNode node, double score) {
+        String level = node.getEntity() != null && node.getEntity().getLabel() != null
+                ? node.getEntity().getLabel() : "El nivel";
+        Optional<CocaBucketsLevelDiagnosis> diagnosis = node.getDiagnoses() instanceof DefaultLevelDiagnoses levelDiagnoses
+                ? levelDiagnoses.getCocaBucketsDiagnosis()
+                : Optional.empty();
+        List<EvidencePart> examined = new ArrayList<>();
+        List<String> offTarget = new ArrayList<>();
+        if (diagnosis.isPresent()) {
+            for (BucketResult bucket : diagnosis.get().getBuckets() != null
+                    ? diagnosis.get().getBuckets() : List.<BucketResult>of()) {
+                String share = percent(bucket.getPercentage()) + " de los tokens";
+                String text = bucket.getAssessment() != null
+                        ? share + " (meta " + percent(bucket.getTargetPercentage()) + ")"
+                        : share;
+                examined.add(new EvidencePart("Banda " + bucket.getBandName(), text));
+                if (bucket.getAssessment() == AssessmentState.DEFICIENT
+                        || bucket.getAssessment() == AssessmentState.EXCESSIVE) {
+                    offTarget.add(bucket.getBandName() + " en " + percent(bucket.getPercentage())
+                            + " (meta " + percent(bucket.getTargetPercentage()) + ")");
+                }
+            }
+            for (QuarterResult quarter : diagnosis.get().getQuarters() != null
+                    ? diagnosis.get().getQuarters() : List.<QuarterResult>of()) {
+                examined.add(new EvidencePart("Q" + quarter.getIndex(), "puntaje " + percent(quarter.getScore() * 100)));
+            }
+        }
+        if (examined.isEmpty()) {
+            examined.add(new EvidencePart("Puntaje", percent(score * 100)));
+        }
+        String observation = level + " da " + percent(score * 100)
+                + " en el reparto de frecuencias contra las metas de su nivel"
+                + (offTarget.isEmpty() ? "" : "; fuera de meta: " + String.join(", ", offTarget));
+        return new FindingDraft(RULE_LEVEL_DISTRIBUTION, null, FindingSeverity.LOW, FindingResolution.RANK_ONLY,
+                new FindingEvidence(examined, observation, List.of()));
+    }
+
+    private FindingDraft courseFinding(AuditNode root, double score) {
+        List<EvidencePart> examined = new ArrayList<>();
+        List<String> below = new ArrayList<>();
+        if (root.getChildren() != null) {
+            for (AuditNode milestone : root.getChildren()) {
+                Double levelScore = milestone.getScores() != null ? milestone.getScores().get(ANALYZER_NAME) : null;
+                if (levelScore == null) {
+                    continue;
+                }
+                String label = milestone.getEntity() != null && milestone.getEntity().getLabel() != null
+                        ? milestone.getEntity().getLabel() : "nivel";
+                examined.add(new EvidencePart(label, percent(levelScore * 100)));
+                if (levelScore < 1.0) {
+                    below.add(label + " (" + percent(levelScore * 100) + ")");
+                }
+            }
+        }
+        if (examined.isEmpty()) {
+            examined.add(new EvidencePart("Puntaje", percent(score * 100)));
+        }
+        String observation = "El curso promedia " + percent(score * 100) + " entre sus niveles"
+                + (below.isEmpty() ? "" : "; por debajo de 1: " + String.join(", ", below));
+        return new FindingDraft(RULE_COURSE_DISTRIBUTION, null, FindingSeverity.LOW, FindingResolution.RANK_ONLY,
+                new FindingEvidence(examined, observation, List.of()));
+    }
+
+    /** A value already on the 0-100 scale, with a decimal comma: 32,2 %. */
+    private static String percent(double value) {
+        return String.format(Locale.ROOT, "%.1f", value).replace('.', ',') + " %";
     }
 
 }

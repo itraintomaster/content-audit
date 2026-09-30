@@ -2,12 +2,22 @@ package com.learney.contentaudit.auditdomain.labs;
 
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.EvpCatalogPort;
 import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
 import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -31,26 +41,63 @@ public class LemmaAbsenceAnalyzerProvider implements AnalyzerProvider {
 
     @Override
     public String analyzerName() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return LemmaByLevelAbsenceAnalyzer.ANALYZER_NAME;
     }
 
+    /**
+     * F-HALL-R006: the quiz, the levels and the course -- knowledges and topics only receive an
+     * average this analyzer computes itself, which is not an evaluation. The quiz findings go to
+     * the panel; those of the levels and the course only rank.
+     */
     @Override
     public AnalyzerDescriptor describe() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new AnalyzerDescriptor(
+                LemmaByLevelAbsenceAnalyzer.ANALYZER_NAME,
+                LemmaByLevelAbsenceAnalyzer.DESCRIPTION,
+                AuditTarget.COURSE,
+                "¿Están las palabras que el EVP espera, y ninguna de otro nivel?",
+                "Los lemas de cada oración y de cada nivel, contra el catálogo EVP enriquecido con su nivel CEFR",
+                List.of(
+                        new AnalyzerRuleCard(LemmaByLevelAbsenceAnalyzer.RULE_MISPLACED_WORD,
+                                "La oración usa una palabra de un nivel más alto que el suyo", AnalysisCost.INSTANT),
+                        new AnalyzerRuleCard(LemmaByLevelAbsenceAnalyzer.RULE_OUT_OF_CATALOG_WORD,
+                                "La oración usa una palabra fuera del catálogo y poco frecuente para su nivel",
+                                AnalysisCost.INSTANT),
+                        new AnalyzerRuleCard(LemmaByLevelAbsenceAnalyzer.RULE_LEVEL_COVERAGE,
+                                "Al nivel le faltan más lemas de los que el EVP espera que tenga", AnalysisCost.INSTANT),
+                        new AnalyzerRuleCard(LemmaByLevelAbsenceAnalyzer.RULE_COURSE_COVERAGE,
+                                "El curso, ponderado por nivel, no cubre los lemas que el EVP espera",
+                                AnalysisCost.INSTANT)),
+                goal(),
+                AnalyzerFamily.VOCABULARY,
+                List.of(AuditTarget.QUIZ, AuditTarget.MILESTONE, AuditTarget.COURSE),
+                List.of(FindingResolution.PANEL, FindingResolution.RANK_ONLY),
+                AnalysisCost.INSTANT);
     }
 
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new LemmaByLevelAbsenceAnalyzer(evpCatalogPort, new DefaultContentWordFilter(), lemmaAbsenceConfig,
+                sentenceLexicalScorer);
     }
 
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.of(new AnalyzerPlanBinding("LEMMA_ABSENCE", List.of(AuditTarget.QUIZ)));
     }
 
     @Override
     public Optional<SelfDescribingConfig> config() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.of(lemmaAbsenceConfig);
+    }
+
+    private String goal() {
+        List<String> coverage = new ArrayList<>();
+        for (CefrLevel level : List.of(CefrLevel.A1, CefrLevel.A2, CefrLevel.B1, CefrLevel.B2)) {
+            coverage.add(level.name() + " "
+                    + String.format(Locale.ROOT, "%.0f %%", lemmaAbsenceConfig.getCoverageTarget(level) * 100));
+        }
+        return "Ninguna palabra de un nivel más alto en la oración, y cobertura de los lemas esperados por nivel: "
+                + String.join(", ", coverage);
     }
 }

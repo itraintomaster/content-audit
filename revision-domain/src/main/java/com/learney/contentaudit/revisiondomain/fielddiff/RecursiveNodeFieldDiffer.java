@@ -73,6 +73,8 @@ class RecursiveNodeFieldDiffer implements NodeFieldDiffer {
      *   <li>{@code entity} — auditable entity data (quizSentence, label, etc.)</li>
      *   <li>{@code scores} — double-valued score map per dimension</li>
      *   <li>{@code diagnoses} — nested diagnosis objects</li>
+     *   <li>{@code findings} — the findings stamped by the engine, keyed by identity</li>
+     *   <li>{@code numbers} — the vocabulary score and error counts the engine published</li>
      * </ul>
      * The {@code parent}, {@code children}, {@code target}, {@code metadata}
      * fields are structural / navigational and are excluded by design.
@@ -100,6 +102,30 @@ class RecursiveNodeFieldDiffer implements NodeFieldDiffer {
         if (origDiag != null || consDiag != null || pendDiag != null) {
             walkObject(origDiag, consDiag, pendDiag, "diagnoses", result);
         }
+
+        // F-HALL-R014: findings, compared by their declared identity (analyzer, rule and what
+        // they mark), never by position -- a finding that stays keeps its path even when
+        // another one of the node appears or goes away.
+        List<?> origFindings = orig != null ? orig.getFindings() : null;
+        List<?> consFindings = cons != null ? cons.getFindings() : null;
+        List<?> pendFindings = pend != null ? pend.getFindings() : null;
+        if (!isEmpty(origFindings) || !isEmpty(consFindings) || !isEmpty(pendFindings)) {
+            Optional<ListIdentityKeySpec> keySpec = identityRegistry.getKeySpec("AuditNode", "findings");
+            walkList(origFindings, consFindings, pendFindings, "findings", keySpec.orElse(null), result);
+        }
+
+        // F-HALL-R010: the numbers the engine published on the node, read as they are --
+        // the consolidated view never computes them again.
+        Object origNumbers = orig != null ? orig.getNumbers() : null;
+        Object consNumbers = cons != null ? cons.getNumbers() : null;
+        Object pendNumbers = pend != null ? pend.getNumbers() : null;
+        if (origNumbers != null || consNumbers != null || pendNumbers != null) {
+            walkObject(origNumbers, consNumbers, pendNumbers, "numbers", result);
+        }
+    }
+
+    private static boolean isEmpty(List<?> list) {
+        return list == null || list.isEmpty();
     }
 
     // ─────────────────────────────────────────────────────────────────────────

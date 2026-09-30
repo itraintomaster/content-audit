@@ -1,5 +1,9 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
@@ -10,7 +14,12 @@ import javax.annotation.processing.Generated;
 )
 public class SentenceLengthAnalyzer implements ContentAnalyzer {
 
-    private static final String ANALYZER_NAME = "sentence-length";
+    static final String ANALYZER_NAME = "sentence-length";
+
+    static final String DESCRIPTION = "Scores quiz sentence length against per-CEFR target token ranges";
+
+    /** F-HALL-R006: the one rule of this analyzer, as its card declares it. */
+    static final String RULE_LENGTH = "length-out-of-range";
 
     private final SentenceLengthConfig config;
 
@@ -137,13 +146,60 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
 
     @Override
     public String getDescription() {
-        return "Scores quiz sentence length against per-CEFR target token ranges";
+        return DESCRIPTION;
     }
 
-
+    /**
+     * F-HALL-R001 to R003: a quiz below 1 has one finding, read from its typed diagnosis
+     * (which keeps being emitted as before): the sentence as the student reads it, its
+     * measure and its goal. Low severity and resolved at the panel (DOUBT-GRAVEDAD-EXISTENTES).
+     */
     @Override
     public List<FindingDraft> findingsAt(AuditNode node) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (node == null || node.getTarget() != AuditTarget.QUIZ || node.getScores() == null) {
+            return List.of();
+        }
+        Double score = node.getScores().get(ANALYZER_NAME);
+        if (score == null || score >= 1.0) {
+            return List.of();
+        }
+        String sentence = sentenceOf(node);
+        Optional<SentenceLengthDiagnosis> diagnosis = node.getDiagnoses() instanceof DefaultQuizDiagnoses quizDiagnoses
+                ? quizDiagnoses.getSentenceLengthDiagnosis()
+                : Optional.empty();
+        List<EvidencePart> examined;
+        String observation;
+        if (diagnosis.isPresent()) {
+            SentenceLengthDiagnosis d = diagnosis.get();
+            String goal = d.getCefrLevel().name() + " de " + d.getTargetMin() + " a " + d.getTargetMax();
+            String gap = d.getDelta() > 0
+                    ? " (" + d.getDelta() + " de más)"
+                    : " (" + (-d.getDelta()) + " de menos)";
+            examined = List.of(
+                    new EvidencePart("Oración", sentence),
+                    new EvidencePart("Largo", d.getTokenCount() + " tokens"),
+                    new EvidencePart("Meta", goal + " tokens"));
+            observation = "Largo: " + d.getTokenCount() + " tokens, " + goal + gap;
+        } else {
+            examined = List.of(new EvidencePart("Oración", sentence));
+            observation = "La oración no tiene el largo de su nivel";
+        }
+        return List.of(new FindingDraft(RULE_LENGTH, null, FindingSeverity.LOW, FindingResolution.PANEL,
+                new FindingEvidence(examined, observation, List.of())));
+    }
+
+    private static String sentenceOf(AuditNode node) {
+        if (node.getEntity() instanceof AuditableQuiz quiz) {
+            if (quiz.getSentences() != null && !quiz.getSentences().isEmpty()
+                    && quiz.getSentences().get(0) != null && !quiz.getSentences().get(0).isBlank()) {
+                return quiz.getSentences().get(0);
+            }
+            if (quiz.getLabel() != null && !quiz.getLabel().isBlank()) {
+                return quiz.getLabel();
+            }
+            return quiz.getId() != null ? quiz.getId() : "(sin oración)";
+        }
+        return "(sin oración)";
     }
 
 }

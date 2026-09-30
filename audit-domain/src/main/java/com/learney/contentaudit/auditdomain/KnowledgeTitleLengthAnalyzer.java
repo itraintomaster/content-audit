@@ -1,6 +1,11 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import java.util.List;
+import java.util.Locale;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -9,8 +14,11 @@ import javax.annotation.processing.Generated;
 )
 public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
 
-    private static final String ANALYZER_NAME = "knowledge-title-length";
-    private static final double MAX_WEIGHTED_LENGTH = 28.0;
+    static final String ANALYZER_NAME = "knowledge-title-length";
+    static final String DESCRIPTION = "Scores knowledge titles by weighted character count";
+    /** F-HALL-R006: the one rule of this analyzer, as its card declares it. */
+    static final String RULE_TITLE_LENGTH = "title-length";
+    static final double MAX_WEIGHTED_LENGTH = 28.0;
     private static final double DEGRADATION_RANGE = 1.0;
 
     @Override
@@ -44,7 +52,7 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
         return null;
     }
 
-    private double computeWeightedLength(String text) {
+    static double computeWeightedLength(String text) {
         double total = 0.0;
         for (int i = 0; i < text.length(); i++) {
             total += charWeight(text.charAt(i));
@@ -52,7 +60,7 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
         return total;
     }
 
-    private double charWeight(char c) {
+    private static double charWeight(char c) {
         switch (c) {
             case '$': case '*': return 0.0;
             case 'i': case ',': case '.': return 0.5;
@@ -69,13 +77,48 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
 
     @Override
     public String getDescription() {
-        return "Scores knowledge titles by weighted character count";
+        return DESCRIPTION;
     }
 
-
+    /**
+     * F-HALL-R001 to R003: a knowledge below 1 has one finding with its title and the weighted
+     * length that did not fit, next to the 28 that fit in a phone. Low severity, resolved at
+     * the panel (DOUBT-GRAVEDAD-EXISTENTES).
+     */
     @Override
     public List<FindingDraft> findingsAt(AuditNode node) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (node == null || node.getTarget() != AuditTarget.KNOWLEDGE || node.getScores() == null) {
+            return List.of();
+        }
+        Double score = node.getScores().get(ANALYZER_NAME);
+        if (score == null || score >= 1.0 || !(node.getEntity() instanceof AuditableKnowledge knowledge)) {
+            return List.of();
+        }
+        String title = knowledge.getTitle();
+        String goal = "hasta " + decimal(MAX_WEIGHTED_LENGTH) + " caracteres ponderados";
+        List<EvidencePart> examined;
+        String observation;
+        if (title == null || title.isEmpty()) {
+            examined = List.of(new EvidencePart("Título", "(vacío)"), new EvidencePart("Meta", goal));
+            observation = "El tema no tiene título";
+        } else {
+            double weighted = computeWeightedLength(title);
+            examined = List.of(
+                    new EvidencePart("Título", title),
+                    new EvidencePart("Largo ponderado", decimal(weighted) + " caracteres"),
+                    new EvidencePart("Meta", goal));
+            observation = "El título «" + title + "» pesa " + decimal(weighted)
+                    + " caracteres ponderados y en el teléfono entran " + decimal(MAX_WEIGHTED_LENGTH);
+        }
+        return List.of(new FindingDraft(RULE_TITLE_LENGTH, null, FindingSeverity.LOW, FindingResolution.PANEL,
+                new FindingEvidence(examined, observation, List.of())));
+    }
+
+    private static String decimal(double value) {
+        if (value == Math.rint(value)) {
+            return String.valueOf((long) value);
+        }
+        return String.format(Locale.ROOT, "%.1f", value).replace('.', ',');
     }
 
 }

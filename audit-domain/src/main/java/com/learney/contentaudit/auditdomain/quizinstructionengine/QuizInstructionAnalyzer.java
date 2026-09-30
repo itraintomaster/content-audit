@@ -1,5 +1,13 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -21,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
@@ -36,6 +45,16 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
     // can return this exact constant: the name filtered/exposed to the run and the name
     // shown by the report stay in sync by construction, not by discipline (F-QINST-R015).
     static final String ANALYZER_NAME = "quiz-instruction";
+
+    static final String DESCRIPTION = "Scores quiz instruction compliance from the quiz-instruction judge's verdict, "
+            + "reusing verdicts already recorded and honoring the run's evaluation budget";
+
+    /**
+     * F-HALL-R006/R014: the one rule of the judge. It leaves a single finding per breaching quiz:
+     * the violation codes are written by the model and are not stable, so they are evidence,
+     * never part of the identity.
+     */
+    static final String RULE_INSTRUCTION_BREACH = "instruction-breach";
 
     private final EvaluationSession session;
 
@@ -115,6 +134,9 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
         // the aggregator never averages an unevaluated quiz.
         if (resolution.getKind() == EvaluationResolutionKind.PENDING
                 || resolution.getKind() == EvaluationResolutionKind.FAILED) {
+            // F-HALL-R008: reached but not evaluated -- the only way to tell it apart from a
+            // quiz the judge never reached, and what lets "algún error" read as a floor.
+            markUnevaluated(node);
             return null;
         }
 
@@ -201,13 +223,105 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
 
     @Override
     public String getDescription() {
-        return "Scores quiz instruction compliance from the quiz-instruction judge's verdict, "
-                + "reusing verdicts already recorded and honoring the run's evaluation budget";
+        return DESCRIPTION;
     }
 
+    /**
+     * F-HALL-R001 to R004: a quiz it scored below 1 has one finding that counts as error, with
+     * the severity of the breach (critical, blocking; major, high; minor, medium --
+     * DOUBT-GRAVEDAD-EXISTENTES) and every violation the judge reported as evidence; a quiz it
+     * scored 1 has none, and a pending or failed quiz has no score to ask about. A reused
+     * verdict gives the same finding as a fresh one (F-HALL-R011).
+     */
     @Override
     public List<FindingDraft> findingsAt(AuditNode node) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (node == null || node.getTarget() != AuditTarget.QUIZ || node.getScores() == null) {
+            return List.of();
+        }
+        Double score = node.getScores().get(ANALYZER_NAME);
+        if (score == null || score >= 1.0) {
+            return List.of();
+        }
+        Optional<QuizInstructionDiagnosis> diagnosis = node.getDiagnoses() instanceof DefaultQuizDiagnoses quizDiagnoses
+                ? quizDiagnoses.getQuizInstructionDiagnosis()
+                : Optional.empty();
+        QuizInstructionVerdict verdict = diagnosis.map(QuizInstructionDiagnosis::getVerdict).orElse(null);
+
+        List<EvidencePart> examined = new ArrayList<>(quizAsSeen(node));
+        List<String> explanations = new ArrayList<>();
+        if (verdict != null && verdict.getViolations() != null) {
+            for (InstructionViolation violation : verdict.getViolations()) {
+                if (violation == null) {
+                    continue;
+                }
+                examined.add(new EvidencePart(firstNonBlank(violation.getConstraint(), violation.getCode(),
+                        "Incumplimiento"), firstNonBlank(violation.getEvidence(), violation.getExplanation(),
+                        "(sin evidencia textual)")));
+                if (violation.getExplanation() != null && !violation.getExplanation().isBlank()) {
+                    explanations.add(violation.getExplanation());
+                }
+            }
+        }
+        String observation = firstNonBlank(verdict != null ? verdict.getReason() : null,
+                String.join("; ", explanations), "El ejercicio no cumple su consigna");
+        return List.of(new FindingDraft(RULE_INSTRUCTION_BREACH, null, severityOf(verdict), FindingResolution.PANEL,
+                new FindingEvidence(examined, observation, List.of())));
+    }
+
+    private void markUnevaluated(AuditNode node) {
+        if (node.getUnevaluatedBy() == null) {
+            node.setUnevaluatedBy(new ArrayList<>());
+        }
+        if (!node.getUnevaluatedBy().contains(ANALYZER_NAME)) {
+            node.getUnevaluatedBy().add(ANALYZER_NAME);
+        }
+    }
+
+    /**
+     * DOUBT-GRAVEDAD-EXISTENTES (A): critical is blocking, major is high and minor is medium. A
+     * breach declared with severity none is scored as a minor one, so it is medium too.
+     */
+    static FindingSeverity severityOf(QuizInstructionVerdict verdict) {
+        InstructionSeverity severity = verdict != null ? verdict.getSeverity() : null;
+        if (severity == InstructionSeverity.CRITICAL) {
+            return FindingSeverity.BLOCKING;
+        }
+        if (severity == InstructionSeverity.MAJOR) {
+            return FindingSeverity.HIGH;
+        }
+        return FindingSeverity.MEDIUM;
+    }
+
+    /** The parts the judge read, as the student reads them -- never the course's DSL. */
+    private static List<EvidencePart> quizAsSeen(AuditNode node) {
+        List<EvidencePart> parts = new ArrayList<>();
+        if (!(node.getEntity() instanceof AuditableQuiz quiz)) {
+            return parts;
+        }
+        String instructions = quiz.getInstructions();
+        if ((instructions == null || instructions.isBlank()) && node.getParent() != null
+                && node.getParent().getEntity() instanceof AuditableKnowledge knowledge) {
+            instructions = knowledge.getInstructions();
+        }
+        if (instructions != null && !instructions.isBlank()) {
+            parts.add(new EvidencePart("Consigna", instructions));
+        }
+        String sentence = quiz.getSentences() != null && !quiz.getSentences().isEmpty()
+                ? quiz.getSentences().get(0) : null;
+        parts.add(new EvidencePart("Oración", firstNonBlank(sentence, quiz.getLabel(), quiz.getId())));
+        if (quiz.getTranslation() != null && !quiz.getTranslation().isBlank()) {
+            parts.add(new EvidencePart("Traducción", quiz.getTranslation()));
+        }
+        return parts;
+    }
+
+    private static String firstNonBlank(String... values) {
+        for (String value : values) {
+            if (value != null && !value.isBlank()) {
+                return value;
+            }
+        }
+        return "";
     }
 
 }

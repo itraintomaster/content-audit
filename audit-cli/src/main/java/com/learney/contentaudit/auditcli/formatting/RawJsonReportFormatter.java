@@ -15,7 +15,12 @@ public class RawJsonReportFormatter implements RawReportFormatter {
         sb.append("{\n");
 
         Map<String, Double> rootScores = root != null ? root.getScores() : null;
-        double overallScore = avgScores(rootScores);
+        // F-HALL-R010: the vocabulary score the engine published on the course (73,9 % on the
+        // 29/9 base), not the average of its eleven keys with the COCA quarters (73,4 %).
+        double overallScore = root != null && root.getNumbers() != null
+                && root.getNumbers().getVocabularyScore() != null
+                ? root.getNumbers().getVocabularyScore()
+                : 0.0;
         sb.append("  \"overallScore\": ").append(overallScore);
 
         // Course-level scores map
@@ -133,11 +138,6 @@ public class RawJsonReportFormatter implements RawReportFormatter {
             i++;
         }
         sb.append(pad).append("}");
-    }
-
-    private double avgScores(Map<String, Double> scores) {
-        if (scores == null || scores.isEmpty()) return 0.0;
-        return scores.values().stream().mapToDouble(d -> d).average().orElse(0.0);
     }
 
     private String entityId(AuditNode node) {

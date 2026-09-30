@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditcli.formatting;
 
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerScore;
+import com.learney.contentaudit.auditdomain.contextnumbers.SubMetricScore;
+
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AuditNode;
@@ -31,8 +34,9 @@ public class DefaultAnalyzerStatsTransformer implements AnalyzerStatsTransformer
 
         AuditNode root = report.getRoot();
 
-        // Course-level score
-        double courseScore = scoreFromNode(root != null ? root.getScores() : null, analyzerName);
+        // F-HALL-R010: the course and level scores are the ones the engine published for this
+        // analyzer, with its sub-metrics nested under it -- read, never recomputed.
+        double courseScore = publishedScore(root, analyzerName);
 
         // Milestones are root's children
         List<AuditNode> milestoneNodes = (root != null && root.getChildren() != null)
@@ -41,7 +45,7 @@ public class DefaultAnalyzerStatsTransformer implements AnalyzerStatsTransformer
         // Per-level scores
         Map<String, Double> levelScores = new LinkedHashMap<>();
         for (AuditNode m : milestoneNodes) {
-            double score = scoreFromNode(m.getScores(), analyzerName);
+            double score = publishedScore(m, analyzerName);
             if (!Double.isNaN(score)) {
                 levelScores.put(nodeId(m), score);
             }
@@ -51,12 +55,20 @@ public class DefaultAnalyzerStatsTransformer implements AnalyzerStatsTransformer
         String prefix = analyzerName + "/";
         Map<String, Map<String, Double>> subMetricsByLevel = new LinkedHashMap<>();
         for (AuditNode m : milestoneNodes) {
-            if (m.getScores() == null) continue;
             Map<String, Double> subMetrics = new TreeMap<>();
-            for (var entry : m.getScores().entrySet()) {
-                if (entry.getKey().startsWith(prefix)) {
-                    String subName = entry.getKey().substring(prefix.length());
-                    subMetrics.put(subName, entry.getValue());
+            AnalyzerScore published = publishedAnalyzerScore(m, analyzerName);
+            if (published != null) {
+                if (published.getSubMetrics() != null) {
+                    for (SubMetricScore sub : published.getSubMetrics()) {
+                        subMetrics.put(sub.getName(), sub.getScore());
+                    }
+                }
+            } else if (m.getScores() != null) {
+                for (var entry : m.getScores().entrySet()) {
+                    if (entry.getKey().startsWith(prefix)) {
+                        String subName = entry.getKey().substring(prefix.length());
+                        subMetrics.put(subName, entry.getValue());
+                    }
                 }
             }
             if (!subMetrics.isEmpty()) {
@@ -88,6 +100,28 @@ public class DefaultAnalyzerStatsTransformer implements AnalyzerStatsTransformer
     private double scoreFromNode(Map<String, Double> scores, String analyzerName) {
         if (scores == null) return Double.NaN;
         return scores.getOrDefault(analyzerName, Double.NaN);
+    }
+
+    /** The analyzer's score published on the node; the raw key only for a report without numbers. */
+    private double publishedScore(AuditNode node, String analyzerName) {
+        if (node == null) return Double.NaN;
+        if (node.getNumbers() != null) {
+            AnalyzerScore published = publishedAnalyzerScore(node, analyzerName);
+            return published != null && published.getScore() != null ? published.getScore() : Double.NaN;
+        }
+        return scoreFromNode(node.getScores(), analyzerName);
+    }
+
+    private static AnalyzerScore publishedAnalyzerScore(AuditNode node, String analyzerName) {
+        if (node == null || node.getNumbers() == null || node.getNumbers().getAnalyzerScores() == null) {
+            return null;
+        }
+        for (AnalyzerScore score : node.getNumbers().getAnalyzerScores()) {
+            if (analyzerName.equals(score.getAnalyzer())) {
+                return score;
+            }
+        }
+        return null;
     }
 
     private void collectScoresAtTarget(AuditNode milestone, String analyzerName,
