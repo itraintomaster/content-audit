@@ -45,8 +45,51 @@ public class MainTest {
     @DisplayName("should register the seventeen analyzers of round 1 in catalog order, from sentence-length to mini-theory, each with the Spanish name of its card, «Largo de oración» to «Miniteoría»")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R004")
-    public void shouldRegisterTheSeventeenAnalyzersOfRound1InCatalogOrderFromSentencelengthToMinitheoryEachWithTheSpanishNameOfItsCardLargoDeOracinToMiniteora() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    @org.junit.jupiter.api.Disabled("FEAT-RONDA1: espera los nueve proveedores de A, C y D; hoy Main registra los ocho de "
+            + "antes y deja sus nueve líneas listas para encender")
+    public void shouldRegisterTheSeventeenAnalyzersOfRound1InCatalogOrderFromSentencelengthToMinitheoryEachWithTheSpanishNameOfItsCardLargoDeOracinToMiniteora(
+            @org.junit.jupiter.api.io.TempDir java.nio.file.Path workdir) throws Exception {
+        // R004: the catalog Main builds, read as the command line reads it -- get analyzers -f json --
+        // has the seventeen of round 1 in the order of the table, each with its Spanish name.
+        com.fasterxml.jackson.databind.JsonNode cards = analyzersOfMain(workdir);
+
+        java.util.List<String> names = new java.util.ArrayList<>();
+        java.util.List<String> spanish = new java.util.ArrayList<>();
+        cards.forEach(card -> {
+            names.add(card.get("name").asText());
+            spanish.add(card.get("displayName").asText());
+        });
+        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("sentence-length", "knowledge-title-length",
+                "knowledge-instructions-length", "coca-buckets-distribution", "lemma-recurrence", "lemma-absence",
+                "off-level-words", "lemma-count", "quiz-instruction", "hint-coherence", "answer-completeness",
+                "multiple-choice-validity", "data-coherence", "exact-duplicates", "translation-sense", "single-answer",
+                "mini-theory"), names, "R004: the seventeen, in catalog order");
+        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("Largo de oración", "Largo del título",
+                "Largo de la consigna", "Bandas de frecuencia", "Recurrencia", "Palabras que faltan",
+                "Palabras de otro nivel", "Palabras poco vistas", "Consigna", "Pista coherente", "Respuestas completas",
+                "Opción múltiple válida", "Datos coherentes", "Duplicados exactos", "Traducción y sentido",
+                "Una sola respuesta", "Miniteoría"), spanish, "R004 inv. 2: the Spanish names of the table");
+    }
+
+    /**
+     * get analyzers -f json of the real Main. Main ends in System.exit, so it runs as the command
+     * line runs it: in its own JVM, with this classpath, from the root of the project (where it
+     * reads analysis/), over an empty working directory.
+     */
+    static com.fasterxml.jackson.databind.JsonNode analyzersOfMain(java.nio.file.Path workdir) throws Exception {
+        String javaBinary = java.nio.file.Path.of(System.getProperty("java.home"), "bin", "java").toString();
+        ProcessBuilder builder = new ProcessBuilder(javaBinary, "-cp", System.getProperty("java.class.path"),
+                "com.learney.contentaudit.auditcli.commands.Main", "--workdir", workdir.toString(),
+                "get", "analyzers", "-f", "json");
+        builder.directory(java.nio.file.Path.of("..").toAbsolutePath().normalize().toFile());
+        builder.redirectErrorStream(false);
+        Process process = builder.start();
+        String out = new String(process.getInputStream().readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+        String err = new String(process.getErrorStream().readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+        org.junit.jupiter.api.Assertions.assertTrue(process.waitFor(120, java.util.concurrent.TimeUnit.SECONDS),
+                "Main answered");
+        org.junit.jupiter.api.Assertions.assertEquals(0, process.exitValue(), err);
+        return new com.fasterxml.jackson.databind.ObjectMapper().readTree(out);
     }
 
     @Test

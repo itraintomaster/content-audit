@@ -4437,40 +4437,185 @@ public class GetCmdTest {
     @DisplayName("should print as JSON the whole topic as the student sees it with get student-view 6814dafa7d73e7209a13d389, Afirmativas regulares")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R003")
-    public void shouldPrintAsJSONTheWholeTopicAsTheStudentSeesItWithGetStudentview6814dafa7d73e7209a13d389AfirmativasRegulares() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldPrintAsJSONTheWholeTopicAsTheStudentSeesItWithGetStudentview6814dafa7d73e7209a13d389AfirmativasRegulares(
+            @TempDir Path workdir) throws IOException {
+        // R003: get student-view over an analysis of the 29/9 course prints, as JSON, the
+        // instructions of Afirmativas regulares and its 20 exercises in course order, each with its
+        // view (R001), its finished exercise, its audio key and the text of its recording.
+        String id = analyzeThe299Course(workdir);
+
+        Base299.Captured shown = Base299.run(studentViewGetCmd(workdir), "student-view", AFIRMATIVAS_REGULARES);
+
+        assertEquals(0, shown.exit(), shown.err());
+        JsonNode topic = new ObjectMapper().readTree(shown.out());
+        assertEquals(id, topic.get("auditId").asText(), "R003 inv. 1: with no active analysis, the latest one");
+        assertEquals(AFIRMATIVAS_REGULARES, topic.get("knowledgeId").asText());
+        assertEquals("Afirmativas regulares", topic.get("label").asText());
+        assertEquals("Escribe la forma correcta del verbo.", topic.get("instructions").asText());
+        assertEquals("FILL", topic.get("sentenceMode").asText());
+        assertEquals(20, topic.get("quizzes").size(), "the 20 exercises of the topic");
+        JsonNode first = topic.get("quizzes").get(0);
+        assertEquals("67fab6d59930102295341ec3", first.get("quizId").asText());
+        JsonNode view = first.get("view");
+        assertEquals("You ___ (see) cats.", view.get("statement").asText());
+        assertEquals("(see)", view.get("gaps").get(0).get("hint").asText());
+        assertEquals("see", view.get("gaps").get(0).get("acceptedAnswers").get(0).asText());
+        assertEquals("see", view.get("gaps").get(0).get("firstAnswer").asText());
+        assertEquals(0, view.get("options").size());
+        assertEquals("Escribe la forma afirmativa en presente simple.", view.get("instructions").asText());
+        assertEquals("Ves gatos.", view.get("translation").asText());
+        assertTrue(view.get("miniTheory").asText().startsWith("Con he, she, it el verbo lleva $-s$"),
+                view.get("miniTheory").asText());
+        assertEquals("You see cats.", first.get("finishedSentence").asText());
+        assertEquals("A1.01.06.01", first.get("answerAudioKey").asText());
+        assertEquals("You see cats.", first.get("recordedAudioText").asText(), "the text the registry has");
+        assertTrue(topic.get("quizzes").get(1).get("recordedAudioText").isNull(),
+                "R003 inv. 2: a key the registry does not know leaves it empty");
+        assertFalse(shown.out().contains("____"), "never the internal format of the course");
     }
 
     @Test
     @DisplayName("should read for get student-view the analysis chosen with set-active-analysis and, when none is chosen, the latest one")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R003")
-    public void shouldReadForGetStudentviewTheAnalysisChosenWithSetactiveanalysisAndWhenNoneIsChosenTheLatestOne() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldReadForGetStudentviewTheAnalysisChosenWithSetactiveanalysisAndWhenNoneIsChosenTheLatestOne(
+            @TempDir Path workdir) throws IOException {
+        // R003 inv. 1: with no analysis chosen, the latest one; once one is chosen with
+        // set-active-analysis, that one, even if it is not the latest.
+        String latest = analyzeThe299Course(workdir);
+        String earlier = "2026-09-29T10-00-00";
+        for (String dir : List.of(".content-audit/audits", ".content-audit/audit-digests")) {
+            java.nio.file.Files.copy(workdir.resolve(dir).resolve("audit-" + latest + ".json"),
+                    workdir.resolve(dir).resolve("audit-" + earlier + ".json"));
+        }
+
+        Base299.Captured withoutChoice = Base299.run(studentViewGetCmd(workdir), "student-view", AFIRMATIVAS_REGULARES);
+        new com.learney.contentaudit.auditinfrastructure.FileSystemActiveAnalysisSelectionStore(workdir)
+                .write(new com.learney.contentaudit.auditdomain.ActiveAnalysisSelection(earlier, null));
+        Base299.Captured withChoice = Base299.run(studentViewGetCmd(workdir), "student-view", AFIRMATIVAS_REGULARES);
+
+        assertEquals(0, withoutChoice.exit(), withoutChoice.err());
+        assertEquals(0, withChoice.exit(), withChoice.err());
+        assertEquals(latest, new ObjectMapper().readTree(withoutChoice.out()).get("auditId").asText(), "the latest one");
+        assertEquals(earlier, new ObjectMapper().readTree(withChoice.out()).get("auditId").asText(), "the chosen one");
     }
 
     @Test
     @DisplayName("should exit with code 1 and print «Knowledge <id> not found in the analysis.» for a knowledge that is not in the analysis")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R003")
-    public void shouldExitWithCode1AndPrintKnowledgeIdNotFoundInTheAnalysisForAKnowledgeThatIsNotInTheAnalysis() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldExitWithCode1AndPrintKnowledgeIdNotFoundInTheAnalysisForAKnowledgeThatIsNotInTheAnalysis(
+            @TempDir Path workdir) {
+        // R003 inv. 3: a topic the analysis does not have is an error with the message of the rule
+        // and exit code 1, and nothing on the standard output.
+        analyzeThe299Course(workdir);
+
+        Base299.Captured missing = Base299.run(studentViewGetCmd(workdir), "student-view", "6814dafa7d73e7209a13d000");
+
+        assertEquals(1, missing.exit());
+        assertEquals("Knowledge 6814dafa7d73e7209a13d000 not found in the analysis.", missing.err().strip());
+        assertTrue(missing.out().isBlank(), missing.out());
     }
 
     @Test
     @DisplayName("should leave the stored analyses and the course byte for byte identical after get student-view")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R003")
-    public void shouldLeaveTheStoredAnalysesAndTheCourseByteForByteIdenticalAfterGetStudentview() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldLeaveTheStoredAnalysesAndTheCourseByteForByteIdenticalAfterGetStudentview(@TempDir Path workdir) {
+        // R003 inv. 4: get student-view writes nothing -- neither the stored analyses, their digests
+        // and the active selection, nor the course.
+        analyzeThe299Course(workdir);
+        Map<String, String> storeBefore = Base299.hashes(workdir);
+        Map<String, String> courseBefore = Base299.hashes(Base299.COURSE);
+
+        Base299.Captured shown = Base299.run(studentViewGetCmd(workdir), "student-view", AFIRMATIVAS_REGULARES);
+        Base299.Captured missing = Base299.run(studentViewGetCmd(workdir), "student-view", "6814dafa7d73e7209a13d000");
+
+        assertEquals(0, shown.exit(), shown.err());
+        assertEquals(1, missing.exit());
+        assertEquals(storeBefore, Base299.hashes(workdir), "R003 inv. 4: the analyses, byte for byte");
+        assertEquals(courseBefore, Base299.hashes(Base299.COURSE), "R003 inv. 4: the course, byte for byte");
+        assertEquals(Base299.FILES, courseBefore.size(), "the 886 files of the course");
     }
 
     @Test
     @DisplayName("should show in get analyzers the Spanish name of each analyzer next to its unique name, «Largo de oración» next to sentence-length")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R004")
-    public void shouldShowInGetAnalyzersTheSpanishNameOfEachAnalyzerNextToItsUniqueNameLargoDeOracinNextToSentencelength() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldShowInGetAnalyzersTheSpanishNameOfEachAnalyzerNextToItsUniqueNameLargoDeOracinNextToSentencelength()
+            throws IOException {
+        // R004: get analyzers shows, next to the unique name of every card of the catalog Main
+        // builds, its Spanish name -- «Largo de oración» next to sentence-length -- in text, in JSON
+        // and in the table.
+        AnalyzerCatalog catalog = Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger());
+
+        Base299.Captured text = Base299.run(Base299.getCmd(auditReportStore, catalog), "analyzers");
+        Base299.Captured json = Base299.run(Base299.getCmd(auditReportStore, catalog), "analyzers", "-f", "json");
+        Base299.Captured table = Base299.run(Base299.getCmd(auditReportStore, catalog), "analyzers", "-f", "table");
+
+        assertEquals(0, text.exit(), text.err());
+        assertTrue(text.out().contains("Name:        sentence-length (Largo de oración)"), text.out());
+        JsonNode listed = new ObjectMapper().readTree(json.out());
+        List<AnalyzerDescriptor> cards = catalog.list();
+        for (int i = 0; i < cards.size(); i++) {
+            AnalyzerDescriptor card = cards.get(i);
+            assertTrue(text.out().contains("Name:        " + card.getName() + " (" + card.getDisplayName() + ")"),
+                    "R004: " + card.getName() + " next to its Spanish name");
+            assertEquals(card.getName(), listed.get(i).get("name").asText());
+            assertEquals(card.getDisplayName(), listed.get(i).get("displayName").asText());
+            assertTrue(table.out().contains(card.getDisplayName()), "the table too: " + card.getDisplayName());
+        }
+        assertEquals(List.of("Largo de oración", "Largo del título", "Largo de la consigna", "Bandas de frecuencia",
+                "Recurrencia", "Palabras que faltan", "Palabras poco vistas", "Consigna"),
+                cards.stream().map(AnalyzerDescriptor::getDisplayName).toList(), "R004 inv. 2: the names of the table");
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-RONDA1: get student-view over an analysis of the 29/9 course
+    // ------------------------------------------------------------------
+
+    private static final String AFIRMATIVAS_REGULARES = "6814dafa7d73e7209a13d389";
+
+    /** analyze of the 29/9 course with sentence-length, saved in the working directory; its id. */
+    private static String analyzeThe299Course(Path workdir) {
+        AnalyzerCatalog catalog = Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger());
+        Base299.Captured analyzed = Base299.run(Base299.analyzeCmd(Base299.runner(catalog),
+                new FileSystemAuditReportStore(workdir, null)), Base299.COURSE.toString(), "--analyzers", "sentence-length");
+        assertEquals(0, analyzed.exit(), analyzed.err());
+        return Base299.savedId(analyzed);
+    }
+
+    /**
+     * get as Main builds it for student-view: the real query and renderer, the active analysis of
+     * the working directory, and a recordings registry that knows only A1.01.06.01.
+     */
+    private static GetCmd studentViewGetCmd(Path workdir) {
+        com.learney.contentaudit.auditdomain.AudioRecordingRegistry recordings =
+                new com.learney.contentaudit.auditdomain.AudioRecordingRegistry() {
+                    @Override
+                    public Optional<com.learney.contentaudit.auditdomain.datacoherence.AudioRecording> recordingOf(
+                            String audioKey) {
+                        return "A1.01.06.01".equals(audioKey)
+                                ? Optional.of(new com.learney.contentaudit.auditdomain.datacoherence.AudioRecording(
+                                        audioKey, "You see cats.", "manifiesto de la regrabación del 24/8"))
+                                : Optional.empty();
+                    }
+
+                    @Override
+                    public String version() {
+                        return "2026-09-30";
+                    }
+                };
+        com.learney.contentaudit.auditdomain.QuizStudentViewRenderer renderer =
+                new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create());
+        GetCmd get = new GetCmd(new FileSystemAuditReportStore(workdir, renderer), mock(RefinementPlanStore.class),
+                mock(AnalyzerRegistry.class), mock(CorrectionContextResolver.class), null, null,
+                new DefaultCorrectionContextJsonMapper(), mock(SuggestedLemmaQueryPort.class), null,
+                new com.learney.contentaudit.auditdomain.studentview.DefaultTopicStudentViewQuery(renderer, recordings),
+                new com.learney.contentaudit.auditinfrastructure.FileSystemActiveAnalysisSelectionStore(workdir));
+        get.setRevisionArtifactStore(mock(RevisionArtifactStore.class));
+        return get;
     }
 
     @Test

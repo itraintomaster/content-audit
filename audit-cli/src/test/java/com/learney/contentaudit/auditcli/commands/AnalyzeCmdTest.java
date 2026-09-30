@@ -1020,6 +1020,83 @@ public class AnalyzeCmdTest {
             return new DefaultAnalyzerCatalog(mainProviders(judge, ledger));
         }
 
+        /** The seventeen analyzers of round 1, in the order of the catalog (F-RONDA1-R004). */
+        static final List<String> ROUND_ONE = List.of("sentence-length", "knowledge-title-length",
+                "knowledge-instructions-length", "coca-buckets-distribution", "lemma-recurrence", "lemma-absence",
+                "off-level-words", "lemma-count", "quiz-instruction", "hint-coherence", "answer-completeness",
+                "multiple-choice-validity", "data-coherence", "exact-duplicates", "translation-sense", "single-answer",
+                "mini-theory");
+
+        /**
+         * Main's seventeen providers of round 1, built as Main builds them, over the files the
+         * packages install (the corrector's table, the irregular forms, the recordings registry and the
+         * production copy) and with the five judges faked: with no budget they consult nothing.
+         */
+        static List<AnalyzerProvider> roundOneProviders(
+                com.learney.contentaudit.evaluationledgerinfrastructure.FileSystemEvaluationLedger ledger, Path workdir) {
+            DefaultLemmaAbsenceConfig absence = new DefaultLemmaAbsenceConfig();
+            DefaultSentenceLexicalScorer scorer = new DefaultSentenceLexicalScorer(evp(), new DefaultContentWordFilter(),
+                    absence);
+            com.learney.contentaudit.auditdomain.QuizStudentViewRenderer renderer =
+                    new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                            DefaultQuizSentenceConverter.create());
+            Path shared = Path.of("../analysis/recursos-compartidos");
+            com.learney.contentaudit.auditdomain.IrregularFormsCatalog irregularForms =
+                    new com.learney.contentaudit.vocabularyinfrastructure.irregularforms.FileSystemIrregularFormsCatalog(
+                            shared.resolve("formas-irregulares.json"));
+            com.learney.contentaudit.auditdomain.CorrectorMatcher corrector =
+                    new com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher(
+                            new com.learney.contentaudit.vocabularyinfrastructure.correctortable.FileSystemFormEquivalenceTableSource(
+                                    shared.resolve("corrector/formas-equivalentes.json")).load());
+            com.learney.contentaudit.auditdomain.AudioRecordingRegistry recordings =
+                    new com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemAudioRecordingRegistry(
+                            COURSE.getParent().resolve("grabaciones.json"));
+            com.learney.contentaudit.auditdomain.ProductionSentenceSource production =
+                    new com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemProductionSentenceSource(
+                            COURSE.getParent().resolve("quiz-templates.json"));
+            com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory sessions =
+                    new DefaultEvaluationSessionFactory(ledger, new Sha256ContentFingerprinter());
+            com.learney.contentaudit.auditdomain.judging.JudgeRuntime runtime =
+                    new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime(sessions,
+                            new com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory(
+                                    ledger, new Sha256ContentFingerprinter()),
+                            new com.learney.contentaudit.auditinfrastructure.FileSystemJudgeExamRegistry(workdir), ledger,
+                            new com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig());
+            FakeJudge judge = new FakeJudge();
+
+            List<AnalyzerProvider> providers = new ArrayList<>(classicProviders().subList(0, 6));
+            providers.add(new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(scorer,
+                    absence, new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(), renderer));
+            providers.add(classicProviders().get(6));
+            providers.add(new DefaultQuizInstructionAnalyzerFactory(sessions, judge,
+                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(), runtime));
+            providers.add(new com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzerProvider(
+                    irregularForms, renderer));
+            providers.add(new com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessAnalyzerProvider(
+                    corrector, irregularForms, renderer));
+            providers.add(new com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityAnalyzerProvider(
+                    corrector, new com.learney.contentaudit.auditdomain.choicealternativeengine.DefaultChoiceAlternativeJudgeRunFactory(
+                            "multiple-choice-validity", runtime, judge,
+                            new com.learney.contentaudit.quizinstructioninfrastructure.choicealternativeverdict.JacksonChoiceAlternativeVerdictReader(),
+                            new com.learney.contentaudit.auditapplication.DefaultChoiceAlternativeConfig(), renderer, corrector),
+                    renderer));
+            providers.add(new com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceAnalyzerProvider(corrector,
+                    recordings, production, renderer));
+            providers.add(new com.learney.contentaudit.auditdomain.exactduplicates.ExactDuplicatesAnalyzerProvider(
+                    corrector, renderer));
+            providers.add(new com.learney.contentaudit.auditdomain.translationsenseengine.TranslationSenseAnalyzerProvider(
+                    runtime, judge, judge,
+                    new com.learney.contentaudit.quizinstructioninfrastructure.translationsenseverdict.JacksonTranslationSenseVerdictReader(),
+                    new com.learney.contentaudit.auditapplication.DefaultTranslationSenseConfig(), renderer));
+            providers.add(new com.learney.contentaudit.auditdomain.singleanswerengine.SingleAnswerAnalyzerProvider(runtime,
+                    judge, new com.learney.contentaudit.quizinstructioninfrastructure.singleanswerverdict.JacksonSingleAnswerVerdictReader(),
+                    new com.learney.contentaudit.auditapplication.DefaultSingleAnswerConfig(), renderer, corrector));
+            providers.add(new com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryAnalyzerProvider(runtime,
+                    judge, new com.learney.contentaudit.quizinstructioninfrastructure.minitheoryverdict.JacksonMiniTheoryVerdictReader(),
+                    new com.learney.contentaudit.auditapplication.DefaultMiniTheoryConfig(), renderer));
+            return providers;
+        }
+
         static CourseToAuditableMapper mapper() {
             return new CourseToAuditableMapper(tokenizer(), DefaultQuizSentenceConverter.create());
         }
@@ -1459,14 +1536,49 @@ public class AnalyzeCmdTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R004")
     public void shouldRejectLargoDeOracinAsAnAnalyzerNameSinceOnlyTheUniqueNameSentencelengthNamesTheAnalyzer() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 3: the Spanish name of the card never names the analyzer (F-HALL-R005) -- to run
+        // it, exclude it or budget it --, and the run is rejected before the course is loaded.
+        AnalyzerCatalog catalog = Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger());
+        assertEquals("Largo de oración", catalog.find("sentence-length").orElseThrow().getDisplayName());
+        CourseRepository repository = mock(CourseRepository.class);
+        AuditReportStore store = mock(AuditReportStore.class);
+
+        for (String[] args : List.of(new String[] {"english-course", "--analyzers", "Largo de oración"},
+                new String[] {"english-course", "--exclude-analyzers", "Largo de oración"},
+                new String[] {"english-course", "--budget", "Largo de oración=1"})) {
+            Base299.Captured rejected = Base299.run(Base299.analyzeCmd(
+                    Base299.runner(catalog, repository, mock(CourseToAuditableMapper.class)), store), args);
+            assertEquals(1, rejected.exit(), String.join(" ", args));
+            assertTrue(rejected.err().contains("Analyzer 'Largo de oración' not found"),
+                    "R004: only the unique name names it: " + rejected.err());
+        }
+        verifyNoInteractions(repository);
+        verifyNoInteractions(store);
     }
 
     @Test
     @DisplayName("should leave the 886 files of the 29/9 course identical byte for byte after analyzing it with the seventeen analyzers of round 1")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R008")
-    public void shouldLeaveThe886FilesOfThe299CourseIdenticalByteForByteAfterAnalyzingItWithTheSeventeenAnalyzersOfRound1() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    @org.junit.jupiter.api.Disabled("FEAT-RONDA1: espera a que A, C y D construyan sus nueve analizadores; hoy sus "
+            + "proveedores no dan ficha y el catálogo no arranca con ellos")
+    public void shouldLeaveThe886FilesOfThe299CourseIdenticalByteForByteAfterAnalyzingItWithTheSeventeenAnalyzersOfRound1(
+            @org.junit.jupiter.api.io.TempDir Path workdir) {
+        // R008 inv. 3 (F-HALL-R015): analyze reads the course and writes only its analysis -- with
+        // the seventeen analyzers of round 1, the 886 files of the 29/9 course stay byte for byte.
+        Path course = workdir.resolve("english-course");
+        Base299.copyTree(Base299.COURSE, course);
+        Map<String, String> before = Base299.hashes(course);
+        FileSystemEvaluationLedger ledger = new FileSystemEvaluationLedger(workdir);
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(Base299.roundOneProviders(ledger, workdir));
+        assertEquals(Base299.ROUND_ONE, catalog.list().stream().map(AnalyzerDescriptor::getName).toList(),
+                "the seventeen of round 1, in the order of F-RONDA1-R004");
+
+        Base299.Captured analyzed = Base299.run(Base299.analyzeCmd(Base299.runner(catalog),
+                new FileSystemAuditReportStore(workdir, null)), course.toString(), "-f", "json");
+
+        assertEquals(0, analyzed.exit(), analyzed.err());
+        assertEquals(Base299.FILES, before.size(), "the 886 files of the course");
+        assertEquals(before, Base299.hashes(course), "R008 inv. 3: the course, byte for byte");
     }
 }

@@ -1318,15 +1318,177 @@ public class DefaultAuditRunnerTest {
     @DisplayName("should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels 96.0, 93.6, 78.9 and 63.9")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R008")
-    public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1AndTheDefaultBands864And3AVocabularyScoreOf7386AndLevels960936789And639() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    @org.junit.jupiter.api.Disabled("FEAT-RONDA1: espera los nueve analizadores de A, C y D y las bandas 8 · 6 · 4 · 3 "
+            + "de FEAT-POCOV (D); hoy lemma-count usa 4 para todas y da 73,92 %")
+    public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1AndTheDefaultBands864And3AVocabularyScoreOf7386AndLevels960936789And639(
+            @org.junit.jupiter.api.io.TempDir Path workdir) {
+        // R008 inv. 1: with the seventeen of round 1 and the bands 8 · 6 · 4 · 3, the default since
+        // 30/9 (José), the 29/9 course publishes 73,86 % and the levels 96,0 · 93,6 · 78,9 · 63,9.
+        AuditReport report = runRoundOne(new DefaultLemmaCountConfigLoader().load(null), workdir);
+
+        assertEquals("73,86", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R008: the course");
+        assertEquals(List.of("96,0", "93,6", "78,9", "63,9"), report.getRoot().getChildren().stream()
+                .map(level -> percent1(level.getNumbers().getVocabularyScore())).toList(), "R008: A1, A2, B1 and B2");
     }
 
     @Test
     @DisplayName("should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2, 79.5 and 63.5")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R008")
-    public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1And4ForEveryBandTheNumbersOfToday7392AndLevels965942795And635() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    @org.junit.jupiter.api.Disabled("FEAT-RONDA1: espera los nueve analizadores de A, C y D y las bandas de FEAT-POCOV "
+            + "(D), para poder pedir 4 para todas")
+    public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1And4ForEveryBandTheNumbersOfToday7392AndLevels965942795And635(
+            @org.junit.jupiter.api.io.TempDir Path workdir) {
+        // R008 inv. 1: the same seventeen with 4 for every band give the numbers of today, 73,92 %
+        // and 96,5 · 94,2 · 79,5 · 63,5: the new analyzers are of the errors family and move nothing.
+        AuditReport report = runRoundOne(new DefaultLemmaCountConfigLoader().load("4"), workdir);
+
+        assertEquals("73,92", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R008: the course");
+        assertEquals(List.of("96,5", "94,2", "79,5", "63,5"), report.getRoot().getChildren().stream()
+                .map(level -> percent1(level.getNumbers().getVocabularyScore())).toList(), "R008: A1, A2, B1 and B2");
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-RONDA1: the seventeen of round 1 over the 29/9 base
+    // -----------------------------------------------------------------------
+
+    /** The seventeen analyzers of round 1, in the order of the catalog (F-RONDA1-R004). */
+    private static final List<String> ROUND_ONE = List.of("sentence-length", "knowledge-title-length",
+            "knowledge-instructions-length", "coca-buckets-distribution", "lemma-recurrence", "lemma-absence",
+            "off-level-words", "lemma-count", "quiz-instruction", "hint-coherence", "answer-completeness",
+            "multiple-choice-validity", "data-coherence", "exact-duplicates", "translation-sense", "single-answer",
+            "mini-theory");
+
+    /** The five analyzers that consult a model: in these runs, with budget 0, they consult nothing. */
+    private static final List<String> JUDGES = List.of("quiz-instruction", "multiple-choice-validity",
+            "translation-sense", "single-answer", "mini-theory");
+
+    /**
+     * analyze of the 29/9 course (its recorded spaCy tokens) with the seventeen of round 1, built as
+     * Main builds them over the files the packages install, and every judge with budget 0.
+     */
+    private static AuditReport runRoundOne(LemmaCountConfig lemmaCount, Path workdir) {
+        EvpCatalogPort evp = new FileSystemEvpCatalog(Path.of("../analysis/recursos-compartidos/enriched_vocabulary_catalog.json"));
+        DefaultLemmaAbsenceConfig absence = new DefaultLemmaAbsenceConfig();
+        DefaultSentenceLexicalScorer scorer = new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), absence);
+        QuizStudentViewRenderer renderer = new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                DefaultQuizSentenceConverter.create());
+        Path shared = Path.of("../analysis/recursos-compartidos");
+        IrregularFormsCatalog irregularForms =
+                new com.learney.contentaudit.vocabularyinfrastructure.irregularforms.FileSystemIrregularFormsCatalog(
+                        shared.resolve("formas-irregulares.json"));
+        CorrectorMatcher corrector = new com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher(
+                new com.learney.contentaudit.vocabularyinfrastructure.correctortable.FileSystemFormEquivalenceTableSource(
+                        shared.resolve("corrector/formas-equivalentes.json")).load());
+        RoundOneLedger ledger = new RoundOneLedger();
+        EvaluationSessionFactory sessions = new DefaultEvaluationSessionFactory(ledger,
+                new FakeQuizInstructionContentFingerprinter());
+        com.learney.contentaudit.auditdomain.judging.JudgeRuntime runtime =
+                new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime(sessions,
+                        new com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory(
+                                ledger, new FakeQuizInstructionContentFingerprinter()),
+                        new com.learney.contentaudit.auditinfrastructure.FileSystemJudgeExamRegistry(workdir), ledger,
+                        new DefaultJudgeRuntimeConfig());
+        Evaluator judge = new Evaluator() {
+            @Override
+            public String evaluatorId() {
+                return "round-one-judge";
+            }
+
+            @Override
+            public Optional<String> evaluatorVersion() {
+                return Optional.of("v1");
+            }
+
+            @Override
+            public EvaluationOutcome evaluate(EvaluationSubject subject) {
+                throw new AssertionError("with budget 0 no judge is consulted");
+            }
+        };
+
+        List<AnalyzerProvider> providers = new ArrayList<>(classicProviders(evp).subList(0, 6));
+        providers.add(new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(scorer, absence,
+                new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(), renderer));
+        providers.add(new LemmaCountAnalyzerProvider(evp, lemmaCount));
+        providers.add(new DefaultQuizInstructionAnalyzerFactory(sessions, judge, mock(QuizInstructionVerdictReader.class),
+                new DefaultQuizInstructionConfig(), runtime));
+        providers.add(new com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzerProvider(irregularForms,
+                renderer));
+        providers.add(new com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessAnalyzerProvider(
+                corrector, irregularForms, renderer));
+        providers.add(new com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityAnalyzerProvider(
+                corrector, new com.learney.contentaudit.auditdomain.choicealternativeengine.DefaultChoiceAlternativeJudgeRunFactory(
+                        "multiple-choice-validity", runtime, judge,
+                        mock(com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeVerdictReader.class),
+                        new DefaultChoiceAlternativeConfig(), renderer, corrector), renderer));
+        providers.add(new com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceAnalyzerProvider(corrector,
+                new com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemAudioRecordingRegistry(
+                        Path.of("../db/grabaciones.json")),
+                new com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemProductionSentenceSource(
+                        Path.of("../db/quiz-templates.json")), renderer));
+        providers.add(new com.learney.contentaudit.auditdomain.exactduplicates.ExactDuplicatesAnalyzerProvider(corrector,
+                renderer));
+        providers.add(new com.learney.contentaudit.auditdomain.translationsenseengine.TranslationSenseAnalyzerProvider(
+                runtime, judge, judge, mock(com.learney.contentaudit.auditdomain.translationsense.TranslationSenseVerdictReader.class),
+                new DefaultTranslationSenseConfig(), renderer));
+        providers.add(new com.learney.contentaudit.auditdomain.singleanswerengine.SingleAnswerAnalyzerProvider(runtime, judge,
+                mock(com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerVerdictReader.class),
+                new DefaultSingleAnswerConfig(), renderer, corrector));
+        providers.add(new com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryAnalyzerProvider(runtime, judge,
+                mock(com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdictReader.class),
+                new DefaultMiniTheoryConfig(), renderer));
+
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
+        assertEquals(ROUND_ONE, catalog.list().stream().map(AnalyzerDescriptor::getName).toList(),
+                "the seventeen of round 1, in the order of F-RONDA1-R004");
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(new RecordedTokenizer(), DefaultQuizSentenceConverter.create());
+        DefaultAuditRunner runner = new DefaultAuditRunner(new FileSystemCourseRepository(new CourseValidatorImpl()), mapper,
+                new IAuditEngine(new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator(), catalog,
+                        new DefaultFindingCollector(), new DefaultContextNumbersCalculator()), catalog);
+        Map<String, EvaluationRunPolicy> noBudget = new LinkedHashMap<>();
+        JUDGES.forEach(name -> noBudget.put(name, new EvaluationRunPolicy(0, false, null, null, null, null)));
+        return runner.runAudit(Path.of("../db/english-course"), new AuditRunRequest(null, null, noBudget));
+    }
+
+    /** Two decimals, with a decimal comma: 0,738621 -> 73,86. */
+    private static String percent2(Double score) {
+        return String.format(java.util.Locale.ROOT, "%.2f", score * 100).replace('.', ',');
+    }
+
+    /** One decimal, with a decimal comma: 0,96023 -> 96,0. */
+    private static String percent1(Double score) {
+        return String.format(java.util.Locale.ROOT, "%.1f", score * 100).replace('.', ',');
+    }
+
+    /** The ledger of the judges, in memory, and its timeline: nothing is recorded in these runs. */
+    private static final class RoundOneLedger implements EvaluationLedger,
+            com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline {
+        private final List<EvaluationRecord> records = new ArrayList<>();
+
+        @Override
+        public Optional<EvaluationRecord> findLatest(EvaluationKey key) {
+            EvaluationRecord latest = null;
+            for (EvaluationRecord record : records) {
+                if (record.getKey().equals(key)) {
+                    latest = record;
+                }
+            }
+            return Optional.ofNullable(latest);
+        }
+
+        @Override
+        public void append(EvaluationRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public List<EvaluationRecord> history(EvaluationKey key) {
+            return records.stream().filter(record -> record.getKey().equals(key)).toList();
+        }
+
+        @Override
+        public List<Instant> recordedTimes(String evaluatorId) {
+            return List.of();
+        }
     }
 }

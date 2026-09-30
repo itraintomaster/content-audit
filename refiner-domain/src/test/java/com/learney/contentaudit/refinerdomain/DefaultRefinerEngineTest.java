@@ -548,7 +548,75 @@ public class DefaultRefinerEngineTest {
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R008")
     public void shouldDeriveFromThe299AnalysisWithTheSeventeenAnalyzersOfRound1TheSame4036TasksDeclaringTheScoresBelow1OfTheNewErrorsAnalyzersAsWithoutTaskKindAndThoseOfOfflevelwordsAsCoveredByLEMMAABSENCE() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008 inv. 2: the seventeen of round 1 in the catalog, the new ones without a task kind
+        // (package E decides them). Over the analysis 2026-09-30T11-54-02 with scores below 1 of the
+        // new analyzers on some quizzes, the plan keeps the same 4,036 tasks; the eight new errors
+        // analyzers are declared as without task kind, and off-level-words as covered by the
+        // LEMMA_ABSENCE task of its quizzes (F-NIVFR-R006), never as dropped.
+        List<AnalyzerProvider> seventeen = new ArrayList<>();
+        List<AnalyzerDescriptor> today = realCatalog().list();
+        com.learney.contentaudit.auditdomain.AnalyzerCatalog real = realCatalog();
+        for (AnalyzerDescriptor card : today.subList(0, 6)) {
+            seventeen.add(provider(card, real.planBinding(card.getName())));
+        }
+        seventeen.add(provider(errorsCard(OFF_LEVEL_WORDS), Optional.empty()));
+        for (AnalyzerDescriptor card : today.subList(6, 8)) {
+            seventeen.add(provider(card, real.planBinding(card.getName())));
+        }
+        for (String name : NEW_ERRORS_ANALYZERS) {
+            seventeen.add(provider(errorsCard(name), Optional.empty()));
+        }
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(seventeen);
+        Assertions.assertEquals(17, catalog.list().size(), "the seventeen of round 1");
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalog);
+
+        AuditNode tree = baseTree();
+        List<AuditNode> quizzes = new ArrayList<>();
+        collectQuizzes(tree, quizzes);
+        List<AuditNode> withAbsenceTask = quizzes.stream()
+                .filter(q -> q.getScores().getOrDefault("lemma-absence", 1.0) < 1.0).limit(5).toList();
+        withAbsenceTask.forEach(q -> q.getScores().put(OFF_LEVEL_WORDS, 0.0));
+        for (String name : NEW_ERRORS_ANALYZERS) {
+            quizzes.get(0).getScores().put(name, 0.0);
+            quizzes.get(1).getScores().put(name, 0.5);
+            quizzes.get(2).getScores().put(name, 1.0);
+        }
+        AuditReport report = new AuditReport(tree);
+
+        RefinementPlan plan = engine.plan(report, "2026-09-30T11-54-02");
+
+        List<String> tasks = plan.getTasks().stream().map(task -> task.getNodeTarget() + "\t" + task.getNodeId() + "\t"
+                + task.getNodeLabel() + "\t" + task.getDiagnosisKind()).toList();
+        Assertions.assertEquals(4036, tasks.size(), "R008 inv. 2: the same 4,036 tasks");
+        Assertions.assertEquals(readLines("plan.tsv.gz"), tasks, "task by task, in the same order");
+
+        Map<String, String> declared = new TreeMap<>();
+        for (UnconvertedScoreCount count : engine.unconvertedScores(report)) {
+            declared.put(count.getAnalyzer(), count.getNodeCount() + " " + count.getReason());
+        }
+        Map<String, String> expected = new TreeMap<>();
+        for (String name : NEW_ERRORS_ANALYZERS) {
+            expected.put(name, "2 su ficha no declara un tipo de tarea");
+        }
+        expected.put(OFF_LEVEL_WORDS, "5 cubierto por la tarea LEMMA_ABSENCE del ejercicio");
+        Assertions.assertEquals(expected, declared,
+                "R008: the new errors analyzers without task kind, off-level-words covered by LEMMA_ABSENCE");
+    }
+
+    private static final String OFF_LEVEL_WORDS = "off-level-words";
+
+    /** The eight new errors analyzers of round 1 after quiz-instruction, in catalog order. */
+    private static final List<String> NEW_ERRORS_ANALYZERS = List.of("hint-coherence", "answer-completeness",
+            "multiple-choice-validity", "data-coherence", "exact-duplicates", "translation-sense", "single-answer",
+            "mini-theory");
+
+    private static void collectQuizzes(AuditNode node, List<AuditNode> quizzes) {
+        if (node.getTarget() == AuditTarget.QUIZ) {
+            quizzes.add(node);
+        }
+        if (node.getChildren() != null) {
+            node.getChildren().forEach(child -> collectQuizzes(child, quizzes));
+        }
     }
 
     @Test

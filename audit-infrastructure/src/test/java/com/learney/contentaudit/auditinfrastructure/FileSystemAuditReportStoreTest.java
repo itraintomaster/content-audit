@@ -427,31 +427,132 @@ class FileSystemAuditReportStoreTest {
     @DisplayName("should label each exercise of the digest with its statement as the student sees it, «You ___ (see) cats.» and not «Afirmativas regulares»")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R002")
-    public void shouldLabelEachExerciseOfTheDigestWithItsStatementAsTheStudentSeesItYouSeeCatsAndNotAfirmativasRegulares() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldLabelEachExerciseOfTheDigestWithItsStatementAsTheStudentSeesItYouSeeCatsAndNotAfirmativasRegulares(
+            @TempDir Path tempDir) {
+        // R002: in the digest each exercise is named by its statement as the student sees it
+        // (F-RONDA1-R001): the 20 of Afirmativas regulares no longer all read «Afirmativas regulares».
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, studentViewRenderer());
+        String id = store.save(afirmativasRegulares());
+
+        DigestNode knowledge = digestKnowledge(store.loadDigest(id).orElseThrow());
+
+        assertEquals(List.of("You ___ (see) cats.", "It ___ (come) every year."),
+                knowledge.getChildren().stream().map(DigestNode::getLabel).toList(),
+                "R002: «You ___ (see) cats.», and not «Afirmativas regulares»");
+        assertEquals(List.of("67fab6d59930102295341ec3", "67fab6d59930102295341ec4"),
+                knowledge.getChildren().stream().map(DigestNode::getNodeId).toList(), "the same exercises");
     }
 
     @Test
     @DisplayName("should keep in the digest the labels of the course, the levels, the topic groups and the topics")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R002")
-    public void shouldKeepInTheDigestTheLabelsOfTheCourseTheLevelsTheTopicGroupsAndTheTopics() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldKeepInTheDigestTheLabelsOfTheCourseTheLevelsTheTopicGroupsAndTheTopics(@TempDir Path tempDir) {
+        // R002: only the exercises change their label; the course, the level, the topic group
+        // and the topic keep theirs.
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, studentViewRenderer());
+        String id = store.save(afirmativasRegulares());
+
+        DigestNode course = store.loadDigest(id).orElseThrow().getRoot();
+        DigestNode level = course.getChildren().get(0);
+        DigestNode topic = level.getChildren().get(0);
+        DigestNode knowledge = topic.getChildren().get(0);
+
+        assertEquals(List.of("Curso", "A1", "Present Simple", "Afirmativas regulares"),
+                List.of(course.getLabel(), level.getLabel(), topic.getLabel(), knowledge.getLabel()));
     }
 
     @Test
     @DisplayName("should keep «Afirmativas regulares» as the exercise label of the saved report, the title the quiz instruction judge reads")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R002")
-    public void shouldKeepAfirmativasRegularesAsTheExerciseLabelOfTheSavedReportTheTitleTheQuizInstructionJudgeReads() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldKeepAfirmativasRegularesAsTheExerciseLabelOfTheSavedReportTheTitleTheQuizInstructionJudgeReads(
+            @TempDir Path tempDir) throws Exception {
+        // R002: the saved report keeps the label of today, the title the quiz-instruction judge
+        // reads: changing it would charge its verdicts again. Only the digest names by statement.
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, studentViewRenderer());
+        String id = store.save(afirmativasRegulares());
+
+        AuditReport loaded = store.load(id).orElseThrow();
+        AuditNode quiz = loaded.getRoot().getChildren().get(0).getChildren().get(0).getChildren().get(0)
+                .getChildren().get(0);
+        assertEquals("Afirmativas regulares", quiz.getEntity().getLabel(), "R002: the report keeps the title");
+        String report = Files.readString(tempDir.resolve(".content-audit/audits/audit-" + id + ".json"));
+        assertFalse(report.contains("You ___ (see) cats."), "the statement is not written into the report");
     }
 
     @Test
     @DisplayName("should copy into the digest the analyzers that evaluated each node halfway")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R006")
-    public void shouldCopyIntoTheDigestTheAnalyzersThatEvaluatedEachNodeHalfway() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldCopyIntoTheDigestTheAnalyzersThatEvaluatedEachNodeHalfway(@TempDir Path tempDir) {
+        // R006: the digest copies, like the unevaluated ones, the analyzers that evaluated a node
+        // halfway -- «___ a child? (He)» with its judge pending -- and the report keeps them too.
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, studentViewRenderer());
+        AuditReport report = afirmativasRegulares();
+        AuditNode knowledge = report.getRoot().getChildren().get(0).getChildren().get(0).getChildren().get(0);
+        AuditNode first = knowledge.getChildren().get(0);
+        first.setPartiallyEvaluatedBy(new ArrayList<>(List.of("multiple-choice-validity")));
+
+        String id = store.save(report);
+
+        DigestNode digestKnowledge = digestKnowledge(store.loadDigest(id).orElseThrow());
+        assertEquals(List.of("multiple-choice-validity"), digestKnowledge.getChildren().get(0).getPartiallyEvaluatedBy(),
+                "R006: copied into the digest");
+        assertEquals(List.of(), digestKnowledge.getChildren().get(1).getPartiallyEvaluatedBy(), "and none where there is none");
+        assertEquals(List.of("multiple-choice-validity"), store.load(id).orElseThrow().getRoot().getChildren().get(0)
+                .getChildren().get(0).getChildren().get(0).getChildren().get(0).getPartiallyEvaluatedBy(),
+                "the report keeps it");
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-RONDA1: A1 > Present Simple > Afirmativas regulares, two of its exercises
+    // ------------------------------------------------------------------
+
+    private static com.learney.contentaudit.auditdomain.QuizStudentViewRenderer studentViewRenderer() {
+        return new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create());
+    }
+
+    private static AuditReport afirmativasRegulares() {
+        AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, new ArrayList<>(), new LinkedHashMap<>(),
+                new LinkedHashMap<>(), null);
+        AuditNode level = child(root, AuditTarget.MILESTONE,
+                new AuditableMilestone(List.of(), "6814dafa7d73e7209a13d382", "A1", "A1"));
+        AuditNode topic = child(level, AuditTarget.TOPIC,
+                new AuditableTopic(List.of(), "t-present-simple", "Present Simple", "T"));
+        AuditNode knowledge = child(topic, AuditTarget.KNOWLEDGE, new AuditableKnowledge(List.of(),
+                "Afirmativas regulares", "Escribe la forma correcta del verbo.", true, "6814dafa7d73e7209a13d389",
+                "Afirmativas regulares", "K", com.learney.contentaudit.coursedomain.SentenceMode.FILL, "Present Simple"));
+        child(knowledge, AuditTarget.QUIZ, afirmativa("67fab6d59930102295341ec3", "You", "see", "(see) cats.",
+                "You see cats."));
+        child(knowledge, AuditTarget.QUIZ, afirmativa("67fab6d59930102295341ec4", "It", "comes",
+                "(come) every year.", "It comes every year."));
+        return new AuditReport(root);
+    }
+
+    private static AuditableQuiz afirmativa(String id, String subject, String answer, String rest, String sentence) {
+        List<com.learney.contentaudit.coursedomain.SentencePartEntity> parts = List.of(
+                new com.learney.contentaudit.coursedomain.SentencePartEntity(
+                        com.learney.contentaudit.coursedomain.SentencePartKind.TEXT, subject, null),
+                new com.learney.contentaudit.coursedomain.SentencePartEntity(
+                        com.learney.contentaudit.coursedomain.SentencePartKind.CLOZE, "", List.of(answer)),
+                new com.learney.contentaudit.coursedomain.SentencePartEntity(
+                        com.learney.contentaudit.coursedomain.SentencePartKind.TEXT, rest, null));
+        return new AuditableQuiz(List.of(), id, "Afirmativas regulares", "", null, List.of(sentence),
+                subject + " ____ [" + answer + "] " + rest, "Escribe la forma afirmativa en presente simple.", parts,
+                null, "Con he, she, it el verbo lleva $-s$. Con I, you, we, they va en forma base.", "A1.01.06.01");
+    }
+
+    private static AuditNode child(AuditNode parent, AuditTarget target,
+            com.learney.contentaudit.auditdomain.AuditableEntity entity) {
+        AuditNode node = new AuditNode(entity, target, parent, new ArrayList<>(), new LinkedHashMap<>(),
+                new LinkedHashMap<>(), null);
+        parent.getChildren().add(node);
+        return node;
+    }
+
+    private static DigestNode digestKnowledge(AuditDigest digest) {
+        return digest.getRoot().getChildren().get(0).getChildren().get(0).getChildren().get(0);
     }
 }
