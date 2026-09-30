@@ -1,0 +1,168 @@
+code: FEAT-OPMUL
+description: "Deuda de 83228e54 (FEAT-OPMUL): declara en sentinel.yaml lo que el soporte\
+  \ de opcion multiple ya agrego al codigo sin pasar por Sentinel. Tres tipos nuevos\
+  \ en course-domain (FormKind, MultipleChoiceEntity, MultipleChoiceItemEntity); campos\
+  \ nuevos en FormEntity, QuizTemplateEntity, AuditableQuiz, QuizInstructionSubjectView\
+  \ y QuizInstructionCorrectionRunReport; el desenlace MULTIPLE_CHOICE_UNSUPPORTED\
+  \ en tres enums; y el registro de FEAT-OPMUL. No agrega comportamiento ni cambia\
+  \ firmas de interfaces."
+modules:
+- name: course-domain
+  models:
+  - name: FormKind
+    type: enum
+    fields:
+    - name: CLOZE
+      description: "Formulario de huecos: el kind que el sistema conocia antes de\
+        \ la opcion multiple."
+    - name: MULTIPLE_CHOICE
+      description: "Formulario de opcion multiple: sus opciones viven en FormEntity.multipleChoice\
+        \ (F-OPMUL-R003)."
+    - name: OTHER
+      description: "Cualquier kind que el sistema no reconoce. Se trata como CLOZE,\
+        \ igual que antes de la opcion multiple (F-OPMUL-R003)."
+    _change: add
+  - name: MultipleChoiceItemEntity
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: "Identificador de la opcion (form.items[].id), tal cual viene del\
+        \ curso."
+    - name: incidence
+      type: double
+      description: Mayor que cero en la opcion correcta; el curso trae exactamente
+        una por formulario (F-OPMUL-R004).
+    - name: label
+      type: String
+      description: Texto que ve el alumno. Entra tal cual en el hueco para formar
+        la oracion medible (F-OPMUL-R004) y en lo que recibe el juez (F-OPMUL-R005).
+    _change: add
+  - name: MultipleChoiceEntity
+    type: record
+    fields:
+    - name: selection
+      type: String
+      description: "Modo de seleccion crudo (form.selection). Solo se observo SINGLE\
+        \ y nada ramifica sobre el: viaja como string para volver byte a byte (F-OPMUL-R001)."
+    - name: items
+      type: List<MultipleChoiceItemEntity>
+      description: "Opciones en el orden en que las ve el alumno (form.items), orden\
+        \ que se conserva al guardar (F-OPMUL-R001) y al mostrarlas al juez (F-OPMUL-R005)."
+    glossarySuggestions:
+    - name: Ejercicio de opcion multiple
+      technicalName: MultipleChoice
+      kind: value-object-candidate
+      basedOn: course-domain/MultipleChoiceEntity
+      rationale: "FEAT-OPMUL convierte al MC en un tipo de ejercicio con reglas propias\
+        \ (se mide, no se corrige) y lo nombra en cada regla. Hoy no hay termino canonico\
+        \ que las enlace."
+    _change: add
+  - name: FormEntity
+    type: record
+    fields:
+    - name: multipleChoice
+      type: MultipleChoiceEntity
+      description: Opciones de un formulario MULTIPLE_CHOICE (form.selection + form.items);
+        null en cualquier otro kind (F-OPMUL-R001).
+      _change: add
+    - name: unmodeledFields
+      type: "Map<String,Object>"
+      description: "Claves del formulario que el modelo no interpreta, en su orden\
+        \ original, para que cargar y guardar las devuelva intactas; null si no hay\
+        \ (F-OPMUL-R001, F-OPMUL-R002)."
+      _change: add
+    glossarySuggestions:
+    - name: Dato no interpretado
+      technicalName: UnmodeledField
+      kind: value-object-candidate
+      basedOn: course-domain/FormEntity
+      rationale: "F-OPMUL-R001, R002 y R008 descansan en la nocion de 'lo que el sistema\
+        \ no interpreta' de un ejercicio o de su formulario, que se conserva con su\
+        \ valor y en su orden. Vive en FormEntity.unmodeledFields y QuizTemplateEntity.unmodeledFields."
+    _change: modify
+  - name: QuizTemplateEntity
+    type: record
+    fields:
+    - name: unmodeledFields
+      type: "Map<String,Object>"
+      description: "Claves del ejercicio que el modelo no interpreta (formCloze, respaldos\
+        \ de instrucciones...), en su orden original; null si no hay (F-OPMUL-R001,\
+        \ F-OPMUL-R002)."
+      _change: add
+    _change: modify
+  _change: modify
+- name: audit-domain
+  models:
+  - name: AuditableQuiz
+    type: record
+    fields:
+    - name: multipleChoice
+      type: MultipleChoiceEntity
+      description: "Opciones de un MC, copiadas tal cual desde su formulario por CourseToAuditableMapper;\
+        \ null en cualquier otro kind. Son parte del contenido que recibe el juez\
+        \ de consigna (F-OPMUL-R005)."
+      _change: add
+    _change: modify
+  packages:
+  - name: quizinstruction
+    models:
+    - name: QuizInstructionSubjectView
+      type: record
+      fields:
+      - name: multipleChoice
+        type: MultipleChoiceEntity
+        description: "Opciones de un MC; null en cualquier otro kind. El render del\
+          \ juez las pone en el hueco, en el orden del alumno y con la correcta marcada\
+          \ [CORRECT]; un CLOZE se renderiza igual que antes (F-OPMUL-R005)."
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: revision-domain
+  models:
+  - name: RevisionOutcomeKind
+    type: enum
+    fields:
+    - name: MULTIPLE_CHOICE_UNSUPPORTED
+      description: "revise rechazo la tarea porque su ejercicio es de opcion multiple,\
+        \ para cualquier tipo de diagnostico y antes de consultar a ningun modelo:\
+        \ el curso no se escribe y la tarea queda SKIPPED (F-OPMUL-R006)."
+      _change: add
+    _change: modify
+  - name: ProposalDecisionOutcomeKind
+    type: enum
+    fields:
+    - name: MULTIPLE_CHOICE_UNSUPPORTED
+      description: "approve no aplico la propuesta porque el ejercicio es de opcion\
+        \ multiple en la propuesta o en el curso de hoy, aunque la propuesta sea de\
+        \ cuando era CLOZE. No se escribe nada y la propuesta queda sin decidir (F-OPMUL-R006)."
+      _change: add
+    _change: modify
+  packages:
+  - name: quizinstruction
+    models:
+    - name: QuizInstructionTaskOutcomeKind
+      type: enum
+      fields:
+      - name: MULTIPLE_CHOICE_UNSUPPORTED
+        description: "La tarea cae sobre un ejercicio de opcion multiple: ni corregida\
+          \ ni fallida. Queda SKIPPED para que la corrida siguiente no la vuelva a\
+          \ tomar (F-OPMUL-R006)."
+        _change: add
+      _change: modify
+    - name: QuizInstructionCorrectionRunReport
+      type: record
+      fields:
+      - name: multipleChoiceUnsupported
+        type: int
+        description: "Tareas salteadas por caer sobre un ejercicio de opcion multiple;\
+          \ el reporte las informa como 'Opcion multiple (salteadas): N'. No suma\
+          \ a failed ni a notCorrected (F-OPMUL-R006)."
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-OPMUL
+  code: F-OPMUL
