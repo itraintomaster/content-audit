@@ -1,0 +1,806 @@
+code: FEAT-HALL
+description: "FEAT-HALL: contrato del hallazgo, catálogo de analizadores y números\
+  \ por contexto. Cada analizador se registra con un proveedor que trae su ficha y\
+  \ lo construye limpio en cada corrida; el motor corre exactamente lo pedido en una\
+  \ sola pasada, recoge los hallazgos antes de agregar y publica en cada nodo el puntaje\
+  \ de vocabulario de hoy y los errores contados. Un analizador nuevo agrega su paquete\
+  \ y su proveedor; lo compartido que todavía toca queda listado como enganche."
+modules:
+- name: audit-domain
+  models:
+  - name: AnalyzerDescriptor
+    type: record
+    fields:
+    - name: question
+      type: String
+      description: "Qué pregunta el analizador, en una línea (F-HALL-R006)."
+      _change: add
+    - name: reads
+      type: String
+      description: Qué lee del curso para responderla (F-HALL-R006).
+      _change: add
+    - name: rules
+      type: List<AnalyzerRuleCard>
+      description: "Sus reglas. Todo hallazgo nombra una de éstas y lleva su costo\
+        \ (F-HALL-R002 inv. 3, R006 inv. 2)."
+      _change: add
+    - name: goal
+      type: String
+      description: "Su meta tal como la aplica el código; si el requirement dice otra\
+        \ cosa, manda el código y la diferencia se anota (regla 4 del brief 087)."
+      _change: add
+    - name: family
+      type: AnalyzerFamily
+      description: La única familia en la que publica números (F-HALL-R007).
+      _change: add
+    - name: evaluatedTargets
+      type: List<AuditTarget>
+      description: "Niveles donde calcula su propio puntaje. Sólo ahí el motor le\
+        \ pide hallazgos: los niveles que reciben su promedio nunca los tienen (F-HALL-R001\
+        \ inv. 2)."
+      domainLinks:
+      - term: Objetivo de auditoría
+        role: carries
+      _change: add
+    - name: resolutions
+      type: List<FindingResolution>
+      description: Cómo se resuelven sus hallazgos; todo hallazgo usa una de éstas
+        (F-HALL-R006 inv. 2).
+      _change: add
+    - name: cost
+      type: AnalysisCost
+      description: El mayor costo de sus reglas. Decide si la falla por nodo se aísla
+        (consulta un modelo) y si entra en la corrida base del motor (instantáneo).
+      _change: add
+    glossarySuggestions:
+    - name: Ficha del analizador
+      technicalName: AnalyzerDescriptor
+      kind: value-object-candidate
+      basedOn: audit-domain/AnalyzerDescriptor
+      derivedFrom:
+      - Objetivo de auditoría
+      rationale: |
+        FEAT-HALL la llama «ficha»: lo que un analizador dice de sí mismo en get analyzers y lo único que la interfaz necesita para dibujarlo sin conocerlo.
+    _change: modify
+  - name: AuditNode
+    type: record
+    fields:
+    - name: findings
+      type: List<Finding>
+      description: "Hallazgos de los analizadores que evaluaron este nodo y no pasa,\
+        \ ordenados por analizador (orden del catálogo), regla y lo que marcan. Vací\
+        o en un nodo que pasa o que sólo recibe promedios (F-HALL-R001, R014)."
+      _change: add
+    - name: numbers
+      type: ContextNumbers
+      description: "Números publicados de este contexto: puntaje de vocabulario y\
+        \ errores contados. Los calcula el motor una sola vez; ningún verbo los recalcula\
+        \ (F-HALL-R008 a R010)."
+      _change: add
+    - name: unevaluatedBy
+      type: List<String>
+      description: "Analizadores que alcanzaron este nodo y no lo evaluaron: pendiente\
+        \ por tope, juez caído o falla aislada por el motor. Es lo que deja contar\
+        \ lo sin evaluar (F-HALL-R008 inv. 1 y 3, R011 inv. 2)."
+      _change: add
+    _change: modify
+  interfaces:
+  - name: ContentAnalyzer
+    sealed: false
+    exposes:
+    - signature: "findingsAt(AuditNode node): List<FindingDraft>"
+      _change: add
+    _change: modify
+  - name: AuditEngine
+    sealed: false
+    exposes:
+    - signature: "runAudit(AuditableCourse course, AnalyzerRunSelection selection):\
+        \ AuditReport"
+      throwsExceptions:
+      - UnknownAnalyzerException
+      _change: add
+    _change: modify
+  - name: AuditReportStore
+    sealed: false
+    exposes:
+    - signature: "loadDigest(String id): Optional<AuditDigest>"
+      _change: add
+    _change: modify
+  - name: EvaluationAnalyzerFactory
+    sealed: false
+    _change: delete
+  - name: AnalyzerProvider
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "analyzerName(): String"
+    - signature: "describe(): AnalyzerDescriptor"
+    - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
+    - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
+    - signature: "config(): Optional<SelfDescribingConfig>"
+    _change: add
+  - name: AnalyzerCatalog
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "list(): List<AnalyzerDescriptor>"
+    - signature: "find(String analyzerName): Optional<AnalyzerDescriptor>"
+    - signature: "provider(String analyzerName): Optional<AnalyzerProvider>"
+    - signature: "planBinding(String analyzerName): Optional<AnalyzerPlanBinding>"
+    glossarySuggestions:
+    - name: Catálogo de analizadores
+      technicalName: AnalyzerCatalog
+      kind: domain-service-candidate
+      basedOn: audit-domain/AnalyzerCatalog
+      rationale: |
+        La única fuente de nombres y fichas que leen get analyzers, analyze, el motor y el plan.
+    _change: add
+  - name: FindingCollector
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "collect(AuditNode root, ContentAnalyzer analyzer, AnalyzerDescriptor\
+        \ card): void"
+      throwsExceptions:
+      - FindingContractViolationException
+    _change: add
+  - name: ContextNumbersCalculator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "compute(AuditNode root, List<AnalyzerDescriptor> analyzers): void"
+    _change: add
+  implementations:
+  - name: IAuditEngine
+    requiresInject:
+    - name: contentAnalyzers
+      type: List<ContentAnalyzer>
+      _change: delete
+    - name: analyzerCatalog
+      type: AnalyzerCatalog
+      description: "De acá salen los analizadores de cada corrida, construidos de\
+        \ cero por su proveedor, y sus fichas. runAudit(course) corre la selecció\
+        n base: los de costo instantáneo, que hoy son los siete clásicos."
+    - name: scoreAggregator
+      type: ScoreAggregator
+      description: "La agregación genérica de siempre. Corre después de todos los\
+        \ analizadores, jueces incluidos, así que el juez llega a tema, nivel y curso\
+        \ (F-HALL-R011 inv. 1)."
+    - name: findingCollector
+      type: FindingCollector
+      description: "Se invoca tras el recorrido de cada analizador y antes de agregar,\
+        \ cuando sólo existen puntajes propios."
+    - name: contextNumbersCalculator
+      type: ContextNumbersCalculator
+      description: "Se invoca al final, sobre el árbol ya agregado, con las fichas\
+        \ de lo que corrió."
+    _change: modify
+  - name: SentenceLengthAnalyzerProvider
+    requiresInject:
+    - name: nlpTokenizer
+      type: NlpTokenizer
+    - name: config
+      type: SentenceLengthConfig
+    visibility: public
+    implements:
+    - AnalyzerProvider
+    _change: add
+  - name: KnowledgeTitleLengthAnalyzerProvider
+    visibility: public
+    implements:
+    - AnalyzerProvider
+    _change: add
+  - name: KnowledgeInstructionsLengthAnalyzerProvider
+    visibility: public
+    implements:
+    - AnalyzerProvider
+    _change: add
+  packages:
+  - name: finding
+    description: "Contrato del hallazgo (FEAT-HALL grupo A). Una sola forma para todo\
+      \ lo que no pasa, venga del analizador que venga; lo propio de cada analizador\
+      \ sigue en su diagnóstico tipado y nunca acá (F-HALL-R001 inv. 3). El analizador\
+      \ decide la regla, lo que marca, la gravedad, la resolución y la evidencia (FindingDraft);\
+      \ el motor estampa el analizador, el nodo, el costo y la identidad, así que\
+      \ esos cuatro no pueden salir mal."
+    visibility: public
+    models:
+    - name: Finding
+      type: record
+      fields:
+      - name: analyzer
+        type: String
+        description: "Nombre canónico del catálogo: el mismo del informe, de --analyzers,\
+          \ del tope y de config/stats (F-HALL-R005)."
+      - name: rule
+        type: String
+        description: Id de una regla de la ficha del analizador.
+      - name: node
+        type: FindingNodeRef
+        description: El nodo donde cuelga el hallazgo.
+      - name: severity
+        type: FindingSeverity
+      - name: evidence
+        type: FindingEvidence
+      - name: resolution
+        type: FindingResolution
+        description: Una de las que declara la ficha (F-HALL-R006 inv. 2).
+      - name: cost
+        type: AnalysisCost
+        description: El de la regla que lo produjo (F-HALL-R002 inv. 3).
+      - name: identity
+        type: FindingIdentity
+      glossarySuggestions:
+      - name: Hallazgo
+        technicalName: Finding
+        kind: value-object-candidate
+        basedOn: audit-domain/finding/Finding
+        rationale: |
+          Lo que un analizador informa de un nodo que no pasa, con la misma forma para los diecinueve. El analista pidió promoverlo cuando José apruebe FEAT-HALL.
+      _change: add
+    - name: FindingDraft
+      type: record
+      fields:
+      - name: rule
+        type: String
+        description: Lo que decide el analizador sobre un nodo que evaluó; el motor
+          lo completa como Finding. Id de una regla de su ficha.
+      - name: marker
+        type: String
+        description: "Qué marca, si la regla marca más de una cosa en el nodo (la\
+          \ palabra, la opción). Vacío si marca una sola."
+      - name: severity
+        type: FindingSeverity
+      - name: resolution
+        type: FindingResolution
+      - name: evidence
+        type: FindingEvidence
+      _change: add
+    - name: FindingNodeRef
+      type: record
+      fields:
+      - name: target
+        type: AuditTarget
+      - name: nodeId
+        type: String
+        description: "Id de la entidad del curso; «root» para el curso, como el plan."
+      - name: label
+        type: String
+      _change: add
+    - name: FindingEvidence
+      type: record
+      fields:
+      - name: examined
+        type: List<EvidencePart>
+        description: "Qué miró: las partes que leyó, con su texto como lo ve el alumno\
+          \ y nunca en el formato interno del curso, o la medida que tomó junto a\
+          \ su meta. Al menos una (F-HALL-R003). Todo es función del curso y de los\
+          \ veredictos registrados: nada que cambie de corrida a corrida."
+      - name: observation
+        type: String
+        description: "Qué encontró: una línea en castellano con palabras del nodo."
+      - name: relatedNodes
+        type: List<FindingNodeRef>
+        description: "Con qué otro nodo, si involucra otro (el duplicado, los que\
+          \ contradicen la miniteoría). Vacía si no."
+      _change: add
+    - name: EvidencePart
+      type: record
+      fields:
+      - name: label
+        type: String
+        description: "Qué parte es, en castellano: oración, pista, opciones, traducció\
+          n, largo, meta."
+      - name: text
+        type: String
+      _change: add
+    - name: FindingIdentity
+      type: record
+      fields:
+      - name: key
+        type: String
+        description: "Forma canónica «analizador|regla|nodeId|marca»; la estampa el\
+          \ motor. No depende de la corrida, del orden del recorrido, de la hora ni\
+          \ de la versión del juez, y no es la huella del libro de evaluaciones (F-HALL-R014)."
+      - name: marker
+        type: String
+        description: Qué marca dentro del nodo; vacío si la regla marca una sola cosa.
+      _change: add
+    - name: FindingSeverity
+      type: enum
+      fields:
+      - name: BLOCKING
+        description: El alumno no puede acertar.
+      - name: HIGH
+        description: Marca mal una respuesta correcta o enseña algo falso.
+      - name: MEDIUM
+        description: "Se entiende, pero está mal."
+      - name: LOW
+        description: Se puede mejorar.
+      glossarySuggestions:
+      - name: Gravedad
+        technicalName: FindingSeverity
+        kind: value-object-candidate
+        basedOn: audit-domain/finding/FindingSeverity
+        rationale: |
+          Eje cerrado de F-HALL-R002 con el que la bandeja ordena y «algún error» se parte.
+      _change: add
+    - name: FindingResolution
+      type: enum
+      fields:
+      - name: RULE
+        description: "Se arregla con una regla, sin modelo."
+      - name: PANEL
+        description: "Mesa: uno propone y los jueces deciden."
+      - name: RANK_ONLY
+        description: "No se arregla: dice qué mirar primero. En la familia de errores\
+          \ no cuenta como error ni baja el puntaje."
+      _change: add
+    - name: AnalysisCost
+      type: enum
+      fields:
+      - name: INSTANT
+        description: Sin modelo. Entra en la corrida base del motor.
+      - name: LOCAL_MODEL
+        description: Consulta un modelo que corre en la máquina. La falla por nodo
+          se aísla.
+      - name: PAID_MODEL
+        description: Consulta un modelo pago. La falla por nodo se aísla y lleva tope
+          por nombre.
+      _change: add
+    - name: FindingContractViolationException
+      type: exception
+      fields:
+      - name: analyzerName
+        type: String
+      - name: nodeId
+        type: String
+      - name: detail
+        type: String
+        description: "Hallazgo en un nodo que no evaluó o que pasa, nodo que no pasa\
+          \ sin hallazgo, regla o resolución fuera de su ficha, evidencia vacía o\
+          \ identidad repetida. Es un error de programación: corta la corrida y lo\
+          \ atrapan los tests del analizador antes de integrarlo."
+      message: "El analizador '%s' rompió el contrato del hallazgo en el nodo %s:\
+        \ %s"
+      _change: add
+      extends: RuntimeException
+    _change: add
+  - name: catalog
+    description: "Lo que viaja con el catálogo de analizadores (FEAT-HALL grupo B):\
+      \ familia, reglas de la ficha, cómo pasa al plan, qué corre en una corrida y\
+      \ los dos rechazos. El puerto (AnalyzerCatalog) y el SPI (AnalyzerProvider)\
+      \ viven en la raíz del módulo, junto a ContentAnalyzer: un analizador existe\
+      \ si y sólo si tiene un proveedor registrado, y de ahí salen get analyzers,\
+      \ config y stats, la validación de analyze, la corrida del motor y el plan.\
+      \ Sumar un analizador suma un proveedor y no cambia ninguna otra ficha (F-HALL-R006\
+      \ inv. 3)."
+    visibility: public
+    models:
+    - name: AnalyzerFamily
+      type: enum
+      fields:
+      - name: ERRORS
+        description: ¿El ejercicio está bien hecho? Cuenta ejercicios con error; la
+          meta es 0.
+      - name: VOCABULARY
+        description: "¿El vocabulario es el adecuado? Su número es su puntaje contra\
+          \ su meta, como hoy."
+      glossarySuggestions:
+      - name: Familia de analizadores
+        technicalName: AnalyzerFamily
+        kind: value-object-candidate
+        basedOn: audit-domain/catalog/AnalyzerFamily
+        rationale: |
+          Separa lo que se cuenta (errores) de lo que se promedia (vocabulario); es lo que deja el 73,9 % intacto (F-HALL-R007, R009).
+      _change: add
+    - name: AnalyzerRuleCard
+      type: record
+      fields:
+      - name: id
+        type: String
+        description: Único dentro del analizador.
+      - name: description
+        type: String
+      - name: cost
+        type: AnalysisCost
+      _change: add
+    - name: AnalyzerPlanBinding
+      type: record
+      fields:
+      - name: taskKind
+        type: String
+        description: "Nombre exacto de la constante de DiagnosisKind. Si no existe,\
+          \ el plan lo declara en vez de descartarlo (F-HALL-R004 inv. 3)."
+        domainLinks:
+        - term: Tipo de diagnóstico
+          role: carries
+      - name: taskTargets
+        type: List<AuditTarget>
+        description: "Niveles donde un puntaje menor que 1 es tarea. Subconjunto de\
+          \ evaluatedTargets: nunca hay tarea sobre un promedio."
+      _change: add
+    - name: AnalyzerRunSelection
+      type: record
+      fields:
+      - name: analyzers
+        type: List<String>
+        description: "Qué corre en esta corrida: ya validado contra el catálogo y\
+          \ en orden del catálogo."
+      - name: policies
+        type: "Map<String,EvaluationRunPolicy>"
+        description: Política por nombre canónico; los que consultan un modelo la
+          reciben en su create.
+      _change: add
+    - name: UnknownAnalyzerException
+      type: exception
+      fields:
+      - name: analyzerName
+        type: String
+        description: "Nombre que no está en el catálogo, pedido para correr, excluir\
+          \ o ponerle tope. Rechaza la corrida antes de cargar el curso: nada corre\
+          \ y no se escribe informe (F-HALL-R012; mensaje de F-CLIRV-R016)."
+      message: Analyzer '%s' not found. Run 'content-audit get analyzers' to see available
+        analyzers.
+      _change: add
+      extends: IllegalArgumentException
+    - name: InvalidAnalyzerCardException
+      type: exception
+      fields:
+      - name: analyzerName
+        type: String
+      - name: detail
+        type: String
+        description: "Campo vacío, nombre repetido o distinto del del proveedor, costo\
+          \ que no es el mayor de sus reglas, o tarea en un nivel que no evalúa. Sale\
+          \ al armar el catálogo, al arrancar (F-HALL-R006 inv. 1)."
+      message: "La ficha del analizador '%s' no es válida: %s"
+      _change: add
+      extends: RuntimeException
+    _change: add
+  - name: contextnumbers
+    description: "Números por contexto (FEAT-HALL grupo C), calculados por content-audit\
+      \ y publicados en cada nodo del informe. Un error no se promedia: se cuenta.\
+      \ Los conteos se suman de hijos a padres y los porcentajes se recalculan en\
+      \ cada nodo, nunca se promedian (F-HALL-R008). También vive acá el resumen chico\
+      \ que lee quien dibuja, para no recorrer los 146 MB del informe."
+    visibility: public
+    models:
+    - name: ContextNumbers
+      type: record
+      fields:
+      - name: vocabularyScore
+        type: Double
+        description: "Promedio simple de los puntajes de los analizadores de vocabulario\
+          \ presentes en el nodo, uno por analizador, sin sub-métricas ni familia\
+          \ de errores. Null si ninguno tiene puntaje ahí (F-HALL-R009)."
+      - name: analyzerScores
+        type: List<AnalyzerScore>
+        description: "Puntaje de cada analizador con puntaje en el nodo, de las dos\
+          \ familias, con sus sub-métricas adentro. En el curso trae una entrada por\
+          \ cada analizador de la corrida, aunque no tenga puntaje: es la lista de\
+          \ lo que corrió."
+      - name: errors
+        type: ErrorCounts
+        description: Null si no corrió ningún analizador de errores.
+      glossarySuggestions:
+      - name: Números por contexto
+        technicalName: ContextNumbers
+        kind: value-object-candidate
+        basedOn: audit-domain/contextnumbers/ContextNumbers
+        rationale: |
+          El número de cada tema, topic, nivel y curso que publica content-audit y que ningún verbo ni pantalla recalcula (F-HALL-R010).
+      - name: Puntaje de vocabulario
+        technicalName: VocabularyScore
+        kind: value-object-candidate
+        basedOn: audit-domain/contextnumbers/ContextNumbers
+        rationale: |
+          El puntaje general de hoy con su nombre verdadero: promedio simple de los analizadores de vocabulario del nodo, sin sub-métricas ni jueces (F-HALL-R009, R013).
+      _change: add
+    - name: AnalyzerScore
+      type: record
+      fields:
+      - name: analyzer
+        type: String
+      - name: family
+        type: AnalyzerFamily
+      - name: score
+        type: Double
+        description: "Null sólo en el curso, para un analizador de la corrida que\
+          \ no dejó puntaje."
+      - name: subMetrics
+        type: List<SubMetricScore>
+        description: "Las claves «analizador/x» de este nodo, como parte de su analizador\
+          \ y fuera de todo promedio (F-HALL-R010)."
+      _change: add
+    - name: SubMetricScore
+      type: record
+      fields:
+      - name: name
+        type: String
+        description: "Lo que sigue a la barra, por ejemplo Q1."
+      - name: score
+        type: double
+      _change: add
+    - name: ErrorCounts
+      type: record
+      fields:
+      - name: quizzes
+        type: int
+        description: "Ejercicios del nodo (un ejercicio se cuenta a sí mismo). Cierran\
+          \ tres sumas: evaluados más sin evaluar dan alcanzados; las cuatro gravedades\
+          \ dan withAnyError; y cada conteo de un nodo es la suma de sus hijos."
+      - name: withAnyError
+        type: int
+        description: "Ejercicios con al menos un hallazgo que cuenta como error, de\
+          \ cualquier analizador de errores. Uno cuenta una vez, tenga los hallazgos\
+          \ que tenga."
+      - name: anyErrorShare
+        type: double
+        description: withAnyError sobre quizzes.
+      - name: bySeverity
+        type: SeverityCounts
+        description: Ejercicios según su gravedad más alta.
+      - name: notFullyEvaluated
+        type: int
+        description: "Ejercicios que al menos un analizador de errores alcanzó y no\
+          \ evaluó: por eso withAnyError se lee como piso (F-HALL-R008 inv. 3)."
+      - name: analyzers
+        type: List<AnalyzerErrorCounts>
+      _change: add
+    - name: AnalyzerErrorCounts
+      type: record
+      fields:
+      - name: analyzer
+        type: String
+      - name: reached
+        type: int
+        description: Ejercicios que mira (tiene puntaje propio o los marcó sin evaluar).
+      - name: evaluated
+        type: int
+      - name: notEvaluated
+        type: int
+      - name: withError
+        type: int
+      - name: errorShare
+        type: double
+        description: "withError sobre evaluated, nunca sobre lo no evaluado."
+      - name: marked
+        type: int
+        description: "Ejercicios con hallazgos que sólo ordenan: se publican aparte\
+          \ y no cuentan como error."
+      _change: add
+    - name: SeverityCounts
+      type: record
+      fields:
+      - name: blocking
+        type: int
+      - name: high
+        type: int
+      - name: medium
+        type: int
+      - name: low
+        type: int
+      _change: add
+    - name: AuditDigest
+      type: record
+      fields:
+      - name: auditId
+        type: String
+        description: El id con que el almacén guardó el informe completo.
+      - name: root
+        type: DigestNode
+        description: "El árbol del informe sin las entidades del curso, que hoy se\
+          \ repiten en cuatro niveles y son casi todo el JSON de 146 MB. Lo escribe\
+          \ el almacén al guardar: copia, no calcula."
+      _change: add
+    - name: DigestNode
+      type: record
+      fields:
+      - name: nodeId
+        type: String
+      - name: target
+        type: AuditTarget
+      - name: label
+        type: String
+      - name: numbers
+        type: ContextNumbers
+      - name: findings
+        type: List<Finding>
+      - name: unevaluatedBy
+        type: List<String>
+      - name: children
+        type: List<DigestNode>
+      _change: add
+    _change: add
+  - name: findingengine
+    description: "Motor del contrato: arma el catálogo validando cada ficha, recoge\
+      \ y estampa los hallazgos de cada analizador, y calcula los números por contexto.\
+      \ Sus puertos (AnalyzerCatalog, FindingCollector, ContextNumbersCalculator)\
+      \ viven en la raíz del módulo; acá sólo las implementaciones, que construye\
+      \ únicamente la raíz de composición."
+    visibility: public
+    implementations:
+    - name: DefaultAnalyzerCatalog
+      requiresInject:
+      - name: providers
+        type: List<AnalyzerProvider>
+        description: "En el orden de registro, que es el orden del catálogo, de la\
+          \ corrida y de los hallazgos dentro de un nodo. Se valida al construir (InvalidAnalyzerCardException)."
+      visibility: public
+      implements:
+      - AnalyzerCatalog
+      _change: add
+    - name: DefaultFindingCollector
+      visibility: public
+      implements:
+      - FindingCollector
+      _change: add
+    - name: DefaultContextNumbersCalculator
+      visibility: public
+      implements:
+      - ContextNumbersCalculator
+      _change: add
+    allowedClients:
+    - audit-cli
+    _change: add
+  - name: quizinstructionengine
+    visibility: public
+    implementations:
+    - name: DefaultQuizInstructionAnalyzerFactory
+      implements:
+      - AnalyzerProvider
+      _change: modify
+    _change: modify
+  - name: coca
+    visibility: internal
+    implementations:
+    - name: CocaBucketsAnalyzerProvider
+      requiresInject:
+      - name: nlpTokenizer
+        type: NlpTokenizer
+      - name: cocaBucketsConfig
+        type: CocaBucketsConfig
+      visibility: public
+      implements:
+      - AnalyzerProvider
+      _change: add
+    _change: modify
+  - name: lrec
+    visibility: internal
+    implementations:
+    - name: LemmaRecurrenceAnalyzerProvider
+      requiresInject:
+      - name: lemmaRecurrenceConfig
+        type: LemmaRecurrenceConfig
+      visibility: public
+      implements:
+      - AnalyzerProvider
+      _change: add
+    _change: modify
+  - name: labs
+    visibility: internal
+    implementations:
+    - name: LemmaAbsenceAnalyzerProvider
+      requiresInject:
+      - name: evpCatalogPort
+        type: EvpCatalogPort
+      - name: lemmaAbsenceConfig
+        type: LemmaAbsenceConfig
+      - name: sentenceLexicalScorer
+        type: SentenceLexicalScorer
+      visibility: public
+      implements:
+      - AnalyzerProvider
+      _change: add
+    _change: modify
+  - name: lemmacount
+    visibility: internal
+    implementations:
+    - name: LemmaCountAnalyzerProvider
+      requiresInject:
+      - name: evpCatalogPort
+        type: EvpCatalogPort
+      - name: lemmaCountConfig
+        type: LemmaCountConfig
+      visibility: public
+      implements:
+      - AnalyzerProvider
+      _change: add
+    _change: modify
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    requiresInject:
+    - name: courseRepository
+      type: CourseRepository
+    - name: courseToAuditableMapper
+      type: CourseToAuditableMapper
+    - name: auditEngine
+      type: AuditEngine
+    - name: allAnalyzers
+      type: List<ContentAnalyzer>
+      _change: delete
+    - name: scoreAggregator
+      type: ScoreAggregator
+      _change: delete
+    - name: evaluationAnalyzerFactories
+      type: List<EvaluationAnalyzerFactory>
+      _change: delete
+    - name: analyzerCatalog
+      type: AnalyzerCatalog
+      description: "Para validar cada nombre pedido, excluido o con tope antes de\
+        \ cargar el curso, y armar la selección exacta en orden del catálogo (F-HALL-R012).\
+        \ El runner ya no construye motores ni conoce jueces."
+    _change: modify
+  - name: DefaultAnalyzerRegistry
+    requiresInject:
+    - name: analyzers
+      type: List<ContentAnalyzer>
+      _change: delete
+    - name: configs
+      type: List<SelfDescribingConfig>
+      _change: delete
+    - name: analyzerCatalog
+      type: AnalyzerCatalog
+      description: "get analyzers, config y stats leen del mismo catálogo que corre\
+        \ analyze: quiz-instruction aparece y config analyzer deja de decir not found\
+        \ (F-HALL-R005)."
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: UnconvertedScoreCount
+    type: record
+    fields:
+    - name: analyzer
+      type: String
+      description: Analizador de errores con puntajes menores que 1 que el plan no
+        convirtió en tarea.
+    - name: nodeCount
+      type: int
+      description: Nodos evaluados por ese analizador que quedaron sin tarea.
+    - name: reason
+      type: String
+      description: "Por qué: sin tipo de tarea, tipo de tarea desconocido o nivel\
+        \ sin tarea. El plan lo declara en vez de descartarlo en silencio (F-HALL-R004\
+        \ inv. 3)."
+    _change: add
+  interfaces:
+  - name: RefinerEngine
+    sealed: false
+    exposes:
+    - signature: "unconvertedScores(AuditReport report): List<UnconvertedScoreCount>"
+      _change: add
+    _change: modify
+  implementations:
+  - name: DefaultRefinerEngine
+    requiresInject:
+    - name: analyzerCatalog
+      type: AnalyzerCatalog
+      description: "Qué niveles y qué tipo de tarea de cada analizador salen de su\
+        \ AnalyzerPlanBinding, no de listas por nivel ni de un switch por nombre.\
+        \ Las fichas de los ocho reproducen esas listas, así que el plan de hoy no\
+        \ cambia (F-HALL-R013)."
+    domainLinks:
+    - term: Tarea de corrección
+      role: produces
+    _change: modify
+  _change: modify
+- name: audit-cli
+  models:
+  - name: AnalyzeOptions
+    type: record
+    fields:
+    - name: analyzerBudgets
+      type: "Map<String,Integer>"
+      description: "Tope de consultas nuevas por nombre canónico (--budget nombre=N),\
+        \ para cualquier analizador que consulte un modelo. --instruction-budget queda\
+        \ como atajo de quiz-instruction (F-HALL-R005, F-QINST-R006/R015)."
+      _change: add
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-HALL
+  code: F-HALL
