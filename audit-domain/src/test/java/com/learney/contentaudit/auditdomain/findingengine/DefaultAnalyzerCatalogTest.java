@@ -1,4 +1,44 @@
 package com.learney.contentaudit.auditdomain.findingengine;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.CocaBucketsConfig;
+import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
+import com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.KnowledgeTitleLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
+import com.learney.contentaudit.auditdomain.LemmaCountConfig;
+import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
+import com.learney.contentaudit.auditdomain.NlpTokenizer;
+import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
+import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
+import com.learney.contentaudit.auditdomain.SentenceLengthAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.SentenceLengthConfig;
+import com.learney.contentaudit.auditdomain.TargetRange;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.catalog.InvalidAnalyzerCardException;
+import com.learney.contentaudit.auditdomain.coca.AnalysisStrategy;
+import com.learney.contentaudit.auditdomain.coca.BandConfiguration;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.coca.FrequencyBand;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+import org.mockito.Mockito;
 
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +56,17 @@ public class DefaultAnalyzerCatalogTest {
     @Tag("F-HALL-R006")
     public void shouldBuildFromTheEightRealProvidersEightCardsWithEveryFieldFilledNameQuestionWhatItReadsRulesGoalFamilyEvaluatedNodesResolutionsAndCost(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(realProviders());
+
+        List<AnalyzerDescriptor> cards = catalog.list();
+
+        Assertions.assertEquals(EIGHT, cards.stream().map(AnalyzerDescriptor::getName).toList(),
+                "R006: one card per analyzer, in the order they are registered");
+        for (AnalyzerDescriptor card : cards) {
+            assertFilled(card);
+            Assertions.assertEquals(Optional.of(card), catalog.find(card.getName()),
+                    "R006: the card is read with get analyzer <name> too");
+        }
     }
 
     @Test
@@ -24,7 +74,22 @@ public class DefaultAnalyzerCatalogTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R006")
     public void shouldRefuseAtStartupACardWithAnEmptyFieldNamingTheAnalyzerAndTheField() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 inv. 1: an incomplete card never reaches a run -- the catalog refuses it at startup.
+        AnalyzerDescriptor noQuestion = card("pista-coherente", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT);
+        noQuestion.setQuestion(" ");
+
+        InvalidAnalyzerCardException refused = Assertions.assertThrows(InvalidAnalyzerCardException.class,
+                () -> new DefaultAnalyzerCatalog(List.of(providerOf(noQuestion))));
+
+        Assertions.assertEquals("pista-coherente", refused.getAnalyzerName(), "R006: it names the analyzer");
+        Assertions.assertTrue(refused.getDetail().contains("question"), "R006: and the field: " + refused.getDetail());
+
+        AnalyzerDescriptor noTargets = card("pista-coherente", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT);
+        noTargets.setEvaluatedTargets(List.of());
+        InvalidAnalyzerCardException refusedTargets = Assertions.assertThrows(InvalidAnalyzerCardException.class,
+                () -> new DefaultAnalyzerCatalog(List.of(providerOf(noTargets))));
+        Assertions.assertTrue(refusedTargets.getDetail().contains("evaluatedTargets"),
+                "R006: an empty list is an empty field too: " + refusedTargets.getDetail());
     }
 
     @Test
@@ -32,7 +97,20 @@ public class DefaultAnalyzerCatalogTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R006")
     public void shouldRefuseAtStartupACardWhoseCostIsNotTheHighestCostOfItsRules() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 inv. 2: the cost of the card is the highest of its rules (instant < local < paid):
+        // multiple choice mixes instant rules and a paid judge, so its card costs a paid model.
+        AnalyzerDescriptor cheap = card("opcion-multiple-valida", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT);
+        cheap.setRules(List.of(new AnalyzerRuleCard("single-correct-option", "Una sola opcion correcta", AnalysisCost.INSTANT),
+                new AnalyzerRuleCard("judge-options", "El juez mira las opciones", AnalysisCost.PAID_MODEL)));
+
+        InvalidAnalyzerCardException refused = Assertions.assertThrows(InvalidAnalyzerCardException.class,
+                () -> new DefaultAnalyzerCatalog(List.of(providerOf(cheap))));
+        Assertions.assertEquals("opcion-multiple-valida", refused.getAnalyzerName());
+
+        AnalyzerDescriptor right = card("opcion-multiple-valida", AnalyzerFamily.ERRORS, AnalysisCost.PAID_MODEL);
+        right.setRules(cheap.getRules());
+        Assertions.assertDoesNotThrow(() -> new DefaultAnalyzerCatalog(List.of(providerOf(right))),
+                "the same card costing the highest of its rules is accepted");
     }
 
     @Test
@@ -41,7 +119,19 @@ public class DefaultAnalyzerCatalogTest {
     @Tag("F-HALL-R005")
     public void shouldRefuseAtStartupTwoProvidersWithTheSameNameOrACardWhoseNameDiffersFromTheOneItsProviderPublishes(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: one name per analyzer -- the one its provider publishes is the one of its card.
+        AnalyzerProvider first = providerOf(card("pista-coherente", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT));
+        AnalyzerProvider second = providerOf(card("pista-coherente", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT));
+        InvalidAnalyzerCardException duplicated = Assertions.assertThrows(InvalidAnalyzerCardException.class,
+                () -> new DefaultAnalyzerCatalog(List.of(first, second)));
+        Assertions.assertEquals("pista-coherente", duplicated.getAnalyzerName());
+
+        AnalyzerProvider mismatched = providerOf("pista-coherente",
+                card("pista", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT));
+        InvalidAnalyzerCardException renamed = Assertions.assertThrows(InvalidAnalyzerCardException.class,
+                () -> new DefaultAnalyzerCatalog(List.of(mismatched)));
+        Assertions.assertEquals("pista-coherente", renamed.getAnalyzerName());
+        Assertions.assertTrue(renamed.getDetail().contains("pista"), renamed.getDetail());
     }
 
     @Test
@@ -50,7 +140,17 @@ public class DefaultAnalyzerCatalogTest {
     @Tag("F-HALL-R006")
     public void shouldAddTheCardOfANewAnalyzerLikePistaCoherenteAndLeaveTheEightExistingCardsUnchanged(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 inv. 3: adding an analyzer adds its card and changes no other.
+        List<AnalyzerDescriptor> before = new DefaultAnalyzerCatalog(realProviders()).list();
+        List<AnalyzerProvider> withNew = new ArrayList<>(realProviders());
+        AnalyzerDescriptor pista = card("pista-coherente", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT);
+        withNew.add(providerOf(pista));
+
+        List<AnalyzerDescriptor> after = new DefaultAnalyzerCatalog(withNew).list();
+
+        Assertions.assertEquals(9, after.size());
+        Assertions.assertEquals(before, after.subList(0, 8), "R006 inv. 3: the eight existing cards are unchanged");
+        Assertions.assertEquals(pista, after.get(8), "the new card is added as it is");
     }
 
     @Test
@@ -59,6 +159,124 @@ public class DefaultAnalyzerCatalogTest {
     @Tag("F-HALL-R007")
     public void shouldPutTheSevenClassicAnalyzersInTheVocabularyFamilyAndQuizinstructionInTheErrorsFamilyEachCardInASingleFamily(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: one family per analyzer; the seven classics are vocabulary, the judge counts errors.
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(realProviders());
+
+        for (String classic : EIGHT.subList(0, 7)) {
+            Assertions.assertEquals(AnalyzerFamily.VOCABULARY, catalog.find(classic).orElseThrow().getFamily(),
+                    "R007: " + classic + " is a vocabulary analyzer");
+        }
+        Assertions.assertEquals(AnalyzerFamily.ERRORS, catalog.find("quiz-instruction").orElseThrow().getFamily(),
+                "R007: quiz-instruction counts errors");
+    }
+
+    static final List<String> EIGHT = List.of("sentence-length", "knowledge-title-length",
+            "knowledge-instructions-length", "coca-buckets-distribution", "lemma-recurrence", "lemma-absence",
+            "lemma-count", "quiz-instruction");
+
+    /**
+     * The eight real providers, in the order Main registers them. Their configurations are mocks
+     * with the values the code applies (sentence-length A1 from 3 to 8, margin 5) and enough for
+     * their analyzers to run over a small course: the EVP catalog knows no word, COCA has two bands
+     * and no targets, and the judge has no session (it is never built here).
+     */
+    public static List<AnalyzerProvider> realProviders() {
+        SentenceLengthConfig sentenceLength = Mockito.mock(SentenceLengthConfig.class);
+        Mockito.when(sentenceLength.getTargetRange(Mockito.any())).thenAnswer(invocation -> {
+            CefrLevel level = invocation.getArgument(0);
+            return switch (level) {
+                case A1 -> Optional.of(new TargetRange(CefrLevel.A1, 3, 8));
+                case A2 -> Optional.of(new TargetRange(CefrLevel.A2, 5, 12));
+                case B1 -> Optional.of(new TargetRange(CefrLevel.B1, 8, 18));
+                case B2 -> Optional.of(new TargetRange(CefrLevel.B2, 10, 25));
+                default -> Optional.empty();
+            };
+        });
+        Mockito.when(sentenceLength.getToleranceMargin()).thenReturn(5);
+        CocaBucketsConfig coca = Mockito.mock(CocaBucketsConfig.class);
+        Mockito.when(coca.getBandConfiguration()).thenReturn(new BandConfiguration(List.of(
+                new FrequencyBand("top1k", 1, 1000), new FrequencyBand("top4k", 1001, 4000)), true));
+        Mockito.when(coca.getTargetsForLevel(Mockito.anyString())).thenReturn(List.of());
+        Mockito.when(coca.getQuarterTargetsForLevel(Mockito.anyString())).thenReturn(List.of());
+        Mockito.when(coca.getToleranceMargin()).thenReturn(10.0);
+        Mockito.when(coca.getAnalysisStrategy()).thenReturn(AnalysisStrategy.LEVELS);
+        Mockito.when(coca.getProgressionExpectations()).thenReturn(List.of());
+        LemmaRecurrenceConfig recurrence = Mockito.mock(LemmaRecurrenceConfig.class);
+        Mockito.when(recurrence.getTop()).thenReturn(100);
+        Mockito.when(recurrence.getOverExposedThreshold()).thenReturn(2.0);
+        Mockito.when(recurrence.getSubExposedThreshold()).thenReturn(50.0);
+        EvpCatalogPort evp = Mockito.mock(EvpCatalogPort.class);
+        LemmaAbsenceConfig absence = Mockito.mock(LemmaAbsenceConfig.class);
+        LemmaCountConfig count = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(count.getThreshold()).thenReturn(4);
+        return List.of(
+                new SentenceLengthAnalyzerProvider(Mockito.mock(NlpTokenizer.class), sentenceLength),
+                new KnowledgeTitleLengthAnalyzerProvider(),
+                new KnowledgeInstructionsLengthAnalyzerProvider(),
+                new CocaBucketsAnalyzerProvider(Mockito.mock(NlpTokenizer.class), coca),
+                new LemmaRecurrenceAnalyzerProvider(recurrence),
+                new LemmaAbsenceAnalyzerProvider(evp, absence,
+                        new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), absence)),
+                new LemmaCountAnalyzerProvider(evp, count),
+                new DefaultQuizInstructionAnalyzerFactory(null, null, null, Mockito.mock(QuizInstructionConfig.class)));
+    }
+
+    /** A complete card for an analyzer that does not exist yet, evaluating the quiz. */
+    static AnalyzerDescriptor card(String name, AnalyzerFamily family, AnalysisCost cost) {
+        return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿Pregunta de " + name + "?",
+                "La oracion como la ve el alumno", new ArrayList<>(List.of(new AnalyzerRuleCard("rule-" + name,
+                        "La regla de " + name, cost))), "Meta de " + name, family, List.of(AuditTarget.QUIZ),
+                List.of(FindingResolution.PANEL), cost);
+    }
+
+    static AnalyzerProvider providerOf(AnalyzerDescriptor card) {
+        return providerOf(card.getName(), card);
+    }
+
+    static AnalyzerProvider providerOf(String publishedName, AnalyzerDescriptor card) {
+        return new AnalyzerProvider() {
+            @Override
+            public String analyzerName() {
+                return publishedName;
+            }
+
+            @Override
+            public AnalyzerDescriptor describe() {
+                return card;
+            }
+
+            @Override
+            public ContentAnalyzer create(EvaluationRunPolicy policy) {
+                throw new AssertionError("the catalog never builds an analyzer");
+            }
+
+            @Override
+            public Optional<AnalyzerPlanBinding> planBinding() {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<SelfDescribingConfig> config() {
+                return Optional.empty();
+            }
+        };
+    }
+
+    private static void assertFilled(AnalyzerDescriptor card) {
+        String name = card.getName();
+        for (String text : List.of(name, card.getDescription(), card.getQuestion(), card.getReads(), card.getGoal())) {
+            Assertions.assertFalse(text == null || text.isBlank(), "R006: no text field of " + name + " is empty");
+        }
+        Assertions.assertNotNull(card.getTarget(), name);
+        Assertions.assertNotNull(card.getFamily(), "R006: " + name + " declares its family");
+        Assertions.assertNotNull(card.getCost(), "R006: " + name + " declares its cost");
+        Assertions.assertFalse(card.getRules().isEmpty(), "R006: " + name + " lists its rules");
+        Assertions.assertFalse(card.getEvaluatedTargets().isEmpty(), "R006: " + name + " says which nodes it evaluates");
+        Assertions.assertFalse(card.getResolutions().isEmpty(), "R006: " + name + " says how its findings are resolved");
+        for (AnalyzerRuleCard rule : card.getRules()) {
+            Assertions.assertFalse(rule.getId().isBlank() || rule.getDescription().isBlank(), name);
+            Assertions.assertTrue(rule.getCost().ordinal() <= card.getCost().ordinal(),
+                    "R006: no rule of " + name + " costs more than its card");
+        }
     }
 }

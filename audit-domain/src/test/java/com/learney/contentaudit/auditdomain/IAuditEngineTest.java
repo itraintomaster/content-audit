@@ -1,4 +1,32 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.catalog.UnknownAnalyzerException;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerErrorCounts;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerScore;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalogTest;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.BiConsumer;
+import org.junit.jupiter.api.Assertions;
 
 import javax.annotation.processing.Generated;
 import java.util.ArrayList;
@@ -358,7 +386,24 @@ public class IAuditEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R001")
     public void shouldLeaveNoSentencelengthFindingOnTheKnowledgeBePreguntasYesNoAlthoughAggregationGivesIt0995BecauseFindingsAreCollectedBeforeAggregating() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 2: the knowledge only receives the average of its quizzes; findings are
+        // collected before aggregating, so it has none although its average is 0,995.
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        quizzes.add(quizOf(LIVING_ROOM_ID, "He isn't in the living-room.", "He", "is", "n't", "in", "the", "living", "-",
+                "room", "."));
+        for (int i = 0; i < 39; i++) {
+            quizzes.add(quizOf("q" + i, "She is at home.", "She", "is", "at", "home", "."));
+        }
+        AuditableCourse course = courseOf(knowledgeOf("k-be", "Be: preguntas yes / no", quizzes));
+
+        AuditReport report = realEngine(classics()).runAudit(course,
+                new AnalyzerRunSelection(List.of("sentence-length"), Map.of()));
+
+        AuditNode knowledge = firstKnowledge(report);
+        assertEquals(0.995, knowledge.getScores().get("sentence-length"), 1e-9, "(0,8 + 39) / 40");
+        assertTrue(knowledge.getFindings().isEmpty(), "R001: no finding on a knowledge that only gets an average");
+        assertEquals(1, knowledge.getChildren().get(0).getFindings().size(),
+                "the quiz with 9 tokens, which the analyzer evaluated, has its finding");
     }
 
     @Test
@@ -366,7 +411,22 @@ public class IAuditEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R011")
     public void shouldAggregateInTheSameRunTheQuizinstructionScoresOfTheJudgedQuizzesIntoTheirKnowledgeTopicLevelAndCourseAveragingOnlyQuizzesWithAVerdictAndLeavingWithoutScoreAKnowledgeThatHasNone() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011 inv. 1: the judge runs with the others and before the aggregation, so its scores
+        // reach the knowledge, the topic, the level and the course, averaging only the quizzes
+        // with a verdict; a knowledge without any stays without a judge score.
+        AuditReport report = realEngine(withJudge(Map.of("q1", 0.3, "q2", 1.0), Set.of())).runAudit(judgedCourse(),
+                new AnalyzerRunSelection(List.of("sentence-length", "quiz-instruction"), Map.of()));
+
+        AuditNode level = report.getRoot().getChildren().get(0);
+        AuditNode topic = level.getChildren().get(0);
+        AuditNode judged = topic.getChildren().get(0);
+        AuditNode unjudged = topic.getChildren().get(1);
+        assertEquals(0.65, judged.getScores().get("quiz-instruction"), 1e-9, "R011: (0,3 + 1) / 2, q3 has no verdict");
+        assertNull(unjudged.getScores().get("quiz-instruction"), "R011: no verdict, no score");
+        for (AuditNode container : List.of(topic, level, report.getRoot())) {
+            assertEquals(0.65, container.getScores().get("quiz-instruction"), 1e-9,
+                    "R011: the judge reaches the " + container.getTarget() + " in the same run");
+        }
     }
 
     @Test
@@ -374,7 +434,24 @@ public class IAuditEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R011")
     public void shouldCountTheBreachesTheJudgeFoundAsErrorsOfTheirKnowledgeTopicLevelAndCourseInTheSameRunDeclaringTheQuizzesItLeftUnjudged() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011 inv. 2: its breaches count as errors in every container, with what it left
+        // unjudged declared.
+        AuditReport report = realEngine(withJudge(Map.of("q1", 0.3, "q2", 1.0), Set.of())).runAudit(judgedCourse(),
+                new AnalyzerRunSelection(List.of("sentence-length", "quiz-instruction"), Map.of()));
+
+        AuditNode level = report.getRoot().getChildren().get(0);
+        AuditNode topic = level.getChildren().get(0);
+        for (AuditNode container : List.of(topic, level, report.getRoot())) {
+            AnalyzerErrorCounts judge = errorCounts(container, "quiz-instruction");
+            assertEquals(List.of(4, 2, 2, 1), List.of(judge.getReached(), judge.getEvaluated(), judge.getNotEvaluated(),
+                    judge.getWithError()), "R011: q1 breaches; q3 and q4 were left unjudged, in " + container.getTarget());
+            assertEquals(1, container.getNumbers().getErrors().getWithAnyError());
+            assertEquals(2, container.getNumbers().getErrors().getNotFullyEvaluated(),
+                    "R011: what the judge left unjudged is declared");
+        }
+        AnalyzerErrorCounts inKnowledge = errorCounts(topic.getChildren().get(0), "quiz-instruction");
+        assertEquals(List.of(3, 2, 1, 1), List.of(inKnowledge.getReached(), inKnowledge.getEvaluated(),
+                inKnowledge.getNotEvaluated(), inKnowledge.getWithError()));
     }
 
     @Test
@@ -382,7 +459,21 @@ public class IAuditEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R011")
     public void shouldPublishOnEveryNodeTheSameVocabularyScoreWhetherTheJudgeRanOrNotTheQuizzesItJudgedIncluded() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011 inv. 3: the vocabulary score of every node is the one of the run without the judge,
+        // the judged quizzes included (DOUBT-EJERCICIO-JUZGADO, A).
+        AuditableCourse course = judgedCourse();
+        AuditReport withoutJudge = realEngine(classics()).runAudit(course);
+        AuditReport withJudgeRun = realEngine(withJudge(Map.of("q1", 0.3, "q2", 1.0, "q3", 0.0, "q4", 0.6), Set.of()))
+                .runAudit(course, new AnalyzerRunSelection(DefaultAnalyzerCatalogTest.realProviders().stream()
+                        .map(AnalyzerProvider::analyzerName).toList(), Map.of()));
+
+        List<Double> expected = new ArrayList<>();
+        walk(withoutJudge.getRoot(), node -> expected.add(node.getNumbers().getVocabularyScore()));
+        List<Double> actual = new ArrayList<>();
+        walk(withJudgeRun.getRoot(), node -> actual.add(node.getNumbers().getVocabularyScore()));
+        assertEquals(expected, actual, "R011: the same vocabulary score on every node, with or without the judge");
+        assertEquals(0.3, withJudgeRun.getRoot().getChildren().get(0).getChildren().get(0).getChildren().get(0)
+                .getChildren().get(0).getScores().get("quiz-instruction"), 1e-9, "q1 was judged in that run");
     }
 
     @Test
@@ -390,7 +481,23 @@ public class IAuditEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R012")
     public void shouldRunExactlyTheAnalyzersOfTheSelectionInCatalogOrderAndLeaveNoScoreFindingOrNumberOfAnyOther() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: exactly the analyzers asked for, in catalog order whatever order they were asked in,
+        // and nothing from any other.
+        List<String> built = new ArrayList<>();
+        IAuditEngine engine = realEngine(recording(withJudge(Map.of(), Set.of()), built));
+
+        AuditReport report = engine.runAudit(judgedCourse(), new AnalyzerRunSelection(
+                List.of("knowledge-instructions-length", "sentence-length"), Map.of()));
+
+        assertEquals(List.of("sentence-length", "knowledge-instructions-length"), built,
+                "R012: built and run in catalog order");
+        Set<String> asked = Set.of("sentence-length", "knowledge-instructions-length");
+        walk(report.getRoot(), node -> {
+            assertTrue(asked.containsAll(node.getScores().keySet()), "R012: no score of another: " + node.getScores());
+            node.getFindings().forEach(f -> assertTrue(asked.contains(f.getAnalyzer()), "R012: no finding of another"));
+            node.getNumbers().getAnalyzerScores().forEach(s -> assertTrue(asked.contains(s.getAnalyzer()),
+                    "R012: no number of another"));
+        });
     }
 
     @Test
@@ -398,7 +505,20 @@ public class IAuditEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R012")
     public void shouldRejectASelectionNamingAnAnalyzerTheCatalogDoesNotHaveBeforeBuildingAnyAnalyzerOrTouchingTheTree() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: a name the catalog does not have rejects the run before it starts.
+        List<String> built = new ArrayList<>();
+        IAuditEngine engine = realEngine(recording(withJudge(Map.of(), Set.of()), built));
+        AuditableCourse course = Mockito.mock(AuditableCourse.class);
+
+        UnknownAnalyzerException rejected = Assertions.assertThrows(UnknownAnalyzerException.class,
+                () -> engine.runAudit(course, new AnalyzerRunSelection(List.of("sentence-length", "quiz-instructions"),
+                        Map.of())));
+
+        assertEquals("quiz-instructions", rejected.getAnalyzerName());
+        assertEquals("Analyzer 'quiz-instructions' not found. Run 'content-audit get analyzers' to see available analyzers.",
+                rejected.getMessage(), "the message of F-CLIRV-R016");
+        assertTrue(built.isEmpty(), "R012: no analyzer was built");
+        Mockito.verifyNoInteractions(course);
     }
 
     @Test
@@ -406,7 +526,19 @@ public class IAuditEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R013")
     public void shouldGiveThroughRunAuditOfACourseAsBeforeTheContractTheScoresOfTheSevenClassicAnalyzersAndNoneFromTheJudgeTheRunThatTheConsolidatedViewAndTheImpactPreviewRelyOn() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R013: runAudit(course) is the base run -- the instant analyzers, today the seven classics --
+        // so the consolidated view and the impact preview compute what they did and never pay a judge.
+        List<String> built = new ArrayList<>();
+        IAuditEngine engine = realEngine(recording(withJudge(Map.of("q1", 0.3), Set.of()), built));
+
+        AuditReport report = engine.runAudit(judgedCourse());
+
+        List<String> seven = DefaultAnalyzerCatalogTest.realProviders().subList(0, 7).stream()
+                .map(AnalyzerProvider::analyzerName).toList();
+        assertEquals(seven, built, "R013: the seven classic analyzers, and never the judge");
+        assertEquals(new HashSet<>(seven), new HashSet<>(report.getRoot().getNumbers().getAnalyzerScores().stream()
+                .map(AnalyzerScore::getAnalyzer).toList()), "the course publishes the seven");
+        walk(report.getRoot(), node -> assertNull(node.getScores().get("quiz-instruction"), "R013: nothing of the judge"));
     }
 
     @Test
@@ -414,7 +546,24 @@ public class IAuditEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R014")
     public void shouldGiveTwoRunsInTheSameProcessOverTheSameCourseTheSameFindingsInTheSameOrderAndWithTheSameNumbersTheCourseScoresOfCocabucketsdistributionLemmaabsenceLemmacountAndLemmarecurrenceIncluded() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R014: the four course analyzers used to keep state in their fields; built again for every
+        // run, two runs in the same process give the same findings, order and numbers.
+        IAuditEngine engine = realEngine(classics());
+        AuditableCourse course = judgedCourse();
+
+        AuditReport first = engine.runAudit(course);
+        AuditReport second = engine.runAudit(course);
+
+        for (String courseAnalyzer : List.of("coca-buckets-distribution", "lemma-absence", "lemma-count", "lemma-recurrence")) {
+            assertEquals(first.getRoot().getScores().get(courseAnalyzer), second.getRoot().getScores().get(courseAnalyzer),
+                    "R014: the course score of " + courseAnalyzer);
+        }
+        List<Object> firstNodes = new ArrayList<>();
+        walk(first.getRoot(), node -> firstNodes.add(List.of(node.getFindings(), node.getNumbers())));
+        List<Object> secondNodes = new ArrayList<>();
+        walk(second.getRoot(), node -> secondNodes.add(List.of(node.getFindings(), node.getNumbers())));
+        assertEquals(firstNodes, secondNodes, "R014: the same findings, in the same order, and the same numbers");
+        assertTrue(first.getRoot().getFindings().size() > 0, "the course has findings to compare");
     }
 
     @Test
@@ -422,7 +571,25 @@ public class IAuditEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R014")
     public void shouldKeepTheIdentityOfTheFindingOnWhereIsMyWalletWhenHeIsntInTheLivingroomAnotherQuizOfItsKnowledgeChanges() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R014 inv. 3: a finding that stays after a change in another node keeps its identity.
+        IAuditEngine engine = realEngine(List.of(DefaultAnalyzerCatalogTest.realProviders().get(0), walletAwareAbsence()));
+        AuditableQuiz wallet = quizOf(WALLET_ID, "Where is my wallet?", "Where", "is", "my", "wallet", "?");
+        AuditableCourse before = courseOf(knowledgeOf("k-be", "Be: preguntas yes / no", List.of(
+                quizOf(LIVING_ROOM_ID, "He isn't in the living-room.", "He", "is", "n't", "in", "the", "living", "-",
+                        "room", "."), wallet)));
+        AuditableCourse after = courseOf(knowledgeOf("k-be", "Be: preguntas yes / no", List.of(
+                quizOf(LIVING_ROOM_ID, "He is not at home.", "He", "is", "not", "at", "home", "."), wallet)));
+
+        AuditNode walletBefore = firstKnowledge(engine.runAudit(before)).getChildren().get(1);
+        AuditReport afterReport = engine.runAudit(after);
+        AuditNode walletAfter = firstKnowledge(afterReport).getChildren().get(1);
+
+        assertEquals(1, walletBefore.getFindings().size());
+        assertEquals(walletBefore.getFindings().get(0).getIdentity(), walletAfter.getFindings().get(0).getIdentity(),
+                "R014: the finding on wallet keeps its identity");
+        assertEquals("wallet", walletAfter.getFindings().get(0).getIdentity().getMarker());
+        assertTrue(firstKnowledge(afterReport).getChildren().get(0).getFindings().isEmpty(),
+                "the living-room quiz, fixed, has no sentence-length finding any more");
     }
 
     @Test
@@ -430,7 +597,17 @@ public class IAuditEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R008")
     public void shouldLeaveAsNotEvaluatedByQuizinstructionAQuizOnWhichTheJudgeFailedSoThatItCountsAmongTheUnevaluatedQuizzes() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008 / F-QINST-R007 generalized: the failure of a model-backed analyzer on a quiz is
+        // isolated there, and the quiz is declared not evaluated by it.
+        AuditReport report = realEngine(withJudge(Map.of("q1", 1.0, "q2", 1.0, "q3", 1.0), Set.of("q2"))).runAudit(
+                judgedCourse(), new AnalyzerRunSelection(List.of("quiz-instruction"), Map.of()));
+
+        AuditNode failed = firstKnowledge(report).getChildren().get(1);
+        assertEquals(List.of("quiz-instruction"), failed.getUnevaluatedBy(), "R008: the failed quiz is not evaluated");
+        assertNull(failed.getScores().get("quiz-instruction"));
+        AnalyzerErrorCounts judge = errorCounts(report.getRoot(), "quiz-instruction");
+        assertEquals(2, judge.getNotEvaluated(), "R008: the failed quiz and q4, which had no verdict");
+        assertEquals(judge.getReached(), judge.getEvaluated() + judge.getNotEvaluated());
     }
 
     @Test
@@ -438,7 +615,26 @@ public class IAuditEngineTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R015")
     public void shouldLeaveTheAuditableCourseUntouchedWhenAnAnalyzerReturnsAFindingThatIsResolvedByARule() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R015: a finding resolved by a rule is not applied when analyzing: the course stays as it was.
+        AuditableCourse course = judgedCourse();
+        AuditableCourse untouched = judgedCourse();
+        AnalyzerDescriptor card = new AnalyzerDescriptor("pista-coherente", "Checks the hint", AuditTarget.QUIZ, "¿La pista coincide?",
+                "La pista y la respuesta", List.of(new AnalyzerRuleCard("hint-matches", "La pista coincide", AnalysisCost.INSTANT)),
+                "Ninguna pista incoherente", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
+                List.of(FindingResolution.RULE), AnalysisCost.INSTANT);
+        AnalyzerProvider fixable = scriptedProvider(card, (node, drafts) -> {
+            node.getScores().put("pista-coherente", "q1".equals(node.getEntity().getId()) ? 0.0 : 1.0);
+            if ("q1".equals(node.getEntity().getId())) {
+                drafts.add(new FindingDraft("hint-matches", null, FindingSeverity.BLOCKING, FindingResolution.RULE,
+                        new FindingEvidence(List.of(new EvidencePart("Pista", "(go)")), "La pista no coincide", List.of())));
+            }
+        });
+
+        AuditReport report = realEngine(List.of(fixable)).runAudit(course);
+
+        assertEquals(FindingResolution.RULE, firstKnowledge(report).getChildren().get(0).getFindings().get(0)
+                .getResolution(), "the finding is resolved by a rule");
+        assertEquals(untouched, course, "R015: analyzing never applies it -- the course is the same");
     }
 
     /**
@@ -501,5 +697,223 @@ public class IAuditEngineTest {
                 return java.util.Optional.empty();
             }
         };
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-HALL fixtures
+    // ------------------------------------------------------------------
+
+    private static final String LIVING_ROOM_ID = "67fab6d599301022953425aa";
+    private static final String WALLET_ID = "67fab6d599301022953425b1";
+
+    /** The real engine: the catalog of these providers, the real collector and the real calculator. */
+    private static IAuditEngine realEngine(List<AnalyzerProvider> providers) {
+        return new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(providers),
+                new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+    }
+
+    private static List<AnalyzerProvider> classics() {
+        return DefaultAnalyzerCatalogTest.realProviders().subList(0, 7);
+    }
+
+    /** The seven classics and a judge that answers from a script (no verdict: pending; failing: throws). */
+    private static List<AnalyzerProvider> withJudge(Map<String, Double> verdicts, Set<String> failing) {
+        List<AnalyzerProvider> providers = new ArrayList<>(classics());
+        AnalyzerDescriptor card = DefaultAnalyzerCatalogTest.realProviders().get(7).describe();
+        String rule = card.getRules().get(0).getId();
+        providers.add(scriptedProvider(card, (node, drafts) -> {
+            String id = node.getEntity().getId();
+            if (failing.contains(id)) {
+                throw new IllegalStateException("judge unavailable for " + id);
+            }
+            Double verdict = verdicts.get(id);
+            if (verdict == null) {
+                node.getUnevaluatedBy().add("quiz-instruction");
+                return;
+            }
+            node.getScores().put("quiz-instruction", verdict);
+            if (verdict < 1.0) {
+                drafts.add(new FindingDraft(rule, null, verdict == 0.0 ? FindingSeverity.BLOCKING : FindingSeverity.HIGH,
+                        FindingResolution.PANEL, new FindingEvidence(List.of(new EvidencePart("Oración", id)),
+                        "No cumple su consigna", List.of())));
+            }
+        }));
+        return providers;
+    }
+
+    /** A provider whose analyzer scores each quiz with the script and returns the drafts it left there. */
+    private static AnalyzerProvider scriptedProvider(AnalyzerDescriptor card,
+            BiConsumer<AuditNode, List<FindingDraft>> onQuiz) {
+        return new AnalyzerProvider() {
+            @Override
+            public String analyzerName() {
+                return card.getName();
+            }
+
+            @Override
+            public AnalyzerDescriptor describe() {
+                return card;
+            }
+
+            @Override
+            public ContentAnalyzer create(EvaluationRunPolicy policy) {
+                Map<AuditNode, List<FindingDraft>> drafts = new java.util.IdentityHashMap<>();
+                return new ContentAnalyzer() {
+                    @Override
+                    public Void onKnowledge(AuditNode node) {
+                        return null;
+                    }
+
+                    @Override
+                    public Void onQuiz(AuditNode node) {
+                        List<FindingDraft> left = new ArrayList<>();
+                        onQuiz.accept(node, left);
+                        drafts.put(node, left);
+                        return null;
+                    }
+
+                    @Override
+                    public Void onMilestone(AuditNode node) {
+                        return null;
+                    }
+
+                    @Override
+                    public Void onTopic(AuditNode node) {
+                        return null;
+                    }
+
+                    @Override
+                    public Void onCourseComplete(AuditNode rootNode) {
+                        return null;
+                    }
+
+                    @Override
+                    public String getName() {
+                        return card.getName();
+                    }
+
+                    @Override
+                    public AuditTarget getTarget() {
+                        return AuditTarget.QUIZ;
+                    }
+
+                    @Override
+                    public String getDescription() {
+                        return card.getDescription();
+                    }
+
+                    @Override
+                    public List<FindingDraft> findingsAt(AuditNode node) {
+                        return drafts.getOrDefault(node, List.of());
+                    }
+                };
+            }
+
+            @Override
+            public Optional<AnalyzerPlanBinding> planBinding() {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<SelfDescribingConfig> config() {
+                return Optional.empty();
+            }
+        };
+    }
+
+    /** Wraps each provider to write down, in order, which analyzers the engine builds. */
+    private static List<AnalyzerProvider> recording(List<AnalyzerProvider> providers, List<String> built) {
+        List<AnalyzerProvider> result = new ArrayList<>();
+        for (AnalyzerProvider provider : providers) {
+            result.add(new AnalyzerProvider() {
+                @Override
+                public String analyzerName() {
+                    return provider.analyzerName();
+                }
+
+                @Override
+                public AnalyzerDescriptor describe() {
+                    return provider.describe();
+                }
+
+                @Override
+                public ContentAnalyzer create(EvaluationRunPolicy policy) {
+                    built.add(provider.analyzerName());
+                    return provider.create(policy);
+                }
+
+                @Override
+                public Optional<AnalyzerPlanBinding> planBinding() {
+                    return provider.planBinding();
+                }
+
+                @Override
+                public Optional<SelfDescribingConfig> config() {
+                    return provider.config();
+                }
+            });
+        }
+        return result;
+    }
+
+    /** lemma-absence with an EVP catalog where wallet is A2 and every other word A1. */
+    private static AnalyzerProvider walletAwareAbsence() {
+        EvpCatalogPort evp = Mockito.mock(EvpCatalogPort.class);
+        Mockito.when(evp.getExpectedLemmas(any())).thenReturn(Set.of());
+        Mockito.when(evp.lookupLevel(any())).thenReturn(Optional.of(CefrLevel.A1));
+        Mockito.when(evp.lookupLevel(new LemmaAndPos("wallet", "NOUN"))).thenReturn(Optional.of(CefrLevel.A2));
+        LemmaAbsenceConfig config = Mockito.mock(LemmaAbsenceConfig.class);
+        Mockito.when(config.getDiscountPerLevel()).thenReturn(0.1);
+        return new LemmaAbsenceAnalyzerProvider(evp, config,
+                new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), config));
+    }
+
+    /** A1 > «Be» > k1 with q1, q2 and q3, and k2 with q4 -- with long titles and instructions. */
+    private static AuditableCourse judgedCourse() {
+        AuditableKnowledge k1 = knowledgeOf("k1", "Be: preguntas yes / no con un título que no entra", List.of(
+                quizOf("q1", "The dog runs in the park every day.", "The", "dog", "runs", "in", "the", "park", "every",
+                        "day", "."),
+                quizOf("q2", "The cat sleeps.", "The", "cat", "sleeps", "."),
+                quizOf("q3", "The dog sleeps in the park.", "The", "dog", "sleeps", "in", "the", "park", ".")));
+        AuditableKnowledge k2 = knowledgeOf("k2", "Be", List.of(
+                quizOf("q4", "The cat runs.", "The", "cat", "runs", ".")));
+        return courseOf(k1, k2);
+    }
+
+    private static AuditableCourse courseOf(AuditableKnowledge... knowledges) {
+        AuditableTopic topic = new AuditableTopic(List.of(knowledges), "t-be", "Be", "T");
+        return new AuditableCourse(List.of(new AuditableMilestone(List.of(topic), "m-a1", "A1", "A1")));
+    }
+
+    private static AuditableKnowledge knowledgeOf(String id, String label, List<AuditableQuiz> quizzes) {
+        return new AuditableKnowledge(quizzes, label, "Completa las oraciones con la forma correcta del verbo entre "
+                + "paréntesis, fijándote en el sujeto y en el tiempo.", true, id, label, "K", null, "Be");
+    }
+
+    private static AuditableQuiz quizOf(String id, String sentence, String... words) {
+        List<NlpToken> tokens = new ArrayList<>();
+        for (String word : words) {
+            boolean punct = !Character.isLetter(word.charAt(0)) && !word.startsWith("n'");
+            String pos = punct ? "PUNCT" : List.of("dog", "cat", "park", "day", "home", "wallet", "room").contains(
+                    word.toLowerCase()) ? "NOUN" : List.of("runs", "sleeps").contains(word) ? "VERB" : "PRON";
+            tokens.add(new NlpToken(word, word.toLowerCase(), pos, punct ? null : 500, false, punct));
+        }
+        return new AuditableQuiz(tokens, id, sentence, "Q", null, List.of(sentence), null, null, null, null);
+    }
+
+    private static AuditNode firstKnowledge(AuditReport report) {
+        return report.getRoot().getChildren().get(0).getChildren().get(0).getChildren().get(0);
+    }
+
+    private static AnalyzerErrorCounts errorCounts(AuditNode node, String analyzer) {
+        return node.getNumbers().getErrors().getAnalyzers().stream().filter(c -> analyzer.equals(c.getAnalyzer()))
+                .findFirst().orElseThrow();
+    }
+
+    private static void walk(AuditNode node, java.util.function.Consumer<AuditNode> action) {
+        action.accept(node);
+        if (node.getChildren() != null) {
+            node.getChildren().forEach(child -> walk(child, action));
+        }
     }
 }

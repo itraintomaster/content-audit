@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditdomain.coca;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 
 import com.learney.contentaudit.auditdomain.*;
 import java.util.ArrayList;
@@ -695,7 +697,34 @@ public class CocaBucketsAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R003")
     public void shouldGiveTheFindingOfB2WhichItScores322TheShareOfEachFrequencyBandAgainstTheTargetsOfItsLevel() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: B2 of the 29/9 base, as the analyzer leaves it after closing the course: 32,2 %,
+        // top1k 83,2 % of the tokens against at most 50 %, top4k 5,9 % against at least 20 %.
+        AuditNode b2 = buildNode(AuditTarget.MILESTONE, new AuditableMilestone(List.of(), "m-b2", "B2", "B2"), null);
+        b2.getScores().put("coca-buckets-distribution", 0.32223);
+        ((DefaultLevelDiagnoses) b2.getDiagnoses()).setCocaBucketsDiagnosis(new CocaBucketsLevelDiagnosis(13757,
+                List.of(new BucketResult("top1k", 12842, 83.20590903200726, 50.0, 0.0, AssessmentState.EXCESSIVE),
+                        new BucketResult("top4k", 915, 5.928469612543735, 20.0, 0.6371387845017494,
+                                AssessmentState.DEFICIENT)),
+                List.of(new QuarterResult(1, List.of(), 0.39081653431073105),
+                        new QuarterResult(2, List.of(), 0.3528676153514446),
+                        new QuarterResult(3, List.of(), 0.2861816782140108),
+                        new QuarterResult(4, List.of(), 0.25902))));
+
+        List<FindingDraft> drafts = buildAnalyzer().findingsAt(b2);
+
+        assertEquals(1, drafts.size(), "one finding for the level");
+        StringBuilder evidence = new StringBuilder();
+        drafts.get(0).getEvidence().getExamined().forEach(p -> evidence.append(p.getLabel()).append(": ")
+                .append(p.getText()).append('\n'));
+        evidence.append(drafts.get(0).getEvidence().getObservation());
+        assertTrue(evidence.toString().contains("32,2 %"), "R003: the score of B2: " + evidence);
+        assertTrue(evidence.toString().contains("top1k") && evidence.toString().contains("83,2 %")
+                        && evidence.toString().contains("50,0 %"),
+                "R003: the share of top1k against its target: " + evidence);
+        assertTrue(evidence.toString().contains("top4k") && evidence.toString().contains("5,9 %")
+                        && evidence.toString().contains("20,0 %"),
+                "R003: the share of top4k against its target: " + evidence);
+        assertEquals(FindingResolution.RANK_ONLY, drafts.get(0).getResolution());
     }
 
     /**

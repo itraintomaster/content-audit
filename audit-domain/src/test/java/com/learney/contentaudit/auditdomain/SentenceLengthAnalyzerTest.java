@@ -1,4 +1,8 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 
 import com.learney.contentaudit.coursedomain.SentenceMode;
 import java.util.ArrayList;
@@ -663,7 +667,20 @@ public class SentenceLengthAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R002")
     public void shouldGradeLowAndResolveAtThePanelTheFindingOfHeIsntInTheLivingroomOneTokenOverThe3To8OfA1() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 / DOUBT-GRAVEDAD-EXISTENTES: the rest of the vocabulary is low; sentence-length
+        // is corrected at the panel. «He isn't in the living-room.» has 9 tokens in A1 (3 to 8).
+        AuditNode quizNode = livingRoomQuiz();
+
+        sut.onQuiz(quizNode);
+        List<FindingDraft> drafts = sut.findingsAt(quizNode);
+
+        Assertions.assertEquals(0.8, quizNode.getScores().get("sentence-length"), 1e-9,
+                "one token over a margin of 5 scores 0,8");
+        Assertions.assertEquals(1, drafts.size(), "the quiz below 1 has exactly one sentence-length finding");
+        Assertions.assertEquals(FindingSeverity.LOW, drafts.get(0).getSeverity(),
+                "R002: a sentence-length finding is graded low");
+        Assertions.assertEquals(FindingResolution.PANEL, drafts.get(0).getResolution(),
+                "R002: a sentence-length finding is resolved at the panel");
     }
 
     @Test
@@ -671,7 +688,27 @@ public class SentenceLengthAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R003")
     public void shouldGiveTheFindingOfHeIsntInTheLivingroomAsEvidenceTheSentenceAsTheStudentReadsItAndItsMeasureNextToItsGoal9TokensAgainstThe3To8OfA1NeverTheInternalFormatOfTheCourse() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: what it looked at, as the student reads it, and the measure next to its goal --
+        // never the internal format of the course (the DSL with brackets and the gap).
+        AuditNode quizNode = livingRoomQuiz();
+
+        sut.onQuiz(quizNode);
+        FindingDraft finding = sut.findingsAt(quizNode).get(0);
+
+        List<EvidencePart> examined = finding.getEvidence().getExamined();
+        Assertions.assertTrue(examined.stream().anyMatch(p -> LIVING_ROOM.equals(p.getText())),
+                "R003: the evidence shows the sentence as the student reads it: " + texts(examined));
+        Assertions.assertTrue(examined.stream().anyMatch(p -> p.getText().contains("9 tokens")),
+                "R003: the evidence carries the measure it took, 9 tokens: " + texts(examined));
+        Assertions.assertTrue(examined.stream().anyMatch(p -> p.getText().contains("A1 de 3 a 8")),
+                "R003: the evidence carries the goal next to the measure, A1 from 3 to 8: " + texts(examined));
+        Assertions.assertTrue(examined.stream().noneMatch(p -> p.getText().contains(LIVING_ROOM_DSL)
+                        || p.getText().contains("[") || p.getText().contains("____")),
+                "R003: the internal format of the course never reaches the evidence: " + texts(examined));
+        Assertions.assertTrue(finding.getEvidence().getObservation().contains("9 tokens")
+                        && finding.getEvidence().getObservation().contains("A1 de 3 a 8"),
+                "R003: one line that names the problem with the words of the node: "
+                        + finding.getEvidence().getObservation());
     }
 
     @Test
@@ -679,6 +716,60 @@ public class SentenceLengthAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R001")
     public void shouldKeepEmittingForHeIsntInTheLivingroomTheSameSentenceLengthDiagnosisAsBefore9TokensAgainst3To8WithDelta1AndMargin5WithNothingOfItCopiedIntoItsFinding() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 3: the typed diagnosis keeps being emitted exactly as before, and the finding
+        // only carries the fixed fields of the contract -- what belongs to the analyzer stays in
+        // its typed diagnosis, which findingsAt reads and never rewrites.
+        AuditNode quizNode = livingRoomQuiz();
+        SentenceLengthDiagnosis expected = new SentenceLengthDiagnosis(9, 3, 8, CefrLevel.A1, 1, 5);
+
+        sut.onQuiz(quizNode);
+        DefaultQuizDiagnoses diagnoses = (DefaultQuizDiagnoses) quizNode.getDiagnoses();
+        Assertions.assertEquals(Optional.of(expected), diagnoses.getSentenceLengthDiagnosis(),
+                "R001: the SentenceLengthDiagnosis is the one of before: 9 tokens, 3 to 8, A1, delta 1, margin 5");
+
+        List<FindingDraft> drafts = sut.findingsAt(quizNode);
+
+        Assertions.assertEquals(Optional.of(expected), diagnoses.getSentenceLengthDiagnosis(),
+                "R001: asking for the findings leaves the typed diagnosis as it was");
+        Assertions.assertEquals(1, drafts.size());
+        FindingDraft finding = drafts.get(0);
+        Assertions.assertNotNull(finding.getRule(), "the finding names the rule of the card");
+        Assertions.assertNull(finding.getMarker(),
+                "sentence-length marks nothing inside the quiz: one finding per quiz, no marker");
+        Assertions.assertEquals(new FindingDraft(finding.getRule(), null, finding.getSeverity(),
+                        finding.getResolution(), finding.getEvidence()), finding,
+                "R001 inv. 3: the finding is its fixed fields and nothing else");
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-HALL fixtures: «He isn't in the living-room.», an A1 quiz of the 29/9 base
+    // ------------------------------------------------------------------
+
+    private static final String LIVING_ROOM = "He isn't in the living-room.";
+
+    private static final String LIVING_ROOM_DSL = "He ____ [isn't] in the living-room.";
+
+    /** The quiz as the 29/9 base has it: 9 spaCy tokens in A1, where the code applies 3 to 8. */
+    private AuditNode livingRoomQuiz() {
+        Mockito.lenient().when(config.getTargetRange(CefrLevel.A1))
+                .thenReturn(Optional.of(new TargetRange(CefrLevel.A1, 3, 8)));
+        Mockito.lenient().when(config.getToleranceMargin()).thenReturn(5);
+        List<NlpToken> spacyTokens = new ArrayList<>();
+        for (String text : List.of("He", "is", "n't", "in", "the", "living", "-", "room", ".")) {
+            spacyTokens.add(new NlpToken(text, text.toLowerCase(), "X", 100, false, ".".equals(text)));
+        }
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Be: preguntas yes / no",
+                "Completa con la forma correcta.", true, "k-be", "Be: preguntas yes / no", "K", null, null);
+        AuditableQuiz quiz = new AuditableQuiz(spacyTokens, "67fab6d599301022953425aa", LIVING_ROOM, "Q", null,
+                List.of(LIVING_ROOM), LIVING_ROOM_DSL, null, null, null);
+        return fullTree("A1", knowledge, quiz);
+    }
+
+    private static List<String> texts(List<EvidencePart> parts) {
+        List<String> result = new ArrayList<>();
+        for (EvidencePart part : parts) {
+            result.add(part.getLabel() + ": " + part.getText());
+        }
+        return result;
     }
 }

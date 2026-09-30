@@ -1,4 +1,30 @@
 package com.learney.contentaudit.auditdomain.findingengine;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerErrorCounts;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerScore;
+import com.learney.contentaudit.auditdomain.contextnumbers.ErrorCounts;
+import com.learney.contentaudit.auditdomain.contextnumbers.SubMetricScore;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import org.junit.jupiter.api.Assertions;
 
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +42,28 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R007")
     public void shouldKeepOutOfTheErrorCountsThe950QuizzesThatLemmaabsenceScoresBelow1BecauseLemmaabsenceIsAVocabularyAnalyzer(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: lemma-absence is a vocabulary analyzer (DOUBT-FAMILIA-OTRO-NIVEL, A): its 950 quizzes
+        // below 1 lower the vocabulary score and are never counted as quizzes with an error.
+        Course course = new Course();
+        AuditNode knowledge = course.knowledge("k-labs");
+        for (int i = 0; i < 950; i++) {
+            AuditNode quiz = course.quiz(knowledge, "q" + i);
+            quiz.getScores().put("lemma-absence", 0.9);
+            quiz.getFindings().add(finding("lemma-absence", "misplaced-word", "word" + i, quiz,
+                    FindingSeverity.MEDIUM, FindingResolution.PANEL));
+            quiz.getScores().put("quiz-instruction", 1.0);
+        }
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(card("lemma-absence"), card("quiz-instruction")));
+
+        ErrorCounts errors = course.root.getNumbers().getErrors();
+        Assertions.assertEquals(950, errors.getQuizzes());
+        Assertions.assertEquals(0, errors.getWithAnyError(), "R007: vocabulary findings are not errors");
+        Assertions.assertEquals(List.of("quiz-instruction"), errors.getAnalyzers().stream()
+                .map(AnalyzerErrorCounts::getAnalyzer).toList(), "only errors analyzers have error counts");
+        Assertions.assertEquals(0.9, course.root.getNumbers().getVocabularyScore(), 1e-9,
+                "lemma-absence stays in the vocabulary score");
     }
 
     @Test
@@ -25,7 +72,42 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R008")
     public void shouldCountForEachErrorsAnalyzerInEveryKnowledgeTopicLevelAndTheCourseTheQuizzesItReachesEvaluatesLeavesUnevaluatedAndFindsWithAnErrorAndItsErrorShareOverTheEvaluatedOnesWithEvaluatedPlusUnevaluatedAddingUpToReached(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008 (1): per errors analyzer, reached = evaluated + not evaluated, and the share of
+        // quizzes with an error is over the evaluated ones. The judge reaches every quiz; a
+        // multiple-choice analyzer reaches only the multiple-choice ones.
+        Course course = new Course();
+        AuditNode k1 = course.knowledge("k1");
+        AuditNode judged = course.quiz(k1, "q-judged-breach");
+        judgeScores(judged, 0.3);
+        AuditNode compliant = course.quiz(k1, "q-judged-ok");
+        judgeScores(compliant, 1.0);
+        AuditNode pending = course.quiz(k1, "q-pending");
+        pending.getUnevaluatedBy().add("quiz-instruction");
+        AuditNode k2 = course.knowledge("k2");
+        AuditNode mcBreach = course.quiz(k2, "q-mc");
+        judgeScores(mcBreach, 1.0);
+        mcBreach.getScores().put("opcion-multiple-valida", 0.0);
+        mcBreach.getFindings().add(finding("opcion-multiple-valida", "rule-opcion-multiple-valida", null, mcBreach,
+                FindingSeverity.BLOCKING, FindingResolution.RULE));
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(card("quiz-instruction"), errorsCard("opcion-multiple-valida")));
+
+        for (AuditNode node : List.of(course.root, course.level, course.topic)) {
+            AnalyzerErrorCounts judge = counts(node, "quiz-instruction");
+            Assertions.assertEquals(List.of(4, 3, 1, 1), List.of(judge.getReached(), judge.getEvaluated(),
+                    judge.getNotEvaluated(), judge.getWithError()), node.getTarget() + ": the judge in numbers");
+            Assertions.assertEquals(1.0 / 3.0, judge.getErrorShare(), 1e-9, "R008: the share is over the evaluated");
+            AnalyzerErrorCounts mc = counts(node, "opcion-multiple-valida");
+            Assertions.assertEquals(List.of(1, 1, 0, 1), List.of(mc.getReached(), mc.getEvaluated(),
+                    mc.getNotEvaluated(), mc.getWithError()), node.getTarget() + ": it reaches only what it looks at");
+        }
+        AnalyzerErrorCounts judgeInK1 = counts(k1, "quiz-instruction");
+        Assertions.assertEquals(judgeInK1.getReached(), judgeInK1.getEvaluated() + judgeInK1.getNotEvaluated(),
+                "R008: evaluated plus unevaluated add up to reached in every knowledge");
+        Assertions.assertEquals(List.of(3, 2, 1, 1), List.of(judgeInK1.getReached(), judgeInK1.getEvaluated(),
+                judgeInK1.getNotEvaluated(), judgeInK1.getWithError()));
+        Assertions.assertEquals(0.5, judgeInK1.getErrorShare(), 1e-9);
     }
 
     @Test
@@ -34,7 +116,27 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R008")
     public void shouldCountAQuizOnceInAlgnErrorHoweverManyErrorFindingsItHasFromHoweverManyErrorsAnalyzers(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008 (2): a quiz counts once in «algún error», whatever findings it has.
+        Course course = new Course();
+        AuditNode knowledge = course.knowledge("k1");
+        AuditNode quiz = course.quiz(knowledge, "q-two-analyzers");
+        judgeScores(quiz, 0.0);
+        quiz.getScores().put("pista-coherente", 0.0);
+        quiz.getFindings().add(finding("pista-coherente", "rule-pista-coherente", "a", quiz,
+                FindingSeverity.HIGH, FindingResolution.RULE));
+        quiz.getFindings().add(finding("pista-coherente", "rule-pista-coherente", "b", quiz,
+                FindingSeverity.HIGH, FindingResolution.RULE));
+        AuditNode clean = course.quiz(knowledge, "q-clean");
+        judgeScores(clean, 1.0);
+        clean.getScores().put("pista-coherente", 1.0);
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(card("quiz-instruction"), errorsCard("pista-coherente")));
+
+        ErrorCounts errors = course.root.getNumbers().getErrors();
+        Assertions.assertEquals(2, errors.getQuizzes());
+        Assertions.assertEquals(1, errors.getWithAnyError(), "R008: the quiz with three error findings counts once");
+        Assertions.assertEquals(0.5, errors.getAnyErrorShare(), 1e-9, "R008: over all the quizzes of the node");
     }
 
     @Test
@@ -43,7 +145,33 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R008")
     public void shouldSplitAlgnErrorByTheHighestSeverityOfEachQuizSoThatBlockingHighMediumAndLowAddUpToIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008 (2): each quiz with an error counts in the column of its highest severity, so the
+        // four columns add up to «algún error».
+        Course course = new Course();
+        AuditNode knowledge = course.knowledge("k1");
+        FindingSeverity[][] perQuiz = {
+                {FindingSeverity.MEDIUM, FindingSeverity.BLOCKING}, {FindingSeverity.HIGH},
+                {FindingSeverity.MEDIUM, FindingSeverity.LOW}, {FindingSeverity.LOW}, {}};
+        for (int i = 0; i < perQuiz.length; i++) {
+            AuditNode quiz = course.quiz(knowledge, "q" + i);
+            quiz.getScores().put("pista-coherente", perQuiz[i].length == 0 ? 1.0 : 0.0);
+            for (int f = 0; f < perQuiz[i].length; f++) {
+                quiz.getFindings().add(finding("pista-coherente", "rule-pista-coherente", "m" + f, quiz,
+                        perQuiz[i][f], FindingResolution.RULE));
+            }
+        }
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(errorsCard("pista-coherente")));
+
+        ErrorCounts errors = course.root.getNumbers().getErrors();
+        Assertions.assertEquals(List.of(1, 1, 1, 1), List.of(errors.getBySeverity().getBlocking(),
+                errors.getBySeverity().getHigh(), errors.getBySeverity().getMedium(), errors.getBySeverity().getLow()),
+                "R008: blocking, high, medium and low by the highest severity of each quiz");
+        Assertions.assertEquals(4, errors.getWithAnyError());
+        Assertions.assertEquals(errors.getWithAnyError(), errors.getBySeverity().getBlocking()
+                        + errors.getBySeverity().getHigh() + errors.getBySeverity().getMedium()
+                        + errors.getBySeverity().getLow(), "R008: the four severities add up to «algún error»");
     }
 
     @Test
@@ -52,7 +180,32 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R008")
     public void shouldMakeEveryCountOfANodeTheSumOfTheCountsOfItsChildrenAndRecomputeItsPercentagesFromThoseSumsInsteadOfAveragingThePercentagesOfItsChildren(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: counts add up the tree; percentages are recomputed from the sums, never averaged.
+        // A knowledge with 1 of 1 quizzes with an error (100 %) and one with 0 of 3 (0 %) make a
+        // topic with 1 of 4 (25 %), not the 50 % of averaging.
+        Course course = new Course();
+        AuditNode k1 = course.knowledge("k1");
+        AuditNode bad = course.quiz(k1, "q-bad");
+        judgeScores(bad, 0.0);
+        AuditNode k2 = course.knowledge("k2");
+        for (int i = 0; i < 3; i++) {
+            judgeScores(course.quiz(k2, "q-ok-" + i), 1.0);
+        }
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(card("quiz-instruction")));
+
+        Assertions.assertEquals(1.0, k1.getNumbers().getErrors().getAnyErrorShare(), 1e-9);
+        Assertions.assertEquals(0.0, k2.getNumbers().getErrors().getAnyErrorShare(), 1e-9);
+        ErrorCounts topic = course.topic.getNumbers().getErrors();
+        Assertions.assertEquals(4, topic.getQuizzes(), "R008: the quizzes of the topic are those of its knowledges");
+        Assertions.assertEquals(1, topic.getWithAnyError(), "R008: the count is the sum of its children");
+        Assertions.assertEquals(0.25, topic.getAnyErrorShare(), 1e-9, "R008: recomputed, 1 of 4 -- not 50 %");
+        Assertions.assertEquals(0.25, counts(course.topic, "quiz-instruction").getErrorShare(), 1e-9);
+        for (AuditNode node : List.of(course.level, course.root)) {
+            Assertions.assertEquals(topic.getQuizzes(), node.getNumbers().getErrors().getQuizzes());
+            Assertions.assertEquals(topic.getWithAnyError(), node.getNumbers().getErrors().getWithAnyError());
+        }
     }
 
     @Test
@@ -61,7 +214,25 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R008")
     public void shouldPublishApartAsMarkedTheFindingsThatOnlyRankAndCountNoQuizThatHasOnlySuchFindingsAsAQuizWithError(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: a finding that only ranks is published apart, as marked, and is never an error.
+        Course course = new Course();
+        AuditNode knowledge = course.knowledge("k1");
+        AuditNode marked = course.quiz(knowledge, "q-marked");
+        marked.getScores().put("naturalidad", 1.0);
+        marked.getFindings().add(finding("naturalidad", "rule-naturalidad", null, marked, FindingSeverity.LOW,
+                FindingResolution.RANK_ONLY));
+        AuditNode clean = course.quiz(knowledge, "q-clean");
+        clean.getScores().put("naturalidad", 1.0);
+        course.aggregate();
+        AnalyzerDescriptor naturalidad = errorsCard("naturalidad");
+        naturalidad.setResolutions(List.of(FindingResolution.PANEL, FindingResolution.RANK_ONLY));
+
+        calculator.compute(course.root, List.of(naturalidad));
+
+        ErrorCounts errors = course.root.getNumbers().getErrors();
+        Assertions.assertEquals(0, errors.getWithAnyError(), "R008: a quiz with only rank-only findings has no error");
+        Assertions.assertEquals(0, counts(course.root, "naturalidad").getWithError());
+        Assertions.assertEquals(1, counts(course.root, "naturalidad").getMarked(), "R008: it is published as marked");
     }
 
     @Test
@@ -70,7 +241,31 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R008")
     public void shouldCountAFindingOnAKnowledgeInEveryQuizOfThatKnowledgeForItsAnalyzerAndForAlgnErrorAsAFindingOnTheMinitheoryOfInTimeUOnTimeCountsInIts40Quizzes(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008 / DOUBT-HALLAZGO-DE-TEMA (A): the mini-theory is one per knowledge and all its
+        // quizzes see it; a finding on it counts in each of the 40 quizzes of «In time u on time».
+        Course course = new Course();
+        AuditNode inTime = course.knowledge("in-time-u-on-time");
+        for (int i = 0; i < 40; i++) {
+            course.quiz(inTime, "q" + i);
+        }
+        inTime.getScores().put("miniteoria", 0.0);
+        inTime.getFindings().add(finding("miniteoria", "rule-miniteoria", null, inTime, FindingSeverity.HIGH,
+                FindingResolution.PANEL));
+        AuditNode other = course.knowledge("otro-tema");
+        course.quiz(other, "q-other");
+        other.getScores().put("miniteoria", 1.0);
+        course.aggregate();
+        AnalyzerDescriptor miniteoria = errorsCard("miniteoria");
+        miniteoria.setEvaluatedTargets(List.of(AuditTarget.KNOWLEDGE));
+
+        calculator.compute(course.root, List.of(miniteoria));
+
+        AnalyzerErrorCounts inKnowledge = counts(inTime, "miniteoria");
+        Assertions.assertEquals(40, inKnowledge.getReached());
+        Assertions.assertEquals(40, inKnowledge.getWithError(), "R008: the finding counts in each of its 40 quizzes");
+        Assertions.assertEquals(40, inTime.getNumbers().getErrors().getWithAnyError(), "and in «algún error»");
+        Assertions.assertEquals(40, course.root.getNumbers().getErrors().getWithAnyError());
+        Assertions.assertEquals(41, counts(course.root, "miniteoria").getReached());
     }
 
     @Test
@@ -79,7 +274,28 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R008")
     public void shouldDeclareAsNotFullyEvaluatedEachQuizThatSomeErrorsAnalyzerReachedAndDidNotEvaluateLikeThoseTheJudgeLeavesPendingPastItsBudgetOf500SoThatAlgnErrorReadsAsAFloor(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008 (3): with a budget of 500 the judge leaves the rest pending; they are declared, so
+        // «algún error» reads as a floor.
+        Course course = new Course();
+        AuditNode knowledge = course.knowledge("k1");
+        for (int i = 0; i < 503; i++) {
+            AuditNode quiz = course.quiz(knowledge, "q" + i);
+            if (i < 500) {
+                judgeScores(quiz, i < 10 ? 0.3 : 1.0);
+            } else {
+                quiz.getUnevaluatedBy().add("quiz-instruction");
+            }
+        }
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(card("quiz-instruction")));
+
+        ErrorCounts errors = course.root.getNumbers().getErrors();
+        Assertions.assertEquals(3, errors.getNotFullyEvaluated(), "R008: the 3 quizzes past the budget are declared");
+        Assertions.assertEquals(10, errors.getWithAnyError(), "«algún error» counts what was judged: a floor");
+        AnalyzerErrorCounts judge = counts(course.root, "quiz-instruction");
+        Assertions.assertEquals(List.of(503, 500, 3), List.of(judge.getReached(), judge.getEvaluated(),
+                judge.getNotEvaluated()));
     }
 
     @Test
@@ -88,7 +304,20 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R008")
     public void shouldPublishNoErrorCountsOnAnyNodeWhenNoErrorsAnalyzerRanAsInThe299BaseAnalysisMadeWithoutTheJudge(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: the 29/9 base ran without the judge, so no node publishes error counts.
+        Course course = base299();
+        AuditNode a1 = course.root.getChildren().get(0);
+        AuditNode topic = node(AuditTarget.TOPIC, new AuditableTopic(List.of(), "t-be", "Be", null), a1);
+        AuditNode knowledge = node(AuditTarget.KNOWLEDGE, new AuditableKnowledge(List.of(), "Be", "", true, "k1", "Be",
+                "K", null, null), topic);
+        AuditNode quiz = node(AuditTarget.QUIZ, new AuditableQuiz(List.of(), "q1", "q1", "q1", null, List.of(), null,
+                null, null, null), knowledge);
+        quiz.getScores().put("sentence-length", 0.8);
+
+        calculator.compute(course.root, classicCards());
+
+        forEach(course.root, node -> Assertions.assertNull(node.getNumbers().getErrors(),
+                "R008: no error counts on " + node.getTarget() + " when no errors analyzer ran"));
     }
 
     @Test
@@ -97,7 +326,16 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R009")
     public void shouldPublish739AsTheVocabularyScoreOfTheCourseOfThe299BaseTheAverageOfTheCourseScoresOfItsSevenVocabularyAnalyzers86472589367080988And955AndNot834TheAverageOfItsFourLevels(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: the course averages the course scores of its seven vocabulary analyzers, not its
+        // levels: (86,4 + 72,5 + 89,3 + 67,0 + 8,0 + 98,8 + 95,5) / 7 = 73,9 %; the levels give 83,4 %.
+        Course course = base299();
+
+        calculator.compute(course.root, classicCards());
+
+        double score = course.root.getNumbers().getVocabularyScore();
+        Assertions.assertEquals(0.7392339318685259, score, 1e-12);
+        Assertions.assertEquals("73,9", percent(score), "R009: 73,9 % on the course of the 29/9 base");
+        Assertions.assertNotEquals("83,4", percent(score), "R009: not the average of the four levels");
     }
 
     @Test
@@ -105,7 +343,15 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R009")
     public void shouldPublishAsVocabularyScoresOfTheLevelsOfThe299BaseA1965A2942B1795AndB2635() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: each level averages the scores its vocabulary analyzers have on it.
+        Course course = base299();
+
+        calculator.compute(course.root, classicCards());
+
+        List<String> levels = new ArrayList<>();
+        course.root.getChildren().forEach(level -> levels.add(level.getEntity().getLabel() + " "
+                + percent(level.getNumbers().getVocabularyScore())));
+        Assertions.assertEquals(List.of("A1 96,5", "A2 94,2", "B1 79,5", "B2 63,5"), levels);
     }
 
     @Test
@@ -114,7 +360,30 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R009")
     public void shouldLeaveTheQuizinstructionScoreOutOfTheVocabularyScoreOfEveryNodeTheQuizzesItJudgedIncluded(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009 / DOUBT-EJERCICIO-JUZGADO (A): the judge never enters the vocabulary score, not even
+        // on the quizzes it judged.
+        Course course = new Course();
+        AuditNode knowledge = course.knowledge("k1");
+        AuditNode judged = course.quiz(knowledge, "q-judged");
+        judged.getScores().put("sentence-length", 1.0);
+        judgeScores(judged, 0.3);
+        AuditNode other = course.quiz(knowledge, "q-other");
+        other.getScores().put("sentence-length", 0.8);
+        judgeScores(other, 1.0);
+        course.aggregate();
+
+        calculator.compute(course.root, List.of(card("sentence-length"), card("quiz-instruction")));
+
+        Assertions.assertEquals(1.0, judged.getNumbers().getVocabularyScore(), 1e-9,
+                "R009: the judged quiz keeps only its vocabulary score");
+        Assertions.assertEquals(0.8, other.getNumbers().getVocabularyScore(), 1e-9);
+        for (AuditNode node : List.of(knowledge, course.topic, course.level, course.root)) {
+            Assertions.assertEquals(0.9, node.getNumbers().getVocabularyScore(), 1e-9,
+                    "R009: " + node.getTarget() + " averages sentence-length only");
+            Assertions.assertEquals(0.65, analyzerScore(node, "quiz-instruction").getScore(), 1e-9,
+                    "the judge is published apart, as errors");
+            Assertions.assertEquals(AnalyzerFamily.ERRORS, analyzerScore(node, "quiz-instruction").getFamily());
+        }
     }
 
     @Test
@@ -123,7 +392,16 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R009")
     public void shouldAverageIntoTheVocabularyScoreOnlyTheVocabularyAnalyzersThatRanSoThatSentencelengthAloneGivesTheCourseOfThe299Base864(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009 / R012: with a subset, the vocabulary score averages the ones that ran --
+        // sentence-length alone gives the course of the 29/9 base its own 86,4 %.
+        Course course = new Course();
+        course.root.getScores().put("sentence-length", 0.8644799618316434);
+
+        calculator.compute(course.root, List.of(card("sentence-length")));
+
+        Assertions.assertEquals("86,4", percent(course.root.getNumbers().getVocabularyScore()));
+        Assertions.assertEquals(List.of("sentence-length"), course.root.getNumbers().getAnalyzerScores().stream()
+                .map(AnalyzerScore::getAnalyzer).toList());
     }
 
     @Test
@@ -132,6 +410,159 @@ public class DefaultContextNumbersCalculatorTest {
     @Tag("F-HALL-R010")
     public void shouldPublishTheFourCOCAQuartersAsSubmetricsOfCocabucketsdistributionAndKeepThemOutOfEveryAverage739OnTheCourseOfThe299BaseAndNotThe734OfAveragingItsElevenKeys(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010: the four quarters are published nested under coca-buckets-distribution, marked as
+        // part of it, and no average takes them for an analyzer: 73,9 %, not the 73,4 % of the
+        // eleven keys of the course.
+        Course course = base299();
+        double elevenKeys = course.root.getScores().values().stream().mapToDouble(Double::doubleValue).average()
+                .orElseThrow();
+
+        calculator.compute(course.root, classicCards());
+
+        AnalyzerScore coca = analyzerScore(course.root, "coca-buckets-distribution");
+        Assertions.assertEquals(0.7253788624322802, coca.getScore(), 1e-12);
+        Assertions.assertEquals(List.of("Q1", "Q2", "Q3", "Q4"), coca.getSubMetrics().stream()
+                .map(SubMetricScore::getName).toList(), "R010: the quarters are sub-metrics of COCA");
+        Assertions.assertEquals(0.7673328547283127, coca.getSubMetrics().get(0).getScore(), 1e-12);
+        Assertions.assertEquals(7, course.root.getNumbers().getAnalyzerScores().size(),
+                "R010: seven analyzers -- no quarter is published as one");
+        Assertions.assertEquals("73,4", percent(elevenKeys), "the old number, averaging eleven keys");
+        Assertions.assertEquals("73,9", percent(course.root.getNumbers().getVocabularyScore()),
+                "R010: the published number keeps the quarters out");
+    }
+
+    private final DefaultContextNumbersCalculator calculator = new DefaultContextNumbersCalculator();
+
+    /** A course with one level, one topic and the knowledges and quizzes each test adds. */
+    private static final class Course {
+        final AuditNode root = node(AuditTarget.COURSE, null, null);
+        final AuditNode level = node(AuditTarget.MILESTONE, new AuditableMilestone(List.of(), "m1", "A1", null), root);
+        final AuditNode topic = node(AuditTarget.TOPIC, new AuditableTopic(List.of(), "t1", "Topic", null), level);
+
+        AuditNode knowledge(String id) {
+            return node(AuditTarget.KNOWLEDGE, new AuditableKnowledge(List.of(), id, "", true, id, id, id, null, null),
+                    topic);
+        }
+
+        AuditNode quiz(AuditNode knowledge, String id) {
+            return node(AuditTarget.QUIZ, new AuditableQuiz(List.of(), id, id, id, null, List.of(), null, null, null,
+                    null), knowledge);
+        }
+
+        /** The generic aggregation of the engine: a parent without its own key averages its children. */
+        void aggregate() {
+            new com.learney.contentaudit.auditdomain.IScoreAggregator().aggregate(root);
+        }
+    }
+
+    /** The course and the four levels of the 29/9 base, with every key of the analysis 2026-09-30T11-54-02. */
+    private static Course base299() {
+        Course course = new Course();
+        course.root.getChildren().clear();
+        put(course.root, "coca-buckets-distribution", 0.7253788624322802, "lemma-recurrence", 0.08,
+                "lemma-absence", 0.89250300362255, "lemma-count", 0.6698448144961168,
+                "coca-buckets-distribution/Q1", 0.7673328547283127, "coca-buckets-distribution/Q2", 0.7684543932356559,
+                "coca-buckets-distribution/Q3", 0.6915373831741857, "coca-buckets-distribution/Q4", 0.6741908185909666,
+                "knowledge-title-length", 0.9877878929349517, "knowledge-instructions-length", 0.9546429877621389,
+                "sentence-length", 0.8644799618316434);
+        put(level(course, "A1"), "coca-buckets-distribution", 1.0, "coca-buckets-distribution/Q1", 1.0,
+                "coca-buckets-distribution/Q2", 1.0, "coca-buckets-distribution/Q3", 1.0,
+                "coca-buckets-distribution/Q4", 1.0, "lemma-absence", 0.980205616081019,
+                "lemma-count", 0.9388349514563107, "knowledge-title-length", 1.0,
+                "knowledge-instructions-length", 0.9315082644628099, "sentence-length", 0.9419743222686404);
+        put(level(course, "A2"), "coca-buckets-distribution", 1.0, "coca-buckets-distribution/Q1", 1.0,
+                "coca-buckets-distribution/Q2", 1.0, "coca-buckets-distribution/Q3", 1.0,
+                "coca-buckets-distribution/Q4", 1.0, "lemma-absence", 1.0, "lemma-count", 0.7114197530864198,
+                "knowledge-title-length", 1.0, "knowledge-instructions-length", 0.9751157407407408,
+                "sentence-length", 0.9628114845938375);
+        put(level(course, "B1"), "coca-buckets-distribution", 0.5792869389091038,
+                "coca-buckets-distribution/Q1", 0.6785148846025197, "coca-buckets-distribution/Q2", 0.7209499575911789,
+                "coca-buckets-distribution/Q3", 0.47996785448273177, "coca-buckets-distribution/Q4", 0.43771505895998447,
+                "lemma-absence", 0.874974670719351, "lemma-count", 0.5251412429378531,
+                "knowledge-title-length", 0.9754901960784313, "knowledge-instructions-length", 0.9584558823529411,
+                "sentence-length", 0.8538308658609214);
+        put(level(course, "B2"), "coca-buckets-distribution", 0.3222285108200172,
+                "coca-buckets-distribution/Q1", 0.39081653431073105, "coca-buckets-distribution/Q2", 0.3528676153514446,
+                "coca-buckets-distribution/Q3", 0.2861816782140108, "coca-buckets-distribution/Q4", 0.2590482154038823,
+                "lemma-absence", 0.5196321188539111, "lemma-count", 0.3404947916666667,
+                "knowledge-title-length", 0.9756613756613757, "knowledge-instructions-length", 0.9534920634920635,
+                "sentence-length", 0.6993031746031746);
+        return course;
+    }
+
+    private static AuditNode level(Course course, String label) {
+        return node(AuditTarget.MILESTONE, new AuditableMilestone(List.of(), "m-" + label, label, null), course.root);
+    }
+
+    private static void put(AuditNode node, Object... keysAndScores) {
+        for (int i = 0; i < keysAndScores.length; i += 2) {
+            node.getScores().put((String) keysAndScores[i], (Double) keysAndScores[i + 1]);
+        }
+    }
+
+    private static AuditNode node(AuditTarget target, AuditableEntity entity, AuditNode parent) {
+        AuditNode node = new AuditNode();
+        node.setTarget(target);
+        node.setEntity(entity);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        if (parent != null) {
+            parent.getChildren().add(node);
+        }
+        return node;
+    }
+
+    private static void judgeScores(AuditNode quiz, double score) {
+        quiz.getScores().put("quiz-instruction", score);
+        if (score < 1.0) {
+            quiz.getFindings().add(finding("quiz-instruction", "instruction-breach", null, quiz,
+                    score == 0.0 ? FindingSeverity.BLOCKING : FindingSeverity.HIGH, FindingResolution.PANEL));
+        }
+    }
+
+    private static Finding finding(String analyzer, String rule, String marker, AuditNode node,
+            FindingSeverity severity, FindingResolution resolution) {
+        String nodeId = node.getEntity() != null ? node.getEntity().getId() : "root";
+        return new Finding(analyzer, rule, new FindingNodeRef(node.getTarget(), nodeId, nodeId), severity,
+                new FindingEvidence(List.of(new EvidencePart("Nodo", nodeId)), "Lo que encontró", List.of()),
+                resolution, AnalysisCost.INSTANT, new FindingIdentity(analyzer + "|" + rule + "|" + nodeId
+                        + (marker != null ? "|" + marker : ""), marker));
+    }
+
+    private static AnalyzerDescriptor card(String name) {
+        return DefaultAnalyzerCatalogTest.realProviders().stream().filter(p -> name.equals(p.analyzerName()))
+                .findFirst().orElseThrow().describe();
+    }
+
+    private static List<AnalyzerDescriptor> classicCards() {
+        return DefaultAnalyzerCatalogTest.realProviders().subList(0, 7).stream().map(p -> p.describe()).toList();
+    }
+
+    private static AnalyzerDescriptor errorsCard(String name) {
+        AnalyzerDescriptor card = DefaultAnalyzerCatalogTest.card(name, AnalyzerFamily.ERRORS, AnalysisCost.INSTANT);
+        card.setResolutions(List.of(FindingResolution.RULE, FindingResolution.PANEL));
+        return card;
+    }
+
+    private static AnalyzerErrorCounts counts(AuditNode node, String analyzer) {
+        return node.getNumbers().getErrors().getAnalyzers().stream().filter(c -> analyzer.equals(c.getAnalyzer()))
+                .findFirst().orElseThrow(() -> new AssertionError("no error counts of " + analyzer));
+    }
+
+    private static AnalyzerScore analyzerScore(AuditNode node, String analyzer) {
+        return node.getNumbers().getAnalyzerScores().stream().filter(s -> analyzer.equals(s.getAnalyzer()))
+                .findFirst().orElseThrow(() -> new AssertionError("no published score of " + analyzer));
+    }
+
+    private static void forEach(AuditNode node, java.util.function.Consumer<AuditNode> action) {
+        action.accept(node);
+        node.getChildren().forEach(child -> forEach(child, action));
+    }
+
+    /** One decimal, with a decimal comma, as the report shows it: 0,7392 -> 73,9. */
+    private static String percent(double score) {
+        return String.format(Locale.ROOT, "%.1f", score * 100).replace('.', ',');
     }
 }

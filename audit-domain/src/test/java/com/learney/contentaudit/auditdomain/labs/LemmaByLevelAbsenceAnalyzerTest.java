@@ -1,4 +1,8 @@
 package com.learney.contentaudit.auditdomain.labs;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -3747,7 +3751,15 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R002")
     public void shouldGradeMediumAndResolveAtThePanelTheFindingOfWalletAnA2WordInTheA1QuizWhereIsMyWallet() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 / DOUBT-GRAVEDAD-EXISTENTES: a word of another level is medium -- the example of
+        // the proposal -- and it is corrected at the panel.
+        AuditNode quiz = walletQuiz();
+
+        List<FindingDraft> drafts = sut.findingsAt(quiz);
+
+        assertEquals(1, drafts.size(), "wallet is the only misplaced word of «Where is my wallet?»");
+        assertEquals(FindingSeverity.MEDIUM, drafts.get(0).getSeverity(), "R002: a word of another level is medium");
+        assertEquals(FindingResolution.PANEL, drafts.get(0).getResolution(), "R002: resolved at the panel");
     }
 
     @Test
@@ -3755,7 +3767,34 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R002")
     public void shouldResolveAsRankonlyTheLemmaabsenceFindingsOfALevelAndOfTheCourseWhileThoseOfAQuizGoToThePanel() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: resolution goes by finding, not by analyzer -- the quiz goes to the panel, while the
+        // coverage of a level and of the course only ranks. A1 expects «table», which no sentence has.
+        stubMinimalConfig();
+        when(evpCatalogPort.getExpectedLemmas(any())).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(Set.of(new LemmaAndPos("table", "NOUN")));
+        when(evpCatalogPort.lookupLevel(any())).thenReturn(Optional.of(CefrLevel.A1));
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("wallet", "NOUN"))).thenReturn(Optional.of(CefrLevel.A2));
+        AuditNode root = walletCourse();
+        processQuizNodes(root);
+        sut.onCourseComplete(root);
+        AuditNode a1 = root.getChildren().get(0);
+        AuditNode quiz = findByTarget(root, AuditTarget.QUIZ);
+
+        List<FindingDraft> levelFindings = sut.findingsAt(a1);
+        List<FindingDraft> courseFindings = sut.findingsAt(root);
+        List<FindingDraft> quizFindings = sut.findingsAt(quiz);
+
+        assertTrue(a1.getScores().get("lemma-absence") < 1.0, "A1 misses «table»");
+        assertTrue(root.getScores().get("lemma-absence") < 1.0, "so the course is below 1 too");
+        assertFalse(levelFindings.isEmpty(), "the level below 1 has a finding");
+        assertFalse(courseFindings.isEmpty(), "the course below 1 has a finding");
+        levelFindings.forEach(f -> assertEquals(FindingResolution.RANK_ONLY, f.getResolution(),
+                "R002: the finding of a level only ranks"));
+        courseFindings.forEach(f -> assertEquals(FindingResolution.RANK_ONLY, f.getResolution(),
+                "R002: the finding of the course only ranks"));
+        assertFalse(quizFindings.isEmpty(), "the quiz with wallet has a finding");
+        quizFindings.forEach(f -> assertEquals(FindingResolution.PANEL, f.getResolution(),
+                "R002: the finding of a quiz goes to the panel"));
     }
 
     @Test
@@ -3763,7 +3802,21 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R003")
     public void shouldSayInTheEvidenceOfWhereIsMyWalletThatWalletIsAnA2WordFoundInAnA1Quiz() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: what it looked at (the sentence and the word) and what it found, in the words of
+        // the node: wallet is an A2 word in an A1 quiz.
+        AuditNode quiz = walletQuiz();
+
+        FindingDraft finding = sut.findingsAt(quiz).get(0);
+
+        List<EvidencePart> examined = finding.getEvidence().getExamined();
+        assertTrue(examined.stream().anyMatch(p -> "Where is my wallet?".equals(p.getText())),
+                "R003: the sentence as the student reads it");
+        assertTrue(examined.stream().anyMatch(p -> "wallet".equals(p.getText())), "R003: the word it marks");
+        assertTrue(examined.stream().anyMatch(p -> "A2".equals(p.getText())), "R003: the level of the word");
+        assertTrue(examined.stream().anyMatch(p -> "A1".equals(p.getText())), "R003: the level of the quiz");
+        String observation = finding.getEvidence().getObservation();
+        assertTrue(observation.contains("wallet") && observation.contains("A2") && observation.contains("A1"),
+                "R003: one line saying that wallet is an A2 word in an A1 quiz: " + observation);
     }
 
     @Test
@@ -3771,6 +3824,59 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R014")
     public void shouldMarkEachMisplacedWordApartSoThatWhereIsMyWalletHasOneFindingWhoseMarkerIsWallet() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R014: the rule marks more than one thing in a quiz, so each finding says what it marks --
+        // the word. «Where is my wallet?» has one, and its marker is wallet.
+        AuditNode quiz = walletQuiz();
+
+        List<FindingDraft> drafts = sut.findingsAt(quiz);
+
+        assertEquals(1, drafts.size());
+        assertEquals("wallet", drafts.get(0).getMarker(), "R014: the finding marks the word wallet");
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-HALL fixtures: «Where is my wallet?», an A1 quiz of the 29/9 base where wallet is A2
+    // -----------------------------------------------------------------------
+
+    private AuditNode walletCourse() {
+        List<NlpToken> tokens = List.of(
+                new NlpToken("Where", "where", "ADV", 300, true, false),
+                new NlpToken("is", "be", "AUX", 2, true, false),
+                new NlpToken("my", "my", "PRON", 40, true, false),
+                new NlpToken("wallet", "wallet", "NOUN", 9000, false, false),
+                new NlpToken("?", "?", "PUNCT", null, false, true));
+        AuditNode root = makeNode(AuditTarget.COURSE, null, null);
+        root.setDiagnoses(new DefaultCourseDiagnoses());
+        for (CefrLevel level : COURSE_LEVELS) {
+            AuditNode milestone = makeNode(AuditTarget.MILESTONE,
+                    new AuditableMilestone(List.of(), "m-" + level.name(), level.name(), null), root);
+            milestone.setDiagnoses(new DefaultLevelDiagnoses());
+            if (level == CefrLevel.A1) {
+                AuditNode topic = makeNode(AuditTarget.TOPIC,
+                        new AuditableTopic(List.of(), "t1", "Be: preguntas yes / no", "T"), milestone);
+                AuditNode knowledge = makeNode(AuditTarget.KNOWLEDGE, new AuditableKnowledge(List.of(),
+                        "Be: preguntas yes / no", "instructions", true, "k1", "Be: preguntas yes / no", "K", null,
+                        null), topic);
+                AuditNode quiz = makeNode(AuditTarget.QUIZ, new AuditableQuiz(tokens, "67fab6d599301022953425b1",
+                        "Where is my wallet?", "Q", null, List.of("Where is my wallet?"), null, null, null, null),
+                        knowledge);
+                quiz.setDiagnoses(new DefaultQuizDiagnoses());
+            }
+        }
+        return root;
+    }
+
+    /** Runs the analyzer over the course and returns the quiz, scored and diagnosed. */
+    private AuditNode walletQuiz() {
+        stubMinimalConfig();
+        stubEmptyEvp();
+        when(evpCatalogPort.lookupLevel(any())).thenReturn(Optional.of(CefrLevel.A1));
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("wallet", "NOUN"))).thenReturn(Optional.of(CefrLevel.A2));
+        AuditNode root = walletCourse();
+        processQuizNodes(root);
+        sut.onCourseComplete(root);
+        AuditNode quiz = findByTarget(root, AuditTarget.QUIZ);
+        assertTrue(quiz.getScores().get("lemma-absence") < 1.0, "fixture: wallet lowers the score of the quiz");
+        return quiz;
     }
 }

@@ -1,4 +1,12 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -1221,7 +1229,17 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R001")
     public void shouldLeaveNoFindingOnAQuizTheJudgeLeftPendingOrFailed() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 2: a quiz the judge left pending (budget) or failed was not evaluated, so it has
+        // no score and no finding -- only a quiz with a verdict does.
+        for (EvaluationResolutionKind kind : List.of(EvaluationResolutionKind.PENDING, EvaluationResolutionKind.FAILED)) {
+            AuditNode node = buildQuizNode(buildQuiz("q-" + kind));
+            QuizInstructionAnalyzer analyzer = judge(kind, breach(InstructionSeverity.CRITICAL, "BLANK_UNSOLVABLE"));
+
+            analyzer.onQuiz(node);
+
+            assertNull(node.getScores().get("quiz-instruction"), kind + ": no score on a quiz the judge did not evaluate");
+            assertTrue(analyzer.findingsAt(node).isEmpty(), "R001: no finding on a quiz left " + kind);
+        }
     }
 
     @Test
@@ -1229,7 +1247,27 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R002")
     public void shouldGradeBlockingACriticalBreachHighAMajorOneAndMediumAMinorOneTheBreachesItScores0003And06() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 / DOUBT-GRAVEDAD-EXISTENTES (A): critical -> blocking, major -> high, minor -> medium,
+        // with the scores the configured judge gives them: 0,0, 0,3 and 0,6.
+        Map<InstructionSeverity, FindingSeverity> expected = Map.of(
+                InstructionSeverity.CRITICAL, FindingSeverity.BLOCKING,
+                InstructionSeverity.MAJOR, FindingSeverity.HIGH,
+                InstructionSeverity.MINOR, FindingSeverity.MEDIUM);
+        Map<InstructionSeverity, Double> scores = Map.of(
+                InstructionSeverity.CRITICAL, 0.0, InstructionSeverity.MAJOR, 0.3, InstructionSeverity.MINOR, 0.6);
+        for (InstructionSeverity severity : expected.keySet()) {
+            AuditNode node = buildQuizNode(buildQuiz("q-" + severity));
+            QuizInstructionAnalyzer analyzer = judge(EvaluationResolutionKind.EVALUATED, breach(severity, "CODE"));
+
+            analyzer.onQuiz(node);
+            List<FindingDraft> drafts = analyzer.findingsAt(node);
+
+            assertEquals(scores.get(severity), node.getScores().get("quiz-instruction"), 1e-9,
+                    severity + " scores " + scores.get(severity));
+            assertEquals(1, drafts.size());
+            assertEquals(expected.get(severity), drafts.get(0).getSeverity(),
+                    "R002: a " + severity + " breach is " + expected.get(severity));
+        }
     }
 
     @Test
@@ -1237,7 +1275,30 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R003")
     public void shouldPutInTheEvidenceOfItsFindingEveryViolationTheJudgeReportedWithTheConstraintItBreaksAndItsTextualEvidence() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: a judge adds its violations to the evidence (keeps F-QINST-R003): each one with the
+        // constraint it breaks and its textual evidence.
+        InstructionViolation wrongTense = new InstructionViolation("WRONG_TENSE",
+                "El hueco debe completarse con un verbo en pasado", "\"goes\"", "La respuesta esta en presente");
+        InstructionViolation extraWord = new InstructionViolation("EXTRA_WORD",
+                "La respuesta debe ser una sola palabra", "\"has gone\"", "La respuesta tiene dos palabras");
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR,
+                "El ejercicio incumple dos restricciones de la consigna", List.of(wrongTense, extraWord), List.of());
+        AuditNode node = buildQuizNode(buildQuiz("q1"));
+        QuizInstructionAnalyzer analyzer = judge(EvaluationResolutionKind.EVALUATED, verdict);
+
+        analyzer.onQuiz(node);
+        FindingDraft finding = analyzer.findingsAt(node).get(0);
+
+        List<EvidencePart> examined = finding.getEvidence().getExamined();
+        for (InstructionViolation violation : List.of(wrongTense, extraWord)) {
+            assertTrue(examined.stream().anyMatch(p -> violation.getConstraint().equals(p.getLabel())
+                            && violation.getEvidence().equals(p.getText())),
+                    "R003: every violation, with the constraint it breaks and its evidence: " + violation.getCode());
+        }
+        assertTrue(examined.stream().anyMatch(p -> "a sentence".equals(p.getText())),
+                "R003: what the judge looked at, the sentence as the student reads it");
+        assertEquals("El ejercicio incumple dos restricciones de la consigna", finding.getEvidence().getObservation(),
+                "R003: the line that names the problem is the judge's reason");
     }
 
     @Test
@@ -1245,7 +1306,26 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R004")
     public void shouldLeaveAFindingThatCountsAsErrorOnEveryQuizItScoresBelow1AndNoneOnAQuizItScores1() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 1: in the errors family a finding that counts as error and a score below 1 go
+        // together -- the judge's findings are resolved at the panel, never rank-only.
+        AuditNode breaching = buildQuizNode(buildQuiz("q-breach"));
+        QuizInstructionAnalyzer breachingJudge = judge(EvaluationResolutionKind.EVALUATED,
+                breach(InstructionSeverity.MINOR, "MISSING_HINT"));
+        breachingJudge.onQuiz(breaching);
+        AuditNode compliant = buildQuizNode(buildQuiz("q-ok"));
+        QuizInstructionAnalyzer compliantJudge = judge(EvaluationResolutionKind.EVALUATED,
+                new QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE, "Cumple la consigna", List.of(), List.of()));
+        compliantJudge.onQuiz(compliant);
+
+        List<FindingDraft> breachingFindings = breachingJudge.findingsAt(breaching);
+        List<FindingDraft> compliantFindings = compliantJudge.findingsAt(compliant);
+
+        assertTrue(breaching.getScores().get("quiz-instruction") < 1.0);
+        assertEquals(1, breachingFindings.size(), "R004: the quiz below 1 has its finding");
+        assertTrue(breachingFindings.stream().allMatch(f -> f.getResolution() != FindingResolution.RANK_ONLY),
+                "R004: and it counts as error");
+        assertEquals(1.0, compliant.getScores().get("quiz-instruction"), 1e-9);
+        assertTrue(compliantFindings.isEmpty(), "R004: the quiz at 1 has none");
     }
 
     @Test
@@ -1253,7 +1333,18 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R008")
     public void shouldMarkAsNotEvaluatedByQuizinstructionTheQuizzesItLeavesPendingForBudgetOrFailed() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: without this mark a quiz the judge could not evaluate would look like one it never
+        // reached; «algún error» would stop reading as a floor.
+        for (EvaluationResolutionKind kind : List.of(EvaluationResolutionKind.PENDING, EvaluationResolutionKind.FAILED)) {
+            AuditNode node = buildQuizNode(buildQuiz("q-" + kind));
+            judge(kind, breach(InstructionSeverity.MAJOR, "X")).onQuiz(node);
+
+            assertEquals(List.of("quiz-instruction"), node.getUnevaluatedBy(),
+                    "R008: a quiz left " + kind + " is declared not evaluated by quiz-instruction");
+        }
+        AuditNode evaluated = buildQuizNode(buildQuiz("q-evaluated"));
+        judge(EvaluationResolutionKind.EVALUATED, breach(InstructionSeverity.MAJOR, "X")).onQuiz(evaluated);
+        assertTrue(evaluated.getUnevaluatedBy().isEmpty(), "an evaluated quiz is not declared unevaluated");
     }
 
     @Test
@@ -1261,7 +1352,18 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R011")
     public void shouldLeaveOnAQuizWhoseVerdictWasReusedFromAnEarlierRunTheSameFindingAsOnOneJudgedInThisRun() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011 (keeps F-EVCOST-R003): a reused verdict counts the same as a new one.
+        QuizInstructionVerdict verdict = breach(InstructionSeverity.CRITICAL, "BLANK_UNSOLVABLE");
+        AuditNode fresh = buildQuizNode(buildQuiz("q1"));
+        QuizInstructionAnalyzer freshJudge = judge(EvaluationResolutionKind.EVALUATED, verdict);
+        freshJudge.onQuiz(fresh);
+        AuditNode reused = buildQuizNode(buildQuiz("q1"));
+        QuizInstructionAnalyzer reusedJudge = judge(EvaluationResolutionKind.REUSED, verdict);
+        reusedJudge.onQuiz(reused);
+
+        assertEquals(fresh.getScores().get("quiz-instruction"), reused.getScores().get("quiz-instruction"));
+        assertEquals(freshJudge.findingsAt(fresh), reusedJudge.findingsAt(reused),
+                "R011: the same finding whether the verdict is new or reused");
     }
 
     @Test
@@ -1269,6 +1371,70 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R014")
     public void shouldLeaveASingleFindingPerBreachingQuizWhoseIdentityDependsNeitherOnTheViolationCodesTheModelWritesNorOnTheJudgeVersion() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R014: the codes of the violations are written by the model and are not stable, so the
+        // judge leaves one finding per breaching quiz and its identity is analyzer, rule and quiz.
+        AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null, null,
+                mock(QuizInstructionConfig.class)).describe();
+        List<String> identities = new ArrayList<>();
+        int run = 0;
+        for (QuizInstructionVerdict verdict : List.of(
+                new QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR, "Dos incumplimientos", List.of(
+                        new InstructionViolation("WRONG_TENSE", "Pasado", "goes", "presente"),
+                        new InstructionViolation("EXTRA_WORD", "Una palabra", "has gone", "dos")), List.of()),
+                new QuizInstructionVerdict(false, 0.8, InstructionSeverity.MAJOR, "Otro juez, otros codigos", List.of(
+                        new InstructionViolation("TENSE_MISMATCH", "Pasado", "goes", "presente")), List.of()))) {
+            run++;
+            AuditNode root = buildCourseNode();
+            AuditNode node = buildQuizNode(buildQuiz("67fab6d599301022953425b1"));
+            root.getChildren().add(node);
+            node.setParent(root);
+            QuizInstructionAnalyzer analyzer = judge(EvaluationResolutionKind.EVALUATED, verdict, "judge-v" + run);
+            analyzer.onQuiz(node);
+
+            assertEquals(1, analyzer.findingsAt(node).size(), "R014: a single finding per breaching quiz");
+            new DefaultFindingCollector().collect(root, analyzer, card);
+            List<Finding> findings = node.getFindings();
+            assertEquals(1, findings.size());
+            identities.add(findings.get(0).getIdentity().getKey());
+        }
+        assertEquals(identities.get(0), identities.get(1),
+                "R014: the identity depends neither on the violation codes nor on the judge version");
+        assertEquals("quiz-instruction|" + card.getRules().get(0).getId() + "|67fab6d599301022953425b1",
+                identities.get(0), "R014: analyzer, rule and quiz -- nothing marked inside it");
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-HALL fixtures: the judge answers through a session and the configured scorer
+    // ------------------------------------------------------------------
+
+    private static QuizInstructionVerdict breach(InstructionSeverity severity, String code) {
+        return new QuizInstructionVerdict(false, 0.9, severity, "El ejercicio no cumple su consigna",
+                List.of(new InstructionViolation(code, "La consigna pide el pasado", "goes", "Esta en presente")),
+                List.of());
+    }
+
+    private QuizInstructionAnalyzer judge(EvaluationResolutionKind kind, QuizInstructionVerdict verdict) {
+        return judge(kind, verdict, "v1");
+    }
+
+    /** A judge whose session resolves every quiz with the given kind, scored by the configured scorer. */
+    private QuizInstructionAnalyzer judge(EvaluationResolutionKind kind, QuizInstructionVerdict verdict,
+            String judgeVersion) {
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        QuizInstructionConfig config = mock(QuizInstructionConfig.class);
+        when(config.getScoreFor(InstructionSeverity.NONE)).thenReturn(1.0);
+        when(config.getScoreFor(InstructionSeverity.MINOR)).thenReturn(0.6);
+        when(config.getScoreFor(InstructionSeverity.MAJOR)).thenReturn(0.3);
+        when(config.getScoreFor(InstructionSeverity.CRITICAL)).thenReturn(0.0);
+        when(subjectBuilder.build(any())).thenAnswer(invocation -> new EvaluationSubject(
+                ((AuditNode) invocation.getArgument(0)).getEntity().getId(), Map.of()));
+        String payload = kind == EvaluationResolutionKind.PENDING || kind == EvaluationResolutionKind.FAILED
+                ? null : "payload";
+        when(session.resolve(any())).thenReturn(new EvaluationResolution(kind, payload, judgeVersion));
+        when(verdictReader.read("payload")).thenReturn(verdict);
+        return new QuizInstructionAnalyzer(session, subjectBuilder, new DefaultQuizInstructionScorer(config),
+                mock(QuizInstructionScopeMatcher.class), verdictReader, normalPolicy(500));
     }
 }

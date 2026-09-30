@@ -1,4 +1,45 @@
 package com.learney.contentaudit.auditdomain.findingengine;
+import com.learney.contentaudit.auditdomain.SentenceLengthDiagnosis;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultKnowledgeDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultLevelDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultTopicDiagnoses;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.NodeDiagnoses;
+import com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer;
+import com.learney.contentaudit.auditdomain.SentenceLengthConfig;
+import com.learney.contentaudit.auditdomain.TargetRange;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingContractViolationException;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.IdentityHashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+import org.mockito.ArgumentMatchers;
+import org.mockito.Mockito;
 
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +57,29 @@ public class DefaultFindingCollectorTest {
     @Tag("F-HALL-R001")
     public void shouldStampOneFindingWithItsEightFieldsFilledAnalyzerRuleNodeSeverityEvidenceResolutionCostAndIdentityOnHeIsntInTheLivingroomWhichScores08InSentencelengthWith9TokensAgainstThe3To8OfA1(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the analyzer decides rule, severity, resolution and evidence; the collector stamps
+        // analyzer, node, cost of the rule and identity -- the eight fields, all filled.
+        Tree tree = beKnowledge();
+        SentenceLengthAnalyzer analyzer = sentenceLength();
+        tree.quizzes().forEach(analyzer::onQuiz);
+        AnalyzerDescriptor card = card("sentence-length");
+
+        collector.collect(tree.root(), analyzer, card);
+
+        AuditNode livingRoom = tree.quizzes().get(0);
+        Assertions.assertEquals(0.8, livingRoom.getScores().get("sentence-length"), 1e-9);
+        Assertions.assertEquals(1, livingRoom.getFindings().size(), "R001: the quiz below 1 has one finding");
+        Finding finding = livingRoom.getFindings().get(0);
+        Assertions.assertEquals("sentence-length", finding.getAnalyzer());
+        Assertions.assertEquals(card.getRules().get(0).getId(), finding.getRule());
+        Assertions.assertEquals(new FindingNodeRef(AuditTarget.QUIZ, LIVING_ROOM_ID, LIVING_ROOM), finding.getNode());
+        Assertions.assertEquals(FindingSeverity.LOW, finding.getSeverity());
+        Assertions.assertFalse(finding.getEvidence().getExamined().isEmpty());
+        Assertions.assertFalse(finding.getEvidence().getObservation().isBlank());
+        Assertions.assertEquals(FindingResolution.PANEL, finding.getResolution());
+        Assertions.assertEquals(AnalysisCost.INSTANT, finding.getCost());
+        Assertions.assertEquals("sentence-length|" + finding.getRule() + "|" + LIVING_ROOM_ID,
+                finding.getIdentity().getKey());
     }
 
     @Test
@@ -24,7 +87,16 @@ public class DefaultFindingCollectorTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R001")
     public void shouldLeaveNoSentencelengthFindingOnWhereIsMyWalletWhose5TokensFitA1AndScore1() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 2: no finding on a node that passes.
+        Tree tree = beKnowledge();
+        SentenceLengthAnalyzer analyzer = sentenceLength();
+        tree.quizzes().forEach(analyzer::onQuiz);
+
+        collector.collect(tree.root(), analyzer, card("sentence-length"));
+
+        AuditNode wallet = tree.quizzes().get(1);
+        Assertions.assertEquals(1.0, wallet.getScores().get("sentence-length"), 1e-9, "5 tokens fit the 3 to 8 of A1");
+        Assertions.assertTrue(wallet.getFindings().isEmpty(), "R001: no sentence-length finding on a quiz that passes");
     }
 
     @Test
@@ -33,7 +105,43 @@ public class DefaultFindingCollectorTest {
     @Tag("F-HALL-R001")
     public void shouldAskAnAnalyzerForFindingsOnlyOnTheLevelsItsCardEvaluatesLeavingNoneOnThe55TopicsThatCocabucketsdistributionScoresBelow1WithoutAGoal(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 2: COCA writes a score of 0 on every topic, without a goal: that is not an
+        // evaluation, so the collector never asks there -- only on the levels and the course.
+        AnalyzerDescriptor card = card("coca-buckets-distribution");
+        AuditNode root = node(AuditTarget.COURSE, null, null);
+        root.getScores().put("coca-buckets-distribution", 0.725);
+        double[] levelScores = {1.0, 1.0, 0.579, 0.322};
+        String[] levels = {"A1", "A2", "B1", "B2"};
+        List<AuditNode> topics = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            AuditNode level = node(AuditTarget.MILESTONE, new AuditableMilestone(List.of(), "m" + i, levels[i], null), root);
+            level.getScores().put("coca-buckets-distribution", levelScores[i]);
+            for (int t = 0; t < (i == 0 ? 16 : 13); t++) {
+                AuditNode topic = node(AuditTarget.TOPIC, new AuditableTopic(List.of(), levels[i] + "-t" + t, "Topic", null), level);
+                topic.getScores().put("coca-buckets-distribution", 0.0);
+                topics.add(topic);
+            }
+        }
+        Assertions.assertEquals(55, topics.size());
+        ContentAnalyzer coca = Mockito.mock(ContentAnalyzer.class);
+        Mockito.when(coca.findingsAt(ArgumentMatchers.any())).thenAnswer(invocation -> {
+            AuditNode node = invocation.getArgument(0);
+            if (node.getScores().get("coca-buckets-distribution") >= 1.0) {
+                return List.of();
+            }
+            String rule = node.getTarget() == AuditTarget.COURSE ? card.getRules().get(1).getId()
+                    : card.getRules().get(0).getId();
+            return List.of(draft(rule, null, FindingSeverity.LOW, FindingResolution.RANK_ONLY));
+        });
+
+        collector.collect(root, coca, card);
+
+        Mockito.verify(coca, Mockito.never()).findingsAt(ArgumentMatchers.argThat(n -> n.getTarget() == AuditTarget.TOPIC));
+        Mockito.verify(coca, Mockito.times(5)).findingsAt(ArgumentMatchers.any());
+        topics.forEach(topic -> Assertions.assertTrue(topic.getFindings().isEmpty(),
+                "R001: no finding on a topic that only gets a score without a goal"));
+        Assertions.assertEquals(1, root.getChildren().get(3).getFindings().size(), "B2, below 1, has its finding");
+        Assertions.assertEquals(1, root.getFindings().size(), "the course, below 1, has its finding");
     }
 
     @Test
@@ -42,7 +150,23 @@ public class DefaultFindingCollectorTest {
     @Tag("F-HALL-R001")
     public void shouldStopTheRunWithAContractViolationWhenAnAnalyzerLeavesANodeItEvaluatedBelow1WithoutAFindingOrReturnsAFindingOnANodeThatPasses(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: every evaluated node below 1 has a finding, and none that passes has one.
+        AnalyzerDescriptor card = vocabularyCard("scripted");
+        Tree silent = beKnowledge();
+        silent.quizzes().get(0).getScores().put("scripted", 0.5);
+        FindingContractViolationException withoutFinding = Assertions.assertThrows(
+                FindingContractViolationException.class,
+                () -> collector.collect(silent.root(), scripted("scripted", Map.of()), card));
+        Assertions.assertEquals("scripted", withoutFinding.getAnalyzerName());
+        Assertions.assertEquals(LIVING_ROOM_ID, withoutFinding.getNodeId());
+
+        Tree passing = beKnowledge();
+        AuditNode quiz = passing.quizzes().get(0);
+        quiz.getScores().put("scripted", 1.0);
+        Assertions.assertThrows(FindingContractViolationException.class, () -> collector.collect(passing.root(),
+                scripted("scripted", Map.of(quiz, List.of(draft("rule-scripted", null, FindingSeverity.LOW,
+                        FindingResolution.PANEL)))), card),
+                "R001: a finding on a node that passes breaks the contract");
     }
 
     @Test
@@ -51,7 +175,27 @@ public class DefaultFindingCollectorTest {
     @Tag("F-HALL-R002")
     public void shouldStampOnEachFindingTheCostOfTheCardRuleThatProducedItSoAnInstantRuleOfACardThatAlsoHasAPaidmodelRuleGivesInstantFindings(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: the cost goes by finding -- multiple choice gives instant findings (its rules) and
+        // paid ones (its judge), and the card costs the highest of them.
+        AnalyzerDescriptor card = errorsCard("opcion-multiple-valida",
+                new AnalyzerRuleCard("single-correct-option", "Una sola opcion correcta", AnalysisCost.INSTANT),
+                new AnalyzerRuleCard("judge-options", "El juez mira las opciones", AnalysisCost.PAID_MODEL));
+        Tree tree = beKnowledge();
+        AuditNode byRule = tree.quizzes().get(0);
+        AuditNode byJudge = tree.quizzes().get(1);
+        byRule.getScores().put("opcion-multiple-valida", 0.0);
+        byJudge.getScores().put("opcion-multiple-valida", 0.0);
+
+        // AuditNode hashes its whole tree, so the script is keyed by identity.
+        Map<AuditNode, List<FindingDraft>> script = new IdentityHashMap<>();
+        script.put(byRule, List.of(draft("single-correct-option", null, FindingSeverity.BLOCKING, FindingResolution.RULE)));
+        script.put(byJudge, List.of(draft("judge-options", null, FindingSeverity.HIGH, FindingResolution.PANEL)));
+        collector.collect(tree.root(), scripted("opcion-multiple-valida", script), card);
+
+        Assertions.assertEquals(AnalysisCost.INSTANT, byRule.getFindings().get(0).getCost(),
+                "R002: the instant rule gives an instant finding");
+        Assertions.assertEquals(AnalysisCost.PAID_MODEL, byJudge.getFindings().get(0).getCost(),
+                "R002: the judge's rule gives a paid-model finding");
     }
 
     @Test
@@ -60,7 +204,18 @@ public class DefaultFindingCollectorTest {
     @Tag("F-HALL-R002")
     public void shouldStopTheRunWithAContractViolationWhenAFindingComesWithoutASeverityOrWithoutAResolution(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: every finding has exactly one value of each axis.
+        AnalyzerDescriptor card = vocabularyCard("scripted");
+        Tree noSeverity = belowOne("scripted");
+        Assertions.assertThrows(FindingContractViolationException.class, () -> collector.collect(noSeverity.root(),
+                scripted("scripted", Map.of(noSeverity.quizzes().get(0),
+                        List.of(draft("rule-scripted", null, null, FindingResolution.PANEL)))), card),
+                "R002: a finding without severity breaks the contract");
+        Tree noResolution = belowOne("scripted");
+        Assertions.assertThrows(FindingContractViolationException.class, () -> collector.collect(noResolution.root(),
+                scripted("scripted", Map.of(noResolution.quizzes().get(0),
+                        List.of(draft("rule-scripted", null, FindingSeverity.LOW, null)))), card),
+                "R002: a finding without resolution breaks the contract");
     }
 
     @Test
@@ -69,7 +224,20 @@ public class DefaultFindingCollectorTest {
     @Tag("F-HALL-R003")
     public void shouldStopTheRunWithAContractViolationWhenAFindingComesWithNoExaminedPartOrNoObservation(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the evidence of a finding is never empty -- what it looked at and what it found.
+        AnalyzerDescriptor card = vocabularyCard("scripted");
+        Tree nothingExamined = belowOne("scripted");
+        Assertions.assertThrows(FindingContractViolationException.class, () -> collector.collect(nothingExamined.root(),
+                scripted("scripted", Map.of(nothingExamined.quizzes().get(0), List.of(new FindingDraft("rule-scripted",
+                        null, FindingSeverity.LOW, FindingResolution.PANEL,
+                        new FindingEvidence(List.of(), "Largo: 9 tokens, A1 de 3 a 8", List.of()))))), card),
+                "R003: a finding that examined nothing breaks the contract");
+        Tree noObservation = belowOne("scripted");
+        Assertions.assertThrows(FindingContractViolationException.class, () -> collector.collect(noObservation.root(),
+                scripted("scripted", Map.of(noObservation.quizzes().get(0), List.of(new FindingDraft("rule-scripted",
+                        null, FindingSeverity.LOW, FindingResolution.PANEL,
+                        new FindingEvidence(List.of(new EvidencePart("Oración", LIVING_ROOM)), " ", List.of()))))), card),
+                "R003: a finding without an observation breaks the contract");
     }
 
     @Test
@@ -78,7 +246,25 @@ public class DefaultFindingCollectorTest {
     @Tag("F-HALL-R004")
     public void shouldStopTheRunWithAContractViolationWhenAnErrorsAnalyzerLeavesAt1AQuizWithAFindingThatCountsAsErrorOrBelow1AQuizWhoseOnlyFindingsRankOnly(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 1 and 2: in the errors family a finding that counts as error goes with a score
+        // below 1, and a finding that only ranks never lowers it.
+        AnalyzerDescriptor card = errorsCard("pista-coherente",
+                new AnalyzerRuleCard("hint-matches", "La pista coincide con la respuesta", AnalysisCost.INSTANT));
+        card.setResolutions(List.of(FindingResolution.PANEL, FindingResolution.RANK_ONLY));
+        Tree atOne = beKnowledge();
+        AuditNode passing = atOne.quizzes().get(0);
+        passing.getScores().put("pista-coherente", 1.0);
+        Assertions.assertThrows(FindingContractViolationException.class, () -> collector.collect(atOne.root(),
+                scripted("pista-coherente", Map.of(passing, List.of(draft("hint-matches", null, FindingSeverity.HIGH,
+                        FindingResolution.PANEL)))), card),
+                "R004: an error on a quiz left at 1 breaks the contract");
+        Tree belowOne = beKnowledge();
+        AuditNode failing = belowOne.quizzes().get(0);
+        failing.getScores().put("pista-coherente", 0.5);
+        Assertions.assertThrows(FindingContractViolationException.class, () -> collector.collect(belowOne.root(),
+                scripted("pista-coherente", Map.of(failing, List.of(draft("hint-matches", null, FindingSeverity.LOW,
+                        FindingResolution.RANK_ONLY)))), card),
+                "R004: a quiz below 1 whose only findings rank only breaks the contract");
     }
 
     @Test
@@ -87,7 +273,18 @@ public class DefaultFindingCollectorTest {
     @Tag("F-HALL-R006")
     public void shouldStopTheRunWithAContractViolationWhenAFindingNamesARuleItsCardDoesNotDeclareOrAResolutionItsCardDoesNotList(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 inv. 2: every finding names a rule of its card, with a resolution its card declares.
+        AnalyzerDescriptor card = vocabularyCard("scripted");
+        Tree unknownRule = belowOne("scripted");
+        Assertions.assertThrows(FindingContractViolationException.class, () -> collector.collect(unknownRule.root(),
+                scripted("scripted", Map.of(unknownRule.quizzes().get(0), List.of(draft("rule-nobody-declared", null,
+                        FindingSeverity.LOW, FindingResolution.PANEL)))), card),
+                "R006: a rule the card does not declare breaks the contract");
+        Tree undeclaredResolution = belowOne("scripted");
+        Assertions.assertThrows(FindingContractViolationException.class, () -> collector.collect(
+                        undeclaredResolution.root(), scripted("scripted", Map.of(undeclaredResolution.quizzes().get(0),
+                                List.of(draft("rule-scripted", null, FindingSeverity.LOW, FindingResolution.RULE)))), card),
+                "R006: a resolution the card does not list breaks the contract");
     }
 
     @Test
@@ -95,7 +292,29 @@ public class DefaultFindingCollectorTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R013")
     public void shouldLeaveEveryScoreAndTypedDiagnosisOfTheTreeExactlyAsTheAnalyzerLeftThem() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R013: collecting reads the tree; the scores and the typed diagnoses stay as the analyzer
+        // left them.
+        Tree tree = beKnowledge();
+        SentenceLengthAnalyzer analyzer = sentenceLength();
+        tree.quizzes().forEach(analyzer::onQuiz);
+        Map<AuditNode, Map<String, Double>> scores = new IdentityHashMap<>();
+        Map<AuditNode, SentenceLengthDiagnosis> diagnoses = new IdentityHashMap<>();
+        for (AuditNode quiz : tree.quizzes()) {
+            scores.put(quiz, new LinkedHashMap<>(quiz.getScores()));
+            SentenceLengthDiagnosis d = ((DefaultQuizDiagnoses) quiz.getDiagnoses()).getSentenceLengthDiagnosis().orElseThrow();
+            diagnoses.put(quiz, new SentenceLengthDiagnosis(d.getTokenCount(), d.getTargetMin(), d.getTargetMax(),
+                    d.getCefrLevel(), d.getDelta(), d.getToleranceMargin()));
+        }
+
+        collector.collect(tree.root(), analyzer, card("sentence-length"));
+
+        for (AuditNode quiz : tree.quizzes()) {
+            Assertions.assertEquals(scores.get(quiz), quiz.getScores(), "R013: the scores are the analyzer's");
+            Assertions.assertEquals(Optional.of(diagnoses.get(quiz)),
+                    ((DefaultQuizDiagnoses) quiz.getDiagnoses()).getSentenceLengthDiagnosis(),
+                    "R013: the typed diagnoses are the analyzer's");
+        }
+        Assertions.assertTrue(tree.root().getScores().isEmpty(), "nothing is aggregated by the collector");
     }
 
     @Test
@@ -104,7 +323,28 @@ public class DefaultFindingCollectorTest {
     @Tag("F-HALL-R014")
     public void shouldGiveEachFindingTheIdentityAnalyzerRuleNodeAndMarkerTheSameWhateverTheRunTheTraversalOrderTheTimeOrTheJudgeVersionAsLemmaabsenceItsRuleQuiz67fab6d599301022953425b1AndWalletForWhereIsMyWallet(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R014: the identity is analyzer, rule, node and what it marks -- not the run, the order,
+        // the time nor a judge version. Two runs over the knowledge, with its quizzes in opposite
+        // orders, give wallet the same identity.
+        AnalyzerDescriptor card = card("lemma-absence");
+        String rule = card.getRules().get(0).getId();
+        List<String> keys = new ArrayList<>();
+        for (boolean reversed : List.of(false, true)) {
+            Tree tree = beKnowledge();
+            if (reversed) {
+                java.util.Collections.reverse(tree.root().getChildren().get(0).getChildren().get(0).getChildren().get(0)
+                        .getChildren());
+            }
+            AuditNode wallet = tree.quizzes().get(1);
+            wallet.getScores().put("lemma-absence", 0.9);
+            collector.collect(tree.root(), scripted("lemma-absence", Map.of(wallet,
+                    List.of(draft(rule, "wallet", FindingSeverity.MEDIUM, FindingResolution.PANEL)))), card);
+            keys.add(wallet.getFindings().get(0).getIdentity().getKey());
+            Assertions.assertEquals("wallet", wallet.getFindings().get(0).getIdentity().getMarker());
+        }
+        Assertions.assertEquals("lemma-absence|" + rule + "|" + WALLET_ID + "|wallet", keys.get(0),
+                "R014: analyzer, rule, quiz and the word it marks");
+        Assertions.assertEquals(keys.get(0), keys.get(1), "R014: the same identity whatever the traversal order");
     }
 
     @Test
@@ -113,7 +353,16 @@ public class DefaultFindingCollectorTest {
     @Tag("F-HALL-R014")
     public void shouldStopTheRunWithAContractViolationWhenAnAnalyzerReturnsTwoFindingsWithTheSameIdentityOnOneNode(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R014 inv. 2: a node never has two findings with the same identity.
+        AnalyzerDescriptor card = vocabularyCard("scripted");
+        Tree tree = belowOne("scripted");
+
+        FindingContractViolationException twice = Assertions.assertThrows(FindingContractViolationException.class,
+                () -> collector.collect(tree.root(), scripted("scripted", Map.of(tree.quizzes().get(0), List.of(
+                        draft("rule-scripted", "wallet", FindingSeverity.MEDIUM, FindingResolution.PANEL),
+                        draft("rule-scripted", "wallet", FindingSeverity.LOW, FindingResolution.PANEL)))), card));
+
+        Assertions.assertTrue(twice.getDetail().contains("wallet"), twice.getDetail());
     }
 
     @Test
@@ -122,6 +371,177 @@ public class DefaultFindingCollectorTest {
     @Tag("F-HALL-R014")
     public void shouldOrderTheFindingsOfANodeByTheCatalogOrderOfTheirAnalyzerThenByRuleThenByWhatTheyMarkWhateverOrderTheAnalyzersReturnedThemIn(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R014: the same findings, in the same order. The engine collects analyzer by analyzer in
+        // catalog order; within an analyzer the collector orders by rule, then by what they mark.
+        AnalyzerDescriptor first = errorsCard("first-in-catalog",
+                new AnalyzerRuleCard("rule-a", "A", AnalysisCost.INSTANT), new AnalyzerRuleCard("rule-b", "B", AnalysisCost.INSTANT));
+        AnalyzerDescriptor second = errorsCard("second-in-catalog",
+                new AnalyzerRuleCard("rule-a", "A", AnalysisCost.INSTANT));
+        Tree tree = beKnowledge();
+        AuditNode quiz = tree.quizzes().get(0);
+        quiz.getScores().put("first-in-catalog", 0.0);
+        quiz.getScores().put("second-in-catalog", 0.0);
+
+        collector.collect(tree.root(), scripted("first-in-catalog", Map.of(quiz, List.of(
+                draft("rule-b", "z", FindingSeverity.LOW, FindingResolution.PANEL),
+                draft("rule-a", "y", FindingSeverity.LOW, FindingResolution.PANEL),
+                draft("rule-a", "x", FindingSeverity.LOW, FindingResolution.PANEL)))), first);
+        collector.collect(tree.root(), scripted("second-in-catalog", Map.of(quiz, List.of(
+                draft("rule-a", "a", FindingSeverity.LOW, FindingResolution.PANEL)))), second);
+
+        List<String> order = new ArrayList<>();
+        quiz.getFindings().forEach(f -> order.add(f.getAnalyzer() + ":" + f.getRule() + ":" + f.getIdentity().getMarker()));
+        Assertions.assertEquals(List.of("first-in-catalog:rule-a:x", "first-in-catalog:rule-a:y",
+                "first-in-catalog:rule-b:z", "second-in-catalog:rule-a:a"), order,
+                "R014: catalog order of the analyzer, then rule, then marker");
+    }
+
+    private final DefaultFindingCollector collector = new DefaultFindingCollector();
+
+    private static final String LIVING_ROOM = "He isn't in the living-room.";
+    private static final String LIVING_ROOM_ID = "67fab6d599301022953425aa";
+    private static final String WALLET = "Where is my wallet?";
+    private static final String WALLET_ID = "67fab6d599301022953425b1";
+
+    record Tree(AuditNode root, List<AuditNode> quizzes) {
+    }
+
+    /** A1 > «Be: preguntas yes / no» > «He isn't in the living-room.» (9 tokens) and «Where is my wallet?» (5). */
+    private static Tree beKnowledge() {
+        AuditNode root = node(AuditTarget.COURSE, null, null);
+        AuditNode level = node(AuditTarget.MILESTONE, new AuditableMilestone(List.of(), "m-a1", "A1", null), root);
+        AuditNode topic = node(AuditTarget.TOPIC, new AuditableTopic(List.of(), "t-be", "Be", null), level);
+        AuditNode knowledge = node(AuditTarget.KNOWLEDGE, new AuditableKnowledge(List.of(), "Be: preguntas yes / no",
+                "Completa", true, "k-be", "Be: preguntas yes / no", "K", null, "Be"), topic);
+        AuditNode livingRoom = node(AuditTarget.QUIZ, quiz(LIVING_ROOM_ID, LIVING_ROOM, 9), knowledge);
+        AuditNode wallet = node(AuditTarget.QUIZ, quiz(WALLET_ID, WALLET, 5), knowledge);
+        return new Tree(root, List.of(livingRoom, wallet));
+    }
+
+    /** The same knowledge with the living-room quiz scored below 1 by the given analyzer. */
+    private static Tree belowOne(String analyzerName) {
+        Tree tree = beKnowledge();
+        tree.quizzes().get(0).getScores().put(analyzerName, 0.5);
+        return tree;
+    }
+
+    private static AuditableQuiz quiz(String id, String sentence, int tokenCount) {
+        List<NlpToken> tokens = new ArrayList<>();
+        for (int i = 0; i < tokenCount; i++) {
+            tokens.add(new NlpToken("w" + i, "w" + i, "NOUN", 1, false, false));
+        }
+        return new AuditableQuiz(tokens, id, sentence, "Q", null, List.of(sentence), null, null, null, null);
+    }
+
+    private static AuditNode node(AuditTarget target, com.learney.contentaudit.auditdomain.AuditableEntity entity,
+            AuditNode parent) {
+        AuditNode node = new AuditNode();
+        node.setTarget(target);
+        node.setEntity(entity);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        node.setDiagnoses(switch (target) {
+            case COURSE -> new DefaultCourseDiagnoses();
+            case MILESTONE -> new DefaultLevelDiagnoses();
+            case TOPIC -> new DefaultTopicDiagnoses();
+            case KNOWLEDGE -> new DefaultKnowledgeDiagnoses();
+            case QUIZ -> new DefaultQuizDiagnoses();
+        });
+        if (parent != null) {
+            parent.getChildren().add(node);
+        }
+        return node;
+    }
+
+    /** The real sentence-length analyzer with the configuration the code applies: A1 from 3 to 8, margin 5. */
+    private static SentenceLengthAnalyzer sentenceLength() {
+        SentenceLengthConfig config = Mockito.mock(SentenceLengthConfig.class);
+        Mockito.when(config.getTargetRange(CefrLevel.A1)).thenReturn(Optional.of(new TargetRange(CefrLevel.A1, 3, 8)));
+        Mockito.when(config.getToleranceMargin()).thenReturn(5);
+        return new SentenceLengthAnalyzer(null, config);
+    }
+
+    /** The real card of one of the eight analyzers. */
+    private static AnalyzerDescriptor card(String name) {
+        return DefaultAnalyzerCatalogTest.realProviders().stream()
+                .filter(provider -> name.equals(provider.analyzerName()))
+                .findFirst().orElseThrow().describe();
+    }
+
+    private static AnalyzerDescriptor vocabularyCard(String name) {
+        return DefaultAnalyzerCatalogTest.card(name, AnalyzerFamily.VOCABULARY, AnalysisCost.INSTANT);
+    }
+
+    private static AnalyzerDescriptor errorsCard(String name, AnalyzerRuleCard... rules) {
+        AnalyzerDescriptor card = DefaultAnalyzerCatalogTest.card(name, AnalyzerFamily.ERRORS, AnalysisCost.INSTANT);
+        card.setRules(List.of(rules));
+        AnalysisCost highest = AnalysisCost.INSTANT;
+        for (AnalyzerRuleCard rule : rules) {
+            if (rule.getCost().ordinal() > highest.ordinal()) {
+                highest = rule.getCost();
+            }
+        }
+        card.setCost(highest);
+        card.setResolutions(List.of(FindingResolution.RULE, FindingResolution.PANEL));
+        return card;
+    }
+
+    private static FindingDraft draft(String rule, String marker, FindingSeverity severity,
+            FindingResolution resolution) {
+        return new FindingDraft(rule, marker, severity, resolution, new FindingEvidence(
+                List.of(new EvidencePart("Oración", LIVING_ROOM)), "Lo que encontró", List.of()));
+    }
+
+    /** An analyzer that answers findingsAt from a script, and nothing on any other node. */
+    private static ContentAnalyzer scripted(String name, Map<AuditNode, List<FindingDraft>> script) {
+        Map<AuditNode, List<FindingDraft>> byNode = new IdentityHashMap<>(script);
+        return new ContentAnalyzer() {
+            @Override
+            public Void onKnowledge(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onQuiz(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onMilestone(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onTopic(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onCourseComplete(AuditNode rootNode) {
+                return null;
+            }
+
+            @Override
+            public String getName() {
+                return name;
+            }
+
+            @Override
+            public AuditTarget getTarget() {
+                return AuditTarget.QUIZ;
+            }
+
+            @Override
+            public String getDescription() {
+                return "scripted " + name;
+            }
+
+            @Override
+            public List<FindingDraft> findingsAt(AuditNode node) {
+                return byNode.getOrDefault(node, List.of());
+            }
+        };
     }
 }

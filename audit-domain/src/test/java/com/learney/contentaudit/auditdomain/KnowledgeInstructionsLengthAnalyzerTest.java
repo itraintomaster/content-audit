@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -296,6 +298,33 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R003")
     public void shouldGiveTheFindingOfBeODoArmarPreguntasTheWeightedLengthOfItsInstructionsAgainstItsLimitsOf70And100() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the instructions of «$Be$ o $do$: armar preguntas» (29/9 base) weigh 148,1, beyond
+        // the soft limit of 70 and the hard limit of 100.
+        String instructions = "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es 'be', "
+                + "debes usar 'am / is / are' y si el verbo no es 'be', debes usar 'do / does'.";
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "$Be$ o $do$: armar preguntas", instructions,
+                true, "6814dafa7d73e7209a13d393", "$Be$ o $do$: armar preguntas", "K", null, "Present Simple");
+        AuditNode node = buildKnowledgeNode(knowledge);
+
+        analyzer.onKnowledge(node);
+        List<FindingDraft> drafts = analyzer.findingsAt(node);
+
+        assertEquals(0.0, node.getScores().get("knowledge-instructions-length"), 1e-9);
+        assertEquals(1, drafts.size(), "one finding for the instructions");
+        String evidence = evidenceText(drafts.get(0));
+        assertTrue(evidence.contains(instructions), "R003: what it looked at, the instructions: " + evidence);
+        assertTrue(evidence.contains("148,1"), "R003: the weighted length it measured: " + evidence);
+        assertTrue(evidence.contains("70") && evidence.contains("100"),
+                "R003: next to its limits of 70 and 100: " + evidence);
+        assertEquals(FindingResolution.RANK_ONLY, drafts.get(0).getResolution(),
+                "the instructions only rank: they have no correction of their own");
+    }
+
+    private static String evidenceText(com.learney.contentaudit.auditdomain.finding.FindingDraft finding) {
+        StringBuilder text = new StringBuilder();
+        for (com.learney.contentaudit.auditdomain.finding.EvidencePart part : finding.getEvidence().getExamined()) {
+            text.append(part.getLabel()).append(": ").append(part.getText()).append('\n');
+        }
+        return text.append(finding.getEvidence().getObservation()).toString();
     }
 }

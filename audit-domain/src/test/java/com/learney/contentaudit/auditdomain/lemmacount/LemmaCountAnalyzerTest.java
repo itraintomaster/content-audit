@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.lemmacount;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -816,6 +817,30 @@ public class LemmaCountAnalyzerTest {
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R003")
     public void shouldGiveTheFindingOfTheCourseWhichItScores670TheLemmasThatAppearInFewerSentencesThanTheirTarget() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the course of the 29/9 base, as lemma-count leaves it after closing it: 67,0 %,
+        // with lemmas like nose or café in 1 sentence against a target of 4.
+        LemmaCountStats nose = new LemmaCountStats(new LemmaAndPos("nose", "NOUN"), 1, 0.25, Optional.of(CefrLevel.A1));
+        LemmaCountStats cafe = new LemmaCountStats(new LemmaAndPos("café", "NOUN"), 1, 0.25, Optional.of(CefrLevel.A1));
+        LemmaCountStats venue = new LemmaCountStats(new LemmaAndPos("venue", "NOUN"), 1, 0.25, Optional.of(CefrLevel.B2));
+        LemmaCountResult result = new LemmaCountResult(4, Optional.of(0.6698448144961168), List.of(
+                new LevelLemmaCountResult(CefrLevel.A1, 0.9388349514563107, 515, List.of(nose, cafe)),
+                new LevelLemmaCountResult(CefrLevel.B2, 0.3404947916666667, 384, List.of(venue))), List.of());
+        AuditNode root = buildCourseNode();
+        root.getScores().put("lemma-count", 0.6698448144961168);
+        ((DefaultCourseDiagnoses) root.getDiagnoses()).setLemmaCountDiagnosis(new LemmaCountCourseDiagnosis(result));
+        LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(contentWordFilter, lemmaCefrLevelResolver, lemmaCountConfig);
+
+        List<FindingDraft> drafts = analyzer.findingsAt(root);
+
+        assertEquals(1, drafts.size(), "one finding for the course");
+        StringBuilder evidence = new StringBuilder();
+        drafts.get(0).getEvidence().getExamined().forEach(p -> evidence.append(p.getLabel()).append(": ")
+                .append(p.getText()).append('\n'));
+        evidence.append(drafts.get(0).getEvidence().getObservation());
+        assertTrue(evidence.toString().contains("67,0 %"), "R003: the score of the course: " + evidence);
+        assertTrue(evidence.toString().contains("nose (1)") && evidence.toString().contains("café (1)")
+                        && evidence.toString().contains("venue (1)"),
+                "R003: the lemmas below their target, with the sentences they appear in: " + evidence);
+        assertTrue(evidence.toString().contains("4 oraciones"), "R003: next to the target of 4: " + evidence);
     }
 }
