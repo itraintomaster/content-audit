@@ -1256,4 +1256,20 @@ public class DefaultRevisionEngineTest {
                 originalKnowledge.getInstructions(),
                 "The original knowledge instructions must remain unchanged since the course was never saved (R009)");
     }
+
+    @Test
+    @DisplayName("should reject revising a task on a multiple choice quiz before any reviser runs, writing nothing but the plan and leaving the task SKIPPED")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R006")
+    public void shouldRejectRevisingATaskOnAMultipleChoiceQuizBeforeAnyReviserRunsWritingNothingButThePlanAndLeavingTheTaskSKIPPED() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject revising a quiz whose own kind is multiple choice when its form does not say one, but not when its form says CLOZE")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R009")
+    public void shouldRejectRevisingAQuizWhoseOwnKindIsMultipleChoiceWhenItsFormDoesNotSayOneButNotWhenItsFormSaysCLOZE() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

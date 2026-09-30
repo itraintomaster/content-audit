@@ -143,7 +143,7 @@ public class DefaultQuizSentenceConverter implements QuizSentenceConverter {
             }
         }
 
-        FormEntity result = new FormEntity(base);
+        FormEntity result = new FormEntity(base, 0.0, null, null, null, null, null);
         result.setSentenceParts(mergedParts);
         return result;
     }

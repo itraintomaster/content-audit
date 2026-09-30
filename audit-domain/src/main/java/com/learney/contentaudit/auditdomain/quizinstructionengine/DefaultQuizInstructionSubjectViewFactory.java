@@ -31,7 +31,7 @@ public class DefaultQuizInstructionSubjectViewFactory implements QuizInstruction
         String subjectRef = quiz != null ? quiz.getId() : null;
 
         QuizInstructionSubjectView view = new QuizInstructionSubjectView(
-                subjectRef, cefrLevel, topic, title, instructions, sentenceParts);
+                subjectRef, cefrLevel, topic, title, instructions, sentenceParts, null);
         view.setMultipleChoice(form != null ? form.getMultipleChoice() : null);
         return view;
     }

@@ -533,4 +533,20 @@ public class DefaultPreservationCheckTest {
                 "La violacion debe senalar el elemento ganado (knowledge-9-2), que ninguna revision se "
                         + "proponia crear (F-RPRES-R003): " + violations);
     }
+
+    @Test
+    @DisplayName("should report a violation when a correction drops the data the system does not interpret or changes the multiple choice options the reference carries")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R008")
+    public void shouldReportAViolationWhenACorrectionDropsTheDataTheSystemDoesNotInterpretOrChangesTheMultipleChoiceOptionsTheReferenceCarries() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not take as a violation the absence of options or of data the system does not interpret in a reference recorded before they existed")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R008")
+    public void shouldNotTakeAsAViolationTheAbsenceOfOptionsOrOfDataTheSystemDoesNotInterpretInAReferenceRecordedBeforeTheyExisted() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

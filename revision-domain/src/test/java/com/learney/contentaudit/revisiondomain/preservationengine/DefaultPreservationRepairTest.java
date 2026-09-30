@@ -474,4 +474,36 @@ public class DefaultPreservationRepairTest {
         assertNull(resultQuiz.getForm().getName(),
                 "form.name must not be filled with a fabricated default (e.g. '') when no intact counterpart exists (F-RPRES-R002)");
     }
+
+    @Test
+    @DisplayName("should never restore a multiple choice quiz from a snapshot recorded when it was a CLOZE, leaving its options and its data as they are")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R007")
+    public void shouldNeverRestoreAMultipleChoiceQuizFromASnapshotRecordedWhenItWasACLOZELeavingItsOptionsAndItsDataAsTheyAre() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should report a multiple choice quiz that lost its options as unrepairable without filling them in")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R007")
+    public void shouldReportAMultipleChoiceQuizThatLostItsOptionsAsUnrepairableWithoutFillingThemIn() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep the data the system does not interpret of a CLOZE quiz when repairing it from a snapshot that did not know them")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R008")
+    public void shouldKeepTheDataTheSystemDoesNotInterpretOfACLOZEQuizWhenRepairingItFromASnapshotThatDidNotKnowThem() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should never restore a quiz whose own kind is multiple choice and whose form lost its kind from a snapshot recorded when it was a CLOZE")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R009")
+    public void shouldNeverRestoreAQuizWhoseOwnKindIsMultipleChoiceAndWhoseFormLostItsKindFromASnapshotRecordedWhenItWasACLOZE() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

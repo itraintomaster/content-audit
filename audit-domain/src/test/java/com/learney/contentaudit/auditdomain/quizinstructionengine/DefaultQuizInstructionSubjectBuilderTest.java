@@ -312,4 +312,44 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                         + "same quiz, or the fingerprint computed while verifying a correction diverges from the "
                         + "one the next audit computes and the verdict is never reused");
     }
+
+    @Test
+    @DisplayName("should show the judge every option of a multiple choice quiz in its gap, in the order the student sees them, with the correct one marked")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R005")
+    public void shouldShowTheJudgeEveryOptionOfAMultipleChoiceQuizInItsGapInTheOrderTheStudentSeesThemWithTheCorrectOneMarked() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should render a multiple choice quiz for the judge on the revalidation and candidate path exactly as on the analysis path")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R005")
+    public void shouldRenderAMultipleChoiceQuizForTheJudgeOnTheRevalidationAndCandidatePathExactlyAsOnTheAnalysisPath() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give different judged content to two multiple choice quizzes that differ only in their correct option")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R005")
+    public void shouldGiveDifferentJudgedContentToTwoMultipleChoiceQuizzesThatDifferOnlyInTheirCorrectOption() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should render a CLOZE quiz for the judge character for character as it did before multiple choice existed")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R005")
+    public void shouldRenderACLOZEQuizForTheJudgeCharacterForCharacterAsItDidBeforeMultipleChoiceExisted() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should render a quiz whose gap has no options and that carries no multiple choice options the CLOZE way, as before")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R005")
+    public void shouldRenderAQuizWhoseGapHasNoOptionsAndThatCarriesNoMultipleChoiceOptionsTheCLOZEWayAsBefore() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

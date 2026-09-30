@@ -137,7 +137,7 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
                 form.getIncidence(),
                 form.getLabel(),
                 form.getName(),
-                filtered);
+                filtered, null, null);
         return removeSpaceBeforePunctuation(derive(rewriteForm));
     }
 

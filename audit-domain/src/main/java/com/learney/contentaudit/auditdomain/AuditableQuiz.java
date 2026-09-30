@@ -29,7 +29,6 @@ public class AuditableQuiz implements AuditableEntity {
 
     private List<SentencePartEntity> sentenceParts;
 
-    // The options of a multiple-choice quiz, copied verbatim from its form; null otherwise.
     private MultipleChoiceEntity multipleChoice;
 
     public AuditableQuiz() {
@@ -37,7 +36,7 @@ public class AuditableQuiz implements AuditableEntity {
 
     public AuditableQuiz(List<NlpToken> tokens, String id, String label, String code,
             String translation, List<String> sentences, String quizSentence, String instructions,
-            List<SentencePartEntity> sentenceParts) {
+            List<SentencePartEntity> sentenceParts, MultipleChoiceEntity multipleChoice) {
         this.tokens = tokens;
         this.id = id;
         this.label = label;
@@ -47,6 +46,7 @@ public class AuditableQuiz implements AuditableEntity {
         this.quizSentence = quizSentence;
         this.instructions = instructions;
         this.sentenceParts = sentenceParts;
+        this.multipleChoice = multipleChoice;
     }
 
     public List<NlpToken> getTokens() {

@@ -805,4 +805,28 @@ public class CourseToAuditableMapperTest {
         assertEquals("Verbs", auditableKnowledge.getTopicName(),
                 "R009: AuditableKnowledge.topicName must carry the label of the topic that contains it");
     }
+
+    @Test
+    @DisplayName("should map a course that mixes CLOZE and multiple choice quizzes without failing and hand every quiz to measurement")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R003")
+    public void shouldMapACourseThatMixesCLOZEAndMultipleChoiceQuizzesWithoutFailingAndHandEveryQuizToMeasurement() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should map a quiz whose form declares a kind the system does not recognize exactly like a CLOZE quiz")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R003")
+    public void shouldMapAQuizWhoseFormDeclaresAKindTheSystemDoesNotRecognizeExactlyLikeACLOZEQuiz() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should measure a multiple choice quiz on the plain sentence stored with it and never on one derived during the audit")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R004")
+    public void shouldMeasureAMultipleChoiceQuizOnThePlainSentenceStoredWithItAndNeverOnOneDerivedDuringTheAudit() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

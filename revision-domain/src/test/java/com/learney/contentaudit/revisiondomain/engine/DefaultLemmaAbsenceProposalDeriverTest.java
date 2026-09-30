@@ -512,4 +512,12 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 "the scenario requires the derived plain sentence to differ from the preserved title; "
                         + "otherwise this test would pass trivially without exercising the guard");
     }
+
+    @Test
+    @DisplayName("should keep the quiz and form data the system does not interpret when deriving the lexical correction of a CLOZE quiz")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R002")
+    public void shouldKeepTheQuizAndFormDataTheSystemDoesNotInterpretWhenDerivingTheLexicalCorrectionOfACLOZEQuiz() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

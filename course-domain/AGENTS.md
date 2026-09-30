@@ -117,6 +117,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 | miniTheory | `String` |
 | successMessage | `String` |
 | sentences | `List<String>` |
+| unmodeledFields | `Map<String,Object>` |
 
 ### FormEntity (`record`)
 
@@ -127,6 +128,8 @@ Domain module for course structure. Contains entity models representing the 5-le
 | label | `String` |
 | name | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
+| multipleChoice | `MultipleChoiceEntity` |
+| unmodeledFields | `Map<String,Object>` |
 
 ### SentencePartEntity (`record`)
 
@@ -153,6 +156,29 @@ Domain module for course structure. Contains entity models representing the 5-le
 |-------|------|
 | REWRITE | `null` |
 | FILL | `null` |
+
+### FormKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| CLOZE | `null` |
+| MULTIPLE_CHOICE | `null` |
+| OTHER | `null` |
+
+### MultipleChoiceItemEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| incidence | `double` |
+| label | `String` |
+
+### MultipleChoiceEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| selection | `String` |
+| items | `List<MultipleChoiceItemEntity>` |
 
 ## Interfaces
 

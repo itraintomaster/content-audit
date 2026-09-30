@@ -521,4 +521,12 @@ public class DefaultCourseElementLocatorTest {
         assertEquals(List.of("He walked to school."), resultOtherQuiz.getSentences(),
                 "The content of quizzes belonging to a different knowledge must remain untouched (F-RPRES-R003)");
     }
+
+    @Test
+    @DisplayName("should change nothing but the title of a multiple choice sibling when aligning quiz titles to a corrected knowledge label")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R002")
+    public void shouldChangeNothingButTheTitleOfAMultipleChoiceSiblingWhenAligningQuizTitlesToACorrectedKnowledgeLabel() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

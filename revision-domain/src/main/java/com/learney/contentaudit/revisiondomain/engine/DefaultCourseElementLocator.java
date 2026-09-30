@@ -317,7 +317,7 @@ class DefaultCourseElementLocator implements CourseElementLocator {
                             // Copy everything, change only the title: a multiple-choice sibling
                             // keeps its options and every quiz keeps the fields the model does
                             // not interpret.
-                            QuizTemplateEntity alignedQuiz = new QuizTemplateEntity(quiz);
+                            QuizTemplateEntity alignedQuiz = new QuizTemplateEntity(quiz, null, null, null, null, null, null, null, null, null, 0.0, 0.0, 0.0, null, null, null, null, null, null, null, null, null);
                             alignedQuiz.setTitle(knowledge.getLabel());
                             alignedQuizzes.add(alignedQuiz);
                         }

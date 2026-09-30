@@ -602,4 +602,12 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
                 "no proposal is pending for a task with no deliverable candidate, so it remains "
                         + "available for another run (R006)");
     }
+
+    @Test
+    @DisplayName("should count a task on a multiple choice quiz apart, neither corrected nor failed, and leave it SKIPPED at the end of the run")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R006")
+    public void shouldCountATaskOnAMultipleChoiceQuizApartNeitherCorrectedNorFailedAndLeaveItSKIPPEDAtTheEndOfTheRun() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

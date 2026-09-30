@@ -156,6 +156,7 @@ The following models and interfaces are available from dependencies. You can use
 | quizSentence | `String` |
 | instructions | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
+| multipleChoice | `MultipleChoiceEntity` |
 
 ### CefrLevel (`enum`)
 
@@ -613,6 +614,7 @@ Methods:
 | miniTheory | `String` |
 | successMessage | `String` |
 | sentences | `List<String>` |
+| unmodeledFields | `Map<String,Object>` |
 
 ### FormEntity (`record`)
 
@@ -623,6 +625,8 @@ Methods:
 | label | `String` |
 | name | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
+| multipleChoice | `MultipleChoiceEntity` |
+| unmodeledFields | `Map<String,Object>` |
 
 ### SentencePartEntity (`record`)
 
@@ -649,6 +653,29 @@ Methods:
 |-------|------|
 | REWRITE | `null` |
 | FILL | `null` |
+
+### FormKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| CLOZE | `null` |
+| MULTIPLE_CHOICE | `null` |
+| OTHER | `null` |
+
+### MultipleChoiceItemEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| incidence | `double` |
+| label | `String` |
+
+### MultipleChoiceEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| selection | `String` |
+| items | `List<MultipleChoiceItemEntity>` |
 
 ### CourseRepository (port)
 
@@ -1063,6 +1090,7 @@ Methods:
 | OVERRIDE_NOT_APPLICABLE | `null` |
 | DIAGNOSIS_NOT_SUSTAINED | `null` |
 | NO_ACCEPTABLE_CANDIDATE | `null` |
+| MULTIPLE_CHOICE_UNSUPPORTED | `null` |
 
 ### CourseElementSnapshot (`record`)
 
@@ -1157,6 +1185,7 @@ Methods:
 | NOT_FOUND | `null` |
 | ALREADY_DECIDED | `null` |
 | PRESERVATION_VIOLATED | `null` |
+| MULTIPLE_CHOICE_UNSUPPORTED | `null` |
 
 ### ProposalDecisionOutcome (`record`)
 

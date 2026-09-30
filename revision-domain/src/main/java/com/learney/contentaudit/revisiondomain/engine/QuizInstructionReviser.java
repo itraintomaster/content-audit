@@ -271,10 +271,10 @@ class QuizInstructionReviser implements Reviser {
 
         // Copy everything and change only the parts, so nothing the candidate carried --
         // unmodeled fields included -- is lost in the reconciliation.
-        FormEntity reconciledForm = new FormEntity(afterQuiz.getForm());
+        FormEntity reconciledForm = new FormEntity(afterQuiz.getForm(), 0.0, null, null, null, null, null);
         reconciledForm.setSentenceParts(reconciledParts);
 
-        QuizTemplateEntity reconciledQuiz = new QuizTemplateEntity(afterQuiz);
+        QuizTemplateEntity reconciledQuiz = new QuizTemplateEntity(afterQuiz, null, null, null, null, null, null, null, null, null, 0.0, 0.0, 0.0, null, null, null, null, null, null, null, null, null);
         reconciledQuiz.setForm(reconciledForm);
 
         return new CourseElementSnapshot(elementAfter.getNodeTarget(), elementAfter.getNodeId(),

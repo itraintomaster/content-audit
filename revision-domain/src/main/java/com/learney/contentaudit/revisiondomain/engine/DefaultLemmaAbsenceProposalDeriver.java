@@ -83,7 +83,7 @@ public final class DefaultLemmaAbsenceProposalDeriver implements LemmaAbsencePro
         // except form (quiz structure), translation (from candidate) and the derived sentences.
         // The title is NOT in scope of a lexical correction (F-LAPS-R014, F-RPRES-R004) — it
         // tracks the knowledge label only, so it is preserved unchanged from beforeQuiz.
-        QuizTemplateEntity afterQuiz = new QuizTemplateEntity(beforeQuiz);
+        QuizTemplateEntity afterQuiz = new QuizTemplateEntity(beforeQuiz, null, null, null, null, null, null, null, null, null, 0.0, 0.0, 0.0, null, null, null, null, null, null, null, null, null);
         afterQuiz.setTranslation(candidate.getTranslation());
         afterQuiz.setForm(newForm);
         afterQuiz.setSentences(plainSentences);

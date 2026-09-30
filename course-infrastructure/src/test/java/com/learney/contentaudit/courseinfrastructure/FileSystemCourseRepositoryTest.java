@@ -498,4 +498,28 @@ public class FileSystemCourseRepositoryTest {
         assertEquals(sentencesQuiz2.get(1), quizRecargado2.getSentences().get(1),
                 "quiz2: posicion 1 debe ser 'She dances good.'");
     }
+
+    @Test
+    @DisplayName("should write every file of a course with multiple choice quizzes back byte for byte when it is loaded and saved without changes")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R001")
+    public void shouldWriteEveryFileOfACourseWithMultipleChoiceQuizzesBackByteForByteWhenItIsLoadedAndSavedWithoutChanges() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep selection and items on a form that is not multiple choice as data it does not interpret, with their value, when saving")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R002")
+    public void shouldKeepSelectionAndItemsOnAFormThatIsNotMultipleChoiceAsDataItDoesNotInterpretWithTheirValueWhenSaving() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should write back the quiz and form data it does not interpret after the data it does, with their value and in their original order")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R002")
+    public void shouldWriteBackTheQuizAndFormDataItDoesNotInterpretAfterTheDataItDoesWithTheirValueAndInTheirOriginalOrder() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

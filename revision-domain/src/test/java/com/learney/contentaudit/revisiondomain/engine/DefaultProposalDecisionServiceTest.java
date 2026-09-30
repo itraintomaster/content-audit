@@ -984,4 +984,28 @@ public class DefaultProposalDecisionServiceTest {
         assertNotEquals(quizBefore.getSentences(), quizAfter.getSentences(),
                 "sentences must differ: this is the field the lexical correction actually covers");
     }
+
+    @Test
+    @DisplayName("should leave undecided and unapplied a proposal on a quiz that is multiple choice in today's course even if the proposal saw it as a CLOZE")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R006")
+    public void shouldLeaveUndecidedAndUnappliedAProposalOnAQuizThatIsMultipleChoiceInTodaysCourseEvenIfTheProposalSawItAsACLOZE() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave undecided and unapplied a proposal whose corrected quiz is itself multiple choice")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R006")
+    public void shouldLeaveUndecidedAndUnappliedAProposalWhoseCorrectedQuizIsItselfMultipleChoice() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should write nothing when approving a correction would drop the data the system does not interpret that the quiz carries in today's course")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R008")
+    public void shouldWriteNothingWhenApprovingACorrectionWouldDropTheDataTheSystemDoesNotInterpretThatTheQuizCarriesInTodaysCourse() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

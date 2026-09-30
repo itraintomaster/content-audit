@@ -1328,4 +1328,68 @@ public class DefaultQuizSentenceConverterTest {
                     "the added fixed-text part's accepted answers must stay absent, the state its class (TEXT) declares");
         });
     }
+
+    @Test
+    @DisplayName("should keep the data the system does not interpret of the base form when a corrected quiz sentence is parsed onto it")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R002")
+    public void shouldKeepTheDataTheSystemDoesNotInterpretOfTheBaseFormWhenACorrectedQuizSentenceIsParsedOntoIt() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should derive the plain sentence of a multiple choice quiz as its stem with the text of the correct option in the gap, as written")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R004")
+    public void shouldDeriveThePlainSentenceOfAMultipleChoiceQuizAsItsStemWithTheTextOfTheCorrectOptionInTheGapAsWritten() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should derive for a multiple choice quiz the same plain sentence as the CLOZE whose only accepted answer is its correct option")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R004")
+    public void shouldDeriveForAMultipleChoiceQuizTheSamePlainSentenceAsTheCLOZEWhoseOnlyAcceptedAnswerIsItsCorrectOption() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep the sentence before the gap in the plain sentence of a multiple choice quiz even when its knowledge is in REWRITE mode")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R004")
+    public void shouldKeepTheSentenceBeforeTheGapInThePlainSentenceOfAMultipleChoiceQuizEvenWhenItsKnowledgeIsInREWRITEMode() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should take a pipe inside the correct option of a multiple choice quiz as literal text and derive a single plain sentence")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R004")
+    public void shouldTakeAPipeInsideTheCorrectOptionOfAMultipleChoiceQuizAsLiteralTextAndDeriveASinglePlainSentence() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the quiz sentence of a multiple choice form empty instead of failing on its gap without options")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R004")
+    public void shouldLeaveTheQuizSentenceOfAMultipleChoiceFormEmptyInsteadOfFailingOnItsGapWithoutOptions() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should fail to derive the plain sentence of a multiple choice quiz that has no correct option")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R004")
+    public void shouldFailToDeriveThePlainSentenceOfAMultipleChoiceQuizThatHasNoCorrectOption() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should fail to derive the plain sentence of a multiple choice quiz that has more than one gap")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R004")
+    public void shouldFailToDeriveThePlainSentenceOfAMultipleChoiceQuizThatHasMoreThanOneGap() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

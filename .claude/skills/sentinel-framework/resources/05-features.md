@@ -1501,3 +1501,33 @@ correccion que aprobar.
 
 - **F-QICOR-J002**: Corregir un tramo acotado de las tareas de consigna del plan
 
+### FEAT-OPMUL: Ejercicios de opcion multiple - cargar, conservar y medir sin corregir [F-OPMUL]
+
+> **Que**: ContentAudit carga y guarda los ejercicios de opcion multiple (MC) sin perder
+nada, los mide, se los muestra al juez de consigna con sus opciones y no los corrige.
+
+**Por que**: Es lo que el sistema hace desde el 30/9 sin ninguna regla que lo diga; sin
+reglas, nada impide volver a perder las opciones al guardar o corregir un MC.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-OPMUL-R001 | Cargar y guardar el curso sin cambios lo deja identico byte a byte | critical | - |
+| F-OPMUL-R002 | Lo que el sistema no interpreta de un ejercicio sobrevive, con su valor y en su orden | critical | - |
+| F-OPMUL-R003 | La auditoria mide todos los ejercicios, los de opcion multiple incluidos | critical | - |
+| F-OPMUL-R004 | La oracion medible de un MC es el enunciado con la opcion correcta en el hueco, tal cual | critical | - |
+| F-OPMUL-R005 | El juez ve las opciones de un MC con la correcta marcada, y un CLOZE igual que antes | critical | - |
+| F-OPMUL-R006 | Ninguna correccion toca un ejercicio de opcion multiple | critical | - |
+| F-OPMUL-R007 | repair nunca restaura un MC desde una foto de la era CLOZE | critical | - |
+| F-OPMUL-R008 | Los datos nuevos se comparan solo si la referencia ya los conocia | critical | - |
+| F-OPMUL-R009 | Si el formulario no dice de que tipo es el ejercicio, vale el tipo del ejercicio | critical | - |
+
+**User Journeys:**
+
+- **F-OPMUL-J001**: Auditar un curso con ejercicios de opcion multiple
+
+- **F-OPMUL-J002**: Pedir una correccion sobre un ejercicio de opcion multiple
+
+- **F-OPMUL-J003**: Guardar, revisar al lado y reparar sin perder nada
+

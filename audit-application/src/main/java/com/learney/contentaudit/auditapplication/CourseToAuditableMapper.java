@@ -135,7 +135,7 @@ public class CourseToAuditableMapper implements CourseMapper {
         // exactly the content the fingerprint protects (see FEAT-RPRES known bug).
         FormEntity form = qt.getForm();
         List<SentencePartEntity> sentenceParts = form != null ? form.getSentenceParts() : null;
-        AuditableQuiz quiz = new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, qt.getInstructions(), sentenceParts);
+        AuditableQuiz quiz = new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, qt.getInstructions(), sentenceParts, null);
         quiz.setMultipleChoice(form != null ? form.getMultipleChoice() : null);
         return quiz;
     }

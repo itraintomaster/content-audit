@@ -500,4 +500,12 @@ public class DefaultQuizInstructionCandidateAssessorTest {
                 () -> sut.assessTask(PLAN_ID, TASK_ID, COURSE_PATH, CANDIDATE_SENTENCE, CANDIDATE_TRANSLATION));
         assertEquals(TASK_ID, thrown.getTaskId());
     }
+
+    @Test
+    @DisplayName("should declare the consultation unavailable for a task on a multiple choice quiz without judging any candidate")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R006")
+    public void shouldDeclareTheConsultationUnavailableForATaskOnAMultipleChoiceQuizWithoutJudgingAnyCandidate() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }
