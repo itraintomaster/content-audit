@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Content-audit al día</title>
+<style>
+  /* ============ tokens ============ */
+  :root{
+    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
+    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fdf1e7;
+    --ok:#2f6b46; --ok-soft:#e9f4ed;
+    --warn:#8a6314; --warn-soft:#fbf2dd;
+    --bad:#a3342c; --bad-soft:#fbecea;
+    --info:#2a5b8f; --info-soft:#e9f1f9;
+    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
+      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
+      --accent:#e08b4f; --accent-soft:#2a1f16;
+      --ok:#7fc79c; --ok-soft:#16241c;
+      --warn:#e0b657; --warn-soft:#272013;
+      --bad:#e58b82; --bad-soft:#2a1917;
+      --info:#8ab6e5; --info-soft:#141f2b;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    font-feature-settings:"kern","liga","cv05";
+    padding:40px 24px 80px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
+  code{font-size:.9em;background:var(--line-soft);padding:1px 5px;border-radius:5px}
+  pre code{background:none;padding:0}
+
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:28px}
+  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .kicker .num{
+    font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12px;font-weight:700;
+    letter-spacing:.04em;color:var(--fg-3);background:var(--line-soft);
+    padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums;
+  }
+  .badge{
+    font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    padding:3px 9px;border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);
+  }
+  .meta{font-size:12.5px;color:var(--fg-3)}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
+  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+
+  .lede{
+    background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 28px;box-shadow:var(--shadow);
+  }
+  .lede p{margin:0 0 8px;font-size:17px;line-height:1.5}
+  .lede p:last-child{margin:0}
+  .lede strong{font-weight:640}
+
+  section{margin:0 0 34px}
+  h2{
+    font-size:12px;font-weight:650;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);
+    margin:0 0 14px;padding-bottom:0;
+  }
+  h3{font-size:15px;font-weight:640;margin:0 0 6px;letter-spacing:-.01em}
+  p{margin:0 0 12px}
+  .grid{display:grid;gap:12px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .g5{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+
+  .card{
+    background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px 16px;box-shadow:var(--shadow);
+  }
+  .card p:last-child{margin-bottom:0}
+  .card .note{font-size:13.5px;color:var(--fg-2);margin:0}
+  .decide{border:1.5px solid var(--accent);background:var(--bg-elev);border-radius:var(--radius);
+    padding:18px 18px 8px;box-shadow:var(--shadow)}
+  .decide > h3{font-size:17px;margin-bottom:8px}
+
+  .kpi{display:flex;flex-direction:column;gap:2px}
+  .kpi .n{font-size:26px;font-weight:640;letter-spacing:-.02em;line-height:1.1}
+  .kpi .l{font-size:12px;color:var(--fg-3);text-transform:uppercase;letter-spacing:.06em}
+  .kpi .d{font-size:13px;color:var(--fg-2)}
+
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;
+    padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
+  .p-ok{background:var(--ok-soft);color:var(--ok)}
+  .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)}
+  .p-info{background:var(--info-soft);color:var(--info)}
+  .p-idle{background:var(--line-soft);color:var(--fg-3)}
+
+  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+  th{
+    text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap;
+  }
+  th.num{text-align:right}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px;white-space:nowrap}
+  td.low{color:var(--bad)} td.mid{color:var(--warn)}
+  tr.win td{background:color-mix(in srgb,var(--accent-soft) 70%,transparent)}
+  td .s{display:block;font-size:12.5px;color:var(--fg-3)}
+
+  .bars{display:flex;flex-direction:column;gap:9px}
+  .bar{display:grid;grid-template-columns:minmax(120px,34%) 1fr auto;gap:12px;align-items:center;font-size:13.5px}
+  .bar .t{color:var(--fg-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bar .track{height:8px;border-radius:100px;background:var(--line-soft);overflow:hidden}
+  .bar .fill{height:100%;border-radius:100px;background:var(--accent)}
+  .bar .fill.idle{background:var(--fg-3)}
+  .bar .v{font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--fg-3);min-width:6ch;text-align:right}
+
+  .steps{list-style:none;margin:0;padding:0;position:relative}
+  .steps li{position:relative;padding:0 0 16px 26px;border-left:1px solid var(--line);margin-left:5px}
+  .steps li:last-child{border-left-color:transparent;padding-bottom:0}
+  .steps li::before{
+    content:"";position:absolute;left:-4.5px;top:6px;width:9px;height:9px;border-radius:100px;
+    background:var(--bg);border:1.5px solid var(--fg-3);
+  }
+  .steps li.done::before{background:var(--ok);border-color:var(--ok)}
+  .steps li.now::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .steps .s-t{font-weight:600;font-size:14.5px}
+  .steps .s-d{font-size:13.5px;color:var(--fg-2)}
+
+  .chg{list-style:none;margin:0;padding:0;font-size:14px}
+  .chg li{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:7px 0;border-bottom:1px solid var(--line-soft)}
+  .chg li:last-child{border-bottom:0}
+  .chg .m{font-family:ui-monospace,monospace;font-weight:700;width:1ch}
+  .chg .add .m{color:var(--ok)} .chg .mod .m{color:var(--warn)} .chg .del .m{color:var(--bad)}
+  .path{font-family:ui-monospace,monospace;font-size:12.5px;color:var(--fg-2);
+    background:var(--line-soft);padding:1px 5px;border-radius:5px}
+
+  pre{
+    background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 14px;overflow-x:auto;font-size:13px;line-height:1.55;margin:0 0 10px;
+  }
+  pre code{color:var(--fg)}
+  .cmt{color:var(--fg-3)}
+
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;overflow-x:auto;box-shadow:var(--shadow);margin:0 0 12px}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+  svg .arrow-bad{stroke:var(--bad);fill:none;stroke-width:1.2;stroke-dasharray:4 3}
+  svg .head{fill:var(--fg-3)} svg .head-bad{fill:var(--bad)}
+
+  .call{border-radius:var(--radius);padding:12px 14px;font-size:14px;border:1px solid;margin:0 0 12px}
+  .call p:last-child{margin-bottom:0}
+  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
+  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
+  .call .h{font-weight:640;display:block;margin-bottom:3px}
+  ul.tight{margin:0;padding-left:18px} ul.tight li{margin:0 0 6px;font-size:14.5px}
+
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;
+    font-size:12.5px;color:var(--fg-3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">020</span>
+      <span class="badge">Cierre</span>
+      <span class="meta">content-audit · base del curso y línea base · 29/9/2026</span>
+    </div>
+    <h1>Content-audit, al día con el curso del 29/9</h1>
+    <p class="sub">El CLI vuelve a arrancar, <code>db/</code> es copia fiel del backup de producción y la línea base de curso está sacada. Queda provisoria porque content-audit todavía no sabe leer la opción múltiple.</p>
+  </header>
+
+  <div class="lede">
+    <p><strong>Content-audit volvió a andar y su copia del curso es la de producción del 29/9:</strong> 413 knowledges y 11.287 ejercicios, iguales documento por documento. Los 1.657 tests pasan.</p>
+    <p><strong>Falta una decisión tuya:</strong> el modelo Java no conoce la opción múltiple. <code>analyze</code> corta en el primero de los 2.810 ejercicios de ese tipo, y guardar el curso les borraría las opciones. Por eso la línea base (curso <strong>73,9 %</strong>) está medida sobre una copia que pone la opción correcta en el hueco. Te propongo un requirement acotado de Sentinel para arreglarlo.</p>
+  </div>
+
+  <section>
+    <div class="grid g5">
+      <div class="card kpi"><span class="l">Tests</span><span class="n">1.657</span><span class="d">de 1.657 en verde, en los 15 módulos</span></div>
+      <div class="card kpi"><span class="l">Curso vivo</span><span class="n">413</span><span class="d">knowledges, de 608 · 11.287 ejercicios</span></div>
+      <div class="card kpi"><span class="l">Iguales al backup</span><span class="n">11.287</span><span class="d">de 11.287, controlado de tres formas</span></div>
+      <div class="card kpi"><span class="l">Archivado</span><span class="n">4,7 GB</span><span class="d">movido a una carpeta con fecha, sin borrar nada</span></div>
+      <div class="card kpi"><span class="l">Línea base</span><span class="n">73,9 %</span><span class="d">curso · provisoria · plan de 4.039 tareas</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>La decisión que falta</h2>
+    <div class="decide">
+      <h3>Cómo le enseñamos la opción múltiple a content-audit</h3>
+      <p>En producción, la opción múltiple guarda la respuesta en <code>form.items</code> (cada opción con su <code>incidence</code>) y deja el hueco sin <code>options</code>. El modelo Java sólo conoce el CLOZE. Lo probé sobre la base nueva:</p>
+      <ul class="tight">
+        <li><code>analyze</code> corta en el primer ejercicio: <span class="mono" style="font-size:13px">«No es posible serializar a quizSentence: El CLOZE de indice 1 no tiene options»</span>.</li>
+        <li>Un load→save del repositorio (lo que hacen <code>approve</code> y <code>repair</code>) les borra <code>form.items</code>, <code>form.selection</code> y <code>formCloze</code> a los 2.810. De paso borra los respaldos <code>instructionsAnteriores</code> (2.030), <code>instructionsAntesDeRevisar</code> (1.560), <code>instructionsAntesDeShortForms</code> (694) y otros 179. Los 753 archivos sin esos campos quedan byte a byte iguales.</li>
+      </ul>
+      <p>Como pediste, no toqué el modelo ni convertí ningún ejercicio. Hay tres caminos:</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Camino</th><th>Qué es</th><th>Costo</th><th>Qué destraba</th><th>Qué queda roto</th></tr></thead>
+          <tbody>
+            <tr class="win">
+              <td><strong>B · Conservar y medir</strong><span class="s">recomendado</span></td>
+              <td>Requirement acotado con el flujo Sentinel completo: guardar sin perder lo que el modelo no interpreta; la oración que se mide en un MC es el enunciado con la opción correcta; <code>analyze</code> y <code>plan</code> miden MC; <code>revise</code> sobre un MC se rechaza con un mensaje claro.</td>
+              <td>~1 día, estimado</td>
+              <td>Línea base definitiva sobre la base fiel. <code>approve</code> y <code>repair</code> dejan de borrar datos.</td>
+              <td>Corregir un MC con content-audit</td>
+            </tr>
+            <tr>
+              <td><strong>C · Proyección</strong><span class="s">ya está hecha</span></td>
+              <td><span class="path">scripts/project_multiple_choice.py</span> arma una copia sólo para medir, con la opción correcta en el hueco. <code>db/</code> no cambia.</td>
+              <td>cero</td>
+              <td>Medir antes y después hoy mismo, siempre con la misma proyección en las dos puntas.</td>
+              <td><code>approve</code>, <code>repair</code> y <code>revise</code> sobre MC</td>
+            </tr>
+            <tr>
+              <td><strong>A · Opción múltiple completa</strong></td>
+              <td>Lo de B, más corregir MC: el DSL de <code>quizSentence</code>, <code>revise</code>, <code>approve</code> y el juez de consigna con las opciones a la vista.</td>
+              <td>días</td>
+              <td>Content-audit como motor también para MC.</td>
+              <td>nada, pero con el camino C del brief 081 hoy no hace falta</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Lo que haría:</strong> C para arrancar ya el carril 3 del brief 081, y B antes de que alguien corra <code>approve</code> o <code>repair</code> sobre esta base. A, sólo si content-audit va a corregir opción múltiple.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Qué quedó andando</h2>
+    <ul class="steps">
+      <li class="done"><span class="s-t">~/.m2 reconstruido <span class="pill p-ok">hecho</span></span>
+        <div class="s-d">Sentinel (parent, annotations, langgraph4j-trace, sentinel-agents) se compiló desde una copia limpia de su HEAD <code>45ead4b</code>, sacada con <code>git archive</code>: el checkout de sentinel, con sus 6 cambios sin commitear, no se tocó. Content-audit se instaló desde el checkout principal, que es adonde apunta <code>audit-cli.sh</code>. Las 56 entradas del classpath existen, y los 41 jars coinciden uno a uno con lo que resuelve Maven hoy. <code>audit-cli.sh</code> no cambió y <code>register-cli.sh</code> no se corrió, porque te reescribe el alias.</div></li>
+      <li class="done"><span class="s-t">El CLI arranca <span class="pill p-ok">hecho</span></span>
+        <div class="s-d"><code>--help</code> lista los comandos. <code>tokens -q "She ____ [reads] books." -l A1</code> → 4 tokens (A1: 3–8). <code>lexis -q "My grandmother ____ [comes] every year." -l A1</code> → «grandmother» es A2. Cada consulta tarda ~4 s, casi todo arranque de Java.</div></li>
+      <li class="done"><span class="s-t">Suite completa: 1.657 tests, 0 fallas <span class="pill p-ok">verde</span></span>
+        <div class="s-d">Los 15 módulos, incluidos revision-infrastructure (29) y quiz-instruction-infrastructure (19), que dependen de sentinel-agents. Hace falta <code>JAVA_HOME</code> apuntando al JDK 25: por defecto Maven usa el 24 de Homebrew.</div></li>
+      <li class="now"><span class="s-t">Lo que no probé en vivo <span class="pill p-warn">sin probar</span></span>
+        <div class="s-d">Los flujos que consultan un modelo (<code>revise</code>, el juez de consigna, los títulos) corren ahora sobre el sentinel-agents nuevo. Sus tests pasan, pero no hice consultas reales.</div></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Qué se archivó y dónde</h2>
+    <p>Todo quedó en <span class="path">content-audit/.content-audit/_archivo-2026-09-29/</span>, en el checkout principal. Se movió con <code>mv</code> y no se borró nada. Para devolver algo: <code>mv _archivo-2026-09-29/&lt;cosa&gt; .</code></p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Qué</th><th class="num">Archivos</th><th class="num">Tamaño</th><th>Qué es</th></tr></thead>
+        <tbody>
+          <tr><td><span class="path">audits/</span></td><td class="num">44</td><td class="num">4,6 GB</td><td>informes de <code>analyze</code> del 23/7 al 14/8</td></tr>
+          <tr><td><span class="path">revisions/</span></td><td class="num">8.038</td><td class="num">87 MB</td><td>propuestas y artefactos por plan</td></tr>
+          <tr><td><span class="path">publish-reports/</span></td><td class="num">48</td><td class="num">7,2 MB</td><td>publicaciones a producción del 29/7 y el 15/8</td></tr>
+          <tr><td><span class="path">plans/</span></td><td class="num">8</td><td class="num">5,9 MB</td><td>planes del 23/7 al 14/8</td></tr>
+          <tr><td><span class="path">archive-basura-2026-07-23.tar.gz</span></td><td class="num">1</td><td class="num">6,0 MB</td><td>el archivo anterior, tal cual</td></tr>
+          <tr><td><span class="path">backups/</span></td><td class="num">1</td><td class="num">4,3 MB</td><td>tar.gz previo al approve masivo del 13/7</td></tr>
+          <tr><td><span class="path">quiz-corpus.jsonl</span></td><td class="num">1</td><td class="num">1,6 MB</td><td>corpus del eval de distinción; hay que regenerarlo sobre la base nueva</td></tr>
+          <tr><td><span class="path">quiz-instruction-runs/</span> · <span class="path">revise-*.txt</span></td><td class="num">13 · 4</td><td class="num">0,3 MB</td><td>corridas del corrector de consigna y listas de tandas de julio</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid g2">
+      <div class="card"><h3>Quedó en su lugar</h3><p class="note"><span class="path">evaluations/quiz-instruction-validator.jsonl</span> (24 MB), con los veredictos del juez que ya se pagaron, y <span class="path">vocabulary-dashboard-revision-settings.json</span>, que es configuración y no análisis.</p></div>
+      <div class="card"><h3>Par activo</h3><p class="note">No había ninguno: <span class="path">active-analysis.json</span> no existía, así que no hizo falta <code>set-active --clear</code>. No dejé un LEEME adentro del archivo, porque el hook del worktree bloquea escribir en el checkout principal. Esta tabla cumple ese papel.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cómo quedó db/</h2>
+    <p>Está en la rama <code>claude/intelligent-cori-cb4b43</code> (worktree <span class="path">.claude/worktrees/intelligent-cori-cb4b43</span>), <strong>sin commitear</strong>, esperando tu OK. Lo arma un importador nuevo: <span class="path">scripts/import_backup.py</span>. El original del 14/2 existía en ittm, en la rama <code>feature/performance-improvements-and-tracing</code>. Armaba el árbol por <code>parentId</code>, así que hoy habría metido los 195 knowledges fundidos, que conservan su <code>parentId</code>. El nuevo sigue el curso vivo.</p>
+    <div class="diagram">
+      <svg viewBox="0 0 860 210" role="img" aria-label="Del backup al árbol y a la línea base">
+        <defs>
+          <marker id="h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="head"/></marker>
+          <marker id="hb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="head-bad"/></marker>
+        </defs>
+        <rect x="10" y="20" width="160" height="56" rx="8" class="box"/>
+        <text x="90" y="44" text-anchor="middle" class="lbl">Backup 29/9</text>
+        <text x="90" y="62" text-anchor="middle" class="lbl-s">3 colecciones en .bson</text>
+        <rect x="220" y="20" width="170" height="56" rx="8" class="box-a"/>
+        <text x="305" y="44" text-anchor="middle" class="lbl">import_backup.py</text>
+        <text x="305" y="62" text-anchor="middle" class="lbl-s">+ sentenceMode y form.sentences</text>
+        <rect x="440" y="20" width="180" height="56" rx="8" class="box-ok"/>
+        <text x="530" y="44" text-anchor="middle" class="lbl">db/english-course</text>
+        <text x="530" y="62" text-anchor="middle" class="lbl-s">fiel: MC con form.items</text>
+        <rect x="670" y="20" width="180" height="56" rx="8" class="box-bad"/>
+        <text x="760" y="44" text-anchor="middle" class="lbl">analyze</text>
+        <text x="760" y="62" text-anchor="middle" class="lbl-s">corta en el 1.er MC</text>
+        <rect x="440" y="130" width="180" height="56" rx="8" class="box-a"/>
+        <text x="530" y="154" text-anchor="middle" class="lbl">project_multiple_choice</text>
+        <text x="530" y="172" text-anchor="middle" class="lbl-s">copia: correcta en el hueco</text>
+        <rect x="670" y="130" width="180" height="56" rx="8" class="box-ok"/>
+        <text x="760" y="154" text-anchor="middle" class="lbl">analyze + plan</text>
+        <text x="760" y="172" text-anchor="middle" class="lbl-s">línea base provisoria</text>
+        <path d="M170 48 H216" class="arrow" marker-end="url(#h)"/>
+        <path d="M390 48 H436" class="arrow" marker-end="url(#h)"/>
+        <path d="M620 48 H666" class="arrow-bad" marker-end="url(#hb)"/>
+        <path d="M530 76 V126" class="arrow" marker-end="url(#h)"/>
+        <path d="M620 158 H666" class="arrow" marker-end="url(#h)"/>
+      </svg>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>El diff de la rama, en db/</h3>
+        <ul class="chg">
+          <li class="del"><span class="m">−</span><span>390 archivos: los 195 knowledges fundidos el 26/9 (<span class="path">_knowledge.json</span> + <span class="path">quizzes.json</span>). Siguen en los exports planos, porque son documentos que existen fuera del curso.</span></li>
+          <li class="mod"><span class="m">~</span><span>413 <span class="path">quizzes.json</span>: ejercicios reubicados, opción múltiple con sus opciones, 91 respuestas corregidas, <code>form.kind</code> en los 2.635 que lo habían perdido y los respaldos <code>*Antes*</code> de producción.</span></li>
+          <li class="mod"><span class="m">~</span><span>48 <span class="path">_knowledge.json</span> (label), 41 <span class="path">_topic.json</span> (<code>ruleIds</code>) y <span class="path">_course.json</span>: 413 <code>knowledgeIds</code>, y el label de ROOT queda en «» como en producción, en vez de «English Course».</span></li>
+          <li class="mod"><span class="m">~</span><span><span class="path">courses.json</span>, <span class="path">knowledges.json</span> y <span class="path">quiz-templates.json</span> (668 y 11.487 documentos) y <span class="path">.import-metadata.json</span>, con fecha, ruta y sha256 del .bson y del .json.</span></li>
+          <li class="add"><span class="m">+</span><span>Scripts: <span class="path">import_backup.py</span>, <span class="path">DerivePlainSentences.java</span>, <span class="path">project_multiple_choice.py</span> y <span class="path">audit_stats.py</span>. Ninguno toca el modelo, y ninguno pasa por Sentinel.</span></li>
+        </ul>
+        <p class="note" style="margin-top:10px">En db/ son 897 archivos: 390 borrados y 507 modificados. <span class="path">db/quizzes.json</span> quedó intacto: el backup no trae <code>quizzes.bson</code>, son instancias de usuarios y nada del repo lo lee.</p>
+      </div>
+      <div class="card">
+        <h3>Cómo se verificó</h3>
+        <ul class="tight">
+          <li><strong>Documento por documento</strong> (<code>import_backup.py --verify</code>): los 11.287 son iguales al backup en todos los campos, salvo la <code>form.sentences</code> que agrega content-audit. Los 413 knowledges, 55 topics y 4 milestones también.</li>
+          <li><strong>Por otro camino</strong>, con jq sobre el .bson: título, consigna, traducción, miniteoría, partes y <code>form.items</code> dan 11.287 de 11.287 idénticos. Los 200 que faltan son justo los de los knowledges fuera del curso.</li>
+          <li><strong>A mano</strong>: 10 ejercicios al azar (FILL, REWRITE, MC y derivadas), todos bien.</li>
+          <li><strong>Idempotencia</strong>: corrido de nuevo sobre su propia salida, el árbol sale idéntico byte a byte. Y el formato es el del writer de Jackson.</li>
+          <li><strong>Estructura</strong>: el orden del árbol (ROOT → milestones → topics → <code>ruleIds</code>) coincide con <code>course.knowledgeIds</code>.</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:6px">De dónde sale form.sentences</h3>
+    <p class="note" style="font-size:14px;color:var(--fg-2)">Es un dato de content-audit: el analizador la lee y no la deriva. En producción la tienen sólo 2.097 de los 11.287 ejercicios vivos: los que publicó content-audit.</p>
+    <div class="bars">
+      <div class="bar"><span class="t">Del árbol anterior (producción no la trae)</span><span class="track"><span class="fill" style="width:55.8%"></span></span><span class="v">6.298</span></div>
+      <div class="bar"><span class="t">Del árbol anterior (igual a producción)</span><span class="track"><span class="fill" style="width:18.5%"></span></span><span class="v">2.088</span></div>
+      <div class="bar"><span class="t">Derivada: cambió el contenido</span><span class="track"><span class="fill" style="width:0.8%"></span></span><span class="v">91</span></div>
+      <div class="bar"><span class="t">Sin form.sentences: opción múltiple</span><span class="track"><span class="fill idle" style="width:24.9%"></span></span><span class="v">2.810</span></div>
+    </div>
+    <div class="call c-info" style="margin-top:12px"><span class="h">Las 91 derivadas</span><p>Se derivan con el mismo código que usa content-audit al aplicar una corrección. En 89 cambia la oración, casi siempre para bien: antes decía «He has not kept/hasn't kept the licence.» y ahora las dos formas son alternativas. En 9 de esas, producción tiene una <code>form.sentences</code> desactualizada: las respuestas se corrigieron el 29/9 sin recalcularla.</p></div>
+  </section>
+
+  <section>
+    <h2>Línea base de curso · provisoria</h2>
+    <p>Es <code>analyze</code> completo sin el juez de consigna, más <code>plan</code>, sobre la copia proyectada. Quedó en el <span class="path">.content-audit/</span> del worktree: informe <code>2026-09-30T02-12-54</code> y plan <code>2026-09-30T02-17-47</code>. No lo puse en el del checkout principal por dos razones: la base todavía no está mergeada, y el plan trae 844 tareas sobre opción múltiple que <code>revise</code> no puede tocar. <code>analyze</code> tardó 46 s.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Analizador</th><th class="num">A1</th><th class="num">A2</th><th class="num">B1</th><th class="num">B2</th><th class="num">Curso</th></tr></thead>
+        <tbody>
+          <tr><td>Largo de oración</td><td class="num">94,2 %</td><td class="num">96,3 %</td><td class="num">85,4 %</td><td class="num mid">69,9 %</td><td class="num">86,4 %</td></tr>
+          <tr><td>Bandas COCA</td><td class="num">100 %</td><td class="num">100 %</td><td class="num mid">57,9 %</td><td class="num low">32,2 %</td><td class="num">72,5 %</td></tr>
+          <tr><td>Lemas ausentes</td><td class="num">98,0 %</td><td class="num">100 %</td><td class="num">87,5 %</td><td class="num mid">52,0 %</td><td class="num">89,3 %</td></tr>
+          <tr><td>Conteo de lemas</td><td class="num">93,9 %</td><td class="num">71,1 %</td><td class="num mid">52,5 %</td><td class="num low">34,0 %</td><td class="num">67,0 %</td></tr>
+          <tr><td>Recurrencia de lemas<span class="s">sólo de curso: de los 2.000 lemas más usados, cuántos vuelven a un intervalo sano</span></td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num low">8,0 %</td></tr>
+          <tr><td>Largo del título</td><td class="num">100 %</td><td class="num">100 %</td><td class="num">97,5 %</td><td class="num">97,6 %</td><td class="num">98,8 %</td></tr>
+          <tr><td>Largo de la consigna</td><td class="num">93,2 %</td><td class="num">97,5 %</td><td class="num">95,8 %</td><td class="num">95,3 %</td><td class="num">95,5 %</td></tr>
+          <tr><td><strong>Nivel</strong></td><td class="num"><strong>96,5 %</strong></td><td class="num"><strong>94,2 %</strong></td><td class="num"><strong>79,4 %</strong></td><td class="num"><strong>63,5 %</strong></td><td class="num"><strong>73,9 %</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Detalle por nivel</th><th class="num">A1</th><th class="num">A2</th><th class="num">B1</th><th class="num">B2</th></tr></thead>
+        <tbody>
+          <tr><td>Knowledges · ejercicios</td><td class="num">83 · 2.402</td><td class="num">91 · 2.411</td><td class="num">147 · 4.554</td><td class="num">92 · 1.920</td></tr>
+          <tr><td>Largo: rango · tokens promedio</td><td class="num">3–8 · 6,6</td><td class="num">5–12 · 7,9</td><td class="num">8–18 · 8,5</td><td class="num">10–25 · 9,5</td></tr>
+          <tr><td>Dentro del rango</td><td class="num">2.164 (90 %)</td><td class="num">2.250 (93 %)</td><td class="num mid">2.956 (65 %)</td><td class="num low">862 (45 %)</td></tr>
+          <tr><td>Cortas · largas</td><td class="num">10 · 228</td><td class="num">27 · 134</td><td class="num">1.589 · 9</td><td class="num">1.058 · 0</td></tr>
+          <tr><td>COCA top1k · objetivo</td><td class="num">88,1 % · ≥ 80</td><td class="num">83,0 % · ≥ 70</td><td class="num mid">83,9 % · ≤ 60</td><td class="num low">83,2 % · ≤ 50</td></tr>
+          <tr><td>COCA top4k · objetivo</td><td class="num">3,0 % · ≤ 1</td><td class="num">5,1 % · ≤ 10</td><td class="num">5,1 % · ≥ 10</td><td class="num low">5,9 % · ≥ 20</td></tr>
+          <tr><td>Lemas ausentes / esperados</td><td class="num">24 / 343 (7 %)</td><td class="num">92 / 734 (13 %)</td><td class="num">594 / 1.410 (42 %)</td><td class="num">1.574 / 2.056 (77 %)</td></tr>
+          <tr><td>Ejercicios con palabras de otro nivel</td><td class="num">337</td><td class="num">185</td><td class="num">224</td><td class="num">1</td></tr>
+          <tr><td>Ejercicios con palabras fuera del catálogo</td><td class="num">18</td><td class="num">38</td><td class="num">119</td><td class="num">68</td></tr>
+          <tr><td>Lemas en menos de 4 oraciones / distintos</td><td class="num">62 / 515</td><td class="num">418 / 810</td><td class="num">688 / 885</td><td class="num">366 / 384</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>La fusión del 26/9 bajó de nivel 2.553 ejercicios</h3>
+        <p class="note">Esto no lo generó el import. Juntó knowledges de niveles distintos: «Superlativos: $in$ o $of$» (B1) terminó adentro de «Superlativos: $in$ u $of$» (A2). Por eso suben las «palabras de otro nivel» en A1–B1 y las oraciones largas en A1.</p>
+        <div class="bars" style="margin-top:12px">
+          <div class="bar"><span class="t">B2 → B1</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="v">1.489</span></div>
+          <div class="bar"><span class="t">A2 → A1</span><span class="track"><span class="fill" style="width:39.9%"></span></span><span class="v">594</span></div>
+          <div class="bar"><span class="t">B1 → A2</span><span class="track"><span class="fill" style="width:30.2%"></span></span><span class="v">450</span></div>
+          <div class="bar"><span class="t">B2 → A2</span><span class="track"><span class="fill" style="width:1.3%"></span></span><span class="v">20</span></div>
+          <div class="bar"><span class="t">Fuera del curso</span><span class="track"><span class="fill idle" style="width:13.4%"></span></span><span class="v">200</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Contra la base anterior, con el mismo código</h3>
+        <p class="note">Corrí el mismo <code>analyze</code> sobre el <code>db/</code> de main (608 knowledges, 11.487 ejercicios) para separar lo que cambia por los datos de lo que cambia por el código.</p>
+        <div class="tw" style="margin-top:10px">
+          <table style="min-width:0">
+            <thead><tr><th></th><th class="num">antes</th><th class="num">ahora</th></tr></thead>
+            <tbody>
+              <tr><td>Curso</td><td class="num">74,2 %</td><td class="num">73,9 %</td></tr>
+              <tr><td>Lemas ausentes · B2</td><td class="num">60,3 %</td><td class="num low">52,0 %</td></tr>
+              <tr><td>Lemas ausentes · A2</td><td class="num">20</td><td class="num">92</td></tr>
+              <tr><td>Largo · B2</td><td class="num">68,0 %</td><td class="num">69,9 %</td></tr>
+              <tr><td>Largo del título · curso</td><td class="num">100 %</td><td class="num">98,8 %</td></tr>
+              <tr><td>Tareas del plan</td><td class="num">3.963</td><td class="num">4.039</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="call c-warn"><span class="h">Qué la hace provisoria</span><p>En los 2.810 MC, la oración medida es el enunciado con la opción correcta. En 2.450 esa opción coincide con la respuesta que tenía el CLOZE; en los otros 360 cambia sólo la mayúscula («is he» contra «Is he»), el defecto de formato del brief 077. Espero que una versión de content-audit que entienda MC mida lo mismo, pero eso lo define el requirement. Las 10 cifras que controlé a mano con <code>tokens</code> y <code>lexis</code> coinciden con el informe.</p></div>
+    <p class="note" style="font-size:14px;color:var(--fg-2)">Plan <code>2026-09-30T02-17-47</code>: 4.039 tareas. 3.055 de largo de oración, 949 de lemas, 25 de consigna del knowledge, 6 de título, 3 de COCA y 1 de recurrencia. De esas, 844 caen sobre opción múltiple.</p>
+  </section>
+
+  <section>
+    <h2>Otras cosas que decidir</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Qué</th><th>Qué pasa</th><th>Qué haría</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Commit y merge de la rama</strong></td><td><code>db/</code>, 4 scripts y este brief están sin commitear en <code>claude/intelligent-cori-cb4b43</code>.</td><td>Con tu OK lo commiteo en la rama. Después, con otro OK, merge a main. La línea base definitiva va en el <span class="path">.content-audit/</span> de main una vez mergeado.</td></tr>
+          <tr><td><strong>3 knowledges con modo mezclado</strong></td><td>La fusión metió 20 de reescritura (A2 «Uso alternado») en A1 «Con $short forms$» (FILL), 20 de reescritura (B2 «Ya o todavía no») en B1 «$Already$ y $yet$» (FILL) y 10 de completar (B2 «Consecuencia») en B1 «$So$ y $therefore$» (REWRITE). Su oración guardada sigue bien, pero un <code>revise</code> la recalcularía con el modo equivocado.</td><td>Dejarlos así en esta tanda y no corregirlos con content-audit. El modo es por knowledge (F-SMODE-R002); resolverlo pide partir el knowledge o un requirement.</td></tr>
+          <tr><td><strong>9 form.sentences viejas en producción</strong></td><td>Por ejemplo, <code>67fab6d59930102295342894</code> dice «He has not kept/hasn't kept the licence.» aunque las respuestas ya son alternativas. El preflight del script de audios compara justo ese campo.</td><td>Publicarlas con el script del carril 2, que compara campo por campo. Son 9 ids y están en el log del import.</td></tr>
+          <tr><td><strong>db/quizzes.json</strong></td><td>866 instancias de usuario de mayo de 2025. Nada las lee y el backup nuevo no las trae.</td><td>Sacarlo de la rama; si no, queda anotado en <span class="path">.import-metadata.json</span> como no refrescado.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Trabajo sin mergear</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Qué</th><th>Estado</th><th>Nota</th></tr></thead>
+        <tbody>
+          <tr><td><span class="path">claude/quiz-audio-regeneration-11196a</span></td><td><span class="pill p-ok">listo para mergear</span><span class="s">1 commit (<code>b7071230</code>, 24/8): <code>regenerate_quiz_audios.py</code>, manifiesto y overrides. Sin cambios pendientes, sobre el main actual.</span></td><td>Es el del carril 4. Ojo: lee <code>form.sentences[0]</code> del árbol y los 2.810 MC no la tienen. Para regrabar un MC hay que sacar el texto de la opción correcta.</td></tr>
+          <tr><td><span class="path">strange-germain-be1a08</span></td><td><span class="pill p-warn">6 cambios sin commitear</span><span class="s">No tiene commits propios y está 12 atrás de main.</span></td><td>Es el corpus serializado de evals del juez de consigna: <code>fixtures_serialized.json</code>, <code>generate_serialized_fixtures.py</code>, <code>tools/</code> y cambios en <code>run_evals.py</code> y <code>fixtures.json</code> (+358/−96). Su cambio a <code>.gitignore</code> ya está en main.</td></tr>
+          <tr><td><span class="path">scripts/publish_knowledge_instructions.py</span></td><td><span class="pill p-warn">sin commitear en main</span><span class="s">desde el 17/8</span></td><td>Publicó las 3 consignas del 15/8. Va con los otros <code>publish_*</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Defectos que encontré de paso</h2>
+    <p class="note" style="font-size:14px;color:var(--fg-2)">Ninguno bloquea; los anoto para que no se pierdan.</p>
+    <ul class="tight">
+      <li><code>stats analyzer</code> en formato texto imprime <code>AnalyzerStatsView@…</code>; con <code>-f json</code> anda.</li>
+      <li>El derivador de oraciones deja «If so , I'll» y «She 's gone». Si se rederivaran las 11.487 oraciones históricas, 780 saldrían distintas, y 13 de las 91 derivadas hoy tienen ese espacio. El conteo de tokens no cambia.</li>
+      <li>JaCoCo 0.8.12 llena el log de los tests con 689 líneas de <code>IllegalClassFormatException</code>, sin romper nada. El pom volvió a 0.8.12 dos veces después de subirlo a 0.8.13; parece que lo pisa la regeneración de Sentinel.</li>
+      <li><code>sentinel verify</code> marca <span class="path">requirements/MEMORY.md</span> distinto de su plantilla. No viene de este trabajo: el archivo no cambia desde el 23/7.</li>
+      <li>Los exports planos traen los 195 knowledges fundidos con su <code>parentId</code>, así que el agente de títulos los contaría como hermanos.</li>
+      <li>El CLI resuelve COCA en <span class="path">../ittm</span> relativo al directorio donde se corre: sólo anda desde el checkout principal.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Qué sigue</h2>
+    <ol class="tight" style="padding-left:20px">
+      <li><strong>Decidí lo de la opción múltiple</strong> (arriba). Si es B, arranco con <code>@analyst</code> y sigo el flujo de Sentinel.</li>
+      <li>Decime si commiteo la rama, y después si la mergeo.</li>
+      <li>Para medir correcciones contra la línea base, desde el checkout principal y con la rama ya mergeada:</li>
+    </ol>
+<pre><code><span class="cmt"># copia para medir (la proyección provisoria), antes y después de aplicar</span>
+python3 scripts/project_multiple_choice.py db/english-course /ruta/nueva/english-course
+./audit-cli.sh analyze /ruta/nueva/english-course --exclude-analyzers quiz-instruction
+./audit-cli.sh plan
+
+<span class="cmt"># comparar dos informes: puntajes y detalle por nivel, con la diferencia</span>
+python3 scripts/audit_stats.py .content-audit/audits/&lt;antes&gt;.json .content-audit/audits/&lt;después&gt;.json
+
+<span class="cmt"># tests (Maven necesita el JDK 25)</span>
+JAVA_HOME=~/Library/Java/JavaVirtualMachines/openjdk-25/Contents/Home mvn -o test -Dexec.skip=true</code></pre>
+    <p class="note" style="font-size:13.5px;color:var(--fg-3)">No escribí nada en producción (ni Mongo ni S3) ni usé los <code>scripts/publish_*</code>. No se commiteó, mergeó ni pusheó nada.</p>
+  </section>
+
+  <footer>
+    <span>Backup: mongo-buckups/2026-09-29-revision-de-ejercicios · sentinel HEAD 45ead4b · content-audit main c25ebd2a</span>
+    <span>brief 020 · docs/briefs/020-content-audit-al-dia.html</span>
+  </footer>
+
+</div>
+</body>
+</html>
