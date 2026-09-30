@@ -3741,4 +3741,36 @@ public class LemmaByLevelAbsenceAnalyzerTest {
                 "R045: el literal resolvio -> no es fuera de catalogo");
         verify(evpCatalogPort, never()).lookupLevel(new LemmaAndPos("bank", "NOUN"));
     }
+
+    @Test
+    @DisplayName("should grade medium and resolve at the panel the finding of wallet, an A2 word, in the A1 quiz «Where is my wallet?»")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R002")
+    public void shouldGradeMediumAndResolveAtThePanelTheFindingOfWalletAnA2WordInTheA1QuizWhereIsMyWallet() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should resolve as rank-only the lemma-absence findings of a level and of the course, while those of a quiz go to the panel")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R002")
+    public void shouldResolveAsRankonlyTheLemmaabsenceFindingsOfALevelAndOfTheCourseWhileThoseOfAQuizGoToThePanel() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should say in the evidence of «Where is my wallet?» that wallet is an A2 word found in an A1 quiz")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R003")
+    public void shouldSayInTheEvidenceOfWhereIsMyWalletThatWalletIsAnA2WordFoundInAnA1Quiz() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should mark each misplaced word apart, so that «Where is my wallet?» has one finding whose marker is wallet")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R014")
+    public void shouldMarkEachMisplacedWordApartSoThatWhereIsMyWalletHasOneFindingWhoseMarkerIsWallet() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

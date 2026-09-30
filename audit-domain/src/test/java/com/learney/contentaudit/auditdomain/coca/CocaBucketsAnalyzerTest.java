@@ -689,4 +689,12 @@ public class CocaBucketsAnalyzerTest {
                 "R017: sum of top1k counts across all quarters must equal level top1k count "
                 + "(every topic assigned to exactly one quarter, no gaps or duplicates)");
     }
+
+    @Test
+    @DisplayName("should give the finding of B2, which it scores 32,2 %, the share of each frequency band against the targets of its level")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R003")
+    public void shouldGiveTheFindingOfB2WhichItScores322TheShareOfEachFrequencyBandAgainstTheTargetsOfItsLevel() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

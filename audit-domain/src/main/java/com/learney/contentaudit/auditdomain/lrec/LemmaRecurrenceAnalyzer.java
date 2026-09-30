@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.lrec;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -143,6 +144,12 @@ public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter, LemmaRecurre
     @Override
     public String getDescription() {
         return "Tracks lemma repetition intervals to detect sub/over-exposed vocabulary";
+    }
+
+
+    @Override
+    public List<FindingDraft> findingsAt(AuditNode node) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
 }

@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -203,4 +204,10 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
         return "Scores quiz instruction compliance from the quiz-instruction judge's verdict, "
                 + "reusing verdicts already recorded and honoring the run's evaluation budget";
     }
+
+    @Override
+    public List<FindingDraft> findingsAt(AuditNode node) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

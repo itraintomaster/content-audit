@@ -349,4 +349,12 @@ public class KnowledgeTitleLengthAnalyzerTest {
         analyzer.onKnowledge(node);
         assertEquals(0.0, node.getScores().get("knowledge-title-length"), 0.001);
     }
+
+    @Test
+    @DisplayName("should give the finding of «Participios irregulares: repaso 1» the weighted length of its title against the 28 that fit in a phone")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R003")
+    public void shouldGiveTheFindingOfParticipiosIrregularesRepaso1TheWeightedLengthOfItsTitleAgainstThe28ThatFitInAPhone() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

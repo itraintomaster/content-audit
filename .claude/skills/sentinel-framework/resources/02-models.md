@@ -218,10 +218,18 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 | `name` | `String` |  |
 | `description` | `String` |  |
 | `target` | `AuditTarget` |  |
+| `question` | `String` |  |
+| `reads` | `String` |  |
+| `rules` | `List<AnalyzerRuleCard>` | Import `java.util.List` |
+| `goal` | `String` |  |
+| `family` | `AnalyzerFamily` |  |
+| `evaluatedTargets` | `List<AuditTarget>` | Import `java.util.List` |
+| `resolutions` | `List<FindingResolution>` | Import `java.util.List` |
+| `cost` | `AnalysisCost` |  |
 
 **Generated constructor:**
 ```java
-new AnalyzerDescriptor(String name, String description, AuditTarget target)
+new AnalyzerDescriptor(String name, String description, AuditTarget target, String question, String reads, List<AnalyzerRuleCard> rules, String goal, AnalyzerFamily family, List<AuditTarget> evaluatedTargets, List<FindingResolution> resolutions, AnalysisCost cost)
 ```
 
 #### AuditNode
@@ -238,10 +246,13 @@ new AnalyzerDescriptor(String name, String description, AuditTarget target)
 | `scores` | `Map<String,Double>` |  |
 | `metadata` | `Map<String,Object>` |  |
 | `diagnoses` | `NodeDiagnoses` |  |
+| `findings` | `List<Finding>` | Import `java.util.List` |
+| `numbers` | `ContextNumbers` |  |
+| `unevaluatedBy` | `List<String>` | Import `java.util.List` |
 
 **Generated constructor:**
 ```java
-new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List<AuditNode> children, Map<String,Double> scores, Map<String,Object> metadata, NodeDiagnoses diagnoses)
+new AuditNode(AuditableEntity entity, AuditTarget target, AuditNode parent, List<AuditNode> children, Map<String,Double> scores, Map<String,Object> metadata, NodeDiagnoses diagnoses, List<Finding> findings, ContextNumbers numbers, List<String> unevaluatedBy)
 ```
 
 #### SentenceLengthDiagnosis
@@ -1124,6 +1135,305 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | `DECLARED_SET_REEVALUATION` | `null` |
 | `OUTSIDE_DECLARED_SET` | `null` |
 
+#### Finding (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `analyzer` | `String` |
+| `rule` | `String` |
+| `node` | `FindingNodeRef` |
+| `severity` | `FindingSeverity` |
+| `evidence` | `FindingEvidence` |
+| `resolution` | `FindingResolution` |
+| `cost` | `AnalysisCost` |
+| `identity` | `FindingIdentity` |
+
+#### FindingDraft (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `rule` | `String` |
+| `marker` | `String` |
+| `severity` | `FindingSeverity` |
+| `resolution` | `FindingResolution` |
+| `evidence` | `FindingEvidence` |
+
+#### FindingNodeRef (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `target` | `AuditTarget` |
+| `nodeId` | `String` |
+| `label` | `String` |
+
+#### FindingEvidence (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `examined` | `List<EvidencePart>` |
+| `observation` | `String` |
+| `relatedNodes` | `List<FindingNodeRef>` |
+
+#### EvidencePart (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `label` | `String` |
+| `text` | `String` |
+
+#### FindingIdentity (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `key` | `String` |
+| `marker` | `String` |
+
+#### FindingSeverity (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `BLOCKING` | `null` |
+| `HIGH` | `null` |
+| `MEDIUM` | `null` |
+| `LOW` | `null` |
+
+#### FindingResolution (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `RULE` | `null` |
+| `PANEL` | `null` |
+| `RANK_ONLY` | `null` |
+
+#### AnalysisCost (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `INSTANT` | `null` |
+| `LOCAL_MODEL` | `null` |
+| `PAID_MODEL` | `null` |
+
+#### FindingContractViolationException (package: finding)
+
+**Package:** `com.learney.contentaudit.auditdomain.finding`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `analyzerName` | `String` |
+| `nodeId` | `String` |
+| `detail` | `String` |
+
+#### AnalyzerFamily (package: catalog)
+
+**Package:** `com.learney.contentaudit.auditdomain.catalog`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `ERRORS` | `null` |
+| `VOCABULARY` | `null` |
+
+#### AnalyzerRuleCard (package: catalog)
+
+**Package:** `com.learney.contentaudit.auditdomain.catalog`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `id` | `String` |
+| `description` | `String` |
+| `cost` | `AnalysisCost` |
+
+#### AnalyzerPlanBinding (package: catalog)
+
+**Package:** `com.learney.contentaudit.auditdomain.catalog`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `taskKind` | `String` |
+| `taskTargets` | `List<AuditTarget>` |
+
+#### AnalyzerRunSelection (package: catalog)
+
+**Package:** `com.learney.contentaudit.auditdomain.catalog`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `analyzers` | `List<String>` |
+| `policies` | `Map<String,EvaluationRunPolicy>` |
+
+#### UnknownAnalyzerException (package: catalog)
+
+**Package:** `com.learney.contentaudit.auditdomain.catalog`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `analyzerName` | `String` |
+
+#### InvalidAnalyzerCardException (package: catalog)
+
+**Package:** `com.learney.contentaudit.auditdomain.catalog`
+**Visibility:** public
+**Type:** exception
+
+| Field | Type |
+|-------|------|
+| `analyzerName` | `String` |
+| `detail` | `String` |
+
+#### ContextNumbers (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `vocabularyScore` | `Double` |
+| `analyzerScores` | `List<AnalyzerScore>` |
+| `errors` | `ErrorCounts` |
+
+#### AnalyzerScore (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `analyzer` | `String` |
+| `family` | `AnalyzerFamily` |
+| `score` | `Double` |
+| `subMetrics` | `List<SubMetricScore>` |
+
+#### SubMetricScore (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `name` | `String` |
+| `score` | `double` |
+
+#### ErrorCounts (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `quizzes` | `int` |
+| `withAnyError` | `int` |
+| `anyErrorShare` | `double` |
+| `bySeverity` | `SeverityCounts` |
+| `notFullyEvaluated` | `int` |
+| `analyzers` | `List<AnalyzerErrorCounts>` |
+
+#### AnalyzerErrorCounts (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `analyzer` | `String` |
+| `reached` | `int` |
+| `evaluated` | `int` |
+| `notEvaluated` | `int` |
+| `withError` | `int` |
+| `errorShare` | `double` |
+| `marked` | `int` |
+
+#### SeverityCounts (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `blocking` | `int` |
+| `high` | `int` |
+| `medium` | `int` |
+| `low` | `int` |
+
+#### AuditDigest (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `auditId` | `String` |
+| `root` | `DigestNode` |
+
+#### DigestNode (package: contextnumbers)
+
+**Package:** `com.learney.contentaudit.auditdomain.contextnumbers`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `nodeId` | `String` |
+| `target` | `AuditTarget` |
+| `label` | `String` |
+| `numbers` | `ContextNumbers` |
+| `findings` | `List<Finding>` |
+| `unevaluatedBy` | `List<String>` |
+| `children` | `List<DigestNode>` |
+
 ### Module: course-domain
 
 #### NodeKind
@@ -1771,6 +2081,22 @@ new OutOfCatalogWordContext(String lemma, String observedPos, Integer frequencyR
 new QuizInstructionCorrectionContext(String taskId, String nodeId, String quizSentence, String translation, String sentence, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, String cefrLevelLabel, SentenceMode sentenceMode, List<InstructionViolation> violations, String verdictReason, InstructionSeverity severity, List<String> siblingQuizSentences, String sourceAuditId, String planId)
 ```
 
+#### UnconvertedScoreCount
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `analyzer` | `String` |  |
+| `nodeCount` | `int` |  |
+| `reason` | `String` |  |
+
+**Generated constructor:**
+```java
+new UnconvertedScoreCount(String analyzer, int nodeCount, String reason)
+```
+
 ### Module: audit-application
 
 #### AuditRunRequest
@@ -1889,10 +2215,11 @@ new SuggestedLemmasFilter(Optional<Integer> limit, Optional<String> partOfSpeech
 | `instructionBudget` | `Integer` |  |
 | `reevaluateInstructions` | `String` |  |
 | `reevaluateInstructionQuizIds` | `Set<String>` |  |
+| `analyzerBudgets` | `Map<String,Integer>` |  |
 
 **Generated constructor:**
 ```java
-new AnalyzeOptions(String format, String level, String topic, String knowledge, List<String> analyzers, List<String> excludeAnalyzers, boolean detailed, Integer instructionBudget, String reevaluateInstructions, Set<String> reevaluateInstructionQuizIds)
+new AnalyzeOptions(String format, String level, String topic, String knowledge, List<String> analyzers, List<String> excludeAnalyzers, boolean detailed, Integer instructionBudget, String reevaluateInstructions, Set<String> reevaluateInstructionQuizIds, Map<String,Integer> analyzerBudgets)
 ```
 
 #### ReportViewModel (package: formatting)

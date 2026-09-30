@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.contextnumbers.AuditDigest;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
@@ -16,4 +17,6 @@ public interface AuditReportStore {
     Optional<AuditReport> loadLatest();
 
     List<AuditReportSummary> list();
+
+    Optional<AuditDigest> loadDigest(String id);
 }

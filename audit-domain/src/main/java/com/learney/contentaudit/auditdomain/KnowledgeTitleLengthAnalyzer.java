@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -68,6 +70,12 @@ public class KnowledgeTitleLengthAnalyzer implements ContentAnalyzer {
     @Override
     public String getDescription() {
         return "Scores knowledge titles by weighted character count";
+    }
+
+
+    @Override
+    public List<FindingDraft> findingsAt(AuditNode node) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
 }

@@ -1,5 +1,10 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -14,13 +19,40 @@ public class AnalyzerDescriptor {
 
     private AuditTarget target;
 
+    private String question;
+
+    private String reads;
+
+    private List<AnalyzerRuleCard> rules;
+
+    private String goal;
+
+    private AnalyzerFamily family;
+
+    private List<AuditTarget> evaluatedTargets;
+
+    private List<FindingResolution> resolutions;
+
+    private AnalysisCost cost;
+
     public AnalyzerDescriptor() {
     }
 
-    public AnalyzerDescriptor(String name, String description, AuditTarget target) {
+    public AnalyzerDescriptor(String name, String description, AuditTarget target, String question,
+            String reads, List<AnalyzerRuleCard> rules, String goal, AnalyzerFamily family,
+            List<AuditTarget> evaluatedTargets, List<FindingResolution> resolutions,
+            AnalysisCost cost) {
         this.name = name;
         this.description = description;
         this.target = target;
+        this.question = question;
+        this.reads = reads;
+        this.rules = rules;
+        this.goal = goal;
+        this.family = family;
+        this.evaluatedTargets = evaluatedTargets;
+        this.resolutions = resolutions;
+        this.cost = cost;
     }
 
     public String getName() {
@@ -47,6 +79,70 @@ public class AnalyzerDescriptor {
         this.target = target;
     }
 
+    public String getQuestion() {
+        return this.question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getReads() {
+        return this.reads;
+    }
+
+    public void setReads(String reads) {
+        this.reads = reads;
+    }
+
+    public List<AnalyzerRuleCard> getRules() {
+        return this.rules;
+    }
+
+    public void setRules(List<AnalyzerRuleCard> rules) {
+        this.rules = rules;
+    }
+
+    public String getGoal() {
+        return this.goal;
+    }
+
+    public void setGoal(String goal) {
+        this.goal = goal;
+    }
+
+    public AnalyzerFamily getFamily() {
+        return this.family;
+    }
+
+    public void setFamily(AnalyzerFamily family) {
+        this.family = family;
+    }
+
+    public List<AuditTarget> getEvaluatedTargets() {
+        return this.evaluatedTargets;
+    }
+
+    public void setEvaluatedTargets(List<AuditTarget> evaluatedTargets) {
+        this.evaluatedTargets = evaluatedTargets;
+    }
+
+    public List<FindingResolution> getResolutions() {
+        return this.resolutions;
+    }
+
+    public void setResolutions(List<FindingResolution> resolutions) {
+        this.resolutions = resolutions;
+    }
+
+    public AnalysisCost getCost() {
+        return this.cost;
+    }
+
+    public void setCost(AnalysisCost cost) {
+        this.cost = cost;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,11 +150,19 @@ public class AnalyzerDescriptor {
         AnalyzerDescriptor that = (AnalyzerDescriptor) o;
         return Objects.equals(this.name, that.name)
                     && Objects.equals(this.description, that.description)
-                    && Objects.equals(this.target, that.target);
+                    && Objects.equals(this.target, that.target)
+                    && Objects.equals(this.question, that.question)
+                    && Objects.equals(this.reads, that.reads)
+                    && Objects.equals(this.rules, that.rules)
+                    && Objects.equals(this.goal, that.goal)
+                    && Objects.equals(this.family, that.family)
+                    && Objects.equals(this.evaluatedTargets, that.evaluatedTargets)
+                    && Objects.equals(this.resolutions, that.resolutions)
+                    && Objects.equals(this.cost, that.cost);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, target);
+        return Objects.hash(name, description, target, question, reads, rules, goal, family, evaluatedTargets, resolutions, cost);
     }
 }

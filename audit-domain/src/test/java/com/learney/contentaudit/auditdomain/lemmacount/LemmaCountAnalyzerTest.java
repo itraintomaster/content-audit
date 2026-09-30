@@ -810,4 +810,12 @@ public class LemmaCountAnalyzerTest {
         assertEquals("lemma-count", analyzer.getName(),
                 "El analizador debe identificarse con el nombre 'lemma-count' (R019)");
     }
+
+    @Test
+    @DisplayName("should give the finding of the course, which it scores 67,0 %, the lemmas that appear in fewer sentences than their target")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R003")
+    public void shouldGiveTheFindingOfTheCourseWhichItScores670TheLemmasThatAppearInFewerSentencesThanTheirTarget() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

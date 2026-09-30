@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.lemmacount;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -199,4 +200,10 @@ public class LemmaCountAnalyzer implements ContentAnalyzer {
     public String getDescription() {
         return "Counts distinct sentences per content-word lemma and scores exposure by CEFR level";
     }
+
+    @Override
+    public List<FindingDraft> findingsAt(AuditNode node) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

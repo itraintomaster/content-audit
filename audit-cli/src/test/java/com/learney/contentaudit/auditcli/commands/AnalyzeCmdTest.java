@@ -641,4 +641,36 @@ public class AnalyzeCmdTest {
         assertTrue(errOutput.contains(unreadableOrigin),
                 "R019: the error must name the origin that could not be read; got: " + errOutput);
     }
+
+    @Test
+    @DisplayName("should print that analyzer quiz-instructions was not found with the hint to run content-audit get analyzers, exit non-zero and save no analysis when asked to run a name the catalog does not have")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R012")
+    public void shouldPrintThatAnalyzerQuizinstructionsWasNotFoundWithTheHintToRunContentauditGetAnalyzersExitNonzeroAndSaveNoAnalysisWhenAskedToRunANameTheCatalogDoesNotHave() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should cap the judge queries with --budget quiz-instruction=N, the name get analyzers lists, as --instruction-budget does")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R005")
+    public void shouldCapTheJudgeQueriesWithBudgetQuizinstructionNTheNameGetAnalyzersListsAsInstructionbudgetDoes() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the 886 files of the 29/9 course identical byte for byte after analyzing it with any selection of analyzers, such as all of them, sentence-length alone or quiz-instruction alone")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R015")
+    public void shouldLeaveThe886FilesOfThe299CourseIdenticalByteForByteAfterAnalyzingItWithAnySelectionOfAnalyzersSuchAsAllOfThemSentencelengthAloneOrQuizinstructionAlone() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should write in a run nothing but its analysis and, when the judge ran, its new verdicts in the evaluation ledger")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R015")
+    public void shouldWriteInARunNothingButItsAnalysisAndWhenTheJudgeRanItsNewVerdictsInTheEvaluationLedger() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

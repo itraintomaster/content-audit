@@ -316,4 +316,20 @@ class FileSystemAuditReportStoreTest {
         assertTrue(latest.isPresent());
         assertEquals(0.9, latest.get().getRoot().getScores().get("sentence-length"), 1e-9);
     }
+
+    @Test
+    @DisplayName("should list each saved analysis with the vocabulary score published on its course, 73,9 % for the 29/9 base, instead of 73,4 %, the average of its eleven course keys")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R010")
+    public void shouldListEachSavedAnalysisWithTheVocabularyScorePublishedOnItsCourse739ForThe299BaseInsteadOf734TheAverageOfItsElevenCourseKeys() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should save with each analysis a digest without the course entities whose numbers, findings and unevaluated analyzers are copied from the report and not recomputed, and load it by the analysis id")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R010")
+    public void shouldSaveWithEachAnalysisADigestWithoutTheCourseEntitiesWhoseNumbersFindingsAndUnevaluatedAnalyzersAreCopiedFromTheReportAndNotRecomputedAndLoadItByTheAnalysisId() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -352,4 +352,92 @@ public class IAuditEngineTest {
         assertNotNull(quiz.getScores().get("sentence-length"),
                 "R016: quiz must expose sentence-length score");
     }
+
+    @Test
+    @DisplayName("should leave no sentence-length finding on the knowledge «Be: preguntas yes / no», although aggregation gives it 0,995, because findings are collected before aggregating")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R001")
+    public void shouldLeaveNoSentencelengthFindingOnTheKnowledgeBePreguntasYesNoAlthoughAggregationGivesIt0995BecauseFindingsAreCollectedBeforeAggregating() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should aggregate in the same run the quiz-instruction scores of the judged quizzes into their knowledge, topic, level and course, averaging only quizzes with a verdict and leaving without score a knowledge that has none")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R011")
+    public void shouldAggregateInTheSameRunTheQuizinstructionScoresOfTheJudgedQuizzesIntoTheirKnowledgeTopicLevelAndCourseAveragingOnlyQuizzesWithAVerdictAndLeavingWithoutScoreAKnowledgeThatHasNone() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should count the breaches the judge found as errors of their knowledge, topic, level and course in the same run, declaring the quizzes it left unjudged")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R011")
+    public void shouldCountTheBreachesTheJudgeFoundAsErrorsOfTheirKnowledgeTopicLevelAndCourseInTheSameRunDeclaringTheQuizzesItLeftUnjudged() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should publish on every node the same vocabulary score whether the judge ran or not, the quizzes it judged included")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R011")
+    public void shouldPublishOnEveryNodeTheSameVocabularyScoreWhetherTheJudgeRanOrNotTheQuizzesItJudgedIncluded() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should run exactly the analyzers of the selection, in catalog order, and leave no score, finding or number of any other")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R012")
+    public void shouldRunExactlyTheAnalyzersOfTheSelectionInCatalogOrderAndLeaveNoScoreFindingOrNumberOfAnyOther() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject a selection naming an analyzer the catalog does not have before building any analyzer or touching the tree")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R012")
+    public void shouldRejectASelectionNamingAnAnalyzerTheCatalogDoesNotHaveBeforeBuildingAnyAnalyzerOrTouchingTheTree() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give through runAudit of a course, as before the contract, the scores of the seven classic analyzers and none from the judge, the run that the consolidated view and the impact preview rely on")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R013")
+    public void shouldGiveThroughRunAuditOfACourseAsBeforeTheContractTheScoresOfTheSevenClassicAnalyzersAndNoneFromTheJudgeTheRunThatTheConsolidatedViewAndTheImpactPreviewRelyOn() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give two runs in the same process over the same course the same findings, in the same order and with the same numbers, the course scores of coca-buckets-distribution, lemma-absence, lemma-count and lemma-recurrence included")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R014")
+    public void shouldGiveTwoRunsInTheSameProcessOverTheSameCourseTheSameFindingsInTheSameOrderAndWithTheSameNumbersTheCourseScoresOfCocabucketsdistributionLemmaabsenceLemmacountAndLemmarecurrenceIncluded() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep the identity of the finding on «Where is my wallet?» when «He isn't in the living-room.», another quiz of its knowledge, changes")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R014")
+    public void shouldKeepTheIdentityOfTheFindingOnWhereIsMyWalletWhenHeIsntInTheLivingroomAnotherQuizOfItsKnowledgeChanges() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave as not evaluated by quiz-instruction a quiz on which the judge failed, so that it counts among the unevaluated quizzes")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R008")
+    public void shouldLeaveAsNotEvaluatedByQuizinstructionAQuizOnWhichTheJudgeFailedSoThatItCountsAmongTheUnevaluatedQuizzes() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the auditable course untouched when an analyzer returns a finding that is resolved by a rule")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R015")
+    public void shouldLeaveTheAuditableCourseUntouchedWhenAnAnalyzerReturnsAFindingThatIsResolvedByARule() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

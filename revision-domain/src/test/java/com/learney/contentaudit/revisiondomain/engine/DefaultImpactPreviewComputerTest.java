@@ -708,4 +708,12 @@ public class DefaultImpactPreviewComputerTest {
         assertEquals(stableNodeId, quizImpact.getNodeId(),
                 "LevelImpact.nodeId must equal the stable nodeId from elementBefore/elementAfter");
     }
+
+    @Test
+    @DisplayName("should compute the before and after of each level of the impact preview from the vocabulary scores published on the base and simulated reports, 73,9 % before on the course of the 29/9 base instead of 73,4 %")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R010")
+    public void shouldComputeTheBeforeAndAfterOfEachLevelOfTheImpactPreviewFromTheVocabularyScoresPublishedOnTheBaseAndSimulatedReports739BeforeOnTheCourseOfThe299BaseInsteadOf734() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

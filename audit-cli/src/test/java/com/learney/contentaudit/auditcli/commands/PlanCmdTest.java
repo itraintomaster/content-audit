@@ -444,4 +444,12 @@ public class PlanCmdTest {
         verify(ephemeralPlanRenderer).render(planWithLemmaAbsence, report, new EphemeralRenderOptions(true));
         verify(refinementPlanStore, never()).save(any()); // EPHEMERAL does not persist
     }
+
+    @Test
+    @DisplayName("should warn after deriving a plan which analyzer and how many nodes had scores below 1 it could not turn into tasks")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R004")
+    public void shouldWarnAfterDerivingAPlanWhichAnalyzerAndHowManyNodesHadScoresBelow1ItCouldNotTurnIntoTasks() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

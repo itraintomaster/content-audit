@@ -926,4 +926,44 @@ public class DefaultAuditRunnerTest {
             return evaluatedSubjects;
         }
     }
+
+    @Test
+    @DisplayName("should run exactly sentence-length when a run asks only for it, leaving no score, finding or number of the other six classic analyzers")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R012")
+    public void shouldRunExactlySentencelengthWhenARunAsksOnlyForItLeavingNoScoreFindingOrNumberOfTheOtherSixClassicAnalyzers() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should run exactly quiz-instruction when a run asks only for it, with its findings, numbers and coverage and nothing from the seven classic analyzers")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R012")
+    public void shouldRunExactlyQuizinstructionWhenARunAsksOnlyForItWithItsFindingsNumbersAndCoverageAndNothingFromTheSevenClassicAnalyzers() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject before loading the course a run that asks for quiz-instructions, a name get analyzers does not list, with the message that points to get analyzers")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R012")
+    public void shouldRejectBeforeLoadingTheCourseARunThatAsksForQuizinstructionsANameGetAnalyzersDoesNotListWithTheMessageThatPointsToGetAnalyzers() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject before loading the course a run that excludes a name get analyzers does not list, instead of ignoring it")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R012")
+    public void shouldRejectBeforeLoadingTheCourseARunThatExcludesANameGetAnalyzersDoesNotListInsteadOfIgnoringIt() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should publish on the 29/9 course, with the seven classic analyzers, the same score of each one on each of its 11.760 nodes and the same typed diagnoses as the analysis 2026-09-30T11-54-02")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R013")
+    public void shouldPublishOnThe299CourseWithTheSevenClassicAnalyzersTheSameScoreOfEachOneOnEachOfIts11760NodesAndTheSameTypedDiagnosesAsTheAnalysis20260930T115402() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

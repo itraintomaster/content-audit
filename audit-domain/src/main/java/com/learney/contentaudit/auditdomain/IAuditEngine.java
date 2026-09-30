@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -14,10 +15,19 @@ public class IAuditEngine implements AuditEngine {
 
     private final ScoreAggregator scoreAggregator;
 
-    public IAuditEngine(List<ContentAnalyzer> contentAnalyzers, ScoreAggregator scoreAggregator) {
-        this.contentAnalyzers = contentAnalyzers;
-        this.scoreAggregator = scoreAggregator;
-    }
+private final AnalyzerCatalog analyzerCatalog;
+
+private final FindingCollector findingCollector;
+
+private final ContextNumbersCalculator contextNumbersCalculator;
+
+public IAuditEngine(List<ContentAnalyzer> contentAnalyzers, ScoreAggregator scoreAggregator, AnalyzerCatalog analyzerCatalog, FindingCollector findingCollector, ContextNumbersCalculator contextNumbersCalculator) {
+    this.contentAnalyzers = contentAnalyzers;
+    this.scoreAggregator = scoreAggregator;
+    this.analyzerCatalog = analyzerCatalog;
+    this.findingCollector = findingCollector;
+    this.contextNumbersCalculator = contextNumbersCalculator;
+}
 
     @Override
     public AuditReport runAudit(AuditableCourse auditableCourse) {

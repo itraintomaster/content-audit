@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -136,6 +138,12 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
     @Override
     public String getDescription() {
         return "Scores quiz sentence length against per-CEFR target token ranges";
+    }
+
+
+    @Override
+    public List<FindingDraft> findingsAt(AuditNode node) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
 }

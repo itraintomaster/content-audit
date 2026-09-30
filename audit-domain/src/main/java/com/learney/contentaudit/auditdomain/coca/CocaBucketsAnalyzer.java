@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.coca;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -504,6 +505,12 @@ public CocaBucketsAnalyzer(NlpTokenizer nlpTokenizer, CocaBucketsConfig cocaBuck
     @Override
     public String getDescription() {
         return "Evaluates COCA frequency band distribution per level/quarter";
+    }
+
+
+    @Override
+    public List<FindingDraft> findingsAt(AuditNode node) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
 }

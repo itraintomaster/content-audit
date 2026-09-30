@@ -88,9 +88,7 @@ Methods:
 - `courseRepository`: `CourseRepository`
 - `courseToAuditableMapper`: `CourseToAuditableMapper`
 - `auditEngine`: `AuditEngine`
-- `allAnalyzers`: `List<ContentAnalyzer>`
-- `scoreAggregator`: `ScoreAggregator`
-- `evaluationAnalyzerFactories`: `List<EvaluationAnalyzerFactory>`
+- `analyzerCatalog`: `AnalyzerCatalog`
 
 **Tests that must pass:**
 
@@ -115,6 +113,11 @@ Methods:
 - should not run the quiz instruction analysis when the run excludes it by the very name the report publishes, while the judge behind it answers to a different name → FEAT-QINST/F-QINST-R015
 - should cap the judge queries at the number requested for the name the report publishes instead of falling back to the default cap, while the judge behind it answers to a different name → FEAT-QINST/F-QINST-R015
 - should re evaluate quizzes that already had a verdict when re evaluation is requested for the name the report publishes, while the judge behind it answers to a different name → FEAT-QINST/F-QINST-R015
+- should run exactly sentence-length when a run asks only for it, leaving no score, finding or number of the other six classic analyzers → FEAT-HALL/F-HALL-R012
+- should run exactly quiz-instruction when a run asks only for it, with its findings, numbers and coverage and nothing from the seven classic analyzers → FEAT-HALL/F-HALL-R012
+- should reject before loading the course a run that asks for quiz-instructions, a name get analyzers does not list, with the message that points to get analyzers → FEAT-HALL/F-HALL-R012
+- should reject before loading the course a run that excludes a name get analyzers does not list, instead of ignoring it → FEAT-HALL/F-HALL-R012
+- should publish on the 29/9 course, with the seven classic analyzers, the same score of each one on each of its 11.760 nodes and the same typed diagnoses as the analysis 2026-09-30T11-54-02 → FEAT-HALL/F-HALL-R013
 
 ### DefaultCocaBucketsConfig
 
@@ -215,8 +218,11 @@ Methods:
 
 **Dependencies (constructor injection):**
 
-- `analyzers`: `List<ContentAnalyzer>`
-- `configs`: `List<SelfDescribingConfig>`
+- `analyzerCatalog`: `AnalyzerCatalog`
+
+**Tests that must pass:**
+
+- should list in get analyzers the eight analyzers analyze accepts, quiz-instruction included, each once under its catalog name → FEAT-HALL/F-HALL-R005
 
 ### DefaultLemmaCountConfig
 
@@ -368,6 +374,14 @@ The following models and interfaces are available from dependencies. You can use
 | name | `String` |
 | description | `String` |
 | target | `AuditTarget` |
+| question | `String` |
+| reads | `String` |
+| rules | `List<AnalyzerRuleCard>` |
+| goal | `String` |
+| family | `AnalyzerFamily` |
+| evaluatedTargets | `List<AuditTarget>` |
+| resolutions | `List<FindingResolution>` |
+| cost | `AnalysisCost` |
 
 ### AuditNode (`record`)
 
@@ -380,6 +394,9 @@ The following models and interfaces are available from dependencies. You can use
 | scores | `Map<String,Double>` |
 | metadata | `Map<String,Object>` |
 | diagnoses | `NodeDiagnoses` |
+| findings | `List<Finding>` |
+| numbers | `ContextNumbers` |
+| unevaluatedBy | `List<String>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -443,6 +460,7 @@ The following models and interfaces are available from dependencies. You can use
 Methods:
 
 - `runAudit(AuditableCourse course): AuditReport`
+- `runAudit(AuditableCourse course, AnalyzerRunSelection selection): AuditReport` throws UnknownAnalyzerException
 
 ### ContentAnalyzer (port)
 
@@ -456,6 +474,7 @@ Methods:
 - `getName(): String`
 - `getTarget(): AuditTarget`
 - `getDescription(): String`
+- `findingsAt(AuditNode node): List<FindingDraft>`
 
 ### AnalysisResult (port)
 
@@ -610,6 +629,7 @@ Methods:
 - `load(String id): Optional<AuditReport>`
 - `loadLatest(): Optional<AuditReport>`
 - `list(): List<AuditReportSummary>`
+- `loadDigest(String id): Optional<AuditDigest>`
 
 ### CourseMapper (port)
 
@@ -643,13 +663,6 @@ Methods:
 
 - `getThreshold(): int`
 
-### EvaluationAnalyzerFactory (factory)
-
-Methods:
-
-- `create(EvaluationRunPolicy policy): ContentAnalyzer`
-- `analyzerName(): String`
-
 ### QuizInstructionVerdictReader (port)
 
 Methods:
@@ -662,6 +675,37 @@ Methods:
 
 - `getDefaultMaxNewEvaluations(): int`
 - `getScoreFor(InstructionSeverity severity): double`
+
+### AnalyzerProvider (factory)
+
+Methods:
+
+- `analyzerName(): String`
+- `describe(): AnalyzerDescriptor`
+- `create(EvaluationRunPolicy policy): ContentAnalyzer`
+- `planBinding(): Optional<AnalyzerPlanBinding>`
+- `config(): Optional<SelfDescribingConfig>`
+
+### AnalyzerCatalog (port)
+
+Methods:
+
+- `list(): List<AnalyzerDescriptor>`
+- `find(String analyzerName): Optional<AnalyzerDescriptor>`
+- `provider(String analyzerName): Optional<AnalyzerProvider>`
+- `planBinding(String analyzerName): Optional<AnalyzerPlanBinding>`
+
+### FindingCollector (port)
+
+Methods:
+
+- `collect(AuditNode root, ContentAnalyzer analyzer, AnalyzerDescriptor card): void` throws FindingContractViolationException
+
+### ContextNumbersCalculator (port)
+
+Methods:
+
+- `compute(AuditNode root, List<AnalyzerDescriptor> analyzers): void`
 
 ### From course-domain
 
@@ -1180,12 +1224,21 @@ Methods:
 | sourceAuditId | `String` |
 | planId | `String` |
 
+### UnconvertedScoreCount (`record`)
+
+| Field | Type |
+|-------|------|
+| analyzer | `String` |
+| nodeCount | `int` |
+| reason | `String` |
+
 ### RefinerEngine (port)
 
 Methods:
 
 - `plan(AuditReport report, String auditId): RefinementPlan`
 - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
+- `unconvertedScores(AuditReport report): List<UnconvertedScoreCount>`
 
 ### RefinementPlanStore (port)
 

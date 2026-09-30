@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditapplication;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
 
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
@@ -17,16 +18,18 @@ public class DefaultAnalyzerRegistry implements AnalyzerRegistry {
 
     private final List<SelfDescribingConfig> configs;
 
-    public DefaultAnalyzerRegistry(List<ContentAnalyzer> analyzers,
-            List<SelfDescribingConfig> configs) {
-        this.analyzers = analyzers;
-        this.configs = configs;
-    }
+private final AnalyzerCatalog analyzerCatalog;
+
+public DefaultAnalyzerRegistry(List<ContentAnalyzer> analyzers, List<SelfDescribingConfig> configs, AnalyzerCatalog analyzerCatalog) {
+    this.analyzers = analyzers;
+    this.configs = configs;
+    this.analyzerCatalog = analyzerCatalog;
+}
 
     @Override
     public List<AnalyzerDescriptor> listAnalyzers() {
         return analyzers.stream()
-                .map(a -> new AnalyzerDescriptor(a.getName(), a.getDescription(), a.getTarget()))
+                .map(a -> new AnalyzerDescriptor(a.getName(), a.getDescription(), a.getTarget(), null, null, null, null, null, null, null, null))
                 .toList();
     }
 

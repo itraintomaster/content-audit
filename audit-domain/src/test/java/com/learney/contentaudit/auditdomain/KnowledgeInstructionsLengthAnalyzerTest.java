@@ -290,4 +290,12 @@ public class KnowledgeInstructionsLengthAnalyzerTest {
         analyzer.onKnowledge(aboveHard);
         assertEquals(0.0, aboveHard.getScores().get("knowledge-instructions-length"));
     }
+
+    @Test
+    @DisplayName("should give the finding of «Be o do: armar preguntas» the weighted length of its instructions against its limits of 70 and 100")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R003")
+    public void shouldGiveTheFindingOfBeODoArmarPreguntasTheWeightedLengthOfItsInstructionsAgainstItsLimitsOf70And100() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -1,4 +1,5 @@
 package com.learney.contentaudit.refinerdomain;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
 import javax.annotation.processing.Generated;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
@@ -31,6 +32,12 @@ import java.util.Optional;
  * 1, 2, 3 … accordingly.
  */
 public class DefaultRefinerEngine implements RefinerEngine {
+
+private final AnalyzerCatalog analyzerCatalog;
+
+public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog) {
+    this.analyzerCatalog = analyzerCatalog;
+}
 
     private static final DateTimeFormatter TIMESTAMP_FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss").withZone(ZoneOffset.UTC);
@@ -215,4 +222,10 @@ public class DefaultRefinerEngine implements RefinerEngine {
             this.diagnosisKind = diagnosisKind;
         }
     }
+
+    @Override
+    public List<UnconvertedScoreCount> unconvertedScores(AuditReport report) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

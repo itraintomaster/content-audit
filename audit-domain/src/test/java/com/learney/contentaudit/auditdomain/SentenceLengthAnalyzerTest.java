@@ -657,4 +657,28 @@ public class SentenceLengthAnalyzerTest {
         Assertions.assertEquals(1.0, score, 0.001,
                 "R007: score debe ser 1.0 (100%) sobre 4 tokens de la respuesta, no 0.6 (60%) sobre 10 tokens de la concatenacion erronea");
     }
+
+    @Test
+    @DisplayName("should grade low and resolve at the panel the finding of «He isn't in the living-room.», one token over the 3 to 8 of A1")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R002")
+    public void shouldGradeLowAndResolveAtThePanelTheFindingOfHeIsntInTheLivingroomOneTokenOverThe3To8OfA1() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give the finding of «He isn't in the living-room.» as evidence the sentence as the student reads it and its measure next to its goal, 9 tokens against the 3 to 8 of A1, never the internal format of the course")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R003")
+    public void shouldGiveTheFindingOfHeIsntInTheLivingroomAsEvidenceTheSentenceAsTheStudentReadsItAndItsMeasureNextToItsGoal9TokensAgainstThe3To8OfA1NeverTheInternalFormatOfTheCourse() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep emitting for «He isn't in the living-room.» the same SentenceLengthDiagnosis as before, 9 tokens against 3 to 8 with delta 1 and margin 5, with nothing of it copied into its finding")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R001")
+    public void shouldKeepEmittingForHeIsntInTheLivingroomTheSameSentenceLengthDiagnosisAsBefore9TokensAgainst3To8WithDelta1AndMargin5WithNothingOfItCopiedIntoItsFinding() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

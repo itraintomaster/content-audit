@@ -1,6 +1,7 @@
 package com.learney.contentaudit.refinerdomain;
 
 import com.learney.contentaudit.auditdomain.AuditReport;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -12,4 +13,6 @@ public interface RefinerEngine {
     RefinementPlan plan(AuditReport report, String auditId);
 
     Optional<RefinementTask> nextTask(RefinementPlan plan);
+
+    List<UnconvertedScoreCount> unconvertedScores(AuditReport report);
 }

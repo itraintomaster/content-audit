@@ -417,4 +417,12 @@ public class LemmaRecurrenceAnalyzerTest {
         assertEquals(250.0, meanCaptor.getValue(), 0.001, "R012: meanInterval passed to stdDev calculation");
         verify(exposureClassifier, times(1)).classify(eq(250.0), any());
     }
+
+    @Test
+    @DisplayName("should give its course finding the measure 8,0 %, the share of the most used lemmas that come back at a healthy interval, next to its goal")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R003")
+    public void shouldGiveItsCourseFindingTheMeasure80TheShareOfTheMostUsedLemmasThatComeBackAtAHealthyIntervalNextToItsGoal() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

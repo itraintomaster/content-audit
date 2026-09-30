@@ -92,9 +92,9 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
 | Models | 18 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection, EvaluationRunPolicy, EmptyReevaluationSetException, AmbiguousReevaluationScopeException) |
-| Interfaces | 28 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig, EvaluationAnalyzerFactory, QuizInstructionVerdictReader, QuizInstructionConfig) |
-| Implementations | 5 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator) |
-| Packages | 8 (coca [internal], lrec [internal], labs [internal], auditnodeindex [internal], lemmacount [internal], lexicalflags [public], quizinstruction [public], quizinstructionengine [public]) |
+| Interfaces | 31 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig, QuizInstructionVerdictReader, QuizInstructionConfig, AnalyzerProvider, AnalyzerCatalog, FindingCollector, ContextNumbersCalculator) |
+| Implementations | 8 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator, SentenceLengthAnalyzerProvider, KnowledgeTitleLengthAnalyzerProvider, KnowledgeInstructionsLengthAnalyzerProvider) |
+| Packages | 12 (coca [internal], lrec [internal], labs [internal], auditnodeindex [internal], lemmacount [internal], lexicalflags [public], quizinstruction [public], quizinstructionengine [public], finding [public], catalog [public], contextnumbers [public], findingengine [public]) |
 
 ### course-domain
 
@@ -121,7 +121,7 @@ project-root/
 | Depends On | audit-domain, course-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 16 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext, OutOfCatalogWordContext, QuizInstructionCorrectionContext) |
+| Models | 17 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext, OutOfCatalogWordContext, QuizInstructionCorrectionContext, UnconvertedScoreCount) |
 | Interfaces | 7 (RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext, SuggestedLemmaQueryPort, SuggestedLemmaQuerySession, SuggestedLemmaQuerySessionFactory) |
 | Implementations | 6 (SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine, KnowledgeTitleContextResolver, QuizInstructionContextResolver) |
 | Packages | 1 (lemmasuggestion [internal]) |

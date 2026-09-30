@@ -1294,4 +1294,12 @@ public class DefaultConsolidatedViewBuilderTest {
 
         return knowledgeNode;
     }
+
+    @Test
+    @DisplayName("should carry into the consolidated view the vocabulary score and the error counts the engine published on each node of each snapshot, without computing them again")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R010")
+    public void shouldCarryIntoTheConsolidatedViewTheVocabularyScoreAndTheErrorCountsTheEnginePublishedOnEachNodeOfEachSnapshotWithoutComputingThemAgain() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

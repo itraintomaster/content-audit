@@ -124,4 +124,12 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
 
         Mockito.verifyNoInteractions(sessionFactory);
     }
+
+    @Test
+    @DisplayName("should describe quiz-instruction in its card as errors, evaluating the quiz, resolved at the panel and costing a paid model")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R006")
+    public void shouldDescribeQuizinstructionInItsCardAsErrorsEvaluatingTheQuizResolvedAtThePanelAndCostingAPaidModel() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -113,6 +113,14 @@ Core business logic
 | name | `String` |
 | description | `String` |
 | target | `AuditTarget` |
+| question | `String` |
+| reads | `String` |
+| rules | `List<AnalyzerRuleCard>` |
+| goal | `String` |
+| family | `AnalyzerFamily` |
+| evaluatedTargets | `List<AuditTarget>` |
+| resolutions | `List<FindingResolution>` |
+| cost | `AnalysisCost` |
 
 ### AuditNode (`record`)
 
@@ -125,6 +133,9 @@ Core business logic
 | scores | `Map<String,Double>` |
 | metadata | `Map<String,Object>` |
 | diagnoses | `NodeDiagnoses` |
+| findings | `List<Finding>` |
+| numbers | `ContextNumbers` |
+| unevaluatedBy | `List<String>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -190,6 +201,7 @@ Core business logic
 Methods:
 
 - `runAudit(AuditableCourse course): AuditReport`
+- `runAudit(AuditableCourse course, AnalyzerRunSelection selection): AuditReport` throws UnknownAnalyzerException
 
 ### ContentAnalyzer (port)
 
@@ -203,6 +215,7 @@ Methods:
 - `getName(): String`
 - `getTarget(): AuditTarget`
 - `getDescription(): String`
+- `findingsAt(AuditNode node): List<FindingDraft>`
 
 ### AnalysisResult (port)
 
@@ -357,6 +370,7 @@ Methods:
 - `load(String id): Optional<AuditReport>`
 - `loadLatest(): Optional<AuditReport>`
 - `list(): List<AuditReportSummary>`
+- `loadDigest(String id): Optional<AuditDigest>`
 
 ### CourseMapper (port)
 
@@ -390,13 +404,6 @@ Methods:
 
 - `getThreshold(): int`
 
-### EvaluationAnalyzerFactory (factory)
-
-Methods:
-
-- `create(EvaluationRunPolicy policy): ContentAnalyzer`
-- `analyzerName(): String`
-
 ### QuizInstructionVerdictReader (port)
 
 Methods:
@@ -410,6 +417,37 @@ Methods:
 - `getDefaultMaxNewEvaluations(): int`
 - `getScoreFor(InstructionSeverity severity): double`
 
+### AnalyzerProvider (factory)
+
+Methods:
+
+- `analyzerName(): String`
+- `describe(): AnalyzerDescriptor`
+- `create(EvaluationRunPolicy policy): ContentAnalyzer`
+- `planBinding(): Optional<AnalyzerPlanBinding>`
+- `config(): Optional<SelfDescribingConfig>`
+
+### AnalyzerCatalog (port)
+
+Methods:
+
+- `list(): List<AnalyzerDescriptor>`
+- `find(String analyzerName): Optional<AnalyzerDescriptor>`
+- `provider(String analyzerName): Optional<AnalyzerProvider>`
+- `planBinding(String analyzerName): Optional<AnalyzerPlanBinding>`
+
+### FindingCollector (port)
+
+Methods:
+
+- `collect(AuditNode root, ContentAnalyzer analyzer, AnalyzerDescriptor card): void` throws FindingContractViolationException
+
+### ContextNumbersCalculator (port)
+
+Methods:
+
+- `compute(AuditNode root, List<AnalyzerDescriptor> analyzers): void`
+
 ## Implementations
 
 ### IAuditEngine
@@ -418,8 +456,10 @@ Methods:
 
 **Dependencies (constructor injection):**
 
-- `contentAnalyzers`: `List<ContentAnalyzer>`
 - `scoreAggregator`: `ScoreAggregator`
+- `analyzerCatalog`: `AnalyzerCatalog`
+- `findingCollector`: `FindingCollector`
+- `contextNumbersCalculator`: `ContextNumbersCalculator`
 
 **Tests that must pass:**
 
@@ -432,6 +472,17 @@ Methods:
 - should aggregate topic-level sentence-length scores into each MILESTONE node as the simple average of the scoring topics under it omitting from the average any topic without a score and leaving the level score unavailable when no topic under it has a score → FEAT-SLEN/F-SLEN-R005
 - should aggregate milestone-level sentence-length scores into the COURSE root node as the simple average of the scoring milestones omitting from the average any milestone without a score and returning zero as the course overall score when no milestone has a score → FEAT-SLEN/F-SLEN-R008
 - should publish the sentence-length score on every AuditNode of the hierarchy (quiz knowledge topic milestone course) so consumers can read it at any level via node.getScores().get('sentence-length') → FEAT-SLEN/F-SLEN-R016
+- should leave no sentence-length finding on the knowledge «Be: preguntas yes / no», although aggregation gives it 0,995, because findings are collected before aggregating → FEAT-HALL/F-HALL-R001
+- should aggregate in the same run the quiz-instruction scores of the judged quizzes into their knowledge, topic, level and course, averaging only quizzes with a verdict and leaving without score a knowledge that has none → FEAT-HALL/F-HALL-R011
+- should count the breaches the judge found as errors of their knowledge, topic, level and course in the same run, declaring the quizzes it left unjudged → FEAT-HALL/F-HALL-R011
+- should publish on every node the same vocabulary score whether the judge ran or not, the quizzes it judged included → FEAT-HALL/F-HALL-R011
+- should run exactly the analyzers of the selection, in catalog order, and leave no score, finding or number of any other → FEAT-HALL/F-HALL-R012
+- should reject a selection naming an analyzer the catalog does not have before building any analyzer or touching the tree → FEAT-HALL/F-HALL-R012
+- should give through runAudit of a course, as before the contract, the scores of the seven classic analyzers and none from the judge, the run that the consolidated view and the impact preview rely on → FEAT-HALL/F-HALL-R013
+- should give two runs in the same process over the same course the same findings, in the same order and with the same numbers, the course scores of coca-buckets-distribution, lemma-absence, lemma-count and lemma-recurrence included → FEAT-HALL/F-HALL-R014
+- should keep the identity of the finding on «Where is my wallet?» when «He isn't in the living-room.», another quiz of its knowledge, changes → FEAT-HALL/F-HALL-R014
+- should leave as not evaluated by quiz-instruction a quiz on which the judge failed, so that it counts among the unevaluated quizzes → FEAT-HALL/F-HALL-R008
+- should leave the auditable course untouched when an analyzer returns a finding that is resolved by a rule → FEAT-HALL/F-HALL-R015
 
 ### KnowledgeTitleLengthAnalyzer
 
@@ -462,6 +513,7 @@ Methods:
 - should complete without error when onCourseComplete is called → FEAT-KTLEN/F-KTLEN-R008
 - should return two correctly scored items for two knowledges with different title lengths → FEAT-KTLEN/F-KTLEN-R003
 - should return empty list when no knowledges have been processed → FEAT-KTLEN/F-KTLEN-R003
+- should give the finding of «Participios irregulares: repaso 1» the weighted length of its title against the 28 that fit in a phone → FEAT-HALL/F-HALL-R003
 
 ### KnowledgeInstructionsLengthAnalyzer
 
@@ -495,6 +547,7 @@ Methods:
 - should produce correct scores for three knowledges with different instruction lengths → FEAT-KTLEN/F-KTLEN-R006
 - should use weighted character length not plain string length for scoring instructions → FEAT-KTLEN/F-KTLEN-R002
 - should distinguish three scoring ranges 1.0 at-or-below-70 0.5 above-70-up-to-100 0.0 above-100 at the declared weighted-char thresholds → FEAT-KTLEN/F-KTLEN-R005
+- should give the finding of «Be o do: armar preguntas» the weighted length of its instructions against its limits of 70 and 100 → FEAT-HALL/F-HALL-R003
 
 ### SentenceLengthAnalyzer
 
@@ -534,6 +587,9 @@ Methods:
 - should compute each quiz score using the linguistic token count from the precomputed NLP tokenization of the quiz sentence and never from a whitespace-based string split → FEAT-SLEN/F-SLEN-R013
 - should compute the length score over the mode-determined canonical phrase token count and not over a blind concatenation of all quiz parts → FEAT-SMODE/F-SMODE-R005
 - should score a REWRITE quiz answer Watch the DVD at 100 percent on 4 tokens for A1 instead of 60 percent on the 10-token source-plus-answer concatenation → FEAT-SMODE/F-SMODE-R007
+- should grade low and resolve at the panel the finding of «He isn't in the living-room.», one token over the 3 to 8 of A1 → FEAT-HALL/F-HALL-R002
+- should give the finding of «He isn't in the living-room.» as evidence the sentence as the student reads it and its measure next to its goal, 9 tokens against the 3 to 8 of A1, never the internal format of the course → FEAT-HALL/F-HALL-R003
+- should keep emitting for «He isn't in the living-room.» the same SentenceLengthDiagnosis as before, 9 tokens against 3 to 8 with delta 1 and margin 5, with nothing of it copied into its finding → FEAT-HALL/F-HALL-R001
 
 ### IScoreAggregator
 
@@ -542,6 +598,35 @@ Methods:
 **Tests that must pass:**
 
 - should average the quiz instruction score of a knowledge over its evaluated quizzes only, leaving the pending ones out → FEAT-QINST/F-QINST-R004
+
+### SentenceLengthAnalyzerProvider
+
+**Implements:** AnalyzerProvider
+
+**Dependencies (constructor injection):**
+
+- `nlpTokenizer`: `NlpTokenizer`
+- `config`: `SentenceLengthConfig`
+
+**Tests that must pass:**
+
+- should describe sentence-length in its card as vocabulary, evaluating the quiz, resolved at the panel and instant, with the goal A1 3 to 8 tokens that the code applies → FEAT-HALL/F-HALL-R006
+
+### KnowledgeTitleLengthAnalyzerProvider
+
+**Implements:** AnalyzerProvider
+
+**Tests that must pass:**
+
+- should describe knowledge-title-length in its card as vocabulary, evaluating the knowledge, resolved at the panel and instant → FEAT-HALL/F-HALL-R006
+
+### KnowledgeInstructionsLengthAnalyzerProvider
+
+**Implements:** AnalyzerProvider
+
+**Tests that must pass:**
+
+- should describe knowledge-instructions-length in its card as vocabulary, evaluating the knowledge, rank-only and instant → FEAT-HALL/F-HALL-R006
 
 ## Dependency Contracts
 

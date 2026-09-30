@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditapplication;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
 import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
 
 import com.learney.contentaudit.auditdomain.AuditEngine;
@@ -35,13 +36,16 @@ public class DefaultAuditRunner implements AuditRunner {
 
 private final List<EvaluationAnalyzerFactory> evaluationAnalyzerFactories;
 
-public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, AuditEngine auditEngine, List<ContentAnalyzer> allAnalyzers, ScoreAggregator scoreAggregator, List<EvaluationAnalyzerFactory> evaluationAnalyzerFactories) {
+private final AnalyzerCatalog analyzerCatalog;
+
+public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, AuditEngine auditEngine, List<ContentAnalyzer> allAnalyzers, ScoreAggregator scoreAggregator, List<EvaluationAnalyzerFactory> evaluationAnalyzerFactories, AnalyzerCatalog analyzerCatalog) {
     this.courseRepository = courseRepository;
     this.courseToAuditableMapper = courseToAuditableMapper;
     this.auditEngine = auditEngine;
     this.allAnalyzers = allAnalyzers;
     this.scoreAggregator = scoreAggregator;
     this.evaluationAnalyzerFactories = evaluationAnalyzerFactories;
+    this.analyzerCatalog = analyzerCatalog;
 }
 
     @Override

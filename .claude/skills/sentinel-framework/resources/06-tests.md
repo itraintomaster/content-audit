@@ -36,6 +36,17 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should aggregate topic-level sentence-length scores into each MILESTONE node as the simple average of the scoring topics under it omitting from the average any topic without a score and leaving the level score unavailable when no topic under it has a score → FEAT-SLEN/F-SLEN-R005
 - should aggregate milestone-level sentence-length scores into the COURSE root node as the simple average of the scoring milestones omitting from the average any milestone without a score and returning zero as the course overall score when no milestone has a score → FEAT-SLEN/F-SLEN-R008
 - should publish the sentence-length score on every AuditNode of the hierarchy (quiz knowledge topic milestone course) so consumers can read it at any level via node.getScores().get('sentence-length') → FEAT-SLEN/F-SLEN-R016/F-SLEN-J004
+- should leave no sentence-length finding on the knowledge «Be: preguntas yes / no», although aggregation gives it 0,995, because findings are collected before aggregating → FEAT-HALL/F-HALL-R001
+- should aggregate in the same run the quiz-instruction scores of the judged quizzes into their knowledge, topic, level and course, averaging only quizzes with a verdict and leaving without score a knowledge that has none → FEAT-HALL/F-HALL-R011
+- should count the breaches the judge found as errors of their knowledge, topic, level and course in the same run, declaring the quizzes it left unjudged → FEAT-HALL/F-HALL-R011
+- should publish on every node the same vocabulary score whether the judge ran or not, the quizzes it judged included → FEAT-HALL/F-HALL-R011
+- should run exactly the analyzers of the selection, in catalog order, and leave no score, finding or number of any other → FEAT-HALL/F-HALL-R012
+- should reject a selection naming an analyzer the catalog does not have before building any analyzer or touching the tree → FEAT-HALL/F-HALL-R012
+- should give through runAudit of a course, as before the contract, the scores of the seven classic analyzers and none from the judge, the run that the consolidated view and the impact preview rely on → FEAT-HALL/F-HALL-R013
+- should give two runs in the same process over the same course the same findings, in the same order and with the same numbers, the course scores of coca-buckets-distribution, lemma-absence, lemma-count and lemma-recurrence included → FEAT-HALL/F-HALL-R014
+- should keep the identity of the finding on «Where is my wallet?» when «He isn't in the living-room.», another quiz of its knowledge, changes → FEAT-HALL/F-HALL-R014
+- should leave as not evaluated by quiz-instruction a quiz on which the judge failed, so that it counts among the unevaluated quizzes → FEAT-HALL/F-HALL-R008
+- should leave the auditable course untouched when an analyzer returns a finding that is resolved by a rule → FEAT-HALL/F-HALL-R015
 
 ### KnowledgeTitleLengthAnalyzer (audit-domain)
 
@@ -62,6 +73,7 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should complete without error when onCourseComplete is called → FEAT-KTLEN/F-KTLEN-R008
 - should return two correctly scored items for two knowledges with different title lengths → FEAT-KTLEN/F-KTLEN-R003
 - should return empty list when no knowledges have been processed → FEAT-KTLEN/F-KTLEN-R003
+- should give the finding of «Participios irregulares: repaso 1» the weighted length of its title against the 28 that fit in a phone → FEAT-HALL/F-HALL-R003
 
 ### KnowledgeInstructionsLengthAnalyzer (audit-domain)
 
@@ -91,6 +103,7 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should produce correct scores for three knowledges with different instruction lengths → FEAT-KTLEN/F-KTLEN-R006
 - should use weighted character length not plain string length for scoring instructions → FEAT-KTLEN/F-KTLEN-R002/F-KTLEN-J003
 - should distinguish three scoring ranges 1.0 at-or-below-70 0.5 above-70-up-to-100 0.0 above-100 at the declared weighted-char thresholds → FEAT-KTLEN/F-KTLEN-R005
+- should give the finding of «Be o do: armar preguntas» the weighted length of its instructions against its limits of 70 and 100 → FEAT-HALL/F-HALL-R003
 
 ### SentenceLengthAnalyzer (audit-domain)
 
@@ -121,10 +134,25 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should compute each quiz score using the linguistic token count from the precomputed NLP tokenization of the quiz sentence and never from a whitespace-based string split → FEAT-SLEN/F-SLEN-R013
 - should compute the length score over the mode-determined canonical phrase token count and not over a blind concatenation of all quiz parts → FEAT-SMODE/F-SMODE-R005
 - should score a REWRITE quiz answer Watch the DVD at 100 percent on 4 tokens for A1 instead of 60 percent on the 10-token source-plus-answer concatenation → FEAT-SMODE/F-SMODE-R007
+- should grade low and resolve at the panel the finding of «He isn't in the living-room.», one token over the 3 to 8 of A1 → FEAT-HALL/F-HALL-R002
+- should give the finding of «He isn't in the living-room.» as evidence the sentence as the student reads it and its measure next to its goal, 9 tokens against the 3 to 8 of A1, never the internal format of the course → FEAT-HALL/F-HALL-R003
+- should keep emitting for «He isn't in the living-room.» the same SentenceLengthDiagnosis as before, 9 tokens against 3 to 8 with delta 1 and margin 5, with nothing of it copied into its finding → FEAT-HALL/F-HALL-R001
 
 ### IScoreAggregator (audit-domain)
 
 - should average the quiz instruction score of a knowledge over its evaluated quizzes only, leaving the pending ones out → FEAT-QINST/F-QINST-R004
+
+### SentenceLengthAnalyzerProvider (audit-domain)
+
+- should describe sentence-length in its card as vocabulary, evaluating the quiz, resolved at the panel and instant, with the goal A1 3 to 8 tokens that the code applies → FEAT-HALL/F-HALL-R006
+
+### KnowledgeTitleLengthAnalyzerProvider (audit-domain)
+
+- should describe knowledge-title-length in its card as vocabulary, evaluating the knowledge, resolved at the panel and instant → FEAT-HALL/F-HALL-R006
+
+### KnowledgeInstructionsLengthAnalyzerProvider (audit-domain)
+
+- should describe knowledge-instructions-length in its card as vocabulary, evaluating the knowledge, rank-only and instant → FEAT-HALL/F-HALL-R006
 
 ### SentenceLengthContextResolver (refiner-domain)
 
@@ -231,6 +259,11 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE and COURSE level after re-routing → FEAT-RCLA/F-RCLA-R001
 - should include one QUIZ_INSTRUCTION task targeting the quiz for each quiz whose quiz-instruction score is below 1.0 → FEAT-QINST/F-QINST-R017
 - should not include any QUIZ_INSTRUCTION task for a quiz that complies with its instruction nor for a quiz with no quiz-instruction score at all → FEAT-QINST/F-QINST-R017
+- should derive from the 29/9 analysis the same 4.036 tasks as before the contract: 3.051 SENTENCE_LENGTH, 950 LEMMA_ABSENCE, 25 KNOWLEDGE_INSTRUCTIONS_LENGTH, 6 KNOWLEDGE_TITLE_LENGTH, 3 COCA_BUCKETS and 1 LEMMA_RECURRENCE → FEAT-HALL/F-HALL-R013
+- should declare, instead of dropping them in silence, the analyzer and the number of nodes whose scores below 1 it could not turn into tasks because the analyzer has no task kind, as happened to the judge before F-QINST-R017 → FEAT-HALL/F-HALL-R004
+- should declare as unconverted the scores below 1 of an analyzer whose plan binding names a task kind the plan does not know → FEAT-HALL/F-HALL-R004
+- should turn the scores below 1 of a new errors analyzer into tasks through its plan binding, without the plan knowing its name → FEAT-HALL/F-HALL-R004
+- should declare nothing about lemma-count, whose scores below 1 on the levels and the course (67,0 %) have no task as before, because the declaration covers only errors analyzers → FEAT-HALL/F-HALL-R004
 
 ### KnowledgeTitleContextResolver (refiner-domain)
 
@@ -286,6 +319,11 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should not run the quiz instruction analysis when the run excludes it by the very name the report publishes, while the judge behind it answers to a different name → FEAT-QINST/F-QINST-R015
 - should cap the judge queries at the number requested for the name the report publishes instead of falling back to the default cap, while the judge behind it answers to a different name → FEAT-QINST/F-QINST-R015
 - should re evaluate quizzes that already had a verdict when re evaluation is requested for the name the report publishes, while the judge behind it answers to a different name → FEAT-QINST/F-QINST-R015
+- should run exactly sentence-length when a run asks only for it, leaving no score, finding or number of the other six classic analyzers → FEAT-HALL/F-HALL-R012
+- should run exactly quiz-instruction when a run asks only for it, with its findings, numbers and coverage and nothing from the seven classic analyzers → FEAT-HALL/F-HALL-R012
+- should reject before loading the course a run that asks for quiz-instructions, a name get analyzers does not list, with the message that points to get analyzers → FEAT-HALL/F-HALL-R012
+- should reject before loading the course a run that excludes a name get analyzers does not list, instead of ignoring it → FEAT-HALL/F-HALL-R012
+- should publish on the 29/9 course, with the seven classic analyzers, the same score of each one on each of its 11.760 nodes and the same typed diagnoses as the analysis 2026-09-30T11-54-02 → FEAT-HALL/F-HALL-R013
 
 ### DefaultCocaBucketsConfig (audit-application)
 
@@ -360,6 +398,10 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should return out-of-catalog mild discount 0.1 and strong discount 0.3 → FEAT-LABS/F-LABS-R034
 - should have out-of-catalog rank bounds non-decreasing from A1 to B2 within each band → FEAT-LABS/F-LABS-R034
 
+### DefaultAnalyzerRegistry (audit-application)
+
+- should list in get analyzers the eight analyzers analyze accepts, quiz-instruction included, each once under its catalog name → FEAT-HALL/F-HALL-R005
+
 ### DefaultLemmaCountConfigLoader (audit-application)
 
 - should return a config with threshold 4 when raw threshold is null → FEAT-LCOUNT/F-LCOUNT-R007
@@ -416,6 +458,8 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 ### FileSystemAuditReportStore (audit-infrastructure)
 
 - should save an AuditReport and load it back with identical content
+- should list each saved analysis with the vocabulary score published on its course, 73,9 % for the 29/9 base, instead of 73,4 %, the average of its eleven course keys → FEAT-HALL/F-HALL-R010
+- should save with each analysis a digest without the course entities whose numbers, findings and unevaluated analyzers are copied from the report and not recomputed, and load it by the analysis id → FEAT-HALL/F-HALL-R010
 
 ### FileSystemRevisionArtifactStore (audit-infrastructure)
 
