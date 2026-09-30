@@ -30,7 +30,7 @@ Cómo quien revisa el curso intenta hoy saber qué está mal en cada contexto:
 5. Mira al juez de consigna en un tema, un nivel o el curso → ⚠️ se calcula después de la suma y queda sólo en el
    ejercicio, donde además cambia el promedio: pasa a sumar una clave más.
 6. Examina un analizador solo → `AnalyzeOptions.analyzers` → `AuditRunRequest.includedAnalyzers`. ⚠️ Según la lectura del
-   código del brief 087, la selección corre igual los 7 clásicos.
+   código del brief 087 (hoy 089), la selección corre igual los 7 clásicos.
 
 **Punto de fricción**: pasos 3 a 6. Sumar un analizador obliga a tocar pantallas y cuentas en quien muestra, no hay
 dónde contar errores, y los jueces quedan fuera del catálogo y de los números.
@@ -188,7 +188,7 @@ datos de alumnos. Las palabras de otro nivel: [DOUBT-FAMILIA-OTRO-NIVEL](#DOUBT-
 Cierran tres sumas: evaluados más sin evaluar dan los alcanzados; las cuatro gravedades dan «algún error»; y la cuenta de
 un nodo es la suma de sus hijos (los porcentajes se recalculan, nunca se promedian). Mantiene [F-QINST-R004](#F-QINST-R004)
 y [F-QINST-R005](#F-QINST-R005). *Alcanza* los que mira: la opción múltiple válida, los 2.810 de opción múltiple (315
-marcados, 11,2 %). Un hallazgo de tema cuenta en cada ejercicio del tema [ASSUMPTION]: [DOUBT-HALLAZGO-DE-TEMA](#DOUBT-HALLAZGO-DE-TEMA).
+marcados, 11,2 %). Un hallazgo de tema cuenta en cada ejercicio del tema ([DOUBT-HALLAZGO-DE-TEMA](#DOUBT-HALLAZGO-DE-TEMA)).
 
 <a id="F-HALL-R009"></a>
 ### Rule[F-HALL-R009] - El puntaje de vocabulario es el de hoy
@@ -303,6 +303,10 @@ plan de 4.036 tareas (brief 022 de content-audit).
   (G); el examen de cada analizador (0.4); acotar una corrida a un conjunto de ejercicios, salvo la re-evaluación que ya
   existe ([F-QINST-R018](#F-QINST-R018)); cambiar reglas, rangos o metas de un analizador existente; declarar la opción
   múltiple en Sentinel (0.2); y el formato en disco de hallazgos y fichas.
+- **Afuera por ahora** (José, 30/9; duda 3 de la ficha, del arquitecto): el «cajón tipado», un lugar común donde
+  cualquier analizador deje su diagnóstico sin tocar lo de otros. Cada analizador conserva su lugar propio para su
+  diagnóstico tipado ([F-HALL-R001](#F-HALL-R001)), y el integrador suma los enganches de los nuevos en un parche
+  por ronda.
 
 ## User Journeys
 
@@ -388,63 +392,70 @@ journeys:
 
 <a id="DOUBT-HALLAZGO-DE-TEMA"></a>
 ### Doubt[DOUBT-HALLAZGO-DE-TEMA] - ¿Cómo cuenta en los números un hallazgo sobre un tema o un nivel?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): cuenta en cada ejercicio del nodo, para su analizador y para «algún error».
+- [x] Opción A (recomendada): cuenta en cada ejercicio del nodo, para su analizador y para «algún error».
 - [ ] Opción B: se cuenta aparte, como temas o niveles con hallazgo, sin sumar ejercicios.
 - [ ] Opción C: las dos cosas.
 
-**Answer**: Pendiente. Recomiendo A, que [F-HALL-R008](#F-HALL-R008) especifica como [ASSUMPTION]: la miniteoría es una
-por tema y la ven todos sus ejercicios; así contó el 077 (335 ejercicios, «40 de 40» en *In time u on time*).
+**Answer**: **Opción A** (José, 30/9): un hallazgo sobre el tema, como la miniteoría, cuenta en cada ejercicio del tema,
+para su analizador y para «algún error»; [F-HALL-R008](#F-HALL-R008) lo fija así. La miniteoría es una por tema y la ven
+todos sus ejercicios; así contó el 077 (335 ejercicios, «40 de 40» en *In time u on time*).
 
 <a id="DOUBT-GRAVEDAD-EXISTENTES"></a>
 ### Doubt[DOUBT-GRAVEDAD-EXISTENTES] - ¿Qué gravedad llevan los hallazgos de los ocho analizadores existentes?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): el juez, según su severidad (crítica, bloqueante; mayor, alta; menor, media); la palabra de
+- [x] Opción A (recomendada): el juez, según su severidad (crítica, bloqueante; mayor, alta; menor, media); la palabra de
   otro nivel o fuera del catálogo, media; el resto del vocabulario, baja.
 - [ ] Opción B: todo el vocabulario baja, y todo incumplimiento del juez alta.
 - [ ] Opción C: que la fije el paquete que toque cada analizador.
 
-**Answer**: Pendiente. Recomiendo A: sigue las definiciones de [F-HALL-R002](#F-HALL-R002) y el ejemplo de la propuesta
-(«sport» como verbo, media). Si «crítica» incluye ejercicios que igual se aciertan, infla «no se pueden acertar»: lo mide
-el examen del paquete 0.4. No mueve ningún número de hoy.
+**Answer**: **Opción A** (José, 30/9): en el juez, crítica → bloqueante, mayor → alta y menor → media; la palabra de otro
+nivel o fuera del catálogo, media; el resto del vocabulario, baja. Sigue las definiciones de [F-HALL-R002](#F-HALL-R002)
+y el ejemplo de la propuesta («sport» como verbo, media), y no mueve ningún número de hoy. Si «crítica» incluye
+ejercicios que igual se aciertan, infla «no se pueden acertar»: lo mide el examen del paquete 0.4.
 
 <a id="DOUBT-FAMILIA-OTRO-NIVEL"></a>
 ### Doubt[DOUBT-FAMILIA-OTRO-NIVEL] - ¿Las palabras de otro nivel, parte de `lemma-absence`, son un error o vocabulario?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): `lemma-absence` queda entero en vocabulario; si la palabra de otro nivel pasa a contar como
+- [x] Opción A (recomendada): `lemma-absence` queda entero en vocabulario; si la palabra de otro nivel pasa a contar como
   error, la cuenta un analizador de errores con su propia ficha (el de nivel con frases del EVP, paquete D).
 - [ ] Opción B: los hallazgos de ejercicio de `lemma-absence` cuentan como error y su puntaje sigue en vocabulario.
 - [ ] Opción C (descartada): `lemma-absence` pasa entero a errores y mueve el 73,9 %.
 
-**Answer**: Pendiente. Recomiendo A: la propuesta las pone entre los errores, pero `lemma-absence` entra en el 73,9 % y va
-una familia por analizador ([F-HALL-R007](#F-HALL-R007)); además hoy marca 337 ejercicios de A1 contra unos 17 del 077,
-porque no lee frases como «a lot», y llenaría «algún error» de ruido.
+**Answer**: **Opción A** (José, 30/9): `lemma-absence` queda entero en vocabulario. Si hace falta contar las palabras de
+otro nivel como error, lo hace un analizador nuevo del paquete D, con su propia ficha. La propuesta las pone entre los
+errores, pero `lemma-absence` entra en el 73,9 % y va una familia por analizador ([F-HALL-R007](#F-HALL-R007)); además
+hoy marca 337 ejercicios de A1 contra unos 17 del 077, porque no lee frases como «a lot», y llenaría «algún error» de
+ruido.
 
 <a id="DOUBT-EJERCICIO-JUZGADO"></a>
 ### Doubt[DOUBT-EJERCICIO-JUZGADO] - ¿El ejercicio juzgado deja de promediar al juez, como pide F-HALL-R009?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): sí; el juez se ve aparte, como error, y el ejercicio conserva sólo su puntaje de vocabulario.
+- [x] Opción A (recomendada): sí; el juez se ve aparte, como error, y el ejercicio conserva sólo su puntaje de vocabulario.
 - [ ] Opción B: el ejercicio conserva además su promedio de hoy con el juez, como un segundo número.
 
-**Answer**: Pendiente. Recomiendo A. Hoy el promedio del ejercicio juzgado suma una clave más, así que es un número que
-cambia; pero B vuelve a dar dos números para lo mismo, que es lo que [F-HALL-R010](#F-HALL-R010) quita, y en la base del
-29/9 ningún ejercicio está juzgado: no cambia ningún número publicado.
+**Answer**: **Opción A** (José, 30/9): el veredicto del juez va aparte, como error, y el promedio de vocabulario del
+ejercicio no lo incluye, como fijan [F-HALL-R009](#F-HALL-R009) y [F-HALL-R013](#F-HALL-R013). Hoy el promedio del
+ejercicio juzgado suma una clave más, así que es un número que cambia a propósito; B volvía a dar dos números para lo
+mismo, que es lo que [F-HALL-R010](#F-HALL-R010) quita, y en la base del 29/9 ningún ejercicio está juzgado: no cambia
+ningún número publicado.
 
 <a id="DOUBT-STATS-DE-LOS-JUECES"></a>
 ### Doubt[DOUBT-STATS-DE-LOS-JUECES] - ¿Qué hace `stats analyzer` con un analizador que consulta un modelo?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): usa sólo los veredictos ya registrados, sin consultas nuevas, y declara cuántos faltan.
+- [x] Opción A (recomendada): usa sólo los veredictos ya registrados, sin consultas nuevas, y declara cuántos faltan.
 - [ ] Opción B: consulta con el tope por defecto de una corrida (hoy 500).
 - [ ] Opción C: rechaza el pedido y remite a `analyze`.
 
-**Answer**: Pendiente. Recomiendo A, que es tope 0 con reuso libre ([F-QINST-R006](#F-QINST-R006),
-[F-EVCOST-R003](#F-EVCOST-R003)). B paga sin que nadie lo pida, como advirtió el arquitecto de FEAT-QINST el 3/8; C deja
-sin estadísticas a un analizador del catálogo.
+**Answer**: **Opción A** (José, 30/9): `stats analyzer` sobre un juez usa sólo los veredictos ya registrados, con cero
+consultas nuevas, y declara cuántos faltan. Es tope 0 con reuso libre ([F-QINST-R006](#F-QINST-R006),
+[F-EVCOST-R003](#F-EVCOST-R003)). B pagaba sin que nadie lo pidiera, como advirtió el arquitecto de FEAT-QINST el 3/8; C
+dejaba sin estadísticas a un analizador del catálogo.
 
 ## References
 

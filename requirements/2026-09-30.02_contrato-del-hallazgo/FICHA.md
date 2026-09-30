@@ -3,7 +3,7 @@ paquete: 0.3
 nombre: Contrato del hallazgo
 codigo: FEAT-HALL
 requirement: requirements/2026-09-30.02_contrato-del-hallazgo
-dudas: 3
+dudas: 0
 ---
 
 # Contrato del hallazgo
@@ -60,14 +60,17 @@ contados. Deja afuera los analizadores nuevos, cómo un hallazgo se vuelve tarea
 - **Costo:** segundos: una pasada más sobre 11.760 nodos y ninguna consulta nueva a modelos.
 
 ## 7 · Para José
-- **¿El ejercicio que juzgó el juez deja de promediarlo?** A: sí, el juez se ve aparte, como error. B: el ejercicio
-  guarda también su promedio viejo, como segundo número. Recomiendo A: es el único número de hoy que cambia, y en la
-  base del 29/9 no hay ninguno juzgado.
-- **¿Un hallazgo del tema, como la miniteoría, cuenta en cada ejercicio del tema?** A: sí. B: aparte, como temas con
-  hallazgo. C: las dos. Recomiendo A: la miniteoría la ven todos sus ejercicios, y así contó el 077.
-- **¿Sacamos el enganche del diagnóstico tipado?** Se puede con un «cajón tipado» por nivel, donde cada analizador deja
-  su diagnóstico sin tocar archivos ajenos. Cuesta dos formas de guardar diagnósticos y nombres de clases en el JSON.
-  Recomiendo que no por ahora: son dos archivos por analizador y el integrador los junta en un parche por ronda.
+José aprobó el diseño el 30/9 y eligió la recomendación en las seis dudas:
 
-Las otras tres dudas del analista —gravedad de los ocho, palabras de otro nivel y `stats` de los jueces— no cambian el
-diseño: cualquier opción es local. Van con su recomendación A, salvo que digas otra cosa.
+1. **¿El ejercicio que juzgó el juez deja de promediarlo?** A: sí. El veredicto del juez va aparte, como error, y el
+   promedio de vocabulario del ejercicio no lo incluye.
+2. **¿Un hallazgo del tema, como la miniteoría, cuenta en cada ejercicio del tema?** A: sí, cuenta en cada ejercicio
+   del tema.
+3. **¿Sacamos el enganche del diagnóstico tipado con un «cajón tipado»?** No por ahora: cada analizador tiene su slot
+   tipado y el integrador agrega los enganches en un parche por ronda.
+4. **Gravedad de los ocho existentes:** A. Juez: crítica → bloqueante, mayor → alta, menor → media; palabra de otro
+   nivel o fuera del catálogo → media; el resto del vocabulario → baja.
+5. **Palabras de otro nivel:** A. `lemma-absence` queda entero en vocabulario; si hace falta contarlas como error, lo
+   hace un analizador nuevo del paquete D, con su propia ficha.
+6. **`stats analyzer` de un juez:** A. Usa sólo los veredictos ya registrados, con cero consultas nuevas, y declara
+   cuántos faltan.

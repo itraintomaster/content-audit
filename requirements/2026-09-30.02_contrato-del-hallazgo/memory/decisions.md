@@ -5,6 +5,23 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — analyst — José aprobó el diseño de FEAT-HALL y eligió la recomendación en las seis dudas: las cinco del REQUIREMENT y la 3 de la ficha, del arquitecto. REQUIREMENT: las cinco dudas RESOLVED (2026-09-30), con «José, 30/9»; FICHA: `dudas: 0` y la sección 7 con lo decidido.
+
+2026-09-30 — analyst — DOUBT-EJERCICIO-JUZGADO → A (José, 30/9): el veredicto del juez va aparte, como error; el promedio de vocabulario del ejercicio no lo incluye (R009, R013).
+
+2026-09-30 — analyst — DOUBT-HALLAZGO-DE-TEMA → A (José, 30/9): un hallazgo sobre el tema, como la miniteoría, cuenta en cada ejercicio del tema. R008 queda firme, sin [ASSUMPTION].
+
+2026-09-30 — analyst — «Cajón tipado» (duda 3 de la ficha, del arquitecto) → no por ahora (José, 30/9): cada analizador tiene su slot tipado y el integrador agrega los enganches en un parche por ronda. Anotado en el Alcance del REQUIREMENT, que no tenía esta duda.
+
+2026-09-30 — analyst — DOUBT-GRAVEDAD-EXISTENTES → A (José, 30/9): juez crítica → bloqueante, mayor → alta, menor → media; palabra de otro nivel o fuera del catálogo → media; el resto del vocabulario → baja.
+
+2026-09-30 — analyst — DOUBT-FAMILIA-OTRO-NIVEL → A (José, 30/9): `lemma-absence` queda entero en vocabulario. Si hace falta contar las palabras de otro nivel como error, lo hace un analizador nuevo del paquete D, con su propia ficha.
+
+2026-09-30 — analyst — DOUBT-STATS-DE-LOS-JUECES → A (José, 30/9): `stats analyzer` de un juez usa sólo los veredictos ya registrados, con cero consultas nuevas, y declara cuántos faltan.
+
+2026-09-30 — analyst — Orden: este parche se aplica recién después del de FEAT-OPMUL (0.2), revalidándolo contra el sentinel.yaml nuevo.
+  why: se validó contra el sentinel.yaml de hoy, y el parche de 0.2 lo cambia antes.
+
 2026-09-30 — architect — Un proveedor por analizador (`AnalyzerProvider`: nombre, ficha, `create(policy)` nuevo por corrida, ligadura al plan, config). Se borra `EvaluationAnalyzerFactory`; la fábrica del juez implementa el proveedor y conserva `analyzerName()`/`create(policy)`.
   why: las dos listas de registro (clásicos y jueces) son la causa de R005 y R012; construir por corrida arregla que los 4 analizadores de curso arrastran estado entre las 2 corridas de la vista consolidada (R014).
 
@@ -49,7 +66,7 @@ should not re-litigate. Newest entries on top.
   why: pista coherente cambia de gravedad y de resolución según el caso, y opción múltiple mezcla reglas y juez.
 
 2026-09-30 — analyst — Las tareas siguen saliendo del puntaje (F-RCLA-R001 intacta). El contrato sólo exige, en la familia de errores, que un error baje el puntaje, que «sólo ordena» no lo baje y que el plan nunca pierda en silencio un puntaje < 1 (R004).
-  why: «una tarea por hallazgo» es del paquete E y cambia algo existente; el hueco del cableado (tipo de tarea olvidado) es de 0.3 según el brief 087.
+  why: «una tarea por hallazgo» es del paquete E y cambia algo existente; el hueco del cableado (tipo de tarea olvidado) es de 0.3 según el brief 087 (hoy 089).
 
 2026-09-30 — analyst — Una familia por analizador: los 7 clásicos, vocabulario; quiz-instruction y los 11 nuevos, errores (R007).
   why: es lo único que deja el 73,9 % intacto; el caso límite (palabras de otro nivel) quedó como DOUBT-FAMILIA-OTRO-NIVEL.
