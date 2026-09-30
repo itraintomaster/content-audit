@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342425"
   },
   "id" : "67fab6d59930102295342425",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Mi partido es en junio.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -26,22 +26,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$at$ para la hora, $on$ para el día o la fecha, $in$ para meses, años y estaciones.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "My game is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "June.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My game is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
@@ -49,18 +96,20 @@
       "options" : null
     } ],
     "sentences" : [ "My game is in June." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342426"
   },
   "id" : "67fab6d59930102295342426",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "La llamaremos el próximo miércoles.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -78,10 +127,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $next$, $last$, $this$, $every$, $today$, $tomorrow$ o $yesterday$ no va preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We'll call her",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "next Wednesday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -100,19 +195,21 @@
       "text" : "next Wednesday.",
       "options" : null
     } ],
-    "sentences" : [ "We'll call her - next Wednesday." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342427"
   },
   "id" : "67fab6d59930102295342427",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "¿Podríamos hablar por la tarde?",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -130,9 +227,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las partes del día (morning, afternoon, evening) llevan $in$; la excepción es night.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could we talk",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the afternoon?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -153,18 +297,20 @@
       "options" : null
     } ],
     "sentences" : [ "Could we talk in the afternoon?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342428"
   },
   "id" : "67fab6d59930102295342428",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Vienen en mayo.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -182,22 +328,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$at$ para la hora, $on$ para el día o la fecha, $in$ para meses, años y estaciones.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They're coming",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "May.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They're coming",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
@@ -205,18 +398,20 @@
       "options" : null
     } ],
     "sentences" : [ "They're coming in May." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342429"
   },
   "id" : "67fab6d59930102295342429",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Hoy escribí una oración.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -234,22 +429,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $next$, $last$, $this$, $every$, $today$, $tomorrow$ o $yesterday$ no va preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I wrote a sentence",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "today.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I wrote a sentence",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -257,18 +499,20 @@
       "options" : null
     } ],
     "sentences" : [ "I wrote a sentence - today." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534242a"
   },
   "id" : "67fab6d5993010229534242a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Ella volará aquí en septiembre.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -286,9 +530,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$at$ para la hora, $on$ para el día o la fecha, $in$ para meses, años y estaciones.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's flying here",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "September.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -304,23 +595,24 @@
       "text" : "",
       "options" : [ "in" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "September.",
-      "options" : null
-    } ],
-    "sentences" : [ "She's flying here in September." ]
-  }
+      "text" : "September."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534242b"
   },
   "id" : "67fab6d5993010229534242b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Viajaremos en marzo.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -338,15 +630,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$at$ para la hora, $on$ para el día o la fecha, $in$ para meses, años y estaciones.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We are traveling",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "March.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We are traveling",
@@ -360,19 +693,26 @@
       "text" : "March.",
       "options" : null
     } ],
-    "sentences" : [ "We are traveling in March." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534242c"
   },
   "id" : "67fab6d5993010229534242c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "¿Podrías llamar este agosto?",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -390,9 +730,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $next$, $last$, $this$, $every$, $today$, $tomorrow$ o $yesterday$ no va preposición.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you phone",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "this August?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -411,20 +798,21 @@
       "kind" : "TEXT",
       "text" : "this August?",
       "options" : null
-    } ],
-    "sentences" : [ "Could you phone - this August?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534242d"
   },
   "id" : "67fab6d5993010229534242d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Viajo a Francia cada año.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -442,41 +830,90 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $next$, $last$, $this$, $every$, $today$, $tomorrow$ o $yesterday$ no va preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I travel to France",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "every year.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I travel to France",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "every year.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "I travel to France - every year." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534242e"
   },
   "id" : "67fab6d5993010229534242e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Disfruto París en invierno.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -494,10 +931,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$at$ para la hora, $on$ para el día o la fecha, $in$ para meses, años y estaciones.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,25 +947,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "in" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "winter.",
       "options" : null
     } ],
-    "sentences" : [ "I enjoy Paris in winter." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy Paris",
+      "options" : null
+    }, {
+      "options" : [ "in" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "winter.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534242f"
   },
   "id" : "67fab6d5993010229534242f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Ella aprende italiano todos los meses.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -546,10 +1031,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $next$, $last$, $this$, $every$, $today$, $tomorrow$ o $yesterday$ no va preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,25 +1047,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "every month.",
       "options" : null
     } ],
-    "sentences" : [ "She learns Italian - every month." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "She learns Italian",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "text" : "every month.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342430"
   },
   "id" : "67fab6d59930102295342430",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "El lunes por la tarde iremos al supermercado.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -598,10 +1131,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$at$ para la hora, $on$ para el día o la fecha, $in$ para meses, años y estaciones.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -614,25 +1147,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "On" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Monday afternoon, we'll go to the supermarket.",
       "options" : null
     } ],
-    "sentences" : [ "On Monday afternoon, we'll go to the supermarket." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "On" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Monday afternoon, we'll go to the supermarket."
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342431"
   },
   "id" : "67fab6d59930102295342431",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Por la mañana este jardín es hermoso.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -650,37 +1231,82 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las partes del día (morning, afternoon, evening) llevan $in$; la excepción es night.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the morning this garden is beautiful.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "In" ]
     }, {
       "kind" : "TEXT",
       "text" : "the morning this garden is beautiful.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "In the morning this garden is beautiful." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342432"
   },
   "id" : "67fab6d59930102295342432",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Viajo a casa en diciembre.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -698,22 +1324,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$at$ para la hora, $on$ para el día o la fecha, $in$ para meses, años y estaciones.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I travel home",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "December.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I travel home",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
@@ -721,18 +1394,20 @@
       "options" : null
     } ],
     "sentences" : [ "I travel home in December." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342433"
   },
   "id" : "67fab6d59930102295342433",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "¿Estás en la escuela esta semana?",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -750,22 +1425,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $next$, $last$, $this$, $every$, $today$, $tomorrow$ o $yesterday$ no va preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Are you at school",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "this week?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you at school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -773,18 +1495,20 @@
       "options" : null
     } ],
     "sentences" : [ "Are you at school - this week?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342434"
   },
   "id" : "67fab6d59930102295342434",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Me gusta leer el periódico por la noche.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -802,10 +1526,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las partes del día (morning, afternoon, evening) llevan $in$; la excepción es night.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -818,25 +1542,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "in" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the evening.",
       "options" : null
     } ],
-    "sentences" : [ "I like to read the newspaper in the evening." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I like to read the newspaper",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "in" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "the evening.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342435"
   },
   "id" : "67fab6d59930102295342435",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "La semana que viene vamos a llamar a mi hermana.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -854,10 +1626,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $next$, $last$, $this$, $every$, $today$, $tomorrow$ o $yesterday$ no va preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -870,25 +1642,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "next week we're going to call my sister.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "next week we're going to call my sister.",
       "options" : null
     } ],
-    "sentences" : [ "- next week we're going to call my sister." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342436"
   },
   "id" : "67fab6d59930102295342436",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Ella dibujará un cuadro esta noche.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -906,41 +1726,90 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $next$, $last$, $this$, $every$, $today$, $tomorrow$ o $yesterday$ no va preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She'll draw a picture",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "tonight.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She'll draw a picture",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "tonight.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "She'll draw a picture - tonight." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342437"
   },
   "id" : "67fab6d59930102295342437",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Cada enero visitamos a mi familia.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -958,18 +1827,61 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $next$, $last$, $this$, $every$, $today$, $tomorrow$ o $yesterday$ no va preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "every January we visit my family.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -977,18 +1889,20 @@
       "options" : null
     } ],
     "sentences" : [ "- every January we visit my family." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342438"
   },
   "id" : "67fab6d59930102295342438",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
-  "instructions" : "Completa con: at / in / on / -",
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
   "translation" : "Llegó a la casa por la noche.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
@@ -1006,22 +1920,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.01.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "night es la excepción: no lleva $in$ como el resto del día, va con $at$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He got to the house",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "night.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He got to the house",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
@@ -1029,5 +1990,6030 @@
       "options" : null
     } ],
     "sentences" : [ "He got to the house at night." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342439"
+  },
+  "id" : "67fab6d59930102295342439",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "En 2035, podríamos vivir en Marte.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "2035, we might live on Mars.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    }, {
+      "options" : [ "In" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "2035, we might live on Mars.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534243a"
+  },
+  "id" : "67fab6d5993010229534243a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Él viene a casa el próximo jueves.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's coming home",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "next Thursday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's coming home",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "next Thursday.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's coming home - next Thursday." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534243b"
+  },
+  "id" : "67fab6d5993010229534243b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Ella empezó la escuela en 1987.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She started school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "1987.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She started school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "1987.",
+      "options" : null
+    } ],
+    "sentences" : [ "She started school in 1987." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534243c"
+  },
+  "id" : "67fab6d5993010229534243c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "La fiesta es el primero de enero.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The party is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the first of January.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The party is",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "on" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "the first of January.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534243d"
+  },
+  "id" : "67fab6d5993010229534243d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Visito a mi familia cada semana.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I visit my family",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "every week.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I visit my family",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "every week.",
+      "options" : null
+    } ],
+    "sentences" : [ "I visit my family - every week." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534243e"
+  },
+  "id" : "67fab6d5993010229534243e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "¿Puedes llamarme por la mañana?",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Las partes del día llevan $in$: in the morning, in the afternoon, in the evening.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you call me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the morning?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you call me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "text" : "the morning?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534243f"
+  },
+  "id" : "67fab6d5993010229534243f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "El invierno pasado visitamos a nuestra familia.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "last winter we visited our family.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "last winter we visited our family.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342440"
+  },
+  "id" : "67fab6d59930102295342440",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Siempre ceno de noche.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "night es la excepción: no lleva $in$, va $at$ night.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I always eat dinner",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "night.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I always eat dinner",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "night.",
+      "options" : null
+    } ],
+    "sentences" : [ "I always eat dinner at night." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342441"
+  },
+  "id" : "67fab6d59930102295342441",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Ella fue a París en junio.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She went to Paris",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "June.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She went to Paris",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "text" : "June.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342442"
+  },
+  "id" : "67fab6d59930102295342442",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Voy a comprar jeans hoy.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$today$, $tomorrow$ y $yesterday$ van sin preposición, igual que next o last.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm buying jeans",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "today.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm buying jeans",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "today.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm buying jeans - today." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342443"
+  },
+  "id" : "67fab6d59930102295342443",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Él vino el 14 de julio.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He came",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 14th of July.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He came",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 14th of July.",
+      "options" : null
+    } ],
+    "sentences" : [ "He came on the 14th of July." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342444"
+  },
+  "id" : "67fab6d59930102295342444",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "En 2015, compré un piso nuevo.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "2015, I bought a new flat.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "In" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "2015, I bought a new flat.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "In 2015, I bought a new flat." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342445"
+  },
+  "id" : "67fab6d59930102295342445",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "El mes pasado tuve vacaciones.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "last month I had a vacation.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "last month I had a vacation.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342446"
+  },
+  "id" : "67fab6d59930102295342446",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Él no conduce por la mañana.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Las partes del día llevan $in$: in the morning, in the afternoon, in the evening.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't drive",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the morning.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't drive",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the morning.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "He doesn't drive in the morning." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342447"
+  },
+  "id" : "67fab6d59930102295342447",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Nos encontramos por la mañana.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Las partes del día llevan $in$: in the morning, in the afternoon, in the evening.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We meet",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the morning.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We meet",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the morning.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "We meet in the morning." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342448"
+  },
+  "id" : "67fab6d59930102295342448",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "El avión sale a las 6 de la mañana.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para la hora puntual va $at$: at 6 am, at 9 pm, at midnight.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The plane leaves",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "6 am.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The plane leaves",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "6 am.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "The plane leaves at 6 am." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342449"
+  },
+  "id" : "67fab6d59930102295342449",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Él visita la playa el próximo mes.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He visits the beach",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "next month.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He visits the beach",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "next month.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "He visits the beach - next month." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534244a"
+  },
+  "id" : "67fab6d5993010229534244a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Vamos a Grecia en agosto.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We go to Greece",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "August.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We go to Greece",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "August.",
+      "options" : null
+    } ],
+    "sentences" : [ "We go to Greece in August." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534244b"
+  },
+  "id" : "67fab6d5993010229534244b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "El partido es el 4 de julio.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The game is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "July 4th.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The game is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "July 4th.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "The game is on July 4th." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534244c"
+  },
+  "id" : "67fab6d5993010229534244c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "El próximo mes, Mary se va de vacaciones.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "next month, Mary's going on vacation.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "next month, Mary's going on vacation.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534244d"
+  },
+  "id" : "67fab6d5993010229534244d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Su partido es en julio.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Her game is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "July.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Her game is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "July.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "Her game is in July." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534244e"
+  },
+  "id" : "67fab6d5993010229534244e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Conocí a Sarah ayer por la tarde.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I met Sarah",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "yesterday evening.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I met Sarah",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "yesterday evening.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534244f"
+  },
+  "id" : "67fab6d5993010229534244f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Veo la televisión todas las tardes.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I watch TV",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "every evening.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I watch TV",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "text" : "every evening.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342450"
+  },
+  "id" : "67fab6d59930102295342450",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Él está jugando un juego el miércoles.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is playing a game",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Wednesday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is playing a game",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Wednesday.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "He is playing a game on Wednesday." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342451"
+  },
+  "id" : "67fab6d59930102295342451",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "La tienda cierra a las nueve en punto.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The shop closes",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "nine o'clock.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "The shop closes",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "nine o'clock.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342452"
+  },
+  "id" : "67fab6d59930102295342452",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "El banco abre a las nueve en punto.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The bank opens",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "nine o'clock.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "The bank opens"
+    }, {
+      "options" : [ "at" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "nine o'clock.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342453"
+  },
+  "id" : "67fab6d59930102295342453",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Almuerzan todos los lunes.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have lunch",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "every Monday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have lunch",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "text" : "every Monday.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342454"
+  },
+  "id" : "67fab6d59930102295342454",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "En su cumpleaños visitamos un hotel.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "her birthday we visited a hotel.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "On" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "her birthday we visited a hotel.",
+      "options" : null
+    } ],
+    "sentences" : [ "On her birthday we visited a hotel." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342455"
+  },
+  "id" : "67fab6d59930102295342455",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Vamos a Italia en agosto.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We go to Italy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "August.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We go to Italy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "August.",
+      "options" : null
+    } ],
+    "sentences" : [ "We go to Italy in August." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342456"
+  },
+  "id" : "67fab6d59930102295342456",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Fue en el pasado.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$In$ también va con épocas generales: in the past, in the future.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the past.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the past.",
+      "options" : null
+    } ],
+    "sentences" : [ "It was in the past." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342457"
+  },
+  "id" : "67fab6d59930102295342457",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "¡A las 3 de la mañana, estaba cantando!",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "3 am, I was singing!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "At" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "3 am, I was singing!",
+      "options" : null
+    } ],
+    "sentences" : [ "At 3 am, I was singing!" ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342458"
+  },
+  "id" : "67fab6d59930102295342458",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Siempre hace frío en diciembre.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's always cold",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "December.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's always cold",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "December.",
+      "options" : null
+    } ],
+    "sentences" : [ "It's always cold in December." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342459"
+  },
+  "id" : "67fab6d59930102295342459",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "En invierno, los días son fríos.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "winter, the days are cold.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "In" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "winter, the days are cold.",
+      "options" : null
+    } ],
+    "sentences" : [ "In winter, the days are cold." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534245a"
+  },
+  "id" : "67fab6d5993010229534245a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "El domingo por la mañana vamos a visitar a unos amigos.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Día + mañana/tarde/noche (Sunday morning) va con $on$, no in.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Sunday morning we are visiting friends.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "On" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Sunday morning we are visiting friends.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "On Sunday morning we are visiting friends." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534245b"
+  },
+  "id" : "67fab6d5993010229534245b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "El tren sale a las 3:15.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The train is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "3:15.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The train is",
+      "options" : null
+    }, {
+      "options" : [ "at" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "3:15.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534245c"
+  },
+  "id" : "67fab6d5993010229534245c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "¿Vas a ir a la playa esta noche?",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Tonight$ no lleva preposición: funciona como $today$ o $yesterday$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you going to the beach",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "tonight?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you going to the beach",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "tonight?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "Are you going to the beach - tonight?" ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534245d"
+  },
+  "id" : "67fab6d5993010229534245d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Duerme temprano todas las noches.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He sleeps early",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "every night.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He sleeps early",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "every night.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "He sleeps early - every night." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534245e"
+  },
+  "id" : "67fab6d5993010229534245e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Veo al Sr. Green esta semana.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$This$, $next$ y $last$ tampoco llevan preposición.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I see Mr Green",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "this week.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I see Mr Green",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "this week.",
+      "options" : null
+    } ],
+    "sentences" : [ "I see Mr Green - this week." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534245f"
+  },
+  "id" : "67fab6d5993010229534245f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "Hacía mucho calor esta tarde.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$This$, $next$ y $last$ tampoco llevan preposición.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It was really hot",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "this afternoon.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It was really hot",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "this afternoon."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342460"
+  },
+  "id" : "67fab6d59930102295342460",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.",
+  "translation" : "En noviembre, los árboles son naranjas.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.09.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día, $in$ el mes o el año. Con $every$ y $yesterday$, nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "November, the trees are orange.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "In" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "November, the trees are orange.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "In November, the trees are orange." ]
+  },
+  "instructionsAnteriores" : "Elegí con: at / in / on / -",
+  "instructionsAntesDeRevisar" : "Elige con: at / in / on / -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c7c"
+  },
+  "id" : "67fab6d59930102295342c7c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Me gusta leer libros por la noche.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Las partes del día (morning, afternoon, evening) van con $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I like to read books",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the evening.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I like to read books",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "text" : "the evening.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c7d"
+  },
+  "id" : "67fab6d59930102295342c7d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Ella creció en el siglo XX.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día o la fecha, $in$ el mes, el año o el siglo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She grew up",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 20th century.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She grew up",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 20th century.",
+      "options" : null
+    } ],
+    "sentences" : [ "She grew up in the 20th century." ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c7e"
+  },
+  "id" : "67fab6d59930102295342c7e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "¿Puedes llamarme a las 8:00?",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día o la fecha, $in$ el mes, el año o el siglo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you call me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "8:00?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Can you call me",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "8:00?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c7f"
+  },
+  "id" : "67fab6d59930102295342c7f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Normalmente comen pizza el fin de semana.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Weekend$ es especial: acepta $on$ (como día) y también $at$ (uso británico).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They usually eat pizza",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the weekend.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They usually eat pizza"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at|on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the weekend.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They usually eat pizza",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the weekend.",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
   }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c80"
+  },
+  "id" : "67fab6d59930102295342c80",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Llegamos el 1 de enero.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día o la fecha, $in$ el mes, el año o el siglo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We arrive",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 1st of January.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We arrive",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "the 1st of January."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c81"
+  },
+  "id" : "67fab6d59930102295342c81",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Vinieron en mayo.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día o la fecha, $in$ el mes, el año o el siglo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They came",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "May.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They came",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "May.",
+      "options" : null
+    } ],
+    "sentences" : [ "They came in May." ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c82"
+  },
+  "id" : "67fab6d59930102295342c82",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Se acostó al mediodía.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día o la fecha, $in$ el mes, el año o el siglo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He went to bed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "noon.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He went to bed",
+      "options" : null
+    }, {
+      "options" : [ "at" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "noon.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c83"
+  },
+  "id" : "67fab6d59930102295342c83",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Solemos ir a la montaña en invierno.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Las estaciones van con $in$: in winter, in summer.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We usually go to the mountain",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "winter.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We usually go to the mountain",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "winter.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c84"
+  },
+  "id" : "67fab6d59930102295342c84",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Ella come una ensalada todos los jueves.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con $next$, $last$, $this$, $every$, $today$, $tomorrow$ o $yesterday$ no va preposición.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She eats a salad",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "every Thursday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She eats a salad",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "text" : "every Thursday.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c85"
+  },
+  "id" : "67fab6d59930102295342c85",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "¿Te gustaría ver una película el viernes por la noche?",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día o la fecha, $in$ el mes, el año o el siglo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like to watch a movie",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Friday night?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like to watch a movie",
+      "options" : null
+    }, {
+      "options" : [ "on" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "Friday night?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c86"
+  },
+  "id" : "67fab6d59930102295342c86",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "A ella no le gusta caminar sola por la noche.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "night es la excepción: va con $at$, no con $in$ como el resto del día.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't like walking alone",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "night.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She doesn't like walking alone"
+    }, {
+      "text" : "",
+      "options" : [ "at" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "night.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c87"
+  },
+  "id" : "67fab6d59930102295342c87",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Él visitará a su tío el domingo.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día o la fecha, $in$ el mes, el año o el siglo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is visiting his uncle",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Sunday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is visiting his uncle",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Sunday."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c88"
+  },
+  "id" : "67fab6d59930102295342c88",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Empecé la escuela en la década de 2000.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Las décadas también van con $in$: in the 2000s, in the 90s.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I started school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 2000s.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I started school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 2000s.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c89"
+  },
+  "id" : "67fab6d59930102295342c89",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "¿Adónde fuiste la semana pasada?",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con $next$, $last$, $this$, $every$, $today$, $tomorrow$ o $yesterday$ no va preposición.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where did you go",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "last week?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Where did you go",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "last week?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c8a"
+  },
+  "id" : "67fab6d59930102295342c8a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Llegó a las 6 de la mañana.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día o la fecha, $in$ el mes, el año o el siglo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He arrived",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "6 am.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He arrived",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "6 am.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c8b"
+  },
+  "id" : "67fab6d59930102295342c8b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Los visitamos en su cumpleaños.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día o la fecha, $in$ el mes, el año o el siglo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited them",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "their birthday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited them",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "their birthday.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "We visited them on their birthday." ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c8c"
+  },
+  "id" : "67fab6d59930102295342c8c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Mi clase comienza el 4 de julio.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día o la fecha, $in$ el mes, el año o el siglo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My class starts",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 4th of July.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My class starts",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 4th of July.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c8d"
+  },
+  "id" : "67fab6d59930102295342c8d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Ella viajará a España en agosto.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día o la fecha, $in$ el mes, el año o el siglo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's travelling to Spain",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "August.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's travelling to Spain",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "August.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c8e"
+  },
+  "id" : "67fab6d59930102295342c8e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Te enviaré un mensaje de texto esta tarde.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con $next$, $last$, $this$, $every$, $today$, $tomorrow$ o $yesterday$ no va preposición.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'll text you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "this afternoon.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'll text you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "this afternoon.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c8f"
+  },
+  "id" : "67fab6d59930102295342c8f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3d7"
+  },
+  "title" : "Tiempo: $at$, $in$, $on$",
+  "instructions" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, elige '-'.",
+  "translation" : "Él consiguió un trabajo en 1998.",
+  "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.01.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ la hora, $on$ el día o la fecha, $in$ el mes, el año o el siglo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He got a job",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "1998.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He got a job",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "1998.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "He got a job in 1998." ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige 'in', 'on' o 'at'. Si no necesitas una preposición, escribe '-'."
 } ]

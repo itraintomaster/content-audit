@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342ec0"
   },
   "id" : "67fab6d59930102295342ec0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a8"
   },
   "title" : "Superlativos: $in$ u $of$",
-  "instructions" : "Elige $in$ o $of$.",
+  "instructions" : "Elige 'in' o 'of'.",
   "translation" : "Este es el peor hotel de París.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -26,15 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.09.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ con un lugar ($in the class$). $of$ con un grupo ($of us$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is the worst hotel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Paris.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This is the worst hotel",
@@ -48,19 +77,24 @@
       "text" : "Paris.",
       "options" : null
     } ],
-    "sentences" : [ "This is the worst hotel in Paris." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ec1"
   },
   "id" : "67fab6d59930102295342ec1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a8"
   },
   "title" : "Superlativos: $in$ u $of$",
-  "instructions" : "Elige $in$ o $of$.",
+  "instructions" : "Elige 'in' o 'of'.",
   "translation" : "Esta película es la más corta de todas.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -78,9 +112,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.09.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ con un lugar ($in the class$). $of$ con un grupo ($of us$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This movie is the shortest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "all.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -99,20 +168,19 @@
       "kind" : "TEXT",
       "text" : "all.",
       "options" : null
-    } ],
-    "sentences" : [ "This movie is the shortest of all." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ec2"
   },
   "id" : "67fab6d59930102295342ec2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a8"
   },
   "title" : "Superlativos: $in$ u $of$",
-  "instructions" : "Elige $in$ o $of$.",
+  "instructions" : "Elige 'in' o 'of'.",
   "translation" : "Mary es la más joven de nosotros.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -130,9 +198,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.09.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ con un lugar ($in the class$). $of$ con un grupo ($of us$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary is the youngest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "us.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -151,20 +254,19 @@
       "kind" : "TEXT",
       "text" : "us.",
       "options" : null
-    } ],
-    "sentences" : [ "Mary is the youngest of us." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ec3"
   },
   "id" : "67fab6d59930102295342ec3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a8"
   },
   "title" : "Superlativos: $in$ u $of$",
-  "instructions" : "Elige $in$ o $of$.",
+  "instructions" : "Elige 'in' o 'of'.",
   "translation" : "Él es el chico más bajo de la clase.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -182,9 +284,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.09.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ con un lugar ($in the class$). $of$ con un grupo ($of us$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's the shortest boy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the class.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +340,19 @@
       "kind" : "TEXT",
       "text" : "the class.",
       "options" : null
-    } ],
-    "sentences" : [ "He's the shortest boy in the class." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ec4"
   },
   "id" : "67fab6d59930102295342ec4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a8"
   },
   "title" : "Superlativos: $in$ u $of$",
-  "instructions" : "Elige $in$ o $of$.",
+  "instructions" : "Elige 'in' o 'of'.",
   "translation" : "El jardín es la parte más pequeña del parque.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -234,28 +370,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.09.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ con un lugar ($in the class$). $of$ con un grupo ($of us$).",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The garden is the smallest part",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the park.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The garden is the smallest part",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "the park.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "The garden is the smallest part in the park." ]
   }
 }, {
@@ -263,12 +434,12 @@
     "$oid" : "67fab6d59930102295342ec5"
   },
   "id" : "67fab6d59930102295342ec5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a8"
   },
   "title" : "Superlativos: $in$ u $of$",
-  "instructions" : "Elige $in$ o $of$.",
+  "instructions" : "Elige 'in' o 'of'.",
   "translation" : "Tom era el más alto de los niños.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -286,15 +457,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.09.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ con un lugar ($in the class$). $of$ con un grupo ($of us$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Tom was the tallest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the children.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Tom was the tallest",
@@ -308,19 +508,24 @@
       "text" : "the children.",
       "options" : null
     } ],
-    "sentences" : [ "Tom was the tallest of the children." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ec6"
   },
   "id" : "67fab6d59930102295342ec6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a8"
   },
   "title" : "Superlativos: $in$ u $of$",
-  "instructions" : "Elige $in$ o $of$.",
+  "instructions" : "Elige 'in' o 'of'.",
   "translation" : "Es la colina más baja de Gales.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -338,28 +543,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.09.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ con un lugar ($in the class$). $of$ con un grupo ($of us$).",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's the lowest hill",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Wales.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's the lowest hill",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "Wales.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "It's the lowest hill in Wales." ]
   }
 }, {
@@ -367,12 +607,12 @@
     "$oid" : "67fab6d59930102295342ec7"
   },
   "id" : "67fab6d59930102295342ec7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a8"
   },
   "title" : "Superlativos: $in$ u $of$",
-  "instructions" : "Elige $in$ o $of$.",
+  "instructions" : "Elige 'in' o 'of'.",
   "translation" : "Vivimos en la ciudad más moderna de Irlanda.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -390,10 +630,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.09.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ con un lugar ($in the class$). $of$ con un grupo ($of us$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -406,25 +646,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "in" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Ireland.",
       "options" : null
     } ],
-    "sentences" : [ "We live in the most modern town in Ireland." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We live in the most modern town",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "text" : "Ireland.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ec8"
   },
   "id" : "67fab6d59930102295342ec8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a8"
   },
   "title" : "Superlativos: $in$ u $of$",
-  "instructions" : "Elige $in$ o $of$.",
+  "instructions" : "Elige 'in' o 'of'.",
   "translation" : "El helado era la parte menos dulce del menú.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -442,22 +716,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.09.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$of$ no es sólo gente: también va con listas, como $of$ the menu.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The ice cream was the least sweet part",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the menu.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The ice cream was the least sweet part",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
@@ -471,12 +780,12 @@
     "$oid" : "67fab6d59930102295342ec9"
   },
   "id" : "67fab6d59930102295342ec9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a8"
   },
   "title" : "Superlativos: $in$ u $of$",
-  "instructions" : "Elige $in$ o $of$.",
+  "instructions" : "Elige 'in' o 'of'.",
   "translation" : "Él es el más perezoso de los trabajadores.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -494,10 +803,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.09.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ con un lugar ($in the class$). $of$ con un grupo ($of us$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,12 +819,1767 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "of" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the workers.",
       "options" : null
     } ],
-    "sentences" : [ "He is the laziest of the workers." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He is the laziest",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "the workers."
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343af5"
+  },
+  "id" : "67fab6d59930102295343af5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "Ella es la más inteligente de los estudiantes.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is the smartest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the students.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is the smartest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the students.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343af6"
+  },
+  "id" : "67fab6d59930102295343af6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "¿Cuál es el edificio más alto de Dubái?",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Which is the tallest building",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Dubai?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Which is the tallest building",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Dubai?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343af7"
+  },
+  "id" : "67fab6d59930102295343af7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "¿Es ese el peor restaurante de la ciudad?",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is that the worst restaurant",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "town?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is that the worst restaurant",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "town?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343af8"
+  },
+  "id" : "67fab6d59930102295343af8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "Él tiene la puntuación más baja de todos los jugadores.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has the lowest score",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "all the players.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has the lowest score",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "all the players.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343af9"
+  },
+  "id" : "67fab6d59930102295343af9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "Compró el regalo más increíble de todos.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He bought the most amazing gift",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "all.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He bought the most amazing gift",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "all.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343afa"
+  },
+  "id" : "67fab6d59930102295343afa",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "Esa es la más pequeña de las cajas.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's the smallest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the boxes.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's the smallest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the boxes.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343afb"
+  },
+  "id" : "67fab6d59930102295343afb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "Ese es el artículo más barato de la tienda.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That is the cheapest item",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the store.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That is the cheapest item",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "in" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "the store.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343afc"
+  },
+  "id" : "67fab6d59930102295343afc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "¡Él es el corredor más rápido de todos!",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's the fastest runner",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "all!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He's the fastest runner"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "text" : "all!",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343afd"
+  },
+  "id" : "67fab6d59930102295343afd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "Tokio es la ciudad más grande de Japón.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Tokyo is the largest city",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Japan.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Tokyo is the largest city",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Japan.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343afe"
+  },
+  "id" : "67fab6d59930102295343afe",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "La Sra. Smith es la profesora más amable de la universidad.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mrs Smith is the nicest professor",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the university.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Mrs Smith is the nicest professor",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the university.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343aff"
+  },
+  "id" : "67fab6d59930102295343aff",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "David es el hijo menor de su familia.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Family, team, class: son gente, pero se tratan como lugar. Van con $in$, no $of$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "David is the youngest child",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "their family.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "David is the youngest child",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "their family."
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343b00"
+  },
+  "id" : "67fab6d59930102295343b00",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "Esta es la menos cara de las tabletas.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is the least expensive one",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the tablets.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is the least expensive one",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "the tablets."
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343b01"
+  },
+  "id" : "67fab6d59930102295343b01",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "¡Ese fue el peor día de la semana!",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That was the worst day",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the week!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That was the worst day",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "of" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "the week!",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343b02"
+  },
+  "id" : "67fab6d59930102295343b02",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "María es la más baja de mis hermanas.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary is the shortest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my sisters.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary is the shortest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "text" : "my sisters.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343b03"
+  },
+  "id" : "67fab6d59930102295343b03",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "¿Cuál es el lago más profundo de Rusia?",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Which is the deepest lake",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Russia?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Which is the deepest lake",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Russia?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343b04"
+  },
+  "id" : "67fab6d59930102295343b04",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "Bill es el más pobre de mis colegas.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Bill is the poorest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my colleagues.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Bill is the poorest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "my colleagues.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343b05"
+  },
+  "id" : "67fab6d59930102295343b05",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "¡Esta es la bebida más repugnante de todas!",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is the most disgusting drink",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "all!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "This is the most disgusting drink"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "all!",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343b06"
+  },
+  "id" : "67fab6d59930102295343b06",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "¿Cuál es el castillo más antiguo de Inglaterra?",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Which is the oldest castle",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "England?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Which is the oldest castle",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "England?",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343b07"
+  },
+  "id" : "67fab6d59930102295343b07",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "Él es el peor jugador del equipo.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Family, team, class: son gente, pero se tratan como lugar. Van con $in$, no $of$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's the worst player",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the team.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's the worst player",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the team.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "He's the worst player in the team." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343b08"
+  },
+  "id" : "67fab6d59930102295343b08",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2a8"
+  },
+  "title" : "Superlativos: $in$ u $of$",
+  "instructions" : "Elige 'in' o 'of'.",
+  "translation" : "Este es el árbol más grande del bosque.",
+  "theoryId" : "a2.11.Use_the_Superlative",
+  "topicName" : "Adjectives",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.15.05.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ con un lugar ($in Dubai$). $of$ con un grupo ($of the students$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is the largest tree",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the forest.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "This is the largest tree",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the forest.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 } ]

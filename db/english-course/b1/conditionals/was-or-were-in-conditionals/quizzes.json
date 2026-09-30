@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295343a55"
   },
   "id" : "67fab6d59930102295343a55",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si yo fuera un pájaro, me iría volando.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$If I were$ you, him, them o a bird ya es fijo: pide $were$ aunque no diga formal.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "were" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "a bird, I would fly away.",
       "options" : null
     } ],
-    "sentences" : [ "If I were a bird, I would fly away." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "If I",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "were" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "a bird, I would fly away.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a56"
   },
   "id" : "67fab6d59930102295343a56",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si ella fuera la Reina, mejoraría la educación.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -78,10 +112,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +128,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "were" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the Queen, she would improve education. (formal)",
       "options" : null
     } ],
-    "sentences" : [ "If she were the Queen, she would improve education." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "were" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "the Queen, she would improve education. (formal)",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a57"
   },
   "id" : "67fab6d59930102295343a57",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si ella estuviera en la tienda, compraría comida.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -130,9 +198,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at the shop, she would buy food.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -148,23 +251,22 @@
       "text" : "",
       "options" : [ "was" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "at the shop, she would buy food.",
-      "options" : null
-    } ],
-    "sentences" : [ "If she was at the shop, she would buy food." ]
+      "text" : "at the shop, she would buy food."
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a58"
   },
   "id" : "67fab6d59930102295343a58",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si yo fuera él, compraría un coche nuevo.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -182,10 +284,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$If I were$ you, him, them o a bird ya es fijo: pide $were$ aunque no diga formal.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,25 +300,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "were" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "him, I'd buy a new car.",
       "options" : null
     } ],
-    "sentences" : [ "If I were him, I'd buy a new car." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "options" : [ "were" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "him, I'd buy a new car.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a59"
   },
   "id" : "67fab6d59930102295343a59",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si él estuviera triste, yo lo sabría.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -234,10 +370,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +386,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "sad, I would know.",
       "options" : null
     } ],
-    "sentences" : [ "If he was sad, I would know." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "was" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "sad, I would know.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a5a"
   },
   "id" : "67fab6d59930102295343a5a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si hiciera sol, iríamos a la playa.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -286,9 +456,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sunny, we would go to the beach.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -307,20 +512,19 @@
       "kind" : "TEXT",
       "text" : "sunny, we would go to the beach.",
       "options" : null
-    } ],
-    "sentences" : [ "If it was sunny, we would go to the beach." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a5b"
   },
   "id" : "67fab6d59930102295343a5b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si ella fuera española, viviría en Madrid.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -338,10 +542,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +558,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Spanish, she would live in Madrid.",
       "options" : null
     } ],
-    "sentences" : [ "If she was Spanish, she would live in Madrid." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "options" : [ "was" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spanish, she would live in Madrid.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a5c"
   },
   "id" : "67fab6d59930102295343a5c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si él fuera el director, no permitiría esto.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -390,10 +628,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the director, he wouldn't allow this. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -412,19 +684,19 @@
       "text" : "the director, he wouldn't allow this. (formal)",
       "options" : null
     } ],
-    "sentences" : [ "If he were the director, he wouldn't allow this." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a5d"
   },
   "id" : "67fab6d59930102295343a5d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si yo fuera médico, trabajaría en el hospital.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -442,10 +714,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +730,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "a doctor, I would work at the hospital.",
       "options" : null
     } ],
-    "sentences" : [ "If I was a doctor, I would work at the hospital." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "options" : [ "was" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "a doctor, I would work at the hospital.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a5e"
   },
   "id" : "67fab6d59930102295343a5e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si fuera necesario, aprendería a existir.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -494,28 +800,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If it",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "necessary, I would learn to exist. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "were" ]
     }, {
       "kind" : "TEXT",
       "text" : "necessary, I would learn to exist. (formal)",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "If it were necessary, I would learn to exist." ]
   }
 }, {
@@ -523,12 +864,12 @@
     "$oid" : "67fab6d59930102295343a5f"
   },
   "id" : "67fab6d59930102295343a5f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si ella fuera mi hermana, estaría muy orgulloso.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -546,10 +887,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my sister, I would be so proud. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -568,19 +943,19 @@
       "text" : "my sister, I would be so proud. (formal)",
       "options" : null
     } ],
-    "sentences" : [ "If she were my sister, I would be so proud." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a60"
   },
   "id" : "67fab6d59930102295343a60",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si yo fuera ellos, vendería la casa.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -598,10 +973,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$If I were$ you, him, them o a bird ya es fijo: pide $were$ aunque no diga formal.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "them, I'd sell the house.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -616,23 +1025,23 @@
       "text" : "",
       "options" : [ "were" ]
     }, {
-      "kind" : "TEXT",
       "text" : "them, I'd sell the house.",
-      "options" : null
+      "options" : null,
+      "kind" : "TEXT"
     } ],
-    "sentences" : [ "If I were them, I'd sell the house." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a61"
   },
   "id" : "67fab6d59930102295343a61",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si fuera más rico, compraría un fuego artificial.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -650,28 +1059,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "richer, I would buy a firework.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
       "text" : "richer, I would buy a firework.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "If I was richer, I would buy a firework." ]
   }
 }, {
@@ -679,12 +1123,12 @@
     "$oid" : "67fab6d59930102295343a62"
   },
   "id" : "67fab6d59930102295343a62",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si ella tuviera sed, bebería un poco de agua.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -702,9 +1146,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "thirsty, she would drink some water.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -720,23 +1199,22 @@
       "text" : "",
       "options" : [ "was" ]
     }, {
-      "kind" : "TEXT",
       "text" : "thirsty, she would drink some water.",
-      "options" : null
-    } ],
-    "sentences" : [ "If she was thirsty, she would drink some water." ]
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a63"
   },
   "id" : "67fab6d59930102295343a63",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si ella fuera más alta, jugaría al baloncesto con nosotros.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -754,9 +1232,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "taller, she would play basketball with us. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -772,23 +1285,22 @@
       "text" : "",
       "options" : [ "were" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "taller, she would play basketball with us. (formal)",
-      "options" : null
-    } ],
-    "sentences" : [ "If she were taller, she would play basketball with us." ]
+      "text" : "taller, she would play basketball with us. (formal)"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a64"
   },
   "id" : "67fab6d59930102295343a64",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si fuera más fácil, nos mudaríamos a otro país.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -806,9 +1318,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "easier, we would move to another country. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -827,20 +1374,19 @@
       "kind" : "TEXT",
       "text" : "easier, we would move to another country. (formal)",
       "options" : null
-    } ],
-    "sentences" : [ "If it were easier, we would move to another country." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a65"
   },
   "id" : "67fab6d59930102295343a65",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si él estuviera aburrido, vería la televisión.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -858,10 +1404,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bored, he would watch TV.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -876,23 +1456,23 @@
       "text" : "",
       "options" : [ "was" ]
     }, {
-      "kind" : "TEXT",
       "text" : "bored, he would watch TV.",
-      "options" : null
+      "options" : null,
+      "kind" : "TEXT"
     } ],
-    "sentences" : [ "If he was bored, he would watch TV." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a66"
   },
   "id" : "67fab6d59930102295343a66",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si yo estuviera allí, estaría nervioso.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -910,10 +1490,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -926,25 +1506,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "there, I'd be nervous.",
       "options" : null
     } ],
-    "sentences" : [ "If I was there, I'd be nervous." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "If I"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "there, I'd be nervous.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a67"
   },
   "id" : "67fab6d59930102295343a67",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si él estuviera en Londres, visitaría museos.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -962,14 +1576,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "in London, he would visit museums. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -984,19 +1628,23 @@
       "text" : "in London, he would visit museums. (formal)",
       "options" : null
     } ],
-    "sentences" : [ "If he were in London, he would visit museums." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343a68"
   },
   "id" : "67fab6d59930102295343a68",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
   "title" : "$Was$ o $Were$: repaso",
-  "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
+  "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
   "translation" : "Si estuviera permitido, me gustaría conducir un coche de carreras.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
@@ -1014,9 +1662,216 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.14.07.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En la segunda condicional formal va $were$ con todos: $If I were you$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "allowed, I would like to drive a race car.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "If it"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "allowed, I would like to drive a race car."
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447b0"
+  },
+  "id" : "67fab6d599301022953447b0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si hiciera frío, encenderíamos una fogata.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cold, we'd light a fire. (informal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "was" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "cold, we'd light a fire. (informal)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447b1"
+  },
+  "id" : "67fab6d599301022953447b1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si hiciera sol, iríamos a nadar.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sunny, we'd go swimming. (informal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -1033,9 +1888,1558 @@
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "allowed, I would like to drive a race car.",
+      "text" : "sunny, we'd go swimming. (informal)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447b2"
+  },
+  "id" : "67fab6d599301022953447b2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si ella fuera maestra, ayudaría a los estudiantes.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a teacher, she'd help students. (formal)",
       "options" : null
     } ],
-    "sentences" : [ "If it was allowed, I would like to drive a race car." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "If she"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "text" : "a teacher, she'd help students. (formal)",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447b3"
+  },
+  "id" : "67fab6d599301022953447b3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si él estuviera disponible, se uniría a la fiesta.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "available, he'd join the party. (informal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "If he"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "available, he'd join the party. (informal)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447b4"
+  },
+  "id" : "67fab6d599301022953447b4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si yo fuera la Reina, daría una declaración importante.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the Queen, I'd give an important statement. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the Queen, I'd give an important statement. (formal)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "If I were the Queen, I'd give an important statement." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447b5"
+  },
+  "id" : "67fab6d599301022953447b5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si Robert fuera más alto, jugaría al baloncesto.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If Robert",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "taller, he'd play basketball. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "If Robert"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "taller, he'd play basketball. (formal)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447b6"
+  },
+  "id" : "67fab6d599301022953447b6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si yo fuera él, la invitaría a salir.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "him, I'd ask her out. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "him, I'd ask her out. (formal)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447b7"
+  },
+  "id" : "67fab6d599301022953447b7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si ella estuviera soltera, probaría las citas en línea.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "single, she'd try online dating. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "single, she'd try online dating. (formal)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447b8"
+  },
+  "id" : "67fab6d599301022953447b8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si él estuviera listo, se iría ahora.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ready, he'd leave now. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "ready, he'd leave now. (formal)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447b9"
+  },
+  "id" : "67fab6d599301022953447b9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si estuviera oscuro, usaríamos una linterna.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dark, we'd use a flashlight. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "dark, we'd use a flashlight. (formal)"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447ba"
+  },
+  "id" : "67fab6d599301022953447ba",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si Lisa fuera la directora, filmaría una nueva película.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If Lisa",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the director, she'd film a new movie. (informal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If Lisa",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the director, she'd film a new movie. (informal)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447bb"
+  },
+  "id" : "67fab6d599301022953447bb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si hiciera viento, ella volaría su cometa.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "windy, she'd fly her kite. (informal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "windy, she'd fly her kite. (informal)"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447bc"
+  },
+  "id" : "67fab6d599301022953447bc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si él fuera español, viviría en Madrid.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spanish, he'd live in Madrid. (informal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spanish, he'd live in Madrid. (informal)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447bd"
+  },
+  "id" : "67fab6d599301022953447bd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si Peter estuviera en París, visitaría la Torre Eiffel.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If Peter",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "in Paris, he'd visit the Eiffel Tower. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "If Peter"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "in Paris, he'd visit the Eiffel Tower. (formal)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447be"
+  },
+  "id" : "67fab6d599301022953447be",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si él fuera el gerente, nos entendería.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the manager, he would understand us. (informal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If he",
+      "options" : null
+    }, {
+      "options" : [ "was" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "the manager, he would understand us. (informal)",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447bf"
+  },
+  "id" : "67fab6d599301022953447bf",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si ella estuviera lista, se iría ahora.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ready, she'd leave now. (informal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "ready, she'd leave now. (informal)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447c0"
+  },
+  "id" : "67fab6d599301022953447c0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si yo fuera famoso, firmaría autógrafos.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "famous, I'd sign autographs. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "options" : [ "were" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "famous, I'd sign autographs. (formal)"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "If I were famous, I'd sign autographs." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447c1"
+  },
+  "id" : "67fab6d599301022953447c1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si yo fuera él, compraría ese coche.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "him, I'd buy that car. (formal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "If I"
+    }, {
+      "options" : [ "were" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "him, I'd buy that car. (formal)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447c2"
+  },
+  "id" : "67fab6d599301022953447c2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si estuviera despierto, no me verías así.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "awake, you wouldn't see me like this. (informal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "awake, you wouldn't see me like this. (informal)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953447c3"
+  },
+  "id" : "67fab6d599301022953447c3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d352"
+  },
+  "title" : "$Was$ o $Were$: repaso",
+  "instructions" : "¿Necesitamos 'was' o 'were'?",
+  "translation" : "Si fuera otoño, recogeríamos las hojas.",
+  "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
+  "topicName" : "Conditionals",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.12.06.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$were$ en registro formal; $was$ en el informal. $If I were you$ es la fija.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "autumn, we'd collect the leaves. (informal)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "If it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "autumn, we'd collect the leaves. (informal)"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 } ]

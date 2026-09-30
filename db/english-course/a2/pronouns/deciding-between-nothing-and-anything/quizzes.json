@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342c40"
   },
   "id" : "67fab6d59930102295342c40",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27b"
   },
-  "title" : "Negación e indefinidos",
-  "instructions" : "Escribe $nothing$ o $anything$.",
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'nothing' o 'anything'.",
   "translation" : "No necesito nada de beber.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -26,10 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.10.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con el verbo negado va $anything$. Con el verbo afirmativo, $nothing$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to drink.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -48,19 +82,20 @@
       "text" : "to drink.",
       "options" : null
     } ],
-    "sentences" : [ "I don't need anything to drink." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'nothing' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c41"
   },
   "id" : "67fab6d59930102295342c41",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27b"
   },
-  "title" : "Negación e indefinidos",
-  "instructions" : "Escribe $nothing$ o $anything$.",
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'nothing' o 'anything'.",
   "translation" : "Ella no nos dijo nada.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -78,10 +113,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.10.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con el verbo negado va $anything$. Con el verbo afirmativo, $nothing$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +129,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She didn't tell us"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "anything" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "She didn't tell us anything." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'nothing' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c42"
   },
   "id" : "67fab6d59930102295342c42",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27b"
   },
-  "title" : "Negación e indefinidos",
-  "instructions" : "Escribe $nothing$ o $anything$.",
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'nothing' o 'anything'.",
   "translation" : "No queremos nada.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -130,9 +200,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.10.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con el verbo negado va $anything$. Con el verbo afirmativo, $nothing$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We want",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -151,20 +256,20 @@
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
-    } ],
-    "sentences" : [ "We want nothing." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'nothing' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c43"
   },
   "id" : "67fab6d59930102295342c43",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27b"
   },
-  "title" : "Negación e indefinidos",
-  "instructions" : "Escribe $nothing$ o $anything$.",
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'nothing' o 'anything'.",
   "translation" : "Él no llevó nada a la escuela.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -182,9 +287,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.10.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con el verbo negado va $anything$. Con el verbo afirmativo, $nothing$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He didn't take",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the school.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -200,23 +340,23 @@
       "text" : "",
       "options" : [ "anything" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "to the school.",
-      "options" : null
-    } ],
-    "sentences" : [ "He didn't take anything to the school." ]
-  }
+      "text" : "to the school."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'nothing' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c44"
   },
   "id" : "67fab6d59930102295342c44",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27b"
   },
-  "title" : "Negación e indefinidos",
-  "instructions" : "Escribe $nothing$ o $anything$.",
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'nothing' o 'anything'.",
   "translation" : "No hay nada en la caja.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -234,10 +374,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.10.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con el verbo negado va $anything$. Con el verbo afirmativo, $nothing$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +390,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "nothing" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "in the box.",
       "options" : null
     } ],
-    "sentences" : [ "There is nothing in the box." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nothing" ]
+    }, {
+      "text" : "in the box.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'nothing' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c45"
   },
   "id" : "67fab6d59930102295342c45",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27b"
   },
-  "title" : "Negación e indefinidos",
-  "instructions" : "Escribe $nothing$ o $anything$.",
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'nothing' o 'anything'.",
   "translation" : "No bebo nada por la noche.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -286,9 +461,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.10.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con el verbo negado va $anything$. Con el verbo afirmativo, $nothing$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't drink",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "in the evening.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -304,23 +514,23 @@
       "text" : "",
       "options" : [ "anything" ]
     }, {
-      "kind" : "TEXT",
       "text" : "in the evening.",
-      "options" : null
-    } ],
-    "sentences" : [ "I don't drink anything in the evening." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'nothing' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c46"
   },
   "id" : "67fab6d59930102295342c46",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27b"
   },
-  "title" : "Negación e indefinidos",
-  "instructions" : "Escribe $nothing$ o $anything$.",
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'nothing' o 'anything'.",
   "translation" : "Él no dibujó nada durante la lección.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -338,9 +548,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.10.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con el verbo negado va $anything$. Con el verbo afirmativo, $nothing$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He drew",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "during the lesson.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +604,20 @@
       "kind" : "TEXT",
       "text" : "during the lesson.",
       "options" : null
-    } ],
-    "sentences" : [ "He drew nothing during the lesson." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'nothing' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c47"
   },
   "id" : "67fab6d59930102295342c47",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27b"
   },
-  "title" : "Negación e indefinidos",
-  "instructions" : "Escribe $nothing$ o $anything$.",
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'nothing' o 'anything'.",
   "translation" : "¡Ella no compra nada!",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -390,9 +635,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.10.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con el verbo negado va $anything$. Con el verbo afirmativo, $nothing$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't buy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -411,20 +691,20 @@
       "kind" : "TEXT",
       "text" : "!",
       "options" : null
-    } ],
-    "sentences" : [ "She doesn't buy anything!" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'nothing' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c48"
   },
   "id" : "67fab6d59930102295342c48",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27b"
   },
-  "title" : "Negación e indefinidos",
-  "instructions" : "Escribe $nothing$ o $anything$.",
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'nothing' o 'anything'.",
   "translation" : "Se fue sin nada.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -442,15 +722,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.10.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con el verbo negado va $anything$. Con el verbo afirmativo, $nothing$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He left with",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He left with",
@@ -464,19 +773,25 @@
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "He left with nothing." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'nothing' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c49"
   },
   "id" : "67fab6d59930102295342c49",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27b"
   },
-  "title" : "Negación e indefinidos",
-  "instructions" : "Escribe $nothing$ o $anything$.",
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'nothing' o 'anything'.",
   "translation" : "Los adultos no vieron nada a medianoche.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -494,28 +809,1632 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.10.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con el verbo negado va $anything$. Con el verbo afirmativo, $nothing$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The adults saw",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at midnight.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The adults saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "nothing" ]
     }, {
       "kind" : "TEXT",
       "text" : "at midnight.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "The adults saw nothing at midnight." ]
+  },
+  "instructionsAnteriores" : "Elegí 'nothing' o 'anything'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c4a"
+  },
+  "id" : "67fab6d59930102295342c4a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "¿Alguien ha visto mis llaves?",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.11.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas va $anybody$ aunque el verbo no esté negado.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "seen my keys?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anybody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "seen my keys?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c4b"
+  },
+  "id" : "67fab6d59930102295342c4b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "Nadie contestó el teléfono.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.11.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "El verbo ya negado pide $anybody$. Si el verbo está afirmativo, va $nobody$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "answered the phone.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Nobody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "answered the phone.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "Nobody answered the phone." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "answered the phone.",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c4c"
+  },
+  "id" : "67fab6d59930102295342c4c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "No pude encontrar a nadie.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.11.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "El verbo ya negado pide $anybody$. Si el verbo está afirmativo, va $nobody$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I couldn't find",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I couldn't find",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anybody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c4d"
+  },
+  "id" : "67fab6d59930102295342c4d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "No hay nadie en la puerta.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.11.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "El verbo ya negado pide $anybody$. Si el verbo está afirmativo, va $nobody$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at the door.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "There is",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nobody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "at the door.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "There is nobody at the door." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at the door.",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c4e"
+  },
+  "id" : "67fab6d59930102295342c4e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "No hay nadie en el jardín esta tarde.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.11.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "El verbo ya negado pide $anybody$. Si el verbo está afirmativo, va $nobody$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There isn't",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "in the garden this evening.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "There isn't"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anybody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "in the garden this evening.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c4f"
+  },
+  "id" : "67fab6d59930102295342c4f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "Él es nuevo en la ciudad, así que no conoce a nadie.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.11.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "El verbo ya negado pide $anybody$. Si el verbo está afirmativo, va $nobody$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is new in town, so he knows",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is new in town, so he knows",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nobody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "He is new in town, so he knows nobody." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c50"
+  },
+  "id" : "67fab6d59930102295342c50",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "Nadie entenderá.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.11.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "El verbo ya negado pide $anybody$. Si el verbo está afirmativo, va $nobody$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "will understand.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Nobody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "will understand.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c51"
+  },
+  "id" : "67fab6d59930102295342c51",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "No llamamos a nadie.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.11.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "El verbo ya negado pide $anybody$. Si el verbo está afirmativo, va $nobody$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We phoned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We phoned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nobody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We phoned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c52"
+  },
+  "id" : "67fab6d59930102295342c52",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "Ella no escucha a nadie.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.11.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "El verbo ya negado pide $anybody$. Si el verbo está afirmativo, va $nobody$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't listen to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't listen to",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "anybody" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c53"
+  },
+  "id" : "67fab6d59930102295342c53",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "¿Has hablado con alguien hoy?",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.11.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas va $anybody$ aunque el verbo no esté negado.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you talked to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "today?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you talked to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anybody" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "today?"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c54"
+  },
+  "id" : "67fab6d59930102295342c54",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elegí 'nowhere' o 'anywhere'.",
+  "translation" : "No encuentro mis llaves por ningún lado.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.12.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo ya está negado, va $anywhere$: $I can't find it anywhere$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I can't find my keys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "I can't find my keys anywhere." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c55"
+  },
+  "id" : "67fab6d59930102295342c55",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elegí 'nowhere' o 'anywhere'.",
+  "translation" : "No vio ningún lugar interesante en la televisión.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.12.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo ya está negado, va $anywhere$: $I can't find it anywhere$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She didn't see",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "interesting on TV.",
+      "options" : null
+    } ],
+    "sentences" : [ "She didn't see anywhere interesting on TV." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c56"
+  },
+  "id" : "67fab6d59930102295342c56",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elegí 'nowhere' o 'anywhere'.",
+  "translation" : "No hay dónde aparcar el coche por aquí.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.12.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo ya está negado, va $anywhere$: $I can't find it anywhere$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There isn't",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to park the car around here.",
+      "options" : null
+    } ],
+    "sentences" : [ "There isn't anywhere to park the car around here." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c57"
+  },
+  "id" : "67fab6d59930102295342c57",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elegí 'nowhere' o 'anywhere'.",
+  "translation" : "No nadan en ningún sitio los domingos.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.12.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo ya está negado, va $anywhere$: $I can't find it anywhere$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They don't swim",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "on Sundays.",
+      "options" : null
+    } ],
+    "sentences" : [ "They don't swim anywhere on Sundays." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c58"
+  },
+  "id" : "67fab6d59930102295342c58",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elegí 'nowhere' o 'anywhere'.",
+  "translation" : "No correrá a ningún lado esta mañana.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.12.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo ya está negado, va $anywhere$: $I can't find it anywhere$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He will not run",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "this morning.",
+      "options" : null
+    } ],
+    "sentences" : [ "He will not run anywhere this morning." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c59"
+  },
+  "id" : "67fab6d59930102295342c59",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elegí 'nowhere' o 'anywhere'.",
+  "translation" : "No hay ningún lugar al que quiera viajar.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.12.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo ya está negado, va $anywhere$: $I can't find it anywhere$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There isn't",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "he wants to travel.",
+      "options" : null
+    } ],
+    "sentences" : [ "There isn't anywhere he wants to travel." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c5a"
+  },
+  "id" : "67fab6d59930102295342c5a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elegí 'nowhere' o 'anywhere'.",
+  "translation" : "¿Ves algún sitio que venda ropa?",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.12.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas también va $anywhere$, aunque el verbo no esté negado.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you see",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "that sells clothes?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you see anywhere that sells clothes?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c5b"
+  },
+  "id" : "67fab6d59930102295342c5b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elegí 'nowhere' o 'anywhere'.",
+  "translation" : "Los gatos corren a cualquier parte después de cenar.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.12.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Anywhere$ también va en afirmativo cuando no importa qué lugar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The cats run",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "after dinner.",
+      "options" : null
+    } ],
+    "sentences" : [ "The cats run anywhere after dinner." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c5c"
+  },
+  "id" : "67fab6d59930102295342c5c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elegí 'nowhere' o 'anywhere'.",
+  "translation" : "No bebió en ningún sitio especial.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.12.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo ya está negado, va $anywhere$: $I can't find it anywhere$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He didn't drink",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "special.",
+      "options" : null
+    } ],
+    "sentences" : [ "He didn't drink anywhere special." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c5d"
+  },
+  "id" : "67fab6d59930102295342c5d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27b"
+  },
+  "title" : "Indefinidos con $no$ o $any$",
+  "instructions" : "Elegí 'nowhere' o 'anywhere'.",
+  "translation" : "No viajamos a ningún sitio hace mucho tiempo.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.12.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo ya está negado, va $anywhere$: $I can't find it anywhere$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We didn't travel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "long ago.",
+      "options" : null
+    } ],
+    "sentences" : [ "We didn't travel anywhere long ago." ]
   }
 } ]

@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342353"
   },
   "id" : "67fab6d59930102295342353",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Esto es un negocio.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -26,41 +26,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "No es sólo para oficios: todo sustantivo contable en singular lleva $a$ / $an$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "business.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "business.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "This is a business." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342354"
   },
   "id" : "67fab6d59930102295342354",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Esto es agua.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -78,9 +121,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural y con incontables no va nada.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "water.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -99,20 +183,21 @@
       "kind" : "TEXT",
       "text" : "water.",
       "options" : null
-    } ],
-    "sentences" : [ "This is - water." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342355"
   },
   "id" : "67fab6d59930102295342355",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Ella es una madre interesante.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -130,41 +215,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Fijate en el sonido de la palabra pegada al hueco: si es vocal, va $an$, no $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "interesting mother.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "an" ]
     }, {
       "kind" : "TEXT",
       "text" : "interesting mother.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "She is an interesting mother." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342356"
   },
   "id" : "67fab6d59930102295342356",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Esto es arroz.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -182,9 +310,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural y con incontables no va nada.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "rice.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +372,21 @@
       "kind" : "TEXT",
       "text" : "rice.",
       "options" : null
-    } ],
-    "sentences" : [ "This is - rice." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342357"
   },
   "id" : "67fab6d59930102295342357",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Robert es estudiante.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -234,41 +404,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural y con incontables no va nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Robert is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "student.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Robert is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "student.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "Robert is a student." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342358"
   },
   "id" : "67fab6d59930102295342358",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Esa es una camisa.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -286,10 +499,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "No es sólo para oficios: todo sustantivo contable en singular lleva $a$ / $an$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +515,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "a" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "shirt.",
       "options" : null
     } ],
-    "sentences" : [ "That is a shirt." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That is",
+      "options" : null
+    }, {
+      "options" : [ "a" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "shirt.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342359"
   },
   "id" : "67fab6d59930102295342359",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Estas personas son estudiantes.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -338,41 +593,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural y con incontables no va nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "These people are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "students.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These people are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "students.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "These people are - students." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534235a"
   },
   "id" : "67fab6d5993010229534235a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Esa es una pizza estupenda.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -390,41 +688,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural y con incontables no va nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "great pizza.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "great pizza.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "That is - great pizza." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534235b"
   },
   "id" : "67fab6d5993010229534235b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Peter y Anne son amigos.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -442,41 +783,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural y con incontables no va nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Peter and Anne are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "friends.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Peter and Anne are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "friends.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "Peter and Anne are - friends." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534235c"
   },
   "id" : "67fab6d5993010229534235c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Él es camarero.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -494,10 +878,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural y con incontables no va nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "waiter.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -512,23 +936,25 @@
       "text" : "",
       "options" : [ "a" ]
     }, {
-      "kind" : "TEXT",
       "text" : "waiter.",
-      "options" : null
+      "options" : null,
+      "kind" : "TEXT"
     } ],
-    "sentences" : [ "He is a waiter." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534235d"
   },
   "id" : "67fab6d5993010229534235d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Sara tiene un departamento nuevo.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -546,41 +972,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "No es sólo para oficios: todo sustantivo contable en singular lleva $a$ / $an$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Sara has",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "new flat.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sara has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "new flat.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Sara has a new flat." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534235e"
   },
   "id" : "67fab6d5993010229534235e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Eres un hombre.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -598,22 +1067,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "No es sólo para oficios: todo sustantivo contable en singular lleva $a$ / $an$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "man.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
@@ -621,18 +1131,20 @@
       "options" : null
     } ],
     "sentences" : [ "You are a man." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534235f"
   },
   "id" : "67fab6d5993010229534235f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Él es un esposo.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -650,41 +1162,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "No es sólo para oficios: todo sustantivo contable en singular lleva $a$ / $an$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "husband.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "husband.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "He is a husband." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342360"
   },
   "id" : "67fab6d59930102295342360",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Ella es una niña inteligente.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -702,41 +1257,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "No es sólo para oficios: todo sustantivo contable en singular lleva $a$ / $an$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "clever child.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "clever child.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "She is a clever child." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342361"
   },
   "id" : "67fab6d59930102295342361",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Paul y Emily son niños.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -754,22 +1352,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural y con incontables no va nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Paul and Emily are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "children.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Paul and Emily are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -777,18 +1416,20 @@
       "options" : null
     } ],
     "sentences" : [ "Paul and Emily are - children." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342362"
   },
   "id" : "67fab6d59930102295342362",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Esto es jugo de naranja.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -806,9 +1447,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural y con incontables no va nada.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "orange juice.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -827,20 +1509,21 @@
       "kind" : "TEXT",
       "text" : "orange juice.",
       "options" : null
-    } ],
-    "sentences" : [ "This is - orange juice." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342363"
   },
   "id" : "67fab6d59930102295342363",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Eso es cerveza.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -858,10 +1541,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural y con incontables no va nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,25 +1557,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "beer.",
       "options" : null
     } ],
-    "sentences" : [ "That is - beer." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That is",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "beer.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342364"
   },
   "id" : "67fab6d59930102295342364",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Ellos son personas amables.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -910,22 +1635,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural y con incontables no va nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "nice people.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -933,18 +1699,20 @@
       "options" : null
     } ],
     "sentences" : [ "They are - nice people." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342365"
   },
   "id" : "67fab6d59930102295342365",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Esto es una naranja.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -962,10 +1730,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Fijate en el sonido de la palabra pegada al hueco: si es vocal, va $an$, no $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -978,25 +1746,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "an" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "orange.",
       "options" : null
     } ],
-    "sentences" : [ "This is an orange." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "This is",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "an" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "orange.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342366"
   },
   "id" : "67fab6d59930102295342366",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
   "title" : "$A$, $an$ o sin artículo",
-  "instructions" : "Completa con $a$, $an$ o (-).",
+  "instructions" : "Elige 'a', 'an' o '-' (sin artículo).",
   "translation" : "Ellos son hombres.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
@@ -1014,22 +1824,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.06.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural y con incontables no va nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "men.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -1037,5 +1888,3745 @@
       "options" : null
     } ],
     "sentences" : [ "They are - men." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a', 'an' o (-).",
+  "instructionsAntesDeRevisar" : "Elige con 'a', 'an' o (-)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a10"
+  },
+  "id" : "67fab6d59930102295342a10",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Ustedes son ingenieros.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "engineers.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "You're",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "engineers.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a11"
+  },
+  "id" : "67fab6d59930102295342a11",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Ella es limpiadora.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cleaner.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "cleaner.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a12"
+  },
+  "id" : "67fab6d59930102295342a12",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Eres profesor.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "teacher.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "teacher.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "You're a teacher." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a13"
+  },
+  "id" : "67fab6d59930102295342a13",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Soy dentista.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dentist.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I'm"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "dentist.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a14"
+  },
+  "id" : "67fab6d59930102295342a14",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Él es cantante.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "singer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He's",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "a" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "singer.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a15"
+  },
+  "id" : "67fab6d59930102295342a15",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Soy policía.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "policewoman.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "policewoman.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm a policewoman." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a16"
+  },
+  "id" : "67fab6d59930102295342a16",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Somos chefs.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "chefs.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "chefs.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a17"
+  },
+  "id" : "67fab6d59930102295342a17",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Mi hermana es entrenadora.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My sister is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "trainer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My sister is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "trainer.",
+      "options" : null
+    } ],
+    "sentences" : [ "My sister is a trainer." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a18"
+  },
+  "id" : "67fab6d59930102295342a18",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Somos fotógrafos.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "photographers.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "photographers.",
+      "options" : null
+    } ],
+    "sentences" : [ "We're - photographers." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a19"
+  },
+  "id" : "67fab6d59930102295342a19",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Los estudiantes son cocineros.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cooks.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "cooks.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "The students are - cooks." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a1a"
+  },
+  "id" : "67fab6d59930102295342a1a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Los hombres son conductores de ambulancia.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The men are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ambulance drivers.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The men are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "ambulance drivers.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "The men are - ambulance drivers." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a1b"
+  },
+  "id" : "67fab6d59930102295342a1b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Somos médicos.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "doctors.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "doctors.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a1c"
+  },
+  "id" : "67fab6d59930102295342a1c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Ustedes son policías.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "policemen.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "policemen.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a1d"
+  },
+  "id" : "67fab6d59930102295342a1d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Robert es médico.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Robert is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "doctor.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Robert is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "doctor.",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert is a doctor." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a1e"
+  },
+  "id" : "67fab6d59930102295342a1e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Ellos son bailarines.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dancers.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "dancers.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a1f"
+  },
+  "id" : "67fab6d59930102295342a1f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Él es piloto.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pilot.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "a" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "pilot.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a20"
+  },
+  "id" : "67fab6d59930102295342a20",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Ellos son secretarios.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "secretaries.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "secretaries.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "They're - secretaries." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a21"
+  },
+  "id" : "67fab6d59930102295342a21",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Eres artista.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la palabra empieza con sonido de vocal, va $an$: $an$ artist.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "artist.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You're",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "an" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "artist.",
+      "options" : null
+    } ],
+    "sentences" : [ "You're an artist." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a22"
+  },
+  "id" : "67fab6d59930102295342a22",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Los estudiantes nuevos son principiantes.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The new students are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "beginners.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The new students are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "beginners.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "The new students are - beginners." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a23"
+  },
+  "id" : "67fab6d59930102295342a23",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
+  "translation" : "Mi tía es empresaria.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.06.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "La profesión en singular lleva $a$ / $an$. En plural no va nada: $You're engineers$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My aunt is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "businesswoman.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My aunt is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "businesswoman.",
+      "options" : null
+    } ],
+    "sentences" : [ "My aunt is a businesswoman." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a24"
+  },
+  "id" : "67fab6d59930102295342a24",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Esa es una mesa.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "table.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "table.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a25"
+  },
+  "id" : "67fab6d59930102295342a25",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Este es un asiento para el pasajero.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "seat for the passenger.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "seat for the passenger.",
+      "options" : null
+    } ],
+    "sentences" : [ "This is a seat for the passenger." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a26"
+  },
+  "id" : "67fab6d59930102295342a26",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Esos son vasos.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "glasses.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "glasses.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a27"
+  },
+  "id" : "67fab6d59930102295342a27",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Estas son galletas.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "biscuits.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "These are"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "text" : "biscuits.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a28"
+  },
+  "id" : "67fab6d59930102295342a28",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Ese es un kit para mis flores.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "kit for my flowers.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "kit for my flowers.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "That's a kit for my flowers." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a29"
+  },
+  "id" : "67fab6d59930102295342a29",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Ese es un correo electrónico de la PC.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Antes de sonido de vocal va $an$, no $a$: an email.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "email from the PC.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "an" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "email from the PC.",
+      "options" : null
+    } ],
+    "sentences" : [ "That's an email from the PC." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a2a"
+  },
+  "id" : "67fab6d59930102295342a2a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Esos son libros para mi clase de inglés.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "books for my English class.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "books for my English class.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a2b"
+  },
+  "id" : "67fab6d59930102295342a2b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Estos son lápices.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pencils.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These are",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "pencils.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a2c"
+  },
+  "id" : "67fab6d59930102295342a2c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Este es un sofá para mi sala de estar.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sofa for my living room.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sofa for my living room.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a2d"
+  },
+  "id" : "67fab6d59930102295342a2d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Esa es una caja para la competencia.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "box for the competition.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "box for the competition.",
+      "options" : null
+    } ],
+    "sentences" : [ "That is a box for the competition." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a2e"
+  },
+  "id" : "67fab6d59930102295342a2e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Esos son cuencos.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bowls.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bowls.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a2f"
+  },
+  "id" : "67fab6d59930102295342a2f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Esas son manzanas.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "apples.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "apples.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a30"
+  },
+  "id" : "67fab6d59930102295342a30",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Esto es un mango.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "mango.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "mango.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "This is a mango." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a31"
+  },
+  "id" : "67fab6d59930102295342a31",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Esa es una manta para la cama.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "blanket for the bed.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "blanket for the bed.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a32"
+  },
+  "id" : "67fab6d59930102295342a32",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Este es un premio para el ganador.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "prize for the winner.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "prize for the winner.",
+      "options" : null
+    } ],
+    "sentences" : [ "This is a prize for the winner." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a33"
+  },
+  "id" : "67fab6d59930102295342a33",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Este es un modelo para la clase.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "model for the class.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "model for the class.",
+      "options" : null
+    } ],
+    "sentences" : [ "This is a model for the class." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a34"
+  },
+  "id" : "67fab6d59930102295342a34",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Estas son cucharas.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "spoons.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "spoons.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a35"
+  },
+  "id" : "67fab6d59930102295342a35",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Esos son calcetines para el invierno.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "socks for the winter.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "socks for the winter.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a36"
+  },
+  "id" : "67fab6d59930102295342a36",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Esas son galletas para mañana.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cookies for tomorrow.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "cookies for tomorrow.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a37"
+  },
+  "id" : "67fab6d59930102295342a37",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c9"
+  },
+  "title" : "$A$, $an$ o sin artículo",
+  "instructions" : "Elige 'a' o 'an' si es necesario. Si no necesitas un artículo, elige '-'.",
+  "translation" : "Estas son flores para el jardín.",
+  "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.07.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$That's a table$ en singular. En plural va sin artículo: $Those are glasses$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "flowers for the garden.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "flowers for the garden.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'."
 } ]

@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953421a7"
   },
   "id" : "67fab6d599301022953421a7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Ellos no estaban listos.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -26,13 +26,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) ready.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -48,19 +91,24 @@
       "text" : "(not / be) ready.",
       "options" : null
     } ],
-    "sentences" : [ "They weren't ready." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421a8"
   },
   "id" : "67fab6d599301022953421a8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Él no estaba asustado.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -78,10 +126,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +142,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "wasn't" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(not / be) scared.",
       "options" : null
     } ],
-    "sentences" : [ "He wasn't scared." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He"
+    }, {
+      "text" : "",
+      "options" : [ "wasn't" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "(not / be) scared.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421a9"
   },
   "id" : "67fab6d599301022953421a9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Ella estaba emocionada.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -130,9 +226,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) excited.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -148,23 +291,24 @@
       "text" : "",
       "options" : [ "was" ]
     }, {
-      "kind" : "TEXT",
       "text" : "(be) excited.",
-      "options" : null
-    } ],
-    "sentences" : [ "She was excited." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421aa"
   },
   "id" : "67fab6d599301022953421aa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Éramos amigos entonces.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -182,22 +326,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) friends then.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "were" ]
     }, {
       "kind" : "TEXT",
@@ -205,18 +396,20 @@
       "options" : null
     } ],
     "sentences" : [ "We were friends then." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421ab"
   },
   "id" : "67fab6d599301022953421ab",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Ellos no eran muy jóvenes.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -234,41 +427,90 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) very young.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "weren't" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / be) very young.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "They weren't very young." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421ac"
   },
   "id" : "67fab6d599301022953421ac",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Ella no estaba en el coche.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -286,10 +528,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) in the car.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -304,23 +592,25 @@
       "text" : "",
       "options" : [ "wasn't" ]
     }, {
-      "kind" : "TEXT",
       "text" : "(not / be) in the car.",
-      "options" : null
+      "options" : null,
+      "kind" : "TEXT"
     } ],
-    "sentences" : [ "She wasn't in the car." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421ad"
   },
   "id" : "67fab6d599301022953421ad",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Nosotros no estábamos equivocados.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -338,22 +628,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) wrong.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "weren't" ]
     }, {
       "kind" : "TEXT",
@@ -361,18 +698,20 @@
       "options" : null
     } ],
     "sentences" : [ "We weren't wrong." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421ae"
   },
   "id" : "67fab6d599301022953421ae",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Los perros estaban en la casa.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -390,9 +729,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) in the house.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -408,23 +794,24 @@
       "text" : "",
       "options" : [ "were" ]
     }, {
-      "kind" : "TEXT",
       "text" : "(be) in the house.",
-      "options" : null
-    } ],
-    "sentences" : [ "The dogs were in the house." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421af"
   },
   "id" : "67fab6d599301022953421af",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Yo no estaba en la escuela.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -442,9 +829,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) at school.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -463,20 +897,21 @@
       "kind" : "TEXT",
       "text" : "(not / be) at school.",
       "options" : null
-    } ],
-    "sentences" : [ "I wasn't at school." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421b0"
   },
   "id" : "67fab6d599301022953421b0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Yo estaba en la playa.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -494,10 +929,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,25 +945,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(be) at the beach.",
       "options" : null
     } ],
-    "sentences" : [ "I was at the beach." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I"
+    }, {
+      "options" : [ "was" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) at the beach.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421b1"
   },
   "id" : "67fab6d599301022953421b1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "El hombre no estaba en la habitación.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -546,22 +1029,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The man",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) in the room.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The man",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "wasn't" ]
     }, {
       "kind" : "TEXT",
@@ -569,18 +1099,20 @@
       "options" : null
     } ],
     "sentences" : [ "The man wasn't in the room." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421b2"
   },
   "id" : "67fab6d599301022953421b2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "No fue fácil.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -598,10 +1130,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) easy.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -616,23 +1194,25 @@
       "text" : "",
       "options" : [ "wasn't" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "(not / be) easy.",
-      "options" : null
+      "text" : "(not / be) easy."
     } ],
-    "sentences" : [ "It wasn't easy." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421b3"
   },
   "id" : "67fab6d599301022953421b3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Nosotros no estábamos en la estación.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -650,10 +1230,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -666,25 +1246,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "weren't" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(not / be) at the station.",
       "options" : null
     } ],
-    "sentences" : [ "We weren't at the station." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "We",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "weren't" ]
+    }, {
+      "text" : "(not / be) at the station.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421b4"
   },
   "id" : "67fab6d599301022953421b4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Él también estaba cansado.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -702,41 +1330,90 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) also tired.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
       "text" : "(be) also tired.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "He was also tired." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421b5"
   },
   "id" : "67fab6d599301022953421b5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Tú estabas en casa.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -754,22 +1431,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) at home.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "were" ]
     }, {
       "kind" : "TEXT",
@@ -777,18 +1501,20 @@
       "options" : null
     } ],
     "sentences" : [ "You were at home." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421b6"
   },
   "id" : "67fab6d599301022953421b6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Fue muy interesante.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -806,22 +1532,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) very interesting.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
@@ -829,18 +1602,20 @@
       "options" : null
     } ],
     "sentences" : [ "It was very interesting." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421b7"
   },
   "id" : "67fab6d599301022953421b7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Ella era de Argentina.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -858,9 +1633,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) from Argentina.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -879,20 +1701,21 @@
       "kind" : "TEXT",
       "text" : "(be) from Argentina.",
       "options" : null
-    } ],
-    "sentences" : [ "She was from Argentina." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421b8"
   },
   "id" : "67fab6d599301022953421b8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Mary era una gran mujer.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -910,41 +1733,90 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Mary",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) a great woman.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
       "text" : "(be) a great woman.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "Mary was a great woman." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421b9"
   },
   "id" : "67fab6d599301022953421b9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Tú no estabas bien anoche.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -962,22 +1834,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) fine last night.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "weren't" ]
     }, {
       "kind" : "TEXT",
@@ -985,18 +1904,20 @@
       "options" : null
     } ],
     "sentences" : [ "You weren't fine last night." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421ba"
   },
   "id" : "67fab6d599301022953421ba",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positiva y negativa: repaso",
-  "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
+  "title" : "$Be$: formas cortas",
+  "instructions" : "Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.",
   "translation" : "Eras muy pobre.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -1014,28 +1935,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.02.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Las cortas son del negativo: $wasn't$ y $weren't$. El afirmativo no se contrae.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) very poor.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was"
+    }, {
+      "id" : "wasn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "wasn't"
+    }, {
+      "id" : "were",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were"
+    }, {
+      "id" : "weren't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "weren't"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "were" ]
     }, {
       "kind" : "TEXT",
       "text" : "(be) very poor.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "You were very poor." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
+  "instructionsAntesDeRevisar" : "Elige oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible."
 } ]

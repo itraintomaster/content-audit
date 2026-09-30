@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953439a1"
   },
   "id" : "67fab6d599301022953439a1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Ella se vistió.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -26,15 +26,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$dress$, $wash$ y $concentrate$ van sin reflexivo salvo que cueste hacerlo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She dressed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "herself / -.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She dressed",
@@ -48,19 +95,26 @@
       "text" : "herself / -.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "She dressed - herself / -." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439a2"
   },
   "id" : "67fab6d599301022953439a2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Ellos se vieron en el teatro.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -78,9 +132,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cuando el sujeto y el objeto son la misma persona, va reflexivo: saw $themselves$, hurt $himself$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "themselves / - at the theater.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -101,18 +208,19 @@
       "options" : null
     } ],
     "sentences" : [ "They saw themselves themselves / - at the theater." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439a3"
   },
   "id" : "67fab6d599301022953439a3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "¿Él se lastimó?",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -130,9 +238,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cuando el sujeto y el objeto son la misma persona, va reflexivo: saw $themselves$, hurt $himself$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did he hurt",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "himself / - ?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -151,20 +312,20 @@
       "kind" : "TEXT",
       "text" : "himself / - ?",
       "options" : null
-    } ],
-    "sentences" : [ "Did he hurt himself himself / - ?" ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439a4"
   },
   "id" : "67fab6d599301022953439a4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Mi hijo es muy pequeño. No puede alimentarse solo.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -182,10 +343,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Feed$ no es como $dress$ o $wash$: siempre lleva reflexivo, sea fácil o difícil.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,25 +359,79 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "himself" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "himself / - .",
       "options" : null
     } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My son is very small. He can't feed",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "himself" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "himself / - .",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "My son is very small. He can't feed himself himself / - ." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439a5"
   },
   "id" : "67fab6d599301022953439a5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Debo concentrarme.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -234,9 +449,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$dress$, $wash$ y $concentrate$ van sin reflexivo salvo que cueste hacerlo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I must concentrate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "myself / -.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -255,20 +523,20 @@
       "kind" : "TEXT",
       "text" : "myself / -.",
       "options" : null
-    } ],
-    "sentences" : [ "I must concentrate - myself / -." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439a6"
   },
   "id" : "67fab6d599301022953439a6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "¿Te lavarás, por favor?",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -286,10 +554,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$dress$, $wash$ y $concentrate$ van sin reflexivo salvo que cueste hacerlo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +570,78 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "yourself / - ?",
       "options" : null
     } ],
-    "sentences" : [ "Will you please wash - yourself / - ?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Will you please wash",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "yourself / - ?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439a7"
   },
   "id" : "67fab6d599301022953439a7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "¿Recuerdan ellos su primera mascota?",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -338,10 +659,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo ya tiene su propio objeto (the dishes, her hair), no va reflexivo: queda $-$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +675,79 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "himself / - their first pet?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Do they remember",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "himself / - their first pet?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Do they remember - himself / - their first pet?" ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439a8"
   },
   "id" : "67fab6d599301022953439a8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Yo sequé los platos.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -390,9 +765,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo ya tiene su propio objeto (the dishes, her hair), no va reflexivo: queda $-$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I dried",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "myself / - the dishes.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -413,18 +841,19 @@
       "options" : null
     } ],
     "sentences" : [ "I dried - myself / - the dishes." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439a9"
   },
   "id" : "67fab6d599301022953439a9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Mi abuelo ya no puede alimentarse solo.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -442,9 +871,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Feed$ no es como $dress$ o $wash$: siempre lleva reflexivo, sea fácil o difícil.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My grandfather can't feed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "himself / - anymore.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -460,23 +942,24 @@
       "text" : "",
       "options" : [ "himself" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "himself / - anymore.",
-      "options" : null
+      "text" : "himself / - anymore."
     } ],
     "sentences" : [ "My grandfather can't feed himself himself / - anymore." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439aa"
   },
   "id" : "67fab6d599301022953439aa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Me siento un poco mejor.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -494,9 +977,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Feel$ / $felt$ + adjetivo no lleva objeto: no va reflexivo. I feel better, he felt happy.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I feel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "myself / - a little better.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -512,23 +1048,24 @@
       "text" : "",
       "options" : [ "-" ]
     }, {
-      "kind" : "TEXT",
       "text" : "myself / - a little better.",
-      "options" : null
+      "options" : null,
+      "kind" : "TEXT"
     } ],
     "sentences" : [ "I feel - myself / - a little better." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439ab"
   },
   "id" : "67fab6d599301022953439ab",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Ella se lavó.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -546,10 +1083,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$dress$, $wash$ y $concentrate$ van sin reflexivo salvo que cueste hacerlo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,25 +1099,78 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "herself / -.",
       "options" : null
     } ],
-    "sentences" : [ "She washed - herself / -." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She washed",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "herself / -.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439ac"
   },
   "id" : "67fab6d599301022953439ac",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Espero que te diviertas.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -598,9 +1188,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Enjoy yourself$ es expresión fija: siempre lleva reflexivo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I hope you enjoy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "yourself / -.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -621,18 +1264,19 @@
       "options" : null
     } ],
     "sentences" : [ "I hope you enjoy yourself yourself / -." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439ad"
   },
   "id" : "67fab6d599301022953439ad",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Ella se peinó.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -650,10 +1294,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo ya tiene su propio objeto (the dishes, her hair), no va reflexivo: queda $-$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She combed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "herself / - her hair.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -672,19 +1368,21 @@
       "text" : "herself / - her hair.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "She combed - herself / - her hair." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439ae"
   },
   "id" : "67fab6d599301022953439ae",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "El niño pequeño no podía alimentarse solo.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -702,15 +1400,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Feed$ no es como $dress$ o $wash$: siempre lleva reflexivo, sea fácil o difícil.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The young boy couldn't feed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "himself / -.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The young boy couldn't feed",
@@ -724,19 +1469,26 @@
       "text" : "himself / -.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "The young boy couldn't feed himself himself / -." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439af"
   },
   "id" : "67fab6d599301022953439af",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Él se sintió muy feliz.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -754,9 +1506,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Feel$ / $felt$ + adjetivo no lleva objeto: no va reflexivo. I feel better, he felt happy.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He felt",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "himself / - very happy.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -772,23 +1577,24 @@
       "text" : "",
       "options" : [ "-" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "himself / - very happy.",
-      "options" : null
+      "text" : "himself / - very happy."
     } ],
     "sentences" : [ "He felt - himself / - very happy." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439b0"
   },
   "id" : "67fab6d599301022953439b0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Los estudiantes pueden alimentarse solos ahora. Es más cómodo.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -806,10 +1612,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Feed$ no es como $dress$ o $wash$: siempre lleva reflexivo, sea fácil o difícil.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -822,25 +1628,79 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "themselves" ]
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "themselves / - now. It's more comfortable.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students can feed",
+      "options" : null
+    }, {
+      "options" : [ "themselves" ],
+      "kind" : "CLOZE",
+      "text" : ""
     }, {
       "kind" : "TEXT",
       "text" : "themselves / - now. It's more comfortable.",
       "options" : null
     } ],
     "sentences" : [ "The students can feed themselves themselves / - now. It's more comfortable." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439b1"
   },
   "id" : "67fab6d599301022953439b1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Me puse ropa.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -858,10 +1718,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$dress$, $wash$ y $concentrate$ van sin reflexivo salvo que cueste hacerlo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,25 +1734,78 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "myself / - .",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I put on clothes",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "myself / - .",
       "options" : null
     } ],
-    "sentences" : [ "I put on clothes - myself / - ." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439b2"
   },
   "id" : "67fab6d599301022953439b2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Nos vimos en el parque.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -910,10 +1823,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cuando el sujeto y el objeto son la misma persona, va reflexivo: saw $themselves$, hurt $himself$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ourselves / - at the park.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -932,19 +1897,21 @@
       "text" : "ourselves / - at the park.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "We saw ourselves ourselves / - at the park." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439b3"
   },
   "id" : "67fab6d599301022953439b3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "¡Por favor, concéntrate!",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -962,10 +1929,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$dress$, $wash$ y $concentrate$ van sin reflexivo salvo que cueste hacerlo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -978,25 +1945,78 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "yourself / -!",
       "options" : null
     } ],
-    "sentences" : [ "Please concentrate - yourself / -!" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Please concentrate",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "yourself / -!",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953439b4"
   },
   "id" : "67fab6d599301022953439b4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d348"
   },
   "title" : "¿Hace falta el reflexivo?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como $dress$, $wash$ y $concentrate$.",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
   "translation" : "Él recuerda esa experiencia.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
@@ -1014,10 +2034,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.13.06.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo ya tiene su propio objeto (the dishes, her hair), no va reflexivo: queda $-$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1030,6 +2050,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "himself / - that experience.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He remembers"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -1037,5 +2110,2107 @@
       "options" : null
     } ],
     "sentences" : [ "He remembers - himself / - that experience." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446d4"
+  },
+  "id" : "67fab6d599301022953446d4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "¿Podrías apurarte, por favor?",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$hurry$, $feel$ y $remember$ van sin reflexivo. $amuse$ sí lo lleva.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you please hurry",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / yourself)?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you please hurry",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / yourself)?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446d5"
+  },
+  "id" : "67fab6d599301022953446d5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "A ella le gustó la obra.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$wash$, $focus$, $comb$, $rush$ y otros también van sin reflexivo, no sólo hurry/feel/remember.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She liked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / herself) the play.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "She liked",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / herself) the play.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446d6"
+  },
+  "id" : "67fab6d599301022953446d6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "¿Recuerdas la ocasión en que nos conocimos?",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$hurry$, $feel$ y $remember$ van sin reflexivo. $amuse$ sí lo lleva.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you remember",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / yourself) the occasion we first met?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you remember",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / yourself) the occasion we first met?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "Do you remember - the occasion we first met?" ]
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446d7"
+  },
+  "id" : "67fab6d599301022953446d7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Tenía sueño, así que me fui a la cama.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$hurry$, $feel$ y $remember$ van sin reflexivo. $amuse$ sí lo lleva.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I felt",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / myself) sleepy so I went to bed.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I felt",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / myself) sleepy so I went to bed.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446d8"
+  },
+  "id" : "67fab6d599301022953446d8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Ella se puso lápiz labial.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$wash$, $focus$, $comb$, $rush$ y otros también van sin reflexivo, no sólo hurry/feel/remember.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She put lipstick on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / herself).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She put lipstick on",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "(- / herself)."
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446d9"
+  },
+  "id" : "67fab6d599301022953446d9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Nos divertimos.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$hurry$, $feel$ y $remember$ van sin reflexivo. $amuse$ sí lo lleva.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We amused",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / ourselves).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We amused",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "ourselves" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / ourselves).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446da"
+  },
+  "id" : "67fab6d599301022953446da",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Estaba tan débil que no podía afeitarse solo.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cuando remarcás que no logra hacerlo solo/a, el reflexivo $se mantiene$: shave, wash, feed himself.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was so weak he couldn't shave",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / himself).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was so weak he couldn't shave",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "himself" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / himself).",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446db"
+  },
+  "id" : "67fab6d599301022953446db",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Mi hijo pequeño aún no puede lavarse solo.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cuando remarcás que no logra hacerlo solo/a, el reflexivo $se mantiene$: shave, wash, feed himself.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My small son can't wash",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / himself) yet.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My small son can't wash",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "himself" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / himself) yet.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446dc"
+  },
+  "id" : "67fab6d599301022953446dc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Sarah se lavó y desayunó.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$wash$, $focus$, $comb$, $rush$ y otros también van sin reflexivo, no sólo hurry/feel/remember.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sarah washed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / herself) and had some breakfast.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sarah washed",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "(- / herself) and had some breakfast.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446dd"
+  },
+  "id" : "67fab6d599301022953446dd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Se concentraron en su proyecto.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$wash$, $focus$, $comb$, $rush$ y otros también van sin reflexivo, no sólo hurry/feel/remember.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They focused",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / themselves) on their project.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They focused",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "(- / themselves) on their project.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446de"
+  },
+  "id" : "67fab6d599301022953446de",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Él limpió.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$wash$, $focus$, $comb$, $rush$ y otros también van sin reflexivo, no sólo hurry/feel/remember.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He cleaned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / himself).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He cleaned",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / himself).",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446df"
+  },
+  "id" : "67fab6d599301022953446df",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Nos encontramos en una tienda.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$wash$, $focus$, $comb$, $rush$ y otros también van sin reflexivo, no sólo hurry/feel/remember.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We bumped",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / ourselves) into each other at a shop.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We bumped",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / ourselves) into each other at a shop.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446e0"
+  },
+  "id" : "67fab6d599301022953446e0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Necesito peinarme.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$wash$, $focus$, $comb$, $rush$ y otros también van sin reflexivo, no sólo hurry/feel/remember.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need to comb",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / myself) my hair.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I need to comb",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / myself) my hair.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446e1"
+  },
+  "id" : "67fab6d599301022953446e1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Me concentré en la clase.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$wash$, $focus$, $comb$, $rush$ y otros también van sin reflexivo, no sólo hurry/feel/remember.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I focused",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / myself) on the class.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I focused",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / myself) on the class.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446e2"
+  },
+  "id" : "67fab6d599301022953446e2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Se sintió enfermo, así que se fue a la cama.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$hurry$, $feel$ y $remember$ van sin reflexivo. $amuse$ sí lo lleva.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He felt",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / himself) sick so he went to bed.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He felt"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / himself) sick so he went to bed.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446e3"
+  },
+  "id" : "67fab6d599301022953446e3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "¿Te divertiste?",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$hurry$, $feel$ y $remember$ van sin reflexivo. $amuse$ sí lo lleva.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you amuse",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / yourself)?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you amuse",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "yourself" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / yourself)?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446e4"
+  },
+  "id" : "67fab6d599301022953446e4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "¿Estás lo suficientemente bien como para alimentarte solo?",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cuando remarcás que no logra hacerlo solo/a, el reflexivo $se mantiene$: shave, wash, feed himself.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you well enough to feed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / yourself)?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you well enough to feed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "yourself" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / yourself)?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446e5"
+  },
+  "id" : "67fab6d599301022953446e5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Necesitas concentrarte.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$wash$, $focus$, $comb$, $rush$ y otros también van sin reflexivo, no sólo hurry/feel/remember.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You need to focus",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / yourself).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "You need to focus",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / yourself).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446e6"
+  },
+  "id" : "67fab6d599301022953446e6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "Ella se divirtió mucho en la fiesta.",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$hurry$, $feel$ y $remember$ van sin reflexivo. $amuse$ sí lo lleva.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She amused",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / herself) a lot at the party.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She amused",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "herself" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / herself) a lot at the party.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953446e7"
+  },
+  "id" : "67fab6d599301022953446e7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d348"
+  },
+  "title" : "¿Hace falta el reflexivo?",
+  "instructions" : "Elige el pronombre, o '-' si no necesitamos un pronombre.",
+  "translation" : "¡Tenemos que apurarnos!",
+  "theoryId" : "b1.13.Reflexive_Pronouns",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.11.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$wash$, $focus$, $comb$, $rush$ y otros también van sin reflexivo, no sólo hurry/feel/remember.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We need to rush",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / ourselves)!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "yourself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "yourself"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We need to rush",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(- / ourselves)!",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige el pronombre o escribe un guión (–) si no necesitamos un pronombre."
 } ]

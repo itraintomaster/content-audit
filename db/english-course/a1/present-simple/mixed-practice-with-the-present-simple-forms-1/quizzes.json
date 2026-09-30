@@ -7,8 +7,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Él patea la pelota de fútbol.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En afirmativo, la $-s$ va sólo con he/she/it; el resto, verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -49,7 +49,8 @@
       "options" : null
     } ],
     "sentences" : [ "He kicks the football." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fa0"
@@ -59,8 +60,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "¿Están listos para irse?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -78,7 +79,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -101,7 +102,8 @@
       "options" : null
     } ],
     "sentences" : [ "Are they ready to leave?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fa1"
@@ -111,8 +113,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "¿Él es de Canadá?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -130,7 +132,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -153,7 +155,8 @@
       "options" : null
     } ],
     "sentences" : [ "Is he from Canada?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fa2"
@@ -163,8 +166,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Tú no eres de Brasil.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -182,7 +185,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -205,7 +208,8 @@
       "options" : null
     } ],
     "sentences" : [ "You aren't from Brazil." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fa3"
@@ -215,8 +219,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "No quiero una muñeca nueva.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -234,22 +238,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "don't want" ]
     }, {
       "kind" : "TEXT",
@@ -257,7 +261,8 @@
       "options" : null
     } ],
     "sentences" : [ "I don't want a new doll." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fa4"
@@ -267,8 +272,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "¿Estoy equivocado?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -286,7 +291,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -309,7 +314,8 @@
       "options" : null
     } ],
     "sentences" : [ "Am I wrong?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fa5"
@@ -319,8 +325,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Hace calor adentro.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -338,7 +344,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Elige $am$, $is$ o $are$ según el sujeto, y usa $short forms$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -361,7 +367,9 @@
       "options" : null
     } ],
     "sentences" : [ "It's hot inside." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
+  "miniTheoryAntesDeShortForms" : "Elegí $am$, $is$ o $are$ según el sujeto, y usá la forma corta."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fa6"
@@ -371,8 +379,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Él no habla español.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -390,7 +398,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -413,7 +421,8 @@
       "options" : null
     } ],
     "sentences" : [ "He doesn't speak Spanish." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fa7"
@@ -423,8 +432,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Estamos en la sala de estar.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -442,7 +451,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Elige $am$, $is$ o $are$ según el sujeto, y usa $short forms$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -465,7 +474,9 @@
       "options" : null
     } ],
     "sentences" : [ "We're in the living room." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
+  "miniTheoryAntesDeShortForms" : "Elegí $am$, $is$ o $are$ según el sujeto, y usá la forma corta."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fa8"
@@ -475,8 +486,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "No tengo cuarenta años.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -494,7 +505,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -517,7 +528,8 @@
       "options" : null
     } ],
     "sentences" : [ "I'm not forty." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fa9"
@@ -527,8 +539,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Necesitas una nueva vida.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -546,22 +558,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En afirmativo, la $-s$ va sólo con he/she/it; el resto, verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "need" ]
     }, {
       "kind" : "TEXT",
@@ -569,7 +581,8 @@
       "options" : null
     } ],
     "sentences" : [ "You need a new life." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341faa"
@@ -579,8 +592,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Ella no es estudiante.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -598,22 +611,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "isn't" ]
     }, {
       "kind" : "TEXT",
@@ -621,7 +634,8 @@
       "options" : null
     } ],
     "sentences" : [ "She isn't a student." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fab"
@@ -631,8 +645,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Ellos no beben.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -650,7 +664,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -673,7 +687,8 @@
       "options" : null
     } ],
     "sentences" : [ "They don't drink." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fac"
@@ -683,8 +698,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Ellos conocen a mucha gente.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -702,22 +717,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En afirmativo, la $-s$ va sólo con he/she/it; el resto, verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "know" ]
     }, {
       "kind" : "TEXT",
@@ -725,7 +740,8 @@
       "options" : null
     } ],
     "sentences" : [ "They know a lot of people." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fad"
@@ -735,8 +751,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Él no está en el dormitorio.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -754,7 +770,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -777,7 +793,8 @@
       "options" : null
     } ],
     "sentences" : [ "He isn't in the bedroom." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fae"
@@ -787,8 +804,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "No llueve en Madrid.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -806,7 +823,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -829,7 +846,8 @@
       "options" : null
     } ],
     "sentences" : [ "It doesn't rain in Madrid." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341faf"
@@ -839,8 +857,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Vemos dos gatos.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -858,22 +876,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En afirmativo, la $-s$ va sólo con he/she/it; el resto, verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "see" ]
     }, {
       "kind" : "TEXT",
@@ -881,7 +899,8 @@
       "options" : null
     } ],
     "sentences" : [ "We see two cats." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fb0"
@@ -891,8 +910,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "No conducimos en coche.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -910,7 +929,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -933,7 +952,8 @@
       "options" : null
     } ],
     "sentences" : [ "We don't drive by car." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fb1"
@@ -943,8 +963,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Ellos llegan tarde para el partido.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -962,22 +982,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Elige $am$, $is$ o $are$ según el sujeto, y usa $short forms$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "'re" ]
     }, {
       "kind" : "TEXT",
@@ -985,7 +1005,9 @@
       "options" : null
     } ],
     "sentences" : [ "They 're late for the game." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
+  "miniTheoryAntesDeShortForms" : "Elegí $am$, $is$ o $are$ según el sujeto, y usá la forma corta."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341fb2"
@@ -995,8 +1017,8 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Todas las formas 1",
-  "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
   "translation" : "Él trabaja en Tailandia.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
@@ -1014,7 +1036,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.17.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En afirmativo, la $-s$ va sólo con he/she/it; el resto, verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1037,5 +1059,4238 @@
       "options" : null
     } ],
     "sentences" : [ "He works in Thailand." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fb3"
+  },
+  "id" : "67fab6d59930102295341fb3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "¿Estamos listos para la escuela ahora?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Are we" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(we / be) ready for school now?",
+      "options" : null
+    } ],
+    "sentences" : [ "Are we ready for school now?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fb4"
+  },
+  "id" : "67fab6d59930102295341fb4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "¿Ella es doctora?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Is she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / be) a doctor?",
+      "options" : null
+    } ],
+    "sentences" : [ "Is she a doctor?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fb5"
+  },
+  "id" : "67fab6d59930102295341fb5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "Él no bebe leche.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "doesn't drink" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / drink) milk.",
+      "options" : null
+    } ],
+    "sentences" : [ "He doesn't drink milk." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fb6"
+  },
+  "id" : "67fab6d59930102295341fb6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "¿Necesito un bolígrafo?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do I need" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(I / need) a pen?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do I need a pen?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fb7"
+  },
+  "id" : "67fab6d59930102295341fb7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "Ella está muy feliz en París.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) very happy in Paris.",
+      "options" : null
+    } ],
+    "sentences" : [ "She's very happy in Paris." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fb8"
+  },
+  "id" : "67fab6d59930102295341fb8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "¿Estamos en el cine?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Are we" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(we / be) at the cinema?",
+      "options" : null
+    } ],
+    "sentences" : [ "Are we at the cinema?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fb9"
+  },
+  "id" : "67fab6d59930102295341fb9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "¿Necesitas una camisa nueva?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do you need" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / need) a new shirt?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you need a new shirt?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fba"
+  },
+  "id" : "67fab6d59930102295341fba",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "Ellos no juegan al fútbol.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't play" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / play) football.",
+      "options" : null
+    } ],
+    "sentences" : [ "They don't play football." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fbb"
+  },
+  "id" : "67fab6d59930102295341fbb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "¿Hace frío afuera ahora?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Is it" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(it / be) cold outside now?",
+      "options" : null
+    } ],
+    "sentences" : [ "Is it cold outside now?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fbc"
+  },
+  "id" : "67fab6d59930102295341fbc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "Él es de Berlín.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) from Berlin.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's from Berlin." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fbd"
+  },
+  "id" : "67fab6d59930102295341fbd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "¿Tiene una hermana?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does he have" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / have) a sister?",
+      "options" : null
+    } ],
+    "sentences" : [ "Does he have a sister?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fbe"
+  },
+  "id" : "67fab6d59930102295341fbe",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "Te gusta el té.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "La $-s$ va sólo en afirmativo, y sólo con he, she, it.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(like) tea.",
+      "options" : null
+    } ],
+    "sentences" : [ "You like tea." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fbf"
+  },
+  "id" : "67fab6d59930102295341fbf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "Ella no está en las tiendas.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) at the shops.",
+      "options" : null
+    } ],
+    "sentences" : [ "She isn't at the shops." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fc0"
+  },
+  "id" : "67fab6d59930102295341fc0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "Él duerme mucho aquí.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "La $-s$ va sólo en afirmativo, y sólo con he, she, it.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "sleeps" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(sleep) a lot here.",
+      "options" : null
+    } ],
+    "sentences" : [ "He sleeps a lot here." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fc1"
+  },
+  "id" : "67fab6d59930102295341fc1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "Ella es realmente genial.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) really great.",
+      "options" : null
+    } ],
+    "sentences" : [ "She 's really great." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fc2"
+  },
+  "id" : "67fab6d59930102295341fc2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "¿Ella bebe agua?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does she drink" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / drink) water?",
+      "options" : null
+    } ],
+    "sentences" : [ "Does she drink water?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fc3"
+  },
+  "id" : "67fab6d59930102295341fc3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "Estoy feliz hoy.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'m" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) happy today.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm happy today." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fc4"
+  },
+  "id" : "67fab6d59930102295341fc4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "¿Tomamos su tren?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do we take" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(we / take) their train?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do we take their train?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fc5"
+  },
+  "id" : "67fab6d59930102295341fc5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "Ellos no están en el parque.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) at the park.",
+      "options" : null
+    } ],
+    "sentences" : [ "They aren't at the park." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295341fc6"
+  },
+  "id" : "67fab6d59930102295341fc6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+  "translation" : "¿Trabajas después de la escuela?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.01.18.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "be nunca lleva auxiliar. Cualquier otro verbo sí: $do$, $does$, $don't$, $doesn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do you work" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / work) after school?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you work after school?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425bf"
+  },
+  "id" : "67fab6d599301022953425bf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Conoce él al chico?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does he know" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / know) the guy?",
+      "options" : null
+    } ],
+    "sentences" : [ "Does he know the guy?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425c0"
+  },
+  "id" : "67fab6d599301022953425c0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "A ella no le gusta Peter.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "doesn't like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / like) Peter.",
+      "options" : null
+    } ],
+    "sentences" : [ "She doesn't like Peter." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425c1"
+  },
+  "id" : "67fab6d599301022953425c1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Cuándo estudian los estudiantes?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do the students study" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(the students / study)?",
+      "options" : null
+    } ],
+    "sentences" : [ "When do the students study?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425c2"
+  },
+  "id" : "67fab6d599301022953425c2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Necesitan una casa nueva.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "need" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(need) a new house.",
+      "options" : null
+    } ],
+    "sentences" : [ "They need a new house." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425c3"
+  },
+  "id" : "67fab6d599301022953425c3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Cómo se siente ella?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "How",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "does she feel" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / feel)?",
+      "options" : null
+    } ],
+    "sentences" : [ "How does she feel?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425c4"
+  },
+  "id" : "67fab6d599301022953425c4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Ves televisión?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do you watch" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / watch) television?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you watch television?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425c5"
+  },
+  "id" : "67fab6d599301022953425c5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Aquí nieva mucho.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "snows" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(snow) a lot here.",
+      "options" : null
+    } ],
+    "sentences" : [ "It snows a lot here." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425c6"
+  },
+  "id" : "67fab6d599301022953425c6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Él lee libros cada noche.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "reads" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(read) books every night.",
+      "options" : null
+    } ],
+    "sentences" : [ "He reads books every night." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425c7"
+  },
+  "id" : "67fab6d599301022953425c7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "No conduzco a la universidad.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't drive" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / drive) to college.",
+      "options" : null
+    } ],
+    "sentences" : [ "I don't drive to college." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425c8"
+  },
+  "id" : "67fab6d599301022953425c8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Ella vive en Canadá.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "lives" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(live) in Canada.",
+      "options" : null
+    } ],
+    "sentences" : [ "She lives in Canada." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425c9"
+  },
+  "id" : "67fab6d599301022953425c9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Él no bebe alcohol.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "doesn't drink" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / drink) alcohol.",
+      "options" : null
+    } ],
+    "sentences" : [ "He doesn't drink alcohol." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ca"
+  },
+  "id" : "67fab6d599301022953425ca",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Me encanta el té.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "love" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(love) tea.",
+      "options" : null
+    } ],
+    "sentences" : [ "I love tea." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425cb"
+  },
+  "id" : "67fab6d599301022953425cb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Funciona este televisor?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does this TV work" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(this TV / work)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Does this TV work?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425cc"
+  },
+  "id" : "67fab6d599301022953425cc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Cuándo viajas?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do you travel" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / travel)?",
+      "options" : null
+    } ],
+    "sentences" : [ "When do you travel?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425cd"
+  },
+  "id" : "67fab6d599301022953425cd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Comen ellos afuera?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do they eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / eat) outside?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do they eat outside?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ce"
+  },
+  "id" : "67fab6d599301022953425ce",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿A quién ves?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Who",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do you see" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / see)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Who do you see?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425cf"
+  },
+  "id" : "67fab6d599301022953425cf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "No tomamos el tren.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't catch" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / catch) the train.",
+      "options" : null
+    } ],
+    "sentences" : [ "We don't catch the train." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425d0"
+  },
+  "id" : "67fab6d599301022953425d0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Por qué quieren comida?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do they want" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / want) food?",
+      "options" : null
+    } ],
+    "sentences" : [ "Why do they want food?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425d1"
+  },
+  "id" : "67fab6d599301022953425d1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Quiere ella un vestido nuevo?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does she want" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / want) a new dress?",
+      "options" : null
+    } ],
+    "sentences" : [ "Does she want a new dress?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425d2"
+  },
+  "id" : "67fab6d599301022953425d2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "No comen mucho pan.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / eat) much bread.",
+      "options" : null
+    } ],
+    "sentences" : [ "They don't eat much bread." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ec"
+  },
+  "id" : "67fab6d599301022953425ec",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Cuándo son los boletos?",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are the tickets" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(the tickets / be)?",
+      "options" : null
+    } ],
+    "sentences" : [ "When are the tickets?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ed"
+  },
+  "id" : "67fab6d599301022953425ed",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Estoy especialmente feliz por la noticia.",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'m" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) especially happy about the news.",
+      "options" : null
+    } ],
+    "sentences" : [ "I 'm especially happy about the news." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ee"
+  },
+  "id" : "67fab6d599301022953425ee",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "A ella le gusta un vestido nuevo.",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he / she / it en afirmativo, el verbo suma $-s$: she $likes$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "likes" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(like) a new dress.",
+      "options" : null
+    } ],
+    "sentences" : [ "She likes a new dress." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ef"
+  },
+  "id" : "67fab6d599301022953425ef",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Estamos muy emocionados.",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) very excited.",
+      "options" : null
+    } ],
+    "sentences" : [ "We're very excited." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425f0"
+  },
+  "id" : "67fab6d599301022953425f0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Qué hace ella en casa?",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "does she do" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / do) at home?",
+      "options" : null
+    } ],
+    "sentences" : [ "What does she do at home?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425f1"
+  },
+  "id" : "67fab6d599301022953425f1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Tú prefieres la comida italiana.",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "prefer" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(prefer) Italian food.",
+      "options" : null
+    } ],
+    "sentences" : [ "You prefer Italian food." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425f2"
+  },
+  "id" : "67fab6d599301022953425f2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Están listos para el examen?",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Are they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / be) ready for the exam?",
+      "options" : null
+    } ],
+    "sentences" : [ "Are they ready for the exam?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425f3"
+  },
+  "id" : "67fab6d599301022953425f3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Estoy en el edificio correcto?",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Am I" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(I / be) in the correct building?",
+      "options" : null
+    } ],
+    "sentences" : [ "Am I in the correct building?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425f4"
+  },
+  "id" : "67fab6d599301022953425f4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Llueve a menudo?",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does it rain" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(it / rain) often?",
+      "options" : null
+    } ],
+    "sentences" : [ "Does it rain often?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425f5"
+  },
+  "id" : "67fab6d599301022953425f5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "El coche no está en el garaje.",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The car",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) in the garage.",
+      "options" : null
+    } ],
+    "sentences" : [ "The car isn't in the garage." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425f6"
+  },
+  "id" : "67fab6d599301022953425f6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Ellos no tocan bien el piano.",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't play" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / play) the piano well.",
+      "options" : null
+    } ],
+    "sentences" : [ "They don't play the piano well." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425f7"
+  },
+  "id" : "67fab6d599301022953425f7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Él no está triste.",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) sad.",
+      "options" : null
+    } ],
+    "sentences" : [ "He isn't sad." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425f8"
+  },
+  "id" : "67fab6d599301022953425f8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Dónde trabajan ellos?",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do they work" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / work)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Where do they work?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425f9"
+  },
+  "id" : "67fab6d599301022953425f9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Conduce él al trabajo?",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does he drive" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / drive) to work?",
+      "options" : null
+    } ],
+    "sentences" : [ "Does he drive to work?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425fa"
+  },
+  "id" : "67fab6d599301022953425fa",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "No queremos azúcar.",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't want" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / want) any sugar.",
+      "options" : null
+    } ],
+    "sentences" : [ "We don't want any sugar." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425fb"
+  },
+  "id" : "67fab6d599301022953425fb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Qué quiere él para su cumpleaños?",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "does he want" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / want) for his birthday?",
+      "options" : null
+    } ],
+    "sentences" : [ "What does he want for his birthday?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425fc"
+  },
+  "id" : "67fab6d599301022953425fc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "No tengo sed ahora mismo.",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'m not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) thirsty right now.",
+      "options" : null
+    } ],
+    "sentences" : [ "I'm not thirsty right now." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425fd"
+  },
+  "id" : "67fab6d599301022953425fd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Es París hermoso todo el año?",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Is Paris" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(Paris / be) beautiful all year round?",
+      "options" : null
+    } ],
+    "sentences" : [ "Is Paris beautiful all year round?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425fe"
+  },
+  "id" : "67fab6d599301022953425fe",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Qué son esas bolsas?",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are those bags" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(those bags / be)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What are those bags?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ff"
+  },
+  "id" : "67fab6d599301022953425ff",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Él es de Berlín.",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) from Berlin.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's from Berlin." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342600"
+  },
+  "id" : "67fab6d59930102295342600",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Nosotros hacemos sushi y pizza.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "La $-s$ va sólo con he, she, it. Los demás sujetos usan el verbo en forma base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "make" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(make) sushi and pizza.",
+      "options" : null
+    } ],
+    "sentences" : [ "We make sushi and pizza." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342601"
+  },
+  "id" : "67fab6d59930102295342601",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿A qué hora quiere llegar?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What time",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "does he want" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / want) to arrive?",
+      "options" : null
+    } ],
+    "sentences" : [ "What time does he want to arrive?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342602"
+  },
+  "id" : "67fab6d59930102295342602",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "El clima es agradable hoy.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The weather",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) nice today.",
+      "options" : null
+    } ],
+    "sentences" : [ "The weather is nice today." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342603"
+  },
+  "id" : "67fab6d59930102295342603",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "No como carne.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't eat" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / eat) meat.",
+      "options" : null
+    } ],
+    "sentences" : [ "I don't eat meat." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342604"
+  },
+  "id" : "67fab6d59930102295342604",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Ella conduce un autobús?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Does she drive" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / drive) a bus?",
+      "options" : null
+    } ],
+    "sentences" : [ "Does she drive a bus?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342605"
+  },
+  "id" : "67fab6d59930102295342605",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Juego al tenis todos los martes.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "La $-s$ va sólo con he, she, it. Los demás sujetos usan el verbo en forma base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "play" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(play) tennis every Tuesday.",
+      "options" : null
+    } ],
+    "sentences" : [ "I play tennis every Tuesday." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342606"
+  },
+  "id" : "67fab6d59930102295342606",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿A los niños les gusta el helado?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do the kids like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(the kids / like) ice cream?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do the kids like ice cream?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342607"
+  },
+  "id" : "67fab6d59930102295342607",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Él no canta a menudo.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "doesn't sing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / sing) often.",
+      "options" : null
+    } ],
+    "sentences" : [ "He doesn't sing often." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342608"
+  },
+  "id" : "67fab6d59930102295342608",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Cómo está tu papá?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "How",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is your dad" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(your dad / be)?",
+      "options" : null
+    } ],
+    "sentences" : [ "How is your dad?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342609"
+  },
+  "id" : "67fab6d59930102295342609",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Mary es ingeniera?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Is Mary" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(Mary / be) an engineer?",
+      "options" : null
+    } ],
+    "sentences" : [ "Is Mary an engineer?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534260a"
+  },
+  "id" : "67fab6d5993010229534260a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Ellos no están en el cine.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) at the cinema.",
+      "options" : null
+    } ],
+    "sentences" : [ "They aren't at the cinema." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534260b"
+  },
+  "id" : "67fab6d5993010229534260b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Cuál es el problema?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is the problem" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(the problem / be)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What is the problem?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534260c"
+  },
+  "id" : "67fab6d5993010229534260c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Por qué hace tanto calor?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is it" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(it / be) so hot?",
+      "options" : null
+    } ],
+    "sentences" : [ "Why is it so hot?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534260d"
+  },
+  "id" : "67fab6d5993010229534260d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Llegamos tarde?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Are we" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(we / be) late?",
+      "options" : null
+    } ],
+    "sentences" : [ "Are we late?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534260e"
+  },
+  "id" : "67fab6d5993010229534260e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Cuándo llegan ellos?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do they arrive" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / arrive)?",
+      "options" : null
+    } ],
+    "sentences" : [ "When do they arrive?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534260f"
+  },
+  "id" : "67fab6d5993010229534260f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "¿Necesitas ayuda?",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Do you need" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / need) help?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you need help?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342610"
+  },
+  "id" : "67fab6d59930102295342610",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Ella estudia inglés todos los lunes.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con he, she, it, el verbo suma $-s$ (o $-es$ / $-ies$ según cómo termine).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "studies" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(study) English every Monday.",
+      "options" : null
+    } ],
+    "sentences" : [ "She studies English every Monday." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342611"
+  },
+  "id" : "67fab6d59930102295342611",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Ellos son estudiantes.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) students.",
+      "options" : null
+    } ],
+    "sentences" : [ "They're students." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342612"
+  },
+  "id" : "67fab6d59930102295342612",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Ella no vive en Londres.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "doesn't live" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / live) in London.",
+      "options" : null
+    } ],
+    "sentences" : [ "She doesn't live in London." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342613"
+  },
+  "id" : "67fab6d59930102295342613",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d394"
+  },
+  "title" : "Todas las formas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+  "translation" : "Peter no está en la escuela.",
+  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.05.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Peter",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) at school.",
+      "options" : null
+    } ],
+    "sentences" : [ "Peter isn't at school." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
 } ]

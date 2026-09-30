@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295343d39"
   },
   "id" : "67fab6d59930102295343d39",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Al final, decidí responder a su comentario.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -26,18 +26,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end, I chose to answer his comment.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "In" ]
     }, {
       "kind" : "TEXT",
@@ -45,18 +76,20 @@
       "options" : null
     } ],
     "sentences" : [ "In the end, I chose to answer his comment." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d3a"
   },
   "id" : "67fab6d59930102295343d3a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "¿Qué te imaginas que encontrarás al final?",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -74,10 +107,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -90,25 +123,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "in" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the end?",
       "options" : null
     } ],
-    "sentences" : [ "What do you imagine you'll find in the end?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What do you imagine you'll find",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "in" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "the end?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d3b"
   },
   "id" : "67fab6d59930102295343d3b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Buscamos mucho, pero al final elegimos una pizza.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -126,22 +195,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We searched around a lot but",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end, we went for a pizza.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We searched around a lot but",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
@@ -149,18 +253,20 @@
       "options" : null
     } ],
     "sentences" : [ "We searched around a lot but in the end, we went for a pizza." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d3c"
   },
   "id" : "67fab6d59930102295343d3c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Al final de la obra, nos enteramos de quién es el asesino.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -178,10 +284,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -194,25 +300,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "At" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the end of the play, we learn who the killer is.",
       "options" : null
     } ],
-    "sentences" : [ "At the end of the play, we learn who the killer is." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "At" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "the end of the play, we learn who the killer is."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d3d"
   },
   "id" : "67fab6d59930102295343d3d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Estaba muy triste por irme al final del año escolar.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -230,10 +372,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -246,25 +388,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "at" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the end of the school year.",
       "options" : null
     } ],
-    "sentences" : [ "I was very sad to leave at the end of the school year." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I was very sad to leave",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "the end of the school year."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d3e"
   },
   "id" : "67fab6d59930102295343d3e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Consideró ir al concierto pero, al final, se quedó en casa.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -282,10 +460,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -298,25 +476,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "in" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the end, she stayed home.",
       "options" : null
     } ],
-    "sentences" : [ "She considered going to the concert but, in the end, she stayed home." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She considered going to the concert but,",
+      "options" : null
+    }, {
+      "options" : [ "in" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end, she stayed home.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d3f"
   },
   "id" : "67fab6d59930102295343d3f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Al final de la lección, el profesor nos dio un ensayo.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -334,10 +548,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -350,25 +564,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "At" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the end of the lesson, the professor gave us an essay.",
       "options" : null
     } ],
-    "sentences" : [ "At the end of the lesson, the professor gave us an essay." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "At" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end of the lesson, the professor gave us an essay.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d40"
   },
   "id" : "67fab6d59930102295343d40",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Planeé comprar una chaqueta de cuero, pero al final compré una de algodón.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -386,10 +636,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I planned to get a leather jacket but",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end, I bought a cotton one.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -408,19 +692,21 @@
       "text" : "the end, I bought a cotton one.",
       "options" : null
     } ],
-    "sentences" : [ "I planned to get a leather jacket but in the end, I bought a cotton one." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d41"
   },
   "id" : "67fab6d59930102295343d41",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Pausó su escritura al final del párrafo.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -438,9 +724,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He paused his writing",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end of the paragraph.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -456,23 +777,24 @@
       "text" : "",
       "options" : [ "at" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "the end of the paragraph.",
-      "options" : null
-    } ],
-    "sentences" : [ "He paused his writing at the end of the paragraph." ]
-  }
+      "text" : "the end of the paragraph."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d42"
   },
   "id" : "67fab6d59930102295343d42",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Estoy tratando de planear un viaje corto al final de la primavera.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -490,41 +812,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I'm trying to plan a short trip",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end of the spring.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm trying to plan a short trip",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
       "text" : "the end of the spring.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "I'm trying to plan a short trip at the end of the spring." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d43"
   },
   "id" : "67fab6d59930102295343d43",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "No pudieron ponerse de acuerdo sobre una película, pero al final vieron una comedia.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -542,10 +901,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They couldn't agree on a movie but,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end, they watched a comedy.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -564,19 +957,21 @@
       "text" : "the end, they watched a comedy.",
       "options" : null
     } ],
-    "sentences" : [ "They couldn't agree on a movie but, in the end, they watched a comedy." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d44"
   },
   "id" : "67fab6d59930102295343d44",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "¿Qué dijo al final? ¿Aceptó venir?",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -594,10 +989,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What did he say",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end? Did he agree to come?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -616,19 +1045,21 @@
       "text" : "the end? Did he agree to come?",
       "options" : null
     } ],
-    "sentences" : [ "What did he say in the end? Did he agree to come?" ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d45"
   },
   "id" : "67fab6d59930102295343d45",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Al final de la historia, vivieron felices para siempre.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -646,10 +1077,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -662,25 +1093,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "At" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the end of the story, they lived happily ever after.",
       "options" : null
     } ],
-    "sentences" : [ "At the end of the story, they lived happily ever after." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "At" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end of the story, they lived happily ever after.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d46"
   },
   "id" : "67fab6d59930102295343d46",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Creo que empezaremos a buscar un coche nuevo a finales de mes.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -698,10 +1165,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -714,25 +1181,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "at" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the end of the month.",
       "options" : null
     } ],
-    "sentences" : [ "I believe we'll start looking for a new car at the end of the month." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I believe we'll start looking for a new car"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "text" : "the end of the month.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d47"
   },
   "id" : "67fab6d59930102295343d47",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Desarrolló su plan por un tiempo pero, al final, voló a Berlín.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -750,41 +1253,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He developed his plan for a while but,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end, he flew to Berlin.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He developed his plan for a while but,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "the end, he flew to Berlin.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "He developed his plan for a while but, in the end, he flew to Berlin." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d48"
   },
   "id" : "67fab6d59930102295343d48",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Disfrutamos del postre al final de la cena.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -802,10 +1342,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -818,25 +1358,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "at" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the end of the dinner.",
       "options" : null
     } ],
-    "sentences" : [ "We enjoyed dessert at the end of the dinner." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "We enjoyed dessert",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "text" : "the end of the dinner.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d49"
   },
   "id" : "67fab6d59930102295343d49",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Al final, decidimos alquilar un apartamento para el verano.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -854,9 +1430,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end, we decided to rent an apartment for the summer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -875,20 +1486,21 @@
       "kind" : "TEXT",
       "text" : "the end, we decided to rent an apartment for the summer.",
       "options" : null
-    } ],
-    "sentences" : [ "In the end, we decided to rent an apartment for the summer." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d4a"
   },
   "id" : "67fab6d59930102295343d4a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Al final del programa, decidió encontrar un papel en el teatro.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -906,37 +1518,70 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end of the program, he decided to find a role in theatre.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "At" ]
     }, {
       "kind" : "TEXT",
       "text" : "the end of the program, he decided to find a role in theatre.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "At the end of the program, he decided to find a role in theatre." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d4b"
   },
   "id" : "67fab6d59930102295343d4b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "¿Descubriste cuál era la solución al final?",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -954,22 +1599,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Did you find out what the solution was",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you find out what the solution was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
@@ -977,18 +1657,20 @@
       "options" : null
     } ],
     "sentences" : [ "Did you find out what the solution was in the end?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d4c"
   },
   "id" : "67fab6d59930102295343d4c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
   "title" : "$In the end$ o $at the end$",
-  "instructions" : "Completar con $in$ o $at$.",
+  "instructions" : "Elige 'in' o 'at'.",
   "translation" : "Siempre estoy exhausto al final del día.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
@@ -1006,13 +1688,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.14.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in the end$ es finalmente. $at the end$ es en la parte final de algo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm always exhausted",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the end of the day.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -1028,6 +1741,11 @@
       "text" : "the end of the day.",
       "options" : null
     } ],
-    "sentences" : [ "I'm always exhausted at the end of the day." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'at'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'at'."
 } ]

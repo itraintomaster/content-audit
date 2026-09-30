@@ -3,12 +3,12 @@
     "$oid" : "67fab6d5993010229534237b"
   },
   "id" : "67fab6d5993010229534237b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "¡Pateó esa pelota en la escuela!",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -26,41 +26,90 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He kicked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ball at school! (The ball is next to the other person.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He kicked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "that" ]
     }, {
       "kind" : "TEXT",
       "text" : "ball at school! (The ball is next to the other person.)",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "He kicked that ball at school!" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534237c"
   },
   "id" : "67fab6d5993010229534237c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "¿De quién es este libro?",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -78,41 +127,90 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Whose is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "book? (The book is near me.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Whose is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "this" ]
     }, {
       "kind" : "TEXT",
       "text" : "book? (The book is near me.)",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "Whose is this book?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534237d"
   },
   "id" : "67fab6d5993010229534237d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "¿Podrías llevar estas bolsas, por favor?",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -130,14 +228,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you carry",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bags, please? (I am holding the bags when I say this.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -152,19 +292,25 @@
       "text" : "bags, please? (I am holding the bags when I say this.)",
       "options" : null
     } ],
-    "sentences" : [ "Could you carry these bags, please?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534237e"
   },
   "id" : "67fab6d5993010229534237e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "Esa película fue genial.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -182,18 +328,61 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo que ya terminó (anoche, ayer) también es lejos: ahí va $that$, no $this$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "film was great. (we watched the film last night.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "That" ]
     }, {
       "kind" : "TEXT",
@@ -201,18 +390,20 @@
       "options" : null
     } ],
     "sentences" : [ "That film was great." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534237f"
   },
   "id" : "67fab6d5993010229534237f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "Este es mi papá. Papá, te presento a Sarah.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -230,13 +421,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "is my dad. Dad, meet Sarah.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -252,19 +486,24 @@
       "text" : "is my dad. Dad, meet Sarah.",
       "options" : null
     } ],
-    "sentences" : [ "This is my dad. Dad, meet Sarah." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342380"
   },
   "id" : "67fab6d59930102295342380",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "Esas son mis llaves.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -282,9 +521,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "are my keys. (the other person is holding the keys.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -303,20 +589,21 @@
       "kind" : "TEXT",
       "text" : "are my keys. (the other person is holding the keys.)",
       "options" : null
-    } ],
-    "sentences" : [ "Those are my keys." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342381"
   },
   "id" : "67fab6d59930102295342381",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "Este teléfono es genial.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -334,10 +621,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -350,25 +637,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "This" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "phone is great. (I'm using the phone.)",
       "options" : null
     } ],
-    "sentences" : [ "This phone is great." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "This" ]
+    }, {
+      "text" : "phone is great. (I'm using the phone.)",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342382"
   },
   "id" : "67fab6d59930102295342382",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "Estas son las mejores cosas.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -386,37 +721,82 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "are the best things. (I'm holding the things.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "These" ]
     }, {
       "kind" : "TEXT",
       "text" : "are the best things. (I'm holding the things.)",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "These are the best things." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342383"
   },
   "id" : "67fab6d59930102295342383",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "¿Son tuyos estos bolígrafos?",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -434,9 +814,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pens yours? (The pens are on a desk near you.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -455,20 +882,21 @@
       "kind" : "TEXT",
       "text" : "pens yours? (The pens are on a desk near you.)",
       "options" : null
-    } ],
-    "sentences" : [ "Are these pens yours?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342384"
   },
   "id" : "67fab6d59930102295342384",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "Esa chica de allá es mi hermana.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -486,15 +914,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "girl over there is my sister.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "",
@@ -508,19 +977,26 @@
       "text" : "girl over there is my sister.",
       "options" : null
     } ],
-    "sentences" : [ "That girl over there is my sister." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342385"
   },
   "id" : "67fab6d59930102295342385",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "Estas flores son para ti.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -538,9 +1014,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "flowers are for you. (I'm holding the flowers.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -559,20 +1082,21 @@
       "kind" : "TEXT",
       "text" : "flowers are for you. (I'm holding the flowers.)",
       "options" : null
-    } ],
-    "sentences" : [ "These flowers are for you." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342386"
   },
   "id" : "67fab6d59930102295342386",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "Esta casa es muy nueva.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -590,18 +1114,61 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "house is very new. (I'm pointing at the house near me.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "This" ]
     }, {
       "kind" : "TEXT",
@@ -609,18 +1176,20 @@
       "options" : null
     } ],
     "sentences" : [ "This house is very new." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342387"
   },
   "id" : "67fab6d59930102295342387",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "Esas galletas son dulces.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -638,18 +1207,61 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "biscuits are sweet. (the biscuits are not beside me.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Those" ]
     }, {
       "kind" : "TEXT",
@@ -657,18 +1269,20 @@
       "options" : null
     } ],
     "sentences" : [ "Those biscuits are sweet." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342388"
   },
   "id" : "67fab6d59930102295342388",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "Estos libros necesitan un nombre nuevo.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -686,37 +1300,82 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "books need a new name. (I'm beside the books.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "These" ]
     }, {
       "kind" : "TEXT",
       "text" : "books need a new name. (I'm beside the books.)",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "These books need a new name." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342389"
   },
   "id" : "67fab6d59930102295342389",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "¿Sabes qué color es este?",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -734,41 +1393,90 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you know what",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "colour is? (I'm pointing at the colour.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you know what",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "this" ]
     }, {
       "kind" : "TEXT",
       "text" : "colour is? (I'm pointing at the colour.)",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Do you know what this colour is?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534238a"
   },
   "id" : "67fab6d5993010229534238a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "¿Conoces a ese perro al final de la calle?",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -786,10 +1494,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -802,25 +1510,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dog at the end of the street?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Do you know",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "that" ]
     }, {
       "kind" : "TEXT",
       "text" : "dog at the end of the street?",
       "options" : null
     } ],
-    "sentences" : [ "Do you know that dog at the end of the street?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534238b"
   },
   "id" : "67fab6d5993010229534238b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "Esos zapatos realmente te quedan bien.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -838,18 +1594,61 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "shoes really look good on you.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Those" ]
     }, {
       "kind" : "TEXT",
@@ -857,18 +1656,20 @@
       "options" : null
     } ],
     "sentences" : [ "Those shoes really look good on you." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534238c"
   },
   "id" : "67fab6d5993010229534238c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "¿Qué son esos?",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -886,13 +1687,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "? (I mean more than one thing next to the other person.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -908,19 +1752,24 @@
       "text" : "? (I mean more than one thing next to the other person.)",
       "options" : null
     } ],
-    "sentences" : [ "What are those?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534238d"
   },
   "id" : "67fab6d5993010229534238d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "A: Estos son mis amigos, Lisa y John. B: Encantado de conocerte.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -938,10 +1787,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -954,25 +1803,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "These" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "are my friends, Lisa and John. B: Nice to meet you.",
       "options" : null
     } ],
-    "sentences" : [ "A: These are my friends, Lisa and John. B: Nice to meet you." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A:",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "These" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "are my friends, Lisa and John. B: Nice to meet you.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534238e"
   },
   "id" : "67fab6d5993010229534238e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
   "title" : "Señalar objetos",
-  "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
   "translation" : "¿Me puedes dar eso?",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
@@ -990,22 +1887,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.01.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cerca: $this$ / $these$. Lejos: $that$ / $those$. Plural: $these$ / $those$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Can you give me",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "? (I mean one thing near to the other person.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you give me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "that" ]
     }, {
       "kind" : "TEXT",
@@ -1013,5 +1957,1995 @@
       "options" : null
     } ],
     "sentences" : [ "Can you give me that?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac4"
+  },
+  "id" : "67fab6d59930102295342ac4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Él recogió estas peras.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He picked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pears (the pears are in my hand).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He picked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "these" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pears (the pears are in my hand).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "He picked these pears." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac5"
+  },
+  "id" : "67fab6d59930102295342ac5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Pasamos por esa tienda de allí esta mañana.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We drove by",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "shop over there this morning.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "We drove by"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "that" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "shop over there this morning.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac6"
+  },
+  "id" : "67fab6d59930102295342ac6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Estos zapatos son eléctricos.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "shoes are electric (I'm wearing the shoes).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "These" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "shoes are electric (I'm wearing the shoes).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "These shoes are electric." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac7"
+  },
+  "id" : "67fab6d59930102295342ac7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Conseguí esta cadena.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I got",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "chain (I have the chain).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I got",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "this" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "chain (I have the chain).",
+      "options" : null
+    } ],
+    "sentences" : [ "I got this chain." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac8"
+  },
+  "id" : "67fab6d59930102295342ac8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Esta cuchara está limpia.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "spoon is clean (I'm holding the spoon).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "This" ]
+    }, {
+      "text" : "spoon is clean (I'm holding the spoon).",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac9"
+  },
+  "id" : "67fab6d59930102295342ac9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Él quiere pintar esas nubes (allá lejos).",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He wants to paint",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "clouds (over there).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He wants to paint",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "those" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "clouds (over there).",
+      "options" : null
+    } ],
+    "sentences" : [ "He wants to paint those clouds." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342aca"
+  },
+  "id" : "67fab6d59930102295342aca",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Esta naranja es dulce.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "orange is sweet (I'm eating the orange).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "This" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "orange is sweet (I'm eating the orange).",
+      "options" : null
+    } ],
+    "sentences" : [ "This orange is sweet." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342acb"
+  },
+  "id" : "67fab6d59930102295342acb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "¿Michael nos dio estas bufandas?",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did Michael give us",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "scarves (I'm holding the scarves).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did Michael give us",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "these" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "scarves (I'm holding the scarves).",
+      "options" : null
+    } ],
+    "sentences" : [ "Did Michael give us these scarves." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342acc"
+  },
+  "id" : "67fab6d59930102295342acc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Esa bicicleta es de Mary.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bicycle is Mary's (the bicycle is twenty metres away).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "That" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bicycle is Mary's (the bicycle is twenty metres away).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342acd"
+  },
+  "id" : "67fab6d59930102295342acd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Ese chico es mi hermano.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "boy is my brother (the boy is on the other side of the room).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "That" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "boy is my brother (the boy is on the other side of the room)."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ace"
+  },
+  "id" : "67fab6d59930102295342ace",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Estos documentos son importantes.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "documents are important (I'm reading the documents on my computer).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "These" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "documents are important (I'm reading the documents on my computer).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342acf"
+  },
+  "id" : "67fab6d59930102295342acf",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Este vaso está lleno de agua.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "glass is filled with water (the glass is close to you).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "This" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "glass is filled with water (the glass is close to you).",
+      "options" : null
+    } ],
+    "sentences" : [ "This glass is filled with water." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ad0"
+  },
+  "id" : "67fab6d59930102295342ad0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "¿Podrías ayudarme con estas cajas?",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you help me with",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "boxes? (I'm holding the boxes).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you help me with",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "these" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "boxes? (I'm holding the boxes).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "Could you help me with these boxes?." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ad1"
+  },
+  "id" : "67fab6d59930102295342ad1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Este bolígrafo es mío.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pen is mine (I'm holding the pen).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "This" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pen is mine (I'm holding the pen).",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ad2"
+  },
+  "id" : "67fab6d59930102295342ad2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Ella quiere este sombrero.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wants",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hat (you're holding the hat).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wants",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "this" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "hat (you're holding the hat).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ad3"
+  },
+  "id" : "67fab6d59930102295342ad3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Preferiría esos rompecabezas, por favor.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd prefer",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "puzzles, please (the puzzles are near you).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd prefer",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "those" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "puzzles, please (the puzzles are near you).",
+      "options" : null
+    } ],
+    "sentences" : [ "I'd prefer those puzzles, please." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ad4"
+  },
+  "id" : "67fab6d59930102295342ad4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Ella estudió este mapa.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She studied",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "map (we have the map).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She studied",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "this" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "map (we have the map).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "She studied this map." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ad5"
+  },
+  "id" : "67fab6d59930102295342ad5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Esas pizarras pertenecen a Samuel.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "blackboards belong to Samuel (the blackboards are near you).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Those" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "blackboards belong to Samuel (the blackboards are near you).",
+      "options" : null
+    } ],
+    "sentences" : [ "Those blackboards belong to Samuel." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ad6"
+  },
+  "id" : "67fab6d59930102295342ad6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Esos padres viven a la vuelta de la esquina.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "parents live around the corner (the parents are across the road).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "Those" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "parents live around the corner (the parents are across the road).",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ad7"
+  },
+  "id" : "67fab6d59930102295342ad7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cc"
+  },
+  "title" : "Señalar objetos",
+  "instructions" : "Elige 'this', 'that', 'these' o 'those'.",
+  "translation" : "Tomé estas manzanas hoy.",
+  "theoryId" : "a1.07.This_That_These_Those",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.01.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cerca → $this$ / $these$. Lejos → $that$ / $those$. Plural → $these$ / $those$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I took",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "apples today (I'm close to the apples).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    }, {
+      "id" : "these",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "these"
+    }, {
+      "id" : "this",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "this"
+    }, {
+      "id" : "those",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "those"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I took",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "these" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "apples today (I'm close to the apples).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "I took these apples today." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'this', 'that', 'these' o 'those'.",
+  "instructionsAntesDeRevisar" : "Elige con 'this', 'that', 'these' o 'those'."
 } ]

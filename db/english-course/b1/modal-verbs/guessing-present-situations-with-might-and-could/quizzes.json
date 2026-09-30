@@ -8,7 +8,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Él podría llegar tarde.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -60,7 +60,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Mis padres podrían estar en casa.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -78,7 +78,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -112,7 +112,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Sarah podría sentirse feliz.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -130,7 +130,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -164,7 +164,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Los pájaros podrían estar volando.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -182,7 +182,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -216,7 +216,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Podríamos estar equivocados.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -234,7 +234,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -268,7 +268,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "El museo podría estar lleno de gente esta tarde.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -286,22 +286,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The museum / be busy this afternoon.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "The museum might be busy this afternoon.|The museum could be busy this afternoon." ]
     } ],
     "sentences" : [ "The museum might be busy this afternoon.", "The museum could be busy this afternoon." ]
@@ -316,7 +316,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Peter podría tener una llave.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -334,7 +334,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -368,7 +368,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Laura podría estar en la fiesta.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -386,7 +386,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -420,7 +420,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Los estudiantes podrían estar en la biblioteca.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -438,7 +438,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -472,7 +472,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "El autobús podría estar retrasado.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -490,7 +490,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -524,7 +524,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Podría haber una tormenta.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -542,7 +542,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -576,7 +576,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Podría haber una solución.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -594,7 +594,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -628,7 +628,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "John podría estar en el gimnasio.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -646,7 +646,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -680,7 +680,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Él podría necesitar ayuda.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -698,7 +698,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -732,7 +732,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "A ellos podría gustarles el chocolate.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -750,7 +750,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -784,7 +784,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Las puertas podrían estar abiertas después de la reunión.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -802,22 +802,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The doors / be open after the meeting.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "The doors might be open after the meeting.|The doors could be open after the meeting." ]
     } ],
     "sentences" : [ "The doors might be open after the meeting.", "The doors could be open after the meeting." ]
@@ -832,7 +832,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "El gato podría estar en el tejado.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -850,7 +850,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -884,7 +884,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "La cafetería podría estar cerrada.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -902,7 +902,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -936,7 +936,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Su café podría estar caliente.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -954,7 +954,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -988,7 +988,7 @@
     "$oid" : "6814dafa7d73e7209a13d330"
   },
   "title" : "$Might$ y $Could$",
-  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
   "translation" : "Ellos podrían amarnos.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
@@ -1006,7 +1006,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.11.06.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1029,5 +1029,1041 @@
       "options" : null
     } ],
     "sentences" : [ "They might love us.", "They could love us." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444c3"
+  },
+  "id" : "67fab6d599301022953444c3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Robert podría necesitar ayuda.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Robert / need assistance.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Robert might need assistance.|Robert could need assistance." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Robert might need assistance.", "Robert could need assistance." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444c4"
+  },
+  "id" : "67fab6d599301022953444c4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Ella podría sentirse preocupada.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / feel worried.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She might feel worried.|She could feel worried." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She might feel worried.", "She could feel worried." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444c5"
+  },
+  "id" : "67fab6d599301022953444c5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Podría estar soleado mañana.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It / be sunny tomorrow.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It might be sunny tomorrow.|It could be sunny tomorrow." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "It might be sunny tomorrow.", "It could be sunny tomorrow." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444c6"
+  },
+  "id" : "67fab6d599301022953444c6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Los pubs podrían ser visibles desde la calle principal.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The pubs / be visible from the main road.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The pubs could be visible from the main road.|The pubs might be visible from the main road." ]
+    } ],
+    "sentences" : [ "The pubs could be visible from the main road.", "The pubs might be visible from the main road." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444c7"
+  },
+  "id" : "67fab6d599301022953444c7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "John podría estar en la escuela.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "John / be at school.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "John might be at school.|John could be at school." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "John might be at school.", "John could be at school." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444c8"
+  },
+  "id" : "67fab6d599301022953444c8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Los profesores podrían querer nuevas computadoras portátiles.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The teachers / want new laptops.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The teachers might want new laptops.|The teachers could want new laptops." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The teachers might want new laptops.", "The teachers could want new laptops." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444c9"
+  },
+  "id" : "67fab6d599301022953444c9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Él podría estar aquí.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He / be here.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He could be here.|He might be here." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He could be here.", "He might be here." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444ca"
+  },
+  "id" : "67fab6d599301022953444ca",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Podríamos necesitar algunas sillas adicionales.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / need a few extra chairs.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We could need a few extra chairs.|We might need a few extra chairs." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We could need a few extra chairs.", "We might need a few extra chairs." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444cb"
+  },
+  "id" : "67fab6d599301022953444cb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Las chicas podrían querer un helado.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The girls / want some ice cream.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The girls might want some ice cream.|The girls could want some ice cream." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The girls might want some ice cream.", "The girls could want some ice cream." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444cc"
+  },
+  "id" : "67fab6d599301022953444cc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "La tienda podría estar cerrada hoy.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The shop / be closed today.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The shop might be closed today.|The shop could be closed today." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The shop might be closed today.", "The shop could be closed today." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444cd"
+  },
+  "id" : "67fab6d599301022953444cd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Laura podría estar en casa.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Laura / be at home.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Laura might be at home.|Laura could be at home." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Laura might be at home.", "Laura could be at home." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444ce"
+  },
+  "id" : "67fab6d599301022953444ce",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "El autobús podría llegar temprano.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The bus / be early.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The bus could be early.|The bus might be early." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The bus could be early.", "The bus might be early." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444cf"
+  },
+  "id" : "67fab6d599301022953444cf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Ella podría tener gripe.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / have the flu.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She might have the flu.|She could have the flu." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She might have the flu.", "She could have the flu." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444d0"
+  },
+  "id" : "67fab6d599301022953444d0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Podría estar lluvioso más tarde.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It / be rainy later.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "It could be rainy later.|It might be rainy later." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "It could be rainy later.", "It might be rainy later." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444d1"
+  },
+  "id" : "67fab6d599301022953444d1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Podríamos estar de vacaciones.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / be on vacation.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We might be on vacation.|We could be on vacation." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We might be on vacation.", "We could be on vacation." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444d2"
+  },
+  "id" : "67fab6d599301022953444d2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Él podría estar en una reunión.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He / be in a meeting.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He could be in a meeting.|He might be in a meeting." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He could be in a meeting.", "He might be in a meeting." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444d3"
+  },
+  "id" : "67fab6d599301022953444d3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "La casa podría ser demasiado pequeña.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The house / be too small.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The house might be too small.|The house could be too small." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The house might be too small.", "The house could be too small." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444d4"
+  },
+  "id" : "67fab6d599301022953444d4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "La bicicleta podría necesitar una cadena nueva.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The bike / need a new chain.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The bike could need a new chain.|The bike might need a new chain." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The bike could need a new chain.", "The bike might need a new chain." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444d5"
+  },
+  "id" : "67fab6d599301022953444d5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Ella podría tener una solución.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / have a solution.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She might have a solution.|She could have a solution." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She might have a solution.", "She could have a solution." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953444d6"
+  },
+  "id" : "67fab6d599301022953444d6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d330"
+  },
+  "title" : "$Might$ y $Could$",
+  "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige 'might' o 'could' (ambos son correctos).",
+  "translation" : "Podríamos querer un poco de jugo.",
+  "theoryId" : "b1.11.Could_Might_etc",
+  "topicName" : "Modal verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.09.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$might$ y $could$ dicen lo mismo: no estás seguro. Después va el verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / want some juice.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We could want some juice.|We might want some juice." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We could want some juice.", "We might want some juice." ]
   }
 } ]

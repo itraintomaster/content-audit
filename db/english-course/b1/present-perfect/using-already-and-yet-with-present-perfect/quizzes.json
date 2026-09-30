@@ -8,7 +8,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Él aún no ha salido de la casa.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -42,13 +42,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "He hasn't left the house yet / He has not left the house yet" ]
+      "options" : [ "He hasn't left the house yet|He has not left the house yet" ]
     }, {
       "kind" : "TEXT",
       "text" : "(he / not / leave / the house).",
       "options" : null
     } ],
-    "sentences" : [ "He hasn't left the house yet / He has not left the house yet." ]
+    "sentences" : [ "He hasn't left the house yet.", "He has not left the house yet." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "He hasn't left the house yet / He has not left the house yet" ]
   }
 }, {
   "_id" : {
@@ -60,7 +63,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Mary aún no ha respondido.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -78,7 +81,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -94,13 +97,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Mary hasn't replied yet / Mary has not replied yet" ]
+      "options" : [ "Mary hasn't replied yet|Mary has not replied yet" ]
     }, {
       "kind" : "TEXT",
       "text" : "(Mary / not / reply).",
       "options" : null
     } ],
-    "sentences" : [ "Mary hasn't replied yet / Mary has not replied yet." ]
+    "sentences" : [ "Mary hasn't replied yet.", "Mary has not replied yet." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "Mary hasn't replied yet / Mary has not replied yet" ]
   }
 }, {
   "_id" : {
@@ -112,7 +118,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "¿Ya han vendido el coche?",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -130,7 +136,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -164,7 +170,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "¿Ya han viajado?",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -182,7 +188,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -216,7 +222,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "¿Ya han visto la última temporada?",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -234,18 +240,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Have they watched the last season yet" ]
     }, {
       "kind" : "TEXT",
@@ -264,7 +270,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "¿Él ya se ha ido?",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -282,7 +288,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -316,7 +322,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Aún no han visitado el museo.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -334,7 +340,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -350,13 +356,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "They haven't visited the museum yet / They have not visited the museum yet" ]
+      "options" : [ "They haven't visited the museum yet|They have not visited the museum yet" ]
     }, {
       "kind" : "TEXT",
       "text" : "(they / not / be / to the museum).",
       "options" : null
     } ],
-    "sentences" : [ "They haven't visited the museum yet / They have not visited the museum yet." ]
+    "sentences" : [ "They haven't visited the museum yet.", "They have not visited the museum yet." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "They haven't visited the museum yet / They have not visited the museum yet" ]
   }
 }, {
   "_id" : {
@@ -368,7 +377,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Los pájaros aún no se han ido del árbol.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -386,7 +395,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -402,13 +411,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "The birds haven't left the tree yet / The birds have not left the tree yet" ]
+      "options" : [ "The birds haven't left the tree yet|The birds have not left the tree yet" ]
     }, {
       "kind" : "TEXT",
       "text" : "(the birds / not / leave / the tree).",
       "options" : null
     } ],
-    "sentences" : [ "The birds haven't left the tree yet / The birds have not left the tree yet." ]
+    "sentences" : [ "The birds haven't left the tree yet.", "The birds have not left the tree yet." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "The birds haven't left the tree yet / The birds have not left the tree yet" ]
   }
 }, {
   "_id" : {
@@ -420,7 +432,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "¿Ya han enviado el correo electrónico?",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -438,7 +450,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -472,7 +484,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Ella ya ha visto esa película.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -490,7 +502,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -506,13 +518,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "She has already watched that movie / She's already watched that movie" ]
+      "options" : [ "She has already watched that movie|She's already watched that movie" ]
     }, {
       "kind" : "TEXT",
       "text" : "(she / watch / that movie).",
       "options" : null
     } ],
-    "sentences" : [ "She has already watched that movie / She's already watched that movie." ]
+    "sentences" : [ "She has already watched that movie.", "She's already watched that movie." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "She has already watched that movie / She's already watched that movie" ]
   }
 }, {
   "_id" : {
@@ -524,7 +539,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Él ya ha hablado con Robert.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -542,7 +557,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -558,13 +573,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "He has already spoken to Robert / He's already spoken to Robert" ]
+      "options" : [ "He has already spoken to Robert|He's already spoken to Robert" ]
     }, {
       "kind" : "TEXT",
       "text" : "(he / talk / to Robert).",
       "options" : null
     } ],
-    "sentences" : [ "He has already spoken to Robert / He's already spoken to Robert." ]
+    "sentences" : [ "He has already spoken to Robert.", "He's already spoken to Robert." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "He has already spoken to Robert / He's already spoken to Robert" ]
   }
 }, {
   "_id" : {
@@ -576,7 +594,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "¿Ya le ha escrito un mensaje a tu hermana?",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -594,7 +612,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -628,7 +646,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Ella aún no ha probado el vino.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -646,25 +664,28 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
-      "options" : [ "She hasn't tried the wine yet / She has not tried the wine yet" ]
+      "text" : "",
+      "options" : [ "She hasn't tried the wine yet|She has not tried the wine yet" ]
     }, {
       "kind" : "TEXT",
       "text" : "(she / not / try / the wine).",
       "options" : null
     } ],
-    "sentences" : [ "She hasn't tried the wine yet / She has not tried the wine yet." ]
+    "sentences" : [ "She hasn't tried the wine yet.", "She has not tried the wine yet." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "0" : [ "She hasn't tried the wine yet / She has not tried the wine yet" ]
   }
 }, {
   "_id" : {
@@ -676,7 +697,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Él ya ha comenzado la lección.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -694,7 +715,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -710,13 +731,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "He has already started the lesson / He's already started the lesson" ]
+      "options" : [ "He has already started the lesson|He's already started the lesson" ]
     }, {
       "kind" : "TEXT",
       "text" : "(he / start / the lesson).",
       "options" : null
     } ],
-    "sentences" : [ "He has already started the lesson / He's already started the lesson." ]
+    "sentences" : [ "He has already started the lesson.", "He's already started the lesson." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "He has already started the lesson / He's already started the lesson" ]
   }
 }, {
   "_id" : {
@@ -728,7 +752,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Aún no han elegido la música.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -746,7 +770,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -762,13 +786,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "They haven't chosen the music yet / They have not chosen the music yet" ]
+      "options" : [ "They haven't chosen the music yet|They have not chosen the music yet" ]
     }, {
       "kind" : "TEXT",
       "text" : "(they / not / choose / the music).",
       "options" : null
     } ],
-    "sentences" : [ "They haven't chosen the music yet / They have not chosen the music yet." ]
+    "sentences" : [ "They haven't chosen the music yet.", "They have not chosen the music yet." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "They haven't chosen the music yet / They have not chosen the music yet" ]
   }
 }, {
   "_id" : {
@@ -780,7 +807,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Los estudiantes ya han visto la película.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -798,7 +825,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -832,7 +859,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Ellos ya han empezado.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -850,7 +877,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -866,13 +893,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "They have already started / They've already started" ]
+      "options" : [ "They have already started|They've already started" ]
     }, {
       "kind" : "TEXT",
       "text" : "(they / start).",
       "options" : null
     } ],
-    "sentences" : [ "They have already started / They've already started." ]
+    "sentences" : [ "They have already started.", "They've already started." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "They have already started / They've already started" ]
   }
 }, {
   "_id" : {
@@ -884,7 +914,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "¿Los niños ya han terminado la cena?",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -902,7 +932,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -936,7 +966,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Ellos ya lo han conocido.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -954,7 +984,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -970,13 +1000,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "They have already met him / They've already met him" ]
+      "options" : [ "They have already met him|They've already met him" ]
     }, {
       "kind" : "TEXT",
       "text" : "(they / meet / him).",
       "options" : null
     } ],
-    "sentences" : [ "They have already met him / They've already met him." ]
+    "sentences" : [ "They have already met him.", "They've already met him." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "They have already met him / They've already met him" ]
   }
 }, {
   "_id" : {
@@ -988,7 +1021,7 @@
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
   "title" : "$Already$ y $yet$",
-  "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
+  "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
   "translation" : "Ella ya ha pensado en ti.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -1006,7 +1039,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.09.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$yet$ va al final de negativas y preguntas. $already$, antes del participio.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1022,12 +1055,1051 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "She has already thought about you / She's already thought about you" ]
+      "options" : [ "She has already thought about you|She's already thought about you" ]
     }, {
       "kind" : "TEXT",
       "text" : "(she / think / about you).",
       "options" : null
     } ],
-    "sentences" : [ "She has already thought about you / She's already thought about you." ]
+    "sentences" : [ "She has already thought about you.", "She's already thought about you." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "She has already thought about you / She's already thought about you" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ed3"
+  },
+  "id" : "67fab6d59930102295343ed3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Ya he almorzado.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I / eat lunch.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I've already eaten lunch.|I have already eaten lunch." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I've already eaten lunch.", "I have already eaten lunch." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ed4"
+  },
+  "id" : "67fab6d59930102295343ed4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "¿Él ya ha leído el libro?",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He / read the book?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Has he read the book yet?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Has he read the book yet?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ed5"
+  },
+  "id" : "67fab6d59930102295343ed5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Ya la he llamado.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I / call her.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I've already called her.|I have already called her." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I've already called her.", "I have already called her." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ed6"
+  },
+  "id" : "67fab6d59930102295343ed6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Los perros ya han ladrado.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs / bark.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The dogs have already barked." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The dogs have already barked." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ed7"
+  },
+  "id" : "67fab6d59930102295343ed7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Ella ya ha bebido té.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / drink tea.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She's already drunk tea.|She has already drunk tea." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She's already drunk tea.", "She has already drunk tea." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ed8"
+  },
+  "id" : "67fab6d59930102295343ed8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "David ya ha salido del trabajo.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "David / leave work.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "David has already left work." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "David has already left work." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ed9"
+  },
+  "id" : "67fab6d59930102295343ed9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Ya hemos decidido el plan.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / decide the plan.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We've already decided the plan.|We have already decided the plan." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We've already decided the plan.", "We have already decided the plan." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343eda"
+  },
+  "id" : "67fab6d59930102295343eda",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Él ya ha aprobado el examen.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He / pass the test.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "He's already passed the test.|He has already passed the test." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He's already passed the test.", "He has already passed the test." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343edb"
+  },
+  "id" : "67fab6d59930102295343edb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Ella aún no ha pagado la cuenta.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / not / pay the bill.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She hasn't paid the bill yet.|She has not paid the bill yet." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She hasn't paid the bill yet.", "She has not paid the bill yet." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343edc"
+  },
+  "id" : "67fab6d59930102295343edc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Los invitados ya han llegado.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The guests / arrive.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The guests have already arrived." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "The guests have already arrived." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343edd"
+  },
+  "id" : "67fab6d59930102295343edd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "¿Ya has dormido?",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You / sleep?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Have you slept yet?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Have you slept yet?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ede"
+  },
+  "id" : "67fab6d59930102295343ede",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "¿Los constructores ya han terminado el trabajo?",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The builders / finish the work?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Have the builders finished the work yet?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Have the builders finished the work yet?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343edf"
+  },
+  "id" : "67fab6d59930102295343edf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Sarah ya ha encontrado sus llaves.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sarah / find her keys.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Sarah has already found her keys." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Sarah has already found her keys." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ee0"
+  },
+  "id" : "67fab6d59930102295343ee0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Aún no he lavado los platos.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I / not / wash the dishes.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I haven't washed the dishes yet.|I have not washed the dishes yet." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I haven't washed the dishes yet.", "I have not washed the dishes yet." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ee1"
+  },
+  "id" : "67fab6d59930102295343ee1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "¿Tom ya ha editado el documento?",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Tom / edit the document?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Has Tom edited the document yet?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Has Tom edited the document yet?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ee2"
+  },
+  "id" : "67fab6d59930102295343ee2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Ella aún no ha respondido.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She / not / respond.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "She hasn't responded yet.|She has not responded yet." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She hasn't responded yet.", "She has not responded yet." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ee3"
+  },
+  "id" : "67fab6d59930102295343ee3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Ya he visto esta película.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I / see this film.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "I've already seen this film.|I have already seen this film." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I've already seen this film.", "I have already seen this film." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ee4"
+  },
+  "id" : "67fab6d59930102295343ee4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "¿Los niños ya han hecho sus evaluaciones esta semana?",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The children / do their assessments this week?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Have the children done their assessments this week yet?" ]
+    } ],
+    "sentences" : [ "Have the children done their assessments this week yet?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ee5"
+  },
+  "id" : "67fab6d59930102295343ee5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Ellos aún no han conocido al gerente.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They / not / meet the manager.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "They haven't met the manager yet.|They have not met the manager yet." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They haven't met the manager yet.", "They have not met the manager yet." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343ee6"
+  },
+  "id" : "67fab6d59930102295343ee6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2ca"
+  },
+  "title" : "$Already$ y $yet$",
+  "instructions" : "Escribe oraciones con el 'present perfect simple' y agrega 'yet' o 'already'. Usa 'yet' para oraciones negativas y preguntas, y 'already' para oraciones positivas.",
+  "translation" : "Aún no hemos cantado la canción.",
+  "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.02.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$already$ en afirmativas, antes del participio. $yet$ al final de negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We / not / sing the song.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "We haven't sung the song yet.|We have not sung the song yet." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We haven't sung the song yet.", "We have not sung the song yet." ]
   }
 } ]

@@ -8,9 +8,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Podría comerme un poco de pastel?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -60,9 +60,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "Petición amable: Quiero quedarme aquí. ¿Podría quedarme aquí?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -78,22 +78,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Polite request: I want to stay here.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Could I stay here?" ]
     } ],
     "sentences" : [ "Could I stay here?" ]
@@ -108,9 +108,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Podría caminar contigo?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -126,7 +126,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -160,9 +160,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Puedes encontrar al gato?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -178,22 +178,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Informal request: I want you to find the cat.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Can you find the cat?" ]
     } ],
     "sentences" : [ "Can you find the cat?" ]
@@ -208,9 +208,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Podrías cuidar al gato?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -226,22 +226,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Polite request: I want you to watch the cat.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Could you watch the cat?" ]
     } ],
     "sentences" : [ "Could you watch the cat?" ]
@@ -256,9 +256,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Podrías visitarnos pronto?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -274,7 +274,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -308,9 +308,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Me puedes mostrar tu coche?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -326,22 +326,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Informal request: I want you to show me your car.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Can you show me your car?" ]
     } ],
     "sentences" : [ "Can you show me your car?" ]
@@ -356,9 +356,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Me puedes traer el azúcar?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -374,22 +374,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Informal request: I want you to get me the sugar.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Can you get me the sugar?" ]
     } ],
     "sentences" : [ "Can you get me the sugar?" ]
@@ -404,9 +404,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Puedes visitarnos pronto?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -422,7 +422,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -456,9 +456,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Puedo usar tu teléfono?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -474,7 +474,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -508,9 +508,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "Pregunta: ¿Puedo usar tu teléfono?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -526,22 +526,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si no se aclara la cortesía, el pedido va con $Can$ por defecto.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Ask (use / your phone):",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Can I use your phone?" ]
     } ],
     "sentences" : [ "Ask : Can I use your phone?" ]
@@ -556,9 +556,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Podrías darme tu coche?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -574,22 +574,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Polite request: I want you to give me your car.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Could you give me your car?" ]
     } ],
     "sentences" : [ "Could you give me your car?" ]
@@ -604,9 +604,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Podrías comprar un poco de pan?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -622,7 +622,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -656,9 +656,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Puedes comprar un poco de pan?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -674,7 +674,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -708,9 +708,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Puedo comerme un poco de pastel?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -726,7 +726,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -760,9 +760,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Podrías darme el azúcar?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -778,22 +778,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Polite request: I want you to give me the sugar.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Could you give me the sugar?" ]
     } ],
     "sentences" : [ "Could you give me the sugar?" ]
@@ -808,9 +808,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Podría usar tu teléfono?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -826,7 +826,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -860,9 +860,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "Petición informal: Quiero empezar ahora. ¿Puedo empezar ahora?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -878,22 +878,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Informal request: I want to start now.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Can I start now?" ]
     } ],
     "sentences" : [ "Can I start now?" ]
@@ -908,9 +908,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Puedo caminar contigo?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -926,7 +926,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can$ para pedir de confianza, $Could$ para pedir con cortesía.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -960,9 +960,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
   "title" : "Pedidos: formal o informal",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
   "translation" : "¿Podría ponerme esta pollera?",
-  "theoryId" : "a1.10.Can_and_Could_For_Ability",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -978,18 +978,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.02.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Pedirle algo a un desconocido, como en un local, va con $Could$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Could" ]
     }, {
       "kind" : "TEXT",
@@ -997,5 +997,1041 @@
       "options" : null
     } ],
     "sentences" : [ "Could I put on this skirt?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dd0"
+  },
+  "id" : "67fab6d59930102295342dd0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Podría comerme una galleta?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Polite request: I want a cookie.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could I have a cookie?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Could I have a cookie?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dd1"
+  },
+  "id" : "67fab6d59930102295342dd1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Puedo escuchar música?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Normal request: I want to listen to music.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Can I listen to music?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Can I listen to music?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dd2"
+  },
+  "id" : "67fab6d59930102295342dd2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Puedes repetir eso?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Normal request: I want you to repeat that once more.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Can you say that again?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Can you say that again?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dd3"
+  },
+  "id" : "67fab6d59930102295342dd3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Puedes pedir pizza?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Normal request: I want you to order pizza.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Can you order pizza?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Can you order pizza?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dd4"
+  },
+  "id" : "67fab6d59930102295342dd4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Me prestas tu libro?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Normal request: I want to borrow your book.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Can I borrow your book?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Can I borrow your book?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dd5"
+  },
+  "id" : "67fab6d59930102295342dd5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Puedo dormir en tu dormitorio?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Normal request: I want to sleep in your bedroom.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Can I sleep in your bedroom?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Can I sleep in your bedroom?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dd6"
+  },
+  "id" : "67fab6d59930102295342dd6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "Pon la radio. Amable: ¿Podrías poner la radio?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Play the radio. Polite:",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could you play the radio?" ]
+    } ],
+    "sentences" : [ "Play the radio. Polite: Could you play the radio?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dd7"
+  },
+  "id" : "67fab6d59930102295342dd7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Podrías ayudarme?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Polite request: I want you to assist me.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could you help me?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Could you help me?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dd8"
+  },
+  "id" : "67fab6d59930102295342dd8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Puedes cerrar las ventanas?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Normal request: I want you to close the windows.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Can you close the windows?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Can you close the windows?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dd9"
+  },
+  "id" : "67fab6d59930102295342dd9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Podría esperar aquí?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Polite request: I want to wait here.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could I wait here?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Could I wait here?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dda"
+  },
+  "id" : "67fab6d59930102295342dda",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Podrías traerme un poco de té?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Polite request: I want you to get me some tea.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could you bring me some tea?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Could you bring me some tea?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ddb"
+  },
+  "id" : "67fab6d59930102295342ddb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Podrías revisar mi examen?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Polite request: I want you to check my exam.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could you check my exam?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Could you check my exam?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ddc"
+  },
+  "id" : "67fab6d59930102295342ddc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Puedo tomar un vaso de agua?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Normal request: I want a glass of water.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Can I have a glass of water?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Can I have a glass of water?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ddd"
+  },
+  "id" : "67fab6d59930102295342ddd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Puedo verla?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Normal request: I want to see your tablet.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Can I see it?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Can I see it?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dde"
+  },
+  "id" : "67fab6d59930102295342dde",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Puedes conseguir leche?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Normal request: I want you to get some milk.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Can you get some milk?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Can you get some milk?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ddf"
+  },
+  "id" : "67fab6d59930102295342ddf",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Podría cerrar esta ventana?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Polite request: I want to close this window.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could I close this window?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Could I close this window?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342de0"
+  },
+  "id" : "67fab6d59930102295342de0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Podría tomar un vaso de soda?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Polite request: I want to drink a glass of soda.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could I have a glass of soda?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Could I have a glass of soda?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342de1"
+  },
+  "id" : "67fab6d59930102295342de1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Podrías prestarme algo de dinero?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Polite request: I want you to give me some money.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could you lend me some money?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Could you lend me some money?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342de2"
+  },
+  "id" : "67fab6d59930102295342de2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Podrías cerrar esto?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Polite request: I want you to shut this.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could you shut this?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Could you shut this?" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342de3"
+  },
+  "id" : "67fab6d59930102295342de3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e4"
+  },
+  "title" : "Pedidos: formal o informal",
+  "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
+  "translation" : "¿Podría tomar prestada tu goma de borrar?",
+  "theoryId" : "a1.10.Could_For_Polite_Requests",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Can$ para el pedido normal, $Could$ para el cortés. Después, verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Polite request: I want to borrow your rubber.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Could I borrow your rubber?" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Could I borrow your rubber?" ]
   }
 } ]

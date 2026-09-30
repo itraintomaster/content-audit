@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295343cdf"
   },
   "id" : "67fab6d59930102295343cdf",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Ella es callada, como su hermana.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -26,9 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is quiet,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "her sister.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,20 +82,20 @@
       "kind" : "TEXT",
       "text" : "her sister.",
       "options" : null
-    } ],
-    "sentences" : [ "She is quiet, like her sister." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343ce0"
   },
   "id" : "67fab6d59930102295343ce0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Ella se comporta como su madre.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -78,10 +113,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +129,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "like" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "her mother.",
       "options" : null
     } ],
-    "sentences" : [ "She behaves like her mother." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She behaves",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "her mother."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343ce1"
   },
   "id" : "67fab6d59930102295343ce1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Su mejilla se sentía como algodón suave esta mañana.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -130,22 +200,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $sound$, $smell$, $taste$, $feel$ y $seem$ siempre va $like$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Her cheek felt",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "soft cotton this morning.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Her cheek felt",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "like" ]
     }, {
       "kind" : "TEXT",
@@ -153,18 +258,19 @@
       "options" : null
     } ],
     "sentences" : [ "Her cheek felt like soft cotton this morning." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343ce2"
   },
   "id" : "67fab6d59930102295343ce2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Ellas trabajaron como enfermeras.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -182,9 +288,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They operated",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "nurses.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -200,23 +341,23 @@
       "text" : "",
       "options" : [ "as" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "nurses.",
-      "options" : null
-    } ],
-    "sentences" : [ "They operated as nurses." ]
-  }
+      "text" : "nurses."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343ce3"
   },
   "id" : "67fab6d59930102295343ce3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "¿Cómo suena él?",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -234,10 +375,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $sound$, $smell$, $taste$, $feel$ y $seem$ siempre va $like$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +391,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "like" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "?",
       "options" : null
     } ],
-    "sentences" : [ "What does he sound like?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What does he sound",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "text" : "?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343ce4"
   },
   "id" : "67fab6d59930102295343ce4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Ellos servirán como soldados.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -286,10 +462,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +478,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "soldiers.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They will serve"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "as" ]
     }, {
       "kind" : "TEXT",
       "text" : "soldiers.",
       "options" : null
     } ],
-    "sentences" : [ "They will serve as soldiers." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343ce5"
   },
   "id" : "67fab6d59930102295343ce5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Esto sabe a chocolate.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -338,14 +549,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $sound$, $smell$, $taste$, $feel$ y $seem$ siempre va $like$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This tastes",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "chocolate.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -360,19 +601,24 @@
       "text" : "chocolate.",
       "options" : null
     } ],
-    "sentences" : [ "This tastes like chocolate." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343ce6"
   },
   "id" : "67fab6d59930102295343ce6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Su coche es muy rápido, como tu coche.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -390,9 +636,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His car is very fast,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "your car.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -411,20 +692,20 @@
       "kind" : "TEXT",
       "text" : "your car.",
       "options" : null
-    } ],
-    "sentences" : [ "His car is very fast, like your car." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343ce7"
   },
   "id" : "67fab6d59930102295343ce7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Trabajamos como guías turísticos durante el verano.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -442,22 +723,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We work",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "tour guides during the summer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "as" ]
     }, {
       "kind" : "TEXT",
@@ -465,18 +781,19 @@
       "options" : null
     } ],
     "sentences" : [ "We work as tour guides during the summer." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343ce8"
   },
   "id" : "67fab6d59930102295343ce8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Solía trabajar como policía.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -494,22 +811,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He used to work",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a policeman.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He used to work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "as" ]
     }, {
       "kind" : "TEXT",
@@ -517,18 +869,19 @@
       "options" : null
     } ],
     "sentences" : [ "He used to work as a policeman." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343ce9"
   },
   "id" : "67fab6d59930102295343ce9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Ellos operan como abogados.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -546,13 +899,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They operate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "lawyers.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -568,19 +952,23 @@
       "text" : "lawyers.",
       "options" : null
     } ],
-    "sentences" : [ "They operate as lawyers." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cea"
   },
   "id" : "67fab6d59930102295343cea",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Esto huele a rosas.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -598,10 +986,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $sound$, $smell$, $taste$, $feel$ y $seem$ siempre va $like$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -614,25 +1002,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "like" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "roses.",
       "options" : null
     } ],
-    "sentences" : [ "This smells like roses." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "This smells",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "roses.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343ceb"
   },
   "id" : "67fab6d59930102295343ceb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Actúo como un personaje en la animación.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -650,41 +1073,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I perform",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a character in the animation.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I perform",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "as" ]
     }, {
       "kind" : "TEXT",
       "text" : "a character in the animation.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "I perform as a character in the animation." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cec"
   },
   "id" : "67fab6d59930102295343cec",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Ella es famosa, como Madonna.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -702,13 +1161,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is famous,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Madonna.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -724,19 +1214,23 @@
       "text" : "Madonna.",
       "options" : null
     } ],
-    "sentences" : [ "She is famous, like Madonna." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343ced"
   },
   "id" : "67fab6d59930102295343ced",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Él actúa como empleado.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -754,10 +1248,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1264,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "as" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "a clerk.",
       "options" : null
     } ],
-    "sentences" : [ "He acts as a clerk." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He acts",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "as" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "a clerk.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cee"
   },
   "id" : "67fab6d59930102295343cee",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Hizo una pasantía como contador en el zoológico.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -806,41 +1335,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He interned",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "an accountant at the zoo.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He interned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "as" ]
     }, {
       "kind" : "TEXT",
       "text" : "an accountant at the zoo.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "He interned as an accountant at the zoo." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cef"
   },
   "id" : "67fab6d59930102295343cef",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Él empezó como diseñador en el museo local.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -858,41 +1423,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He started",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a designer at the local museum.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He started",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "as" ]
     }, {
       "kind" : "TEXT",
       "text" : "a designer at the local museum.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "He started as a designer at the local museum." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cf0"
   },
   "id" : "67fab6d59930102295343cf0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Parece como la luz del sol.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -910,10 +1511,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $sound$, $smell$, $taste$, $feel$ y $seem$ siempre va $like$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -926,25 +1527,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "like" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "sunshine.",
       "options" : null
     } ],
-    "sentences" : [ "It seems like sunshine." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It seems",
+      "options" : null
+    }, {
+      "options" : [ "like" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "sunshine.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cf1"
   },
   "id" : "67fab6d59930102295343cf1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Eso se siente como aire.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -962,13 +1598,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $sound$, $smell$, $taste$, $feel$ y $seem$ siempre va $like$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That feels",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "air.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -984,19 +1651,23 @@
       "text" : "air.",
       "options" : null
     } ],
-    "sentences" : [ "That feels like air." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cf2"
   },
   "id" : "67fab6d59930102295343cf2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
   "title" : "$As$ o $Like$",
-  "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
+  "instructions" : "Elige 'as' si estamos hablando del trabajo de alguien. Elige 'like' si estamos hablando de algo que es similar a otra cosa.",
   "translation" : "Mary empezó en la empresa como celebridad.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
@@ -1014,22 +1685,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.09.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Mary started with the company",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a celebrity.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary started with the company",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "as" ]
     }, {
       "kind" : "TEXT",
@@ -1037,5 +1743,1771 @@
       "options" : null
     } ],
     "sentences" : [ "Mary started with the company as a celebrity." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449fe"
+  },
+  "id" : "67fab6d599301022953449fe",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "¿Trabajaba ella como chef?",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did she work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a chef?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did she work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a chef?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449ff"
+  },
+  "id" : "67fab6d599301022953449ff",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Los pájaros cantaban como cuernos fuera de la ventana al amanecer.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The birds sang",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "horns outside the window at dawn.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The birds sang",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "horns outside the window at dawn.",
+      "options" : null
+    } ],
+    "sentences" : [ "The birds sang like horns outside the window at dawn." ]
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a00"
+  },
+  "id" : "67fab6d59930102295344a00",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Esto huele a rosas.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This smells",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "roses.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "This smells",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "roses.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a01"
+  },
+  "id" : "67fab6d59930102295344a01",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Se sintió como una reina cuando ganó el premio.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She felt",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a queen when she won the prize.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She felt",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a queen when she won the prize.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a02"
+  },
+  "id" : "67fab6d59930102295344a02",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "El trueno sonaba como rocas cayendo.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The thunder sounded",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "falling rocks.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The thunder sounded",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "text" : "falling rocks.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a03"
+  },
+  "id" : "67fab6d59930102295344a03",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Mi padre trabajaba como constructor.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My father worked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a builder.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My father worked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a builder.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a04"
+  },
+  "id" : "67fab6d59930102295344a04",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "La tarta sabía como las tartas de mi madre.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The pie tasted",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my mother's pies.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The pie tasted",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "my mother's pies.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a05"
+  },
+  "id" : "67fab6d59930102295344a05",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Ella durmió como un bebé después del largo vuelo.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She slept",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a baby after the long flight.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She slept",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a baby after the long flight.",
+      "options" : null
+    } ],
+    "sentences" : [ "She slept like a baby after the long flight." ]
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a06"
+  },
+  "id" : "67fab6d59930102295344a06",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Te pareces a mi hermana.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You seem",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my sister.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You seem",
+      "options" : null
+    }, {
+      "options" : [ "like" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "my sister.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a07"
+  },
+  "id" : "67fab6d59930102295344a07",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Trabajo como conductor.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a driver.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I work",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "as" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "a driver.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a08"
+  },
+  "id" : "67fab6d59930102295344a08",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Daniel solía trabajar como diseñador web en Madrid.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Daniel used to work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a web designer in Madrid.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Daniel used to work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a web designer in Madrid.",
+      "options" : null
+    } ],
+    "sentences" : [ "Daniel used to work as a web designer in Madrid." ]
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a09"
+  },
+  "id" : "67fab6d59930102295344a09",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Él trabaja como dentista.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He works",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a dentist.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He works",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "a dentist."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a0a"
+  },
+  "id" : "67fab6d59930102295344a0a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Ellos trabajan como ingenieros.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "engineers.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They work",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "engineers.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a0b"
+  },
+  "id" : "67fab6d59930102295344a0b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Ella trabaja como músico.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She works",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a musician.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She works",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "as" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "a musician.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a0c"
+  },
+  "id" : "67fab6d59930102295344a0c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "El baño olía a lavanda después de que se fueron los invitados.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The bathroom smelled",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "lavender after the guests left.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The bathroom smelled",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "lavender after the guests left.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "The bathroom smelled like lavender after the guests left." ]
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a0d"
+  },
+  "id" : "67fab6d59930102295344a0d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Él quiere trabajar como escritor.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He wants to work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a writer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He wants to work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "text" : "a writer.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a0e"
+  },
+  "id" : "67fab6d59930102295344a0e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Él se parece a su padre.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He looks",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "his father.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He looks",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "his father.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a0f"
+  },
+  "id" : "67fab6d59930102295344a0f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "El bosque huele a pino.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The forest smells",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pine.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The forest smells",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pine.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a10"
+  },
+  "id" : "67fab6d59930102295344a10",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Él trabaja como vendedor.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He works",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a salesman.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He works",
+      "options" : null
+    }, {
+      "options" : [ "as" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "a salesman.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a11"
+  },
+  "id" : "67fab6d59930102295344a11",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d379"
+  },
+  "title" : "$As$ o $Like$",
+  "instructions" : "Elige 'as' si estamos hablando de la profesión de alguien, y 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "translation" : "Ellos trabajarán como salvavidas en la piscina durante las vacaciones de verano.",
+  "theoryId" : "b1.17.As_and_Like",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.01.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as$ para el oficio o el rol. $like$ para lo que se parece a otra cosa.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They'll work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "lifeguards at the pool during the summer vacation.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "like",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "like"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They'll work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "lifeguards at the pool during the summer vacation.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "They'll work as lifeguards at the pool during the summer vacation." ]
+  },
+  "instructionsAnteriores" : "Elegí 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa.",
+  "instructionsAntesDeRevisar" : "Elige 'as' si estamos hablando de la profesión de alguien. usá 'like' si estamos hablando de algo que es similar a otra cosa."
 } ]

@@ -3,12 +3,12 @@
     "$oid" : "67fab6d5993010229534304b"
   },
   "id" : "67fab6d5993010229534304b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Ella se despertó e hizo su cama.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -26,37 +26,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She woke up and made her bed.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She woke up and made her bed.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "sequence" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "She woke up and made her bed. sequence" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534304c"
   },
   "id" : "67fab6d5993010229534304c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Ella miró televisión y pensó en sus vacaciones.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -74,37 +106,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si las dos acciones pueden pasar juntas, es simultaneous aunque no haya $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She watched television and thought about her vacation.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She watched television and thought about her vacation.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "simultaneous" ]
     } ],
     "sentences" : [ "She watched television and thought about her vacation. simultaneous" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534304d"
   },
   "id" : "67fab6d5993010229534304d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Él terminó la escuela secundaria y viajó a Roma.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -122,10 +186,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -138,25 +202,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "sequence" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "He finished high school and traveled to Rome. sequence" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He finished high school and traveled to Rome.",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "sequence" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534304e"
   },
   "id" : "67fab6d5993010229534304e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Él pintó un círculo y ella cortó el pasto.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -174,37 +273,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si las dos acciones pueden pasar juntas, es simultaneous aunque no haya $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He painted a circle and she mowed the grass.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He painted a circle and she mowed the grass.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "simultaneous" ]
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "He painted a circle and she mowed the grass. simultaneous" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534304f"
   },
   "id" : "67fab6d5993010229534304f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Mike se quitó los zapatos y se acostó en el sofá.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -222,10 +353,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mike took off his shoes and laid on the couch.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -244,19 +409,20 @@
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "Mike took off his shoes and laid on the couch. sequence" ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343050"
   },
   "id" : "67fab6d59930102295343050",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Ella estaba cocinando la cena mientras su hermano tocaba la guitarra.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -274,37 +440,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She was cooking dinner while her brother was playing the guitar.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She was cooking dinner while her brother was playing the guitar.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "simultaneous" ]
     } ],
     "sentences" : [ "She was cooking dinner while her brother was playing the guitar. simultaneous" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343051"
   },
   "id" : "67fab6d59930102295343051",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Él cocinó la cena y ella horneó un pastel.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -322,37 +520,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si las dos acciones pueden pasar juntas, es simultaneous aunque no haya $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He cooked dinner and she baked a cake.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He cooked dinner and she baked a cake.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "simultaneous" ]
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "He cooked dinner and she baked a cake. simultaneous" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343052"
   },
   "id" : "67fab6d59930102295343052",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Agarré el teléfono y comencé a marcar.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -370,10 +600,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -386,25 +616,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "sequence" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "I grabbed the phone and began dialing. sequence" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I grabbed the phone and began dialing."
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "sequence" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343053"
   },
   "id" : "67fab6d59930102295343053",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Ella cerró la puerta con llave y se fue de la casa.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -422,37 +687,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She locked the door and left the house.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She locked the door and left the house.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "sequence" ]
     } ],
     "sentences" : [ "She locked the door and left the house. sequence" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343054"
   },
   "id" : "67fab6d59930102295343054",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Aprendieron mucho y luego salieron del museo.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -470,37 +767,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They learned a lot and then left the museum.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They learned a lot and then left the museum.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "sequence" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "They learned a lot and then left the museum. sequence" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343055"
   },
   "id" : "67fab6d59930102295343055",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Los hombres cazaron toda la mañana, y luego se fueron a casa.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -518,37 +847,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The men hunted all morning, and then they went home.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The men hunted all morning, and then they went home.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "sequence" ]
     } ],
     "sentences" : [ "The men hunted all morning, and then they went home. sequence" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343056"
   },
   "id" : "67fab6d59930102295343056",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Yo escribí un correo electrónico y él se quedó mirando la pantalla.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -566,37 +927,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si las dos acciones pueden pasar juntas, es simultaneous aunque no haya $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I wrote an email and he stared at the screen.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I wrote an email and he stared at the screen.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "simultaneous" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "I wrote an email and he stared at the screen. simultaneous" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343057"
   },
   "id" : "67fab6d59930102295343057",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Nos reímos y contamos chistes en la fiesta.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -614,37 +1007,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si las dos acciones pueden pasar juntas, es simultaneous aunque no haya $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We laughed and told jokes at the party.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We laughed and told jokes at the party.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "simultaneous" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "We laughed and told jokes at the party. simultaneous" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343058"
   },
   "id" : "67fab6d59930102295343058",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "¡Horneé galletas y me las comí todas!",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -662,37 +1087,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I baked cookies and ate them all!",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I baked cookies and ate them all!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "sequence" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "I baked cookies and ate them all! sequence" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343059"
   },
   "id" : "67fab6d59930102295343059",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Rescataron al ternero y le dieron leche tibia.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -710,37 +1167,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They rescued the calf and fed it warm milk.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They rescued the calf and fed it warm milk.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "sequence" ]
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "They rescued the calf and fed it warm milk. sequence" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534305a"
   },
   "id" : "67fab6d5993010229534305a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Reservó una habitación y se registró en el hotel.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -758,37 +1247,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He reserved a room and checked into the hotel.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He reserved a room and checked into the hotel.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "sequence" ]
     } ],
     "sentences" : [ "He reserved a room and checked into the hotel. sequence" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534305b"
   },
   "id" : "67fab6d5993010229534305b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Ella bebió té y miró el río.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -806,37 +1327,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si las dos acciones pueden pasar juntas, es simultaneous aunque no haya $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She drank tea and looked at the river.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She drank tea and looked at the river.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "simultaneous" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "She drank tea and looked at the river. simultaneous" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534305c"
   },
   "id" : "67fab6d5993010229534305c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Él jugó videojuegos mientras ella escribió una carta sincera.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -854,37 +1407,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He played video games while she wrote an honest letter.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He played video games while she wrote an honest letter.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "simultaneous" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "He played video games while she wrote an honest letter. simultaneous" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534305d"
   },
   "id" : "67fab6d5993010229534305d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Recogimos a nuestro hijo del estacionamiento y nos marchamos.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -902,37 +1487,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We collected our son from the parking and drove away.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We collected our son from the parking and drove away.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "sequence" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "We collected our son from the parking and drove away. sequence" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534305e"
   },
   "id" : "67fab6d5993010229534305e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
   "title" : "Orden o simultaneidad",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
+  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_).",
   "translation" : "Revisamos la ubicación y luego cruzamos la frontera. Tipo de conector: secuencia.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
@@ -950,24 +1567,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.01.10.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Dos pasados simples se leen en orden. Si fue a la vez, hace falta $while$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We checked the location and then crossed the border. Link type:",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "sequence",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "sequence"
+    }, {
+      "id" : "simultaneous",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "simultaneous"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We checked the location and then crossed the border. Link type:",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "sequence" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "We checked the location and then crossed the border. Link type: sequence" ]
-  }
+  },
+  "instructionsAnteriores" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Elegí '_sequence_' o '_simultaneous_'."
 } ]

@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342ba0"
   },
   "id" : "67fab6d59930102295342ba0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26f"
   },
   "title" : "General o individual",
-  "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
+  "instructions" : "Si es posible, elige 'every'. Si no, elige 'each'.",
   "translation" : "Espero que cada colega esté cómodo.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
@@ -26,22 +26,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.12.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I hope",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "colleague is comfortable.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I hope",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "every" ]
     }, {
       "kind" : "TEXT",
@@ -49,18 +84,19 @@
       "options" : null
     } ],
     "sentences" : [ "I hope every colleague is comfortable." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, completa con 'every'. Si no, completa con 'each'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ba1"
   },
   "id" : "67fab6d59930102295342ba1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26f"
   },
   "title" : "General o individual",
-  "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
+  "instructions" : "Si es posible, elige 'every'. Si no, elige 'each'.",
   "translation" : "Compró cada uno de los peines que vendía el ama de casa.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
@@ -78,41 +114,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.12.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He bought",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the combs that the housewife sold.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He bought",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "each" ]
     }, {
       "kind" : "TEXT",
       "text" : "of the combs that the housewife sold.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "He bought each of the combs that the housewife sold." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, completa con 'every'. Si no, completa con 'each'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ba2"
   },
   "id" : "67fab6d59930102295342ba2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26f"
   },
   "title" : "General o individual",
-  "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
+  "instructions" : "Si es posible, elige 'every'. Si no, elige 'each'.",
   "translation" : "Todo curso tiene una nota final.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
@@ -130,37 +202,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.12.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "course has a final mark.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Every" ]
     }, {
       "kind" : "TEXT",
       "text" : "course has a final mark.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Every course has a final mark." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, completa con 'every'. Si no, completa con 'each'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ba3"
   },
   "id" : "67fab6d59930102295342ba3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26f"
   },
   "title" : "General o individual",
-  "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
+  "instructions" : "Si es posible, elige 'every'. Si no, elige 'each'.",
   "translation" : "Me gustaría cerrar todas las puertas.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
@@ -178,9 +282,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.12.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd like to close",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "door.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -199,20 +338,20 @@
       "kind" : "TEXT",
       "text" : "door.",
       "options" : null
-    } ],
-    "sentences" : [ "I'd like to close every door." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, completa con 'every'. Si no, completa con 'each'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ba4"
   },
   "id" : "67fab6d59930102295342ba4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26f"
   },
   "title" : "General o individual",
-  "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
+  "instructions" : "Si es posible, elige 'every'. Si no, elige 'each'.",
   "translation" : "Recogió los juguetes y guardó cada uno de ellos.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
@@ -230,22 +369,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.12.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She collected the toys and put",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of them away.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She collected the toys and put",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "each" ]
     }, {
       "kind" : "TEXT",
@@ -253,18 +427,19 @@
       "options" : null
     } ],
     "sentences" : [ "She collected the toys and put each of them away." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, completa con 'every'. Si no, completa con 'each'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ba5"
   },
   "id" : "67fab6d59930102295342ba5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26f"
   },
   "title" : "General o individual",
-  "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
+  "instructions" : "Si es posible, elige 'every'. Si no, elige 'each'.",
   "translation" : "Necesitamos revisar el aceite en cada una de las motocicletas.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
@@ -282,9 +457,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.12.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We need to check oil in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the motorcycles.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -303,20 +513,20 @@
       "kind" : "TEXT",
       "text" : "of the motorcycles.",
       "options" : null
-    } ],
-    "sentences" : [ "We need to check oil in each of the motorcycles." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, completa con 'every'. Si no, completa con 'each'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ba6"
   },
   "id" : "67fab6d59930102295342ba6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26f"
   },
   "title" : "General o individual",
-  "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
+  "instructions" : "Si es posible, elige 'every'. Si no, elige 'each'.",
   "translation" : "¿Podrías darnos un caramelo a cada uno de nosotros?",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
@@ -334,9 +544,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.12.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you give a piece of candy to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of us?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -352,23 +597,23 @@
       "text" : "",
       "options" : [ "each" ]
     }, {
-      "kind" : "TEXT",
       "text" : "of us?",
-      "options" : null
-    } ],
-    "sentences" : [ "Could you give a piece of candy to each of us?" ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, completa con 'every'. Si no, completa con 'each'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ba7"
   },
   "id" : "67fab6d59930102295342ba7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26f"
   },
   "title" : "General o individual",
-  "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
+  "instructions" : "Si es posible, elige 'every'. Si no, elige 'each'.",
   "translation" : "Besó a cada uno de sus nietos antes de acostarse.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
@@ -386,41 +631,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.12.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She kissed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of her grandchildren before bedtime.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She kissed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "each" ]
     }, {
       "kind" : "TEXT",
       "text" : "of her grandchildren before bedtime.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "She kissed each of her grandchildren before bedtime." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, completa con 'every'. Si no, completa con 'each'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ba8"
   },
   "id" : "67fab6d59930102295342ba8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26f"
   },
   "title" : "General o individual",
-  "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
+  "instructions" : "Si es posible, elige 'every'. Si no, elige 'each'.",
   "translation" : "Revisó cada cigarrillo antes de guardarlo.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
@@ -438,41 +719,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.12.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She checked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cigarette before she saved it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She checked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "every" ]
     }, {
       "kind" : "TEXT",
       "text" : "cigarette before she saved it.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "She checked every cigarette before she saved it." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, completa con 'every'. Si no, completa con 'each'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ba9"
   },
   "id" : "67fab6d59930102295342ba9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26f"
   },
   "title" : "General o individual",
-  "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
+  "instructions" : "Si es posible, elige 'every'. Si no, elige 'each'.",
   "translation" : "No todos los sustantivos son plurales.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
@@ -490,22 +807,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.12.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Not",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "noun is plural.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Not",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "every" ]
     }, {
       "kind" : "TEXT",
@@ -513,5 +865,1731 @@
       "options" : null
     } ],
     "sentences" : [ "Not every noun is plural." ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, completa con 'every'. Si no, completa con 'each'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a6"
+  },
+  "id" : "67fab6d599301022953435a6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Contactamos a todos los abogados del país.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We contacted",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "lawyer in the land.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We contacted",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "lawyer in the land.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "We contacted every lawyer in the land." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a7"
+  },
+  "id" : "67fab6d599301022953435a7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Quiero a cada uno de mis parientes por igual.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of my relatives the same.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of my relatives the same.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a8"
+  },
+  "id" : "67fab6d599301022953435a8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Recibí una tarjeta de cada uno de los miembros de mi familia.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I received a card from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of my family members.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I received a card from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "of my family members."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435a9"
+  },
+  "id" : "67fab6d599301022953435a9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Tenía un guante en cada mano.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si son sólo dos (como las manos), va $each$ solo, sin $of$: $each hand$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He had a glove on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hand.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He had a glove on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "hand.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435aa"
+  },
+  "id" : "67fab6d599301022953435aa",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Todos los profesores llegaron temprano.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "teacher was early.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "Every" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "teacher was early."
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435ab"
+  },
+  "id" : "67fab6d599301022953435ab",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Disfruto cada canción.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "song.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "every" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "song.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435ac"
+  },
+  "id" : "67fab6d599301022953435ac",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Cada animal llevaba un hueso.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "animal was carrying a bone.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "Every" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "animal was carrying a bone."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435ad"
+  },
+  "id" : "67fab6d599301022953435ad",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Ella disfruta cada juego.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She enjoys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "game.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She enjoys",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "every" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "game."
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435ae"
+  },
+  "id" : "67fab6d599301022953435ae",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Cada uno de nosotros reprobó el examen.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of us failed the test.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Each" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "of us failed the test."
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435af"
+  },
+  "id" : "67fab6d599301022953435af",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Ella tenía pulseras en cada brazo hoy.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si son sólo dos (como las manos), va $each$ solo, sin $of$: $each hand$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She had bracelets on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "arm today.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She had bracelets on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "arm today.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "She had bracelets on each arm today." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b0"
+  },
+  "id" : "67fab6d599301022953435b0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Ella golpeó todos los platos de la mesa.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She struck",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "plate on the table.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She struck",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "plate on the table.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "She struck every plate on the table." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b1"
+  },
+  "id" : "67fab6d599301022953435b1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Limpiaron cada una de las mesas.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They cleaned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the tables.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They cleaned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the tables.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b2"
+  },
+  "id" : "67fab6d599301022953435b2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Ella bebió todos los sabores de batido de la carta ayer.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She drank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "smoothie flavour on the menu yesterday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She drank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "smoothie flavour on the menu yesterday.",
+      "options" : null
+    } ],
+    "sentences" : [ "She drank every smoothie flavour on the menu yesterday." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b3"
+  },
+  "id" : "67fab6d599301022953435b3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Él guardó cada uno de los discos cuidadosamente.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He stored",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the records carefully.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He stored",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the records carefully.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b4"
+  },
+  "id" : "67fab6d599301022953435b4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Vimos todos los programas.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We watched",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "show.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We watched",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "show.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b5"
+  },
+  "id" : "67fab6d599301022953435b5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Él entregó dulces a cada una de las niñas.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He handed sweets to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the girls.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He handed sweets to",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "each" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the girls.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b6"
+  },
+  "id" : "67fab6d599301022953435b6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Ellos escucharon a todos los cantantes.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They listened to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "singer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They listened to",
+      "options" : null
+    }, {
+      "options" : [ "every" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "singer.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b7"
+  },
+  "id" : "67fab6d599301022953435b7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Cada uno de los chicos sostenía una pelota de baloncesto.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the boys was holding a basketball.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the boys was holding a basketball.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b8"
+  },
+  "id" : "67fab6d599301022953435b8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "Estudiaron todos los documentos.",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They studied",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "document.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They studied",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "every" ]
+    }, {
+      "text" : "document.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953435b9"
+  },
+  "id" : "67fab6d599301022953435b9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d26f"
+  },
+  "title" : "General o individual",
+  "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
+  "translation" : "¿Saludaste a cada uno de los prisioneros?",
+  "theoryId" : "a2.07.Every_Each_and_All",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.08.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every$ delante del sustantivo. Cuando hay $of$, va $each$: $each of them$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you greet",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the prisoners?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "each",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "each"
+    }, {
+      "id" : "every",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "every"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you greet",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "each" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "of the prisoners?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "Did you greet each of the prisoners?" ]
   }
 } ]

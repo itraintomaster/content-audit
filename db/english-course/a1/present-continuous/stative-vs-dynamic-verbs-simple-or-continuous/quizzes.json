@@ -8,7 +8,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Él odia Madrid ahora.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Aunque diga $now$, los verbos de estado como $love$, $hate$ o $like$ van en simple.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -49,7 +49,8 @@
       "options" : null
     } ],
     "sentences" : [ "He hates Madrid now." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420ea"
@@ -60,7 +61,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Él está leyendo un libro aquí ahora.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -78,22 +79,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los verbos de acción van en continuo: $is$/$are$ + $-ing$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "is reading" ]
     }, {
       "kind" : "TEXT",
@@ -101,7 +102,8 @@
       "options" : null
     } ],
     "sentences" : [ "He is reading a book here now." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420eb"
@@ -112,7 +114,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Me encanta este vestido.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -130,7 +132,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Aunque diga $now$, los verbos de estado como $love$, $hate$ o $like$ van en simple.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -153,7 +155,8 @@
       "options" : null
     } ],
     "sentences" : [ "I love this dress." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420ec"
@@ -164,7 +167,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Mi hermana está yendo a casa ahora.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -182,22 +185,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los verbos de acción van en continuo: $is$/$are$ + $-ing$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "My sister",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "is going" ]
     }, {
       "kind" : "TEXT",
@@ -205,7 +208,8 @@
       "options" : null
     } ],
     "sentences" : [ "My sister is going home now." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420ed"
@@ -216,7 +220,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Ellos no están bebiendo cerveza ahora.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -234,7 +238,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los verbos de acción van en continuo: $is$/$are$ + $-ing$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -257,7 +261,8 @@
       "options" : null
     } ],
     "sentences" : [ "They are not drinking beer now." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420ee"
@@ -268,7 +273,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "¿Qué estás mirando?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -286,7 +291,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los verbos de acción van en continuo: $is$/$are$ + $-ing$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -309,7 +314,8 @@
       "options" : null
     } ],
     "sentences" : [ "What are you watching?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420ef"
@@ -320,7 +326,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "¿Te gustan tus profesores?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -338,7 +344,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Aunque diga $now$, los verbos de estado como $love$, $hate$ o $like$ van en simple.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -361,7 +367,8 @@
       "options" : null
     } ],
     "sentences" : [ "Do you like your teachers?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420f0"
@@ -372,7 +379,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "¡Quiero comida ahora!",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -390,7 +397,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Aunque diga $now$, los verbos de estado como $love$, $hate$ o $like$ van en simple.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -413,7 +420,8 @@
       "options" : null
     } ],
     "sentences" : [ "I want food now!" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420f1"
@@ -424,7 +432,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Ellos están jugando al fútbol ahora.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -442,7 +450,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los verbos de acción van en continuo: $is$/$are$ + $-ing$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -465,7 +473,8 @@
       "options" : null
     } ],
     "sentences" : [ "They are playing football now." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420f2"
@@ -476,7 +485,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "¿Qué dice esta carta?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -494,22 +503,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Say$ (lo que dice un texto) no va en continuo, aunque parezca acción: usa $does$/$do$ + $say$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "does this letter say" ]
     }, {
       "kind" : "TEXT",
@@ -517,7 +526,8 @@
       "options" : null
     } ],
     "sentences" : [ "What does this letter say?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420f3"
@@ -528,7 +538,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Ellos están corriendo a la casa ahora.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -546,7 +556,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los verbos de acción van en continuo: $is$/$are$ + $-ing$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -569,7 +579,8 @@
       "options" : null
     } ],
     "sentences" : [ "They are running to the house now." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420f4"
@@ -580,7 +591,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Estamos nadando hoy.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -598,7 +609,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los verbos de acción van en continuo: $is$/$are$ + $-ing$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -621,7 +632,8 @@
       "options" : null
     } ],
     "sentences" : [ "We are swimming today." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420f5"
@@ -632,7 +644,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "No sé.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -650,22 +662,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Aunque diga $now$, los verbos de estado como $love$, $hate$ o $like$ van en simple.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "do not know" ]
     }, {
       "kind" : "TEXT",
@@ -673,7 +685,8 @@
       "options" : null
     } ],
     "sentences" : [ "I do not know." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420f6"
@@ -684,7 +697,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "No tengo dinero ahora.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -702,7 +715,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Have$ de posesión (tener) es de estado y va en simple: $I have$, no $I am having$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -725,7 +738,8 @@
       "options" : null
     } ],
     "sentences" : [ "I do not have money now." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420f7"
@@ -736,7 +750,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Ella está jugando en la calle.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -754,22 +768,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los verbos de acción van en continuo: $is$/$are$ + $-ing$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "is playing" ]
     }, {
       "kind" : "TEXT",
@@ -777,7 +791,8 @@
       "options" : null
     } ],
     "sentences" : [ "She is playing on the street." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420f8"
@@ -788,7 +803,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Él necesita una nueva vida ahora.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -806,22 +821,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Aunque diga $now$, los verbos de estado como $love$, $hate$ o $like$ van en simple.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "needs" ]
     }, {
       "kind" : "TEXT",
@@ -829,7 +844,8 @@
       "options" : null
     } ],
     "sentences" : [ "He needs a new life now." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420f9"
@@ -840,7 +856,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "¿Qué piensas hoy?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -858,7 +874,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Think$ de opinión es de estado: se dice $I think$, no $I am thinking$, aunque sea hoy.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -881,7 +897,8 @@
       "options" : null
     } ],
     "sentences" : [ "What do you think today?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420fa"
@@ -892,7 +909,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Él está escribiendo una carta estos días.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -910,7 +927,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los verbos de acción van en continuo: $is$/$are$ + $-ing$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -933,7 +950,8 @@
       "options" : null
     } ],
     "sentences" : [ "He is writing a letter these days." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420fb"
@@ -944,7 +962,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Peter tiene ese lápiz.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -962,22 +980,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Have$ de posesión (tener) es de estado y va en simple: $I have$, no $I am having$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Peter",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "has" ]
     }, {
       "kind" : "TEXT",
@@ -985,7 +1003,8 @@
       "options" : null
     } ],
     "sentences" : [ "Peter has that pencil." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953420fc"
@@ -996,7 +1015,7 @@
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
   "title" : "Estado vs. acción",
-  "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
+  "instructions" : "Usa $long forms$. Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente.",
   "translation" : "Lucy está trabajando aquí toda la semana.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
@@ -1014,7 +1033,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.16.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los verbos de acción van en continuo: $is$/$are$ + $-ing$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1037,5 +1056,6 @@
       "options" : null
     } ],
     "sentences" : [ "Lucy is working here all week." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms')."
 } ]

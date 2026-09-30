@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295341e87"
   },
   "id" : "67fab6d59930102295341e87",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Él es un niño?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -26,18 +26,73 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a child? (He)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Is he" ]
     }, {
       "kind" : "TEXT",
@@ -45,18 +100,19 @@
       "options" : null
     } ],
     "sentences" : [ "Is he a child?" ]
-  }
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e88"
   },
   "id" : "67fab6d59930102295341e88",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Somos amigos?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -74,10 +130,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -90,25 +146,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Are we" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "friends? (We)",
       "options" : null
     } ],
-    "sentences" : [ "Are we friends?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "Are we" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "friends? (We)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e89"
   },
   "id" : "67fab6d59930102295341e89",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Hace calor hoy?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -126,10 +241,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -142,25 +257,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Is it" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "hot today? (It)",
       "options" : null
     } ],
-    "sentences" : [ "Is it hot today?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "Is it" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "hot today? (It)",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e8a"
   },
   "id" : "67fab6d59930102295341e8a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Estamos en la escuela?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -178,9 +352,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at school? (We)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -199,20 +432,20 @@
       "kind" : "TEXT",
       "text" : "at school? (We)",
       "options" : null
-    } ],
-    "sentences" : [ "Are we at school?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e8b"
   },
   "id" : "67fab6d59930102295341e8b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Ella es estudiante?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -230,18 +463,73 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a student? (She)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Is she" ]
     }, {
       "kind" : "TEXT",
@@ -249,18 +537,19 @@
       "options" : null
     } ],
     "sentences" : [ "Is she a student?" ]
-  }
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e8c"
   },
   "id" : "67fab6d59930102295341e8c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Son las cinco en punto?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -278,9 +567,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "five o'clock? (It)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -299,20 +647,20 @@
       "kind" : "TEXT",
       "text" : "five o'clock? (It)",
       "options" : null
-    } ],
-    "sentences" : [ "Is it five o'clock?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e8d"
   },
   "id" : "67fab6d59930102295341e8d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Estamos en el autobús?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -330,10 +678,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -346,25 +694,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "on the bus? (We)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Are we" ]
     }, {
       "kind" : "TEXT",
       "text" : "on the bus? (We)",
       "options" : null
     } ],
-    "sentences" : [ "Are we on the bus?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e8e"
   },
   "id" : "67fab6d59930102295341e8e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Ella es adulta?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -382,37 +789,93 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "an adult? (She)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Is she" ]
     }, {
       "kind" : "TEXT",
       "text" : "an adult? (She)",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "Is she an adult?" ]
-  }
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e8f"
   },
   "id" : "67fab6d59930102295341e8f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Está sobre la mesa?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -430,9 +893,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "on the table? (It)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -448,23 +970,23 @@
       "text" : "",
       "options" : [ "Is it" ]
     }, {
-      "kind" : "TEXT",
       "text" : "on the table? (It)",
-      "options" : null
-    } ],
-    "sentences" : [ "Is it on the table?" ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e90"
   },
   "id" : "67fab6d59930102295341e90",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Estás en el trabajo?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -482,10 +1004,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -498,25 +1020,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Are you" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "at work? (You)",
       "options" : null
     } ],
-    "sentences" : [ "Are you at work?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "Are you" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "at work? (You)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e91"
   },
   "id" : "67fab6d59930102295341e91",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Ella es de Alemania?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -534,10 +1115,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -550,25 +1131,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Is she" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "from Germany? (She)",
       "options" : null
     } ],
-    "sentences" : [ "Is she from Germany?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "Is she" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "from Germany? (She)"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e92"
   },
   "id" : "67fab6d59930102295341e92",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Ella está en la escuela?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -586,9 +1226,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at school? (She)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -607,20 +1306,20 @@
       "kind" : "TEXT",
       "text" : "at school? (She)",
       "options" : null
-    } ],
-    "sentences" : [ "Is she at school?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e93"
   },
   "id" : "67fab6d59930102295341e93",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Él es tu hermano?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -638,10 +1337,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -654,25 +1353,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Is he" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "your brother? (He)",
       "options" : null
     } ],
-    "sentences" : [ "Is he your brother?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "Is he" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "your brother? (He)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e94"
   },
   "id" : "67fab6d59930102295341e94",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Estás listo?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -690,18 +1448,73 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ready? (You)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Are you" ]
     }, {
       "kind" : "TEXT",
@@ -709,18 +1522,19 @@
       "options" : null
     } ],
     "sentences" : [ "Are you ready?" ]
-  }
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e95"
   },
   "id" : "67fab6d59930102295341e95",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Estamos en la sala verde?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -738,37 +1552,93 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "in the green room? (We)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Are we" ]
     }, {
       "kind" : "TEXT",
       "text" : "in the green room? (We)",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "Are we in the green room?" ]
-  }
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e96"
   },
   "id" : "67fab6d59930102295341e96",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Él está en el parque?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -786,10 +1656,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -802,25 +1672,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Is he" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "at the park? (He)",
       "options" : null
     } ],
-    "sentences" : [ "Is he at the park?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "Is he" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "at the park? (He)",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e97"
   },
   "id" : "67fab6d59930102295341e97",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Soy marrón?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -838,18 +1767,73 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "brown? (I)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Am I" ]
     }, {
       "kind" : "TEXT",
@@ -857,18 +1841,19 @@
       "options" : null
     } ],
     "sentences" : [ "Am I brown?" ]
-  }
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e98"
   },
   "id" : "67fab6d59930102295341e98",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Él está en el banco?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -886,14 +1871,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at the bank? (He)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -908,19 +1947,24 @@
       "text" : "at the bank? (He)",
       "options" : null
     } ],
-    "sentences" : [ "Is he at the bank?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e99"
   },
   "id" : "67fab6d59930102295341e99",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Eres canadiense?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -938,9 +1982,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Canadian? (You)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -959,20 +2062,20 @@
       "kind" : "TEXT",
       "text" : "Canadian? (You)",
       "options" : null
-    } ],
-    "sentences" : [ "Are you Canadian?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e9a"
   },
   "id" : "67fab6d59930102295341e9a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
   "title" : "$Be$: preguntas $yes / no$",
-  "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
+  "instructions" : "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
   "translation" : "¿Eres de Londres?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -990,7 +2093,118 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.03.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "from London? (You)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am i",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am i"
+    }, {
+      "id" : "are we",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are we"
+    }, {
+      "id" : "are you",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are you"
+    }, {
+      "id" : "is he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is he"
+    }, {
+      "id" : "is it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is it"
+    }, {
+      "id" : "is she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is she"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Are you" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "from London? (You)"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Formula una pregunta 'yes / no' usando el verbo 'be'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ab"
+  },
+  "id" : "67fab6d599301022953425ab",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "¿Es él de Canadá?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1006,12 +2220,1016 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : [ "Is he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be) from Canada?",
+      "options" : null
+    } ],
+    "sentences" : [ "Is he from Canada?" ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ac"
+  },
+  "id" : "67fab6d599301022953425ac",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "No son de Irlanda.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) from Ireland.",
+      "options" : null
+    } ],
+    "sentences" : [ "They're not from Ireland." ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ad"
+  },
+  "id" : "67fab6d599301022953425ad",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "Ella está en la tienda.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) at the store.",
+      "options" : null
+    } ],
+    "sentences" : [ "She's at the store." ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ae"
+  },
+  "id" : "67fab6d599301022953425ae",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "Él no está en la sala.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) in the living-room.",
+      "options" : null
+    } ],
+    "sentences" : [ "He isn't in the living-room." ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425af"
+  },
+  "id" : "67fab6d599301022953425af",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "¿Quiénes son?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Who",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / be)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Who are they?" ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425b0"
+  },
+  "id" : "67fab6d599301022953425b0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "Ella no es británica.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) British.",
+      "options" : null
+    } ],
+    "sentences" : [ "She isn't British." ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425b1"
+  },
+  "id" : "67fab6d599301022953425b1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "¿Dónde está mi billetera?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is my wallet" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(my wallet / be)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Where is my wallet?" ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425b2"
+  },
+  "id" : "67fab6d599301022953425b2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "¡Ella llegó temprano hoy!\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) early today!",
+      "options" : null
+    } ],
+    "sentences" : [ "She's early today!" ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425b3"
+  },
+  "id" : "67fab6d599301022953425b3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "¿Es John profesor?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Is John" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(John / be) a teacher?",
+      "options" : null
+    } ],
+    "sentences" : [ "Is John a teacher?" ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425b4"
+  },
+  "id" : "67fab6d599301022953425b4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "¿Por qué llega tan tarde?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / be) so late?",
+      "options" : null
+    } ],
+    "sentences" : [ "Why is she so late?" ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425b5"
+  },
+  "id" : "67fab6d599301022953425b5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "¿Dónde está él ahora?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be) now?",
+      "options" : null
+    } ],
+    "sentences" : [ "Where is he now?" ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425b6"
+  },
+  "id" : "67fab6d599301022953425b6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "Siempre está feliz.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) always happy.",
+      "options" : null
+    } ],
+    "sentences" : [ "He's always happy." ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425b7"
+  },
+  "id" : "67fab6d599301022953425b7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "Estamos cansados.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) tired.",
+      "options" : null
+    } ],
+    "sentences" : [ "We're tired." ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425b8"
+  },
+  "id" : "67fab6d599301022953425b8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "Los profesores no están en el trabajo hoy.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The teachers",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) at work today.",
+      "options" : null
+    } ],
+    "sentences" : [ "The teachers aren't at work today." ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425b9"
+  },
+  "id" : "67fab6d599301022953425b9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "Están en el parque hoy.\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) at the park today.",
+      "options" : null
+    } ],
+    "sentences" : [ "They're at the park today." ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ba"
+  },
+  "id" : "67fab6d599301022953425ba",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "¿Qué eres?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are you" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / be)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What are you?" ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425bb"
+  },
+  "id" : "67fab6d599301022953425bb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "¿Eres realmente rubia?",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Are you" ]
     }, {
       "kind" : "TEXT",
-      "text" : "from London? (You)",
+      "text" : "(you / be) really blonde?",
       "options" : null
     } ],
-    "sentences" : [ "Are you from London?" ]
-  }
+    "sentences" : [ "Are you really blonde?" ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425bc"
+  },
+  "id" : "67fab6d599301022953425bc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "¿Está ella en casa?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Is she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / be) at home?",
+      "options" : null
+    } ],
+    "sentences" : [ "Is she at home?" ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425bd"
+  },
+  "id" : "67fab6d599301022953425bd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "¿Estoy equivocado/a?\n",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Am I" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(I / be) wrong?",
+      "options" : null
+    } ],
+    "sentences" : [ "Am I wrong?" ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425be"
+  },
+  "id" : "67fab6d599301022953425be",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d386"
+  },
+  "title" : "$Be$: preguntas $yes / no$",
+  "instructions" : "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+  "translation" : "No somos reales.",
+  "theoryId" : "a1.01.Present_Simple_Forms_Be",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.01.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) real.",
+      "options" : null
+    } ],
+    "sentences" : [ "We aren't real." ]
+  },
+  "instructionsAntesDeShortForms" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible."
 } ]

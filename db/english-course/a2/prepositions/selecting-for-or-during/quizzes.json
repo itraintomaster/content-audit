@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342d1c"
   },
   "id" : "67fab6d59930102295342d1c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28b"
   },
   "title" : "$For$ o $during$",
-  "instructions" : "Coloca $for$ o $during$.",
+  "instructions" : "Elige 'for' o 'during'.",
   "translation" : "¿Puedo verte durante tu tiempo en el hotel?",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -26,22 +26,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.10.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for five years$). $during$ + qué pasaba ($during the concert$).",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Can I see you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "your time at the hotel?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can I see you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "during" ]
     }, {
       "kind" : "TEXT",
@@ -49,18 +84,19 @@
       "options" : null
     } ],
     "sentences" : [ "Can I see you during your time at the hotel?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'for' o 'during'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d1d"
   },
   "id" : "67fab6d59930102295342d1d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28b"
   },
   "title" : "$For$ o $during$",
-  "instructions" : "Coloca $for$ o $during$.",
+  "instructions" : "Elige 'for' o 'during'.",
   "translation" : "Ella vio a Peter muchas veces durante las vacaciones de Navidad.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -78,22 +114,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.10.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for five years$). $during$ + qué pasaba ($during the concert$).",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She saw Peter many times",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the Christmas holidays.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She saw Peter many times",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "during" ]
     }, {
       "kind" : "TEXT",
@@ -101,18 +172,19 @@
       "options" : null
     } ],
     "sentences" : [ "She saw Peter many times during the Christmas holidays." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'for' o 'during'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d1e"
   },
   "id" : "67fab6d59930102295342d1e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28b"
   },
   "title" : "$For$ o $during$",
-  "instructions" : "Coloca $for$ o $during$.",
+  "instructions" : "Elige 'for' o 'during'.",
   "translation" : "Estudié en Roma durante cinco años.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -130,10 +202,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.10.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for five years$). $during$ + qué pasaba ($during the concert$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,25 +218,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "for" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "five years.",
       "options" : null
     } ],
-    "sentences" : [ "I studied in Rome for five years." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I studied in Rome",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "for" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "five years.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'for' o 'during'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d1f"
   },
   "id" : "67fab6d59930102295342d1f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28b"
   },
   "title" : "$For$ o $during$",
-  "instructions" : "Coloca $for$ o $during$.",
+  "instructions" : "Elige 'for' o 'during'.",
   "translation" : "Viajó a Berlín durante un mes.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -182,10 +289,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.10.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for five years$). $during$ + qué pasaba ($during the concert$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,25 +305,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "for" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "a month.",
       "options" : null
     } ],
-    "sentences" : [ "He traveled to Berlin for a month." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He traveled to Berlin",
+      "options" : null
+    }, {
+      "options" : [ "for" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "a month.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'for' o 'during'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d20"
   },
   "id" : "67fab6d59930102295342d20",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28b"
   },
   "title" : "$For$ o $during$",
-  "instructions" : "Coloca $for$ o $during$.",
+  "instructions" : "Elige 'for' o 'during'.",
   "translation" : "Hablé con Mary durante el concierto.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -234,10 +376,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.10.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for five years$). $during$ + qué pasaba ($during the concert$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +392,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "during" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the concert.",
       "options" : null
     } ],
-    "sentences" : [ "I spoke to Mary during the concert." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I spoke to Mary",
+      "options" : null
+    }, {
+      "options" : [ "during" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "the concert.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'for' o 'during'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d21"
   },
   "id" : "67fab6d59930102295342d21",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28b"
   },
   "title" : "$For$ o $during$",
-  "instructions" : "Coloca $for$ o $during$.",
+  "instructions" : "Elige 'for' o 'during'.",
   "translation" : "Nos quedamos en las montañas durante cinco días.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -286,22 +463,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.10.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for five years$). $during$ + qué pasaba ($during the concert$).",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We stayed in the mountains",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "five days.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We stayed in the mountains",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
@@ -309,18 +521,19 @@
       "options" : null
     } ],
     "sentences" : [ "We stayed in the mountains for five days." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'for' o 'during'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d22"
   },
   "id" : "67fab6d59930102295342d22",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28b"
   },
   "title" : "$For$ o $during$",
-  "instructions" : "Coloca $for$ o $during$.",
+  "instructions" : "Elige 'for' o 'during'.",
   "translation" : "Tomaron la temperatura durante la tarde.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -338,22 +551,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.10.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for five years$). $during$ + qué pasaba ($during the concert$).",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They took the temperature",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the afternoon.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They took the temperature",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "during" ]
     }, {
       "kind" : "TEXT",
@@ -361,18 +609,19 @@
       "options" : null
     } ],
     "sentences" : [ "They took the temperature during the afternoon." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'for' o 'during'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d23"
   },
   "id" : "67fab6d59930102295342d23",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28b"
   },
   "title" : "$For$ o $during$",
-  "instructions" : "Coloca $for$ o $during$.",
+  "instructions" : "Elige 'for' o 'during'.",
   "translation" : "Practicaron durante diez días.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -390,22 +639,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.10.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for five years$). $during$ + qué pasaba ($during the concert$).",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They practised",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ten days.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They practised",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
@@ -413,18 +697,19 @@
       "options" : null
     } ],
     "sentences" : [ "They practised for ten days." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'for' o 'during'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d24"
   },
   "id" : "67fab6d59930102295342d24",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28b"
   },
   "title" : "$For$ o $during$",
-  "instructions" : "Coloca $for$ o $during$.",
+  "instructions" : "Elige 'for' o 'during'.",
   "translation" : "Él almorzó durante el descanso.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -442,9 +727,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.10.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for five years$). $during$ + qué pasaba ($during the concert$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He ate lunch",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the break.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -460,23 +780,23 @@
       "text" : "",
       "options" : [ "during" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "the break.",
-      "options" : null
-    } ],
-    "sentences" : [ "He ate lunch during the break." ]
-  }
+      "text" : "the break."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'for' o 'during'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d25"
   },
   "id" : "67fab6d59930102295342d25",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28b"
   },
   "title" : "$For$ o $during$",
-  "instructions" : "Coloca $for$ o $during$.",
+  "instructions" : "Elige 'for' o 'during'.",
   "translation" : "Ella va a practicar el piano durante tres horas.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -494,13 +814,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.10.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for five years$). $during$ + qué pasaba ($during the concert$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's going to practice the piano",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "three hours.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -516,6 +867,10 @@
       "text" : "three hours.",
       "options" : null
     } ],
-    "sentences" : [ "She's going to practice the piano for three hours." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'for' o 'during'."
 } ]

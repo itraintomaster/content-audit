@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295343d25"
   },
   "id" : "67fab6d59930102295343d25",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "Pudieron llamar a la tienda a tiempo, así que el televisor fue arreglado.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -26,22 +26,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They were able to call the shop",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time, so the TV was fixed.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They were able to call the shop",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
@@ -49,18 +84,20 @@
       "options" : null
     } ],
     "sentences" : [ "They were able to call the shop in time, so the TV was fixed." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d26"
   },
   "id" : "67fab6d59930102295343d26",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "Ella necesita llegar a tiempo para su programa favorito.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -78,10 +115,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +131,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time for her favourite show.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She needs to arrive"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "time for her favourite show.",
       "options" : null
     } ],
-    "sentences" : [ "She needs to arrive in time for her favourite show." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d27"
   },
   "id" : "67fab6d59930102295343d27",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "¿Tu cita empezó a tiempo?",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -130,10 +203,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,25 +219,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "on" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "time?",
       "options" : null
     } ],
-    "sentences" : [ "Did your appointment start on time?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did your appointment start",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "on" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "time?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d28"
   },
   "id" : "67fab6d59930102295343d28",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "El programa empezó a tiempo.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -182,9 +291,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The show started",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +347,21 @@
       "kind" : "TEXT",
       "text" : "time.",
       "options" : null
-    } ],
-    "sentences" : [ "The show started on time." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d29"
   },
   "id" : "67fab6d59930102295343d29",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "Llegamos a tiempo para ver a nuestra hija cantar una canción.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -234,13 +379,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We were",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time to see our daughter sing a song.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -256,19 +432,24 @@
       "text" : "time to see our daughter sing a song.",
       "options" : null
     } ],
-    "sentences" : [ "We were in time to see our daughter sing a song." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d2a"
   },
   "id" : "67fab6d59930102295343d2a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "Él llegó al cine a tiempo, pero la película se retrasó.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -286,9 +467,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He got to the cinema",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time but the movie was delayed.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -307,20 +523,21 @@
       "kind" : "TEXT",
       "text" : "time but the movie was delayed.",
       "options" : null
-    } ],
-    "sentences" : [ "He got to the cinema on time but the movie was delayed." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d2b"
   },
   "id" : "67fab6d59930102295343d2b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "Llegué a casa a tiempo para ver la televisión con todos.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -338,10 +555,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +571,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "in" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "time to watch TV with everyone.",
       "options" : null
     } ],
-    "sentences" : [ "I arrived home in time to watch TV with everyone." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I arrived home",
+      "options" : null
+    }, {
+      "options" : [ "in" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "time to watch TV with everyone.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d2c"
   },
   "id" : "67fab6d59930102295343d2c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "El concierto empezó a tiempo.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -390,15 +643,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The concert started",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The concert started",
@@ -412,19 +694,26 @@
       "text" : "time.",
       "options" : null
     } ],
-    "sentences" : [ "The concert started on time." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d2d"
   },
   "id" : "67fab6d59930102295343d2d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "¡Mi amigo nunca llega a tiempo!",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -442,10 +731,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +747,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "on" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "time!",
       "options" : null
     } ],
-    "sentences" : [ "My friend is never on time!" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My friend is never",
+      "options" : null
+    }, {
+      "options" : [ "on" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "time!",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d2e"
   },
   "id" : "67fab6d59930102295343d2e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "Espero llegar a casa a tiempo para leer un libro antes de dormir.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -494,10 +819,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I hope I get home",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time to read a book before sleeping.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -516,19 +875,21 @@
       "text" : "time to read a book before sleeping.",
       "options" : null
     } ],
-    "sentences" : [ "I hope I get home in time to read a book before sleeping." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d2f"
   },
   "id" : "67fab6d59930102295343d2f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "El extranjero llegó a la estación a tiempo.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -546,22 +907,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The foreigner arrived at the station",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The foreigner arrived at the station",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
@@ -569,18 +965,20 @@
       "options" : null
     } ],
     "sentences" : [ "The foreigner arrived at the station on time." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d30"
   },
   "id" : "67fab6d59930102295343d30",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "La reunión no terminó a tiempo. ¡Terminó media hora tarde!",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -598,10 +996,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -614,25 +1012,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "on" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "time. It finished half an hour late!",
       "options" : null
     } ],
-    "sentences" : [ "The meeting didn't finish on time. It finished half an hour late!" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "The meeting didn't finish"
+    }, {
+      "options" : [ "on" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "time. It finished half an hour late!",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d31"
   },
   "id" : "67fab6d59930102295343d31",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "¿Llegaste a tiempo para ver la puesta de sol?",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -650,14 +1084,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Were you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time to see the sunset?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -672,19 +1136,25 @@
       "text" : "time to see the sunset?",
       "options" : null
     } ],
-    "sentences" : [ "Were you in time to see the sunset?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d32"
   },
   "id" : "67fab6d59930102295343d32",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "¿El programa comenzó a tiempo?",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -702,9 +1172,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did the show begin",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -723,20 +1228,21 @@
       "kind" : "TEXT",
       "text" : "time?",
       "options" : null
-    } ],
-    "sentences" : [ "Did the show begin on time?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d33"
   },
   "id" : "67fab6d59930102295343d33",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "¿Llegaste a tiempo para ver a Fred antes de que se fuera?",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -754,15 +1260,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you get there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time to see Fred before he left?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Did you get there",
@@ -776,19 +1311,26 @@
       "text" : "time to see Fred before he left?",
       "options" : null
     } ],
-    "sentences" : [ "Did you get there in time to see Fred before he left?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d34"
   },
   "id" : "67fab6d59930102295343d34",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "Ese taxi nunca llega a tiempo.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -806,10 +1348,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -822,25 +1364,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "on" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "time.",
       "options" : null
     } ],
-    "sentences" : [ "That taxi is never on time." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "That taxi is never"
+    }, {
+      "text" : "",
+      "options" : [ "on" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "time."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d35"
   },
   "id" : "67fab6d59930102295343d35",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "Él no llamó al médico a tiempo y la enfermedad empeoró.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -858,22 +1436,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He didn't call the doctor",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time and the illness got worse.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He didn't call the doctor",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
@@ -881,18 +1494,20 @@
       "options" : null
     } ],
     "sentences" : [ "He didn't call the doctor in time and the illness got worse." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d36"
   },
   "id" : "67fab6d59930102295343d36",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "¿La tienda suele abrir a tiempo?",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -910,10 +1525,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -926,25 +1541,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "on" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "time?",
       "options" : null
     } ],
-    "sentences" : [ "Does the store usually open on time?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Does the store usually open"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "time?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d37"
   },
   "id" : "67fab6d59930102295343d37",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "Llegué a tiempo para ver a mi padre. Pensé que podría haberse ido, pero no lo había hecho.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -962,9 +1613,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time to see my father – I thought he might have left but he hadn't.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -980,23 +1666,24 @@
       "text" : "",
       "options" : [ "in" ]
     }, {
-      "kind" : "TEXT",
       "text" : "time to see my father – I thought he might have left but he hadn't.",
-      "options" : null
-    } ],
-    "sentences" : [ "I was in time to see my father – I thought he might have left but he hadn't." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d38"
   },
   "id" : "67fab6d59930102295343d38",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37d"
   },
   "title" : "$In time$ u $on time$",
-  "instructions" : "Completar con $in$ o $on$.",
+  "instructions" : "Elige 'in' u 'on'.",
   "translation" : "Recogieron las flores a tiempo, antes de que perdieran su forma.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
@@ -1014,22 +1701,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.13.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They picked the flowers",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time, before they lost their shape.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They picked the flowers",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
@@ -1037,5 +1759,1767 @@
       "options" : null
     } ],
     "sentences" : [ "They picked the flowers in time, before they lost their shape." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir con 'in' o 'on'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in' o 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a44"
+  },
+  "id" : "67fab6d59930102295344a44",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "Llegamos a tiempo para encontrarnos con mis padres.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We arrived",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to meet my parents.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We arrived",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in time" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to meet my parents.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a45"
+  },
+  "id" : "67fab6d59930102295344a45",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "La película empezó puntualmente.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The movie started",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The movie started",
+      "options" : null
+    }, {
+      "options" : [ "on time" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a46"
+  },
+  "id" : "67fab6d59930102295344a46",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "Me gusta ir a la escuela a tiempo para leer antes de que llegue mi profesor.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I like to go to school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to read before my teacher arrives.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I like to go to school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in time" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to read before my teacher arrives.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a47"
+  },
+  "id" : "67fab6d59930102295344a47",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "El taxi llegó a tiempo.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The taxi was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The taxi was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on time" ]
+    }, {
+      "text" : ".",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a48"
+  },
+  "id" : "67fab6d59930102295344a48",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "Su clase de música nunca termina a tiempo.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His music class never ends",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His music class never ends",
+      "options" : null
+    }, {
+      "options" : [ "on time" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a49"
+  },
+  "id" : "67fab6d59930102295344a49",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "El coche llegó a tiempo.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The car arrived",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The car arrived",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on time" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a4a"
+  },
+  "id" : "67fab6d59930102295344a4a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "¿Llegaste a tiempo para ayudar?",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you get there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to assist?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you get there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in time" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to assist?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a4b"
+  },
+  "id" : "67fab6d59930102295344a4b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "¿El seminario comenzó a tiempo?",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did the seminar begin",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did the seminar begin",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "on time" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "?"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a4c"
+  },
+  "id" : "67fab6d59930102295344a4c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "El espectáculo comenzó a tiempo.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The show started",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "The show started"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on time" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a4d"
+  },
+  "id" : "67fab6d59930102295344a4d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "La fiesta terminó a tiempo.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The party ended",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The party ended",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on time" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a4e"
+  },
+  "id" : "67fab6d59930102295344a4e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "Llegó tarde, pero llegó a tiempo para los juegos.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He arrived late but he was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "for the games.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He arrived late but he was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in time" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "for the games.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a4f"
+  },
+  "id" : "67fab6d59930102295344a4f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "Llegó a tiempo para el té.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "for tea.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in time" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "for tea.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a50"
+  },
+  "id" : "67fab6d59930102295344a50",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "La película no empezó a tiempo.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The film didn't begin",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The film didn't begin",
+      "options" : null
+    }, {
+      "options" : [ "on time" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : ".",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a51"
+  },
+  "id" : "67fab6d59930102295344a51",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "Se subió al árbol a tiempo para ver la puesta de sol.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She climbed the tree",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to see the sunset.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She climbed the tree",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in time" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "to see the sunset."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a52"
+  },
+  "id" : "67fab6d59930102295344a52",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "Llegó a casa a tiempo para darle de comer al gato.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She got home",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to feed the cat.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She got home",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in time" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to feed the cat.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a53"
+  },
+  "id" : "67fab6d59930102295344a53",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "El partido no empezó a tiempo.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The game didn't start",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "The game didn't start",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on time" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a54"
+  },
+  "id" : "67fab6d59930102295344a54",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "Me levanté a tiempo para almorzar con Michael.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I got up",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to have lunch with Michael.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "I got up",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in time" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to have lunch with Michael.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a55"
+  },
+  "id" : "67fab6d59930102295344a55",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "Llegamos a tiempo para ver a Sophie antes de que se mudara.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We were",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to see Sophie before she moved.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We were",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in time" ]
+    }, {
+      "text" : "to see Sophie before she moved.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a56"
+  },
+  "id" : "67fab6d59930102295344a56",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "El autobús salió a tiempo.",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The bus left",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "The bus left"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on time" ]
+    }, {
+      "text" : ".",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a57"
+  },
+  "id" : "67fab6d59930102295344a57",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37d"
+  },
+  "title" : "$In time$ u $on time$",
+  "instructions" : "Elige 'in time' u 'on time'.",
+  "translation" : "¿Llegaste a tiempo para ver el baile de tu hija en el espectáculo?",
+  "theoryId" : "b1.17.On_Time_or_In_Time",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.05.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Were you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to see your daughter's dance at the show?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in time",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in time"
+    }, {
+      "id" : "on time",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on time"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Were you",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "in time" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "to see your daughter's dance at the show?"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'in time' o 'on time'.",
+  "instructionsAntesDeRevisar" : "Elige con 'in time' o 'on time'."
 } ]

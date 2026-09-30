@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953424a7"
   },
   "id" : "67fab6d599301022953424a7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Fui al museo.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -26,9 +26,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I went",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the museum.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -44,23 +85,23 @@
       "text" : "",
       "options" : [ "to" ]
     }, {
-      "kind" : "TEXT",
       "text" : "the museum.",
-      "options" : null
-    } ],
-    "sentences" : [ "I went to the museum." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424a8"
   },
   "id" : "67fab6d599301022953424a8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Conduciremos al parque.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -78,9 +119,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We will drive",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the park.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -99,20 +181,20 @@
       "kind" : "TEXT",
       "text" : "the park.",
       "options" : null
-    } ],
-    "sentences" : [ "We will drive to the park." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424a9"
   },
   "id" : "67fab6d599301022953424a9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Fueron a Brasil.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -130,9 +212,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They went",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Brazil.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -151,20 +274,20 @@
       "kind" : "TEXT",
       "text" : "Brazil.",
       "options" : null
-    } ],
-    "sentences" : [ "They went to Brazil." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424aa"
   },
   "id" : "67fab6d599301022953424aa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Llegamos a París.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -182,22 +305,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We got",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Paris.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We got",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
@@ -205,18 +369,19 @@
       "options" : null
     } ],
     "sentences" : [ "We got to Paris." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424ab"
   },
   "id" : "67fab6d599301022953424ab",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Laura fue allí.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -234,10 +399,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +415,66 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "there.",
       "options" : null
     } ],
-    "sentences" : [ "Laura went - there." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Laura went",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "there."
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424ac"
   },
   "id" : "67fab6d599301022953424ac",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Tomó un barco a Marsella.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -286,10 +492,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +508,66 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Marseille.",
       "options" : null
     } ],
-    "sentences" : [ "He took a boat to Marseille." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He took a boat",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "to" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "Marseille.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424ad"
   },
   "id" : "67fab6d599301022953424ad",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Ella va a tomar un avión a casa de sus padres.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -338,10 +585,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +601,66 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "her parents' house.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She is going to take a plane"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "her parents' house.",
       "options" : null
     } ],
-    "sentences" : [ "She is going to take a plane to her parents' house." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424ae"
   },
   "id" : "67fab6d599301022953424ae",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Robert ha llegado allí.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -390,22 +678,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Robert has got",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "there.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Robert has got",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -413,18 +742,19 @@
       "options" : null
     } ],
     "sentences" : [ "Robert has got - there." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424af"
   },
   "id" : "67fab6d599301022953424af",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Se quedará en Italia mañana.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -442,41 +772,83 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Stay$ y $live$ no son movimiento: van con $in$, no con $to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He'll stay",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Italy tomorrow.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He'll stay",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "Italy tomorrow.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "He'll stay in Italy tomorrow." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424b0"
   },
   "id" : "67fab6d599301022953424b0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Ella vino aquí ayer.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -494,9 +866,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She came",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "here yesterday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -512,23 +925,23 @@
       "text" : "",
       "options" : [ "-" ]
     }, {
-      "kind" : "TEXT",
       "text" : "here yesterday.",
-      "options" : null
-    } ],
-    "sentences" : [ "She came - here yesterday." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424b1"
   },
   "id" : "67fab6d599301022953424b1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Llevó a un niño al hotel.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -546,22 +959,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She took a child",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the hotel.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She took a child",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
@@ -569,18 +1023,19 @@
       "options" : null
     } ],
     "sentences" : [ "She took a child to the hotel." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424b2"
   },
   "id" : "67fab6d599301022953424b2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Vino a la escuela con nosotros.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -598,41 +1053,83 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She came",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the school with us.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She came",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "the school with us.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "She came to the school with us." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424b3"
   },
   "id" : "67fab6d599301022953424b3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "¿Cuándo volaste a Australia?",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -650,41 +1147,83 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "When did you fly",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Australia?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When did you fly",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "Australia?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "When did you fly to Australia?" ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424b4"
   },
   "id" : "67fab6d599301022953424b4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Los niños caminarán a la playa.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -702,22 +1241,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The children will walk",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the beach.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The children will walk",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
@@ -725,18 +1305,19 @@
       "options" : null
     } ],
     "sentences" : [ "The children will walk to the beach." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424b5"
   },
   "id" : "67fab6d599301022953424b5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Caminaron hasta el banco.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -754,15 +1335,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They walked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the bank.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They walked",
@@ -776,19 +1392,25 @@
       "text" : "the bank.",
       "options" : null
     } ],
-    "sentences" : [ "They walked to the bank." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424b6"
   },
   "id" : "67fab6d599301022953424b6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "La gente se quedó en Berlín la semana pasada.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -806,41 +1428,83 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Stay$ y $live$ no son movimiento: van con $in$, no con $to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The people stayed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Berlin last week.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The people stayed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "Berlin last week.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "The people stayed in Berlin last week." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424b7"
   },
   "id" : "67fab6d599301022953424b7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Corrieron hasta aquí.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -858,41 +1522,83 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They ran",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "here.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They ran",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "here.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "They ran - here." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424b8"
   },
   "id" : "67fab6d599301022953424b8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Peter vivió en Asia durante tres años.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -910,22 +1616,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Stay$ y $live$ no son movimiento: van con $in$, no con $to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Peter lived",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Asia for three years.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Peter lived",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
@@ -933,18 +1680,19 @@
       "options" : null
     } ],
     "sentences" : [ "Peter lived in Asia for three years." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424b9"
   },
   "id" : "67fab6d599301022953424b9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Ella fue en bicicleta al parque.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -962,22 +1710,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She rode",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the park.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She rode",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
@@ -985,18 +1774,19 @@
       "options" : null
     } ],
     "sentences" : [ "She rode to the park." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424ba"
   },
   "id" : "67fab6d599301022953424ba",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
   "title" : "Verbos de movimiento",
-  "instructions" : "Elige in, to o -",
+  "instructions" : "Elige 'in' o 'to', o '-' si no hace falta preposición.",
   "translation" : "Corrimos hasta Brighton.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
@@ -1014,28 +1804,1797 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.09.09.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con movimiento va $to$: $go to$, $drive to$, $get to$. $here$ y $there$ van solos.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We ran",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Brighton.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We ran",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "Brighton.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "We ran to Brighton." ]
+  },
+  "instructionsAntesDeRevisar" : "Elige in, to o -"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cd6"
+  },
+  "id" : "67fab6d59930102295342cd6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Trabajaremos en Londres alrededor de las 8 de la mañana.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We'll work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "London around 8 am.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We'll work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "London around 8 am.",
+      "options" : null
+    } ],
+    "sentences" : [ "We'll work in London around 8 am." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cd7"
+  },
+  "id" : "67fab6d59930102295342cd7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Residimos en Londres con nuestro abuelo.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We reside",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "London with our granddad.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We reside",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "London with our granddad.",
+      "options" : null
+    } ],
+    "sentences" : [ "We reside in London with our granddad." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cd8"
+  },
+  "id" : "67fab6d59930102295342cd8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Fueron a Irlanda.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They went",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Ireland.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They went",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Ireland.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "They went to Ireland." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cd9"
+  },
+  "id" : "67fab6d59930102295342cd9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Ella está en España.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spain.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spain.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cda"
+  },
+  "id" : "67fab6d59930102295342cda",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Él está en Alemania.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Germany.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Germany."
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cdb"
+  },
+  "id" : "67fab6d59930102295342cdb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Ella encontró equipaje en Francia.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She found luggage",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "France.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She found luggage",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "France.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "She found luggage in France." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cdc"
+  },
+  "id" : "67fab6d59930102295342cdc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Están viajando por Brasil.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They are travelling",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Brazil.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They are travelling",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Brazil.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cdd"
+  },
+  "id" : "67fab6d59930102295342cdd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Ella caminó a la escuela.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She walked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "school.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She walked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "school.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cde"
+  },
+  "id" : "67fab6d59930102295342cde",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Nos apresuramos a la biblioteca.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We hurried",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the library.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "We hurried"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the library.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cdf"
+  },
+  "id" : "67fab6d59930102295342cdf",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Él va a desembarcar en el sur de Brasil mañana.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Arrive y disembark son la excepción: van con $in$, no $to$, aunque haya llegada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is going to disembark",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the south of Brazil tomorrow.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is going to disembark",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the south of Brazil tomorrow.",
+      "options" : null
+    } ],
+    "sentences" : [ "He is going to disembark in the south of Brazil tomorrow." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ce0"
+  },
+  "id" : "67fab6d59930102295342ce0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Ellos caminaron al teatro.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They walked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the theatre.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They walked",
+      "options" : null
+    }, {
+      "options" : [ "to" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "the theatre.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ce1"
+  },
+  "id" : "67fab6d59930102295342ce1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Él juega en Noruega.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He plays",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Norway.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He plays",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Norway.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ce2"
+  },
+  "id" : "67fab6d59930102295342ce2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Ellos viajaron a Barcelona.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They travelled",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Barcelona.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They travelled",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Barcelona.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ce3"
+  },
+  "id" : "67fab6d59930102295342ce3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Él viajó a Nueva Zelanda.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He travelled",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "New Zealand.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He travelled",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "New Zealand.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ce4"
+  },
+  "id" : "67fab6d59930102295342ce4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Salté en un autobús a Hamburgo.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I jumped on a bus",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Hamburg.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I jumped on a bus",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Hamburg."
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ce5"
+  },
+  "id" : "67fab6d59930102295342ce5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Ella viajó al Reino Unido.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She travelled",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the UK.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She travelled"
+    }, {
+      "options" : [ "to" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "the UK.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ce6"
+  },
+  "id" : "67fab6d59930102295342ce6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Ellos viajaron a la India.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They travelled",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "India.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They travelled",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "India.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ce7"
+  },
+  "id" : "67fab6d59930102295342ce7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Llegué a Roma anoche.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Arrive y disembark son la excepción: van con $in$, no $to$, aunque haya llegada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I arrived",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Rome last night.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I arrived",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Rome last night.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "I arrived in Rome last night." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ce8"
+  },
+  "id" : "67fab6d59930102295342ce8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Los turistas desembarcaron en el oeste de Italia.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Arrive y disembark son la excepción: van con $in$, no $to$, aunque haya llegada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The tourists disembarked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the west of Italy.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The tourists disembarked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the west of Italy.",
+      "options" : null
+    } ],
+    "sentences" : [ "The tourists disembarked in the west of Italy." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ce9"
+  },
+  "id" : "67fab6d59930102295342ce9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3df"
+  },
+  "title" : "Verbos de movimiento",
+  "instructions" : "Elige 'in' o 'to'.",
+  "translation" : "Fueron al aeropuerto a tiempo.",
+  "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.06.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si te movés hacia allá, $to$. Si ya estás ahí, $in$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They went",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the airport on time.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They went",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "to" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "the airport on time.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 } ]

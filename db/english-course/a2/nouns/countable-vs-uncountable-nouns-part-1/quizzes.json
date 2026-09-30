@@ -3,14 +3,14 @@
     "$oid" : "67fab6d599301022953429d4"
   },
   "id" : "67fab6d599301022953429d4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "El golf es difícil de aprender.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,18 +26,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "golf is difficult to learn.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -45,20 +76,21 @@
       "options" : null
     } ],
     "sentences" : [ "- golf is difficult to learn." ]
-  }
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429d5"
   },
   "id" : "67fab6d599301022953429d5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "¿Te gustaría arroz?",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -74,10 +106,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -90,27 +122,62 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "rice?",
       "options" : null
     } ],
-    "sentences" : [ "Would you like - rice?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Would you like"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "rice?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429d6"
   },
   "id" : "67fab6d599301022953429d6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "Él necesita un sándwich.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -126,9 +193,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He needs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sandwich.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -147,22 +249,22 @@
       "kind" : "TEXT",
       "text" : "sandwich.",
       "options" : null
-    } ],
-    "sentences" : [ "He needs a sandwich." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429d7"
   },
   "id" : "67fab6d599301022953429d7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "Ella es doctora.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -178,9 +280,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "doctor.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -196,25 +333,25 @@
       "text" : "",
       "options" : [ "a" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "doctor.",
-      "options" : null
-    } ],
-    "sentences" : [ "She's a doctor." ]
-  }
+      "text" : "doctor."
+    } ]
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429d8"
   },
   "id" : "67fab6d599301022953429d8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "Encontré una llave.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -230,10 +367,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I found",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "key.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -252,21 +423,22 @@
       "text" : "key.",
       "options" : null
     } ],
-    "sentences" : [ "I found a key." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429d9"
   },
   "id" : "67fab6d599301022953429d9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "¿Podríamos pedir una pizza?",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -282,10 +454,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -298,27 +470,62 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pizza?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Could we order",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "pizza?",
       "options" : null
     } ],
-    "sentences" : [ "Could we order a pizza?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429da"
   },
   "id" : "67fab6d599301022953429da",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "El bádminton es medicina.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -334,39 +541,71 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "badminton is medicine.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "badminton is medicine.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "- badminton is medicine." ]
-  }
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429db"
   },
   "id" : "67fab6d599301022953429db",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "El jugo es dulce.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -382,18 +621,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "juice is sweet.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -401,20 +671,21 @@
       "options" : null
     } ],
     "sentences" : [ "- juice is sweet." ]
-  }
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429dc"
   },
   "id" : "67fab6d599301022953429dc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "¿Tienes un gato?",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -430,43 +701,79 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cat?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "cat?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Do you have a cat?" ]
-  }
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429dd"
   },
   "id" : "67fab6d599301022953429dd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "Necesito un mango.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -482,22 +789,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "mango.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
@@ -505,20 +847,21 @@
       "options" : null
     } ],
     "sentences" : [ "I need a mango." ]
-  }
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429de"
   },
   "id" : "67fab6d599301022953429de",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "Él consiguió un coche.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -534,22 +877,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He got",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "car.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He got",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
@@ -557,20 +935,21 @@
       "options" : null
     } ],
     "sentences" : [ "He got a car." ]
-  }
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429df"
   },
   "id" : "67fab6d599301022953429df",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "Ellos tienen una hija.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -586,10 +965,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -602,27 +981,62 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "a" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "daughter.",
       "options" : null
     } ],
-    "sentences" : [ "They have a daughter." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They have"
+    }, {
+      "options" : [ "a" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "daughter.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429e0"
   },
   "id" : "67fab6d599301022953429e0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "Los estudiantes están practicando un deporte.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -638,9 +1052,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students are playing",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sport.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -659,22 +1108,22 @@
       "kind" : "TEXT",
       "text" : "sport.",
       "options" : null
-    } ],
-    "sentences" : [ "The students are playing a sport." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429e1"
   },
   "id" : "67fab6d599301022953429e1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "Disfruto del té.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -690,10 +1139,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -706,27 +1155,62 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "tea.",
       "options" : null
     } ],
-    "sentences" : [ "I enjoy - tea." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "tea.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429e2"
   },
   "id" : "67fab6d599301022953429e2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "Ella escribió una carta.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -742,10 +1226,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wrote",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "letter.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -764,21 +1282,22 @@
       "text" : "letter.",
       "options" : null
     } ],
-    "sentences" : [ "She wrote a letter." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429e3"
   },
   "id" : "67fab6d599301022953429e3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "La moda es más importante que la joyería.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -794,39 +1313,71 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "fashion is more important than jewellery.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "fashion is more important than jewellery.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "- fashion is more important than jewellery." ]
-  }
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429e4"
   },
   "id" : "67fab6d599301022953429e4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "¿Hay peligro?",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -842,43 +1393,79 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Is there",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "danger?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "danger?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "Is there - danger?" ]
-  }
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429e5"
   },
   "id" : "67fab6d599301022953429e5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "Necesito consejo.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -894,43 +1481,79 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "advice.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "advice.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "I need - advice." ]
-  }
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429e6"
   },
   "id" : "67fab6d599301022953429e6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "Nos gustaría un postre.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -946,14 +1569,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We would like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dessert.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -968,21 +1621,26 @@
       "text" : "dessert.",
       "options" : null
     } ],
-    "sentences" : [ "We would like a dessert." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953429e7"
   },
   "id" : "67fab6d599301022953429e7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
   "title" : "Con artículo o guion",
-  "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
+  "instructions" : "¿Estos sustantivos son contables o incontables? Elige 'a' si el sustantivo es contable, y '-' si es incontable. (No usamos 'a' con sustantivos incontables).",
   "translation" : "Me gustaría sopa para el almuerzo.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -998,10 +1656,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.02.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Contable → $a$. Incontable → nada: $golf$ y $rice$ no llevan $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1014,12 +1672,47 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "soup for lunch.",
       "options" : null
     } ],
-    "sentences" : [ "I'd like - soup for lunch." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I'd like"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "soup for lunch.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "¿Estos sustantivos son contables o incontables? Escribe 'a' si el sustantivo es contable, y escribe '-' si el sustantivo es incontable. (No usamos 'a' con sustantivos incontables)."
 } ]

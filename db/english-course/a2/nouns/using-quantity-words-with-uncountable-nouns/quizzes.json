@@ -8,9 +8,9 @@
     "$oid" : "6814dafa7d73e7209a13d258"
   },
   "title" : "Palabras de cantidad",
-  "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
   "translation" : "Quiero un trozo de carne.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.04.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo incontable se cuenta por envase: $a glass of$, $a piece of$, $a kilo of$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -60,9 +60,9 @@
     "$oid" : "6814dafa7d73e7209a13d258"
   },
   "title" : "Palabras de cantidad",
-  "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
   "translation" : "¿Puedes conseguir un cuarto de mantequilla?",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -78,22 +78,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.04.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo incontable se cuenta por envase: $a glass of$, $a piece of$, $a kilo of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Can you get",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "a quarter of butter" ]
     }, {
       "kind" : "TEXT",
@@ -112,9 +112,9 @@
     "$oid" : "6814dafa7d73e7209a13d258"
   },
   "title" : "Palabras de cantidad",
-  "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
   "translation" : "Tomó un vaso de limonada.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -130,22 +130,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.04.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo incontable se cuenta por envase: $a glass of$, $a piece of$, $a kilo of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He had",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "a glass of lemonade" ]
     }, {
       "kind" : "TEXT",
@@ -164,9 +164,9 @@
     "$oid" : "6814dafa7d73e7209a13d258"
   },
   "title" : "Palabras de cantidad",
-  "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
   "translation" : "Necesitan un kilo de chile.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -182,22 +182,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.04.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo incontable se cuenta por envase: $a glass of$, $a piece of$, $a kilo of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "a kilo of chilli" ]
     }, {
       "kind" : "TEXT",
@@ -216,9 +216,9 @@
     "$oid" : "6814dafa7d73e7209a13d258"
   },
   "title" : "Palabras de cantidad",
-  "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
   "translation" : "¿Comprarías una lata de refresco?",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -234,7 +234,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.04.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo incontable se cuenta por envase: $a glass of$, $a piece of$, $a kilo of$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -268,9 +268,9 @@
     "$oid" : "6814dafa7d73e7209a13d258"
   },
   "title" : "Palabras de cantidad",
-  "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
   "translation" : "¡Tengo una taza de té!",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -286,22 +286,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.04.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo incontable se cuenta por envase: $a glass of$, $a piece of$, $a kilo of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "a mug of tea" ]
     }, {
       "kind" : "TEXT",
@@ -320,9 +320,9 @@
     "$oid" : "6814dafa7d73e7209a13d258"
   },
   "title" : "Palabras de cantidad",
-  "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
   "translation" : "Ella puso una cucharada de azúcar en su té.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -338,22 +338,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.04.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo incontable se cuenta por envase: $a glass of$, $a piece of$, $a kilo of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She put a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "spoon" ]
     }, {
       "kind" : "TEXT",
@@ -372,9 +372,9 @@
     "$oid" : "6814dafa7d73e7209a13d258"
   },
   "title" : "Palabras de cantidad",
-  "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
   "translation" : "Compartieron una botella de cerveza.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -390,22 +390,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.04.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo incontable se cuenta por envase: $a glass of$, $a piece of$, $a kilo of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They shared",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "a bottle of beer" ]
     }, {
       "kind" : "TEXT",
@@ -424,9 +424,9 @@
     "$oid" : "6814dafa7d73e7209a13d258"
   },
   "title" : "Palabras de cantidad",
-  "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
   "translation" : "Eso es un gramo de oro.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -442,7 +442,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.04.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo incontable se cuenta por envase: $a glass of$, $a piece of$, $a kilo of$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -476,9 +476,9 @@
     "$oid" : "6814dafa7d73e7209a13d258"
   },
   "title" : "Palabras de cantidad",
-  "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
+  "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
   "translation" : "Él bebió un litro de leche.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -494,22 +494,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.04.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo incontable se cuenta por envase: $a glass of$, $a piece of$, $a kilo of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He drank",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "a litre of milk" ]
     }, {
       "kind" : "TEXT",

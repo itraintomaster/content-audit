@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953448f0"
   },
   "id" : "67fab6d599301022953448f0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Él es muy bajo.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -26,9 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "short.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,20 +82,20 @@
       "kind" : "TEXT",
       "text" : "short.",
       "options" : null
-    } ],
-    "sentences" : [ "He's very short." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448f1"
   },
   "id" : "67fab6d599301022953448f1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "La actuación fue absolutamente horrible.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -78,10 +113,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +129,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "absolutely" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "awful.",
       "options" : null
     } ],
-    "sentences" : [ "The performance was absolutely awful." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The performance was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "absolutely" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "awful."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448f2"
   },
   "id" : "67fab6d599301022953448f2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Tengo mucho sueño.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -130,10 +200,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,25 +216,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "very" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "sleepy.",
       "options" : null
     } ],
-    "sentences" : [ "I'm very sleepy." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I'm"
+    }, {
+      "options" : [ "very" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "sleepy.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448f3"
   },
   "id" : "67fab6d599301022953448f3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "La habitación era muy luminosa.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -182,10 +287,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The room was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bright.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -204,19 +343,20 @@
       "text" : "bright.",
       "options" : null
     } ],
-    "sentences" : [ "The room was very bright." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448f4"
   },
   "id" : "67fab6d599301022953448f4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Él es un hombre absolutamente increíble.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -234,9 +374,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's an",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "amazing man.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -255,20 +430,20 @@
       "kind" : "TEXT",
       "text" : "amazing man.",
       "options" : null
-    } ],
-    "sentences" : [ "He's an absolutely amazing man." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448f5"
   },
   "id" : "67fab6d599301022953448f5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "La película fue muy aburrida.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -286,10 +461,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +477,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "very" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "boring.",
       "options" : null
     } ],
-    "sentences" : [ "The film was very boring." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "The film was",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "very" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "boring.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448f6"
   },
   "id" : "67fab6d599301022953448f6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Todo el mundo se sorprendió cuando la tienda cerró.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -338,9 +548,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Everyone was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "shocked when the shop closed.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +604,20 @@
       "kind" : "TEXT",
       "text" : "shocked when the shop closed.",
       "options" : null
-    } ],
-    "sentences" : [ "Everyone was absolutely shocked when the shop closed." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448f7"
   },
   "id" : "67fab6d599301022953448f7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Ella estaba absolutamente destrozada después del examen final ayer por la tarde.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -390,22 +635,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She was",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "shattered after the final exam yesterday evening.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "absolutely" ]
     }, {
       "kind" : "TEXT",
@@ -413,18 +693,19 @@
       "options" : null
     } ],
     "sentences" : [ "She was absolutely shattered after the final exam yesterday evening." ]
-  }
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448f8"
   },
   "id" : "67fab6d599301022953448f8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Esa casa es absolutamente diminuta.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -442,9 +723,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That house is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "tiny.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -463,20 +779,20 @@
       "kind" : "TEXT",
       "text" : "tiny.",
       "options" : null
-    } ],
-    "sentences" : [ "That house is absolutely tiny." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448f9"
   },
   "id" : "67fab6d599301022953448f9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Se sintió muy enferma.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -494,10 +810,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,25 +826,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "very" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "sick.",
       "options" : null
     } ],
-    "sentences" : [ "She felt very sick." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She felt"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "very" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "sick."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448fa"
   },
   "id" : "67fab6d599301022953448fa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "El mar estaba muy cálido.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -546,9 +897,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The sea was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "warm.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -569,18 +955,19 @@
       "options" : null
     } ],
     "sentences" : [ "The sea was very warm." ]
-  }
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448fb"
   },
   "id" : "67fab6d599301022953448fb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Este juego es muy divertido.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -598,10 +985,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -614,25 +1001,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "very" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "fun.",
       "options" : null
     } ],
-    "sentences" : [ "This game is very fun." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This game is",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "very" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "fun.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448fc"
   },
   "id" : "67fab6d599301022953448fc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Fue una experiencia absolutamente maravillosa.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -650,9 +1072,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It was an",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "wonderful experience.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -671,20 +1128,20 @@
       "kind" : "TEXT",
       "text" : "wonderful experience.",
       "options" : null
-    } ],
-    "sentences" : [ "It was an absolutely wonderful experience." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448fd"
   },
   "id" : "67fab6d599301022953448fd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "El concierto fue muy ruidoso.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -702,10 +1159,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The concert was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "loud.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -724,19 +1215,20 @@
       "text" : "loud.",
       "options" : null
     } ],
-    "sentences" : [ "The concert was very loud." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448fe"
   },
   "id" : "67fab6d599301022953448fe",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Hace mucho frío afuera.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -754,13 +1246,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cold outside.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -776,19 +1299,24 @@
       "text" : "cold outside.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "It's very cold outside." ]
-  }
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953448ff"
   },
   "id" : "67fab6d599301022953448ff",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Esta bebida es muy refrescante.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -806,10 +1334,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -822,25 +1350,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "very" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "refreshing.",
       "options" : null
     } ],
-    "sentences" : [ "This drink is very refreshing." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "This drink is",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "very" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "refreshing.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344900"
   },
   "id" : "67fab6d59930102295344900",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Su español es muy bueno.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -858,10 +1421,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His Spanish is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "good.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -880,19 +1477,20 @@
       "text" : "good.",
       "options" : null
     } ],
-    "sentences" : [ "His Spanish is very good." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344901"
   },
   "id" : "67fab6d59930102295344901",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Los estudiantes son muy inteligentes.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -910,10 +1508,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -926,25 +1524,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "clever.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "The students are"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "very" ]
     }, {
       "kind" : "TEXT",
       "text" : "clever.",
       "options" : null
     } ],
-    "sentences" : [ "The students are very clever." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344902"
   },
   "id" : "67fab6d59930102295344902",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "Su comida es absolutamente repugnante.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -962,9 +1595,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His food is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "disgusting.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -983,20 +1651,20 @@
       "kind" : "TEXT",
       "text" : "disgusting.",
       "options" : null
-    } ],
-    "sentences" : [ "His food is absolutely disgusting." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344903"
   },
   "id" : "67fab6d59930102295344903",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d491"
   },
   "title" : "Grados de énfasis",
-  "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
+  "instructions" : "Elige 'very' o 'absolutely' para enfatizar el adjetivo.",
   "translation" : "La maestra estaba absolutamente encantada.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
@@ -1014,9 +1682,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.13.11.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$very$ con el adjetivo graduable; $absolutely$ con el extremo ($awful$, $amazing$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The teacher was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "delighted.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "absolutely",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "absolutely"
+    }, {
+      "id" : "very",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "very"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -1035,7 +1738,7 @@
       "kind" : "TEXT",
       "text" : "delighted.",
       "options" : null
-    } ],
-    "sentences" : [ "The teacher was absolutely delighted." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Enfatiza los adjetivos añadiendo 'very' o 'absolutely'."
 } ]

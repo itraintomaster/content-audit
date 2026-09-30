@@ -3,14 +3,14 @@
     "$oid" : "67fab6d59930102295342ca4"
   },
   "id" : "67fab6d59930102295342ca4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "¿Quién es el hombre del vídeo?",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,9 +26,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Foto, video, dibujo y diario son como una caja: lo que muestran o dicen está $in$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Who is the man",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the video?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,22 +88,22 @@
       "kind" : "TEXT",
       "text" : "the video?",
       "options" : null
-    } ],
-    "sentences" : [ "Who is the man in the video?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ca5"
   },
   "id" : "67fab6d59930102295342ca5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "A ella le encanta viajar por Europa.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -78,10 +119,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ adentro o dentro de un área, $on$ sobre una superficie, $at$ un punto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,27 +135,68 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "in" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Europe.",
       "options" : null
     } ],
-    "sentences" : [ "She loves travelling in Europe." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She loves travelling",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "in" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "Europe.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ca6"
   },
   "id" : "67fab6d59930102295342ca6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "¿Qué hay en la radio esta noche?",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -130,10 +212,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Medios y comunicación van con $on$: on the radio, on a call, on the internet.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,27 +228,68 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "on" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the radio tonight?",
       "options" : null
     } ],
-    "sentences" : [ "What's on the radio tonight?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "the radio tonight?"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ca7"
   },
   "id" : "67fab6d59930102295342ca7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Él esperó en la puerta y miró alrededor.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -182,10 +305,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ adentro o dentro de un área, $on$ sobre una superficie, $at$ un punto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,27 +321,68 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "at" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the door and looked around.",
       "options" : null
     } ],
-    "sentences" : [ "He waited at the door and looked around." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He waited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "the door and looked around."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ca8"
   },
   "id" : "67fab6d59930102295342ca8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Ellos jugaron en el jardín.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -234,10 +398,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ adentro o dentro de un área, $on$ sobre una superficie, $at$ un punto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,27 +414,68 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "in" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the garden.",
       "options" : null
     } ],
-    "sentences" : [ "They played in the garden." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They played",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "in" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "the garden."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ca9"
   },
   "id" : "67fab6d59930102295342ca9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "El té está en la taza.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -286,9 +491,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ adentro o dentro de un área, $on$ sobre una superficie, $at$ un punto.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The tea is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the mug.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -307,22 +553,22 @@
       "kind" : "TEXT",
       "text" : "the mug.",
       "options" : null
-    } ],
-    "sentences" : [ "The tea is in the mug." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342caa"
   },
   "id" : "67fab6d59930102295342caa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Michael todavía está en el barco.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -338,10 +584,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En auto o taxi va $in$; en bus, tren, avión o barco va $on$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,27 +600,68 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "on" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the boat.",
       "options" : null
     } ],
-    "sentences" : [ "Michael's still on the boat." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Michael's still",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "the boat."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cab"
   },
   "id" : "67fab6d59930102295342cab",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Buscamos el descuento en el sitio web.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -390,43 +677,85 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Medios y comunicación van con $on$: on the radio, on a call, on the internet.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We looked for the discount",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the website.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We looked for the discount",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "the website.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "We looked for the discount on the website." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cac"
   },
   "id" : "67fab6d59930102295342cac",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Nuestra oficina está en el tercer piso.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -442,10 +771,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ adentro o dentro de un área, $on$ sobre una superficie, $at$ un punto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,27 +787,68 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "on" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the third floor.",
       "options" : null
     } ],
-    "sentences" : [ "Our office is on the third floor." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Our office is"
+    }, {
+      "text" : "",
+      "options" : [ "on" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "the third floor.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cad"
   },
   "id" : "67fab6d59930102295342cad",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "¿Quién es el perro del dibujo?",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -494,9 +864,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Foto, video, dibujo y diario son como una caja: lo que muestran o dicen está $in$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Who is the dog",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the drawing?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -515,22 +926,22 @@
       "kind" : "TEXT",
       "text" : "the drawing?",
       "options" : null
-    } ],
-    "sentences" : [ "Who is the dog in the drawing?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cae"
   },
   "id" : "67fab6d59930102295342cae",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Lo conocí en el tren.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -546,10 +957,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En auto o taxi va $in$; en bus, tren, avión o barco va $on$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,27 +973,68 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "on" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the train.",
       "options" : null
     } ],
-    "sentences" : [ "I met him on the train." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I met him",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "on" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "the train.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342caf"
   },
   "id" : "67fab6d59930102295342caf",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Ella leyó libros en el barco.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -598,10 +1050,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "En auto o taxi va $in$; en bus, tren, avión o barco va $on$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -614,27 +1066,68 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "on" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the ship.",
       "options" : null
     } ],
-    "sentences" : [ "She read books on the ship." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She read books",
+      "options" : null
+    }, {
+      "options" : [ "on" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "the ship.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cb0"
   },
   "id" : "67fab6d59930102295342cb0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Mary está en una llamada en este momento.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -650,9 +1143,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Medios y comunicación van con $on$: on the radio, on a call, on the internet.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a call at the moment.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -668,25 +1202,25 @@
       "text" : "",
       "options" : [ "on" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "a call at the moment.",
-      "options" : null
-    } ],
-    "sentences" : [ "Mary is on a call at the moment." ]
-  }
+      "text" : "a call at the moment."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cb1"
   },
   "id" : "67fab6d59930102295342cb1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Ella está en la escuela en este momento.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -702,10 +1236,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ adentro o dentro de un área, $on$ sobre una superficie, $at$ un punto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -718,27 +1252,68 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "at" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "school at the moment.",
       "options" : null
     } ],
-    "sentences" : [ "She's at school at the moment." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She's"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "school at the moment.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cb2"
   },
   "id" : "67fab6d59930102295342cb2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Él vive en Alemania.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -754,9 +1329,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ adentro o dentro de un área, $on$ sobre una superficie, $at$ un punto.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He lives",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Germany.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -775,22 +1391,22 @@
       "kind" : "TEXT",
       "text" : "Germany.",
       "options" : null
-    } ],
-    "sentences" : [ "He lives in Germany." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cb3"
   },
   "id" : "67fab6d59930102295342cb3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Ella puso los libros sobre el escritorio.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -806,10 +1422,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ adentro o dentro de un área, $on$ sobre una superficie, $at$ un punto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She put the books",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the desk.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -824,25 +1480,26 @@
       "text" : "",
       "options" : [ "on" ]
     }, {
-      "kind" : "TEXT",
       "text" : "the desk.",
-      "options" : null
+      "options" : null,
+      "kind" : "TEXT"
     } ],
-    "sentences" : [ "She put the books on the desk." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cb4"
   },
   "id" : "67fab6d59930102295342cb4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Lo leí en el periódico.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -858,15 +1515,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Foto, video, dibujo y diario son como una caja: lo que muestran o dicen está $in$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I read it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the newspaper.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I read it",
@@ -880,21 +1572,28 @@
       "text" : "the newspaper.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "I read it in the newspaper." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cb5"
   },
   "id" : "67fab6d59930102295342cb5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Estaba en la ducha cuando me enviaste un mensaje de texto.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -910,10 +1609,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ adentro o dentro de un área, $on$ sobre una superficie, $at$ un punto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -926,27 +1625,68 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "in" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the shower when you texted.",
       "options" : null
     } ],
-    "sentences" : [ "I was in the shower when you texted." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "I was",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "in" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "the shower when you texted.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cb6"
   },
   "id" : "67fab6d59930102295342cb6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Él esperó en la salida.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -962,22 +1702,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ adentro o dentro de un área, $on$ sobre una superficie, $at$ un punto.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He waited",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the exit.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He waited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
@@ -985,20 +1766,21 @@
       "options" : null
     } ],
     "sentences" : [ "He waited at the exit." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cb7"
   },
   "id" : "67fab6d59930102295342cb7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
   "title" : "Lugar: $in$, $at$, $on$",
-  "instructions" : "Escribe $in$, $at$ u $on$.",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
   "translation" : "Vi a Mary en el cine.",
-  "theoryId" : "a2.09.Prepositions_After_Adjectives",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -1014,10 +1796,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.03.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$in$ adentro o dentro de un área, $on$ sobre una superficie, $at$ un punto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I saw Mary",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the cinema.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1036,6 +1858,1870 @@
       "text" : "the cinema.",
       "options" : null
     } ],
-    "sentences" : [ "I saw Mary at the cinema." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cb8"
+  },
+  "id" : "67fab6d59930102295342cb8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Hay un gato en la ventana.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ es un punto ($at the window$); $on$, un medio o superficie ($on the bus$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's a cat",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the window.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "There's a cat"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the window.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cb9"
+  },
+  "id" : "67fab6d59930102295342cb9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Jugaron en la playa.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ es un punto ($at the window$); $on$, un medio o superficie ($on the bus$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They played",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the beach.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They played",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the beach.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "They played on the beach." ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cba"
+  },
+  "id" : "67fab6d59930102295342cba",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Dejé mis llaves en la parte superior de las escaleras.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ es un punto ($at the window$); $on$, un medio o superficie ($on the bus$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I left my keys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the top of the stairs.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I left my keys",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "at" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "the top of the stairs.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cbb"
+  },
+  "id" : "67fab6d59930102295342cbb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Voy a la escuela en el autobús.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ es un punto ($at the window$); $on$, un medio o superficie ($on the bus$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I go to school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the bus.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I go to school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "text" : "the bus.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cbc"
+  },
+  "id" : "67fab6d59930102295342cbc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Me enteré de eso en un periódico.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ es adentro: país, ciudad, cuarto o área (in London, in the office).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I heard about it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a newspaper.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I heard about it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "text" : "a newspaper.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cbd"
+  },
+  "id" : "67fab6d59930102295342cbd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Se bebió su café en la oficina.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ es adentro: país, ciudad, cuarto o área (in London, in the office).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He drank his coffee",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the office.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He drank his coffee"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the office.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cbe"
+  },
+  "id" : "67fab6d59930102295342cbe",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "¿Te gustaría vivir en un pueblo?",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ es adentro: país, ciudad, cuarto o área (in London, in the office).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like to live",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a town?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like to live",
+      "options" : null
+    }, {
+      "options" : [ "in" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "a town?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cbf"
+  },
+  "id" : "67fab6d59930102295342cbf",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Olvidé mi billetera en el restaurante.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ es adentro: país, ciudad, cuarto o área (in London, in the office).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I forgot my wallet",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the restaurant.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I forgot my wallet",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "in" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "the restaurant.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cc0"
+  },
+  "id" : "67fab6d59930102295342cc0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Esperamos en la estación.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ es un punto ($at the window$); $on$, un medio o superficie ($on the bus$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We waited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the station.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We waited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the station.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cc1"
+  },
+  "id" : "67fab6d59930102295342cc1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Ella tiene algo de pintura en sus pantalones.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ es un punto ($at the window$); $on$, un medio o superficie ($on the bus$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has some paint",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "her trousers.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has some paint",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "her trousers."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cc2"
+  },
+  "id" : "67fab6d59930102295342cc2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Bailaron en el escenario.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ es un punto ($at the window$); $on$, un medio o superficie ($on the bus$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They danced",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the stage.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They danced",
+      "options" : null
+    }, {
+      "options" : [ "on" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "the stage.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cc3"
+  },
+  "id" : "67fab6d59930102295342cc3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Escribe tu dirección en la parte inferior de la página.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ es un punto ($at the window$); $on$, un medio o superficie ($on the bus$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Write your address",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the bottom of the page.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Write your address",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the bottom of the page.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cc4"
+  },
+  "id" : "67fab6d59930102295342cc4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "¿Están los gatos en la casa?",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ es adentro: país, ciudad, cuarto o área (in London, in the office).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are the cats",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the house?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are the cats",
+      "options" : null
+    }, {
+      "options" : [ "in" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "the house?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cc5"
+  },
+  "id" : "67fab6d59930102295342cc5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Por favor, siéntate en esa plataforma.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ es un punto ($at the window$); $on$, un medio o superficie ($on the bus$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Please sit",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "that platform.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Please sit",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "that platform.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "Please sit on that platform." ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cc6"
+  },
+  "id" : "67fab6d59930102295342cc6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Puse el cuadro en la pared.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ es un punto ($at the window$); $on$, un medio o superficie ($on the bus$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I put the painting",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the wall.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I put the painting",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the wall.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "I put the painting on the wall." ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cc7"
+  },
+  "id" : "67fab6d59930102295342cc7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Tom está en la sala de estar.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ es adentro: país, ciudad, cuarto o área (in London, in the office).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Tom is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the living room.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Tom is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the living room.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cc8"
+  },
+  "id" : "67fab6d59930102295342cc8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Por favor, siéntate en el escritorio. Es hora de estudiar.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ es un punto ($at the window$); $on$, un medio o superficie ($on the bus$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Please sit",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the desk. It's time for studying.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Please sit",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the desk. It's time for studying.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cc9"
+  },
+  "id" : "67fab6d59930102295342cc9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Él se acostó en la cama.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$at$ es un punto ($at the window$); $on$, un medio o superficie ($on the bus$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He lied",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the bed.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He lied",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "the bed."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342cca"
+  },
+  "id" : "67fab6d59930102295342cca",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "Liverpool está en el norte de Inglaterra.",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ es adentro: país, ciudad, cuarto o área (in London, in the office).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Liverpool is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the north of England.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Liverpool is",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "in" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "the north of England."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ccb"
+  },
+  "id" : "67fab6d59930102295342ccb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d284"
+  },
+  "title" : "Lugar: $in$, $at$, $on$",
+  "instructions" : "Elige 'in', 'at' u 'on'.",
+  "translation" : "¿Estudias en Oxford?",
+  "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.09.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$in$ es adentro: país, ciudad, cuarto o área (in London, in the office).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you study",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Oxford?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you study",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "in" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Oxford?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'in', 'at' u 'on'."
 } ]

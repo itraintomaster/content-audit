@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342c22"
   },
   "id" : "67fab6d59930102295342c22",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Cosas indefinidas",
-  "instructions" : "Escribe $something$ o $anything$.",
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'something' o 'anything'.",
   "translation" : "Ella no comió nada en todo el día.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.07.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$something$ en las afirmativas. $anything$ en negativas y preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "all day.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "something",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "something"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She didn't eat"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "anything" ]
     }, {
       "kind" : "TEXT",
       "text" : "all day.",
       "options" : null
     } ],
-    "sentences" : [ "She didn't eat anything all day." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'something' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c23"
   },
   "id" : "67fab6d59930102295342c23",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Cosas indefinidas",
-  "instructions" : "Escribe $something$ o $anything$.",
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'something' o 'anything'.",
   "translation" : "¿Tiene algo que embotellar?",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
@@ -78,41 +113,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.07.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$something$ en las afirmativas. $anything$ en negativas y preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to bottle?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "something",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "something"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "anything" ]
     }, {
       "kind" : "TEXT",
       "text" : "to bottle?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Do you have anything to bottle?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'something' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c24"
   },
   "id" : "67fab6d59930102295342c24",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Cosas indefinidas",
-  "instructions" : "Escribe $something$ o $anything$.",
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'something' o 'anything'.",
   "translation" : "Quiero algo de comer.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
@@ -130,14 +201,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.07.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$something$ en las afirmativas. $anything$ en negativas y preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I want",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to eat.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "something",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "something"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -152,19 +253,24 @@
       "text" : "to eat.",
       "options" : null
     } ],
-    "sentences" : [ "I want something to eat." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'something' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c25"
   },
   "id" : "67fab6d59930102295342c25",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Cosas indefinidas",
-  "instructions" : "Escribe $something$ o $anything$.",
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'something' o 'anything'.",
   "translation" : "Debería encontrar algo para regalar.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
@@ -182,10 +288,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.07.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$something$ en las afirmativas. $anything$ en negativas y preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I should find",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to give as a gift.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "something",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "something"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -200,23 +340,24 @@
       "text" : "",
       "options" : [ "something" ]
     }, {
-      "kind" : "TEXT",
       "text" : "to give as a gift.",
-      "options" : null
+      "options" : null,
+      "kind" : "TEXT"
     } ],
-    "sentences" : [ "I should find something to give as a gift." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'something' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c26"
   },
   "id" : "67fab6d59930102295342c26",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Cosas indefinidas",
-  "instructions" : "Escribe $something$ o $anything$.",
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'something' o 'anything'.",
   "translation" : "¿Has oído algo sobre el clima?",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
@@ -234,10 +375,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.07.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$something$ en las afirmativas. $anything$ en negativas y preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +391,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "anything" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "about the weather?",
       "options" : null
     } ],
-    "sentences" : [ "Have you heard anything about the weather?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "something",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "something"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you heard",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anything" ]
+    }, {
+      "text" : "about the weather?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'something' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c27"
   },
   "id" : "67fab6d59930102295342c27",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Cosas indefinidas",
-  "instructions" : "Escribe $something$ o $anything$.",
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'something' o 'anything'.",
   "translation" : "Necesito ayuda con algo, gracias.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
@@ -286,41 +462,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.07.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$something$ en las afirmativas. $anything$ en negativas y preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I need help with",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", thanks.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "something",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "something"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need help with",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "something" ]
     }, {
       "kind" : "TEXT",
       "text" : ", thanks.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "I need help with something , thanks." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'something' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c28"
   },
   "id" : "67fab6d59930102295342c28",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Cosas indefinidas",
-  "instructions" : "Escribe $something$ o $anything$.",
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'something' o 'anything'.",
   "translation" : "¿Hay algo en la nevera?",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
@@ -338,10 +550,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.07.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$something$ en las afirmativas. $anything$ en negativas y preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +566,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "anything" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "in the fridge?",
       "options" : null
     } ],
-    "sentences" : [ "Is anything in the fridge?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "something",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "something"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is",
+      "options" : null
+    }, {
+      "options" : [ "anything" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "in the fridge?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'something' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c29"
   },
   "id" : "67fab6d59930102295342c29",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Cosas indefinidas",
-  "instructions" : "Escribe $something$ o $anything$.",
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'something' o 'anything'.",
   "translation" : "¡Perdiste algo!",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
@@ -390,9 +637,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.07.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$something$ en las afirmativas. $anything$ en negativas y preguntas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You lost",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "something",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "something"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -408,23 +690,23 @@
       "text" : "",
       "options" : [ "something" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "!",
-      "options" : null
-    } ],
-    "sentences" : [ "You lost something!" ]
-  }
+      "text" : "!"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'something' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c2a"
   },
   "id" : "67fab6d59930102295342c2a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Cosas indefinidas",
-  "instructions" : "Escribe $something$ o $anything$.",
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'something' o 'anything'.",
   "translation" : "Esto es algo para la carrera.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
@@ -442,22 +724,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.07.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$something$ en las afirmativas. $anything$ en negativas y preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "for the race.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "something",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "something"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "something" ]
     }, {
       "kind" : "TEXT",
@@ -465,18 +782,19 @@
       "options" : null
     } ],
     "sentences" : [ "This is something for the race." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'something' o 'anything'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c2b"
   },
   "id" : "67fab6d59930102295342c2b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Cosas indefinidas",
-  "instructions" : "Escribe $something$ o $anything$.",
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'something' o 'anything'.",
   "translation" : "No necesito nada por el momento.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
@@ -494,9 +812,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.07.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$something$ en las afirmativas. $anything$ en negativas y preguntas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at the moment.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anything"
+    }, {
+      "id" : "something",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "something"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -515,7 +868,2957 @@
       "kind" : "TEXT",
       "text" : "at the moment.",
       "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'something' o 'anything'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c2c"
+  },
+  "id" : "67fab6d59930102295342c2c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "Hay alguien abriendo la ventana.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.08.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somebody$ en las afirmativas. $anybody$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "opening the window.",
+      "options" : null
     } ],
-    "sentences" : [ "I don't need anything at the moment." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somebody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "opening the window.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "There's somebody opening the window." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "opening the window.",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somebody"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c2d"
+  },
+  "id" : "67fab6d59930102295342c2d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "Ella no le contó el sueño a nadie.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.08.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somebody$ en las afirmativas. $anybody$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She didn't tell",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the dream.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She didn't tell",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anybody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the dream.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "She didn't tell anybody the dream." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c2e"
+  },
+  "id" : "67fab6d59930102295342c2e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "Vimos a alguien caminando muy lento.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.08.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somebody$ en las afirmativas. $anybody$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "walking too slowly.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somebody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "walking too slowly.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "We saw somebody walking too slowly." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "walking too slowly.",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somebody"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c2f"
+  },
+  "id" : "67fab6d59930102295342c2f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "Estoy buscando a alguien que viva por aquí.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.08.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somebody$ en las afirmativas. $anybody$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm looking for",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "that lives around.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm looking for",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somebody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "that lives around.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "I'm looking for somebody that lives around." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c30"
+  },
+  "id" : "67fab6d59930102295342c30",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "¿Alguien pidió café?",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.08.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somebody$ en las afirmativas. $anybody$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "order some coffee?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did",
+      "options" : null
+    }, {
+      "options" : [ "anybody" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "order some coffee?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c31"
+  },
+  "id" : "67fab6d59930102295342c31",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "¿Hay alguien presente que sepa de turismo?",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.08.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somebody$ en las afirmativas. $anybody$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "present that knows about sightseeing?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anybody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "present that knows about sightseeing?",
+      "options" : null
+    } ],
+    "sentences" : [ "Is anybody present that knows about sightseeing?" ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c32"
+  },
+  "id" : "67fab6d59930102295342c32",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "No he conocido a nadie en este pueblo.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.08.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somebody$ en las afirmativas. $anybody$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I haven't met",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "in this town.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I haven't met",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "anybody" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "in this town."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c33"
+  },
+  "id" : "67fab6d59930102295342c33",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "¿Alguien podría necesitar un paraguas?",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.08.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somebody$ en las afirmativas. $anybody$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Might",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "need an umbrella?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Might",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "anybody" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "need an umbrella?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c34"
+  },
+  "id" : "67fab6d59930102295342c34",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "Deberías preguntarle a alguien sobre tu dolor de cabeza.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.08.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somebody$ en las afirmativas. $anybody$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You ought to ask",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "about your headache.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You ought to ask",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somebody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "about your headache.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c35"
+  },
+  "id" : "67fab6d59930102295342c35",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somebody', 'anybody' o 'nobody'.",
+  "translation" : "¡Hay alguien en la entrada este!",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.08.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somebody$ en las afirmativas. $anybody$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at the east entrance!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somebody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somebody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "at the east entrance!",
+      "options" : null
+    } ],
+    "sentences" : [ "There's somebody at the east entrance!" ]
+  },
+  "instructionsAnteriores" : "Elegí 'somebody' o 'anybody'.",
+  "instructionsAntesDeRevisar" : "Elige 'somebody' o 'anybody'.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at the east entrance!",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "anybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    }, {
+      "id" : "somebody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somebody"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c36"
+  },
+  "id" : "67fab6d59930102295342c36",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somewhere' o 'anywhere'.",
+  "translation" : "A ella le gustaría viajar a algún lugar extranjero.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ en las afirmativas. $anywhere$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She would like to travel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "foreign.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anywhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She would like to travel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "foreign.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "She would like to travel somewhere foreign." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'somewhere' o 'anywhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c37"
+  },
+  "id" : "67fab6d59930102295342c37",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somewhere' o 'anywhere'.",
+  "translation" : "¿Conoces algún lugar donde podamos encontrar una buena pizza?",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ en las afirmativas. $anywhere$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you know",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we can find good pizza?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anywhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you know",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "we can find good pizza?"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'somewhere' o 'anywhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c38"
+  },
+  "id" : "67fab6d59930102295342c38",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somewhere' o 'anywhere'.",
+  "translation" : "No planeo viajar a ningún lado este año.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ en las afirmativas. $anywhere$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I am not planning to travel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "this year.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anywhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I am not planning to travel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "this year.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'somewhere' o 'anywhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c39"
+  },
+  "id" : "67fab6d59930102295342c39",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somewhere' o 'anywhere'.",
+  "translation" : "Debe haber algún lugar donde podamos aparcar el coche.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ en las afirmativas. $anywhere$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There must be",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we can park the car.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anywhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "There must be"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "we can park the car.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'somewhere' o 'anywhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c3a"
+  },
+  "id" : "67fab6d59930102295342c3a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somewhere' o 'anywhere'.",
+  "translation" : "Él no planea ir a ningún lado durante las vacaciones.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ en las afirmativas. $anywhere$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't plan on going",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "during the vacation.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anywhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't plan on going",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "during the vacation.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'somewhere' o 'anywhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c3b"
+  },
+  "id" : "67fab6d59930102295342c3b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somewhere' o 'anywhere'.",
+  "translation" : "Debería haber algún lugar donde podamos encontrar un taxi.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ en las afirmativas. $anywhere$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There should be",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "where we can find a taxi.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anywhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "There should be"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "text" : "where we can find a taxi.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'somewhere' o 'anywhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c3c"
+  },
+  "id" : "67fab6d59930102295342c3c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somewhere' o 'anywhere'.",
+  "translation" : "¿Hay algún lugar donde podamos comprar helado cerca?",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "En pedidos donde ya esperás que sí, va $somewhere$ aunque sea pregunta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we could get ice cream close by?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anywhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "text" : "we could get ice cream close by?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'somewhere' o 'anywhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c3d"
+  },
+  "id" : "67fab6d59930102295342c3d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somewhere' o 'anywhere'.",
+  "translation" : "Ella no quiere ir a ningún lugar que sea caro.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ en las afirmativas. $anywhere$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't want to go",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "that is expensive.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anywhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "anywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't want to go",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "that is expensive.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "She doesn't want to go anywhere that is expensive." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'somewhere' o 'anywhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c3e"
+  },
+  "id" : "67fab6d59930102295342c3e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somewhere' o 'anywhere'.",
+  "translation" : "Siempre trato de visitar algún lugar emocionante en vacaciones.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ en las afirmativas. $anywhere$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I always try to visit",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "exciting on holiday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anywhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I always try to visit",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "somewhere" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "exciting on holiday.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'somewhere' o 'anywhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c3f"
+  },
+  "id" : "67fab6d59930102295342c3f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige 'somewhere' o 'anywhere'.",
+  "translation" : "Vamos a salir a algún lugar agradable.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.09.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ en las afirmativas. $anywhere$ en negativas y preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's go out",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "nice.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "anywhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "anywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's go out",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "nice.",
+      "options" : null
+    } ],
+    "sentences" : [ "Let's go out somewhere nice." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'somewhere' o 'anywhere'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'somewhere' o 'anywhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343965"
+  },
+  "id" : "67fab6d59930102295343965",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Los perros han corrido a algún lugar para jugar.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs have run somewhere / anywhere to play.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    } ],
+    "sentences" : [ "The dogs have run somewhere / anywhere to play. somewhere" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343966"
+  },
+  "id" : "67fab6d59930102295343966",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Ellos no viajaron a ninguna parte.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They didn't travel somewhere / anywhere.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They didn't travel somewhere / anywhere. anywhere" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343967"
+  },
+  "id" : "67fab6d59930102295343967",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "No robé nada.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I didn't steal something / anything.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anything" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I didn't steal something / anything. anything" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343968"
+  },
+  "id" : "67fab6d59930102295343968",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Busquemos algún lugar para comer.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's locate somewhere / anywhere to eat.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Let's locate somewhere / anywhere to eat. somewhere" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343969"
+  },
+  "id" : "67fab6d59930102295343969",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Algo está roto.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Something / anything is broken.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "something" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Something / anything is broken. something" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534396a"
+  },
+  "id" : "67fab6d5993010229534396a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "No me encontré con nada.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I didn't meet something / anything.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anything" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I didn't meet something / anything. anything" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534396b"
+  },
+  "id" : "67fab6d5993010229534396b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Él hizo algo para ayudar.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He did something / anything to help.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "something" ]
+    } ],
+    "sentences" : [ "He did something / anything to help. something" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534396c"
+  },
+  "id" : "67fab6d5993010229534396c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Necesito algo para comer.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I require something / anything to eat.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "something" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I require something / anything to eat. something" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534396d"
+  },
+  "id" : "67fab6d5993010229534396d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "¡Él no sabe nada!",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't know something / anything!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anything" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He doesn't know something / anything! anything" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534396e"
+  },
+  "id" : "67fab6d5993010229534396e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "No vi nada en la calle.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I didn't see something / anything on the street.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anything" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I didn't see something / anything on the street. anything" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534396f"
+  },
+  "id" : "67fab6d5993010229534396f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Algo estaba mal con el teléfono.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Something / anything was wrong with the telephone.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Something" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Something / anything was wrong with the telephone. Something" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343970"
+  },
+  "id" : "67fab6d59930102295343970",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Creo que vi algo cerca del río.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I believe I saw something / anything near the river.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "something" ]
+    } ],
+    "sentences" : [ "I believe I saw something / anything near the river. something" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343971"
+  },
+  "id" : "67fab6d59930102295343971",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Espero visitar algún lugar este verano.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I hope to visit somewhere / anywhere this summer.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I hope to visit somewhere / anywhere this summer. somewhere" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343972"
+  },
+  "id" : "67fab6d59930102295343972",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "No veremos nada esta semana.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We won't see something / anything this week.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anything" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "We won't see something / anything this week. anything" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343973"
+  },
+  "id" : "67fab6d59930102295343973",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "No contrataron nada para este propósito.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They didn't hire something / anything for this purpose.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anything" ]
+    } ],
+    "sentences" : [ "They didn't hire something / anything for this purpose. anything" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343974"
+  },
+  "id" : "67fab6d59930102295343974",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Ella compró algo en el mercado.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She bought something / anything at the market.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "something" ]
+    } ],
+    "sentences" : [ "She bought something / anything at the market. something" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343975"
+  },
+  "id" : "67fab6d59930102295343975",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Ella no necesita nada.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She does not need something / anything.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anything" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She does not need something / anything. anything" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343976"
+  },
+  "id" : "67fab6d59930102295343976",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "No hemos lamentado nada.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We haven't regretted something / anything.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anything" ]
+    } ],
+    "sentences" : [ "We haven't regretted something / anything. anything" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343977"
+  },
+  "id" : "67fab6d59930102295343977",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Ella quiere algo para escribir.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wants something / anything to write.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "something" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She wants something / anything to write. something" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343978"
+  },
+  "id" : "67fab6d59930102295343978",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d278"
+  },
+  "title" : "Indefinidos con $some$ o $any$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Michael no planea ir de excursión a ninguna parte.",
+  "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some-$ en las afirmativas; $any-$ en negativas y en preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Michael isn't planning to hike somewhere / anywhere.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "anywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Michael isn't planning to hike somewhere / anywhere. anywhere" ]
   }
 } ]

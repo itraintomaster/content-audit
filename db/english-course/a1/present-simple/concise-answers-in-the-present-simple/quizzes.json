@@ -8,7 +8,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "No, no lo soy/estoy.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -49,7 +49,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Are you a student? B: No, I'm not." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f50"
@@ -60,7 +61,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "No, no lo hacen.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -78,7 +79,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se contesta con el auxiliar, no con el verbo: $Yes, he does$ / $No, he doesn't$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -101,7 +102,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Do they live in London? B: No, they don't." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f51"
@@ -112,7 +114,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "Sí, él es/está.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -130,7 +132,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -153,7 +155,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Is he a doctor? B: Yes, he is." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f52"
@@ -164,7 +167,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "Sí, ella lo hace.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -182,7 +185,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se contesta con el auxiliar, no con el verbo: $Yes, he does$ / $No, he doesn't$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -205,7 +208,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Does she work in Rome? B: Yes, she does." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f53"
@@ -216,7 +220,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "No, no lo eres/estás.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -234,7 +238,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -257,7 +261,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Am I wrong? B: No, you aren't." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f54"
@@ -268,7 +273,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "No, él no es/está.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -286,7 +291,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -309,7 +314,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Is he tired? B: No, he isn't." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f55"
@@ -320,7 +326,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "Los estudiantes no tienen un libro.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -338,22 +344,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con sujeto plural el negativo es $don't$; con $he/she/it$, $doesn't$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The students",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "don't" ]
     }, {
       "kind" : "TEXT",
@@ -361,7 +367,8 @@
       "options" : null
     } ],
     "sentences" : [ "The students don't have a book." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f56"
@@ -372,7 +379,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "Sí, lo hago.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -390,7 +397,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se contesta con el auxiliar, no con el verbo: $Yes, he does$ / $No, he doesn't$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -413,7 +420,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Do you drink tea? B: Yes, I do." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f57"
@@ -424,7 +432,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "¿Necesita agua? Sí.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -442,22 +450,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se contesta con el auxiliar, no con el verbo: $Yes, he does$ / $No, he doesn't$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Does he need water? He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "does" ]
     }, {
       "kind" : "TEXT",
@@ -465,7 +473,8 @@
       "options" : null
     } ],
     "sentences" : [ "Does he need water? He does." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f58"
@@ -476,7 +485,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "¿Bebes agua? No, no lo hago.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -494,22 +503,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se contesta con el auxiliar, no con el verbo: $Yes, he does$ / $No, he doesn't$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you drink water? I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "don't" ]
     }, {
       "kind" : "TEXT",
@@ -517,7 +526,8 @@
       "options" : null
     } ],
     "sentences" : [ "Do you drink water? I don't." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f59"
@@ -528,7 +538,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "No, ellos no son/están.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -546,7 +556,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -569,7 +579,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Are they at the cinema? B: No, they aren't." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f5a"
@@ -580,7 +591,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "¿Funciona? Sí.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -598,22 +609,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se contesta con el auxiliar, no con el verbo: $Yes, he does$ / $No, he doesn't$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Does it work? It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "does" ]
     }, {
       "kind" : "TEXT",
@@ -621,7 +632,8 @@
       "options" : null
     } ],
     "sentences" : [ "Does it work? It does." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f5b"
@@ -632,7 +644,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "A: ¿Estamos contentos? B: Sí, lo estamos.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -650,22 +662,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A: Are we happy? B: Yes, we",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "are" ]
     }, {
       "kind" : "TEXT",
@@ -673,7 +685,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Are we happy? B: Yes, we are." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f5c"
@@ -684,7 +697,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "Sí, ellos lo hacen.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -702,7 +715,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se contesta con el auxiliar, no con el verbo: $Yes, he does$ / $No, he doesn't$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -725,7 +738,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Do they play football? B: Yes, they do." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f5d"
@@ -736,7 +750,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "No, no lo es/está.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -754,7 +768,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -777,7 +791,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Is it hot today? B: No, it isn't." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f5e"
@@ -788,7 +803,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "Sí, ellos son/están.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -806,7 +821,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -829,7 +844,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Are they ready? B: Yes, they are." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f5f"
@@ -840,7 +856,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "Sí, ella es/está.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -858,7 +874,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -881,7 +897,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Is she Italian? B: Yes, she is." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f60"
@@ -892,7 +909,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "A: ¿Estás en casa? B: Sí, lo estoy.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -910,22 +927,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A: Are you at home? B: Yes, I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "am" ]
     }, {
       "kind" : "TEXT",
@@ -933,7 +950,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Are you at home? B: Yes, I am." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f61"
@@ -944,7 +962,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "No, él no lo hace.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -962,7 +980,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se contesta con el auxiliar, no con el verbo: $Yes, he does$ / $No, he doesn't$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -985,7 +1003,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: Does he work in a bank? B: No, he doesn't." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341f62"
@@ -996,7 +1015,7 @@
     "$oid" : "6814dafa7d73e7209a13d390"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta.",
   "translation" : "No, ella no lo hace.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
@@ -1014,7 +1033,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.13.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se contesta con el auxiliar, no con el verbo: $Yes, he does$ / $No, he doesn't$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1037,5 +1056,2367 @@
       "options" : null
     } ],
     "sentences" : [ "A: Does she speak English? B: No, she doesn't." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425d3"
+  },
+  "id" : "67fab6d599301022953425d3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "No, no lo es.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is he at school? B: No, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is he at school? B: No, he isn't." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425d4"
+  },
+  "id" : "67fab6d599301022953425d4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "No, no lo somos.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are we from Germany? B: No, we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'re not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are we from Germany? B: No, we're not." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425d5"
+  },
+  "id" : "67fab6d599301022953425d5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "No, no lo eres.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Am I in the right place? B: No, you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Am I in the right place? B: No, you aren't." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425d6"
+  },
+  "id" : "67fab6d599301022953425d6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "No, no lo hacemos.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Do we have a car? B: No, we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Do we have a car? B: No, we don't." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425d7"
+  },
+  "id" : "67fab6d599301022953425d7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "No, no lo son.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are they teachers? B: No, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are they teachers? B: No, they aren't." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425d8"
+  },
+  "id" : "67fab6d599301022953425d8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, es cierto.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Does it often rain in the summer? B: Yes, it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "does" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Does it often rain in the summer? B: Yes, it does." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425d9"
+  },
+  "id" : "67fab6d599301022953425d9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "¿Hago surf? No, no lo haces.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do I surf? No, you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "Do I surf? No, you don't." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425da"
+  },
+  "id" : "67fab6d599301022953425da",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, lo hacemos.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Do we like pizza? B: Yes, we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Do we like pizza? B: Yes, we do." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425db"
+  },
+  "id" : "67fab6d599301022953425db",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, lo hacen.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Do they drink too much beer? B: Yes, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Do they drink too much beer? B: Yes, they do." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425dc"
+  },
+  "id" : "67fab6d599301022953425dc",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, lo eres.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Am I early? B: Yes, you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Am I early? B: Yes, you are." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425dd"
+  },
+  "id" : "67fab6d599301022953425dd",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "No, ella no.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Does she live in Italy? B: No, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "doesn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Does she live in Italy? B: No, she doesn't." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425de"
+  },
+  "id" : "67fab6d599301022953425de",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "No, no lo es.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is she with them? B: No, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is she with them? B: No, she isn't." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425df"
+  },
+  "id" : "67fab6d599301022953425df",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, tú sí.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Do I need a passport? B: Yes, you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "do" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Do I need a passport? B: Yes, you do." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425e0"
+  },
+  "id" : "67fab6d599301022953425e0",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, lo somos.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are we hungry? B: Yes, we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are we hungry? B: Yes, we are." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425e1"
+  },
+  "id" : "67fab6d599301022953425e1",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, lo hace.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Does he live in Spain? B: Yes, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "does" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Does he live in Spain? B: Yes, he does." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425e2"
+  },
+  "id" : "67fab6d599301022953425e2",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, lo es.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is she Spanish? B: Yes, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is she Spanish? B: Yes, she is." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425e3"
+  },
+  "id" : "67fab6d599301022953425e3",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "No, no lo es.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is it near the train station? B: No, it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is it near the train station? B: No, it isn't." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425e4"
+  },
+  "id" : "67fab6d599301022953425e4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, lo es.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is it sunny today? B: Yes, it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is it sunny today? B: Yes, it is." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425e5"
+  },
+  "id" : "67fab6d599301022953425e5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "No, no lo hacen.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Do they need money? B: No, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Do they need money? B: No, they don't." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425e6"
+  },
+  "id" : "67fab6d599301022953425e6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, ella lo hace.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Does she want a new dress? B: Yes, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "does" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Does she want a new dress? B: Yes, she does." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425e7"
+  },
+  "id" : "67fab6d599301022953425e7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, lo es.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.21",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is he your brother? B: Yes, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is he your brother? B: Yes, he is." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425e8"
+  },
+  "id" : "67fab6d599301022953425e8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, lo somos.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.22",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are we ready? B: Yes, we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are we ready? B: Yes, we are." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425e9"
+  },
+  "id" : "67fab6d599301022953425e9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "No, no lo hace.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.23",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Does he work a lot? B: No, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "doesn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Does he work a lot? B: No, he doesn't." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425ea"
+  },
+  "id" : "67fab6d599301022953425ea",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "Sí, lo son.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.24",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are they at the beach? Yes, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are they at the beach? Yes, they are." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953425eb"
+  },
+  "id" : "67fab6d599301022953425eb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
+  "translation" : "No, no lo hacemos.\n",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.03.25",
+  "answerImageUrl" : "",
+  "miniTheory" : "Se contesta con el auxiliar de la pregunta: $Is he$ → $he isn't$; $Do we$ → $we don't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Do we eat fish? B: No, we",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Do we eat fish? B: No, we don't." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342627"
+  },
+  "id" : "67fab6d59930102295342627",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "A: ¿Emily está caminando? B: Sí, lo está.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is Emily walking? B: Yes, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    } ],
+    "sentences" : [ "A: Is Emily walking? B: Yes, she is" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342628"
+  },
+  "id" : "67fab6d59930102295342628",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "Sí, lo son.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are they watching a movie? B: Yes, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are they watching a movie? B: Yes, they are." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342629"
+  },
+  "id" : "67fab6d59930102295342629",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "No, no lo son.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are the teachers teaching a lesson today? B: No, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are the teachers teaching a lesson today? B: No, they aren't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534262a"
+  },
+  "id" : "67fab6d5993010229534262a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "No, no lo es.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is she standing in the street? B: No, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is she standing in the street? B: No, she isn't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534262b"
+  },
+  "id" : "67fab6d5993010229534262b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "Sí, lo son.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are the animals playing right now? B: Yes, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are the animals playing right now? B: Yes, they are." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534262c"
+  },
+  "id" : "67fab6d5993010229534262c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "Sí, lo es.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is Peter running? B: Yes, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is Peter running? B: Yes, he is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534262d"
+  },
+  "id" : "67fab6d5993010229534262d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "No, no lo son.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are they driving the car? B: No, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are they driving the car? B: No, they aren't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534262e"
+  },
+  "id" : "67fab6d5993010229534262e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "No, no lo eres.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si preguntan $Am I?$, el sujeto pasa a $you$: la respuesta usa $are$ o $aren't$, no $am$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Am I parking in the correct space? B: No, you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Am I parking in the correct space? B: No, you aren't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534262f"
+  },
+  "id" : "67fab6d5993010229534262f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "Sí, lo eres.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si preguntan $Am I?$, el sujeto pasa a $you$: la respuesta usa $are$ o $aren't$, no $am$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Am I understanding this well? B: Yes, you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Am I understanding this well? B: Yes, you are." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342630"
+  },
+  "id" : "67fab6d59930102295342630",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "A: ¿Están haciendo las maletas? B: Sí, lo están.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are they packing their bags? B: Yes, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "are" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are they packing their bags? B: Yes, they are." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342631"
+  },
+  "id" : "67fab6d59930102295342631",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "Sí, lo soy.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si preguntan $Are you?$, el sujeto pasa a $I$: la respuesta usa $am$ o $'m not$, no $are$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are you baking a cake? B: Yes, I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "am" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are you baking a cake? B: Yes, I am." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342632"
+  },
+  "id" : "67fab6d59930102295342632",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "A: ¿Está llegando la primavera? B: No, no lo está.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is spring coming? B: No, it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is spring coming? B: No, it isn't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342633"
+  },
+  "id" : "67fab6d59930102295342633",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "¿Están floreciendo las flores? No, no lo están.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are the flowers blooming? No, they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "aren't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "Are the flowers blooming? No, they aren't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342634"
+  },
+  "id" : "67fab6d59930102295342634",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "Sí, lo es.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is Tom speaking? B: Yes, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is Tom speaking? B: Yes, he is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342635"
+  },
+  "id" : "67fab6d59930102295342635",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "No, no lo es.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is she painting the wall? B: No, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is she painting the wall? B: No, she isn't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342636"
+  },
+  "id" : "67fab6d59930102295342636",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "No, no lo es.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is it snowing? B: No, it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "isn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is it snowing? B: No, it isn't." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342637"
+  },
+  "id" : "67fab6d59930102295342637",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "Sí, lo es.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is he reading? B: Yes, he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is he reading? B: Yes, he is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342638"
+  },
+  "id" : "67fab6d59930102295342638",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "No, no lo soy.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si preguntan $Are you?$, el sujeto pasa a $I$: la respuesta usa $am$ o $'m not$, no $are$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are you enjoying this party? B: No, I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'m not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are you enjoying this party? B: No, I'm not." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342639"
+  },
+  "id" : "67fab6d59930102295342639",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "Sí, lo es.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Is she dancing? B: Yes, she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Is she dancing? B: Yes, she is." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534263a"
+  },
+  "id" : "67fab6d5993010229534263a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d390"
+  },
+  "title" : "Respuestas cortas",
+  "instructions" : "Escribe la respuesta corta.",
+  "translation" : "No, no lo soy.",
+  "theoryId" : "a1.01.Present_Simple_Short_Answers",
+  "topicName" : "Present Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.01.07.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si preguntan $Are you?$, el sujeto pasa a $I$: la respuesta usa $am$ o $'m not$, no $are$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Are you drinking juice? B: No, I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'m not" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "A: Are you drinking juice? B: No, I'm not." ]
   }
 } ]

@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342904"
   },
   "id" : "67fab6d59930102295342904",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "¿Alguna vez has estado en Londres?",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $ever$ (experiencia de vida) siempre va $been$, nunca $gone$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to London?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Have you ever"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "been" ]
     }, {
       "kind" : "TEXT",
       "text" : "to London?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever been to London?" ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342905"
   },
   "id" : "67fab6d59930102295342905",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "Han ido al supermercado. Necesitamos huevos.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -78,10 +113,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +129,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "gone" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "to the supermarket. We need eggs.",
       "options" : null
     } ],
-    "sentences" : [ "They have gone to the supermarket. We need eggs." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have",
+      "options" : null
+    }, {
+      "options" : [ "gone" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "to the supermarket. We need eggs.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342906"
   },
   "id" : "67fab6d59930102295342906",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "Él se ha ido a la escuela. Está en la escuela ahora.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -130,9 +200,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to school. He's at school now.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -151,20 +256,20 @@
       "kind" : "TEXT",
       "text" : "to school. He's at school now.",
       "options" : null
-    } ],
-    "sentences" : [ "He has gone to school. He's at school now." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342907"
   },
   "id" : "67fab6d59930102295342907",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "He estado en Italia. Fui el verano pasado.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -182,10 +287,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,25 +303,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Italy. I went last summer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I've"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "been" ]
     }, {
       "kind" : "TEXT",
       "text" : "to Italy. I went last summer.",
       "options" : null
     } ],
-    "sentences" : [ "I've been to Italy. I went last summer." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342908"
   },
   "id" : "67fab6d59930102295342908",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "Ella se ha ido a Roma. Está visitando los museos allí ahora.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -234,9 +374,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Rome. She's visiting the museums there now.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -255,20 +430,20 @@
       "kind" : "TEXT",
       "text" : "to Rome. She's visiting the museums there now.",
       "options" : null
-    } ],
-    "sentences" : [ "She has gone to Rome. She's visiting the museums there now." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342909"
   },
   "id" : "67fab6d59930102295342909",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "Él ha estado en la librería. Aquí está su libro.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -286,41 +461,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He's",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the bookshop. Here's his book.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "been" ]
     }, {
       "kind" : "TEXT",
       "text" : "to the bookshop. Here's his book.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "He's been to the bookshop. Here's his book." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534290a"
   },
   "id" : "67fab6d5993010229534290a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "Susan se ha ido a dormir. Está muy cansada.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -338,9 +549,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Susan has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to sleep. She's very tired.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +605,20 @@
       "kind" : "TEXT",
       "text" : "to sleep. She's very tired.",
       "options" : null
-    } ],
-    "sentences" : [ "Susan has gone to sleep. She's very tired." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534290b"
   },
   "id" : "67fab6d5993010229534290b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "¿Alguna vez has estado en China?",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -390,14 +636,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $ever$ (experiencia de vida) siempre va $been$, nunca $gone$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to China?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -412,19 +688,24 @@
       "text" : "to China?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever been to China?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534290c"
   },
   "id" : "67fab6d5993010229534290c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "Hemos estado en Australia. Fue increíble.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -442,10 +723,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +739,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "been" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "to Australia. It was amazing.",
       "options" : null
     } ],
-    "sentences" : [ "We've been to Australia. It was amazing." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "We've"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "been" ]
+    }, {
+      "text" : "to Australia. It was amazing.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534290d"
   },
   "id" : "67fab6d5993010229534290d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "¿Peter se ha ido al vóleibol? Su botella no está aquí.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -494,22 +810,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Has Peter",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to volleyball? His bottle isn't here.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Has Peter",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "gone" ]
     }, {
       "kind" : "TEXT",
@@ -517,18 +868,19 @@
       "options" : null
     } ],
     "sentences" : [ "Has Peter gone to volleyball? His bottle isn't here." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534290e"
   },
   "id" : "67fab6d5993010229534290e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "¿Se han ido al concierto? No están aquí ahora.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -546,9 +898,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have they",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the concert? They're not here now.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -567,20 +954,20 @@
       "kind" : "TEXT",
       "text" : "to the concert? They're not here now.",
       "options" : null
-    } ],
-    "sentences" : [ "Have they gone to the concert? They're not here now." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534290f"
   },
   "id" : "67fab6d5993010229534290f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "¿Alguna vez has estado en Irlanda?",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -598,10 +985,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $ever$ (experiencia de vida) siempre va $been$, nunca $gone$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -614,25 +1001,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "been" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "to Ireland?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever been to Ireland?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Have you ever",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "been" ]
+    }, {
+      "text" : "to Ireland?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342910"
   },
   "id" : "67fab6d59930102295342910",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "La oficina está vacía. Las impresoras ya no están.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -650,22 +1072,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The office is empty. The printers have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The office is empty. The printers have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "gone" ]
     }, {
       "kind" : "TEXT",
@@ -673,18 +1130,19 @@
       "options" : null
     } ],
     "sentences" : [ "The office is empty. The printers have gone." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342911"
   },
   "id" : "67fab6d59930102295342911",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "¿Dónde está Mary? ¿Se ha ido a trabajar?",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -702,9 +1160,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where's Mary? Has she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to work?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -723,20 +1216,20 @@
       "kind" : "TEXT",
       "text" : "to work?",
       "options" : null
-    } ],
-    "sentences" : [ "Where's Mary? Has she gone to work?" ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342912"
   },
   "id" : "67fab6d59930102295342912",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "Ella ha estado en el nuevo cine. Dijo que era increíble.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -754,10 +1247,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1263,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "been" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "to the new cinema. She said it was amazing.",
       "options" : null
     } ],
-    "sentences" : [ "She's been to the new cinema. She said it was amazing." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "been" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the new cinema. She said it was amazing.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342913"
   },
   "id" : "67fab6d59930102295342913",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "Tom no está aquí. ¿A dónde se ha ido?",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -806,15 +1334,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Tom isn't here. Where has he",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Tom isn't here. Where has he",
@@ -828,19 +1385,25 @@
       "text" : "?",
       "options" : null
     } ],
-    "sentences" : [ "Tom isn't here. Where has he gone?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342914"
   },
   "id" : "67fab6d59930102295342914",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "¿Se han ido los perros al parque? ¡Está muy tranquilo!",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -858,10 +1421,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have the dogs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the park? It's very quiet!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -876,23 +1473,24 @@
       "text" : "",
       "options" : [ "gone" ]
     }, {
-      "kind" : "TEXT",
       "text" : "to the park? It's very quiet!",
-      "options" : null
+      "options" : null,
+      "kind" : "TEXT"
     } ],
-    "sentences" : [ "Have the dogs gone to the park? It's very quiet!" ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342915"
   },
   "id" : "67fab6d59930102295342915",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "Han estado en Francia. Disfrutaron su viaje.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -910,10 +1508,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They've",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to France. They enjoyed their trip.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -932,19 +1564,20 @@
       "text" : "to France. They enjoyed their trip.",
       "options" : null
     } ],
-    "sentences" : [ "They've been to France. They enjoyed their trip." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342916"
   },
   "id" : "67fab6d59930102295342916",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "¿Alguna vez has estado en México?",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -962,15 +1595,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $ever$ (experiencia de vida) siempre va $been$, nunca $gone$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Mexico?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Have you ever",
@@ -984,19 +1646,25 @@
       "text" : "to Mexico?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever been to Mexico?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342917"
   },
   "id" : "67fab6d59930102295342917",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
   "title" : "$Been$ o $gone$",
-  "instructions" : "Elige entre $been$ o $gone$.",
+  "instructions" : "Elige 'been' o 'gone'.",
   "translation" : "¿Alguna vez has estado en África?",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
@@ -1014,15 +1682,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.12.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $ever$ (experiencia de vida) siempre va $been$, nunca $gone$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Africa?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Have you ever",
@@ -1036,6 +1733,1732 @@
       "text" : "to Africa?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever been to Africa?" ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige entre 'been' o 'gone'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430cf"
+  },
+  "id" : "67fab6d599301022953430cf",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Han estado en el parque.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They've",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the park. (Now they're in a restaurant.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They've",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "been" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the park. (Now they're in a restaurant.)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430d0"
+  },
+  "id" : "67fab6d599301022953430d0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "He estado en el supermercado esta semana.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I've",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the supermarket this week. (Now I'm at the office.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I've",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "been" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the supermarket this week. (Now I'm at the office.)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430d1"
+  },
+  "id" : "67fab6d599301022953430d1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Ella se ha ido a Italia.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Italy. (She's in Italy now.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "gone" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Italy. (She's in Italy now.)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430d2"
+  },
+  "id" : "67fab6d599301022953430d2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Él nunca ha estado en Canadá.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has never",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Canada. (He lives in Brazil.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has never",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "been" ]
+    }, {
+      "text" : "to Canada. (He lives in Brazil.)",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430d3"
+  },
+  "id" : "67fab6d599301022953430d3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Se han ido a París.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They've",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Paris. (They're in Paris now.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They've",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "gone" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "to Paris. (They're in Paris now.)",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430d4"
+  },
+  "id" : "67fab6d599301022953430d4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Ella ha estado en China.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to China. (Now she's in England.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's",
+      "options" : null
+    }, {
+      "options" : [ "been" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "to China. (Now she's in England.)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430d5"
+  },
+  "id" : "67fab6d599301022953430d5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "¿Alguna vez has estado en Argentina?",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Argentina? (Now you're in Uruguay.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "been" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Argentina? (Now you're in Uruguay.)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430d6"
+  },
+  "id" : "67fab6d599301022953430d6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Los profesores se han ido a la sala de profesores.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The teachers have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the staff room. (They're in the staff room now.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The teachers have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "gone" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the staff room. (They're in the staff room now.)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430d7"
+  },
+  "id" : "67fab6d599301022953430d7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "¿Has estado en Alemania?",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Germany? (Now you're in Spain.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "been" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Germany? (Now you're in Spain.)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430d8"
+  },
+  "id" : "67fab6d599301022953430d8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Él se ha ido a dormir.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to sleep. (He's sleeping now.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "gone" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "to sleep. (He's sleeping now.)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430d9"
+  },
+  "id" : "67fab6d599301022953430d9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Se han ido a la tienda.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They've",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the shop. (They're at the shop now.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They've",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "gone" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the shop. (They're at the shop now.)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430da"
+  },
+  "id" : "67fab6d599301022953430da",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Mary se ha ido a la oficina.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the office. (She's at work now.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary has",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "gone" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the office. (She's at work now.)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430db"
+  },
+  "id" : "67fab6d599301022953430db",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "He estado en Brasil.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I've",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Brazil. (Now I'm in Canada.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I've",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "been" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Brazil. (Now I'm in Canada.)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430dc"
+  },
+  "id" : "67fab6d599301022953430dc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Han estado en Roma.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They've",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Rome. (Now they're in Berlin.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They've",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "been" ]
+    }, {
+      "text" : "to Rome. (Now they're in Berlin.)",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430dd"
+  },
+  "id" : "67fab6d599301022953430dd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Él se ha ido a la piscina.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the swimming pool. (He's at the swimming pool now.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "gone" ]
+    }, {
+      "text" : "to the swimming pool. (He's at the swimming pool now.)",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430de"
+  },
+  "id" : "67fab6d599301022953430de",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Él nunca ha estado en Rusia.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's never",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Russia. (Now he's in Japan.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He's never",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "been" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "to Russia. (Now he's in Japan.)",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430df"
+  },
+  "id" : "67fab6d599301022953430df",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Él ha estado en el teatro.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the theatre. (Now he's at work.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "been" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the theatre. (Now he's at work.)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430e0"
+  },
+  "id" : "67fab6d599301022953430e0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Los gatos se han ido al jardín.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The cats have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the garden. (They're at the garden now.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The cats have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "gone" ]
+    }, {
+      "text" : "to the garden. (They're at the garden now.)",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430e1"
+  },
+  "id" : "67fab6d599301022953430e1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Louis se ha ido al estadio.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Louis has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the stadium. (He's in the stadium now.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Louis has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "gone" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to the stadium. (He's in the stadium now.)",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953430e2"
+  },
+  "id" : "67fab6d599301022953430e2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d247"
+  },
+  "title" : "$Been$ o $gone$",
+  "instructions" : "Selecciona la opción correcta, 'been' o 'gone'.",
+  "translation" : "Ella se ha ido a Berlín.",
+  "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
+  "topicName" : "Present Perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.02.06.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$been$ = fue y ya volvió. $gone$ = se fue y todavía está allá.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Berlin. (She's in Berlin now.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "been",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "been"
+    }, {
+      "id" : "gone",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "gone"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She's"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "gone" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to Berlin. (She's in Berlin now.)",
+      "options" : null
+    } ]
   }
 } ]

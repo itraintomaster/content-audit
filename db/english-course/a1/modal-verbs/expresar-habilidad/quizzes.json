@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953424e3"
   },
   "id" : "67fab6d599301022953424e3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Ahora ella puede bailar.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -26,22 +26,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Now she",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dance.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Now she",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "can" ]
     }, {
       "kind" : "TEXT",
@@ -49,18 +96,19 @@
       "options" : null
     } ],
     "sentences" : [ "Now she can dance." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424e4"
   },
   "id" : "67fab6d599301022953424e4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Mi hermano podía montar a caballo cuando tenía seis años.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -78,9 +126,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My brother",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ride a horse when he was six.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -99,20 +194,20 @@
       "kind" : "TEXT",
       "text" : "ride a horse when he was six.",
       "options" : null
-    } ],
-    "sentences" : [ "My brother could ride a horse when he was six." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424e5"
   },
   "id" : "67fab6d599301022953424e5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Ella puede hablar chino.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -130,15 +225,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "speak Chinese. (now)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
@@ -152,19 +288,25 @@
       "text" : "speak Chinese. (now)",
       "options" : null
     } ],
-    "sentences" : [ "She can speak Chinese." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424e6"
   },
   "id" : "67fab6d599301022953424e6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Ella puede jugar al fútbol muy bien.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -182,9 +324,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "play football really well. (now)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +392,20 @@
       "kind" : "TEXT",
       "text" : "play football really well. (now)",
       "options" : null
-    } ],
-    "sentences" : [ "She can play football really well." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424e7"
   },
   "id" : "67fab6d599301022953424e7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Puedes entender a la gente.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -234,22 +423,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "understand people. (now)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "can" ]
     }, {
       "kind" : "TEXT",
@@ -257,18 +493,19 @@
       "options" : null
     } ],
     "sentences" : [ "You can understand people." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424e8"
   },
   "id" : "67fab6d599301022953424e8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Ella puede hacer pasteles muy buenos.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -286,41 +523,89 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "make very nice cakes. (now)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "can" ]
     }, {
       "kind" : "TEXT",
       "text" : "make very nice cakes. (now)",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "She can make very nice cakes." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424e9"
   },
   "id" : "67fab6d599301022953424e9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "No puedo tocar la guitarra.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -338,10 +623,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +639,72 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "can't" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(not) play the guitar. (now)",
       "options" : null
     } ],
-    "sentences" : [ "I can't play the guitar." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "can't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) play the guitar. (now)",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424ea"
   },
   "id" : "67fab6d599301022953424ea",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "No puedo andar en bicicleta.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -390,22 +722,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) ride a bike. (now)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "can't" ]
     }, {
       "kind" : "TEXT",
@@ -413,18 +792,19 @@
       "options" : null
     } ],
     "sentences" : [ "I can't ride a bike." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424eb"
   },
   "id" : "67fab6d599301022953424eb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Él no pudo usar una computadora hasta que fue adulto.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -442,10 +822,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +838,72 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "couldn't" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(not) use a computer until he was an adult.",
       "options" : null
     } ],
-    "sentences" : [ "He couldn't use a computer until he was an adult." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "options" : [ "couldn't" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "(not) use a computer until he was an adult.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424ec"
   },
   "id" : "67fab6d599301022953424ec",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Ellos no pueden terminar el examen.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -494,22 +921,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) finish the test.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "can't" ]
     }, {
       "kind" : "TEXT",
@@ -517,18 +991,19 @@
       "options" : null
     } ],
     "sentences" : [ "They can't finish the test." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424ed"
   },
   "id" : "67fab6d599301022953424ed",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Mi hermana no podía bailar cuando era niña.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -546,10 +1021,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,25 +1037,72 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "couldn't" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(not) dance when she was a child.",
       "options" : null
     } ],
-    "sentences" : [ "My sister couldn't dance when she was a child." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My sister",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "couldn't" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) dance when she was a child.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424ee"
   },
   "id" : "67fab6d599301022953424ee",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Él podía usar palillos chinos cuando era niño.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -598,22 +1120,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "use chopsticks as a child.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "could" ]
     }, {
       "kind" : "TEXT",
@@ -621,18 +1190,19 @@
       "options" : null
     } ],
     "sentences" : [ "He could use chopsticks as a child." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424ef"
   },
   "id" : "67fab6d599301022953424ef",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Puedo ayudar a la gente.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -650,22 +1220,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "help people.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "can" ]
     }, {
       "kind" : "TEXT",
@@ -673,18 +1290,19 @@
       "options" : null
     } ],
     "sentences" : [ "I can help people." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424f0"
   },
   "id" : "67fab6d599301022953424f0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Ella no puede hacer coches.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -702,41 +1320,89 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) make cars. (now)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "can't" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not) make cars. (now)",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "She can't make cars." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424f1"
   },
   "id" : "67fab6d599301022953424f1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Ellos no pueden conducir.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -754,10 +1420,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1436,72 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "can't" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(not) drive. (now)",
       "options" : null
     } ],
-    "sentences" : [ "They can't drive." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "options" : [ "can't" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) drive. (now)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424f2"
   },
   "id" : "67fab6d599301022953424f2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "¿Podías jugar cuando eras niño?",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -806,37 +1519,81 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "you play games as a child?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Could" ]
     }, {
       "kind" : "TEXT",
       "text" : "you play games as a child?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "Could you play games as a child?" ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424f3"
   },
   "id" : "67fab6d599301022953424f3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "¡Ella no podía caminar cuando era bebé!",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -854,15 +1611,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not) walk when she was a baby!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
@@ -876,19 +1674,25 @@
       "text" : "(not) walk when she was a baby!",
       "options" : null
     } ],
-    "sentences" : [ "She couldn't walk when she was a baby!" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424f4"
   },
   "id" : "67fab6d599301022953424f4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "No pude hablar francés hasta el mes pasado.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -906,10 +1710,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -922,25 +1726,72 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "couldn't" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(not) speak French until last month.",
       "options" : null
     } ],
-    "sentences" : [ "I couldn't speak French until last month." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "couldn't" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "(not) speak French until last month."
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424f5"
   },
   "id" : "67fab6d599301022953424f5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Él podía escribir cuando tenía cinco años.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -958,13 +1809,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "write when he was five.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -980,19 +1874,23 @@
       "text" : "write when he was five.",
       "options" : null
     } ],
-    "sentences" : [ "He could write when he was five." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953424f6"
   },
   "id" : "67fab6d599301022953424f6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
   "title" : "Expresar habilidad",
-  "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
+  "instructions" : "Elige 'can', 'can't', 'could' o 'couldn't'.",
   "translation" : "Los estudiantes pueden hacer sus deberes.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
@@ -1010,10 +1908,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.01.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ahora → $can$. Antes → $could$. Futuro → $will be able to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1026,12 +1924,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "do their homework. (now)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "can"
+    }, {
+      "id" : "can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "can't"
+    }, {
+      "id" : "could",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "could"
+    }, {
+      "id" : "couldn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "couldn't"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "The students",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "can" ]
     }, {
       "kind" : "TEXT",
       "text" : "do their homework. (now)",
       "options" : null
     } ],
-    "sentences" : [ "The students can do their homework." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAntesDeRevisar" : "Elige la opción correcta entre 'can', 'can't', 'could', 'couldn't', 'will be able to' o 'won't be able to'."
 } ]

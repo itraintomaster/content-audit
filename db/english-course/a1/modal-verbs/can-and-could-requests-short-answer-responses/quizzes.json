@@ -3,12 +3,12 @@
     "$oid" : "67fab6d5993010229534250b"
   },
   "id" : "67fab6d5993010229534250b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "A: ¿Puedes llamar a la señorita Green? B: No, no puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -26,41 +26,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se pregunta con $could$, pero se contesta con $can$: $Yes, I can$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A: Can you call Miss Green? B: No,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can you call Miss Green? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "I can't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "A: Can you call Miss Green? B: No, I can't." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534250c"
   },
   "id" : "67fab6d5993010229534250c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "¿Puedes vernos? Sí, puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -78,41 +138,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se pregunta con $could$, pero se contesta con $can$: $Yes, I can$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Can you see us? Yes,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you see us? Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "I can" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "Can you see us? Yes, I can." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534250d"
   },
   "id" : "67fab6d5993010229534250d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "A: ¿Podrías venir el domingo? B: Sí, puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -130,41 +250,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se pregunta con $could$, pero se contesta con $can$: $Yes, I can$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A: Could you come on Sunday? B: Yes,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could you come on Sunday? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "I can" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "A: Could you come on Sunday? B: Yes, I can." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534250e"
   },
   "id" : "67fab6d5993010229534250e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "¿Puedes ayudarnos? No, no puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -182,41 +362,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se pregunta con $could$, pero se contesta con $can$: $Yes, I can$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Can you help us? No,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you help us? No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "I can't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Can you help us? No, I can't." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534250f"
   },
   "id" : "67fab6d5993010229534250f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "Sí, puedes",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -234,10 +474,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Piden permiso con $I$: la respuesta es sobre vos, $you can$ / $you can't$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +490,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "you can" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Can I sit there? B: Yes, you can." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can I sit there? B: Yes,",
+      "options" : null
+    }, {
+      "options" : [ "you can" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342510"
   },
   "id" : "67fab6d59930102295342510",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "A: ¿Podrías ayudar a esta gente? B: Sí, puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -286,41 +585,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se pregunta con $could$, pero se contesta con $can$: $Yes, I can$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A: Could you help these people? B: Yes,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could you help these people? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "I can" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "A: Could you help these people? B: Yes, I can." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342511"
   },
   "id" : "67fab6d59930102295342511",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "No, no puedes",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -338,9 +697,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Piden permiso con $I$: la respuesta es sobre vos, $you can$ / $you can't$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could I have a cookie? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +777,20 @@
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
-    } ],
-    "sentences" : [ "A: Could I have a cookie? B: No, you can't." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342512"
   },
   "id" : "67fab6d59930102295342512",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "Sí, puedes",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -390,15 +808,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Piden permiso con $I$: la respuesta es sobre vos, $you can$ / $you can't$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could I sit there? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A: Could I sit there? B: Yes,",
@@ -412,19 +883,25 @@
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Could I sit there? B: Yes, you can." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342513"
   },
   "id" : "67fab6d59930102295342513",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "No, no puedes",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -442,14 +919,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Piden permiso con $I$: la respuesta es sobre vos, $you can$ / $you can't$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can I have your apple? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -464,19 +995,24 @@
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Can I have your apple? B: No, you can't." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342514"
   },
   "id" : "67fab6d59930102295342514",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "Sí, puedes",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -494,10 +1030,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Piden permiso con $I$: la respuesta es sobre vos, $you can$ / $you can't$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could I have some tea? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -516,19 +1110,20 @@
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Could I have some tea? B: Yes, you can." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342515"
   },
   "id" : "67fab6d59930102295342515",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "Sí, puedes",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -546,10 +1141,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Piden permiso con $I$: la respuesta es sobre vos, $you can$ / $you can't$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,25 +1157,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "A: Can I have your apple? B: Yes,",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "you can" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Can I have your apple? B: Yes, you can." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342516"
   },
   "id" : "67fab6d59930102295342516",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "A: ¿Tu hermano sabe conducir un auto? B: No, no sabe.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -598,41 +1252,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se pregunta con $could$, pero se contesta con $can$: $Yes, I can$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A: Can your brother drive a car? B: No,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can your brother drive a car? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "he can't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "A: Can your brother drive a car? B: No, he can't." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342517"
   },
   "id" : "67fab6d59930102295342517",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "¿Puedes hacer pizza? No, no puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -650,41 +1364,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se pregunta con $could$, pero se contesta con $can$: $Yes, I can$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Can you make pizza? No,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you make pizza? No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "I can't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Can you make pizza? No, I can't." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342518"
   },
   "id" : "67fab6d59930102295342518",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "¿Puedes comprar pizza? Sí, puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -702,41 +1476,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se pregunta con $could$, pero se contesta con $can$: $Yes, I can$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Can you buy pizza? Yes,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you buy pizza? Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "I can" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "Can you buy pizza? Yes, I can." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342519"
   },
   "id" : "67fab6d59930102295342519",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "A: ¿Puedes trabajar hoy? B: No, no puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -754,41 +1588,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se pregunta con $could$, pero se contesta con $can$: $Yes, I can$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A: Can you work today? B: No,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can you work today? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "I can't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "A: Can you work today? B: No, I can't." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534251a"
   },
   "id" : "67fab6d5993010229534251a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "Sí, puede.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -806,41 +1700,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Se pregunta con $could$, pero se contesta con $can$: $Yes, I can$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A: Can Tom ask the teacher a question in class? B: Yes,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can Tom ask the teacher a question in class? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "he can" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "A: Can Tom ask the teacher a question in class? B: Yes, he can." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534251b"
   },
   "id" : "67fab6d5993010229534251b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "Sí, puedes",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -858,10 +1812,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Piden permiso con $I$: la respuesta es sobre vos, $you can$ / $you can't$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,25 +1828,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "you can" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Can I have some tea? B: Yes, you can." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can I have some tea? B: Yes,",
+      "options" : null
+    }, {
+      "options" : [ "you can" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "."
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534251c"
   },
   "id" : "67fab6d5993010229534251c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "No, no puedes",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -910,9 +1923,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Piden permiso con $I$: la respuesta es sobre vos, $you can$ / $you can't$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Can I drive your car? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -931,20 +2003,20 @@
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
-    } ],
-    "sentences" : [ "A: Can I drive your car? B: No, you can't." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534251d"
   },
   "id" : "67fab6d5993010229534251d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "No, no puedes",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -962,10 +2034,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Piden permiso con $I$: la respuesta es sobre vos, $you can$ / $you can't$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -978,25 +2050,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "you can't" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Could I have your car? B: No, you can't." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could I have your car? B: No,",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "you can't" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534251e"
   },
   "id" : "67fab6d5993010229534251e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
   "title" : "Respuestas cortas",
-  "instructions" : "Escribe la $short answer$ (respuesta corta).",
+  "instructions" : "Elige la 'short answer' (respuesta corta).",
   "translation" : "No, no puedes",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
@@ -1014,9 +2145,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.03.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Piden permiso con $I$: la respuesta es sobre vos, $you can$ / $you can't$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Could I drive your car? B: No,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "he can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can"
+    }, {
+      "id" : "he can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "he can't"
+    }, {
+      "id" : "i can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can"
+    }, {
+      "id" : "i can't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "i can't"
+    }, {
+      "id" : "you can",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "you can"
+    }, {
+      "id" : "you can't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "you can't"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -1035,7 +2225,7 @@
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
-    } ],
-    "sentences" : [ "A: Could I drive your car? B: No, you can't." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la 'short answer' (respuesta corta)."
 } ]

@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342cea"
   },
   "id" : "67fab6d59930102295342cea",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "Ella es brillante tocando el piano.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -26,41 +26,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She's brilliant",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "playing the piano.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's brilliant",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
       "text" : "playing the piano.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "She's brilliant at playing the piano." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ceb"
   },
   "id" : "67fab6d59930102295342ceb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "Aprender alemán es difícil para mi abuelo.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -78,15 +138,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Learning German is hard",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my grandpa.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Learning German is hard",
@@ -100,19 +213,25 @@
       "text" : "my grandpa.",
       "options" : null
     } ],
-    "sentences" : [ "Learning German is hard for my grandpa." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cec"
   },
   "id" : "67fab6d59930102295342cec",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "Ese problema es demasiado simple para nosotros.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -130,9 +249,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That problem is too simple",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "us.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -151,20 +329,20 @@
       "kind" : "TEXT",
       "text" : "us.",
       "options" : null
-    } ],
-    "sentences" : [ "That problem is too simple for us." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ced"
   },
   "id" : "67fab6d59930102295342ced",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "Están muy contentos con el concierto.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -182,41 +360,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They are really glad",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the concert.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They are really glad",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
       "text" : "the concert.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "They are really glad about the concert." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cee"
   },
   "id" : "67fab6d59930102295342cee",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "Ella le tiene un poco de miedo a los dolores de muelas.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -234,41 +472,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She is a bit scared",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "toothaches.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is a bit scared",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "toothaches.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "She is a bit scared of toothaches." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cef"
   },
   "id" : "67fab6d59930102295342cef",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "¡Eres bastante talentoso pintando!",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -286,10 +584,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +600,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "at" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "painting!",
       "options" : null
     } ],
-    "sentences" : [ "You're quite talented at painting!" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You're quite talented",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "at" ]
+    }, {
+      "text" : "painting!",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cf0"
   },
   "id" : "67fab6d59930102295342cf0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "¿Te interesa la ciencia?",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -338,41 +695,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También hay $interested in$ y $rich in$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Are you interested",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "science?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you interested",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "science?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Are you interested in science?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cf1"
   },
   "id" : "67fab6d59930102295342cf1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "Su respuesta es opuesta a la mía.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -390,22 +807,81 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También hay $opposite to$ y $engaged to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Her answer is opposite",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "mine.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Her answer is opposite",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
@@ -413,18 +889,19 @@
       "options" : null
     } ],
     "sentences" : [ "Her answer is opposite to mine." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cf2"
   },
   "id" : "67fab6d59930102295342cf2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "¿Estabas interesado en las noticias?",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -442,41 +919,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También hay $interested in$ y $rich in$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Were you interested",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the news?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Were you interested",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "the news?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Were you interested in the news?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cf3"
   },
   "id" : "67fab6d59930102295342cf3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "Ella estaba negativa respecto a su examen.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -494,22 +1031,81 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She was negative",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "her exam.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She was negative",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
@@ -517,18 +1113,19 @@
       "options" : null
     } ],
     "sentences" : [ "She was negative about her exam." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cf4"
   },
   "id" : "67fab6d59930102295342cf4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "Él es genial en ciencias.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -546,10 +1143,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's great",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "science.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -568,19 +1223,20 @@
       "text" : "science.",
       "options" : null
     } ],
-    "sentences" : [ "He's great at science." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cf5"
   },
   "id" : "67fab6d59930102295342cf5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "¡Esta agua es segura para ella!",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -598,41 +1254,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Safe$ pide $for$: safe for her.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This water is safe",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "her!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This water is safe",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "her!",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "This water is safe for her!" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cf6"
   },
   "id" : "67fab6d59930102295342cf6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "Le tiene miedo a los murciélagos.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -650,41 +1366,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He's afraid",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bats.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's afraid",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "bats.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "He's afraid of bats." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cf7"
   },
   "id" : "67fab6d59930102295342cf7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "¡El examen fue simple para ella!",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -702,10 +1478,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -718,25 +1494,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "for" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "her!",
       "options" : null
     } ],
-    "sentences" : [ "The test was simple for her!" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "The test was simple"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "her!",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cf8"
   },
   "id" : "67fab6d59930102295342cf8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "¿Estás feliz por tu cumpleaños?",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -754,41 +1589,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Are you happy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "your birthday?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you happy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
       "text" : "your birthday?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "Are you happy about your birthday?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cf9"
   },
   "id" : "67fab6d59930102295342cf9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "Ella está comprometida con David.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -806,9 +1701,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También hay $opposite to$ y $engaged to$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is engaged",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "David.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -827,20 +1781,20 @@
       "kind" : "TEXT",
       "text" : "David.",
       "options" : null
-    } ],
-    "sentences" : [ "She is engaged to David." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cfa"
   },
   "id" : "67fab6d59930102295342cfa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "¡Estábamos entusiasmados con el partido!",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -858,22 +1812,81 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We were excited",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the game!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We were excited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
@@ -881,18 +1894,19 @@
       "options" : null
     } ],
     "sentences" : [ "We were excited about the game!" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cfb"
   },
   "id" : "67fab6d59930102295342cfb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "Estaba contento por la fiesta.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -910,22 +1924,81 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He was happy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the party.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was happy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
@@ -933,18 +2006,19 @@
       "options" : null
     } ],
     "sentences" : [ "He was happy about the party." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cfc"
   },
   "id" : "67fab6d59930102295342cfc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "Ella es genial bailando.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -962,41 +2036,101 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cada adjetivo pide la suya: $good at$, $hard for$, $glad about$, $scared of$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She's awesome",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dancing.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's awesome",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
       "text" : "dancing.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "She's awesome at dancing." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cfd"
   },
   "id" : "67fab6d59930102295342cfd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjetivos 3",
-  "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
+  "title" : "Adjetivos con preposición",
+  "instructions" : "Elige la preposición correcta (at / for / in / to / about / of).",
   "translation" : "¡Esta fruta es rica en azúcar!",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
@@ -1014,22 +2148,81 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.07.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También hay $interested in$ y $rich in$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This fruit is rich",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sugar!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "in",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "in"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This fruit is rich",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
@@ -1037,5 +2230,6 @@
       "options" : null
     } ],
     "sentences" : [ "This fruit is rich in sugar!" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (at / for / in / to / about / of)."
 } ]

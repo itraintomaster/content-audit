@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342a88"
   },
   "id" : "67fab6d59930102295342a88",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "¿Alguna vez has visitado la República Checa?",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -26,15 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever visited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Czech Republic?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Have you ever visited",
@@ -48,19 +77,25 @@
       "text" : "Czech Republic?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever visited the Czech Republic?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a89"
   },
   "id" : "67fab6d59930102295342a89",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Viajé a Noruega por primera vez el año pasado.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -78,10 +113,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +129,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Norway for the first time last year.",
       "options" : null
     } ],
-    "sentences" : [ "I journeyed to - Norway for the first time last year." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I journeyed to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "text" : "Norway for the first time last year.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a8a"
   },
   "id" : "67fab6d59930102295342a8a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "¿Alguna vez has viajado a Argelia?",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -130,13 +200,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever travelled to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Algeria?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -152,19 +253,23 @@
       "text" : "Algeria?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever travelled to - Algeria?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a8b"
   },
   "id" : "67fab6d59930102295342a8b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Edimburgo está en Escocia.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -182,41 +287,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Edinburgh is in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Scotland.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Edinburgh is in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Scotland.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "Edinburgh is in - Scotland." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a8c"
   },
   "id" : "67fab6d59930102295342a8c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "¿Alguna vez has vacacionado en Dinamarca?",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -234,13 +375,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever vacationed in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Denmark?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -256,19 +428,23 @@
       "text" : "Denmark?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever vacationed in - Denmark?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a8d"
   },
   "id" : "67fab6d59930102295342a8d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Viajamos por Austria.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -286,41 +462,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We travelled around",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Austria.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We travelled around",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Austria.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "We travelled around - Austria." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a8e"
   },
   "id" : "67fab6d59930102295342a8e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Ellos son de Madrid, en España.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -338,22 +550,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They come from Madrid in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spain.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They come from Madrid in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -361,18 +608,19 @@
       "options" : null
     } ],
     "sentences" : [ "They come from Madrid in - Spain." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a8f"
   },
   "id" : "67fab6d59930102295342a8f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "La gente habla flamenco en Bélgica.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -390,15 +638,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "People speak Flemish in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Belgium.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "People speak Flemish in",
@@ -412,19 +689,26 @@
       "text" : "Belgium.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "People speak Flemish in - Belgium." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a90"
   },
   "id" : "67fab6d59930102295342a90",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Nunca he viajado a Corea.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -442,10 +726,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +742,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Korea.",
       "options" : null
     } ],
-    "sentences" : [ "I've never travelled to - Korea." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I've never travelled to",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "Korea.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a91"
   },
   "id" : "67fab6d59930102295342a91",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Ella es de Grecia.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -494,15 +813,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Greece.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She is from",
@@ -516,19 +864,25 @@
       "text" : "Greece.",
       "options" : null
     } ],
-    "sentences" : [ "She is from - Greece." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a92"
   },
   "id" : "67fab6d59930102295342a92",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Ellos recorrieron Argentina.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -546,22 +900,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They went around",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Argentina.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They went around",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -569,18 +958,19 @@
       "options" : null
     } ],
     "sentences" : [ "They went around - Argentina." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a93"
   },
   "id" : "67fab6d59930102295342a93",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Ella viene de las Maldivas.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -598,10 +988,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She comes from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Maldives.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -620,19 +1044,20 @@
       "text" : "Maldives.",
       "options" : null
     } ],
-    "sentences" : [ "She comes from the Maldives." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a94"
   },
   "id" : "67fab6d59930102295342a94",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Viajamos a Brasil.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -650,9 +1075,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We travelled to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Brazil.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -671,20 +1131,20 @@
       "kind" : "TEXT",
       "text" : "Brazil.",
       "options" : null
-    } ],
-    "sentences" : [ "We travelled to - Brazil." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a95"
   },
   "id" : "67fab6d59930102295342a95",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "A él le encanta vivir en Vietnam.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -702,22 +1162,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He loves living in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Vietnam.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He loves living in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -725,18 +1220,19 @@
       "options" : null
     } ],
     "sentences" : [ "He loves living in - Vietnam." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a96"
   },
   "id" : "67fab6d59930102295342a96",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Texas no está en los Emiratos Árabes Unidos.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -754,22 +1250,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Texas is not in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "United Arab Emirates.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Texas is not in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
@@ -777,18 +1308,19 @@
       "options" : null
     } ],
     "sentences" : [ "Texas is not in the United Arab Emirates." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a97"
   },
   "id" : "67fab6d59930102295342a97",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Me gustaría viajar a Ucrania.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -806,10 +1338,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -822,25 +1354,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Ukraine.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "I would like to travel to",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Ukraine.",
       "options" : null
     } ],
-    "sentences" : [ "I would like to travel to - Ukraine." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a98"
   },
   "id" : "67fab6d59930102295342a98",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Él estudió durante un año en Corea.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -858,10 +1425,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,25 +1441,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Korea.",
       "options" : null
     } ],
-    "sentences" : [ "He studied for a year in - Korea." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He studied for a year in",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Korea.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a99"
   },
   "id" : "67fab6d59930102295342a99",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Ella es de Hungría.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -910,13 +1512,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Hungary.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -932,19 +1565,23 @@
       "text" : "Hungary.",
       "options" : null
     } ],
-    "sentences" : [ "She is from - Hungary." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a9a"
   },
   "id" : "67fab6d59930102295342a9a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "Él planea nadar en el Océano Índico.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -962,22 +1599,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Ríos, mares y océanos llevan $the$: $the Indian Ocean$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He plans to swim in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Indian Ocean.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He plans to swim in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
@@ -985,18 +1657,19 @@
       "options" : null
     } ],
     "sentences" : [ "He plans to swim in the Indian Ocean." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a9b"
   },
   "id" : "67fab6d59930102295342a9b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
   "title" : "Países",
-  "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
+  "instructions" : "Elige 'the' si es necesario; de lo contrario, usa '-'.",
   "translation" : "¿Alguna vez has visitado Australia?",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
@@ -1014,10 +1687,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.12.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1030,12 +1703,1790 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Australia?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Have you ever visited"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Australia?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever visited - Australia?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' si es necesario; de lo contrario, usa '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434fc"
+  },
+  "id" : "67fab6d599301022953434fc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Una vez residimos felizmente en España.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We once resided happily in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spain.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We once resided happily in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spain.",
+      "options" : null
+    } ],
+    "sentences" : [ "We once resided happily in - Spain." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434fd"
+  },
+  "id" : "67fab6d599301022953434fd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Viajó a los Emiratos Árabes Unidos el mes pasado.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He traveled to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "UAE last month.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He traveled to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "UAE last month.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434fe"
+  },
+  "id" : "67fab6d599301022953434fe",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Quiero visitar Corea.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I want to visit",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Korea.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I want to visit",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "Korea.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434ff"
+  },
+  "id" : "67fab6d599301022953434ff",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "¿Alguna vez has viajado a los Estados Unidos?",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever traveled to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "US?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever traveled to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "US?"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343500"
+  },
+  "id" : "67fab6d59930102295343500",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Disfruta estar en Grecia.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He enjoys being in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Greece.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He enjoys being in",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "Greece.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343501"
+  },
+  "id" : "67fab6d59930102295343501",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Acaba de volver de las Maldivas.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is just back from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Maldives.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is just back from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Maldives.",
+      "options" : null
+    } ],
+    "sentences" : [ "He is just back from the Maldives." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343502"
+  },
+  "id" : "67fab6d59930102295343502",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "En la República Checa hablan checo.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Republic$ o $Kingdom$ en el nombre también piden $the$: the Czech Republic.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "In",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Czech Republic, they speak Czech.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "In",
+      "options" : null
+    }, {
+      "options" : [ "the" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Czech Republic, they speak Czech."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343503"
+  },
+  "id" : "67fab6d59930102295343503",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "¿Alguna vez has viajado a Brasil?",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever traveled to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Brazil?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Have you ever traveled to"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Brazil?"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343504"
+  },
+  "id" : "67fab6d59930102295343504",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "En Australia, la gente habla inglés.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "In",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Australia, people speak English.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "In",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Australia, people speak English.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343505"
+  },
+  "id" : "67fab6d59930102295343505",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Sorprendentemente, ella es de Tailandia.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Surprisingly, she is from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Thailand.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Surprisingly, she is from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Thailand.",
+      "options" : null
+    } ],
+    "sentences" : [ "Surprisingly, she is from - Thailand." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343506"
+  },
+  "id" : "67fab6d59930102295343506",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Recorrieron el Reino Unido.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They toured around",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "United Kingdom.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They toured around",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "United Kingdom.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343507"
+  },
+  "id" : "67fab6d59930102295343507",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Visitamos Egipto.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Egypt.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Egypt."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343508"
+  },
+  "id" : "67fab6d59930102295343508",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Ella es de los Estados Unidos.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "USA.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "USA.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343509"
+  },
+  "id" : "67fab6d59930102295343509",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Él viene de Chile.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He comes from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Chile.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He comes from",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Chile.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534350a"
+  },
+  "id" : "67fab6d5993010229534350a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Visitamos los Estados Unidos de vacaciones.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "US for vacation.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "US for vacation.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534350b"
+  },
+  "id" : "67fab6d5993010229534350b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Yakarta es la capital de Filipinas.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Jakarta is the capital of",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Philippines.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Jakarta is the capital of",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "Philippines.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534350c"
+  },
+  "id" : "67fab6d5993010229534350c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Madrid es la capital de España.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Madrid is the capital of",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spain.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Madrid is the capital of",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "text" : "Spain.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534350d"
+  },
+  "id" : "67fab6d5993010229534350d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Viajaron a España.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They travelled to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spain.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They travelled to",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spain.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534350e"
+  },
+  "id" : "67fab6d5993010229534350e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "¿Alguna vez has estado en los Emiratos Árabes Unidos?",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever been to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "United Arab Emirates?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever been to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "United Arab Emirates?"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534350f"
+  },
+  "id" : "67fab6d5993010229534350f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d260"
+  },
+  "title" : "Países",
+  "instructions" : "Elige 'the' o usa – si no se necesita ningún artículo.",
+  "translation" : "Me encantaría ir al Reino Unido.",
+  "theoryId" : "a2.06.Article_with_Countries",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países van sin artículo, salvo los plurales y las uniones: $the US$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd love to go to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "United Kingdom.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd love to go to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "United Kingdom."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no se necesita ningún artículo."
 } ]

@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953430f7"
   },
   "id" : "67fab6d599301022953430f7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Ellos han jugado tenis por tres meses.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "for" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "three months.",
       "options" : null
     } ],
-    "sentences" : [ "They have played tennis for three months." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have played tennis",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "three months."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953430f8"
   },
   "id" : "67fab6d599301022953430f8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "A ella le ha gustado Mark por cinco años.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -78,15 +112,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has liked Mark",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "five years.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She has liked Mark",
@@ -100,19 +163,24 @@
       "text" : "five years.",
       "options" : null
     } ],
-    "sentences" : [ "She has liked Mark for five years." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953430f9"
   },
   "id" : "67fab6d599301022953430f9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Ellos han jugado tenis desde el 3 de julio.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -130,10 +198,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,25 +214,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "since" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the 3rd of July.",
       "options" : null
     } ],
-    "sentences" : [ "They have played tennis since the 3rd of July." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have played tennis",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "since" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 3rd of July.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953430fa"
   },
   "id" : "67fab6d599301022953430fa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Susan ha sido doctora desde 2015.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -182,10 +284,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,25 +300,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "since" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "2015.",
       "options" : null
     } ],
-    "sentences" : [ "Susan has been a doctor since 2015." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Susan has been a doctor",
+      "options" : null
+    }, {
+      "options" : [ "since" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "2015.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953430fb"
   },
   "id" : "67fab6d599301022953430fb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Él ha trabajado allí por cinco meses.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -234,9 +370,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's worked there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "five months.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -255,20 +426,19 @@
       "kind" : "TEXT",
       "text" : "five months.",
       "options" : null
-    } ],
-    "sentences" : [ "He's worked there for five months." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953430fc"
   },
   "id" : "67fab6d599301022953430fc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "He usado mi computadora por cuatro días.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -286,10 +456,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +472,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "for" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "four days.",
       "options" : null
     } ],
-    "sentences" : [ "I have used my computer for four days." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I have used my computer"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "four days.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953430fd"
   },
   "id" : "67fab6d599301022953430fd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "He usado mi computadora desde el miércoles.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -338,10 +542,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +558,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "since" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Wednesday.",
       "options" : null
     } ],
-    "sentences" : [ "I have used my computer since Wednesday." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I have used my computer"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "since" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Wednesday.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953430fe"
   },
   "id" : "67fab6d599301022953430fe",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Los empleados se han sentido felices desde enero.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -390,9 +628,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The employees have felt happy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "January.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -408,23 +681,22 @@
       "text" : "",
       "options" : [ "since" ]
     }, {
-      "kind" : "TEXT",
       "text" : "January.",
-      "options" : null
-    } ],
-    "sentences" : [ "The employees have felt happy since January." ]
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953430ff"
   },
   "id" : "67fab6d599301022953430ff",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Los gatos han estado en el jardín desde las 5 pm.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -442,9 +714,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The cats have been in the garden",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "5 pm.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -463,20 +770,19 @@
       "kind" : "TEXT",
       "text" : "5 pm.",
       "options" : null
-    } ],
-    "sentences" : [ "The cats have been in the garden since 5 pm." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343100"
   },
   "id" : "67fab6d59930102295343100",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Los empleados se han sentido felices por semanas.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -494,9 +800,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The employees have felt happy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "weeks.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -515,20 +856,19 @@
       "kind" : "TEXT",
       "text" : "weeks.",
       "options" : null
-    } ],
-    "sentences" : [ "The employees have felt happy for weeks." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343101"
   },
   "id" : "67fab6d59930102295343101",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Él ha estado en el club por horas.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -546,9 +886,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has been at the club",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hours.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -567,20 +942,19 @@
       "kind" : "TEXT",
       "text" : "hours.",
       "options" : null
-    } ],
-    "sentences" : [ "He has been at the club for hours." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343102"
   },
   "id" : "67fab6d59930102295343102",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Ellos han vivido en París por ocho meses.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -598,10 +972,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -614,25 +988,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "eight months.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They've lived in Paris",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "eight months.",
       "options" : null
     } ],
-    "sentences" : [ "They've lived in Paris for eight months." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343103"
   },
   "id" : "67fab6d59930102295343103",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "He estado allí por cinco horas.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -650,10 +1058,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -666,25 +1074,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "for" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "five hours.",
       "options" : null
     } ],
-    "sentences" : [ "I've been there for five hours." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I've been there"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "five hours.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343104"
   },
   "id" : "67fab6d59930102295343104",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Él ha trabajado allí desde 2019.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -702,9 +1144,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's worked there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "2019.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -720,23 +1197,22 @@
       "text" : "",
       "options" : [ "since" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "2019.",
-      "options" : null
-    } ],
-    "sentences" : [ "He's worked there since 2019." ]
+      "text" : "2019."
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343105"
   },
   "id" : "67fab6d59930102295343105",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "He estado allí desde las 8 am.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -754,10 +1230,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1246,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "since" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "8 am.",
       "options" : null
     } ],
-    "sentences" : [ "I've been there since 8 am." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I've been there"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "since" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "8 am."
+    } ],
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343106"
   },
   "id" : "67fab6d59930102295343106",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Los gatos han estado en el jardín por veinte minutos.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -806,14 +1316,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The cats have been in the garden",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "twenty minutes.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -828,19 +1368,23 @@
       "text" : "twenty minutes.",
       "options" : null
     } ],
-    "sentences" : [ "The cats have been in the garden for twenty minutes." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343107"
   },
   "id" : "67fab6d59930102295343107",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Él ha estado en el club desde las 9 pm.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -858,9 +1402,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has been at the club",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "9 pm.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -879,20 +1458,19 @@
       "kind" : "TEXT",
       "text" : "9 pm.",
       "options" : null
-    } ],
-    "sentences" : [ "He has been at the club since 9 pm." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343108"
   },
   "id" : "67fab6d59930102295343108",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Ellos han vivido en París desde mayo.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -910,9 +1488,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They've lived in Paris",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "May.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -931,20 +1544,19 @@
       "kind" : "TEXT",
       "text" : "May.",
       "options" : null
-    } ],
-    "sentences" : [ "They've lived in Paris since May." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343109"
   },
   "id" : "67fab6d59930102295343109",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "Susan ha sido doctora por ocho años.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -962,10 +1574,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -978,25 +1590,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "for" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "eight years.",
       "options" : null
     } ],
-    "sentences" : [ "Susan has been a doctor for eight years." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Susan has been a doctor",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "eight years.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534310a"
   },
   "id" : "67fab6d5993010229534310a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c9"
   },
   "title" : "Elegir: $for$ o $since$",
-  "instructions" : "Elige la opción correcta, $for$ o $since$.",
+  "instructions" : "Elige la opción correcta, 'for' o 'since'.",
   "translation" : "A ella le ha gustado Mark desde 2018.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
@@ -1014,9 +1660,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.08.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$for$ + cuánto duró ($for three months$). $since$ + desde cuándo ($since 2015$).",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has liked Mark",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "2018.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -1035,7 +1716,887 @@
       "kind" : "TEXT",
       "text" : "2018.",
       "options" : null
-    } ],
-    "sentences" : [ "She has liked Mark since 2018." ]
+    } ]
   }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c49"
+  },
+  "id" : "67fab6d59930102295343c49",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c9"
+  },
+  "title" : "Elegir: $for$ o $since$",
+  "instructions" : "Elige 'since' o 'for'.",
+  "translation" : "Nos conocemos desde 2010.",
+  "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$since$ + desde cuándo ($since 2010$). $for$ + cuánto duró ($for five years$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We have known each other",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "2010.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "We have known each other",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "since" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "2010.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegir entre 'since' o 'for'.",
+  "instructionsAntesDeRevisar" : "Elige entre 'since' o 'for'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c4a"
+  },
+  "id" : "67fab6d59930102295343c4a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c9"
+  },
+  "title" : "Elegir: $for$ o $since$",
+  "instructions" : "Elige 'since' o 'for'.",
+  "translation" : "Ellos han estado viviendo aquí por cinco años.",
+  "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$since$ + desde cuándo ($since 2010$). $for$ + cuánto duró ($for five years$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have been living here",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "five years.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They have been living here",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "five years."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir entre 'since' o 'for'.",
+  "instructionsAntesDeRevisar" : "Elige entre 'since' o 'for'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c4b"
+  },
+  "id" : "67fab6d59930102295343c4b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c9"
+  },
+  "title" : "Elegir: $for$ o $since$",
+  "instructions" : "Elige 'since' o 'for'.",
+  "translation" : "La tienda ha estado cerrada desde ayer.",
+  "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$since$ + desde cuándo ($since 2010$). $for$ + cuánto duró ($for five years$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The store has been closed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "yesterday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "The store has been closed",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "since" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "yesterday.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir entre 'since' o 'for'.",
+  "instructionsAntesDeRevisar" : "Elige entre 'since' o 'for'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c4c"
+  },
+  "id" : "67fab6d59930102295343c4c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c9"
+  },
+  "title" : "Elegir: $for$ o $since$",
+  "instructions" : "Elige 'since' o 'for'.",
+  "translation" : "He estado estudiando inglés por seis meses.",
+  "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$since$ + desde cuándo ($since 2010$). $for$ + cuánto duró ($for five years$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I have been studying English",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "six months.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I have been studying English",
+      "options" : null
+    }, {
+      "options" : [ "for" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "six months.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir entre 'since' o 'for'.",
+  "instructionsAntesDeRevisar" : "Elige entre 'since' o 'for'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c4d"
+  },
+  "id" : "67fab6d59930102295343c4d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c9"
+  },
+  "title" : "Elegir: $for$ o $since$",
+  "instructions" : "Elige 'since' o 'for'.",
+  "translation" : "Ella ha estado esperando desde el mediodía.",
+  "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$since$ + desde cuándo ($since 2010$). $for$ + cuánto duró ($for five years$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has been waiting",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "noon.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has been waiting",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "since" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "noon.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegir entre 'since' o 'for'.",
+  "instructionsAntesDeRevisar" : "Elige entre 'since' o 'for'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c4e"
+  },
+  "id" : "67fab6d59930102295343c4e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c9"
+  },
+  "title" : "Elegir: $for$ o $since$",
+  "instructions" : "Elige 'since' o 'for'.",
+  "translation" : "Él ha estado trabajando en esa compañía por cierto tiempo.",
+  "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$since$ + desde cuándo ($since 2010$). $for$ + cuánto duró ($for five years$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has been working at that company",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a certain time.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has been working at that company",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a certain time.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "He has been working at that company for a certain time." ]
+  },
+  "instructionsAnteriores" : "Elegir entre 'since' o 'for'.",
+  "instructionsAntesDeRevisar" : "Elige entre 'since' o 'for'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c4f"
+  },
+  "id" : "67fab6d59930102295343c4f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c9"
+  },
+  "title" : "Elegir: $for$ o $since$",
+  "instructions" : "Elige 'since' o 'for'.",
+  "translation" : "No lo he visto desde la semana pasada.",
+  "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$since$ + desde cuándo ($since 2010$). $for$ + cuánto duró ($for five years$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I have not seen him",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "last week.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I have not seen him",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "since" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "last week."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir entre 'since' o 'for'.",
+  "instructionsAntesDeRevisar" : "Elige entre 'since' o 'for'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c50"
+  },
+  "id" : "67fab6d59930102295343c50",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c9"
+  },
+  "title" : "Elegir: $for$ o $since$",
+  "instructions" : "Elige 'since' o 'for'.",
+  "translation" : "¿Has estado tocando el piano por muchos años?",
+  "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$since$ + desde cuándo ($since 2010$). $for$ + cuánto duró ($for five years$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you been playing the piano",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "many years?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you been playing the piano",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "for" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "many years?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir entre 'since' o 'for'.",
+  "instructionsAntesDeRevisar" : "Elige entre 'since' o 'for'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c51"
+  },
+  "id" : "67fab6d59930102295343c51",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c9"
+  },
+  "title" : "Elegir: $for$ o $since$",
+  "instructions" : "Elige 'since' o 'for'.",
+  "translation" : "Ella ha estado practicando desde esta mañana.",
+  "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$since$ + desde cuándo ($since 2010$). $for$ + cuánto duró ($for five years$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has been practicing",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "this morning.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has been practicing",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "since" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "this morning."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegir entre 'since' o 'for'.",
+  "instructionsAntesDeRevisar" : "Elige entre 'since' o 'for'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343c52"
+  },
+  "id" : "67fab6d59930102295343c52",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2c9"
+  },
+  "title" : "Elegir: $for$ o $since$",
+  "instructions" : "Elige 'since' o 'for'.",
+  "translation" : "Él se ha estado sintiendo mal desde el martes, y todavía está enfermo.",
+  "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
+  "topicName" : "Present perfect",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.17.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$since$ + desde cuándo ($since 2010$). $for$ + cuánto duró ($for five years$).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has been feeling unwell",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Tuesday, and he is still sick.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He has been feeling unwell"
+    }, {
+      "text" : "",
+      "options" : [ "since" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "Tuesday, and he is still sick.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir entre 'since' o 'for'.",
+  "instructionsAntesDeRevisar" : "Elige entre 'since' o 'for'."
 } ]

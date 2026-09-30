@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342d26"
   },
   "id" : "67fab6d59930102295342d26",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28c"
   },
   "title" : "$During$ o $while$",
-  "instructions" : "Elige $during$ o $while$.",
+  "instructions" : "Elige 'during' o 'while'.",
   "translation" : "El bebé durmió durante la tarde.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.11.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ va antes de un sustantivo. $while$ va antes de una oración con verbo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "during" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the afternoon.",
       "options" : null
     } ],
-    "sentences" : [ "The baby slept during the afternoon." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The baby slept",
+      "options" : null
+    }, {
+      "options" : [ "during" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "the afternoon.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d27"
   },
   "id" : "67fab6d59930102295342d27",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28c"
   },
   "title" : "$During$ o $while$",
-  "instructions" : "Elige $during$ o $while$.",
+  "instructions" : "Elige 'during' o 'while'.",
   "translation" : "Ella vio a su amiga mientras estaba en el trabajo.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -78,10 +112,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.11.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ va antes de un sustantivo. $while$ va antes de una oración con verbo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +128,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "while" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "she was at work.",
       "options" : null
     } ],
-    "sentences" : [ "She saw her friend while she was at work." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She saw her friend",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "while" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "she was at work."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d28"
   },
   "id" : "67fab6d59930102295342d28",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28c"
   },
   "title" : "$During$ o $while$",
-  "instructions" : "Elige $during$ o $while$.",
+  "instructions" : "Elige 'during' o 'while'.",
   "translation" : "Ellos escucharon música mientras cocinaban.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -130,15 +198,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.11.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ va antes de un sustantivo. $while$ va antes de una oración con verbo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They listened to music",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "they were cooking.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They listened to music",
@@ -152,19 +249,24 @@
       "text" : "they were cooking.",
       "options" : null
     } ],
-    "sentences" : [ "They listened to music while they were cooking." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d29"
   },
   "id" : "67fab6d59930102295342d29",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28c"
   },
   "title" : "$During$ o $while$",
-  "instructions" : "Elige $during$ o $while$.",
+  "instructions" : "Elige 'during' o 'while'.",
   "translation" : "La cocina se apagó durante la tormenta.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -182,28 +284,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.11.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ va antes de un sustantivo. $while$ va antes de una oración con verbo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The cooker went out",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the storm.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The cooker went out",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "during" ]
     }, {
       "kind" : "TEXT",
       "text" : "the storm.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "The cooker went out during the storm." ]
   }
 }, {
@@ -211,12 +348,12 @@
     "$oid" : "67fab6d59930102295342d2a"
   },
   "id" : "67fab6d59930102295342d2a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28c"
   },
   "title" : "$During$ o $while$",
-  "instructions" : "Elige $during$ o $while$.",
+  "instructions" : "Elige 'during' o 'while'.",
   "translation" : "El perro jugó mientras dormíamos.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -234,22 +371,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.11.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ va antes de un sustantivo. $while$ va antes de una oración con verbo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The dog played",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we were sleeping.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dog played",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "while" ]
     }, {
       "kind" : "TEXT",
@@ -263,12 +435,12 @@
     "$oid" : "67fab6d59930102295342d2b"
   },
   "id" : "67fab6d59930102295342d2b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28c"
   },
   "title" : "$During$ o $while$",
-  "instructions" : "Elige $during$ o $while$.",
+  "instructions" : "Elige 'during' o 'while'.",
   "translation" : "El médico llegó durante la mañana.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -286,28 +458,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.11.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ va antes de un sustantivo. $while$ va antes de una oración con verbo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The doctor arrived",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the morning.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The doctor arrived",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "during" ]
     }, {
       "kind" : "TEXT",
       "text" : "the morning.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "The doctor arrived during the morning." ]
   }
 }, {
@@ -315,12 +522,12 @@
     "$oid" : "67fab6d59930102295342d2c"
   },
   "id" : "67fab6d59930102295342d2c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28c"
   },
   "title" : "$During$ o $while$",
-  "instructions" : "Elige $during$ o $while$.",
+  "instructions" : "Elige 'during' o 'while'.",
   "translation" : "Tomamos café durante el descanso.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -338,9 +545,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.11.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ va antes de un sustantivo. $while$ va antes de una oración con verbo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We drank coffee",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the break.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +601,19 @@
       "kind" : "TEXT",
       "text" : "the break.",
       "options" : null
-    } ],
-    "sentences" : [ "We drank coffee during the break." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d2d"
   },
   "id" : "67fab6d59930102295342d2d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28c"
   },
   "title" : "$During$ o $while$",
-  "instructions" : "Elige $during$ o $while$.",
+  "instructions" : "Elige 'during' o 'while'.",
   "translation" : "Él vio a Mary hablar con Susan durante el concierto.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -390,9 +631,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.11.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ va antes de un sustantivo. $while$ va antes de una oración con verbo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He saw Mary speak to Susan",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the concert.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -419,12 +695,12 @@
     "$oid" : "67fab6d59930102295342d2e"
   },
   "id" : "67fab6d59930102295342d2e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28c"
   },
   "title" : "$During$ o $while$",
-  "instructions" : "Elige $during$ o $while$.",
+  "instructions" : "Elige 'during' o 'while'.",
   "translation" : "Rompieron la taza mientras yo estaba en el jardín.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -442,22 +718,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.11.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ va antes de un sustantivo. $while$ va antes de una oración con verbo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They broke the cup",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "I was in the garden.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They broke the cup",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "while" ]
     }, {
       "kind" : "TEXT",
@@ -471,12 +782,12 @@
     "$oid" : "67fab6d59930102295342d2f"
   },
   "id" : "67fab6d59930102295342d2f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28c"
   },
   "title" : "$During$ o $while$",
-  "instructions" : "Elige $during$ o $while$.",
+  "instructions" : "Elige 'during' o 'while'.",
   "translation" : "Se durmió en el coche mientras conducía.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
@@ -494,10 +805,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.11.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ va antes de un sustantivo. $while$ va antes de una oración con verbo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He slept in the car",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "he was driving.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -516,6 +861,6 @@
       "text" : "he was driving.",
       "options" : null
     } ],
-    "sentences" : [ "He slept in the car while he was driving." ]
+    "kind" : "CLOZE"
   }
 } ]

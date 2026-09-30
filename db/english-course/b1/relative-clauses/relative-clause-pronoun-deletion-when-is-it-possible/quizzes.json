@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953438f7"
   },
   "id" : "67fab6d599301022953438f7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Él es el hombre que conocí.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -26,14 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's the man",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "I met.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -48,19 +78,24 @@
       "text" : "I met.",
       "options" : null
     } ],
-    "sentences" : [ "He's the man - I met." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438f8"
   },
   "id" : "67fab6d599301022953438f8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "¡Ahí está el pastel que horneamos!",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -78,9 +113,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's the cake",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we baked!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -99,20 +169,20 @@
       "kind" : "TEXT",
       "text" : "we baked!",
       "options" : null
-    } ],
-    "sentences" : [ "There's the cake - we baked!" ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438f9"
   },
   "id" : "67fab6d599301022953438f9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Le mostré todas las fotos que estaban en mi teléfono.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -130,10 +200,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,25 +216,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "that" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "were on my phone.",
       "options" : null
     } ],
-    "sentences" : [ "I showed him all the photos that were on my phone." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I showed him all the photos",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "that" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "were on my phone."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438fa"
   },
   "id" : "67fab6d599301022953438fa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Visitamos la iglesia que diseñó mi abuela.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -182,10 +287,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,25 +303,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "my grandmother designed.",
       "options" : null
     } ],
-    "sentences" : [ "We visited the church - my grandmother designed." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "We visited the church"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "my grandmother designed.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438fb"
   },
   "id" : "67fab6d599301022953438fb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Los perros se comieron la carne que estaba en la cocina.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -234,9 +374,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs ate the meat",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "was in the kitchen.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -255,20 +430,20 @@
       "kind" : "TEXT",
       "text" : "was in the kitchen.",
       "options" : null
-    } ],
-    "sentences" : [ "The dogs ate the meat that was in the kitchen." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438fc"
   },
   "id" : "67fab6d599301022953438fc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Ellos bebieron el jugo que él preparó.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -286,14 +461,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They drank the juice",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "he prepared.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -308,19 +513,24 @@
       "text" : "he prepared.",
       "options" : null
     } ],
-    "sentences" : [ "They drank the juice - he prepared." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438fd"
   },
   "id" : "67fab6d599301022953438fd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Ahí está el chico que estudia contigo.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -338,9 +548,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's the boy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "studies with you.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -356,23 +601,23 @@
       "text" : "",
       "options" : [ "that" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "studies with you.",
-      "options" : null
-    } ],
-    "sentences" : [ "There's the boy that studies with you." ]
-  }
+      "text" : "studies with you."
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438fe"
   },
   "id" : "67fab6d599301022953438fe",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Esta es la silla que siempre está rota.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -390,9 +635,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is the chair",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "is always broken.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -408,23 +688,23 @@
       "text" : "",
       "options" : [ "that" ]
     }, {
-      "kind" : "TEXT",
       "text" : "is always broken.",
-      "options" : null
-    } ],
-    "sentences" : [ "This is the chair that is always broken." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438ff"
   },
   "id" : "67fab6d599301022953438ff",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Ella coleccionó los sellos que encontró.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -442,10 +722,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +738,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "she found.",
       "options" : null
     } ],
-    "sentences" : [ "She collected the stamps - she found." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She collected the stamps",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "she found."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343900"
   },
   "id" : "67fab6d59930102295343900",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Él alquiló el coche que estaba disponible.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -494,10 +809,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He rented the car",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "was available.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -516,19 +865,20 @@
       "text" : "was available.",
       "options" : null
     } ],
-    "sentences" : [ "He rented the car that was available." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343901"
   },
   "id" : "67fab6d59930102295343901",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Entrevistamos a las personas que se postularon a la empresa.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -546,22 +896,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We interviewed the people",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "applied to the company.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We interviewed the people",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "that" ]
     }, {
       "kind" : "TEXT",
@@ -569,18 +954,19 @@
       "options" : null
     } ],
     "sentences" : [ "We interviewed the people that applied to the company." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343902"
   },
   "id" : "67fab6d59930102295343902",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Ella escuchó la canción que ama.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -598,15 +984,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She listened to the song",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "she loves.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She listened to the song",
@@ -620,19 +1035,25 @@
       "text" : "she loves.",
       "options" : null
     } ],
-    "sentences" : [ "She listened to the song - she loves." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343903"
   },
   "id" : "67fab6d59930102295343903",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Él rechazó la sopa que estaba caliente.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -650,10 +1071,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He refused the soup",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "was hot.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -668,23 +1123,24 @@
       "text" : "",
       "options" : [ "that" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "was hot.",
-      "options" : null
+      "text" : "was hot."
     } ],
-    "sentences" : [ "He refused the soup that was hot." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343904"
   },
   "id" : "67fab6d59930102295343904",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Vimos el pájaro que canta hermosamente.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -702,9 +1158,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We saw the bird",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sings beautifully.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -720,23 +1211,23 @@
       "text" : "",
       "options" : [ "that" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "sings beautifully.",
-      "options" : null
-    } ],
-    "sentences" : [ "We saw the bird that sings beautifully." ]
-  }
+      "text" : "sings beautifully."
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343905"
   },
   "id" : "67fab6d59930102295343905",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Probé la sopa que él cocinó.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -754,9 +1245,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I tasted the soup",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "he cooked.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -775,20 +1301,20 @@
       "kind" : "TEXT",
       "text" : "he cooked.",
       "options" : null
-    } ],
-    "sentences" : [ "I tasted the soup - he cooked." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343906"
   },
   "id" : "67fab6d59930102295343906",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Ella olvidó las llaves que estaban sobre la mesa.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -806,10 +1332,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -822,25 +1348,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "that" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "were on the table.",
       "options" : null
     } ],
-    "sentences" : [ "She forgot the keys that were on the table." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She forgot the keys"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "that" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "were on the table.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343907"
   },
   "id" : "67fab6d59930102295343907",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Visitamos el museo que sugeriste.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -858,10 +1419,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,25 +1435,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "you suggested.",
       "options" : null
     } ],
-    "sentences" : [ "We visited the museum - you suggested." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited the museum",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "you suggested.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343908"
   },
   "id" : "67fab6d59930102295343908",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Él ama las flores que ella recogió.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -910,9 +1506,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He loves the flowers",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "she picked.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -928,23 +1559,23 @@
       "text" : "",
       "options" : [ "-" ]
     }, {
-      "kind" : "TEXT",
       "text" : "she picked.",
-      "options" : null
-    } ],
-    "sentences" : [ "He loves the flowers - she picked." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343909"
   },
   "id" : "67fab6d59930102295343909",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Seleccioné al trabajador que vino a la reunión.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -962,10 +1593,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -978,25 +1609,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "came to the meeting.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I selected the worker",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "that" ]
     }, {
       "kind" : "TEXT",
       "text" : "came to the meeting.",
       "options" : null
     } ],
-    "sentences" : [ "I selected the worker that came to the meeting." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534390a"
   },
   "id" : "67fab6d5993010229534390a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33d"
   },
   "title" : "Pronombre: incluir u omitir",
-  "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
+  "instructions" : "¿Se necesita 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
   "translation" : "Tomamos el autobús que él recomendó.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
@@ -1014,9 +1680,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.06.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We caught the bus",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "he recommended.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -1037,5 +1738,1746 @@
       "options" : null
     } ],
     "sentences" : [ "We caught the bus - he recommended." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "¿Se necesita 'that'? Inclúyelo solo si es necesario. De lo contrario, escribe '-'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344616"
+  },
+  "id" : "67fab6d59930102295344616",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Vivían en la casa que era extremadamente fría en invierno.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They lived in the house",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "was extremely cold in the winter.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They lived in the house",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "that" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "was extremely cold in the winter.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344617"
+  },
+  "id" : "67fab6d59930102295344617",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "No tengo un coche que funcione.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't own a car",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "runs.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't own a car",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "that" ]
+    }, {
+      "text" : "runs.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344618"
+  },
+  "id" : "67fab6d59930102295344618",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Beberán el té que preparaste.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They'll drink the tea",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "you made.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They'll drink the tea"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "text" : "you made.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344619"
+  },
+  "id" : "67fab6d59930102295344619",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Ella alquila un apartamento que tiene jardín.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She rents an apartment",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "has a garden.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She rents an apartment",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "that" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "has a garden."
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534461a"
+  },
+  "id" : "67fab6d5993010229534461a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "¿Has leído la historia que escribió Mary?",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you read the story",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Mary wrote?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you read the story",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "text" : "Mary wrote?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534461b"
+  },
+  "id" : "67fab6d5993010229534461b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Sarah tenía el plan que nos encantó.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sarah had the plan",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we loved.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sarah had the plan",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "we loved.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534461c"
+  },
+  "id" : "67fab6d5993010229534461c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "¿Dónde está el pastel que ella horneó?",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where's the cake",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "she baked?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where's the cake",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "she baked?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534461d"
+  },
+  "id" : "67fab6d5993010229534461d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "¿Has visto las gafas que estaban en el escritorio?",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you seen the glasses",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "were on the desk?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you seen the glasses",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "that" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "were on the desk?",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534461e"
+  },
+  "id" : "67fab6d5993010229534461e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Tomó el avión que recomendaste.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He caught the plane",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "you recommended.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He caught the plane",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "you recommended.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534461f"
+  },
+  "id" : "67fab6d5993010229534461f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Aquí está el taxi que necesitamos.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Here's the taxi",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we need.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Here's the taxi",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "we need.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344620"
+  },
+  "id" : "67fab6d59930102295344620",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Las niñas jugaron con la muñeca que estaba en la caja.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The girls played with the doll",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "was in the box.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The girls played with the doll",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "that" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "was in the box.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344621"
+  },
+  "id" : "67fab6d59930102295344621",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Leyó las cartas que el empleado envió.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He read the letters",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the clerk dispatched.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He read the letters",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "the clerk dispatched."
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344622"
+  },
+  "id" : "67fab6d59930102295344622",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Los bebés se bebieron todos los biberones que estaban en la nevera.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The babies drank all the bottles",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "were in the fridge.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The babies drank all the bottles",
+      "options" : null
+    }, {
+      "options" : [ "that" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "were in the fridge.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344623"
+  },
+  "id" : "67fab6d59930102295344623",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "A ella le gustaría visitar la tienda que está cerca de su trabajo.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She would like to visit the store",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "is close to her job.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She would like to visit the store",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "that" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is close to her job.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344624"
+  },
+  "id" : "67fab6d59930102295344624",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Les encantan las frutas que crecen de los árboles.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They love the fruits",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "grow from the trees.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They love the fruits",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "that" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "grow from the trees.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344625"
+  },
+  "id" : "67fab6d59930102295344625",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Me encantaría leer la novela que publicaste.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd love to read the novel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "you published.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd love to read the novel",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "you published.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344626"
+  },
+  "id" : "67fab6d59930102295344626",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Recogió los juguetes que estaban en el estante.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He collected the toys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "were on the shelf.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "He collected the toys",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "that" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "were on the shelf.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344627"
+  },
+  "id" : "67fab6d59930102295344627",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Compramos todos los artículos que la lista requería.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We bought all the items",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the list required.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We bought all the items",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the list required.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344628"
+  },
+  "id" : "67fab6d59930102295344628",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Ella realmente quiere ganar la carrera que corre hoy.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She really wants to win the race",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "she's running today.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She really wants to win the race",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "she's running today."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344629"
+  },
+  "id" : "67fab6d59930102295344629",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33d"
+  },
+  "title" : "Pronombre: incluir u omitir",
+  "instructions" : "¿Se requiere 'that'? Elígelo solo si es necesario. De lo contrario, elige '-'.",
+  "translation" : "Aquí está el autobús que va a Londres.",
+  "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si detrás viene otro sujeto, el $that$ se puede sacar. Si viene el verbo, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Here's the bus",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "goes to London.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "that",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "that"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Here's the bus",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "that" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "goes to London.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAntesDeRevisar" : "¿Se requiere 'that'? Inclúyelo solo si es necesario. De lo contrario, utiliza –."
 } ]

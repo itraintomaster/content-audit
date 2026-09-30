@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342317"
   },
   "id" : "67fab6d59930102295342317",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "agua fría",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -26,37 +26,76 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "cold water",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "cold water",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "uncountable" ]
     } ],
     "sentences" : [ "cold water uncountable" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342318"
   },
   "id" : "67fab6d59930102295342318",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "buena música",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -74,37 +113,76 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "good music",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "good music",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "uncountable" ]
     } ],
     "sentences" : [ "good music uncountable" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342319"
   },
   "id" : "67fab6d59930102295342319",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "coche",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -122,9 +200,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "car",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -143,20 +262,21 @@
       "kind" : "TEXT",
       "text" : "",
       "options" : null
-    } ],
-    "sentences" : [ "car singular countable" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534231a"
   },
   "id" : "67fab6d5993010229534231a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "trabajo duro",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -174,37 +294,76 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "hard work",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "hard work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "uncountable" ]
     } ],
     "sentences" : [ "hard work uncountable" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534231b"
   },
   "id" : "67fab6d5993010229534231b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "gatos",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -222,14 +381,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "cats",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -244,19 +439,25 @@
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "cats plural countable" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534231c"
   },
   "id" : "67fab6d5993010229534231c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "naranjas",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -274,9 +475,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "oranges",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -295,20 +537,21 @@
       "kind" : "TEXT",
       "text" : "",
       "options" : null
-    } ],
-    "sentences" : [ "oranges plural countable" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534231d"
   },
   "id" : "67fab6d5993010229534231d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "dinero para el autobús",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -326,37 +569,76 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "bus money",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "bus money",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "uncountable" ]
     } ],
     "sentences" : [ "bus money uncountable" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534231e"
   },
   "id" : "67fab6d5993010229534231e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "estudio",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -374,10 +656,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Actividades como $study$ y $homework$ también son incontables: sin $-s$ ni $a$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -390,25 +672,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "study"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "uncountable" ]
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "study uncountable" ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534231f"
   },
   "id" : "67fab6d5993010229534231f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "casa",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -426,10 +750,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -442,25 +766,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "singular countable" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "house singular countable" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "house",
+      "options" : null
+    }, {
+      "options" : [ "singular countable" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342320"
   },
   "id" : "67fab6d59930102295342320",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "tiempo de clase",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -478,37 +844,76 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $coffee$, $time$, $work$, $money$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "class time",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "class time",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "uncountable" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "class time uncountable" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342321"
   },
   "id" : "67fab6d59930102295342321",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "diente",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -526,37 +931,76 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "tooth",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "tooth",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "singular countable" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "tooth singular countable" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342322"
   },
   "id" : "67fab6d59930102295342322",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "cuscús caliente",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -574,37 +1018,76 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Comida y bebida también son incontables: $rice$, $couscous$, $spaghetti$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "hot couscous",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "hot couscous",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "uncountable" ]
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "hot couscous uncountable" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342323"
   },
   "id" : "67fab6d59930102295342323",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "falda",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -622,10 +1105,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -638,25 +1121,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "singular countable" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "skirt singular countable" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "skirt"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "singular countable" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342324"
   },
   "id" : "67fab6d59930102295342324",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "espaguetis con queso",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -674,37 +1199,76 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Comida y bebida también son incontables: $rice$, $couscous$, $spaghetti$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "spaghetti with cheese",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "spaghetti with cheese",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "uncountable" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "spaghetti with cheese uncountable" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342325"
   },
   "id" : "67fab6d59930102295342325",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "el pasado",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -722,37 +1286,76 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Conceptos abstractos como $the past$ también son incontables: no tienen plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "the past",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "the past",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "uncountable" ]
     } ],
     "sentences" : [ "the past uncountable" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342326"
   },
   "id" : "67fab6d59930102295342326",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "hoteles",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -770,10 +1373,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -786,25 +1389,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "plural countable" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "hotels plural countable" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "hotels"
+    }, {
+      "text" : "",
+      "options" : [ "plural countable" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342327"
   },
   "id" : "67fab6d59930102295342327",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "moto",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -822,10 +1467,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -838,25 +1483,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "singular countable" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "scooter singular countable" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "scooter",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "singular countable" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342328"
   },
   "id" : "67fab6d59930102295342328",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "sofás",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -874,13 +1561,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $water$, $work$, $music$, $money$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "sofas",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -896,19 +1620,24 @@
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "sofas plural countable" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342329"
   },
   "id" : "67fab6d59930102295342329",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "niños",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -926,10 +1655,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Algunos plurales no llevan $-s$: $children$, igual que $people$ o $men$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "children",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -944,23 +1713,25 @@
       "text" : "",
       "options" : [ "plural countable" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : ""
     } ],
-    "sentences" : [ "children plural countable" ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534232a"
   },
   "id" : "67fab6d5993010229534232a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c6"
   },
   "title" : "Clasificación: repaso",
-  "instructions" : "Escribe $singular countable$, $plural countable$ o $uncountable$ al lado del sustantivo.",
+  "instructions" : "¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?",
   "translation" : "café",
   "theoryId" : "a1.06.Countable_and_Uncountable_Nouns",
   "topicName" : "Nouns",
@@ -978,9 +1749,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.03.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables no llevan $-s$ ni $a$: $coffee$, $time$, $work$, $money$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "coffee",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "plural countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "plural countable"
+    }, {
+      "id" : "singular countable",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "singular countable"
+    }, {
+      "id" : "uncountable",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "uncountable"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -996,10 +1808,11 @@
       "text" : "",
       "options" : [ "uncountable" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ],
-    "sentences" : [ "coffee uncountable" ]
-  }
+      "text" : ""
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo.",
+  "instructionsAntesDeRevisar" : "Elige 'singular countable', 'plural countable' o 'uncountable' al lado del sustantivo."
 } ]

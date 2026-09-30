@@ -3,14 +3,14 @@
     "$oid" : "67fab6d59930102295342cfe"
   },
   "id" : "67fab6d59930102295342cfe",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "¿Puedo hablar contigo ahora?",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,9 +26,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$speak to$, $belong to$, $listen to$, $look at$, $think about$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can I speak",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "you now?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -44,25 +97,25 @@
       "text" : "",
       "options" : [ "to" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "you now?",
-      "options" : null
-    } ],
-    "sentences" : [ "Can I speak to you now?" ]
-  }
+      "text" : "you now?"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342cff"
   },
   "id" : "67fab6d59930102295342cff",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "La casa pertenece a mi hermana.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -78,9 +131,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$speak to$, $belong to$, $listen to$, $look at$, $think about$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The house belongs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my sister.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -99,22 +205,22 @@
       "kind" : "TEXT",
       "text" : "my sister.",
       "options" : null
-    } ],
-    "sentences" : [ "The house belongs to my sister." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d00"
   },
   "id" : "67fab6d59930102295342d00",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Ellos disfrutan escuchando la radio.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -130,10 +236,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$speak to$, $belong to$, $listen to$, $look at$, $think about$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,27 +252,80 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the radio.",
       "options" : null
     } ],
-    "sentences" : [ "They enjoy listening to the radio." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They enjoy listening"
+    }, {
+      "text" : "",
+      "options" : [ "to" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "the radio.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d01"
   },
   "id" : "67fab6d59930102295342d01",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Se tumbó en la hierba y miró el cielo.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -182,43 +341,97 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$speak to$, $belong to$, $listen to$, $look at$, $think about$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He lay on the grass and looked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the sky.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He lay on the grass and looked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
       "text" : "the sky.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "He lay on the grass and looked at the sky." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d02"
   },
   "id" : "67fab6d59930102295342d02",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Ella siempre está pensando en sus padres.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -234,10 +447,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$speak to$, $belong to$, $listen to$, $look at$, $think about$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,27 +463,80 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "about" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "her parents.",
       "options" : null
     } ],
-    "sentences" : [ "She is always thinking about her parents." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is always thinking",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "about" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "her parents.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d03"
   },
   "id" : "67fab6d59930102295342d03",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Ellos van a enviar un regalo a su madre.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -286,10 +552,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$send to$, $teach to$, $offer to$, $explain to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,27 +568,80 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "their mother.",
       "options" : null
     } ],
-    "sentences" : [ "They are going to send a gift to their mother." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They are going to send a gift"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "their mother.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d04"
   },
   "id" : "67fab6d59930102295342d04",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Depende de la aplicación del tiempo.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -338,43 +657,97 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$rely on$, $depend on$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It relies",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the weather app.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It relies",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "the weather app.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "It relies on the weather app." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d05"
   },
   "id" : "67fab6d59930102295342d05",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Él enseñó la lección a su estudiante.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -390,22 +763,75 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$send to$, $teach to$, $offer to$, $explain to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He taught the lesson",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "his student.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He taught the lesson",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
@@ -413,20 +839,21 @@
       "options" : null
     } ],
     "sentences" : [ "He taught the lesson to his student." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d06"
   },
   "id" : "67fab6d59930102295342d06",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Ella pagó la bebida.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -442,9 +869,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$pay for$, $wait for$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She paid",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the drink.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -463,22 +943,22 @@
       "kind" : "TEXT",
       "text" : "the drink.",
       "options" : null
-    } ],
-    "sentences" : [ "She paid for the drink." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d07"
   },
   "id" : "67fab6d59930102295342d07",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Ella miró la habitación ordenada.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -494,22 +974,75 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$speak to$, $belong to$, $listen to$, $look at$, $think about$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She looked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the tidy room.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She looked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
@@ -517,20 +1050,21 @@
       "options" : null
     } ],
     "sentences" : [ "She looked at the tidy room." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d08"
   },
   "id" : "67fab6d59930102295342d08",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Él se preocupó por el trabajo.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -546,22 +1080,75 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$worry about$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He worried",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "work.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He worried",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
@@ -569,20 +1156,21 @@
       "options" : null
     } ],
     "sentences" : [ "He worried about work." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d09"
   },
   "id" : "67fab6d59930102295342d09",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Esperemos el tren.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -598,9 +1186,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$pay for$, $wait for$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's wait",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the train.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -621,20 +1262,21 @@
       "options" : null
     } ],
     "sentences" : [ "Let's wait for the train." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d0a"
   },
   "id" : "67fab6d59930102295342d0a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Le ofrecimos un regalo a Sarah.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -650,9 +1292,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$send to$, $teach to$, $offer to$, $explain to$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We offered a gift",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Sarah.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -671,22 +1366,22 @@
       "kind" : "TEXT",
       "text" : "Sarah.",
       "options" : null
-    } ],
-    "sentences" : [ "We offered a gift to Sarah." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d0b"
   },
   "id" : "67fab6d59930102295342d0b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Quiero hablar con mi madre.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -702,9 +1397,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$speak to$, $belong to$, $listen to$, $look at$, $think about$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I want to speak",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my mother.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -723,22 +1471,22 @@
       "kind" : "TEXT",
       "text" : "my mother.",
       "options" : null
-    } ],
-    "sentences" : [ "I want to speak to my mother." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d0c"
   },
   "id" : "67fab6d59930102295342d0c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "¿Podrías explicarme la gramática?",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -754,43 +1502,97 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$send to$, $teach to$, $offer to$, $explain to$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Could you explain grammar",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "me?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you explain grammar",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "me?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "Could you explain grammar to me?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d0d"
   },
   "id" : "67fab6d59930102295342d0d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Ella apoyó a su novio.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -806,9 +1608,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$stand for$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She stood",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "her boyfriend.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -827,22 +1682,22 @@
       "kind" : "TEXT",
       "text" : "her boyfriend.",
       "options" : null
-    } ],
-    "sentences" : [ "She stood for her boyfriend." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d0e"
   },
   "id" : "67fab6d59930102295342d0e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Este bolígrafo me pertenece.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -858,10 +1713,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$speak to$, $belong to$, $listen to$, $look at$, $think about$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,27 +1729,80 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "me.",
       "options" : null
     } ],
-    "sentences" : [ "This pen belongs to me." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "This pen belongs",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "me.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d0f"
   },
   "id" : "67fab6d59930102295342d0f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Escuchamos la tormenta mientras corríamos.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -910,43 +1818,97 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$speak to$, $belong to$, $listen to$, $look at$, $think about$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We listened",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the thunderstorm while we were running.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We listened",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "the thunderstorm while we were running.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "We listened to the thunderstorm while we were running." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d10"
   },
   "id" : "67fab6d59930102295342d10",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Depende del clima.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -962,10 +1924,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$rely on$, $depend on$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -978,27 +1940,80 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the weather.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "It depends"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "the weather.",
       "options" : null
     } ],
-    "sentences" : [ "It depends on the weather." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d11"
   },
   "id" : "67fab6d59930102295342d11",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
   "title" : "Tras verbos",
-  "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
+  "instructions" : "Elige la preposición correcta (to / on / at / for / about).",
   "translation" : "Yo pagaré el almuerzo.",
-  "theoryId" : "a2.09.Prepositions_After_Verbs",
+  "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -1014,10 +2029,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.08.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$pay for$, $wait for$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1030,12 +2045,65 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "for" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "lunch.",
       "options" : null
     } ],
-    "sentences" : [ "I will pay for lunch." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "on",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I will pay",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "for" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "lunch.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la preposición correcta (to / on / at / for / about)."
 } ]

@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295343510"
   },
   "id" : "67fab6d59930102295343510",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d304"
   },
   "title" : "Siempre plurales",
-  "instructions" : "Escribe $correct$ o $not correct$.",
+  "instructions" : "Elige 'correct' o 'not correct'.",
   "translation" : "Mis medias están en mi cajón.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.05.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$tights$, $socks$ y $leggings$ son siempre plurales: el verbo va en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "correct" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "My tights are in my drawer. correct" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My tights are in my drawer.",
+      "options" : null
+    }, {
+      "options" : [ "correct" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'correct' o 'not correct'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343511"
   },
   "id" : "67fab6d59930102295343511",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d304"
   },
   "title" : "Siempre plurales",
-  "instructions" : "Escribe $correct$ o $not correct$.",
+  "instructions" : "Elige 'correct' o 'not correct'.",
   "translation" : "Él tiene tres pares de calcetines.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
@@ -78,9 +113,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.05.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para contarlos va $pairs of$: three $pairs of$ trousers, no three trousers.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He owns three pairs of socks.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -99,20 +169,20 @@
       "kind" : "TEXT",
       "text" : "",
       "options" : null
-    } ],
-    "sentences" : [ "He owns three pairs of socks. correct" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'correct' o 'not correct'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343512"
   },
   "id" : "67fab6d59930102295343512",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d304"
   },
   "title" : "Siempre plurales",
-  "instructions" : "Escribe $correct$ o $not correct$.",
+  "instructions" : "Elige 'correct' o 'not correct'.",
   "translation" : "¿Dónde está el alicate en el garaje?",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
@@ -130,37 +200,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.05.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$tights$, $socks$ y $leggings$ son siempre plurales: el verbo va en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Where is the pliers in the garage?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where is the pliers in the garage?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "not correct" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Where is the pliers in the garage? not correct" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'correct' o 'not correct'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343513"
   },
   "id" : "67fab6d59930102295343513",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d304"
   },
   "title" : "Siempre plurales",
-  "instructions" : "Escribe $correct$ o $not correct$.",
+  "instructions" : "Elige 'correct' o 'not correct'.",
   "translation" : "Sus lentes de contacto están en el estuche.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
@@ -178,10 +280,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.05.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$tights$, $socks$ y $leggings$ son siempre plurales: el verbo va en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -194,25 +296,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "correct" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "Her contact lenses are in the case. correct" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Her contact lenses are in the case.",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "correct" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'correct' o 'not correct'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343514"
   },
   "id" : "67fab6d59930102295343514",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d304"
   },
   "title" : "Siempre plurales",
-  "instructions" : "Escribe $correct$ o $not correct$.",
+  "instructions" : "Elige 'correct' o 'not correct'.",
   "translation" : "Tus leggings están en el ropero con las sandalias nuevas.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
@@ -230,37 +367,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.05.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$tights$, $socks$ y $leggings$ son siempre plurales: el verbo va en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Your leggings is in the wardrobe with the new sandals.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Your leggings is in the wardrobe with the new sandals.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "not correct" ]
     } ],
     "sentences" : [ "Your leggings is in the wardrobe with the new sandals. not correct" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'correct' o 'not correct'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343515"
   },
   "id" : "67fab6d59930102295343515",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d304"
   },
   "title" : "Siempre plurales",
-  "instructions" : "Escribe $correct$ o $not correct$.",
+  "instructions" : "Elige 'correct' o 'not correct'.",
   "translation" : "Ella tiene tres pantalones de montar en buen estado.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
@@ -278,37 +447,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.05.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Para contarlos va $pairs of$: three $pairs of$ trousers, no three trousers.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She owns three breeches in good condition.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She owns three breeches in good condition.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "not correct" ]
     } ],
     "sentences" : [ "She owns three breeches in good condition. not correct" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'correct' o 'not correct'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343516"
   },
   "id" : "67fab6d59930102295343516",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d304"
   },
   "title" : "Siempre plurales",
-  "instructions" : "Escribe $correct$ o $not correct$.",
+  "instructions" : "Elige 'correct' o 'not correct'.",
   "translation" : "¿Dónde está su ropa informal hoy?",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
@@ -326,37 +527,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.05.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$tights$, $socks$ y $leggings$ son siempre plurales: el verbo va en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Where are his casual clothes today?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where are his casual clothes today?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "correct" ]
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "Where are his casual clothes today? correct" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'correct' o 'not correct'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343517"
   },
   "id" : "67fab6d59930102295343517",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d304"
   },
   "title" : "Siempre plurales",
-  "instructions" : "Escribe $correct$ o $not correct$.",
+  "instructions" : "Elige 'correct' o 'not correct'.",
   "translation" : "Estos pantalones son para mi hijo.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
@@ -374,10 +607,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.05.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$tights$, $socks$ y $leggings$ son siempre plurales: el verbo va en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -390,25 +623,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "correct" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "These pants are for my son. correct" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These pants are for my son.",
+      "options" : null
+    }, {
+      "options" : [ "correct" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'correct' o 'not correct'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343518"
   },
   "id" : "67fab6d59930102295343518",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d304"
   },
   "title" : "Siempre plurales",
-  "instructions" : "Escribe $correct$ o $not correct$.",
+  "instructions" : "Elige 'correct' o 'not correct'.",
   "translation" : "Necesito unas gafas para leer.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
@@ -426,37 +694,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.05.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Estos sustantivos nunca llevan $a$ ni $an$: se dice $some$ eyeglasses.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I need an eyeglasses for reading.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need an eyeglasses for reading.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "not correct" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "I need an eyeglasses for reading. not correct" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'correct' o 'not correct'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343519"
   },
   "id" : "67fab6d59930102295343519",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d304"
   },
   "title" : "Siempre plurales",
-  "instructions" : "Escribe $correct$ o $not correct$.",
+  "instructions" : "Elige 'correct' o 'not correct'.",
   "translation" : "¿Te gustan estos aretes?",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
@@ -474,13 +774,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.05.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Como son siempre plurales, van con $these$ o $those$, nunca $this$ ni $that$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you like these earrings?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -496,6 +827,1680 @@
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "Do you like these earrings? correct" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f3"
+  },
+  "id" : "67fab6d599301022953441f3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "¿Estos son tus auriculares en el escritorio junto a tu portátil? Correcto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$headphones$, $pants$ y $pajamas$ van siempre en plural; $baggage$ no tiene plural.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are these your headphones on the desk beside your laptop?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are these your headphones on the desk beside your laptop?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    } ],
+    "sentences" : [ "Are these your headphones on the desk beside your laptop? correct" ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f4"
+  },
+  "id" : "67fab6d599301022953441f4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Él empacó tres equipajes en la maleta. Incorrecto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$headphones$, $pants$ y $pajamas$ van siempre en plural; $baggage$ no tiene plural.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He packed three baggage in the suitcase.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He packed three baggage in the suitcase.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f5"
+  },
+  "id" : "67fab6d599301022953441f5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "¡Admiro esos pantalones! Correcto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$headphones$, $pants$ y $pajamas$ van siempre en plural; $baggage$ no tiene plural.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I admire those pants!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I admire those pants!",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f6"
+  },
+  "id" : "67fab6d599301022953441f6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Ella posee varias gafas. Incorrecto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para contarlos hace falta $pair(s)/set(s) of$ + sustantivo, nunca el número solo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She owns several spectacles.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She owns several spectacles.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f7"
+  },
+  "id" : "67fab6d599301022953441f7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Sus pantalones son azules. Incorrecto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$headphones$, $pants$ y $pajamas$ van siempre en plural; $baggage$ no tiene plural.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His pants is blue.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "His pants is blue.",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f8"
+  },
+  "id" : "67fab6d599301022953441f8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "¿Te gustaría este pijama para tu viaje largo? Incorrecto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$headphones$, $pants$ y $pajamas$ van siempre en plural; $baggage$ no tiene plural.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like this pajamas for your long trip?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like this pajamas for your long trip?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "Would you like this pajamas for your long trip? not correct" ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441f9"
+  },
+  "id" : "67fab6d599301022953441f9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "¿De quién son estos binoculares en el estuche negro? Correcto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hay más sustantivos así, siempre en plural: $are$, $these$/$those$; nunca $is$, $this$/$that$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Whose are these binoculars in the black case?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Whose are these binoculars in the black case?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    } ],
+    "sentences" : [ "Whose are these binoculars in the black case? correct" ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441fa"
+  },
+  "id" : "67fab6d599301022953441fa",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Ella necesita un nuevo par de mallas. Correcto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para contarlos hace falta $pair(s)/set(s) of$ + sustantivo, nunca el número solo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She needs a new pair of tights.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She needs a new pair of tights.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    } ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441fb"
+  },
+  "id" : "67fab6d599301022953441fb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "El fumador llevaba un overol a la fiesta. Incorrecto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Estos sustantivos nunca llevan $a$ ni $an$: se dice $a pair of$ + sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The smoker wore a dungarees to the party.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The smoker wore a dungarees to the party.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    } ],
+    "sentences" : [ "The smoker wore a dungarees to the party. not correct" ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441fc"
+  },
+  "id" : "67fab6d599301022953441fc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Estas pertenencias deben ser empacadas. Correcto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hay más sustantivos así, siempre en plural: $are$, $these$/$those$; nunca $is$, $this$/$that$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "These belongings need to be packed.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "These belongings need to be packed.",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441fd"
+  },
+  "id" : "67fab6d599301022953441fd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "El hombre tenía puestos unos pantalones y una chaqueta. Incorrecto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Estos sustantivos nunca llevan $a$ ni $an$: se dice $a pair of$ + sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The man had a trousers and a jacket on.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The man had a trousers and a jacket on.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    } ],
+    "sentences" : [ "The man had a trousers and a jacket on. not correct" ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441fe"
+  },
+  "id" : "67fab6d599301022953441fe",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Las pinzas están en el pequeño kit de emergencias. Correcto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hay más sustantivos así, siempre en plural: $are$, $these$/$those$; nunca $is$, $this$/$that$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The tweezers are in the small disaster kit.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The tweezers are in the small disaster kit.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    } ],
+    "sentences" : [ "The tweezers are in the small disaster kit. correct" ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953441ff"
+  },
+  "id" : "67fab6d599301022953441ff",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Tus bragas son elegantes. Correcto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hay más sustantivos así, siempre en plural: $are$, $these$/$those$; nunca $is$, $this$/$that$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Your knickers are stylish.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Your knickers are stylish.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344200"
+  },
+  "id" : "67fab6d59930102295344200",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Las gafas estaban limpias. Incorrecto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hay más sustantivos así, siempre en plural: $are$, $these$/$those$; nunca $is$, $this$/$that$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The glasses was clean.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The glasses was clean.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344201"
+  },
+  "id" : "67fab6d59930102295344201",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Necesito un nuevo par de overoles para la clase. Correcto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para contarlos hace falta $pair(s)/set(s) of$ + sustantivo, nunca el número solo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need a new pair of dungarees for the class.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need a new pair of dungarees for the class.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "I need a new pair of dungarees for the class. correct" ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344202"
+  },
+  "id" : "67fab6d59930102295344202",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Trae dos calzoncillos contigo. Incorrecto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para contarlos hace falta $pair(s)/set(s) of$ + sustantivo, nunca el número solo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Bring two briefs with you.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Bring two briefs with you."
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344203"
+  },
+  "id" : "67fab6d59930102295344203",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "La empresa construyó una nueva sede en la ciudad. Incorrecto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Headquarters$ siempre termina en $-s$, aunque hables de una sola sede.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The company built a new headquarter in the city.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The company built a new headquarter in the city.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    } ],
+    "sentences" : [ "The company built a new headquarter in the city. not correct" ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344204"
+  },
+  "id" : "67fab6d59930102295344204",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Necesito dos juegos de calzoncillos largos. Correcto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para contarlos hace falta $pair(s)/set(s) of$ + sustantivo, nunca el número solo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I require two sets of long johns.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I require two sets of long johns.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    } ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344205"
+  },
+  "id" : "67fab6d59930102295344205",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Dame esas tenazas del cajón de la cocina, por favor. Incorrecto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hay más sustantivos así, siempre en plural: $are$, $these$/$those$; nunca $is$, $this$/$that$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Give me that tongs from the kitchen drawer, please.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Give me that tongs from the kitchen drawer, please.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "not correct" ]
+    } ],
+    "sentences" : [ "Give me that tongs from the kitchen drawer, please. not correct" ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344206"
+  },
+  "id" : "67fab6d59930102295344206",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d304"
+  },
+  "title" : "Siempre plurales",
+  "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural.",
+  "translation" : "Esos son unos pantalones maravillosos para los actores en el nuevo local. Correcto.",
+  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.01.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hay más sustantivos así, siempre en plural: $are$, $these$/$those$; nunca $is$, $this$/$that$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are wonderful breeches for the actors at the new venue.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "correct",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "correct"
+    }, {
+      "id" : "not correct",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "not correct"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Those are wonderful breeches for the actors at the new venue.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "correct" ]
+    } ],
+    "sentences" : [ "Those are wonderful breeches for the actors at the new venue. correct" ]
+  },
+  "instructionsAnteriores" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde 'correct' o 'not correct'."
 } ]

@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295343556"
   },
   "id" : "67fab6d59930102295343556",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Ella escaló el Monte Kilimanjaro el verano pasado.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -26,22 +26,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cordilleras, océanos y ríos llevan $the$. Un monte suelto no: $Mount Everest$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She climbed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Mount Kilimanjaro last summer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She climbed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -49,18 +84,19 @@
       "options" : null
     } ],
     "sentences" : [ "She climbed - Mount Kilimanjaro last summer." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343557"
   },
   "id" : "67fab6d59930102295343557",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "¿Te gustaría hacer senderismo en el Himalaya?",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -78,9 +114,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cordilleras, océanos y ríos llevan $the$. Un monte suelto no: $Mount Everest$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like to go hiking in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Himalayas?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -99,20 +170,20 @@
       "kind" : "TEXT",
       "text" : "Himalayas?",
       "options" : null
-    } ],
-    "sentences" : [ "Would you like to go hiking in the Himalayas?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343558"
   },
   "id" : "67fab6d59930102295343558",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "El Cervino es una montaña famosa en Suiza.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -130,9 +201,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hay montes que sí llevan $the$ por tradición, como $the Matterhorn$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Matterhorn is a famous mountain in Switzerland.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -153,18 +259,19 @@
       "options" : null
     } ],
     "sentences" : [ "the Matterhorn is a famous mountain in Switzerland." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343559"
   },
   "id" : "67fab6d59930102295343559",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Él hizo senderismo por los Pirineos el verano pasado.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -182,22 +289,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cordilleras, océanos y ríos llevan $the$. Un monte suelto no: $Mount Everest$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He hiked in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Pyrenees last summer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He hiked in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
@@ -205,18 +347,19 @@
       "options" : null
     } ],
     "sentences" : [ "He hiked in the Pyrenees last summer." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534355a"
   },
   "id" : "67fab6d5993010229534355a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Ellos navegaron a través del Pacífico.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -234,9 +377,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cordilleras, océanos y ríos llevan $the$. Un monte suelto no: $Mount Everest$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They sailed across",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Pacific.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -252,23 +430,23 @@
       "text" : "",
       "options" : [ "the" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "Pacific.",
-      "options" : null
-    } ],
-    "sentences" : [ "They sailed across the Pacific." ]
-  }
+      "text" : "Pacific."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534355b"
   },
   "id" : "67fab6d5993010229534355b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Ellos exploraron el Nilo.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -286,10 +464,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cordilleras, océanos y ríos llevan $the$. Un monte suelto no: $Mount Everest$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +480,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Nile.",
       "options" : null
     } ],
-    "sentences" : [ "They explored the Nile." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They explored",
+      "options" : null
+    }, {
+      "options" : [ "the" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Nile."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534355c"
   },
   "id" : "67fab6d5993010229534355c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Nosotros vivimos en Asia.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -338,9 +551,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lagos, continentes, regiones y ciudades no llevan $the$: $Asia$, $Rome$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We live in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Asia.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +607,20 @@
       "kind" : "TEXT",
       "text" : "Asia.",
       "options" : null
-    } ],
-    "sentences" : [ "We live in - Asia." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534355d"
   },
   "id" : "67fab6d5993010229534355d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Sevilla está en Andalucía.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -390,13 +638,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lagos, continentes, regiones y ciudades no llevan $the$: $Asia$, $Rome$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Seville is in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Andalusia.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -412,19 +691,23 @@
       "text" : "Andalusia.",
       "options" : null
     } ],
-    "sentences" : [ "Seville is in - Andalusia." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534355e"
   },
   "id" : "67fab6d5993010229534355e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "¿Alguna vez has estado en Roma?",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -442,10 +725,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lagos, continentes, regiones y ciudades no llevan $the$: $Asia$, $Rome$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +741,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Rome?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever been to - Rome?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever been to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "text" : "Rome?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534355f"
   },
   "id" : "67fab6d5993010229534355f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Ella viajó al lago Baikal.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -494,14 +812,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lagos, continentes, regiones y ciudades no llevan $the$: $Asia$, $Rome$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She journeyed to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Lake Baikal.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -516,19 +864,24 @@
       "text" : "Lake Baikal.",
       "options" : null
     } ],
-    "sentences" : [ "She journeyed to - Lake Baikal." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343560"
   },
   "id" : "67fab6d59930102295343560",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "¿Has visto alguna vez una foto del desierto del Sahara?",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -546,10 +899,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Desiertos, mares, líneas y puntos también llevan $the$: $the Sahara$, $the South Pole$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,25 +915,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Sahara Desert?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever seen a picture of the Sahara Desert?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever seen a picture of",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "text" : "Sahara Desert?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343561"
   },
   "id" : "67fab6d59930102295343561",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "La Toscana está en Italia.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -598,10 +986,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lagos, continentes, regiones y ciudades no llevan $the$: $Asia$, $Rome$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -614,25 +1002,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Tuscany is in Italy.",
       "options" : null
     } ],
-    "sentences" : [ "- Tuscany is in Italy." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "Tuscany is in Italy.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343562"
   },
   "id" : "67fab6d59930102295343562",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "El lago Ontario está en Canadá.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -650,10 +1073,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lagos, continentes, regiones y ciudades no llevan $the$: $Asia$, $Rome$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -666,25 +1089,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Lake Ontario is in Canada.",
       "options" : null
     } ],
-    "sentences" : [ "- Lake Ontario is in Canada." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "Lake Ontario is in Canada.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343563"
   },
   "id" : "67fab6d59930102295343563",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Hicimos un crucero por el Rin.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -702,15 +1160,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Cordilleras, océanos y ríos llevan $the$. Un monte suelto no: $Mount Everest$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We took a cruise along",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Rhine.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We took a cruise along",
@@ -724,19 +1211,25 @@
       "text" : "Rhine.",
       "options" : null
     } ],
-    "sentences" : [ "We took a cruise along the Rhine." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343564"
   },
   "id" : "67fab6d59930102295343564",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Él vive cerca del Caribe.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -754,10 +1247,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Desiertos, mares, líneas y puntos también llevan $the$: $the Sahara$, $the South Pole$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1263,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Caribbean.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He lives near",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "Caribbean.",
       "options" : null
     } ],
-    "sentences" : [ "He lives near the Caribbean." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343565"
   },
   "id" : "67fab6d59930102295343565",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Vi una película sobre el desierto de Atacama.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -806,15 +1334,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Desiertos, mares, líneas y puntos también llevan $the$: $the Sahara$, $the South Pole$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I watched a film about",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Atacama Desert.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I watched a film about",
@@ -828,19 +1385,25 @@
       "text" : "Atacama Desert.",
       "options" : null
     } ],
-    "sentences" : [ "I watched a film about the Atacama Desert." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343566"
   },
   "id" : "67fab6d59930102295343566",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Él viene de América del Norte.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -858,10 +1421,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lagos, continentes, regiones y ciudades no llevan $the$: $Asia$, $Rome$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,25 +1437,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "North America.",
       "options" : null
     } ],
-    "sentences" : [ "He comes from - North America." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He comes from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "text" : "North America.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343567"
   },
   "id" : "67fab6d59930102295343567",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Ellos han pasado mucho tiempo en París.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -910,9 +1508,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lagos, continentes, regiones y ciudades no llevan $the$: $Asia$, $Rome$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have spent a lot of time in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Paris.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -931,20 +1564,20 @@
       "kind" : "TEXT",
       "text" : "Paris.",
       "options" : null
-    } ],
-    "sentences" : [ "They have spent a lot of time in - Paris." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343568"
   },
   "id" : "67fab6d59930102295343568",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "Hay pingüinos cerca del Polo Sur.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -962,13 +1595,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Desiertos, mares, líneas y puntos también llevan $the$: $the Sahara$, $the South Pole$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There are penguins near",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "South Pole.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -984,19 +1648,23 @@
       "text" : "South Pole.",
       "options" : null
     } ],
-    "sentences" : [ "There are penguins near the South Pole." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343569"
   },
   "id" : "67fab6d59930102295343569",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
   "title" : "Montañas y océanos: ¿$the$?",
-  "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
+  "instructions" : "Elige 'the' o usa – si necesitamos 'no article'.",
   "translation" : "El Círculo Polar Ártico pasa por Rusia y Alaska.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
@@ -1014,15 +1682,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.09.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Desiertos, mares, líneas y puntos también llevan $the$: $the Sahara$, $the South Pole$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Arctic Circle passes through Russia and Alaska.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "",
@@ -1036,6 +1733,3502 @@
       "text" : "Arctic Circle passes through Russia and Alaska.",
       "options" : null
     } ],
-    "sentences" : [ "The Arctic Circle passes through Russia and Alaska." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si necesitamos 'no article'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534422f"
+  },
+  "id" : "67fab6d5993010229534422f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Vive y trabaja en Londres.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Ciudades tampoco llevan $the$: van igual que países y lagos.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He lives and works in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "London.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He lives and works in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "London.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344230"
+  },
+  "id" : "67fab6d59930102295344230",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿Dónde están exactamente los Pirineos?",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cordilleras, mares y ríos llevan $the$. Países, lagos y continentes, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where exactly are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Pyrenees?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Where exactly are"
+    }, {
+      "options" : [ "the" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "Pyrenees?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344231"
+  },
+  "id" : "67fab6d59930102295344231",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Nunca he nadado en el Mediterráneo.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cordilleras, mares y ríos llevan $the$. Países, lagos y continentes, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I've never swum in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Mediterranean.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I've never swum in",
+      "options" : null
+    }, {
+      "options" : [ "the" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "Mediterranean.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344232"
+  },
+  "id" : "67fab6d59930102295344232",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Residen en Asia durante la mayor parte del año.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cordilleras, mares y ríos llevan $the$. Países, lagos y continentes, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They reside in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Asia during most of the year.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They reside in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Asia during most of the year.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "They reside in - Asia during most of the year." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344233"
+  },
+  "id" : "67fab6d59930102295344233",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Disfrutamos de un crucero por el Nilo.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cordilleras, mares y ríos llevan $the$. Países, lagos y continentes, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We enjoyed a cruise along",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Nile.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We enjoyed a cruise along",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Nile.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344234"
+  },
+  "id" : "67fab6d59930102295344234",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿Has visitado el lago Ness?",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cordilleras, mares y ríos llevan $the$. Países, lagos y continentes, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you visited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Loch Ness?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Have you visited"
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Loch Ness?"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344235"
+  },
+  "id" : "67fab6d59930102295344235",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Adoro las Rocosas en invierno con mi familia.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cordilleras, mares y ríos llevan $the$. Países, lagos y continentes, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I adore",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Rockies in winter with my family.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I adore",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Rockies in winter with my family.",
+      "options" : null
+    } ],
+    "sentences" : [ "I adore the Rockies in winter with my family." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344236"
+  },
+  "id" : "67fab6d59930102295344236",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿Alguna vez has navegado por el Misisipi?",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cordilleras, mares y ríos llevan $the$. Países, lagos y continentes, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever sailed down",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Mississippi?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Have you ever sailed down",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "the" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "Mississippi?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344237"
+  },
+  "id" : "67fab6d59930102295344237",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Pintó un hermoso retrato del lago Baikal.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cordilleras, mares y ríos llevan $the$. Países, lagos y continentes, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She painted a beautiful portrait of",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Lake Baikal.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She painted a beautiful portrait of",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Lake Baikal.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344238"
+  },
+  "id" : "67fab6d59930102295344238",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Hice una foto del Monte Everest ayer.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Una montaña sola no lleva $the$; sólo las cordilleras sí.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I made a picture of",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Mount Everest yesterday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I made a picture of",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Mount Everest yesterday.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "I made a picture of - Mount Everest yesterday." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344239"
+  },
+  "id" : "67fab6d59930102295344239",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Ella visitó el Monte Cook durante su viaje el verano pasado.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Una montaña sola no lleva $the$; sólo las cordilleras sí.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She visited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Mount Cook during her trip last summer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She visited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Mount Cook during her trip last summer.",
+      "options" : null
+    } ],
+    "sentences" : [ "She visited - Mount Cook during her trip last summer." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534423a"
+  },
+  "id" : "67fab6d5993010229534423a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Durante nuestras vacaciones de verano, exploramos los Urales durante dos semanas.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Cordilleras, mares y ríos llevan $the$. Países, lagos y continentes, no.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "During our summer holiday, we explored",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Urals for two weeks.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "During our summer holiday, we explored",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Urals for two weeks.",
+      "options" : null
+    } ],
+    "sentences" : [ "During our summer holiday, we explored the Urals for two weeks." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534423b"
+  },
+  "id" : "67fab6d5993010229534423b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "A menudo visitan París.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Ciudades tampoco llevan $the$: van igual que países y lagos.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They often visit",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Paris.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They often visit",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Paris.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534423c"
+  },
+  "id" : "67fab6d5993010229534423c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿El meridiano de Greenwich pasa por Inglaterra?",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Polos, ecuador y meridianos también llevan $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Does",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Prime Meridian pass through England?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Does",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Prime Meridian pass through England?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534423d"
+  },
+  "id" : "67fab6d5993010229534423d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Ella planea explorar el Polo Sur.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Polos, ecuador y meridianos también llevan $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She plans to explore",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "South Pole.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She plans to explore",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "South Pole.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534423e"
+  },
+  "id" : "67fab6d5993010229534423e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Realmente disfruté explorando Tokio.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Ciudades tampoco llevan $the$: van igual que países y lagos.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I truly enjoyed exploring",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Tokyo.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I truly enjoyed exploring",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Tokyo."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534423f"
+  },
+  "id" : "67fab6d5993010229534423f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿Dónde está el desierto de Gobi?",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los desiertos también llevan $the$, como ríos y cordilleras.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Gobi Desert?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Gobi Desert?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344240"
+  },
+  "id" : "67fab6d59930102295344240",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Exploraron Centroamérica.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Regiones como Central America no llevan $the$, igual que los continentes.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They explored",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Central America.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They explored",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Central America.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344241"
+  },
+  "id" : "67fab6d59930102295344241",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "A menudo navegamos en el Océano Índico durante el verano.",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los océanos también llevan $the$, igual que los mares.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We often sail on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Indian Ocean during summer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We often sail on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Indian Ocean during summer.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344242"
+  },
+  "id" : "67fab6d59930102295344242",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿Alguna vez has visitado Roma?",
+  "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Ciudades tampoco llevan $the$: van igual que países y lagos.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever visited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Rome?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Have you ever visited"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Rome?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344243"
+  },
+  "id" : "67fab6d59930102295344243",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿Cuáles son tus planes para el fin de semana?",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Lo abstracto va sin artículo; $the weekend$ es de los pocos que lo llevan.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What are your plans for",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "weekend?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What are your plans for",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "weekend?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344244"
+  },
+  "id" : "67fab6d59930102295344244",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿Quieres jugar deportes?",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Lo abstracto va sin artículo; $the weekend$ es de los pocos que lo llevan.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you want to play",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sports?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you want to play",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "sports?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344245"
+  },
+  "id" : "67fab6d59930102295344245",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¡Eso son negocios!",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Lo abstracto va sin artículo; $the weekend$ es de los pocos que lo llevan.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "business!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "business!",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344246"
+  },
+  "id" : "67fab6d59930102295344246",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¡Te deseo éxito!",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Lo abstracto va sin artículo; $the weekend$ es de los pocos que lo llevan.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I wish you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "success!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I wish you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "success!",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344247"
+  },
+  "id" : "67fab6d59930102295344247",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Siempre le fue bien en matemáticas en la escuela.",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Lo abstracto va sin artículo; $the weekend$ es de los pocos que lo llevan.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He always did well at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "math at school.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He always did well at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "math at school.",
+      "options" : null
+    } ],
+    "sentences" : [ "He always did well at - math at school." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344248"
+  },
+  "id" : "67fab6d59930102295344248",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Tenemos que encontrar formas de luchar contra la pobreza.",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Lo abstracto va sin artículo; $the weekend$ es de los pocos que lo llevan.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We have to find ways to fight",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "poverty.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We have to find ways to fight",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "poverty."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344249"
+  },
+  "id" : "67fab6d59930102295344249",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿Crees que los movimientos sociales tuvieron un gran impacto en la cultura?",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Lo abstracto va sin artículo; $the weekend$ es de los pocos que lo llevan.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you think social movements had a big impact on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "culture?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you think social movements had a big impact on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "culture?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you think social movements had a big impact on - culture?" ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534424a"
+  },
+  "id" : "67fab6d5993010229534424a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Es importante aprender de los errores en la vida cotidiana.",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Lo abstracto va sin artículo; $the weekend$ es de los pocos que lo llevan.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It is important to learn from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "mistakes in everyday life.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It is important to learn from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "mistakes in everyday life.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "It is important to learn from - mistakes in everyday life." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534424b"
+  },
+  "id" : "67fab6d5993010229534424b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Me gusta ir al museo.",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I like to go to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "museum.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I like to go to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "text" : "museum.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534424c"
+  },
+  "id" : "67fab6d5993010229534424c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿Alguna vez aprendiste a tocar la guitarra?",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever learned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "guitar?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever learned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "guitar?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534424d"
+  },
+  "id" : "67fab6d5993010229534424d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Encontró la información en la web.",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He found the information on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "web.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He found the information on",
+      "options" : null
+    }, {
+      "options" : [ "the" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "web.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534424e"
+  },
+  "id" : "67fab6d5993010229534424e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Tomó el taxi al aeropuerto.",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He took",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "taxi to the airport.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He took",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "taxi to the airport.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534424f"
+  },
+  "id" : "67fab6d5993010229534424f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿Te gustaría ir al bosque hoy?",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like to go into",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "forest today?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like to go into",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "forest today?",
+      "options" : null
+    } ],
+    "sentences" : [ "Would you like to go into the forest today?" ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344250"
+  },
+  "id" : "67fab6d59930102295344250",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Estudiamos biología en la universidad.",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Lo abstracto va sin artículo; $the weekend$ es de los pocos que lo llevan.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We studied",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "biology at university.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We studied",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "biology at university.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344251"
+  },
+  "id" : "67fab6d59930102295344251",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿Visitaste el parque ayer?",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you visit",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "park yesterday?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you visit",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "park yesterday?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344252"
+  },
+  "id" : "67fab6d59930102295344252",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¿Te apasiona la historia?",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Lo abstracto va sin artículo; $the weekend$ es de los pocos que lo llevan.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you passionate about",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "history?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you passionate about",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "history?"
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344253"
+  },
+  "id" : "67fab6d59930102295344253",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Preferimos tomar el avión a casa.",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We prefer to take",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "plane home.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We prefer to take",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "plane home.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344254"
+  },
+  "id" : "67fab6d59930102295344254",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "¡Reciclemos! Es bueno para el planeta.",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's recycle! It's good for",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "planet.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Let's recycle! It's good for",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "planet.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344255"
+  },
+  "id" : "67fab6d59930102295344255",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "Vamos de excursión a las montañas.",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's go on a hike in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "mountains.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's go on a hike in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "mountains.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "Let's go on a hike in the mountains." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344256"
+  },
+  "id" : "67fab6d59930102295344256",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d308"
+  },
+  "title" : "Montañas y océanos: ¿$the$?",
+  "instructions" : "Elige 'the' o usa – si no necesitamos un artículo.",
+  "translation" : "A ella le encanta escuchar la radio.",
+  "theoryId" : "b1.07.The_with_Abstract_Nouns",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.06.05.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She loves listening to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "radio.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She loves listening to"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "radio.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos un artículo."
 } ]

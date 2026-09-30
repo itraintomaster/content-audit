@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342a4c"
   },
   "id" : "67fab6d59930102295342a4c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Vi un perro en el parque.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -26,10 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dog in the park.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -48,19 +82,21 @@
       "text" : "dog in the park.",
       "options" : null
     } ],
-    "sentences" : [ "I saw a dog in the park." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a4d"
   },
   "id" : "67fab6d59930102295342a4d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Ella comió uvas.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -78,10 +114,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +130,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "grapes.",
       "options" : null
     } ],
-    "sentences" : [ "She ate - grapes." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She ate",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "grapes.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a4e"
   },
   "id" : "67fab6d59930102295342a4e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Ella pidió prestadas revistas.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -130,10 +202,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,25 +218,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "magazines.",
       "options" : null
     } ],
-    "sentences" : [ "She borrowed - magazines." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She borrowed"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "magazines.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a4f"
   },
   "id" : "67fab6d59930102295342a4f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Encontré una llave esta mañana.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -182,9 +290,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I found",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "key this morning.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -200,23 +343,24 @@
       "text" : "",
       "options" : [ "a" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "key this morning.",
-      "options" : null
-    } ],
-    "sentences" : [ "I found a key this morning." ]
-  }
+      "text" : "key this morning."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a50"
   },
   "id" : "67fab6d59930102295342a50",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Compré manzanas.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -234,9 +378,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I bought",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "apples.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -255,20 +434,21 @@
       "kind" : "TEXT",
       "text" : "apples.",
       "options" : null
-    } ],
-    "sentences" : [ "I bought - apples." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a51"
   },
   "id" : "67fab6d59930102295342a51",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Conduje un auto.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -286,41 +466,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I drove",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "car.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I drove",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "car.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "I drove a car." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a52"
   },
   "id" : "67fab6d59930102295342a52",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Los trabajadores disfrutaron del té.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -338,10 +555,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables (tea, oil, rice) no llevan $a$: van sin artículo aunque tengan forma singular.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +571,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "tea.",
       "options" : null
     } ],
-    "sentences" : [ "The workers enjoyed - tea." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The workers enjoyed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "tea."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a53"
   },
   "id" : "67fab6d59930102295342a53",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Los bebés tenían dulces.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -390,22 +643,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The babies had",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sweets.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The babies had",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -413,18 +701,20 @@
       "options" : null
     } ],
     "sentences" : [ "The babies had - sweets." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a54"
   },
   "id" : "67fab6d59930102295342a54",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Había aceite en el suelo.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -442,10 +732,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables (tea, oil, rice) no llevan $a$: van sin artículo aunque tengan forma singular.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +748,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "oil on the floor.",
       "options" : null
     } ],
-    "sentences" : [ "There was - oil on the floor." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There was",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "oil on the floor.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a55"
   },
   "id" : "67fab6d59930102295342a55",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Ella gastó centavos.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -494,22 +820,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She spent",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cents.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She spent",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -517,18 +878,20 @@
       "options" : null
     } ],
     "sentences" : [ "She spent - cents." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a56"
   },
   "id" : "67fab6d59930102295342a56",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Había mujeres en la estación.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -546,9 +909,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There were",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "women at the station.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -564,23 +962,24 @@
       "text" : "",
       "options" : [ "-" ]
     }, {
-      "kind" : "TEXT",
       "text" : "women at the station.",
-      "options" : null
-    } ],
-    "sentences" : [ "There were - women at the station." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a57"
   },
   "id" : "67fab6d59930102295342a57",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Subí colinas.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -598,41 +997,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I climbed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hills.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I climbed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "hills.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "I climbed - hills." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a58"
   },
   "id" : "67fab6d59930102295342a58",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Ella cocinó arroz ayer.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -650,10 +1086,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables (tea, oil, rice) no llevan $a$: van sin artículo aunque tengan forma singular.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -666,25 +1102,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "rice yesterday.",
       "options" : null
     } ],
-    "sentences" : [ "She cooked - rice yesterday." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "She cooked",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "rice yesterday.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a59"
   },
   "id" : "67fab6d59930102295342a59",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Él pidió champú.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -702,22 +1174,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los incontables (tea, oil, rice) no llevan $a$: van sin artículo aunque tengan forma singular.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He ordered",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "shampoo.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He ordered",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -725,18 +1232,20 @@
       "options" : null
     } ],
     "sentences" : [ "He ordered - shampoo." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a5a"
   },
   "id" : "67fab6d59930102295342a5a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Hay un guía cerca.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -754,22 +1263,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "guide close by.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
@@ -777,18 +1321,20 @@
       "options" : null
     } ],
     "sentences" : [ "There is a guide close by." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a5b"
   },
   "id" : "67fab6d59930102295342a5b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Hay una estantería en el dormitorio.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -806,41 +1352,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bookshelf in the bedroom.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "bookshelf in the bedroom.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "There is a bookshelf in the bedroom." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a5c"
   },
   "id" : "67fab6d59930102295342a5c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Comí una galleta.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -858,41 +1441,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I had",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cookie.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I had",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "cookie.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "I had a cookie." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a5d"
   },
   "id" : "67fab6d59930102295342a5d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Había flores en el maletero.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -910,22 +1530,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There were",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "flowers in the boot.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There were",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -933,18 +1588,20 @@
       "options" : null
     } ],
     "sentences" : [ "There were - flowers in the boot." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a5e"
   },
   "id" : "67fab6d59930102295342a5e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Bebió un vaso de agua.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -962,10 +1619,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -978,25 +1635,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "a" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "glass of water.",
       "options" : null
     } ],
-    "sentences" : [ "He drank a glass of water." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He drank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "text" : "glass of water.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a5f"
   },
   "id" : "67fab6d59930102295342a5f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25d"
   },
   "title" : "Información nueva",
-  "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
+  "instructions" : "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
   "translation" : "Conocimos a un francés.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -1014,9 +1707,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.09.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es algo nuevo y singular, $a$. Si es nuevo y plural, no va artículo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We met",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Frenchman.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -1037,5 +1765,7 @@
       "options" : null
     } ],
     "sentences" : [ "We met a Frenchman." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'no article' (este ejercicio solo incluye cosas que el oyente NO conoce). usá '-' para 'no article'."
 } ]

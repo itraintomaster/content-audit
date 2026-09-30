@@ -3,14 +3,14 @@
     "$oid" : "67fab6d59930102295342597"
   },
   "id" : "67fab6d59930102295342597",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "Me gusta mucho la pizza.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,14 +26,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "like pizza.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -48,21 +84,27 @@
       "text" : "like pizza.",
       "options" : null
     } ],
-    "sentences" : [ "I really like pizza." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342598"
   },
   "id" : "67fab6d59930102295342598",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "Ella quiere mucho un vestido nuevo.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -78,10 +120,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,27 +136,69 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "a lot" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "She wants a new dress a lot." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wants a new dress",
+      "options" : null
+    }, {
+      "options" : [ "a lot" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : ".",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342599"
   },
   "id" : "67fab6d59930102295342599",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "No nos gustan mucho los lunes.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -130,10 +214,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,27 +230,69 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "We don't like Mondays",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "We don't like Mondays much." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534259a"
   },
   "id" : "67fab6d5993010229534259a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "Disfrutamos mucho el día.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -182,22 +308,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We enjoyed the day",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We enjoyed the day",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a lot" ]
     }, {
       "kind" : "TEXT",
@@ -205,20 +372,22 @@
       "options" : null
     } ],
     "sentences" : [ "We enjoyed the day a lot." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534259b"
   },
   "id" : "67fab6d5993010229534259b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "Me gustas mucho.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -234,22 +403,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I like you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I like you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a lot" ]
     }, {
       "kind" : "TEXT",
@@ -257,20 +467,22 @@
       "options" : null
     } ],
     "sentences" : [ "I like you a lot." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534259c"
   },
   "id" : "67fab6d5993010229534259c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "A ellos les encantó París.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -286,10 +498,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,27 +514,69 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "really" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "loved Paris.",
       "options" : null
     } ],
-    "sentences" : [ "They really loved Paris." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "really" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "loved Paris.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534259d"
   },
   "id" : "67fab6d5993010229534259d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "Los estudiantes podrían disfrutar mucho esto.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -338,10 +592,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,27 +608,69 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "really" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "enjoy this.",
       "options" : null
     } ],
-    "sentences" : [ "The students might really enjoy this." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "The students might"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "really" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "enjoy this."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534259e"
   },
   "id" : "67fab6d5993010229534259e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "No disfrutamos mucho el trabajo.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -390,22 +686,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We don't enjoy work",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We don't enjoy work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
@@ -413,20 +750,22 @@
       "options" : null
     } ],
     "sentences" : [ "We don't enjoy work much." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534259f"
   },
   "id" : "67fab6d5993010229534259f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "A él no le gustó mucho la cerveza.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -442,10 +781,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,27 +797,69 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "much" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "He didn't like the beer much." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He didn't like the beer",
+      "options" : null
+    }, {
+      "options" : [ "much" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "."
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953425a0"
   },
   "id" : "67fab6d599301022953425a0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "Ella ama mucho a sus padres.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -494,10 +875,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,27 +891,69 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "a lot" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "She loves her parents a lot." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She loves her parents",
+      "options" : null
+    }, {
+      "options" : [ "a lot" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953425a1"
   },
   "id" : "67fab6d599301022953425a1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "Tenemos muchas ganas de cenar.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -546,10 +969,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,27 +985,69 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "want to have dinner.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "We"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "really" ]
     }, {
       "kind" : "TEXT",
       "text" : "want to have dinner.",
       "options" : null
     } ],
-    "sentences" : [ "We really want to have dinner." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953425a2"
   },
   "id" : "67fab6d599301022953425a2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "A él le gustó mucho la película.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -598,9 +1063,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He liked the film",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -619,22 +1125,23 @@
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
-    } ],
-    "sentences" : [ "He liked the film a lot." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953425a3"
   },
   "id" : "67fab6d599301022953425a3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "Ella no disfruta mucho la escuela.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -650,43 +1157,86 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She doesn't enjoy school",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't enjoy school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "She doesn't enjoy school much." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953425a4"
   },
   "id" : "67fab6d599301022953425a4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "Él odió mucho el juego.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -702,10 +1252,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -718,27 +1268,69 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hated the game.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "really" ]
     }, {
       "kind" : "TEXT",
       "text" : "hated the game.",
       "options" : null
     } ],
-    "sentences" : [ "He really hated the game." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953425a5"
   },
   "id" : "67fab6d599301022953425a5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "No les gustará mucho este domingo.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -754,22 +1346,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They won't like this Sunday",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They won't like this Sunday",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
@@ -777,20 +1410,22 @@
       "options" : null
     } ],
     "sentences" : [ "They won't like this Sunday much." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953425a6"
   },
   "id" : "67fab6d599301022953425a6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "Tengo muchas ganas de ir a la playa.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -806,9 +1441,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I want to go to the beach",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -824,25 +1500,26 @@
       "text" : "",
       "options" : [ "a lot" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ],
-    "sentences" : [ "I want to go to the beach a lot." ]
-  }
+      "text" : "."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953425a7"
   },
   "id" : "67fab6d599301022953425a7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "A ellos les gusta mucho el fútbol.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -858,10 +1535,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,27 +1551,69 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "a lot" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "They like football a lot." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They like football"
+    }, {
+      "text" : "",
+      "options" : [ "a lot" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953425a8"
   },
   "id" : "67fab6d599301022953425a8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "A ella no le gustó mucho la banda.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -910,9 +1629,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She didn't like the band",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -931,22 +1691,23 @@
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
-    } ],
-    "sentences" : [ "She didn't like the band much." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953425a9"
   },
   "id" : "67fab6d599301022953425a9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "Los estudiantes no disfrutarán mucho el libro.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -962,22 +1723,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Students won't enjoy the book",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Students won't enjoy the book",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
@@ -985,20 +1787,22 @@
       "options" : null
     } ],
     "sentences" : [ "Students won't enjoy the book much." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953425aa"
   },
   "id" : "67fab6d599301022953425aa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
   "title" : "$Really$, $much$ o $a lot$",
-  "instructions" : "Completa con $really$, $much$ o $a lot$.",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
   "translation" : "A ella le gustará mucho la gente.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -1014,22 +1818,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.11.06.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She will",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "like the people.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She will",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "really" ]
     }, {
       "kind" : "TEXT",
@@ -1037,5 +1882,2018 @@
       "options" : null
     } ],
     "sentences" : [ "She will really like the people." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f1a"
+  },
+  "id" : "67fab6d59930102295342f1a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Realmente quería tu ayuda.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "wanted your help.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "really" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "wanted your help.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "I really wanted your help." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f1b"
+  },
+  "id" : "67fab6d59930102295342f1b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "No disfruto mucho la comida extra.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't enjoy extra food",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't enjoy extra food",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "much" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "I don't enjoy extra food much." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f1c"
+  },
+  "id" : "67fab6d59930102295342f1c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Lo necesito mucho.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need it",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "a lot" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f1d"
+  },
+  "id" : "67fab6d59930102295342f1d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Les gustó mucho la obra.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They liked the play",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They liked the play",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a lot" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "They liked the play a lot." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f1e"
+  },
+  "id" : "67fab6d59930102295342f1e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "No odiaron mucho el concierto.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They didn't hate the concert",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They didn't hate the concert"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "much" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f1f"
+  },
+  "id" : "67fab6d59930102295342f1f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "A él le gustó mucho el pescado.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He liked the fish",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He liked the fish",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a lot" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "He liked the fish a lot." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f20"
+  },
+  "id" : "67fab6d59930102295342f20",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Realmente odiamos el tráfico.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hated the traffic.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "really" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "hated the traffic.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f21"
+  },
+  "id" : "67fab6d59930102295342f21",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Necesito mucha comida.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Antes de un sustantivo incontable va $a lot of$, no $a lot$ solo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "food.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a lot of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "food.",
+      "options" : null
+    } ],
+    "sentences" : [ "I need a lot of food." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f22"
+  },
+  "id" : "67fab6d59930102295342f22",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "No creo que les guste mucho esa oferta.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't believe they'll like that offer",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't believe they'll like that offer",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "much" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "I don't believe they'll like that offer much." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f23"
+  },
+  "id" : "67fab6d59930102295342f23",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Él no toma mucho té.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't drink tea",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't drink tea",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "much" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f24"
+  },
+  "id" : "67fab6d59930102295342f24",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Los invitados te ayudarán mucho.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The guests will help you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The guests will help you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a lot" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "The guests will help you a lot." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f25"
+  },
+  "id" : "67fab6d59930102295342f25",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Ella los extraña mucho.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She misses them",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She misses them",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a lot" ]
+    }, {
+      "text" : ".",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f26"
+  },
+  "id" : "67fab6d59930102295342f26",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Realmente hago pinturas.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "make paintings.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "really" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "make paintings.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "I really make paintings." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f27"
+  },
+  "id" : "67fab6d59930102295342f27",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Realmente conocen a Peter.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "know Peter.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "really" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "know Peter.",
+      "options" : null
+    } ],
+    "sentences" : [ "They really know Peter." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f28"
+  },
+  "id" : "67fab6d59930102295342f28",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Realmente odiamos las verduras.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hate vegetables.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "really" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "hate vegetables.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f29"
+  },
+  "id" : "67fab6d59930102295342f29",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Los trabajadores no disfrutaron mucho el proyecto.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The workers didn't enjoy the project",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The workers didn't enjoy the project",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "much" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "The workers didn't enjoy the project much." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f2a"
+  },
+  "id" : "67fab6d59930102295342f2a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Odiamos mucho trabajar con efectivo.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We hate working with cash",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We hate working with cash",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a lot" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "sentences" : [ "We hate working with cash a lot." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f2b"
+  },
+  "id" : "67fab6d59930102295342f2b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Los perros realmente disfrutaron el parque.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "enjoyed the park.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "really" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "enjoyed the park.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f2c"
+  },
+  "id" : "67fab6d59930102295342f2c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "A Mary no le gustó mucho su regalo.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Mary didn't like her gift",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Mary didn't like her gift"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "much" ]
+    }, {
+      "text" : ".",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342f2d"
+  },
+  "id" : "67fab6d59930102295342f2d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3ee"
+  },
+  "title" : "$Really$, $much$ o $a lot$",
+  "instructions" : "Elige 'really', 'much', 'a lot' o 'a lot of'.",
+  "translation" : "Él realmente odiará el trabajo.",
+  "theoryId" : "a1.11.Adverbs_of_Degree",
+  "topicName" : "Adjetives and Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.12.05.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$really$ antes del verbo. $much$ sólo en negativas. $a lot$ al final.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He will",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hate the labor.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a lot",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot"
+    }, {
+      "id" : "a lot of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a lot of"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    }, {
+      "id" : "really",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "really"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He will"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "really" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "hate the labor.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'really', 'much' o 'a lot'.",
+  "instructionsAntesDeRevisar" : "Elige con 'really', 'much' o 'a lot'."
 } ]

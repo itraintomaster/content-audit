@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953446fc"
   },
   "id" : "67fab6d599301022953446fc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "La gerente entrevistó a la solicitante ella misma. Normalmente no entrevista a los solicitantes.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -26,9 +26,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El reflexivo al final marca que no lo hizo nadie más: $herself$, $themselves$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The manager interviewed the applicant",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ". Usually she doesn't interview applicants.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,20 +106,20 @@
       "kind" : "TEXT",
       "text" : ". Usually she doesn't interview applicants.",
       "options" : null
-    } ],
-    "sentences" : [ "The manager interviewed the applicant herself. Usually she doesn't interview applicants." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953446fd"
   },
   "id" : "67fab6d599301022953446fd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "El asistente entrevistó al solicitante.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -78,9 +137,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sin ese contraste con lo esperado, no va reflexivo: la respuesta es $-$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The assistant interviewed the applicant",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -99,20 +217,20 @@
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
-    } ],
-    "sentences" : [ "The assistant interviewed the applicant -." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953446fe"
   },
   "id" : "67fab6d599301022953446fe",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "Ellos pintaron la pared ellos mismos. Normalmente, alguien más pinta la pared.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -130,15 +248,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El reflexivo al final marca que no lo hizo nadie más: $herself$, $themselves$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They painted the wall",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ". Usually, someone else paints the wall.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They painted the wall",
@@ -152,19 +323,25 @@
       "text" : ". Usually, someone else paints the wall.",
       "options" : null
     } ],
-    "sentences" : [ "They painted the wall themselves. Usually, someone else paints the wall." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953446ff"
   },
   "id" : "67fab6d599301022953446ff",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "El doctor examinó al paciente.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -182,9 +359,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sin ese contraste con lo esperado, no va reflexivo: la respuesta es $-$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The doctor examined the patient",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +439,20 @@
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
-    } ],
-    "sentences" : [ "The doctor examined the patient -." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344700"
   },
   "id" : "67fab6d59930102295344700",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "Nosotros cocinamos la cena nosotros mismos. Normalmente no cocinamos la cena.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -234,15 +470,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El reflexivo al final marca que no lo hizo nadie más: $herself$, $themselves$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We cooked the dinner",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ". We don't usually cook dinner.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We cooked the dinner",
@@ -256,19 +545,25 @@
       "text" : ". We don't usually cook dinner.",
       "options" : null
     } ],
-    "sentences" : [ "We cooked the dinner ourselves. We don't usually cook dinner." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344701"
   },
   "id" : "67fab6d59930102295344701",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "Yo seleccioné la música yo mismo. Normalmente, yo no selecciono la música.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -286,10 +581,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El reflexivo al final marca que no lo hizo nadie más: $herself$, $themselves$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +597,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "myself" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ". Normally, I don't select the music.",
       "options" : null
     } ],
-    "sentences" : [ "I selected the music myself. Normally, I don't select the music." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I selected the music",
+      "options" : null
+    }, {
+      "options" : [ "myself" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : ". Normally, I don't select the music.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344702"
   },
   "id" : "67fab6d59930102295344702",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "Yo construí esta mesa yo mismo. Normalmente compro las mesas.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -338,9 +692,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El reflexivo al final marca que no lo hizo nadie más: $herself$, $themselves$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I built this table",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ". Normally I buy tables.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +772,20 @@
       "kind" : "TEXT",
       "text" : ". Normally I buy tables.",
       "options" : null
-    } ],
-    "sentences" : [ "I built this table myself. Normally I buy tables." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344703"
   },
   "id" : "67fab6d59930102295344703",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "El barbero peinó mi cabello.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -390,10 +803,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sin ese contraste con lo esperado, no va reflexivo: la respuesta es $-$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -406,25 +819,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "The barber styled my hair",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "The barber styled my hair -." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344704"
   },
   "id" : "67fab6d59930102295344704",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "Laura recogió el paquete ella misma. Normalmente no recoge el paquete.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -442,10 +914,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El reflexivo al final marca que no lo hizo nadie más: $herself$, $themselves$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +930,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "herself" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ". She doesn't usually collect the package.",
       "options" : null
     } ],
-    "sentences" : [ "Laura collected the package herself. She doesn't usually collect the package." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Laura collected the package",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "herself" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ". She doesn't usually collect the package."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344705"
   },
   "id" : "67fab6d59930102295344705",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "Él cargó las bolsas. Él siempre carga las bolsas.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -494,10 +1025,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sin ese contraste con lo esperado, no va reflexivo: la respuesta es $-$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,25 +1041,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ". He always carries the bags.",
       "options" : null
     } ],
-    "sentences" : [ "He carried the bags -. He always carries the bags." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He carried the bags",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : ". He always carries the bags.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344706"
   },
   "id" : "67fab6d59930102295344706",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "Él horneó el pan él mismo. Normalmente, él va a la panadería.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -546,10 +1136,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El reflexivo al final marca que no lo hizo nadie más: $herself$, $themselves$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,25 +1152,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "himself" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ". Usually, he goes to the bakery.",
       "options" : null
     } ],
-    "sentences" : [ "He baked the bread himself. Usually, he goes to the bakery." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He baked the bread",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "himself" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : ". Usually, he goes to the bakery.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344707"
   },
   "id" : "67fab6d59930102295344707",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "El artista dibujó el retrato.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -598,10 +1247,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sin ese contraste con lo esperado, no va reflexivo: la respuesta es $-$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -614,25 +1263,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "The artist drew the portrait -." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "The artist drew the portrait",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344708"
   },
   "id" : "67fab6d59930102295344708",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "La compañía fabricó el teléfono.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -650,15 +1358,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sin ese contraste con lo esperado, no va reflexivo: la respuesta es $-$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The company manufactured the phone",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The company manufactured the phone",
@@ -672,19 +1433,25 @@
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "The company manufactured the phone -." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344709"
   },
   "id" : "67fab6d59930102295344709",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "Él reparó la bicicleta él mismo. Normalmente, él lleva la bicicleta al taller.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -702,10 +1469,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El reflexivo al final marca que no lo hizo nadie más: $herself$, $themselves$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -718,25 +1485,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "himself" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ". Usually, he takes the bike to the shop.",
       "options" : null
     } ],
-    "sentences" : [ "He repaired the bike himself. Usually, he takes the bike to the shop." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He repaired the bike",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "himself" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : ". Usually, he takes the bike to the shop.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534470a"
   },
   "id" : "67fab6d5993010229534470a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "Ella envió un correo electrónico al proveedor ella misma. Normalmente no envía correos electrónicos a los proveedores.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -754,10 +1580,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El reflexivo al final marca que no lo hizo nadie más: $herself$, $themselves$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1596,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "herself" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ". She doesn't usually email suppliers.",
       "options" : null
     } ],
-    "sentences" : [ "She emailed the supplier herself. She doesn't usually email suppliers." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She emailed the supplier",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "herself" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : ". She doesn't usually email suppliers.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534470b"
   },
   "id" : "67fab6d5993010229534470b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "El equipo de ventas envió un correo electrónico a los proveedores.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -806,13 +1691,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sin ese contraste con lo esperado, no va reflexivo: la respuesta es $-$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The sales team emailed the suppliers",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -828,19 +1768,23 @@
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "The sales team emailed the suppliers -." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534470c"
   },
   "id" : "67fab6d5993010229534470c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "Peter contactó al constructor. Él siempre contacta al constructor.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -858,10 +1802,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sin ese contraste con lo esperado, no va reflexivo: la respuesta es $-$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,25 +1818,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ". He always contacts the builder.",
       "options" : null
     } ],
-    "sentences" : [ "Peter contacted the builder -. He always contacts the builder." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Peter contacted the builder",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ". He always contacts the builder.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534470d"
   },
   "id" : "67fab6d5993010229534470d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "El agente de viajes nos reservó.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -910,9 +1913,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sin ese contraste con lo esperado, no va reflexivo: la respuesta es $-$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The travel agent booked us",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -931,20 +1993,20 @@
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
-    } ],
-    "sentences" : [ "The travel agent booked us -." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534470e"
   },
   "id" : "67fab6d5993010229534470e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "Nosotros filmamos el video nosotros mismos. Normalmente, no filmamos videos.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -962,10 +2024,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El reflexivo al final marca que no lo hizo nadie más: $herself$, $themselves$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -978,25 +2040,84 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "ourselves" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : ". Usually, we don't film videos.",
       "options" : null
     } ],
-    "sentences" : [ "We filmed the video ourselves. Usually, we don't film videos." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "We filmed the video",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "ourselves" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : ". Usually, we don't film videos.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534470f"
   },
   "id" : "67fab6d5993010229534470f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d475"
   },
   "title" : "Autoría exclusiva",
-  "instructions" : "Escribe un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
+  "instructions" : "Elige un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-).",
   "translation" : "Ella lavó los platos, como siempre.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
@@ -1014,9 +2135,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.11.05.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sin ese contraste con lo esperado, no va reflexivo: la respuesta es $-$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She washed the dishes",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", as usual.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "herself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "herself"
+    }, {
+      "id" : "himself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "himself"
+    }, {
+      "id" : "myself",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "myself"
+    }, {
+      "id" : "ourselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "ourselves"
+    }, {
+      "id" : "themselves",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "themselves"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -1035,7 +2215,7 @@
       "kind" : "TEXT",
       "text" : ", as usual.",
       "options" : null
-    } ],
-    "sentences" : [ "She washed the dishes -, as usual." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí un pronombre reflexivo si queremos enfatizar que el sujeto hizo la acción y nadie más. De lo contrario, usa un guión (-)."
 } ]

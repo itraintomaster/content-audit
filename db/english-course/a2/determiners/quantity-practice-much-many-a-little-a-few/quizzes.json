@@ -3,14 +3,14 @@
     "$oid" : "67fab6d59930102295342aec"
   },
   "id" : "67fab6d59930102295342aec",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "Él no bebe mucha cerveza.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,9 +26,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Incontable → $much$ o $a little$. Contable en plural → $many$ o $a few$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't drink",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "beer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,22 +94,23 @@
       "kind" : "TEXT",
       "text" : "beer.",
       "options" : null
-    } ],
-    "sentences" : [ "He doesn't drink much beer." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aed"
   },
   "id" : "67fab6d59930102295342aed",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "Ellos no compraron muchos CDs.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -78,14 +126,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Incontable → $much$ o $a little$. Contable en plural → $many$ o $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They didn't buy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "CDs.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -100,21 +190,27 @@
       "text" : "CDs.",
       "options" : null
     } ],
-    "sentences" : [ "They didn't buy many CDs." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aee"
   },
   "id" : "67fab6d59930102295342aee",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "Él comió un poco de arroz.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -130,10 +226,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es poco, no mucho: incontable $a little$, contable $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,27 +242,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "a little" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "rice.",
       "options" : null
     } ],
-    "sentences" : [ "He ate a little rice." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He ate",
+      "options" : null
+    }, {
+      "options" : [ "a little" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "rice.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aef"
   },
   "id" : "67fab6d59930102295342aef",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "Ella compró un poco de azúcar.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -182,10 +326,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es poco, no mucho: incontable $a little$, contable $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,27 +342,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "a little" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "sugar.",
       "options" : null
     } ],
-    "sentences" : [ "She bought a little sugar." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She bought",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "a little" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "sugar.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342af0"
   },
   "id" : "67fab6d59930102295342af0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "Vi a unos pocos actores durante las vacaciones.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -234,43 +426,92 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es poco, no mucho: incontable $a little$, contable $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I watched",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "actors during the holidays.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I watched",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
       "text" : "actors during the holidays.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "I watched a few actors during the holidays." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342af1"
   },
   "id" : "67fab6d59930102295342af1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "Él compró unas pocas ruedas.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -286,22 +527,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es poco, no mucho: incontable $a little$, contable $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He bought",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "wheels.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He bought",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
@@ -309,20 +597,22 @@
       "options" : null
     } ],
     "sentences" : [ "He bought a few wheels." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342af2"
   },
   "id" : "67fab6d59930102295342af2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "No tengo mucha salchicha.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -338,43 +628,92 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Incontable → $much$ o $a little$. Contable en plural → $many$ o $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I don't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sausage.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
       "text" : "sausage.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "I don't have much sausage." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342af3"
   },
   "id" : "67fab6d59930102295342af3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "¿Los profesores dieron muchos exámenes?",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -390,43 +729,92 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Incontable → $much$ o $a little$. Contable en plural → $many$ o $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Did the teachers give",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "tests?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did the teachers give",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : "tests?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "Did the teachers give many tests?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342af4"
   },
   "id" : "67fab6d59930102295342af4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "Ellos tienen un poco de gas.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -442,43 +830,92 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es poco, no mucho: incontable $a little$, contable $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "gas.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
       "text" : "gas.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "They have a little gas." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342af5"
   },
   "id" : "67fab6d59930102295342af5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "¿Ellos comieron mucho arroz?",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -494,10 +931,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Incontable → $much$ o $a little$. Contable en plural → $many$ o $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,27 +947,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "much" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "rice?",
       "options" : null
     } ],
-    "sentences" : [ "Did they eat much rice?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did they eat",
+      "options" : null
+    }, {
+      "options" : [ "much" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "rice?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342af6"
   },
   "id" : "67fab6d59930102295342af6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "¿Los ganadores tienen mucho trabajo?",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -546,22 +1031,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Incontable → $much$ o $a little$. Contable en plural → $many$ o $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do the winners have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "work?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do the winners have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
@@ -569,20 +1101,22 @@
       "options" : null
     } ],
     "sentences" : [ "Do the winners have much work?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342af7"
   },
   "id" : "67fab6d59930102295342af7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "La casa necesita unas pocas cortinas.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -598,43 +1132,92 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es poco, no mucho: incontable $a little$, contable $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The house needs",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "curtains.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The house needs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
       "text" : "curtains.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "The house needs a few curtains." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342af8"
   },
   "id" : "67fab6d59930102295342af8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "La ensalada necesita un poco de pimienta.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -650,10 +1233,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es poco, no mucho: incontable $a little$, contable $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The salad needs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pepper.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -668,25 +1297,27 @@
       "text" : "",
       "options" : [ "a little" ]
     }, {
-      "kind" : "TEXT",
       "text" : "pepper.",
-      "options" : null
+      "options" : null,
+      "kind" : "TEXT"
     } ],
-    "sentences" : [ "The salad needs a little pepper." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342af9"
   },
   "id" : "67fab6d59930102295342af9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "Ella invitó a unos pocos abuelos.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -702,22 +1333,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es poco, no mucho: incontable $a little$, contable $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She invited",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "grandparents.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She invited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
@@ -725,20 +1403,22 @@
       "options" : null
     } ],
     "sentences" : [ "She invited a few grandparents." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342afa"
   },
   "id" : "67fab6d59930102295342afa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "No tengo muchas preguntas sobre esto.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -754,22 +1434,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Incontable → $much$ o $a little$. Contable en plural → $many$ o $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I don't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "questions about this.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
@@ -777,20 +1504,22 @@
       "options" : null
     } ],
     "sentences" : [ "I don't have many questions about this." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342afb"
   },
   "id" : "67fab6d59930102295342afb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "No tenemos mucha leche.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -806,10 +1535,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Incontable → $much$ o $a little$. Contable en plural → $many$ o $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -822,27 +1551,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "milk.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "We don't have",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
       "text" : "milk.",
       "options" : null
     } ],
-    "sentences" : [ "We don't have much milk." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342afc"
   },
   "id" : "67fab6d59930102295342afc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "¿Recibiste muchas cartas?",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -858,10 +1635,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Incontable → $much$ o $a little$. Contable en plural → $many$ o $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,27 +1651,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "many" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "letters?",
       "options" : null
     } ],
-    "sentences" : [ "Did you receive many letters?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you receive",
+      "options" : null
+    }, {
+      "options" : [ "many" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "letters?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342afd"
   },
   "id" : "67fab6d59930102295342afd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "Ella no necesita muchos sándwiches.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -910,10 +1735,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Incontable → $much$ o $a little$. Contable en plural → $many$ o $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -926,27 +1751,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "many" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "sandwiches.",
       "options" : null
     } ],
-    "sentences" : [ "She doesn't need many sandwiches." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "many" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "sandwiches."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342afe"
   },
   "id" : "67fab6d59930102295342afe",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "Lo terminamos en unos pocos minutos.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -962,22 +1835,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es poco, no mucho: incontable $a little$, contable $a few$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We finished it in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "minutes.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We finished it in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
@@ -985,20 +1905,22 @@
       "options" : null
     } ],
     "sentences" : [ "We finished it in a few minutes." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aff"
   },
   "id" : "67fab6d59930102295342aff",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d266"
   },
   "title" : "Contables e incontables",
-  "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
+  "instructions" : "Elige 'much', 'many', 'a little' o 'a few'.",
   "translation" : "Quisiera un poco de té, por favor.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+  "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -1014,9 +1936,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.07.03.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es poco, no mucho: incontable $a little$, contable $a few$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "tea, please.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    }, {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "much",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "much"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -1035,7 +2004,8 @@
       "kind" : "TEXT",
       "text" : "tea, please.",
       "options" : null
-    } ],
-    "sentences" : [ "I'd like a little tea, please." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'much', 'many', 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige con 'much', 'many', 'a little' o 'a few'."
 } ]

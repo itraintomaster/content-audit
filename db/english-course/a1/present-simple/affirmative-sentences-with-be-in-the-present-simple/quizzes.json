@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295341e5f"
   },
   "id" : "67fab6d59930102295341e5f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Ella es inglesa.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "is" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "English.",
       "options" : null
     } ],
-    "sentences" : [ "She is English." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "English.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e60"
   },
   "id" : "67fab6d59930102295341e60",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Ellos son muy bajos.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -78,15 +120,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "very short.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
@@ -100,19 +177,26 @@
       "text" : "very short.",
       "options" : null
     } ],
-    "sentences" : [ "They are very short." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e61"
   },
   "id" : "67fab6d59930102295341e61",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Lo siento.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -130,22 +214,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sorry.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "am" ]
     }, {
       "kind" : "TEXT",
@@ -153,18 +278,20 @@
       "options" : null
     } ],
     "sentences" : [ "I am sorry." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e62"
   },
   "id" : "67fab6d59930102295341e62",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Está debajo de la silla.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -182,9 +309,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "under the chair.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +371,21 @@
       "kind" : "TEXT",
       "text" : "under the chair.",
       "options" : null
-    } ],
-    "sentences" : [ "It is under the chair." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e63"
   },
   "id" : "67fab6d59930102295341e63",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Él está en la escuela.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -234,10 +403,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +419,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at school.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "He",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "is" ]
     }, {
       "kind" : "TEXT",
       "text" : "at school.",
       "options" : null
     } ],
-    "sentences" : [ "He is at school." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e64"
   },
   "id" : "67fab6d59930102295341e64",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Tengo calor.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -286,9 +497,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hot.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -304,23 +556,24 @@
       "text" : "",
       "options" : [ "am" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "hot.",
-      "options" : null
-    } ],
-    "sentences" : [ "I am hot." ]
-  }
+      "text" : "hot."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e65"
   },
   "id" : "67fab6d59930102295341e65",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Eres alemán.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -338,10 +591,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +607,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "German.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "You",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "are" ]
     }, {
       "kind" : "TEXT",
       "text" : "German.",
       "options" : null
     } ],
-    "sentences" : [ "You are German." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e66"
   },
   "id" : "67fab6d59930102295341e66",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Estamos en el tren.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -390,14 +685,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "on the train.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -412,19 +743,25 @@
       "text" : "on the train.",
       "options" : null
     } ],
-    "sentences" : [ "We are on the train." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e67"
   },
   "id" : "67fab6d59930102295341e67",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Somos geniales.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -442,22 +779,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "great.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "are" ]
     }, {
       "kind" : "TEXT",
@@ -465,18 +843,20 @@
       "options" : null
     } ],
     "sentences" : [ "We are great." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e68"
   },
   "id" : "67fab6d59930102295341e68",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Él está cansado.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -494,10 +874,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,25 +890,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "is" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "tired.",
       "options" : null
     } ],
-    "sentences" : [ "He is tired." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "is" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "tired.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e69"
   },
   "id" : "67fab6d59930102295341e69",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Ellos están en la escuela.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -546,10 +968,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at school.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -568,19 +1030,21 @@
       "text" : "at school.",
       "options" : null
     } ],
-    "sentences" : [ "They are at school." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e6a"
   },
   "id" : "67fab6d59930102295341e6a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Ellos están bien.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -598,41 +1062,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ok.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "are" ]
     }, {
       "kind" : "TEXT",
       "text" : "ok.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "They are ok." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e6b"
   },
   "id" : "67fab6d59930102295341e6b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Está en la caja.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -650,10 +1157,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -666,25 +1173,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "is" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "in the box.",
       "options" : null
     } ],
-    "sentences" : [ "It is in the box." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "It"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "in the box.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e6c"
   },
   "id" : "67fab6d59930102295341e6c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Él está en casa.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -702,10 +1251,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -718,25 +1267,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "is" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "at home.",
       "options" : null
     } ],
-    "sentences" : [ "He is at home." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "at home."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e6d"
   },
   "id" : "67fab6d59930102295341e6d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Hace frío afuera.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -754,10 +1345,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1361,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "is" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "cold outside.",
       "options" : null
     } ],
-    "sentences" : [ "It is cold outside." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "It",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "cold outside.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e6e"
   },
   "id" : "67fab6d59930102295341e6e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Ella está en el jardín.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -806,10 +1439,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -822,25 +1455,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "is" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "in the garden.",
       "options" : null
     } ],
-    "sentences" : [ "She is in the garden." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "is" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "in the garden.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e6f"
   },
   "id" : "67fab6d59930102295341e6f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Soy joven.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -858,22 +1533,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "young.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "am" ]
     }, {
       "kind" : "TEXT",
@@ -881,18 +1597,20 @@
       "options" : null
     } ],
     "sentences" : [ "I am young." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e70"
   },
   "id" : "67fab6d59930102295341e70",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Estás en el trabajo.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -910,9 +1628,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at work.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -928,23 +1687,24 @@
       "text" : "",
       "options" : [ "are" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "at work.",
-      "options" : null
-    } ],
-    "sentences" : [ "You are at work." ]
-  }
+      "text" : "at work."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e71"
   },
   "id" : "67fab6d59930102295341e71",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "Ella es de Londres.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -962,9 +1722,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "from London.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -980,23 +1781,24 @@
       "text" : "",
       "options" : [ "is" ]
     }, {
-      "kind" : "TEXT",
       "text" : "from London.",
-      "options" : null
-    } ],
-    "sentences" : [ "She is from London." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295341e72"
   },
   "id" : "67fab6d59930102295341e72",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
   "title" : "Afirmativas con $be$",
-  "instructions" : "Escribe la forma afirmativa en presente simple del verbo $be$. No uses contracciones (short forms).",
+  "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
   "translation" : "No estamos listos.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
@@ -1014,10 +1816,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.01.01.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "not ready.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "am",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "am"
+    }, {
+      "id" : "are",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "are"
+    }, {
+      "id" : "is",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "is"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1036,6 +1878,8 @@
       "text" : "not ready.",
       "options" : null
     } ],
-    "sentences" : [ "We are not ready." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+  "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
 } ]

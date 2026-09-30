@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342a74"
   },
   "id" : "67fab6d59930102295342a74",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "A ella le gustan las manzanas.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "apples.",
       "options" : null
     } ],
-    "sentences" : [ "She enjoys - apples." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She enjoys"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "apples.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a75"
   },
   "id" : "67fab6d59930102295342a75",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "A ella le gustan las manzanas de ese árbol.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -78,9 +114,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She enjoys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "apples from that tree.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -99,20 +170,21 @@
       "kind" : "TEXT",
       "text" : "apples from that tree.",
       "options" : null
-    } ],
-    "sentences" : [ "She enjoys the apples from that tree." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a76"
   },
   "id" : "67fab6d59930102295342a76",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "Los libros son interesantes.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -130,13 +202,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "books are interesting.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -152,19 +255,24 @@
       "text" : "books are interesting.",
       "options" : null
     } ],
-    "sentences" : [ "- books are interesting." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a77"
   },
   "id" : "67fab6d59930102295342a77",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "Tomé prestados los libros que estaban en el estante.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -182,10 +290,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,25 +306,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "books that were on the shelf.",
       "options" : null
     } ],
-    "sentences" : [ "I borrowed the books that were on the shelf." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I borrowed",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "books that were on the shelf.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a78"
   },
   "id" : "67fab6d59930102295342a78",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "La pizza es popular en todas partes.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -234,18 +378,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pizza is popular everywhere.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -253,18 +428,20 @@
       "options" : null
     } ],
     "sentences" : [ "- pizza is popular everywhere." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a79"
   },
   "id" : "67fab6d59930102295342a79",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "¿Puedes traer la pizza? (se está enfriando).",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -282,22 +459,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Can you get",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pizza? (it's getting cold).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you get",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
@@ -305,18 +517,20 @@
       "options" : null
     } ],
     "sentences" : [ "Can you get the pizza?." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a7a"
   },
   "id" : "67fab6d59930102295342a7a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "Los perros son muy amigables.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -334,9 +548,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dogs are very friendly.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -355,20 +604,21 @@
       "kind" : "TEXT",
       "text" : "dogs are very friendly.",
       "options" : null
-    } ],
-    "sentences" : [ "- dogs are very friendly." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a7b"
   },
   "id" : "67fab6d59930102295342a7b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "Los perros que tiene mi vecino corren mucho.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -386,37 +636,70 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dogs that my neighbor has run a lot.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
       "text" : "dogs that my neighbor has run a lot.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "The dogs that my neighbor has run a lot." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a7c"
   },
   "id" : "67fab6d59930102295342a7c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "El helado es excelente.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -434,18 +717,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ice cream is excellent.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -453,18 +767,20 @@
       "options" : null
     } ],
     "sentences" : [ "- ice cream is excellent." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a7d"
   },
   "id" : "67fab6d59930102295342a7d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "Terminó el helado que estaba en el tazón.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -482,10 +798,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -498,25 +814,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "ice cream that was in the bowl.",
       "options" : null
     } ],
-    "sentences" : [ "He finished the ice cream that was in the bowl." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He finished",
+      "options" : null
+    }, {
+      "options" : [ "the" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "ice cream that was in the bowl.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a7e"
   },
   "id" : "67fab6d59930102295342a7e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "El aire es bueno para las personas.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -534,37 +886,70 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "air is good for people.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "air is good for people.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "- air is good for people." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a7f"
   },
   "id" : "67fab6d59930102295342a7f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "¿De dónde vino el aire que llenó el globo?",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -582,15 +967,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where did",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "air come from that filled the balloon?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Where did",
@@ -604,19 +1018,26 @@
       "text" : "air come from that filled the balloon?",
       "options" : null
     } ],
-    "sentences" : [ "Where did the air come from that filled the balloon?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a80"
   },
   "id" : "67fab6d59930102295342a80",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "El tiempo es inusual.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -634,37 +1055,70 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time is unusual.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "time is unusual.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "- time is unusual." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a81"
   },
   "id" : "67fab6d59930102295342a81",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "Usó el tiempo que tenía para estudiar.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -682,22 +1136,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He used",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time that he had for studying.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He used",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
@@ -705,18 +1194,20 @@
       "options" : null
     } ],
     "sentences" : [ "He used the time that he had for studying." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a82"
   },
   "id" : "67fab6d59930102295342a82",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "Prefiero los pubs.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -734,10 +1225,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -750,25 +1241,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "pubs.",
       "options" : null
     } ],
-    "sentences" : [ "I prefer - pubs." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I prefer",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "pubs."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a83"
   },
   "id" : "67fab6d59930102295342a83",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "Los pubs en esta ciudad están muy llenos.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -786,9 +1313,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pubs in this city are very crowded.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -807,20 +1369,21 @@
       "kind" : "TEXT",
       "text" : "pubs in this city are very crowded.",
       "options" : null
-    } ],
-    "sentences" : [ "The pubs in this city are very crowded." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a84"
   },
   "id" : "67fab6d59930102295342a84",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "Los niños suelen ser alborotados.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -838,37 +1401,70 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "children are usually wild.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "children are usually wild.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "- children are usually wild." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a85"
   },
   "id" : "67fab6d59930102295342a85",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "Los niños que vinieron a mi fiesta bailaron muy bien.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -886,37 +1482,70 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "children that came to my party danced very well.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
       "text" : "children that came to my party danced very well.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "The children that came to my party danced very well." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a86"
   },
   "id" : "67fab6d59930102295342a86",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "Realmente odia las reuniones.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -934,10 +1563,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -950,25 +1579,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "meetings.",
       "options" : null
     } ],
-    "sentences" : [ "He really hates - meetings." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He really hates",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "text" : "meetings.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a87"
   },
   "id" : "67fab6d59930102295342a87",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
   "title" : "General o particular",
-  "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
+  "instructions" : "Elige 'the' si hablamos de un sustantivo o grupo de sustantivos en particular, o '-' (sin artículo) si hablamos en general.",
   "translation" : "¿Fuiste a las reuniones que estaban planificadas?",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
@@ -986,28 +1651,1792 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.11.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Did you go to",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "meetings that were planned?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you go to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "meetings that were planned?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "Did you go to the meetings that were planned?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
+  "instructionsAntesDeRevisar" : "Elige el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434e8"
+  },
+  "id" : "67fab6d599301022953434e8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Ella es mala en física.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is bad at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "physics.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "She is bad at",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "physics.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434e9"
+  },
+  "id" : "67fab6d599301022953434e9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Los elefantes viven en la India.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "elephants live in India.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "elephants live in India."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434ea"
+  },
+  "id" : "67fab6d599301022953434ea",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Ella no bebe cerveza.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't drink",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "beer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't drink",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "beer.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434eb"
+  },
+  "id" : "67fab6d599301022953434eb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Disfruto de los dulces.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sweets.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "sweets.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434ec"
+  },
+  "id" : "67fab6d599301022953434ec",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Realmente disfruté las galletas que horneaste.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I really enjoyed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cookies you baked.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I really enjoyed",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "cookies you baked.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434ed"
+  },
+  "id" : "67fab6d599301022953434ed",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "¿De quién son las bicicletas en el garaje?",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Whose are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bikes in the garage?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Whose are",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "bikes in the garage?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434ee"
+  },
+  "id" : "67fab6d599301022953434ee",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "El elefante del zoológico tiene poco espacio.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "elephant at the zoo has little space.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "elephant at the zoo has little space.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434ef"
+  },
+  "id" : "67fab6d599301022953434ef",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Los autobuses viejos producen contaminación en las grandes ciudades.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "old buses produce pollution in large cities.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "old buses produce pollution in large cities.",
+      "options" : null
+    } ],
+    "sentences" : [ "- old buses produce pollution in large cities." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434f0"
+  },
+  "id" : "67fab6d599301022953434f0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Ellos disfrutan del helado.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They enjoy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ice cream.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They enjoy"
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "ice cream.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434f1"
+  },
+  "id" : "67fab6d599301022953434f1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Freímos los huevos que compraste.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We fried",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "eggs that you bought.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "We fried",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "eggs that you bought.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434f2"
+  },
+  "id" : "67fab6d599301022953434f2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "El conocimiento es poder.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "knowledge is power.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "knowledge is power.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434f3"
+  },
+  "id" : "67fab6d599301022953434f3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Él odia los tomates.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He hates",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "tomatoes.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He hates",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "tomatoes.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434f4"
+  },
+  "id" : "67fab6d599301022953434f4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Analicemos el efecto de la elección en nuestra industria.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's analyze",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "effect of the election on our industry.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's analyze",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "effect of the election on our industry.",
+      "options" : null
+    } ],
+    "sentences" : [ "Let's analyze the effect of the election on our industry." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434f5"
+  },
+  "id" : "67fab6d599301022953434f5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "La amistad es importante.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "friendship is important.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "friendship is important."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434f6"
+  },
+  "id" : "67fab6d599301022953434f6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Los perros que vimos ayer están jugando en el parque hoy.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dogs we saw yesterday are playing in the park today.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "dogs we saw yesterday are playing in the park today.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "The dogs we saw yesterday are playing in the park today." ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434f7"
+  },
+  "id" : "67fab6d599301022953434f7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Ella ama a los perros.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She loves",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dogs.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She loves",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "dogs.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434f8"
+  },
+  "id" : "67fab6d599301022953434f8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Vi la película que me sugeriste.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I watched",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "movie that you suggested.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I watched",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "movie that you suggested.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434f9"
+  },
+  "id" : "67fab6d599301022953434f9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "La clase termina a las 3 pm.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "class finishes at 3 pm.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "The" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "class finishes at 3 pm.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434fa"
+  },
+  "id" : "67fab6d599301022953434fa",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Ella se comió los dulces del estante.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sweets on the shelf.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She ate",
+      "options" : null
+    }, {
+      "options" : [ "the" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "sweets on the shelf.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434fb"
+  },
+  "id" : "67fab6d599301022953434fb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d25f"
+  },
+  "title" : "General o particular",
+  "instructions" : "Elige 'the' o usa – si no necesitamos ningún artículo.",
+  "translation" : "Derramé la cerveza a mi lado.",
+  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Hablando en general, sin artículo. Si son unos en particular, $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I spilled",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "beer next to me.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I spilled",
+      "options" : null
+    }, {
+      "options" : [ "the" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "beer next to me.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – si no necesitamos ningún artículo."
 } ]

@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342eb6"
   },
   "id" : "67fab6d59930102295342eb6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
   "title" : "$The$ con superlativos",
-  "instructions" : "Inserta $the$ o $-$ si el artículo no es necesario.",
+  "instructions" : "Elige 'the' o '-' si el artículo no es necesario.",
   "translation" : "Eres mi más querida enfermera.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -26,22 +26,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.08.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El superlativo lleva $the$, salvo cuando ya hay un posesivo delante.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You are my",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dearest nurse.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You are my",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -49,18 +84,19 @@
       "options" : null
     } ],
     "sentences" : [ "You are my - dearest nurse." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o '-' si el artículo no es necesario."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342eb7"
   },
   "id" : "67fab6d59930102295342eb7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
   "title" : "$The$ con superlativos",
-  "instructions" : "Inserta $the$ o $-$ si el artículo no es necesario.",
+  "instructions" : "Elige 'the' o '-' si el artículo no es necesario.",
   "translation" : "Ella es la chica más baja del grupo.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -78,9 +114,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.08.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El superlativo lleva $the$, salvo cuando ya hay un posesivo delante.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "shortest girl in the group.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -96,23 +167,23 @@
       "text" : "",
       "options" : [ "the" ]
     }, {
-      "kind" : "TEXT",
       "text" : "shortest girl in the group.",
-      "options" : null
-    } ],
-    "sentences" : [ "She is the shortest girl in the group." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o '-' si el artículo no es necesario."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342eb8"
   },
   "id" : "67fab6d59930102295342eb8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
   "title" : "$The$ con superlativos",
-  "instructions" : "Inserta $the$ o $-$ si el artículo no es necesario.",
+  "instructions" : "Elige 'the' o '-' si el artículo no es necesario.",
   "translation" : "Este té es el peor.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -130,15 +201,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.08.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El superlativo lleva $the$, salvo cuando ya hay un posesivo delante.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This tea is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "worst.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This tea is",
@@ -152,19 +252,26 @@
       "text" : "worst.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "This tea is the worst." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o '-' si el artículo no es necesario."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342eb9"
   },
   "id" : "67fab6d59930102295342eb9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
   "title" : "$The$ con superlativos",
-  "instructions" : "Inserta $the$ o $-$ si el artículo no es necesario.",
+  "instructions" : "Elige 'the' o '-' si el artículo no es necesario.",
   "translation" : "Robert es el más lento.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -182,10 +289,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.08.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sin sustantivo después de be, $the$ es opcional: podés omitirlo (she's tallest).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Robert is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "slowest.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -204,19 +345,20 @@
       "text" : "slowest.",
       "options" : null
     } ],
-    "sentences" : [ "Robert is - slowest." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o '-' si el artículo no es necesario."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342eba"
   },
   "id" : "67fab6d59930102295342eba",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
   "title" : "$The$ con superlativos",
-  "instructions" : "Inserta $the$ o $-$ si el artículo no es necesario.",
+  "instructions" : "Elige 'the' o '-' si el artículo no es necesario.",
   "translation" : "Sarah obtuvo la nota más baja en el examen.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -234,41 +376,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.08.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El superlativo lleva $the$, salvo cuando ya hay un posesivo delante.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Sarah got",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "lowest mark in the test.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sarah got",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "lowest mark in the test.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Sarah got the lowest mark in the test." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o '-' si el artículo no es necesario."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ebb"
   },
   "id" : "67fab6d59930102295342ebb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
   "title" : "$The$ con superlativos",
-  "instructions" : "Inserta $the$ o $-$ si el artículo no es necesario.",
+  "instructions" : "Elige 'the' o '-' si el artículo no es necesario.",
   "translation" : "¿Qué tienda es la más cercana?",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -286,10 +464,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.08.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sin sustantivo después de be, $the$ es opcional: podés omitirlo (she's tallest).",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +480,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "nearest?",
       "options" : null
     } ],
-    "sentences" : [ "Which store is - nearest?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Which store is",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "nearest?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o '-' si el artículo no es necesario."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ebc"
   },
   "id" : "67fab6d59930102295342ebc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
   "title" : "$The$ con superlativos",
-  "instructions" : "Inserta $the$ o $-$ si el artículo no es necesario.",
+  "instructions" : "Elige 'the' o '-' si el artículo no es necesario.",
   "translation" : "¿Es esta tu caja más pesada?",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -338,10 +551,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.08.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El superlativo lleva $the$, salvo cuando ya hay un posesivo delante.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +567,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "heaviest box?",
       "options" : null
     } ],
-    "sentences" : [ "Is this your - heaviest box?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is this your",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "heaviest box?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o '-' si el artículo no es necesario."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ebd"
   },
   "id" : "67fab6d59930102295342ebd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
   "title" : "$The$ con superlativos",
-  "instructions" : "Inserta $the$ o $-$ si el artículo no es necesario.",
+  "instructions" : "Elige 'the' o '-' si el artículo no es necesario.",
   "translation" : "Esta camisa es peor.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -390,41 +638,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.08.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Worse$ es comparativo, no superlativo: los comparativos no llevan the.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This shirt is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "worse.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This shirt is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "worse.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "This shirt is - worse." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o '-' si el artículo no es necesario."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ebe"
   },
   "id" : "67fab6d59930102295342ebe",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
   "title" : "$The$ con superlativos",
-  "instructions" : "Inserta $the$ o $-$ si el artículo no es necesario.",
+  "instructions" : "Elige 'the' o '-' si el artículo no es necesario.",
   "translation" : "Ella vive en la ciudad más calurosa de España.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -442,14 +726,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.08.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El superlativo lleva $the$, salvo cuando ya hay un posesivo delante.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She lives in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hottest town in Spain.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -464,19 +778,24 @@
       "text" : "hottest town in Spain.",
       "options" : null
     } ],
-    "sentences" : [ "She lives in the hottest town in Spain." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o '-' si el artículo no es necesario."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ebf"
   },
   "id" : "67fab6d59930102295342ebf",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
   "title" : "$The$ con superlativos",
-  "instructions" : "Inserta $the$ o $-$ si el artículo no es necesario.",
+  "instructions" : "Elige 'the' o '-' si el artículo no es necesario.",
   "translation" : "Ese es el coche más grande del garaje.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
@@ -494,28 +813,64 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.08.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El superlativo lleva $the$, salvo cuando ya hay un posesivo delante.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "largest car in the garage.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "largest car in the garage.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "That is the largest car in the garage." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o '-' si el artículo no es necesario."
 } ]

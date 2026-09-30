@@ -3,12 +3,12 @@
     "$oid" : "67fab6d5993010229534427f"
   },
   "id" : "67fab6d5993010229534427f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Disfruto tocar la guitarra.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "playing guitar.",
       "options" : null
     } ],
-    "sentences" : [ "I enjoy - playing guitar." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "playing guitar.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344280"
   },
   "id" : "67fab6d59930102295344280",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Disfruto la música de guitarra que toca mi padre.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -78,10 +113,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +129,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "guitar music that my father plays.",
       "options" : null
     } ],
-    "sentences" : [ "I enjoy the guitar music that my father plays." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "guitar music that my father plays.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344281"
   },
   "id" : "67fab6d59930102295344281",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Él colecciona los sellos del Reino Unido.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -130,14 +200,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He collects",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "stamps of the United Kingdom.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -152,19 +252,24 @@
       "text" : "stamps of the United Kingdom.",
       "options" : null
     } ],
-    "sentences" : [ "He collects the stamps of the United Kingdom." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344282"
   },
   "id" : "67fab6d59930102295344282",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Él colecciona sellos británicos.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -182,9 +287,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He collects",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "British stamps.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -200,23 +340,23 @@
       "text" : "",
       "options" : [ "-" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "British stamps.",
-      "options" : null
-    } ],
-    "sentences" : [ "He collects - British stamps." ]
-  }
+      "text" : "British stamps."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344283"
   },
   "id" : "67fab6d59930102295344283",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Ella adora las rosas de todos los colores en las exposiciones de jardines de primavera.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -234,41 +374,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Every$ o $any$ después de $of$ no especifican: sigue sin $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She adores",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "roses of every color in spring garden exhibitions.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She adores",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "roses of every color in spring garden exhibitions.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "She adores - roses of every color in spring garden exhibitions." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344284"
   },
   "id" : "67fab6d59930102295344284",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Ella adora las rosas que crecen allí en verano.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -286,22 +462,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She adores",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "roses that grow there in summer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She adores",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
@@ -309,18 +520,19 @@
       "options" : null
     } ],
     "sentences" : [ "She adores the roses that grow there in summer." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344285"
   },
   "id" : "67fab6d59930102295344285",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Los músicos italianos que tocaron anoche fueron increíbles.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -338,9 +550,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Italian musicians who played last night were amazing.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +606,20 @@
       "kind" : "TEXT",
       "text" : "Italian musicians who played last night were amazing.",
       "options" : null
-    } ],
-    "sentences" : [ "The Italian musicians who played last night were amazing." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344286"
   },
   "id" : "67fab6d59930102295344286",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Los músicos italianos suelen ser muy hábiles.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -390,13 +637,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Italian musicians are usually very skilled.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -412,19 +690,23 @@
       "text" : "Italian musicians are usually very skilled.",
       "options" : null
     } ],
-    "sentences" : [ "- Italian musicians are usually very skilled." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344287"
   },
   "id" : "67fab6d59930102295344287",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "A él no le gustan los rompecabezas difíciles.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -442,13 +724,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He dislikes",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "difficult puzzles.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -464,19 +777,23 @@
       "text" : "difficult puzzles.",
       "options" : null
     } ],
-    "sentences" : [ "He dislikes - difficult puzzles." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344288"
   },
   "id" : "67fab6d59930102295344288",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "A él no le gustan los rompecabezas complejos que crea su hermana.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -494,10 +811,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He dislikes",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "complex puzzles that his sister creates.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -516,19 +867,20 @@
       "text" : "complex puzzles that his sister creates.",
       "options" : null
     } ],
-    "sentences" : [ "He dislikes the complex puzzles that his sister creates." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344289"
   },
   "id" : "67fab6d59930102295344289",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Las bufandas de seda son elegantes.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -546,10 +898,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,25 +914,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "silk scarves are elegant.",
       "options" : null
     } ],
-    "sentences" : [ "- silk scarves are elegant." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "silk scarves are elegant.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534428a"
   },
   "id" : "67fab6d5993010229534428a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Las bufandas de seda que venden en esa boutique son elegantes.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -598,18 +985,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "silk scarves that they sell in that boutique are elegant.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
@@ -617,18 +1035,19 @@
       "options" : null
     } ],
     "sentences" : [ "The silk scarves that they sell in that boutique are elegant." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534428b"
   },
   "id" : "67fab6d5993010229534428b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Le apasiona la música de España.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -646,9 +1065,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's passionate about",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "music of Spain.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -667,20 +1121,20 @@
       "kind" : "TEXT",
       "text" : "music of Spain.",
       "options" : null
-    } ],
-    "sentences" : [ "He's passionate about the music of Spain." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534428c"
   },
   "id" : "67fab6d5993010229534428c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Le apasiona la música española.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -698,10 +1152,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -714,25 +1168,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Spanish music.",
       "options" : null
     } ],
-    "sentences" : [ "He's passionate about - Spanish music." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He's passionate about",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spanish music.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534428d"
   },
   "id" : "67fab6d5993010229534428d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Los coches rápidos son divertidos.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -750,10 +1239,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -766,25 +1255,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "fast cars are fun.",
       "options" : null
     } ],
-    "sentences" : [ "- fast cars are fun." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "fast cars are fun.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534428e"
   },
   "id" : "67fab6d5993010229534428e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Los coches rápidos que posee mi vecino son divertidos.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -802,10 +1326,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "fast cars that my neighbor owns are fun.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -824,19 +1382,20 @@
       "text" : "fast cars that my neighbor owns are fun.",
       "options" : null
     } ],
-    "sentences" : [ "The fast cars that my neighbor owns are fun." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534428f"
   },
   "id" : "67fab6d5993010229534428f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Ella a menudo bebe el té verde que compré en Japón.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -854,9 +1413,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She often drinks",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "green tea that I bought from Japan.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -875,20 +1469,20 @@
       "kind" : "TEXT",
       "text" : "green tea that I bought from Japan.",
       "options" : null
-    } ],
-    "sentences" : [ "She often drinks the green tea that I bought from Japan." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344290"
   },
   "id" : "67fab6d59930102295344290",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Ella a menudo bebe té verde.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -906,9 +1500,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She often drinks",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "green tea.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -924,23 +1553,23 @@
       "text" : "",
       "options" : [ "-" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "green tea.",
-      "options" : null
-    } ],
-    "sentences" : [ "She often drinks - green tea." ]
-  }
+      "text" : "green tea."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344291"
   },
   "id" : "67fab6d59930102295344291",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Sé mucho sobre el desarrollo espacial hoy.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -958,22 +1587,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I know a lot about",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "space development today.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I know a lot about",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -981,18 +1645,19 @@
       "options" : null
     } ],
     "sentences" : [ "I know a lot about - space development today." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344292"
   },
   "id" : "67fab6d59930102295344292",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d436"
   },
   "title" : "Gustos y colecciones",
-  "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
+  "instructions" : "Elige 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
   "translation" : "Sé mucho sobre la naturaleza del espacio.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
@@ -1010,28 +1675,64 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.08.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después viene $that$ o $of$, va $the$. Si hablás en general, nada.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I know a lot about",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "nature of space.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I know a lot about",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "nature of space.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "I know a lot about the nature of space." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general."
 } ]

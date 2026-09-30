@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342d12"
   },
   "id" : "67fab6d59930102295342d12",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
   "title" : "$By$ o $until$",
-  "instructions" : "Elige $by$ o $until$.",
+  "instructions" : "Elige 'by' o 'until'.",
   "translation" : "Él trabajará en la oficina hasta las 6 pm.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
@@ -26,22 +26,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.09.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$until$ es hasta cuándo sigue algo. $by$ es la fecha límite: $ready by Monday$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He'll work in the office",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "6 pm.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "until",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "until"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He'll work in the office",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "until" ]
     }, {
       "kind" : "TEXT",
@@ -55,12 +90,12 @@
     "$oid" : "67fab6d59930102295342d13"
   },
   "id" : "67fab6d59930102295342d13",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
   "title" : "$By$ o $until$",
-  "instructions" : "Elige $by$ o $until$.",
+  "instructions" : "Elige 'by' o 'until'.",
   "translation" : "Ella regresará para el 15.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
@@ -78,9 +113,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.09.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$until$ es hasta cuándo sigue algo. $by$ es la fecha límite: $ready by Monday$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She'll return",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the 15th.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "until",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "until"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -96,23 +166,22 @@
       "text" : "",
       "options" : [ "by" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "the 15th.",
-      "options" : null
-    } ],
-    "sentences" : [ "She'll return by the 15th." ]
+      "text" : "the 15th."
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d14"
   },
   "id" : "67fab6d59930102295342d14",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
   "title" : "$By$ o $until$",
-  "instructions" : "Elige $by$ o $until$.",
+  "instructions" : "Elige 'by' o 'until'.",
   "translation" : "Te estaré ayudando hasta el mediodía.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
@@ -130,22 +199,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.09.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$until$ es hasta cuándo sigue algo. $by$ es la fecha límite: $ready by Monday$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I'll be helping you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "noon.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "until",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "until"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'll be helping you",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "until" ]
     }, {
       "kind" : "TEXT",
@@ -159,12 +263,12 @@
     "$oid" : "67fab6d59930102295342d15"
   },
   "id" : "67fab6d59930102295342d15",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
   "title" : "$By$ o $until$",
-  "instructions" : "Elige $by$ o $until$.",
+  "instructions" : "Elige 'by' o 'until'.",
   "translation" : "Vivieron en Francia hasta 2003; se mudaron a Alemania.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
@@ -182,22 +286,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.09.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$until$ es hasta cuándo sigue algo. $by$ es la fecha límite: $ready by Monday$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They lived in France",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "2003; they moved to Germany.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "until",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "until"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They lived in France",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "until" ]
     }, {
       "kind" : "TEXT",
@@ -211,12 +350,12 @@
     "$oid" : "67fab6d59930102295342d16"
   },
   "id" : "67fab6d59930102295342d16",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
   "title" : "$By$ o $until$",
-  "instructions" : "Elige $by$ o $until$.",
+  "instructions" : "Elige 'by' o 'until'.",
   "translation" : "Viajaremos a Londres para agosto.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
@@ -234,22 +373,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.09.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$until$ es hasta cuándo sigue algo. $by$ es la fecha límite: $ready by Monday$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We'll travel to London",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "August.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "until",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "until"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We'll travel to London",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
@@ -263,12 +437,12 @@
     "$oid" : "67fab6d59930102295342d17"
   },
   "id" : "67fab6d59930102295342d17",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
   "title" : "$By$ o $until$",
-  "instructions" : "Elige $by$ o $until$.",
+  "instructions" : "Elige 'by' o 'until'.",
   "translation" : "Lo tendremos listo para el lunes por la mañana.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
@@ -286,10 +460,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.09.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$until$ es hasta cuándo sigue algo. $by$ es la fecha límite: $ready by Monday$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +476,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Monday morning.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "until",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "until"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "We will have it ready"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
       "text" : "Monday morning.",
       "options" : null
     } ],
-    "sentences" : [ "We will have it ready by Monday morning." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d18"
   },
   "id" : "67fab6d59930102295342d18",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
   "title" : "$By$ o $until$",
-  "instructions" : "Elige $by$ o $until$.",
+  "instructions" : "Elige 'by' o 'until'.",
   "translation" : "Él se queda en la casa del abuelo hasta el martes.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
@@ -338,22 +546,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.09.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$until$ es hasta cuándo sigue algo. $by$ es la fecha límite: $ready by Monday$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He is staying at granddad's house",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Tuesday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "until",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "until"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is staying at granddad's house",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "until" ]
     }, {
       "kind" : "TEXT",
@@ -367,12 +610,12 @@
     "$oid" : "67fab6d59930102295342d19"
   },
   "id" : "67fab6d59930102295342d19",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
   "title" : "$By$ o $until$",
-  "instructions" : "Elige $by$ o $until$.",
+  "instructions" : "Elige 'by' o 'until'.",
   "translation" : "Estudiaré hasta las 8 pm, luego tomaré un descanso.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
@@ -390,10 +633,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.09.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$until$ es hasta cuándo sigue algo. $by$ es la fecha límite: $ready by Monday$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -406,25 +649,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "until" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "8 pm, then I'll take a break.",
       "options" : null
     } ],
-    "sentences" : [ "I will study until 8 pm, then I'll take a break." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "until",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "until"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I will study"
+    }, {
+      "options" : [ "until" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "8 pm, then I'll take a break.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d1a"
   },
   "id" : "67fab6d59930102295342d1a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
   "title" : "$By$ o $until$",
-  "instructions" : "Elige $by$ o $until$.",
+  "instructions" : "Elige 'by' o 'until'.",
   "translation" : "Ella llamará para las 2 pm para que podamos discutir el plan a las 2:30.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
@@ -442,10 +719,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.09.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$until$ es hasta cuándo sigue algo. $by$ es la fecha límite: $ready by Monday$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +735,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "by" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "2 pm so we can all discuss the plan at 2:30.",
       "options" : null
     } ],
-    "sentences" : [ "She will call by 2 pm so we can all discuss the plan at 2:30." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "until",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "until"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "She will call",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "by" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "2 pm so we can all discuss the plan at 2:30.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342d1b"
   },
   "id" : "67fab6d59930102295342d1b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
   "title" : "$By$ o $until$",
-  "instructions" : "Elige $by$ o $until$.",
+  "instructions" : "Elige 'by' o 'until'.",
   "translation" : "Los invitados deben llegar para las 7 pm.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
@@ -494,22 +805,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.09.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$until$ es hasta cuándo sigue algo. $by$ es la fecha límite: $ready by Monday$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The guests need to arrive",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "7 pm.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "until",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "until"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The guests need to arrive",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",

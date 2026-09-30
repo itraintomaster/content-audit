@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295343cf3"
   },
   "id" : "67fab6d59930102295343cf3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Encendimos la máquina presionando el botón.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "by" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "pressing the button.",
       "options" : null
     } ],
-    "sentences" : [ "We started the machine by pressing the button." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We started the machine",
+      "options" : null
+    }, {
+      "options" : [ "by" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "pressing the button."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cf4"
   },
   "id" : "67fab6d59930102295343cf4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Escribimos cartas con nuestros bolígrafos.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -78,10 +113,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +129,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "with" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "our pens.",
       "options" : null
     } ],
-    "sentences" : [ "We wrote letters with our pens." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We wrote letters",
+      "options" : null
+    }, {
+      "options" : [ "with" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "our pens.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cf5"
   },
   "id" : "67fab6d59930102295343cf5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Me relajo nadando y tomando el sol en la playa.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -130,22 +200,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I relax",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "swimming and sunbathing at the beach.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I relax",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
@@ -153,18 +258,19 @@
       "options" : null
     } ],
     "sentences" : [ "I relax by swimming and sunbathing at the beach." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cf6"
   },
   "id" : "67fab6d59930102295343cf6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Hicieron explotar el edificio viejo con dinamita.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -182,41 +288,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They exploded the old building",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dynamite.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They exploded the old building",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "dynamite.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "They exploded the old building with dynamite." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cf7"
   },
   "id" : "67fab6d59930102295343cf7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Ella removió el café con una cuchara.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -234,10 +376,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +392,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "with" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "a spoon.",
       "options" : null
     } ],
-    "sentences" : [ "She stirred the coffee with a spoon." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "She stirred the coffee",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a spoon.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cf8"
   },
   "id" : "67fab6d59930102295343cf8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Ella mejoró su salud trotando.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -286,9 +463,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She improved her health",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "jogging.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -304,23 +516,23 @@
       "text" : "",
       "options" : [ "by" ]
     }, {
-      "kind" : "TEXT",
       "text" : "jogging.",
-      "options" : null
-    } ],
-    "sentences" : [ "She improved her health by jogging." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cf9"
   },
   "id" : "67fab6d59930102295343cf9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Arreglé los pantalones con un alfiler.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -338,41 +550,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I fixed the trousers",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a pin.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I fixed the trousers",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "a pin.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "I fixed the trousers with a pin." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cfa"
   },
   "id" : "67fab6d59930102295343cfa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Él limpió el piso de la cocina con un trapeador viejo.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -390,22 +638,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He cleaned the kitchen floor",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "an old mop.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He cleaned the kitchen floor",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
@@ -413,18 +696,19 @@
       "options" : null
     } ],
     "sentences" : [ "He cleaned the kitchen floor with an old mop." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cfb"
   },
   "id" : "67fab6d59930102295343cfb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Abrimos la puerta girando la llave.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -442,41 +726,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We opened the door",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "turning the key.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We opened the door",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
       "text" : "turning the key.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "We opened the door by turning the key." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cfc"
   },
   "id" : "67fab6d59930102295343cfc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Ella dañó el jarrón al golpearlo.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -494,41 +814,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She damaged the vase",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "knocking it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She damaged the vase",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
       "text" : "knocking it.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "She damaged the vase by knocking it." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cfd"
   },
   "id" : "67fab6d59930102295343cfd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Molesté a todos en la habitación gritando.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -546,22 +902,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I annoyed everyone in the room",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "shouting.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I annoyed everyone in the room",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
@@ -569,18 +960,19 @@
       "options" : null
     } ],
     "sentences" : [ "I annoyed everyone in the room by shouting." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cfe"
   },
   "id" : "67fab6d59930102295343cfe",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Ella conectó la caja fuerte con un cable.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -598,22 +990,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She connected the safe",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a cable.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She connected the safe",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
@@ -621,18 +1048,19 @@
       "options" : null
     } ],
     "sentences" : [ "She connected the safe with a cable." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cff"
   },
   "id" : "67fab6d59930102295343cff",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Él se calmó escuchando música.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -650,14 +1078,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He calmed himself down",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "listening to music.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -672,19 +1130,24 @@
       "text" : "listening to music.",
       "options" : null
     } ],
-    "sentences" : [ "He calmed himself down by listening to music." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d00"
   },
   "id" : "67fab6d59930102295343d00",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Él mezcló la ensalada con un tenedor.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -702,10 +1165,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -718,25 +1181,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "with" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "a fork.",
       "options" : null
     } ],
-    "sentences" : [ "He mixed the salad with a fork." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He mixed the salad"
+    }, {
+      "text" : "",
+      "options" : [ "with" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "a fork.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d01"
   },
   "id" : "67fab6d59930102295343d01",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Ella estropeó el postre agregando demasiada sal.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -754,41 +1252,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She spoiled the dessert",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "adding too much salt.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She spoiled the dessert",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
       "text" : "adding too much salt.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "She spoiled the dessert by adding too much salt." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d02"
   },
   "id" : "67fab6d59930102295343d02",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Ella lo sostuvo con ambas manos.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -806,13 +1340,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She held it",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "both hands.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -828,19 +1393,23 @@
       "text" : "both hands.",
       "options" : null
     } ],
-    "sentences" : [ "She held it with both hands." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d03"
   },
   "id" : "67fab6d59930102295343d03",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Él cerró la puerta empujándola.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -858,41 +1427,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He closed the door",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pushing it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He closed the door",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
       "text" : "pushing it.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "He closed the door by pushing it." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d04"
   },
   "id" : "67fab6d59930102295343d04",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Giramos el tornillo pequeño con el pulgar.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -910,41 +1515,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We turned the small screw",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "our thumb.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We turned the small screw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "our thumb.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "We turned the small screw with our thumb." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d05"
   },
   "id" : "67fab6d59930102295343d05",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "El hombre atacó a su esposa con una pistola.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -962,41 +1603,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The man attacked his wife",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a gun.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The man attacked his wife",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "a gun.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "The man attacked his wife with a gun." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343d06"
   },
   "id" : "67fab6d59930102295343d06",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
   "title" : "Medio o instrumento",
-  "instructions" : "Insertar $by$ o $with$.",
+  "instructions" : "Elige 'by' o 'with'.",
   "translation" : "Detuvieron la bicicleta controlándola.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
@@ -1014,28 +1691,1832 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.10.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They stopped the bike",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "controlling it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They stopped the bike",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
       "text" : "controlling it.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "They stopped the bike by controlling it." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir 'by' o 'with'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a12"
+  },
+  "id" : "67fab6d59930102295344a12",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Ella abrió la puerta usando una llave.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She unlocked the door",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "using a key.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She unlocked the door"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "by" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "using a key.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a13"
+  },
+  "id" : "67fab6d59930102295344a13",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Pinté el cuadro en la escuela con acuarelas.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I painted the picture at school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "watercolor paints.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I painted the picture at school",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "watercolor paints.",
+      "options" : null
+    } ],
+    "sentences" : [ "I painted the picture at school with watercolor paints." ]
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a14"
+  },
+  "id" : "67fab6d59930102295344a14",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Se hizo fuerte levantando pesas regularmente.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He became strong",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "lifting weights regularly.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He became strong",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "by" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "lifting weights regularly.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a15"
+  },
+  "id" : "67fab6d59930102295344a15",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Ella reparó la bicicleta vieja reemplazando las ruedas.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She repaired the old bicycle",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "replacing the wheels.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She repaired the old bicycle",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "by" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "replacing the wheels.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "She repaired the old bicycle by replacing the wheels." ]
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a16"
+  },
+  "id" : "67fab6d59930102295344a16",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Sostuve la puerta abierta con mi hombro.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I held the door open",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my shoulder.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I held the door open",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "my shoulder.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a17"
+  },
+  "id" : "67fab6d59930102295344a17",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Puedo arreglar esa radio vieja con mi caja de herramientas.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I can fix that old radio",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my toolbox.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I can fix that old radio",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "my toolbox.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "I can fix that old radio with my toolbox." ]
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a18"
+  },
+  "id" : "67fab6d59930102295344a18",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Ella escribió la carta con una pluma.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wrote the letter",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a pen.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wrote the letter",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "a pen."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a19"
+  },
+  "id" : "67fab6d59930102295344a19",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Él ganó experiencia trabajando en el hospital local.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He gained experience",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "working at the local hospital.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He gained experience",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "by" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "working at the local hospital.",
+      "options" : null
+    } ],
+    "sentences" : [ "He gained experience by working at the local hospital." ]
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a1a"
+  },
+  "id" : "67fab6d59930102295344a1a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Ella atrapó la pelota con su mano derecha.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She caught the ball",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "her right hand.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She caught the ball",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "her right hand.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a1b"
+  },
+  "id" : "67fab6d59930102295344a1b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Él barrió las hojas del sendero con un rastrillo.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He swept the leaves off the path",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a rake.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He swept the leaves off the path",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a rake.",
+      "options" : null
+    } ],
+    "sentences" : [ "He swept the leaves off the path with a rake." ]
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a1c"
+  },
+  "id" : "67fab6d59930102295344a1c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Ella rebanó el pan con un cuchillo de pan.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She sliced the bread",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a bread knife.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She sliced the bread",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a bread knife.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a1d"
+  },
+  "id" : "67fab6d59930102295344a1d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Ellos arruinaron el pastel quemándolo.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They ruined the cake",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "burning it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They ruined the cake",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "by" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "burning it."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a1e"
+  },
+  "id" : "67fab6d59930102295344a1e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Limpiamos la casa con productos de limpieza.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We cleaned the house",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cleaning products.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We cleaned the house",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "cleaning products.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a1f"
+  },
+  "id" : "67fab6d59930102295344a1f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Ella cortó el papel grueso con un cortador rotatorio.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She cut the thick paper",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a rotary cutter.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She cut the thick paper",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a rotary cutter.",
+      "options" : null
+    } ],
+    "sentences" : [ "She cut the thick paper with a rotary cutter." ]
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a20"
+  },
+  "id" : "67fab6d59930102295344a20",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Ellos aprendieron el material leyendo el libro de texto.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They learned the material",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "reading the textbook.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They learned the material",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "by" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "reading the textbook.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a21"
+  },
+  "id" : "67fab6d59930102295344a21",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Me mantuve concentrado tomando descansos.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I stayed focused",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "taking breaks.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I stayed focused",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "by" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "taking breaks.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a22"
+  },
+  "id" : "67fab6d59930102295344a22",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "¡Ellos cambiaron su futuro estudiando mucho!",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They changed their future",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "studying hard!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They changed their future",
+      "options" : null
+    }, {
+      "options" : [ "by" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "studying hard!",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a23"
+  },
+  "id" : "67fab6d59930102295344a23",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Ella peinó su cabello con un cepillo antes de la fiesta.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She styled her hair",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a hairbrush before the party.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She styled her hair",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "with" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a hairbrush before the party.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "She styled her hair with a hairbrush before the party." ]
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a24"
+  },
+  "id" : "67fab6d59930102295344a24",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Él revolvió la sopa usando una cuchara.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He stirred the soup",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "using a spoon.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He stirred the soup",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "by" ]
+    }, {
+      "text" : "using a spoon.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344a25"
+  },
+  "id" : "67fab6d59930102295344a25",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d37a"
+  },
+  "title" : "Medio o instrumento",
+  "instructions" : "Elige 'by' o 'with'.",
+  "translation" : "Controlo la luz de la cocina accionando el interruptor.",
+  "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
+  "topicName" : "Prepositions",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.15.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$by$ + $-ing$ dice cómo lo lográs. $with$ va con el objeto que usás.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I control the kitchen light",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "flipping the switch.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "by",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "by"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I control the kitchen light",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "by" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "flipping the switch.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "I control the kitchen light by flipping the switch." ]
+  },
+  "instructionsAnteriores" : "Elegí 'by' o 'with' en el espacio correspondiente.",
+  "instructionsAntesDeRevisar" : "Elige 'by' o 'with' en el espacio correspondiente."
 } ]

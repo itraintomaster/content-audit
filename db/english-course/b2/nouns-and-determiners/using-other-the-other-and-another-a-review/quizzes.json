@@ -3,14 +3,14 @@
     "$oid" : "67fab6d5993010229534421b"
   },
   "id" : "67fab6d5993010229534421b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Ellos comieron estas galletas y nosotros comimos las otras galletas.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,27 +42,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the other" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "cookies. (Specific other cookies.)",
       "options" : null
     } ],
-    "sentences" : [ "They ate these cookies and we ate the other cookies." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They ate these cookies and we ate",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "the other" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "cookies. (Specific other cookies.)",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534421c"
   },
   "id" : "67fab6d5993010229534421c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "¿Tienes otras mascotas?",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -78,10 +118,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,27 +134,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "other" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "pets?",
       "options" : null
     } ],
-    "sentences" : [ "Do you have any other pets?" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Do you have any",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pets?",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534421d"
   },
   "id" : "67fab6d5993010229534421d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Él sostuvo el libro en su otra mano.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -130,10 +210,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con posesivo (his, her, my) el $the$ se cae: queda sólo $other$, aunque sea singular.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,27 +226,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "other" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "hand.",
       "options" : null
     } ],
-    "sentences" : [ "He held the book in his other hand." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He held the book in his"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "hand.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534421e"
   },
   "id" : "67fab6d5993010229534421e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Algunos otros pájaros estaban cantando hoy en el jardín.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -182,14 +302,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Some",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "birds were singing in the garden today.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -204,21 +360,25 @@
       "text" : "birds were singing in the garden today.",
       "options" : null
     } ],
-    "sentences" : [ "Some other birds were singing in the garden today." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534421f"
   },
   "id" : "67fab6d5993010229534421f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Me gustó el otro sombrero.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -234,9 +394,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I liked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hat. (There is only one other hat.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -255,22 +456,21 @@
       "kind" : "TEXT",
       "text" : "hat. (There is only one other hat.)",
       "options" : null
-    } ],
-    "sentences" : [ "I liked the other hat." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344220"
   },
   "id" : "67fab6d59930102295344220",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "¿Podría ver tu otro abrigo?",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -286,15 +486,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con posesivo (his, her, my) el $the$ se cae: queda sólo $other$, aunque sea singular.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could I see your",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "coat?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Could I see your",
@@ -308,21 +543,26 @@
       "text" : "coat?",
       "options" : null
     } ],
-    "sentences" : [ "Could I see your other coat?" ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344221"
   },
   "id" : "67fab6d59930102295344221",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "¿Podrías traerme otro?",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -338,15 +578,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you bring me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "one? (There are many and I want one of them.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Could you bring me",
@@ -360,21 +635,26 @@
       "text" : "one? (There are many and I want one of them.)",
       "options" : null
     } ],
-    "sentences" : [ "Could you bring me another one?" ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344222"
   },
   "id" : "67fab6d59930102295344222",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "¿Tienes otro bolígrafo?",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -390,10 +670,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pen? (Any pen.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -408,25 +728,25 @@
       "text" : "",
       "options" : [ "another" ]
     }, {
-      "kind" : "TEXT",
       "text" : "pen? (Any pen.)",
-      "options" : null
+      "options" : null,
+      "kind" : "TEXT"
     } ],
-    "sentences" : [ "Do you have another pen?" ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344223"
   },
   "id" : "67fab6d59930102295344223",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Me gustaría otro sándwich.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -442,10 +762,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,27 +778,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sandwich. (There are lots of sandwiches.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I'd like",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "another" ]
     }, {
       "kind" : "TEXT",
       "text" : "sandwich. (There are lots of sandwiches.)",
       "options" : null
     } ],
-    "sentences" : [ "I'd like another sandwich." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344224"
   },
   "id" : "67fab6d59930102295344224",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Por favor, pásame otra manzana.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -494,9 +854,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Please pass me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "apple. (Any apple.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -512,25 +913,24 @@
       "text" : "",
       "options" : [ "another" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "apple. (Any apple.)",
-      "options" : null
-    } ],
-    "sentences" : [ "Please pass me another apple." ]
+      "text" : "apple. (Any apple.)"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344225"
   },
   "id" : "67fab6d59930102295344225",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "¡Otros profesores parecen ser capaces de explicarlo!",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -546,10 +946,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,27 +962,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Other" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "teachers seem to be able to explain it! (Other teachers in general.)",
       "options" : null
     } ],
-    "sentences" : [ "Other teachers seem to be able to explain it!" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "Other" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "teachers seem to be able to explain it! (Other teachers in general.)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344226"
   },
   "id" : "67fab6d59930102295344226",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Los otros gatos huyeron.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -598,9 +1038,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cats all ran away. (Specific other cats.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -619,22 +1100,21 @@
       "kind" : "TEXT",
       "text" : "cats all ran away. (Specific other cats.)",
       "options" : null
-    } ],
-    "sentences" : [ "The other cats all ran away." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344227"
   },
   "id" : "67fab6d59930102295344227",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Los otros jugadores ganaron el partido.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -650,10 +1130,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -666,27 +1146,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "The other" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "players won the game. (Specific players.)",
       "options" : null
     } ],
-    "sentences" : [ "The other players won the game." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "The other" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "players won the game. (Specific players.)",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344228"
   },
   "id" : "67fab6d59930102295344228",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Hubo otra llamada en el teléfono.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -702,9 +1222,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "call on the phone. (I wasn't expecting it.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -720,25 +1281,24 @@
       "text" : "",
       "options" : [ "another" ]
     }, {
-      "kind" : "TEXT",
       "text" : "call on the phone. (I wasn't expecting it.)",
-      "options" : null
-    } ],
-    "sentences" : [ "There was another call on the phone." ]
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295344229"
   },
   "id" : "67fab6d59930102295344229",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Él le dio otro pedazo de pastel.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -754,10 +1314,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,27 +1330,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "another" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "piece of cake. (Not a specific piece.)",
       "options" : null
     } ],
-    "sentences" : [ "He gave her another piece of cake." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He gave her",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "another" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "piece of cake. (Not a specific piece.)",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534422a"
   },
   "id" : "67fab6d5993010229534422a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Las otras chicas podían saltar más alto.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -806,10 +1406,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "girls could jump higher. (Specific other girls.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -824,25 +1464,25 @@
       "text" : "",
       "options" : [ "The other" ]
     }, {
-      "kind" : "TEXT",
       "text" : "girls could jump higher. (Specific other girls.)",
-      "options" : null
+      "options" : null,
+      "kind" : "TEXT"
     } ],
-    "sentences" : [ "The other girls could jump higher." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534422b"
   },
   "id" : "67fab6d5993010229534422b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "¿Tienes otra bicicleta?",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -858,10 +1498,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,27 +1514,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "another" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "bike? (Not a specific bike.)",
       "options" : null
     } ],
-    "sentences" : [ "Do you have another bike?" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have",
+      "options" : null
+    }, {
+      "options" : [ "another" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "bike? (Not a specific bike.)",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534422c"
   },
   "id" : "67fab6d5993010229534422c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Cerremos la otra puerta.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -910,13 +1590,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's close",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "door. (There is only one more door.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -932,21 +1649,24 @@
       "text" : "door. (There is only one more door.)",
       "options" : null
     } ],
-    "sentences" : [ "Let's close the other door." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534422d"
   },
   "id" : "67fab6d5993010229534422d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "Otras ciudades son más frías que aquí.",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -962,10 +1682,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -978,27 +1698,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Other" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "cities are colder than here. (Other cities in general.)",
       "options" : null
     } ],
-    "sentences" : [ "Other cities are colder than here." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Other" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "cities are colder than here. (Other cities in general.)"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534422e"
   },
   "id" : "67fab6d5993010229534422e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d431"
   },
   "title" : "Contraste triple",
-  "instructions" : "¿Necesitamos $other$, $the other$ o $another$?",
+  "instructions" : "¿Necesitamos 'other', 'the other' o 'another'?",
   "translation" : "¿Preferirías la otra taza?",
-  "theoryId" : "",
+  "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -1014,10 +1774,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.03.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más, $other$ va con plural, y $the other$ es el que queda.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1030,12 +1790,52 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cup? (There is only one other cup.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "other"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Would you prefer"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the other" ]
     }, {
       "kind" : "TEXT",
       "text" : "cup? (There is only one other cup.)",
       "options" : null
     } ],
-    "sentences" : [ "Would you prefer the other cup?" ]
+    "kind" : "CLOZE"
   }
 } ]

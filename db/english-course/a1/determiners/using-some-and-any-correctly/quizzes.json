@@ -3,12 +3,12 @@
     "$oid" : "67fab6d5993010229534238f"
   },
   "id" : "67fab6d5993010229534238f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "Él no tiene azúcar.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -26,9 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He doesn't have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sugar.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,20 +82,21 @@
       "kind" : "TEXT",
       "text" : "sugar.",
       "options" : null
-    } ],
-    "sentences" : [ "He doesn't have any sugar." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342390"
   },
   "id" : "67fab6d59930102295342390",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "Ellos no tienen mascotas.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -78,14 +114,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They haven't got",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pets.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -100,19 +166,25 @@
       "text" : "pets.",
       "options" : null
     } ],
-    "sentences" : [ "They haven't got any pets." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342391"
   },
   "id" : "67fab6d59930102295342391",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "Ellos comieron arroz.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -130,22 +202,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They ate",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "rice.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
@@ -153,18 +260,20 @@
       "options" : null
     } ],
     "sentences" : [ "They ate some rice." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342392"
   },
   "id" : "67fab6d59930102295342392",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "¿Escuchaste música?",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -182,9 +291,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you hear",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "music?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +347,21 @@
       "kind" : "TEXT",
       "text" : "music?",
       "options" : null
-    } ],
-    "sentences" : [ "Did you hear any music?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342393"
   },
   "id" : "67fab6d59930102295342393",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "Me gustaría un poco de jugo.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -234,10 +379,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +395,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "some" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "juice.",
       "options" : null
     } ],
-    "sentences" : [ "I would like some juice." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I would like",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "some" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "juice.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342394"
   },
   "id" : "67fab6d59930102295342394",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "¿Tienes algún DVD en casa?",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -286,22 +467,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "DVDs at home?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "any" ]
     }, {
       "kind" : "TEXT",
@@ -309,18 +525,20 @@
       "options" : null
     } ],
     "sentences" : [ "Do you have any DVDs at home?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342395"
   },
   "id" : "67fab6d59930102295342395",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "No tenemos clases.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -338,13 +556,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We don't have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "lessons.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -360,19 +609,24 @@
       "text" : "lessons.",
       "options" : null
     } ],
-    "sentences" : [ "We don't have any lessons." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342396"
   },
   "id" : "67fab6d59930102295342396",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "¿Ella necesita azúcar?",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -390,9 +644,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Does she need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sugar?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -411,20 +700,21 @@
       "kind" : "TEXT",
       "text" : "sugar?",
       "options" : null
-    } ],
-    "sentences" : [ "Does she need any sugar?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342397"
   },
   "id" : "67fab6d59930102295342397",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "Hicimos algunas preguntas.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -442,22 +732,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We asked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "questions.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We asked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
@@ -465,18 +790,20 @@
       "options" : null
     } ],
     "sentences" : [ "We asked some questions." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342398"
   },
   "id" : "67fab6d59930102295342398",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "Él hizo algo de almuerzo.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -494,41 +821,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He made",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "lunch.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He made",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "lunch.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "He made some lunch." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342399"
   },
   "id" : "67fab6d59930102295342399",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "¿Tienen algún problema?",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -546,41 +910,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do they have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "problems?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do they have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "any" ]
     }, {
       "kind" : "TEXT",
       "text" : "problems?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Do they have any problems?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534239a"
   },
   "id" : "67fab6d5993010229534239a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "Compraron algunas galletas.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -598,41 +999,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They bought",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "biscuits.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They bought",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "biscuits.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "They bought some biscuits." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534239b"
   },
   "id" : "67fab6d5993010229534239b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "Ella comió algo de carne.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -650,41 +1088,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She had",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "meat.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She had",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "meat.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "She had some meat." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534239c"
   },
   "id" : "67fab6d5993010229534239c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "Necesitan algo de ropa.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -702,22 +1177,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "clothes.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
@@ -725,18 +1235,20 @@
       "options" : null
     } ],
     "sentences" : [ "They need some clothes." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534239d"
   },
   "id" : "67fab6d5993010229534239d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "¿Encontraste huevos?",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -754,9 +1266,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you find",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "eggs?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -775,20 +1322,21 @@
       "kind" : "TEXT",
       "text" : "eggs?",
       "options" : null
-    } ],
-    "sentences" : [ "Did you find any eggs?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534239e"
   },
   "id" : "67fab6d5993010229534239e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "No quiero dulces.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -806,41 +1354,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I don't want",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "candies.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't want",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "any" ]
     }, {
       "kind" : "TEXT",
       "text" : "candies.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "I don't want any candies." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534239f"
   },
   "id" : "67fab6d5993010229534239f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "Quiero queso.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -858,22 +1443,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I want",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cheese.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I want",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
@@ -881,18 +1501,20 @@
       "options" : null
     } ],
     "sentences" : [ "I want some cheese." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423a0"
   },
   "id" : "67fab6d599301022953423a0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "Uso un poco de sal.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -910,22 +1532,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I use",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "salt.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I use",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
@@ -933,18 +1590,20 @@
       "options" : null
     } ],
     "sentences" : [ "I use some salt." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423a1"
   },
   "id" : "67fab6d599301022953423a1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "Vimos algunos árboles.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -962,41 +1621,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We saw",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "trees.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "trees.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "We saw some trees." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423a2"
   },
   "id" : "67fab6d599301022953423a2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
   "title" : "$Some$ y $any$",
-  "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
+  "instructions" : "Elige 'some' o 'any'.",
   "translation" : "No tuvieron tiempo.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
@@ -1014,22 +1710,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.02.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They didn't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They didn't have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "any" ]
     }, {
       "kind" : "TEXT",
@@ -1037,5 +1768,1772 @@
       "options" : null
     } ],
     "sentences" : [ "They didn't have any time." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ad8"
+  },
+  "id" : "67fab6d59930102295342ad8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Ella horneó algunas galletas.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She baked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cookies.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She baked"
+    }, {
+      "text" : "",
+      "options" : [ "some" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "cookies."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ad9"
+  },
+  "id" : "67fab6d59930102295342ad9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Ellos no tienen azúcar.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They don't have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sugar.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They don't have"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "any" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "sugar."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ada"
+  },
+  "id" : "67fab6d59930102295342ada",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Ella no quiere ningún detalle.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't want",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "details.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't want",
+      "options" : null
+    }, {
+      "options" : [ "any" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "details.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342adb"
+  },
+  "id" : "67fab6d59930102295342adb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Ellos no necesitan comida.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They don't need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "food.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They don't need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "any" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "food.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342adc"
+  },
+  "id" : "67fab6d59930102295342adc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "¿Tienes algún objetivo?",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "goals?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "any" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "goals?",
+      "options" : null
+    } ],
+    "sentences" : [ "Do you have any goals?" ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342add"
+  },
+  "id" : "67fab6d59930102295342add",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Ellos comieron pan.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bread.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bread.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ade"
+  },
+  "id" : "67fab6d59930102295342ade",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "¿Tienes primos?",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cousins?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "any" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "cousins?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342adf"
+  },
+  "id" : "67fab6d59930102295342adf",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Queremos algo de personal.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We want",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "staff.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We want",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "staff.",
+      "options" : null
+    } ],
+    "sentences" : [ "We want some staff." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ae0"
+  },
+  "id" : "67fab6d59930102295342ae0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Ella no tiene mascotas.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pets.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She doesn't have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "any" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pets.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ae1"
+  },
+  "id" : "67fab6d59930102295342ae1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Compré fruta.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I bought",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "fruit.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I bought",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "fruit.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ae2"
+  },
+  "id" : "67fab6d59930102295342ae2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Ella encontró algunos juguetes.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She found",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "toys.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She found"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "toys.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ae3"
+  },
+  "id" : "67fab6d59930102295342ae3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Ellos necesitan algo de orientación.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "direction.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "direction.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "They need some direction." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ae4"
+  },
+  "id" : "67fab6d59930102295342ae4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "No tengo tiempo libre.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "free time.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I don't have",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "any" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "free time.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ae5"
+  },
+  "id" : "67fab6d59930102295342ae5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "¿Los estudiantes tienen exámenes?",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do the students have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "tests?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do the students have",
+      "options" : null
+    }, {
+      "options" : [ "any" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "tests?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ae6"
+  },
+  "id" : "67fab6d59930102295342ae6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "¿Sienten algún dolor?",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do they feel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pain?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do they feel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "any" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pain?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "Do they feel any pain?" ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ae7"
+  },
+  "id" : "67fab6d59930102295342ae7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "¿Quiere ella arroz?",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Does she want",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "rice?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Does she want",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "any" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "rice?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ae8"
+  },
+  "id" : "67fab6d59930102295342ae8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Ella tiene algunas lámparas.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "lamps.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "lamps.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "She has some lamps." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ae9"
+  },
+  "id" : "67fab6d59930102295342ae9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Los estudiantes leyeron algunos libros.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students read",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "books.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "The students read",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "books.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342aea"
+  },
+  "id" : "67fab6d59930102295342aea",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Necesitamos huevos.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "eggs.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We need",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "some" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "eggs."
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342aeb"
+  },
+  "id" : "67fab6d59930102295342aeb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3cd"
+  },
+  "title" : "$Some$ y $any$",
+  "instructions" : "Elige 'some' o 'any'.",
+  "translation" : "Ella nos ofreció ayuda.",
+  "theoryId" : "a1.07.Some_and_Any",
+  "topicName" : "Determiners",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.07.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$some$ en las afirmativas. $any$ en las negativas y en las preguntas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She offered us",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "help.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "any",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "any"
+    }, {
+      "id" : "some",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "some"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She offered us",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "some" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "help.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'some' o 'any'.",
+  "instructionsAntesDeRevisar" : "Elige con 'some' o 'any'."
 } ]

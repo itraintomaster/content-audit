@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295343c35"
   },
   "id" : "67fab6d59930102295343c35",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Prefiero viajar a Francia que a Alemania este verano.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -26,10 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "travel to France than Germany this summer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -48,19 +82,20 @@
       "text" : "travel to France than Germany this summer.",
       "options" : null
     } ],
-    "sentences" : [ "I would rather travel to France than Germany this summer." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c36"
   },
   "id" : "67fab6d59930102295343c36",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Ella prefiere té a café.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -78,9 +113,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She prefers tea",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "coffee.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -96,23 +166,23 @@
       "text" : "",
       "options" : [ "rather than" ]
     }, {
-      "kind" : "TEXT",
       "text" : "coffee.",
-      "options" : null
-    } ],
-    "sentences" : [ "She prefers tea rather than coffee." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c37"
   },
   "id" : "67fab6d59930102295343c37",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Él planea aprender español en lugar de italiano.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -130,10 +200,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,25 +216,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "rather than" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Italian.",
       "options" : null
     } ],
-    "sentences" : [ "He is planning to learn Spanish rather than Italian." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is planning to learn Spanish",
+      "options" : null
+    }, {
+      "options" : [ "rather than" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "Italian.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c38"
   },
   "id" : "67fab6d59930102295343c38",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Prefiere dormir ahora.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -182,9 +287,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sleep now.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +343,20 @@
       "kind" : "TEXT",
       "text" : "sleep now.",
       "options" : null
-    } ],
-    "sentences" : [ "He would rather sleep now." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c39"
   },
   "id" : "67fab6d59930102295343c39",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Los estudiantes prefieren jugar afuera.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -234,9 +374,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "play outside.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -255,20 +430,20 @@
       "kind" : "TEXT",
       "text" : "play outside.",
       "options" : null
-    } ],
-    "sentences" : [ "The students would rather play outside." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c3a"
   },
   "id" : "67fab6d59930102295343c3a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Podemos ir en bicicleta en lugar de usar el autobús.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -286,10 +461,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +477,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "rather than" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "use the bus.",
       "options" : null
     } ],
-    "sentences" : [ "We can cycle rather than use the bus." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We can cycle",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "rather than" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "use the bus.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c3b"
   },
   "id" : "67fab6d59930102295343c3b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Ella prefiere ir al parque hoy.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -338,9 +548,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "go to the park today.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +604,20 @@
       "kind" : "TEXT",
       "text" : "go to the park today.",
       "options" : null
-    } ],
-    "sentences" : [ "She would rather go to the park today." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c3c"
   },
   "id" : "67fab6d59930102295343c3c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "¡Deberíamos escuchar música en lugar de quedarnos en silencio todo el día!",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -390,10 +635,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -406,25 +651,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "rather than" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "stay in silence all day!",
       "options" : null
     } ],
-    "sentences" : [ "We should listen to music rather than stay in silence all day!" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "We should listen to music",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "rather than" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "stay in silence all day!"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c3d"
   },
   "id" : "67fab6d59930102295343c3d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Ella compra manzanas en lugar de naranjas.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -442,10 +722,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +738,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "rather than" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "oranges.",
       "options" : null
     } ],
-    "sentences" : [ "She buys apples rather than oranges." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She buys apples",
+      "options" : null
+    }, {
+      "options" : [ "rather than" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "oranges.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c3e"
   },
   "id" : "67fab6d59930102295343c3e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Prefiero aprender alemán que jugar videojuegos.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -494,10 +809,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,25 +825,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "learn German than play videogames.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "would rather" ]
     }, {
       "kind" : "TEXT",
       "text" : "learn German than play videogames.",
       "options" : null
     } ],
-    "sentences" : [ "I would rather learn German than play videogames." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c3f"
   },
   "id" : "67fab6d59930102295343c3f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Él preferiría vernos la semana que viene.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -546,10 +896,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,25 +912,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "would rather" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "see us next week.",
       "options" : null
     } ],
-    "sentences" : [ "He would rather see us next week." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "would rather" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "see us next week.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c40"
   },
   "id" : "67fab6d59930102295343c40",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Trabajan en una oficina en lugar de una fábrica.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -598,10 +983,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -614,25 +999,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "rather than" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "a factory.",
       "options" : null
     } ],
-    "sentences" : [ "They work in an office rather than a factory." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They work in an office",
+      "options" : null
+    }, {
+      "options" : [ "rather than" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "a factory.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c41"
   },
   "id" : "67fab6d59930102295343c41",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Ella preferiría cambiar de carrera que continuar allí.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -650,9 +1070,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "change her career than continue there.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -668,23 +1123,23 @@
       "text" : "",
       "options" : [ "would rather" ]
     }, {
-      "kind" : "TEXT",
       "text" : "change her career than continue there.",
-      "options" : null
-    } ],
-    "sentences" : [ "She would rather change her career than continue there." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c42"
   },
   "id" : "67fab6d59930102295343c42",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Me gustaría un plato en lugar de un tazón.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -702,10 +1157,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -718,25 +1173,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "rather than" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "a bowl.",
       "options" : null
     } ],
-    "sentences" : [ "I'd like a plate rather than a bowl." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I'd like a plate",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "rather than" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "a bowl."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c43"
   },
   "id" : "67fab6d59930102295343c43",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Preferirían tomar té.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -754,10 +1244,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1260,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "would rather" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "have tea.",
       "options" : null
     } ],
-    "sentences" : [ "They would rather have tea." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They"
+    }, {
+      "text" : "",
+      "options" : [ "would rather" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "have tea."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c44"
   },
   "id" : "67fab6d59930102295343c44",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Yo preferiría hacerlo en esta situación.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -806,9 +1331,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "do so in this situation.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -829,18 +1389,19 @@
       "options" : null
     } ],
     "sentences" : [ "I would rather do so in this situation." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c45"
   },
   "id" : "67fab6d59930102295343c45",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Ella quiere un bolso nuevo en lugar de zapatos.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -858,10 +1419,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,25 +1435,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "rather than" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "shoes.",
       "options" : null
     } ],
-    "sentences" : [ "She wants a new bag rather than shoes." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She wants a new bag"
+    }, {
+      "options" : [ "rather than" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "shoes.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c46"
   },
   "id" : "67fab6d59930102295343c46",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Él prefiere leer novelas que revistas.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -910,10 +1506,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -926,25 +1522,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "rather than" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "magazines.",
       "options" : null
     } ],
-    "sentences" : [ "He prefers to read novels rather than magazines." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He prefers to read novels",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "rather than" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "magazines.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c47"
   },
   "id" : "67fab6d59930102295343c47",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Preferiríamos cenar más tarde.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -962,9 +1593,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "have dinner later.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -983,20 +1649,20 @@
       "kind" : "TEXT",
       "text" : "have dinner later.",
       "options" : null
-    } ],
-    "sentences" : [ "We would rather have dinner later." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c48"
   },
   "id" : "67fab6d59930102295343c48",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36f"
   },
   "title" : "Preferencia y comparación",
-  "instructions" : "Inserta $would rather$ o $rather than$.",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
   "translation" : "Ella bebe jugo en lugar de refresco.",
   "theoryId" : "b1.16.Rather_Than_Would_Rather",
   "topicName" : "Adverbs",
@@ -1014,9 +1680,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.11.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She drinks juice",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "soda.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -1035,7 +1736,1767 @@
       "kind" : "TEXT",
       "text" : "soda.",
       "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534499a"
+  },
+  "id" : "67fab6d5993010229534499a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Los profesores preferirían tener menos reuniones.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The teachers",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "have fewer meetings.",
+      "options" : null
     } ],
-    "sentences" : [ "She drinks juice rather than soda." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The teachers",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would rather" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "have fewer meetings.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534499b"
+  },
+  "id" : "67fab6d5993010229534499b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Las chicas preferirían jugar al tenis.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The girls",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "play tennis.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The girls",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would rather" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "play tennis.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534499c"
+  },
+  "id" : "67fab6d5993010229534499c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Trajo una chaqueta en lugar de un abrigo.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He brought a jacket",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a coat.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He brought a jacket",
+      "options" : null
+    }, {
+      "options" : [ "rather than" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "a coat.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534499d"
+  },
+  "id" : "67fab6d5993010229534499d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Por favor, usa WhatsApp en lugar de cartas.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Please use WhatsApp",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "letters.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Please use WhatsApp",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "rather than" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "letters.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534499e"
+  },
+  "id" : "67fab6d5993010229534499e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Ella preferiría tomar otro té.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "have another tea.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would rather" ]
+    }, {
+      "text" : "have another tea.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534499f"
+  },
+  "id" : "67fab6d5993010229534499f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Los niños preferirían quedarse en la escuela.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The children",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "stay at school.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "The children",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "would rather" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "stay at school.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449a0"
+  },
+  "id" : "67fab6d599301022953449a0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Están jugando al béisbol en lugar de al baloncesto.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They're playing baseball",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "basketball.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They're playing baseball",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "rather than" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "basketball.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449a1"
+  },
+  "id" : "67fab6d599301022953449a1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Nadie preferiría ir a trabajar hoy.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Nobody",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "go to work today.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Nobody",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would rather" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "go to work today.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449a2"
+  },
+  "id" : "67fab6d599301022953449a2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Hablé con Peter en lugar de con John.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I spoke to Peter",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "John.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I spoke to Peter",
+      "options" : null
+    }, {
+      "options" : [ "rather than" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "John.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449a3"
+  },
+  "id" : "67fab6d599301022953449a3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Él preferiría buscar otra casa.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "look for another house.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would rather" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "look for another house.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449a4"
+  },
+  "id" : "67fab6d599301022953449a4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Los chicos necesitan libros en lugar de juegos.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The boys need books",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "games.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The boys need books",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "rather than" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "games.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449a5"
+  },
+  "id" : "67fab6d599301022953449a5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Voy a llevar mi coche en lugar de un autobús.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm going to take my car",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a bus.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm going to take my car",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "rather than" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "a bus.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449a6"
+  },
+  "id" : "67fab6d599301022953449a6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Preferiríamos no hacerlo.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "not.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would rather" ]
+    }, {
+      "text" : "not.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449a7"
+  },
+  "id" : "67fab6d599301022953449a7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Tom preferiría conducir su propio coche.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Tom",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "drive his own car.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Tom",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would rather" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "drive his own car.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449a8"
+  },
+  "id" : "67fab6d599301022953449a8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Me gustaría zumo en lugar de agua.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd like juice",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "water.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I'd like juice"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "rather than" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "water.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449a9"
+  },
+  "id" : "67fab6d599301022953449a9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Preferiríamos reunirnos antes.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "meet sooner.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "would rather" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "meet sooner.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449aa"
+  },
+  "id" : "67fab6d599301022953449aa",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Preferiría ir al cine.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "go to the cinema.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "would rather" ]
+    }, {
+      "text" : "go to the cinema.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449ab"
+  },
+  "id" : "67fab6d599301022953449ab",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Ella compró un vestido nuevo en lugar de una falda nueva.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She bought a new dress",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "a new skirt.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She bought a new dress",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "rather than" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "a new skirt."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449ac"
+  },
+  "id" : "67fab6d599301022953449ac",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "Quieren pollo en lugar de cerdo.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They want chicken",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pork.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They want chicken",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "rather than" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pork.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953449ad"
+  },
+  "id" : "67fab6d599301022953449ad",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36f"
+  },
+  "title" : "Preferencia y comparación",
+  "instructions" : "Elige 'would rather' o 'rather than'.",
+  "translation" : "A ella le gustaría el pequeño en lugar del grande.",
+  "theoryId" : "b1.16.Rather_Than_Would_Rather",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.08.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$would rather$ es lo que preferís; $rather than$ compara dos cosas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She'd like the small one",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the big one.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "rather than",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "rather than"
+    }, {
+      "id" : "would rather",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "would rather"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She'd like the small one",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "rather than" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "the big one.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'would rather' o 'rather than' en la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'would rather' o 'rather than' en la oración."
 } ]

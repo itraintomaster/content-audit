@@ -3,12 +3,12 @@
     "$oid" : "67fab6d5993010229534356a"
   },
   "id" : "67fab6d5993010229534356a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "¡No compartas esa información en la web!",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Son excepciones fijas: $the internet$ y $the past$ siempre llevan $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "web!",
       "options" : null
     } ],
-    "sentences" : [ "Don't share that information on the web!" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Don't share that information on",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "web!",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534356b"
   },
   "id" : "67fab6d5993010229534356b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "¿Crees que el comercio cambiará nuestras vidas?",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -78,22 +113,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you believe",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "trade will change our lives?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you believe",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -101,18 +171,19 @@
       "options" : null
     } ],
     "sentences" : [ "Do you believe - trade will change our lives?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534356c"
   },
   "id" : "67fab6d5993010229534356c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "Ella analiza cómo funciona el transporte público.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -130,41 +201,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She analyzes how",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "public transport operates.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She analyzes how",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "public transport operates.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "She analyzes how - public transport operates." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534356d"
   },
   "id" : "67fab6d5993010229534356d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "Normalmente viajamos en autobús a la escuela.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -182,41 +289,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We usually ride",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bus to school.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We usually ride",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "bus to school.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "We usually ride the bus to school." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534356e"
   },
   "id" : "67fab6d5993010229534356e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "¡Necesito apoyo!",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -234,10 +377,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +393,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "support!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I require"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "support!",
       "options" : null
     } ],
-    "sentences" : [ "I require - support!" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534356f"
   },
   "id" : "67fab6d5993010229534356f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "Quiere comprar un billete para el avión.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -286,22 +464,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He wants to buy a ticket for",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "plane.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He wants to buy a ticket for",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
@@ -309,18 +522,19 @@
       "options" : null
     } ],
     "sentences" : [ "He wants to buy a ticket for the plane." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343570"
   },
   "id" : "67fab6d59930102295343570",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "¿Te imaginas que visitaremos la luna en los próximos años?",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -338,9 +552,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you imagine we'll visit the moon in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "coming years?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +608,20 @@
       "kind" : "TEXT",
       "text" : "coming years?",
       "options" : null
-    } ],
-    "sentences" : [ "Do you imagine we'll visit the moon in the coming years?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343571"
   },
   "id" : "67fab6d59930102295343571",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "¿Sientes curiosidad por la literatura irlandesa?",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -390,22 +639,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Are you curious about",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Irish literature?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Are you curious about",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -413,18 +697,19 @@
       "options" : null
     } ],
     "sentences" : [ "Are you curious about - Irish literature?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343572"
   },
   "id" : "67fab6d59930102295343572",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "A él le gusta ir al parque.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -442,10 +727,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +743,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "park.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He enjoys going to",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "park.",
       "options" : null
     } ],
-    "sentences" : [ "He enjoys going to the park." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343573"
   },
   "id" : "67fab6d59930102295343573",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "¡La calidad puede ser difícil de entender!",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -494,18 +814,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "quality can be difficult to understand!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -513,18 +864,19 @@
       "options" : null
     } ],
     "sentences" : [ "- quality can be difficult to understand!" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343574"
   },
   "id" : "67fab6d59930102295343574",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "¿Te gustaría viajar a la órbita?",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -542,9 +894,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like to travel into",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "orbit?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -563,20 +950,20 @@
       "kind" : "TEXT",
       "text" : "orbit?",
       "options" : null
-    } ],
-    "sentences" : [ "Would you like to travel into - orbit?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343575"
   },
   "id" : "67fab6d59930102295343575",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "Los valores ecológicos son buenos para el planeta.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -594,41 +981,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Green values are good for",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "planet.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Green values are good for",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "planet.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "Green values are good for the planet." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343576"
   },
   "id" : "67fab6d59930102295343576",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "A ella le gusta leer sobre historia.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -646,9 +1069,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She enjoys reading about",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "history.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -667,20 +1125,20 @@
       "kind" : "TEXT",
       "text" : "history.",
       "options" : null
-    } ],
-    "sentences" : [ "She enjoys reading about - history." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343577"
   },
   "id" : "67fab6d59930102295343577",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "¿Te gustaría asistir al ballet esta noche?",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -698,9 +1156,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like to attend",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ballet this evening?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -719,20 +1212,20 @@
       "kind" : "TEXT",
       "text" : "ballet this evening?",
       "options" : null
-    } ],
-    "sentences" : [ "Would you like to attend the ballet this evening?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343578"
   },
   "id" : "67fab6d59930102295343578",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "Realmente disfruto los sonidos de la guitarra.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -750,10 +1243,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -766,25 +1259,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "guitar.",
       "options" : null
     } ],
-    "sentences" : [ "I really enjoy the sounds of the guitar." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I really enjoy the sounds of",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "guitar.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343579"
   },
   "id" : "67fab6d59930102295343579",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "¿Alguna vez has intentado tocar la batería?",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -802,10 +1330,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -818,25 +1346,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "drums?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever tried to play the drums?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever tried to play",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "drums?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534357a"
   },
   "id" : "67fab6d5993010229534357a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "Necesitas evitar quedarte en el pasado.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -854,22 +1417,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Son excepciones fijas: $the internet$ y $the past$ siempre llevan $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You need to avoid dwelling on",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "past.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You need to avoid dwelling on",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
@@ -877,18 +1475,19 @@
       "options" : null
     } ],
     "sentences" : [ "You need to avoid dwelling on the past." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534357b"
   },
   "id" : "67fab6d5993010229534357b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "Realmente defiendo la poesía en clase.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -906,22 +1505,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I really defend",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "poetry in class.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I really defend",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -929,18 +1563,19 @@
       "options" : null
     } ],
     "sentences" : [ "I really defend - poetry in class." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534357c"
   },
   "id" : "67fab6d5993010229534357c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "El hambre es un gran problema en todo el mundo.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -958,37 +1593,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hunger is a big issue around the world.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "hunger is a big issue around the world.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "- hunger is a big issue around the world." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534357d"
   },
   "id" : "67fab6d5993010229534357d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
   "title" : "Sustantivos abstractos",
-  "instructions" : "Escribe $the$ o usa – para $no article$.",
+  "instructions" : "Elige 'the' o usa – para 'no article'.",
   "translation" : "A él le gusta correr en el bosque.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
@@ -1006,10 +1673,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.10.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Lo abstracto va sin artículo. Lo concreto y conocido lleva $the$: $the bus$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He likes running in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "forest.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1028,6 +1729,8 @@
       "text" : "forest.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "He likes running in the forest." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o usa – para 'no article'."
 } ]

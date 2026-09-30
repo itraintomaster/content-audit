@@ -3,14 +3,14 @@
     "$oid" : "67fab6d59930102295343c53"
   },
   "id" : "67fab6d59930102295343c53",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Han vivido juntos durante diez años.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,13 +26,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have lived together",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ten years.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -48,21 +91,26 @@
       "text" : "ten years.",
       "options" : null
     } ],
-    "sentences" : [ "They have lived together for ten years." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c54"
   },
   "id" : "67fab6d59930102295343c54",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "¿Viste a Mark mientras estabas en la escuela?",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -78,10 +126,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,27 +142,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "while" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "you were at school?",
       "options" : null
     } ],
-    "sentences" : [ "Did you see Mark while you were at school?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Did you see Mark",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "while" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "you were at school?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c55"
   },
   "id" : "67fab6d59930102295343c55",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Tuvo una idea durante la clase. Estaba en clase cuando se le ocurrió la idea.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -130,9 +226,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She had a thought",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the class. She was in the class when she had the idea.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -151,22 +294,23 @@
       "kind" : "TEXT",
       "text" : "the class. She was in the class when she had the idea.",
       "options" : null
-    } ],
-    "sentences" : [ "She had a thought during the class. She was in the class when she had the idea." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c56"
   },
   "id" : "67fab6d59930102295343c56",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Ha estado en Francia desde el miércoles.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -182,9 +326,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has been in France",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Wednesday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,22 +394,23 @@
       "kind" : "TEXT",
       "text" : "Wednesday.",
       "options" : null
-    } ],
-    "sentences" : [ "He has been in France since Wednesday." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c57"
   },
   "id" : "67fab6d59930102295343c57",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Me lastimé la rodilla mientras esquiaba.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -234,10 +426,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,27 +442,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "while" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "I was skiing.",
       "options" : null
     } ],
-    "sentences" : [ "I hurt my knee while I was skiing." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I hurt my knee",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "while" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "I was skiing.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c58"
   },
   "id" : "67fab6d59930102295343c58",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Toqué la guitarra durante treinta minutos.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -286,43 +526,92 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I played the guitar",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "thirty minutes.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I played the guitar",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "thirty minutes.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "I played the guitar for thirty minutes." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c59"
   },
   "id" : "67fab6d59930102295343c59",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Habló con su hermano mientras conducía.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -338,10 +627,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,27 +643,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "while" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "he was driving.",
       "options" : null
     } ],
-    "sentences" : [ "He talked to his brother while he was driving." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He talked to his brother"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "while" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "he was driving.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c5a"
   },
   "id" : "67fab6d59930102295343c5a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Corrió durante media hora.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -390,9 +727,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He ran",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "half an hour.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -411,22 +795,23 @@
       "kind" : "TEXT",
       "text" : "half an hour.",
       "options" : null
-    } ],
-    "sentences" : [ "He ran for half an hour." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c5b"
   },
   "id" : "67fab6d59930102295343c5b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Se despertó durante la tarde. Deben haber sido las 3 de la tarde.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -442,10 +827,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,27 +843,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "during" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the afternoon. It must have been 3 pm.",
       "options" : null
     } ],
-    "sentences" : [ "She woke up during the afternoon. It must have been 3 pm." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She woke up"
+    }, {
+      "text" : "",
+      "options" : [ "during" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "the afternoon. It must have been 3 pm.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c5c"
   },
   "id" : "67fab6d59930102295343c5c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Descubrieron algunos libros antiguos mientras ordenaban el garaje.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -494,10 +927,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,27 +943,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "while" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "they were tidying the garage.",
       "options" : null
     } ],
-    "sentences" : [ "They discovered some old books while they were tidying the garage." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They discovered some old books",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "while" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "they were tidying the garage.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c5d"
   },
   "id" : "67fab6d59930102295343c5d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Vio la televisión mientras comía.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -546,10 +1027,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,27 +1043,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "while" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "he was eating.",
       "options" : null
     } ],
-    "sentences" : [ "He watched television while he was eating." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He watched television"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "while" ]
+    }, {
+      "text" : "he was eating.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c5e"
   },
   "id" : "67fab6d59930102295343c5e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "He estado en el trabajo desde la hora del almuerzo.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -598,9 +1127,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I've been at work",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "lunchtime.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -619,22 +1195,23 @@
       "kind" : "TEXT",
       "text" : "lunchtime.",
       "options" : null
-    } ],
-    "sentences" : [ "I've been at work since lunchtime." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c5f"
   },
   "id" : "67fab6d59930102295343c5f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Hemos sido dueños de esta casa durante muchos años.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -650,10 +1227,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We've owned this house",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "many years.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -668,25 +1291,27 @@
       "text" : "",
       "options" : [ "for" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "many years.",
-      "options" : null
+      "text" : "many years."
     } ],
-    "sentences" : [ "We've owned this house for many years." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c60"
   },
   "id" : "67fab6d59930102295343c60",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "No dijo mucho durante el concierto.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -702,10 +1327,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He didn't say much",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the concert.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -724,21 +1395,23 @@
       "text" : "the concert.",
       "options" : null
     } ],
-    "sentences" : [ "He didn't say much during the concert." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c61"
   },
   "id" : "67fab6d59930102295343c61",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Ella ha trabajado allí desde 1988.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -754,9 +1427,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has worked there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "1988.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -775,22 +1495,23 @@
       "kind" : "TEXT",
       "text" : "1988.",
       "options" : null
-    } ],
-    "sentences" : [ "She has worked there since 1988." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c62"
   },
   "id" : "67fab6d59930102295343c62",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "¿Hablaste con alguien durante la reunión? Tenían temas importantes.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -806,9 +1527,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you speak with anyone",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the meeting? They had important topics.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -827,22 +1595,23 @@
       "kind" : "TEXT",
       "text" : "the meeting? They had important topics.",
       "options" : null
-    } ],
-    "sentences" : [ "Did you speak with anyone during the meeting? They had important topics." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c63"
   },
   "id" : "67fab6d59930102295343c63",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Hemos aprendido español desde que éramos adolescentes.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -858,14 +1627,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We've learned Spanish",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we were teenagers.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -880,21 +1691,27 @@
       "text" : "we were teenagers.",
       "options" : null
     } ],
-    "sentences" : [ "We've learned Spanish since we were teenagers." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c64"
   },
   "id" : "67fab6d59930102295343c64",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Trabajé en Londres durante dos años.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -910,10 +1727,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -926,27 +1743,75 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "for" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "two years.",
       "options" : null
     } ],
-    "sentences" : [ "I worked in London for two years." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "I worked in London",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "for" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "two years.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c65"
   },
   "id" : "67fab6d59930102295343c65",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "Conocen a Sophie desde 2015.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -962,9 +1827,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They've known Sophie",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "2015.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -980,25 +1892,26 @@
       "text" : "",
       "options" : [ "since" ]
     }, {
-      "kind" : "TEXT",
       "text" : "2015.",
-      "options" : null
-    } ],
-    "sentences" : [ "They've known Sophie since 2015." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c66"
   },
   "id" : "67fab6d59930102295343c66",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d372"
   },
   "title" : "$For$,$since$,$during$,$while$",
-  "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
+  "instructions" : "Elige 'for', 'since', 'during' o 'while'.",
   "translation" : "¡Bebí mucho vino durante mi viaje! El vino allí era muy bueno.",
-  "theoryId" : "",
+  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -1014,9 +1927,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.02.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$during$ + sustantivo, $while$ + oración, $for$ + duración, $since$ + arranque.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I drank such a lot of wine",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my trip! The wine there was so good.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "during",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "during"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    }, {
+      "id" : "while",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "while"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -1032,10 +1992,11 @@
       "text" : "",
       "options" : [ "during" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "my trip! The wine there was so good.",
-      "options" : null
-    } ],
-    "sentences" : [ "I drank such a lot of wine during my trip! The wine there was so good." ]
-  }
+      "text" : "my trip! The wine there was so good."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir con 'for', 'since', 'during' o 'while'.",
+  "instructionsAntesDeRevisar" : "Elige con 'for', 'since', 'during' o 'while'."
 } ]

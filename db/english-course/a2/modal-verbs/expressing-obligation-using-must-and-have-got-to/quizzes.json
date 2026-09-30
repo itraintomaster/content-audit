@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342e0c"
   },
   "id" : "67fab6d59930102295342e0c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29a"
   },
   "title" : "Obligación",
-  "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
+  "instructions" : "Elige la forma correcta de 'must', 'have to' o 'have got to', según lo que está entre paréntesis.",
   "translation" : "David debe llamar a su madre ahora.",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",
   "topicName" : "Modal Verbs",
@@ -26,13 +26,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.06.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$must$, $have to$ y $have got to$ obligan, y los tres van con el verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "David",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "call his mother now. (must)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "'s got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'s got to"
+    }, {
+      "id" : "'ve got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'ve got to"
+    }, {
+      "id" : "has to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "has to"
+    }, {
+      "id" : "have got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have got to"
+    }, {
+      "id" : "have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have to"
+    }, {
+      "id" : "must",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "must"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -48,19 +103,24 @@
       "text" : "call his mother now. (must)",
       "options" : null
     } ],
-    "sentences" : [ "David must call his mother now." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'must', 'have to' o 'have got to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'must', 'have to' o 'have got to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e0d"
   },
   "id" : "67fab6d59930102295342e0d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29a"
   },
   "title" : "Obligación",
-  "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
+  "instructions" : "Elige la forma correcta de 'must', 'have to' o 'have got to', según lo que está entre paréntesis.",
   "translation" : "Los estudiantes tienen que leer el libro.",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",
   "topicName" : "Modal Verbs",
@@ -78,13 +138,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.06.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$must$, $have to$ y $have got to$ obligan, y los tres van con el verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "read the book. (have to)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "'s got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'s got to"
+    }, {
+      "id" : "'ve got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'ve got to"
+    }, {
+      "id" : "has to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "has to"
+    }, {
+      "id" : "have got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have got to"
+    }, {
+      "id" : "have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "have to"
+    }, {
+      "id" : "must",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "must"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -100,19 +215,24 @@
       "text" : "read the book. (have to)",
       "options" : null
     } ],
-    "sentences" : [ "The students have to read the book." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'must', 'have to' o 'have got to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'must', 'have to' o 'have got to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e0e"
   },
   "id" : "67fab6d59930102295342e0e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29a"
   },
   "title" : "Obligación",
-  "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
+  "instructions" : "Elige la forma correcta de 'must', 'have to' o 'have got to', según lo que está entre paréntesis.",
   "translation" : "Tienen que revisar el coche. ¡Está roto!",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",
   "topicName" : "Modal Verbs",
@@ -130,22 +250,75 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.06.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$must$, $have to$ y $have got to$ obligan, y los tres van con el verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "check the car. It is broken! (have got to)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "'s got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'s got to"
+    }, {
+      "id" : "has to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "has to"
+    }, {
+      "id" : "have got to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "have got to"
+    }, {
+      "id" : "have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have to"
+    }, {
+      "id" : "must",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "must"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "have got to" ]
     }, {
       "kind" : "TEXT",
@@ -153,18 +326,79 @@
       "options" : null
     } ],
     "sentences" : [ "They have got to check the car. It is broken!" ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'must', 'have to' o 'have got to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'must', 'have to' o 'have got to'.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "check the car. It is broken! (have got to)",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "'s got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'s got to"
+    }, {
+      "id" : "'ve got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'ve got to"
+    }, {
+      "id" : "has to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "has to"
+    }, {
+      "id" : "have got to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "have got to"
+    }, {
+      "id" : "have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have to"
+    }, {
+      "id" : "must",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "must"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e0f"
   },
   "id" : "67fab6d59930102295342e0f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29a"
   },
   "title" : "Obligación",
-  "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
+  "instructions" : "Elige la forma correcta de 'must', 'have to' o 'have got to', según lo que está entre paréntesis.",
   "translation" : "Ella debe cocinar la cena esta noche.",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",
   "topicName" : "Modal Verbs",
@@ -182,9 +416,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.06.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$must$, $have to$ y $have got to$ obligan, y los tres van con el verbo base.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cook dinner tonight. (must)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "'s got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'s got to"
+    }, {
+      "id" : "'ve got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'ve got to"
+    }, {
+      "id" : "has to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "has to"
+    }, {
+      "id" : "have got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have got to"
+    }, {
+      "id" : "have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have to"
+    }, {
+      "id" : "must",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "must"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -200,23 +493,24 @@
       "text" : "",
       "options" : [ "must" ]
     }, {
-      "kind" : "TEXT",
       "text" : "cook dinner tonight. (must)",
-      "options" : null
-    } ],
-    "sentences" : [ "She must cook dinner tonight." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'must', 'have to' o 'have got to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'must', 'have to' o 'have got to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e10"
   },
   "id" : "67fab6d59930102295342e10",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29a"
   },
   "title" : "Obligación",
-  "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
+  "instructions" : "Elige la forma correcta de 'must', 'have to' o 'have got to', según lo que está entre paréntesis.",
   "translation" : "Ellos tienen que encontrar nuevos trabajos.",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",
   "topicName" : "Modal Verbs",
@@ -234,10 +528,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.06.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$must$, $have to$ y $have got to$ obligan, y los tres van con el verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "find new jobs. (have to)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "'s got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'s got to"
+    }, {
+      "id" : "'ve got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'ve got to"
+    }, {
+      "id" : "has to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "has to"
+    }, {
+      "id" : "have got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have got to"
+    }, {
+      "id" : "have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "have to"
+    }, {
+      "id" : "must",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "must"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -256,19 +608,21 @@
       "text" : "find new jobs. (have to)",
       "options" : null
     } ],
-    "sentences" : [ "They have to find new jobs." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'must', 'have to' o 'have got to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'must', 'have to' o 'have got to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e11"
   },
   "id" : "67fab6d59930102295342e11",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29a"
   },
   "title" : "Obligación",
-  "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
+  "instructions" : "Elige la forma correcta de 'must', 'have to' o 'have got to', según lo que está entre paréntesis.",
   "translation" : "Él tiene que empezar a aprender francés.",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",
   "topicName" : "Modal Verbs",
@@ -286,10 +640,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.06.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con he, she o it, $have$ cambia a $has$: has to, has got to.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +656,85 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "'s got to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "start learning French. (have got to)",
       "options" : null
     } ],
-    "sentences" : [ "He's got to start learning French." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "'s got to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "'s got to"
+    }, {
+      "id" : "'ve got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'ve got to"
+    }, {
+      "id" : "has to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "has to"
+    }, {
+      "id" : "have got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have got to"
+    }, {
+      "id" : "have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have to"
+    }, {
+      "id" : "must",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "must"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "'s got to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "start learning French. (have got to)",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'must', 'have to' o 'have got to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'must', 'have to' o 'have got to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e12"
   },
   "id" : "67fab6d59930102295342e12",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29a"
   },
   "title" : "Obligación",
-  "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
+  "instructions" : "Elige la forma correcta de 'must', 'have to' o 'have got to', según lo que está entre paréntesis.",
   "translation" : "Mary tiene que trabajar mañana.",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",
   "topicName" : "Modal Verbs",
@@ -338,10 +752,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.06.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con he, she o it, $have$ cambia a $has$: has to, has got to.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +768,85 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "work tomorrow. (have to)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "'s got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'s got to"
+    }, {
+      "id" : "'ve got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'ve got to"
+    }, {
+      "id" : "has to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "has to"
+    }, {
+      "id" : "have got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have got to"
+    }, {
+      "id" : "have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have to"
+    }, {
+      "id" : "must",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "must"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "Mary",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "has to" ]
     }, {
       "kind" : "TEXT",
       "text" : "work tomorrow. (have to)",
       "options" : null
     } ],
-    "sentences" : [ "Mary has to work tomorrow." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'must', 'have to' o 'have got to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'must', 'have to' o 'have got to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e13"
   },
   "id" : "67fab6d59930102295342e13",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29a"
   },
   "title" : "Obligación",
-  "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
+  "instructions" : "Elige la forma correcta de 'must', 'have to' o 'have got to', según lo que está entre paréntesis.",
   "translation" : "Debes comer menos comida rápida.",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",
   "topicName" : "Modal Verbs",
@@ -390,41 +864,102 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.06.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$must$, $have to$ y $have got to$ obligan, y los tres van con el verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "eat less fast food. (must)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "'s got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'s got to"
+    }, {
+      "id" : "'ve got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'ve got to"
+    }, {
+      "id" : "has to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "has to"
+    }, {
+      "id" : "have got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have got to"
+    }, {
+      "id" : "have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have to"
+    }, {
+      "id" : "must",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "must"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "must" ]
     }, {
       "kind" : "TEXT",
       "text" : "eat less fast food. (must)",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "You must eat less fast food." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'must', 'have to' o 'have got to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'must', 'have to' o 'have got to'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e14"
   },
   "id" : "67fab6d59930102295342e14",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29a"
   },
   "title" : "Obligación",
-  "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
+  "instructions" : "Elige la forma correcta de 'must', 'have to' o 'have got to', según lo que está entre paréntesis.",
   "translation" : "Ellos tienen que vender la casa.",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",
   "topicName" : "Modal Verbs",
@@ -442,10 +977,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.06.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$must$, $have to$ y $have got to$ obligan, y los tres van con el verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +993,138 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "'ve got to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "sell the house. (have got to)",
       "options" : null
     } ],
-    "sentences" : [ "They've got to sell the house." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "'s got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'s got to"
+    }, {
+      "id" : "'ve got to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "'ve got to"
+    }, {
+      "id" : "has to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "has to"
+    }, {
+      "id" : "have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have to"
+    }, {
+      "id" : "must",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "must"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "'ve got to" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "sell the house. (have got to)",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'must', 'have to' o 'have got to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'must', 'have to' o 'have got to'.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sell the house. (have got to)",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "'s got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'s got to"
+    }, {
+      "id" : "'ve got to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "'ve got to"
+    }, {
+      "id" : "has to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "has to"
+    }, {
+      "id" : "have got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have got to"
+    }, {
+      "id" : "have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have to"
+    }, {
+      "id" : "must",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "must"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e15"
   },
   "id" : "67fab6d59930102295342e15",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29a"
   },
   "title" : "Obligación",
-  "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
+  "instructions" : "Elige la forma correcta de 'must', 'have to' o 'have got to', según lo que está entre paréntesis.",
   "translation" : "Ella tiene que empezar a trabajar tarde.",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",
   "topicName" : "Modal Verbs",
@@ -494,9 +1142,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.06.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con he, she o it, $have$ cambia a $has$: has to, has got to.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "start work late. (have to)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "'s got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'s got to"
+    }, {
+      "id" : "'ve got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "'ve got to"
+    }, {
+      "id" : "has to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "has to"
+    }, {
+      "id" : "have got to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have got to"
+    }, {
+      "id" : "have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "have to"
+    }, {
+      "id" : "must",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "must"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -515,7 +1222,8 @@
       "kind" : "TEXT",
       "text" : "start work late. (have to)",
       "options" : null
-    } ],
-    "sentences" : [ "She has to start work late." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'must', 'have to' o 'have got to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'must', 'have to' o 'have got to'."
 } ]

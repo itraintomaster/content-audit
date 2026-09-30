@@ -3,12 +3,12 @@
     "$oid" : "67fab6d5993010229534390b"
   },
   "id" : "67fab6d5993010229534390b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Ahí está el chico al que conociste.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -26,14 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's the boy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "you met.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -48,19 +78,23 @@
       "text" : "you met.",
       "options" : null
     } ],
-    "sentences" : [ "There's the boy whom you met." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534390c"
   },
   "id" : "67fab6d5993010229534390c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Ese es el artista con el que trabaja Peter.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -78,22 +112,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That's the artist",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Peter works with.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's the artist",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "whom" ]
     }, {
       "kind" : "TEXT",
@@ -107,12 +176,12 @@
     "$oid" : "67fab6d5993010229534390d"
   },
   "id" : "67fab6d5993010229534390d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "¿Dónde está el limpiador que limpia aquí?",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -130,9 +199,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where is the cleaner",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cleans here?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -151,20 +255,19 @@
       "kind" : "TEXT",
       "text" : "cleans here?",
       "options" : null
-    } ],
-    "sentences" : [ "Where is the cleaner who cleans here?" ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534390e"
   },
   "id" : "67fab6d5993010229534390e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Conozco a los adolescentes que disfrutan viendo películas.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -182,9 +285,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I know the teenagers",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "enjoy watching films.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +341,19 @@
       "kind" : "TEXT",
       "text" : "enjoy watching films.",
       "options" : null
-    } ],
-    "sentences" : [ "I know the teenagers who enjoy watching films." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534390f"
   },
   "id" : "67fab6d5993010229534390f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "¿Viste a las señoras a las que Martin lastima?",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -234,22 +371,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Did you see the ladies",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Martin injures?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you see the ladies",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "whom" ]
     }, {
       "kind" : "TEXT",
@@ -263,12 +435,12 @@
     "$oid" : "67fab6d59930102295343910"
   },
   "id" : "67fab6d59930102295343910",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Le dimos las gracias al bombero que vive al lado de la tienda.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -286,10 +458,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +474,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "who" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "lives next to the store.",
       "options" : null
     } ],
-    "sentences" : [ "We thanked the firefighter who lives next to the store." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We thanked the firefighter",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "who" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "lives next to the store.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343911"
   },
   "id" : "67fab6d59930102295343911",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Llamó al empleado que habló con él ayer.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -338,9 +544,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He phoned the employee",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "spoke to him yesterday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +600,19 @@
       "kind" : "TEXT",
       "text" : "spoke to him yesterday.",
       "options" : null
-    } ],
-    "sentences" : [ "He phoned the employee who spoke to him yesterday." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343912"
   },
   "id" : "67fab6d59930102295343912",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Saludó a la señora que conoce David.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -390,10 +630,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She greeted the lady",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "David knows.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -412,19 +686,19 @@
       "text" : "David knows.",
       "options" : null
     } ],
-    "sentences" : [ "She greeted the lady whom David knows." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343913"
   },
   "id" : "67fab6d59930102295343913",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Necesito reunirme con el carnicero que cortó la carne antes.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -442,28 +716,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I need to meet the butcher",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cut the meat before.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need to meet the butcher",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "who" ]
     }, {
       "kind" : "TEXT",
       "text" : "cut the meat before.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "I need to meet the butcher who cut the meat before." ]
   }
 }, {
@@ -471,12 +780,12 @@
     "$oid" : "67fab6d59930102295343914"
   },
   "id" : "67fab6d59930102295343914",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Contactamos al abogado que sugeriste.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -494,9 +803,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We contacted the lawyer",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "you suggested.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -512,23 +856,22 @@
       "text" : "",
       "options" : [ "whom" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "you suggested.",
-      "options" : null
-    } ],
-    "sentences" : [ "We contacted the lawyer whom you suggested." ]
+      "text" : "you suggested."
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343915"
   },
   "id" : "67fab6d59930102295343915",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Ahí está la señora que tiene dos perros.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -546,9 +889,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There's the lady",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "owns two dogs.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -567,20 +945,19 @@
       "kind" : "TEXT",
       "text" : "owns two dogs.",
       "options" : null
-    } ],
-    "sentences" : [ "There's the lady who owns two dogs." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343916"
   },
   "id" : "67fab6d59930102295343916",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Visitaron a los padres con los que contactaron.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -598,13 +975,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They visited the parents",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "they contacted.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -620,19 +1028,22 @@
       "text" : "they contacted.",
       "options" : null
     } ],
-    "sentences" : [ "They visited the parents whom they contacted." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343917"
   },
   "id" : "67fab6d59930102295343917",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Conozco al panadero que hace pan.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -650,10 +1061,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I know the baker",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bakes bread.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -672,19 +1117,19 @@
       "text" : "bakes bread.",
       "options" : null
     } ],
-    "sentences" : [ "I know the baker who bakes bread." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343918"
   },
   "id" : "67fab6d59930102295343918",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Contactamos al tonto que sugeriste ayer.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -702,22 +1147,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We contacted the fool",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "you suggested yesterday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We contacted the fool",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "whom" ]
     }, {
       "kind" : "TEXT",
@@ -731,12 +1211,12 @@
     "$oid" : "67fab6d59930102295343919"
   },
   "id" : "67fab6d59930102295343919",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Contrataron a la mujer en la que confiaba.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -754,10 +1234,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1250,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "I trusted.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They employed the woman"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "whom" ]
     }, {
       "kind" : "TEXT",
       "text" : "I trusted.",
       "options" : null
     } ],
-    "sentences" : [ "They employed the woman whom I trusted." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534391a"
   },
   "id" : "67fab6d5993010229534391a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Conoció a los vecinos que viven en las casas.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -806,14 +1320,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She met the neighbours",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "live in the houses.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -828,19 +1372,23 @@
       "text" : "live in the houses.",
       "options" : null
     } ],
-    "sentences" : [ "She met the neighbours who live in the houses." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534391b"
   },
   "id" : "67fab6d5993010229534391b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Visitamos al conductor al que Jenny ayuda.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -858,28 +1406,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We visited the driver",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Jenny helps.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited the driver",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "whom" ]
     }, {
       "kind" : "TEXT",
       "text" : "Jenny helps.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "We visited the driver whom Jenny helps." ]
   }
 }, {
@@ -887,12 +1470,12 @@
     "$oid" : "67fab6d5993010229534391c"
   },
   "id" : "67fab6d5993010229534391c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "A ella le gustan los chefs que preparan su almuerzo.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -910,9 +1493,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She likes the chefs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "prepare her lunch.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -931,20 +1549,19 @@
       "kind" : "TEXT",
       "text" : "prepare her lunch.",
       "options" : null
-    } ],
-    "sentences" : [ "She likes the chefs who prepare her lunch." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534391d"
   },
   "id" : "67fab6d5993010229534391d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Ese es el chico que lavó el coche.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -962,22 +1579,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That's the boy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "washed the car.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's the boy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "who" ]
     }, {
       "kind" : "TEXT",
@@ -991,12 +1643,12 @@
     "$oid" : "67fab6d5993010229534391e"
   },
   "id" : "67fab6d5993010229534391e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
   "title" : "$Who$ vs. $Whom$",
-  "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
+  "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
   "translation" : "Quedaron en reunirse con el vendedor al que también vemos.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
@@ -1014,22 +1666,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.07.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción o sigue a una preposición.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They arranged to meet the seller",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we also see.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They arranged to meet the seller",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "whom" ]
     }, {
       "kind" : "TEXT",
@@ -1038,4 +1725,935 @@
     } ],
     "sentences" : [ "They arranged to meet the seller whom we also see." ]
   }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534462a"
+  },
+  "id" : "67fab6d5993010229534462a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33e"
+  },
+  "title" : "$Who$ vs. $Whom$",
+  "instructions" : "Elige 'who', 'whom' o 'which', según la gramática tradicional.",
+  "translation" : "Vimos a las personas que estaban en el parque.",
+  "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We saw the people",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "were at the park.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "which",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "which"
+    }, {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We saw the people",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "who" ]
+    }, {
+      "text" : "were at the park.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "¿Puedes elegir entre 'who' y 'whom'?"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534462b"
+  },
+  "id" : "67fab6d5993010229534462b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33e"
+  },
+  "title" : "$Who$ vs. $Whom$",
+  "instructions" : "Elige 'who', 'whom' o 'which', según la gramática tradicional.",
+  "translation" : "¿Puedes ver al hombre que está parado allí?",
+  "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you see the man",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "is standing there?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "which",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "which"
+    }, {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Can you see the man",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "who" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is standing there?",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Puedes elegir entre 'who' y 'whom'?"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534462c"
+  },
+  "id" : "67fab6d5993010229534462c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33e"
+  },
+  "title" : "$Who$ vs. $Whom$",
+  "instructions" : "Elige 'who', 'whom' o 'which', según la gramática tradicional.",
+  "translation" : "Ella entrevistó a los candidatos que solicitaron el trabajo.",
+  "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She interviewed the candidates",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "applied for the job.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "which",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "which"
+    }, {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She interviewed the candidates"
+    }, {
+      "text" : "",
+      "options" : [ "who" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "applied for the job.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Puedes elegir entre 'who' y 'whom'?"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534462d"
+  },
+  "id" : "67fab6d5993010229534462d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33e"
+  },
+  "title" : "$Who$ vs. $Whom$",
+  "instructions" : "Elige 'who', 'whom' o 'which', según la gramática tradicional.",
+  "translation" : "Él recuerda a las personas que conocimos.",
+  "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He remembers the people",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we met.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "which",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "which"
+    }, {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He remembers the people",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "whom" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "we met."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAntesDeRevisar" : "¿Puedes elegir entre 'who' y 'whom'?"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534462e"
+  },
+  "id" : "67fab6d5993010229534462e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33e"
+  },
+  "title" : "$Who$ vs. $Whom$",
+  "instructions" : "Elige 'who', 'whom' o 'which', según la gramática tradicional.",
+  "translation" : "Esa es la chica a la que vi.",
+  "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "That's the girl",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "I saw.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "which",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "which"
+    }, {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "That's the girl"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "whom" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "I saw.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "¿Puedes elegir entre 'who' y 'whom'?"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534462f"
+  },
+  "id" : "67fab6d5993010229534462f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33e"
+  },
+  "title" : "$Who$ vs. $Whom$",
+  "instructions" : "Elige 'who', 'whom' o 'which', según la gramática tradicional.",
+  "translation" : "Le pregunté a la bibliotecaria que trabaja aquí.",
+  "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I asked the librarian",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "works here.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "which",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "which"
+    }, {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I asked the librarian",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "who" ]
+    }, {
+      "text" : "works here.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Puedes elegir entre 'who' y 'whom'?"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344630"
+  },
+  "id" : "67fab6d59930102295344630",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33e"
+  },
+  "title" : "$Who$ vs. $Whom$",
+  "instructions" : "Elige 'who', 'whom' o 'which', según la gramática tradicional.",
+  "translation" : "¿Es ese el libro que leíste?",
+  "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Which$ es para cosas; $who$ y $whom$ son sólo para personas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is that the book",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "you read?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "which",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "which"
+    }, {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is that the book",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "which" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "you read?",
+      "options" : null
+    } ],
+    "sentences" : [ "Is that the book which you read?" ]
+  },
+  "instructionsAntesDeRevisar" : "¿Puedes elegir entre 'who' y 'whom'?"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344631"
+  },
+  "id" : "67fab6d59930102295344631",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33e"
+  },
+  "title" : "$Who$ vs. $Whom$",
+  "instructions" : "Elige 'who', 'whom' o 'which', según la gramática tradicional.",
+  "translation" : "Visitaron al abogado que contrataste.",
+  "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They visited the lawyer",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "you hired.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "which",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "which"
+    }, {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They visited the lawyer",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "whom" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "you hired.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAntesDeRevisar" : "¿Puedes elegir entre 'who' y 'whom'?"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344632"
+  },
+  "id" : "67fab6d59930102295344632",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33e"
+  },
+  "title" : "$Who$ vs. $Whom$",
+  "instructions" : "Elige 'who', 'whom' o 'which', según la gramática tradicional.",
+  "translation" : "¿Es ese el maestro que ganó el premio?",
+  "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is that the teacher",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "won the award?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "which",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "which"
+    }, {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Is that the teacher",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "who" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "won the award?",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Puedes elegir entre 'who' y 'whom'?"
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344633"
+  },
+  "id" : "67fab6d59930102295344633",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33e"
+  },
+  "title" : "$Who$ vs. $Whom$",
+  "instructions" : "Elige 'who', 'whom' o 'which', según la gramática tradicional.",
+  "translation" : "Ella saludó a los invitados que Peter invitó.",
+  "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$who$ cuando es el que hace; $whom$ cuando recibe la acción.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She greeted the guests",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Peter invited.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "which",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "which"
+    }, {
+      "id" : "who",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "who"
+    }, {
+      "id" : "whom",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "whom"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She greeted the guests",
+      "options" : null
+    }, {
+      "options" : [ "whom" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "Peter invited.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "¿Puedes elegir entre 'who' y 'whom'?"
 } ]

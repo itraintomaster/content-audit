@@ -3,12 +3,12 @@
     "$oid" : "67fab6d5993010229534318d"
   },
   "id" : "67fab6d5993010229534318d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Iba a leer un libro pero me quedé dormido.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -26,9 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "read a book but I fell asleep instead.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -44,23 +79,24 @@
       "text" : "",
       "options" : [ "was going to" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "read a book but I fell asleep instead.",
-      "options" : null
-    } ],
-    "sentences" : [ "I was going to read a book but I fell asleep instead." ]
-  }
+      "text" : "read a book but I fell asleep instead."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534318e"
   },
   "id" : "67fab6d5993010229534318e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Él iba a preparar el almuerzo pero no tenía ingredientes.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -78,10 +114,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +130,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was going to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "prepare lunch but he did not have ingredients.",
       "options" : null
     } ],
-    "sentences" : [ "He was going to prepare lunch but he did not have ingredients." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was going to" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "prepare lunch but he did not have ingredients."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534318f"
   },
   "id" : "67fab6d5993010229534318f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Mi madre iba a visitar el museo, pero el coche se averió.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -130,9 +202,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My mother",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "visit the museum, but the car broke down.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -151,20 +258,21 @@
       "kind" : "TEXT",
       "text" : "visit the museum, but the car broke down.",
       "options" : null
-    } ],
-    "sentences" : [ "My mother was going to visit the museum, but the car broke down." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343190"
   },
   "id" : "67fab6d59930102295343190",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Los perros iban a jugar afuera, pero el patio estaba demasiado mojado.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -182,41 +290,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The dogs",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "play outside but the yard was too wet.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "were going to" ]
     }, {
       "kind" : "TEXT",
       "text" : "play outside but the yard was too wet.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "The dogs were going to play outside but the yard was too wet." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343191"
   },
   "id" : "67fab6d59930102295343191",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Ella iba a vender la bicicleta, pero nadie ofreció suficiente dinero.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -234,9 +379,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sell the bike but nobody offered enough money.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -252,23 +432,24 @@
       "text" : "",
       "options" : [ "was going to" ]
     }, {
-      "kind" : "TEXT",
       "text" : "sell the bike but nobody offered enough money.",
-      "options" : null
-    } ],
-    "sentences" : [ "She was going to sell the bike but nobody offered enough money." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343192"
   },
   "id" : "67fab6d59930102295343192",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Íbamos a viajar al extranjero, pero no obtuvimos las visas.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -286,9 +467,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "travel abroad, but we did not get the visas.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -307,20 +523,21 @@
       "kind" : "TEXT",
       "text" : "travel abroad, but we did not get the visas.",
       "options" : null
-    } ],
-    "sentences" : [ "We were going to travel abroad, but we did not get the visas." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343193"
   },
   "id" : "67fab6d59930102295343193",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Robert iba a unirse a nosotros en el cine, pero se sintió enfermo.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -338,10 +555,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +571,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was going to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "join us at the cinema, but he felt sick.",
       "options" : null
     } ],
-    "sentences" : [ "Robert was going to join us at the cinema, but he felt sick." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Robert",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "was going to" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "join us at the cinema, but he felt sick.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343194"
   },
   "id" : "67fab6d59930102295343194",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Ella iba a decir algo pero se quedó callada.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -390,10 +643,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -406,25 +659,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was going to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "say something but she remained quiet.",
       "options" : null
     } ],
-    "sentences" : [ "She was going to say something but she remained quiet." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "options" : [ "was going to" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "say something but she remained quiet.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343195"
   },
   "id" : "67fab6d59930102295343195",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Los profesores iban a irse esta mañana, pero el problema se solucionó.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -442,41 +731,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The teachers",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "leave this morning but the issue was solved.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The teachers",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "were going to" ]
     }, {
       "kind" : "TEXT",
       "text" : "leave this morning but the issue was solved.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "The teachers were going to leave this morning but the issue was solved." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343196"
   },
   "id" : "67fab6d59930102295343196",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Mi hermana iba a cantar una canción en el concierto, pero perdió la voz.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -494,10 +820,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,25 +836,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was going to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "sing a song at the concert, but she lost her voice.",
       "options" : null
     } ],
-    "sentences" : [ "My sister was going to sing a song at the concert, but she lost her voice." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My sister",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "was going to" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "sing a song at the concert, but she lost her voice.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343197"
   },
   "id" : "67fab6d59930102295343197",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Ellos iban a ver ese programa de televisión ayer, pero Mike estaba ocupado.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -546,10 +908,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "watch that TV show yesterday, but Mike was busy.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -564,23 +960,25 @@
       "text" : "",
       "options" : [ "were going to" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "watch that TV show yesterday, but Mike was busy.",
-      "options" : null
+      "text" : "watch that TV show yesterday, but Mike was busy."
     } ],
-    "sentences" : [ "They were going to watch that TV show yesterday, but Mike was busy." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343198"
   },
   "id" : "67fab6d59930102295343198",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Iba a estudiar francés, pero decidí ver una película.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -598,10 +996,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -614,25 +1012,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was going to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "study French but I decided to watch a film.",
       "options" : null
     } ],
-    "sentences" : [ "I was going to study French but I decided to watch a film." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "study French but I decided to watch a film.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343199"
   },
   "id" : "67fab6d59930102295343199",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Él iba a cenar cereal, pero no había leche.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -650,14 +1084,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "eat cereal for dinner but there was no milk.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -672,19 +1136,25 @@
       "text" : "eat cereal for dinner but there was no milk.",
       "options" : null
     } ],
-    "sentences" : [ "He was going to eat cereal for dinner but there was no milk." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534319a"
   },
   "id" : "67fab6d5993010229534319a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Íbamos a viajar a Italia, pero el tren se retrasó.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -702,13 +1172,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "travel to Italy but the train was delayed.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -724,19 +1225,24 @@
       "text" : "travel to Italy but the train was delayed.",
       "options" : null
     } ],
-    "sentences" : [ "We were going to travel to Italy but the train was delayed." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534319b"
   },
   "id" : "67fab6d5993010229534319b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Ella iba a comprar una computadora, pero gastó todo su dinero.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -754,10 +1260,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1276,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was going to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "buy a computer but she spent all her money.",
       "options" : null
     } ],
-    "sentences" : [ "She was going to buy a computer but she spent all her money." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "was going to" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "buy a computer but she spent all her money.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534319c"
   },
   "id" : "67fab6d5993010229534319c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Iba a asistir a la reunión del sindicato, pero fue cancelada.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -806,41 +1348,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "attend the union meeting, but it was cancelled.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "was going to" ]
     }, {
       "kind" : "TEXT",
       "text" : "attend the union meeting, but it was cancelled.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "I was going to attend the union meeting, but it was cancelled." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534319d"
   },
   "id" : "67fab6d5993010229534319d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Ellos iban a conducir hasta la casa de mis padres, pero no tenían gasolina.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -858,10 +1437,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,25 +1453,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "were going to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "drive to my parent's house but they had no petrol.",
       "options" : null
     } ],
-    "sentences" : [ "They were going to drive to my parent's house but they had no petrol." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "options" : [ "were going to" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "drive to my parent's house but they had no petrol.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534319e"
   },
   "id" : "67fab6d5993010229534319e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "Ella iba a abrir la ventana, pero entonces empezó a llover.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -910,9 +1525,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "open the window but then it started raining.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -931,20 +1581,21 @@
       "kind" : "TEXT",
       "text" : "open the window but then it started raining.",
       "options" : null
-    } ],
-    "sentences" : [ "She was going to open the window but then it started raining." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534319f"
   },
   "id" : "67fab6d5993010229534319f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "¡Te iba a enviar un mensaje de texto, pero me llamaste!",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -962,14 +1613,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "text you but you phoned me!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -984,19 +1665,25 @@
       "text" : "text you but you phoned me!",
       "options" : null
     } ],
-    "sentences" : [ "I was going to text you but you phoned me!" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953431a0"
   },
   "id" : "67fab6d599301022953431a0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
   "title" : "Planes frustrados",
-  "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
   "translation" : "La pintura se iba a romper, pero ella la salvó.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
@@ -1014,13 +1701,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.06.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The picture",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "break but she saved it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -1036,6 +1754,1773 @@
       "text" : "break but she saved it.",
       "options" : null
     } ],
-    "sentences" : [ "The picture was going to break but she saved it." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando '[was going to]' o '[were going to]'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando '[was going to]' o '[were going to]'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343db1"
+  },
+  "id" : "67fab6d59930102295343db1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Iba a ver la televisión, pero en lugar de eso leí un libro.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "watch TV, but I read a book instead.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "was going to" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "watch TV, but I read a book instead.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343db2"
+  },
+  "id" : "67fab6d59930102295343db2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Iban a asistir al concierto, pero el cantante canceló.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "attend the concert, but the singer cancelled.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "attend the concert, but the singer cancelled.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343db3"
+  },
+  "id" : "67fab6d59930102295343db3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Iba a arreglar el coche, pero le faltaban las herramientas.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "fix the car, but he lacked the tools.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "fix the car, but he lacked the tools.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343db4"
+  },
+  "id" : "67fab6d59930102295343db4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Íbamos a comer fuera, pero el viento era demasiado fuerte.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "eat outside, but the wind was too strong.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "eat outside, but the wind was too strong.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343db5"
+  },
+  "id" : "67fab6d59930102295343db5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Ella iba a llamar a su mamá pero se le olvidó.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "call her mom but she forgot.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "call her mom but she forgot.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343db6"
+  },
+  "id" : "67fab6d59930102295343db6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Los estudiantes iban a estudiar español pero el profesor estaba enfermo.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "study Spanish but the teacher was ill.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students",
+      "options" : null
+    }, {
+      "options" : [ "were going to" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "study Spanish but the teacher was ill.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343db7"
+  },
+  "id" : "67fab6d59930102295343db7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Iba a tomar café pero elegí té en su lugar.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "drink coffee but I chose tea instead.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "options" : [ "was going to" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "drink coffee but I chose tea instead."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343db8"
+  },
+  "id" : "67fab6d59930102295343db8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Ella iba a viajar al extranjero, pero le robaron el pasaporte.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "travel abroad but her passport was stolen.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "travel abroad but her passport was stolen.",
+      "options" : null
+    } ],
+    "sentences" : [ "She was going to travel abroad but her passport was stolen." ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343db9"
+  },
+  "id" : "67fab6d59930102295343db9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Iba a escribir un correo electrónico, pero en su lugar llamé por teléfono.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "write an email but I phoned instead.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "write an email but I phoned instead.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343dba"
+  },
+  "id" : "67fab6d59930102295343dba",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Él iba a pedir pasta, pero su amigo le sugirió pescado.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "order pasta but his friend suggested fish.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "was going to" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "order pasta but his friend suggested fish."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343dbb"
+  },
+  "id" : "67fab6d59930102295343dbb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Íbamos a almorzar hoy, pero tuve que irme.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "have lunch today but I had to leave.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "options" : [ "were going to" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "have lunch today but I had to leave.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343dbc"
+  },
+  "id" : "67fab6d59930102295343dbc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Iban a visitar el museo, pero estaba cerrado.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "visit the museum, but it was closed.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were going to" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "visit the museum, but it was closed."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343dbd"
+  },
+  "id" : "67fab6d59930102295343dbd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Lucy iba a comprarse un vestido nuevo, pero no le gustó ninguno.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Lucy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "get a new dress but she didn't like any.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Lucy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "get a new dress but she didn't like any.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343dbe"
+  },
+  "id" : "67fab6d59930102295343dbe",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Ella iba a pintar la pared, pero se quedó sin pintura.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "paint the wall but she ran out of paint.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "paint the wall but she ran out of paint.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "She was going to paint the wall but she ran out of paint." ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343dbf"
+  },
+  "id" : "67fab6d59930102295343dbf",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Iba a llamarte esta mañana, pero se me olvidó.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "call you this morning but I forgot.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "call you this morning but I forgot.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343dc0"
+  },
+  "id" : "67fab6d59930102295343dc0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Mi padre iba a coger el autobús, pero lo perdió.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My father",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "catch the bus but he missed it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "My father"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was going to" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "catch the bus but he missed it."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343dc1"
+  },
+  "id" : "67fab6d59930102295343dc1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Iban a jugar videojuegos, pero no había electricidad.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "play videogames but there was no electricity.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were going to" ]
+    }, {
+      "text" : "play videogames but there was no electricity.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343dc2"
+  },
+  "id" : "67fab6d59930102295343dc2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Los niños iban a visitar a su abuelo, pero él se sintió enfermo.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The children",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "visit their grandpa but he felt sick.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The children",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were going to" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "visit their grandpa but he felt sick."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343dc3"
+  },
+  "id" : "67fab6d59930102295343dc3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "Ella iba a ordenar su habitación, pero se distrajo.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "tidy up her room but she got distracted.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "tidy up her room but she got distracted.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343dc4"
+  },
+  "id" : "67fab6d59930102295343dc4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d2d3"
+  },
+  "title" : "Planes frustrados",
+  "instructions" : "Elige 'was going to' o 'were going to'.",
+  "translation" : "James iba a hornear un pastel, pero no había leche.",
+  "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
+  "topicName" : "Past Continuous and Future in the Past",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.01.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "El plan que no se cumplió va con $was$ / $were going to$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "James",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bake a cake but there was no milk.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was going to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was going to"
+    }, {
+      "id" : "were going to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were going to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "James",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was going to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bake a cake but there was no milk.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí oraciones con 'was / were going to'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones con 'was / were going to'."
 } ]

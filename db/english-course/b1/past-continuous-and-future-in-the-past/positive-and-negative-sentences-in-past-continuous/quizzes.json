@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -78,7 +78,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -94,13 +94,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was not listening/wasn't listening" ]
+      "options" : [ "was not listening|wasn't listening" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / listen).",
       "options" : null
     } ],
-    "sentences" : [ "He was not listening/wasn't listening." ]
+    "sentences" : [ "He was not listening.", "He wasn't listening." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "was not listening/wasn't listening" ]
   }
 }, {
   "_id" : {
@@ -130,7 +133,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -182,7 +185,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -198,13 +201,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was not eating/wasn't eating" ]
+      "options" : [ "was not eating|wasn't eating" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / eat) bread.",
       "options" : null
     } ],
-    "sentences" : [ "She was not eating/wasn't eating bread." ]
+    "sentences" : [ "She was not eating bread.", "She wasn't eating bread." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "was not eating/wasn't eating" ]
   }
 }, {
   "_id" : {
@@ -234,7 +240,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -286,29 +292,32 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
-      "options" : [ "was not doubling/wasn't doubling" ]
+      "text" : "",
+      "options" : [ "was not doubling|wasn't doubling" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / double) in size last year.",
       "options" : null
     } ],
-    "sentences" : [ "It was not doubling/wasn't doubling in size last year." ]
+    "sentences" : [ "It was not doubling in size last year.", "It wasn't doubling in size last year." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "was not doubling/wasn't doubling" ]
   }
 }, {
   "_id" : {
@@ -338,7 +347,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -390,7 +399,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -406,13 +415,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "were not shouting/weren't shouting" ]
+      "options" : [ "were not shouting|weren't shouting" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / shout).",
       "options" : null
     } ],
-    "sentences" : [ "We were not shouting/weren't shouting." ]
+    "sentences" : [ "We were not shouting.", "We weren't shouting." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "were not shouting/weren't shouting" ]
   }
 }, {
   "_id" : {
@@ -442,7 +454,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -458,13 +470,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was not drawing/wasn't drawing" ]
+      "options" : [ "was not drawing|wasn't drawing" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / draw).",
       "options" : null
     } ],
-    "sentences" : [ "He was not drawing/wasn't drawing." ]
+    "sentences" : [ "He was not drawing.", "He wasn't drawing." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "was not drawing/wasn't drawing" ]
   }
 }, {
   "_id" : {
@@ -494,7 +509,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -546,22 +561,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "was weighing" ]
     }, {
       "kind" : "TEXT",
@@ -598,7 +613,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -650,7 +665,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -666,13 +681,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "were not seeing/weren't seeing" ]
+      "options" : [ "were not seeing|weren't seeing" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / see) her.",
       "options" : null
     } ],
-    "sentences" : [ "You were not seeing/weren't seeing her." ]
+    "sentences" : [ "You were not seeing her.", "You weren't seeing her." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "were not seeing/weren't seeing" ]
   }
 }, {
   "_id" : {
@@ -702,7 +720,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -754,7 +772,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -806,7 +824,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -822,13 +840,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "were not feeling/weren't feeling" ]
+      "options" : [ "were not feeling|weren't feeling" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / feel) well.",
       "options" : null
     } ],
-    "sentences" : [ "They were not feeling/weren't feeling well." ]
+    "sentences" : [ "They were not feeling well.", "They weren't feeling well." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "were not feeling/weren't feeling" ]
   }
 }, {
   "_id" : {
@@ -858,7 +879,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -874,13 +895,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "were not doing/weren't doing" ]
+      "options" : [ "were not doing|weren't doing" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / do) homework.",
       "options" : null
     } ],
-    "sentences" : [ "We were not doing/weren't doing homework." ]
+    "sentences" : [ "We were not doing homework.", "We weren't doing homework." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "were not doing/weren't doing" ]
   }
 }, {
   "_id" : {
@@ -910,7 +934,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -926,13 +950,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "were not selling/weren't selling" ]
+      "options" : [ "were not selling|weren't selling" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / sell) cars.",
       "options" : null
     } ],
-    "sentences" : [ "We were not selling/weren't selling cars." ]
+    "sentences" : [ "We were not selling cars.", "We weren't selling cars." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "were not selling/weren't selling" ]
   }
 }, {
   "_id" : {
@@ -962,7 +989,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1014,7 +1041,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.03.01.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$was$ / $were$ + verbo con $-ing$. El $not$ va en el medio: $wasn't listening$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1030,12 +1057,15 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "were not using/weren't using" ]
+      "options" : [ "were not using|weren't using" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / use) the computer.",
       "options" : null
     } ],
-    "sentences" : [ "They were not using/weren't using the computer." ]
+    "sentences" : [ "They were not using the computer.", "They weren't using the computer." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "were not using/weren't using" ]
   }
 } ]

@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953442cf"
   },
   "id" : "67fab6d599301022953442cf",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "La tienda está a la vuelta de la esquina.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "The" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "shop is around the corner.",
       "options" : null
     } ],
-    "sentences" : [ "The shop is around the corner." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "shop is around the corner.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442d0"
   },
   "id" : "67fab6d599301022953442d0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "Mi hermano estudia matemáticas en la universidad.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -78,10 +112,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +128,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "college.",
       "options" : null
     } ],
-    "sentences" : [ "My brother learns maths at - college." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My brother learns maths at",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "college.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442d1"
   },
   "id" : "67fab6d599301022953442d1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "Ellos residen cerca del teatro en la ciudad.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -130,28 +198,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They reside close to",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "theatre in the city.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They reside close to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "theatre in the city.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "They reside close to the theatre in the city." ]
   }
 }, {
@@ -159,12 +262,12 @@
     "$oid" : "67fab6d599301022953442d2"
   },
   "id" : "67fab6d599301022953442d2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "El ladrón fue entregado a prisión.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -182,10 +285,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,25 +301,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "prison.",
       "options" : null
     } ],
-    "sentences" : [ "The thief was delivered to - prison." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The thief was delivered to",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "prison.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442d3"
   },
   "id" : "67fab6d599301022953442d3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "Ella estudió Historia Antigua en la universidad.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -234,10 +371,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +387,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "college.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She read Ancient History at"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "college.",
       "options" : null
     } ],
-    "sentences" : [ "She read Ancient History at - college." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442d4"
   },
   "id" : "67fab6d599301022953442d4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "¿Sigue María en prisión, o ha sido liberada?",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -286,10 +457,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +473,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "prison, or has she been released?",
       "options" : null
     } ],
-    "sentences" : [ "Is Mary still in - prison, or has she been released?" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Is Mary still in",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "prison, or has she been released?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442d5"
   },
   "id" : "67fab6d599301022953442d5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "¿Pasaste en bicicleta por delante del teatro en tu viaje?",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -338,10 +543,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +559,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "theatre on your journey?",
       "options" : null
     } ],
-    "sentences" : [ "Did you cycle past the theatre on your journey?" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Did you cycle past",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "theatre on your journey?",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442d6"
   },
   "id" : "67fab6d599301022953442d6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "Él compra flores cerca del mercado.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -390,10 +629,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -406,25 +645,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "market.",
       "options" : null
     } ],
-    "sentences" : [ "He buys flowers close to the market." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He buys flowers close to",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "market.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442d7"
   },
   "id" : "67fab6d599301022953442d7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "La piscina pertenece a la universidad.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -442,9 +715,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The swimming pool belongs to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "college.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -460,23 +768,22 @@
       "text" : "",
       "options" : [ "the" ]
     }, {
-      "kind" : "TEXT",
       "text" : "college.",
-      "options" : null
-    } ],
-    "sentences" : [ "The swimming pool belongs to the college." ]
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442d8"
   },
   "id" : "67fab6d599301022953442d8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "¿Cuándo empieza la gente la universidad en tu país?",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -494,28 +801,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "When do people begin",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "college in your country?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When do people begin",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "college in your country?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "When do people begin - college in your country?" ]
   }
 }, {
@@ -523,12 +865,12 @@
     "$oid" : "67fab6d599301022953442d9"
   },
   "id" : "67fab6d599301022953442d9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "Nos reunimos fuera del mercado.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -546,10 +888,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We gathered outside",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "market.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -568,19 +944,19 @@
       "text" : "market.",
       "options" : null
     } ],
-    "sentences" : [ "We gathered outside the market." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442da"
   },
   "id" : "67fab6d599301022953442da",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "Nunca he entrado en la biblioteca.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -598,10 +974,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I've never stepped inside",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "library.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -616,23 +1026,23 @@
       "text" : "",
       "options" : [ "the" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "library.",
-      "options" : null
+      "text" : "library."
     } ],
-    "sentences" : [ "I've never stepped inside the library." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442db"
   },
   "id" : "67fab6d599301022953442db",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "¿Tuvo ella que presentarse en la biblioteca?",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -650,10 +1060,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did she have to present herself in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "library?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -672,6 +1116,7 @@
       "text" : "library?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "Did she have to present herself in the library?" ]
   }
 }, {
@@ -679,12 +1124,12 @@
     "$oid" : "67fab6d599301022953442dc"
   },
   "id" : "67fab6d599301022953442dc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "¿Vas a veces al mercado?",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -702,10 +1147,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -718,25 +1163,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "market?",
       "options" : null
     } ],
-    "sentences" : [ "Do you sometimes attend - market?" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you sometimes attend",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "market?"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442dd"
   },
   "id" : "67fab6d599301022953442dd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "Sophie puede observar el mercado desde su balcón.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -754,13 +1233,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sophie can observe",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "market from her balcony.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -776,19 +1286,22 @@
       "text" : "market from her balcony.",
       "options" : null
     } ],
-    "sentences" : [ "Sophie can observe the market from her balcony." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442de"
   },
   "id" : "67fab6d599301022953442de",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "Lamentablemente, ella está en prisión.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -806,13 +1319,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sadly, she's in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "prison.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -828,19 +1372,22 @@
       "text" : "prison.",
       "options" : null
     } ],
-    "sentences" : [ "Sadly, she's in - prison." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442df"
   },
   "id" : "67fab6d599301022953442df",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "¿Está Thomas en la universidad este trimestre?",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -858,10 +1405,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,25 +1421,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "university this term?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Is Thomas at",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "university this term?",
       "options" : null
     } ],
-    "sentences" : [ "Is Thomas at - university this term?" ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442e0"
   },
   "id" : "67fab6d599301022953442e0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "Él desea estudiar ingeniería en la universidad.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -910,9 +1491,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He wishes to study engineering at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "college.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -931,20 +1547,19 @@
       "kind" : "TEXT",
       "text" : "college.",
       "options" : null
-    } ],
-    "sentences" : [ "He wishes to study engineering at - college." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442e1"
   },
   "id" : "67fab6d599301022953442e1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "Reunámonos cerca de la biblioteca.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -962,9 +1577,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's gather near",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "library.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -983,20 +1633,19 @@
       "kind" : "TEXT",
       "text" : "library.",
       "options" : null
-    } ],
-    "sentences" : [ "Let's gather near the library." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442e2"
   },
   "id" : "67fab6d599301022953442e2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43a"
   },
   "title" : "Instituciones",
-  "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
+  "instructions" : "Elige 'no article' (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige 'the'.",
   "translation" : "Él está empleado en el teatro al lado de mi oficina.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
@@ -1014,10 +1663,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.12.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es la función habitual, sin artículo: $at college$, $to prison$. Si no, $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1030,12 +1679,46 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "theatre beside my office.",
       "options" : null
     } ],
-    "sentences" : [ "He is employed in the theatre beside my office." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is employed in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "text" : "theatre beside my office.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 } ]

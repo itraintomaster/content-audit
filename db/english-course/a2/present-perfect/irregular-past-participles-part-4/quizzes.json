@@ -7,7 +7,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Él no ha conservado la licencia.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -26,29 +26,32 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$keep$ → $kept$, $win$ → $won$, $hear$ → $heard$, $build$ → $built$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
-      "options" : [ "has not kept/hasn't kept" ]
+      "text" : "",
+      "options" : [ "has not kept|hasn't kept" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / keep) the licence.",
       "options" : null
     } ],
-    "sentences" : [ "He has not kept/hasn't kept the licence." ]
+    "sentences" : [ "He has not kept the licence.", "He hasn't kept the licence." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "has not kept/hasn't kept" ]
   }
 }, {
   "_id" : {
@@ -59,7 +62,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "¿Ella ha corrido en una carrera?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -78,18 +81,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$run$ no cambia: el participio es $run$ también.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Has she run" ]
     }, {
       "kind" : "TEXT",
@@ -107,7 +110,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Ellos no han ganado todavía.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -126,7 +129,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$keep$ → $kept$, $win$ → $won$, $hear$ → $heard$, $build$ → $built$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -142,13 +145,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "have not won/haven't won" ]
+      "options" : [ "have not won|haven't won" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / win) yet.",
       "options" : null
     } ],
-    "sentences" : [ "They have not won/haven't won yet." ]
+    "sentences" : [ "They have not won yet.", "They haven't won yet." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "have not won/haven't won" ]
   }
 }, {
   "_id" : {
@@ -159,7 +165,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Ella no ha escuchado tu mensaje.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -178,7 +184,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$keep$ → $kept$, $win$ → $won$, $hear$ → $heard$, $build$ → $built$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -194,13 +200,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "has not heard/hasn't heard" ]
+      "options" : [ "has not heard|hasn't heard" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / hear) your message.",
       "options" : null
     } ],
-    "sentences" : [ "She has not heard/hasn't heard your message." ]
+    "sentences" : [ "She has not heard your message.", "She hasn't heard your message." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "has not heard/hasn't heard" ]
   }
 }, {
   "_id" : {
@@ -211,7 +220,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Ellos no han construido mucho hoy.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -230,7 +239,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$keep$ → $kept$, $win$ → $won$, $hear$ → $heard$, $build$ → $built$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -246,13 +255,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "have not built/haven't built" ]
+      "options" : [ "have not built|haven't built" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / build) much today.",
       "options" : null
     } ],
-    "sentences" : [ "They have not built/haven't built much today." ]
+    "sentences" : [ "They have not built much today.", "They haven't built much today." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "have not built/haven't built" ]
   }
 }, {
   "_id" : {
@@ -263,7 +275,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "¿Has conocido a mi hermano?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -282,7 +294,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$know$ → $known$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -315,7 +327,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Él ha escrito muchas cartas.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -334,7 +346,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$write$ → $written$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -367,7 +379,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "¿Han encontrado los jugadores el estadio?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -386,18 +398,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$find$ → $found$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Have the players found" ]
     }, {
       "kind" : "TEXT",
@@ -415,7 +427,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "¿Has viajado lejos antes?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -434,18 +446,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Este es regular: no es excepción, alcanza con $-ed$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Have you travelled" ]
     }, {
       "kind" : "TEXT",
@@ -463,7 +475,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "¿Ha tenido esto mucho plástico?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -482,18 +494,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$have$ → $had$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Has this had" ]
     }, {
       "kind" : "TEXT",
@@ -511,7 +523,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Esto ha significado mucho para mí.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -530,7 +542,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mean$ → $meant$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -563,7 +575,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Ella ha bailado en el teatro.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -582,7 +594,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Este es regular: no es excepción, alcanza con $-ed$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -615,7 +627,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "¿Has visitado a tus padres?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -634,7 +646,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Este es regular: no es excepción, alcanza con $-ed$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -667,7 +679,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Me he golpeado la cabeza.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -686,7 +698,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$hit$ no cambia: el participio es $hit$ también.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -719,7 +731,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Él ha visto todo Star Wars.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -738,7 +750,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Este es regular: no es excepción, alcanza con $-ed$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -771,7 +783,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Él se ha mantenido callado.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -790,7 +802,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Este es regular: no es excepción, alcanza con $-ed$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -823,7 +835,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "¿Han llegado al aeropuerto?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -842,7 +854,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Este es regular: no es excepción, alcanza con $-ed$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -875,7 +887,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Hemos cultivado algunas flores.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -894,7 +906,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$grow$ → $grown$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -927,7 +939,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "¿Ella ha construido su casa?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -946,7 +958,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$keep$ → $kept$, $win$ → $won$, $hear$ → $heard$, $build$ → $built$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -979,7 +991,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Él no ha cerrado la puerta.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -998,7 +1010,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$shut$ no cambia: el participio es $shut$ también.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1014,13 +1026,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "has not shut/hasn't shut" ]
+      "options" : [ "has not shut|hasn't shut" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / shut) the door.",
       "options" : null
     } ],
-    "sentences" : [ "He has not shut/hasn't shut the door." ]
+    "sentences" : [ "He has not shut the door.", "He hasn't shut the door." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "has not shut/hasn't shut" ]
   }
 }, {
   "_id" : {
@@ -1031,7 +1046,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Nosotros no hemos movido los muebles.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -1050,7 +1065,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.21",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Este es regular: no es excepción, alcanza con $-ed$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1066,13 +1081,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "have not moved/haven't moved" ]
+      "options" : [ "have not moved|haven't moved" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / move) the furniture.",
       "options" : null
     } ],
-    "sentences" : [ "We have not moved/haven't moved the furniture." ]
+    "sentences" : [ "We have not moved the furniture.", "We haven't moved the furniture." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "have not moved/haven't moved" ]
   }
 }, {
   "_id" : {
@@ -1083,7 +1101,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Ella no ha sostenido un vaso lleno.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -1102,29 +1120,32 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.22",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$hold$ → $held$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
-      "options" : [ "has not held/hasn't held" ]
+      "text" : "",
+      "options" : [ "has not held|hasn't held" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / hold) a full glass.",
       "options" : null
     } ],
-    "sentences" : [ "She has not held/hasn't held a full glass." ]
+    "sentences" : [ "She has not held a full glass.", "She hasn't held a full glass." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "has not held/hasn't held" ]
   }
 }, {
   "_id" : {
@@ -1135,7 +1156,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Ellos han entendido la pregunta.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -1154,7 +1175,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.23",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$understand$ → $understood$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1187,7 +1208,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Participios irregulares IV",
+  "title" : "Participios irregulares 4",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "Eso no nos ha importado.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -1206,7 +1227,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.07.24",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Este es regular: no es excepción, alcanza con $-ed$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1222,12 +1243,15 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "have not cared/haven't cared" ]
+      "options" : [ "have not cared|haven't cared" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / care) about that.",
       "options" : null
     } ],
-    "sentences" : [ "We have not cared/haven't cared about that." ]
+    "sentences" : [ "We have not cared about that.", "We haven't cared about that." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "have not cared/haven't cared" ]
   }
 } ]

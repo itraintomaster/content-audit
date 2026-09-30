@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295343cb7"
   },
   "id" : "67fab6d59930102295343cb7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "Un grupo de personas trabajó fuera del edificio.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -26,41 +26,102 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A group",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "people worked outside the building.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A group",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "people worked outside the building.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "A group of people worked outside the building." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cb8"
   },
   "id" : "67fab6d59930102295343cb8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "Ella escribió un ensayo sobre historia.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -78,13 +139,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wrote an essay",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "history.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -100,19 +210,83 @@
       "text" : "history.",
       "options" : null
     } ],
-    "sentences" : [ "She wrote an essay about history.", "She wrote an essay on history." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wrote an essay",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "history.",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cb9"
   },
   "id" : "67fab6d59930102295343cb9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "¿Recibiste la factura por el servicio de emergencia?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -130,22 +304,81 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Did you receive the invoice",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the emergency service?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you receive the invoice",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
@@ -153,18 +386,20 @@
       "options" : null
     } ],
     "sentences" : [ "Did you receive the invoice for the emergency service?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cba"
   },
   "id" : "67fab6d59930102295343cba",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "¿Cuál es la longitud del jardín?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -182,10 +417,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,25 +433,85 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "of" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the garden?",
       "options" : null
     } ],
-    "sentences" : [ "What is the length of the garden?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What is the length",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "text" : "the garden?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cbb"
   },
   "id" : "67fab6d59930102295343cbb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "¿Necesitas más detalles sobre el vuelo?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -234,10 +529,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +545,132 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "about" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "the flight?",
       "options" : null
     } ],
-    "sentences" : [ "Do you require further details about the flight?" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Do you require further details",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "about" ]
+    }, {
+      "text" : "the flight?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you require further details",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the flight?",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cbc"
   },
   "id" : "67fab6d59930102295343cbc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "¿Cuál es el problema con Sarah?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -286,10 +688,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +704,85 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "with" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Sarah?",
       "options" : null
     } ],
-    "sentences" : [ "What's the problem with Sarah?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What's the problem",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "with" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "Sarah?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cbd"
   },
   "id" : "67fab6d59930102295343cbd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "Necesito una tarifa por el alojamiento.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -338,41 +800,102 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I need a fee",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the accommodation.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need a fee",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "the accommodation.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "I need a fee for the accommodation." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cbe"
   },
   "id" : "67fab6d59930102295343cbe",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "Aprendieron una nueva frase sobre los adverbios.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -390,22 +913,75 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They learned a new phrase",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "adverbs.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They learned a new phrase",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
@@ -413,18 +989,79 @@
       "options" : null
     } ],
     "sentences" : [ "They learned a new phrase about adverbs." ]
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They learned a new phrase",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "adverbs.",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cbf"
   },
   "id" : "67fab6d59930102295343cbf",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "¿Experimentaste algún problema con la descripción?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -442,22 +1079,81 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Did you experience any issues",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the description?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you experience any issues",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
@@ -465,18 +1161,20 @@
       "options" : null
     } ],
     "sentences" : [ "Did you experience any issues with the description?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cc0"
   },
   "id" : "67fab6d59930102295343cc0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "Soy un novato en la cocina, pero quiero aprender.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -494,41 +1192,102 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Novice, good y bad van con $at$: a novice at cooking.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I'm a novice",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cooking, but I want to learn.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm a novice",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
       "text" : "cooking, but I want to learn.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "I'm a novice at cooking, but I want to learn." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cc1"
   },
   "id" : "67fab6d59930102295343cc1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "Recibimos una invitación a la fiesta.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -546,10 +1305,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Invitation va con $to$: an invitation to the party.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,25 +1321,138 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the party.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "We received an invitation",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "the party.",
       "options" : null
     } ],
-    "sentences" : [ "We received an invitation to the party." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We received an invitation",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the party.",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cc2"
   },
   "id" : "67fab6d59930102295343cc2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "Esta es una foto de mi abuelo.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -598,22 +1470,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This is a photo",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my grandfather.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is a photo",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
@@ -621,18 +1540,79 @@
       "options" : null
     } ],
     "sentences" : [ "This is a photo of my grandfather." ]
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is a photo",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my grandfather.",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cc3"
   },
   "id" : "67fab6d59930102295343cc3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "¿Hay alguna dificultad con la computadora?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -650,13 +1630,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Is there a difficulty",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the computer?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -672,19 +1707,24 @@
       "text" : "the computer?",
       "options" : null
     } ],
-    "sentences" : [ "Is there a difficulty with the computer?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cc4"
   },
   "id" : "67fab6d59930102295343cc4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "¿Tienes respeto por el baile tradicional?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -702,22 +1742,81 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you have respect",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "traditional dancing?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have respect",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
@@ -725,18 +1824,20 @@
       "options" : null
     } ],
     "sentences" : [ "Do you have respect for traditional dancing?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cc5"
   },
   "id" : "67fab6d59930102295343cc5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "¿Eres parte de alguna organización?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -754,10 +1855,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1871,85 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "of" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "any organization?",
       "options" : null
     } ],
-    "sentences" : [ "Are you a part of any organization?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Are you a part",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "any organization?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cc6"
   },
   "id" : "67fab6d59930102295343cc6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "Londres es la capital de Inglaterra.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -806,10 +1967,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -822,25 +1983,85 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "England.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "London is the capital"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "England.",
       "options" : null
     } ],
-    "sentences" : [ "London is the capital of England." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cc7"
   },
   "id" : "67fab6d59930102295343cc7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "¿Cuál es la explicación de este retraso?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -858,10 +2079,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,25 +2095,132 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "for" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "this delay?",
       "options" : null
     } ],
-    "sentences" : [ "What's the explanation for this delay?" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What's the explanation",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "for" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "this delay?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What's the explanation",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "this delay?",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cc8"
   },
   "id" : "67fab6d59930102295343cc8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "¿Conoces el beneficio del evento?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -910,41 +2238,102 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you know the benefit",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the event?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you know the benefit",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "the event?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "Do you know the benefit of the event?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cc9"
   },
   "id" : "67fab6d59930102295343cc9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "Su casa tiene vista al mar.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -962,9 +2351,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His house has a view",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the sea.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -985,18 +2427,79 @@
       "options" : null
     } ],
     "sentences" : [ "His house has a view of the sea." ]
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His house has a view",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the sea.",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343cca"
   },
   "id" : "67fab6d59930102295343cca",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Más de una opción válida",
-  "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "title" : "Tras sustantivos 1",
+  "instructions" : "Elige la preposición correcta para completar cada oración.",
   "translation" : "¿Dónde está la funda para mi teléfono?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
@@ -1014,22 +2517,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.17.07.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a group of$, $an essay about$, $an invoice for$, $a problem with$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Where is the cover",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my telephone?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where is the cover",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
@@ -1037,5 +2587,66 @@
       "options" : null
     } ],
     "sentences" : [ "Where is the cover for my telephone?" ]
+  },
+  "instructionsAnteriores" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "instructionsAntesDeRevisar" : "Elige la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where is the cover",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "my telephone?",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "about",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "about"
+    }, {
+      "id" : "at",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "at"
+    }, {
+      "id" : "for",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "for"
+    }, {
+      "id" : "of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "of"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    }, {
+      "id" : "with",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "with"
+    } ]
   }
 } ]

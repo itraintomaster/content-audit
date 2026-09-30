@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953442bb"
   },
   "id" : "67fab6d599301022953442bb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Ella es estudiante en el Eton College.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -26,10 +26,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Museos y teatros llevan $the$; colegios, calles, tiendas y aeropuertos, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -42,25 +42,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Eton College.",
       "options" : null
     } ],
-    "sentences" : [ "She is a student at - Eton College." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She is a student at"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Eton College.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442bc"
   },
   "id" : "67fab6d599301022953442bc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Ellos visitaron el Museo Británico.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -78,10 +113,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Museos y teatros llevan $the$; colegios, calles, tiendas y aeropuertos, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +129,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "British Museum.",
       "options" : null
     } ],
-    "sentences" : [ "They visited the British Museum." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They visited",
+      "options" : null
+    }, {
+      "options" : [ "the" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "British Museum."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442bd"
   },
   "id" : "67fab6d599301022953442bd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Ella vive en Park Lane.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -130,10 +200,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Museos y teatros llevan $the$; colegios, calles, tiendas y aeropuertos, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,25 +216,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Park Lane.",
       "options" : null
     } ],
-    "sentences" : [ "She lives in - Park Lane." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "She lives in",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Park Lane."
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442be"
   },
   "id" : "67fab6d599301022953442be",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "¿Alguna vez has comprado en Marks and Spencer?",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -182,10 +287,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Museos y teatros llevan $the$; colegios, calles, tiendas y aeropuertos, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,25 +303,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Marks and Spencer?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever shopped at - Marks and Spencer?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Have you ever shopped at",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Marks and Spencer?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442bf"
   },
   "id" : "67fab6d599301022953442bf",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Asistimos a un concierto en el Royal Albert Hall.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -234,10 +374,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También con $the$: hoteles, pubs y salas, como $the Ritz$ y $the Royal Albert Hall$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We attended a concert at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Royal Albert Hall.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -252,23 +426,24 @@
       "text" : "",
       "options" : [ "the" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "Royal Albert Hall.",
-      "options" : null
+      "text" : "Royal Albert Hall."
     } ],
-    "sentences" : [ "We attended a concert at the Royal Albert Hall." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442c0"
   },
   "id" : "67fab6d599301022953442c0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Están aterrizando en el aeropuerto de Heathrow.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -286,10 +461,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Museos y teatros llevan $the$; colegios, calles, tiendas y aeropuertos, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,25 +477,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Heathrow Airport.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They are landing at"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Heathrow Airport.",
       "options" : null
     } ],
-    "sentences" : [ "They are landing at - Heathrow Airport." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442c1"
   },
   "id" : "67fab6d599301022953442c1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Él disfruta de la National Portrait Gallery.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -338,9 +548,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Museos y teatros llevan $the$; colegios, calles, tiendas y aeropuertos, no.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He enjoys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "National Portrait Gallery.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +604,20 @@
       "kind" : "TEXT",
       "text" : "National Portrait Gallery.",
       "options" : null
-    } ],
-    "sentences" : [ "He enjoys the National Portrait Gallery." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442c2"
   },
   "id" : "67fab6d599301022953442c2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Se alojaron en el Ritz durante la conferencia la primavera pasada.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -390,22 +635,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También con $the$: hoteles, pubs y salas, como $the Ritz$ y $the Royal Albert Hall$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They lodged at",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Ritz (a hotel) during the conference last spring.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They lodged at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
@@ -413,18 +693,19 @@
       "options" : null
     } ],
     "sentences" : [ "They lodged at the Ritz during the conference last spring." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442c3"
   },
   "id" : "67fab6d599301022953442c3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "¿Has visitado alguna vez el Museo de Ciencia e Industria?",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -442,10 +723,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Museos y teatros llevan $the$; colegios, calles, tiendas y aeropuertos, no.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +739,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Science and Industry Museum?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever visited the Science and Industry Museum?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "Have you ever visited",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "the" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "Science and Industry Museum?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442c4"
   },
   "id" : "67fab6d599301022953442c4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Nos reunimos en la estación de Paddington.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -494,10 +810,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También sin artículo: parques, estaciones, puentes y áreas, como $Central Park$ o $Tower Bridge$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,25 +826,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Paddington Station.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "We gathered at"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Paddington Station.",
       "options" : null
     } ],
-    "sentences" : [ "We gathered at - Paddington Station." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442c5"
   },
   "id" : "67fab6d599301022953442c5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Él vio una función en el Globe Theatre.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -546,9 +897,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Museos y teatros llevan $the$; colegios, calles, tiendas y aeropuertos, no.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He watched a performance at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Globe Theatre.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -567,20 +953,20 @@
       "kind" : "TEXT",
       "text" : "Globe Theatre.",
       "options" : null
-    } ],
-    "sentences" : [ "He watched a performance at the Globe Theatre." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442c6"
   },
   "id" : "67fab6d599301022953442c6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Ella tiene un diploma de la Universidad de Cambridge.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -598,15 +984,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con «of» va $the$: $the University of Cambridge$. Sin «of», nada: $Harvard University$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has a diploma from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "University of Cambridge.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She has a diploma from",
@@ -620,19 +1035,25 @@
       "text" : "University of Cambridge.",
       "options" : null
     } ],
-    "sentences" : [ "She has a diploma from the University of Cambridge." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442c7"
   },
   "id" : "67fab6d599301022953442c7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Caminamos por el centro de Londres el sábado por la mañana.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -650,41 +1071,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También sin artículo: parques, estaciones, puentes y áreas, como $Central Park$ o $Tower Bridge$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We walked through",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "central London on Saturday morning.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We walked through",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "central London on Saturday morning.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "We walked through - central London on Saturday morning." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442c8"
   },
   "id" : "67fab6d599301022953442c8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "¿Te apetece una copa en el Red Lion?",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -702,9 +1159,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También con $the$: hoteles, pubs y salas, como $the Ritz$ y $the Royal Albert Hall$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Fancy a drink at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Red Lion (a pub)?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -723,20 +1215,20 @@
       "kind" : "TEXT",
       "text" : "Red Lion (a pub)?",
       "options" : null
-    } ],
-    "sentences" : [ "Fancy a drink at the Red Lion ?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442c9"
   },
   "id" : "67fab6d599301022953442c9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Reservaron el Hotel Dorchester.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -754,10 +1246,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También con $the$: hoteles, pubs y salas, como $the Ritz$ y $the Royal Albert Hall$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1262,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Dorchester Hotel.",
       "options" : null
     } ],
-    "sentences" : [ "They reserved the Dorchester Hotel." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They reserved"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Dorchester Hotel.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442ca"
   },
   "id" : "67fab6d599301022953442ca",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Ella se especializó en la Universidad de St Andrews.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -806,13 +1333,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con «of» va $the$: $the University of Cambridge$. Sin «of», nada: $Harvard University$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She majored at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "University of St Andrews.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -828,19 +1386,23 @@
       "text" : "University of St Andrews.",
       "options" : null
     } ],
-    "sentences" : [ "She majored at the University of St Andrews." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442cb"
   },
   "id" : "67fab6d599301022953442cb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Vamos a visitar Regent's Park.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -858,13 +1420,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También sin artículo: parques, estaciones, puentes y áreas, como $Central Park$ o $Tower Bridge$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Let's visit",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Regent's Park.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -880,19 +1473,23 @@
       "text" : "Regent's Park.",
       "options" : null
     } ],
-    "sentences" : [ "Let's visit - Regent's Park." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442cc"
   },
   "id" : "67fab6d599301022953442cc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Ellos deambularon por Greenwich Village.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -910,10 +1507,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También sin artículo: parques, estaciones, puentes y áreas, como $Central Park$ o $Tower Bridge$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -926,25 +1523,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Greenwich Village (an area in New York).",
       "options" : null
     } ],
-    "sentences" : [ "They wandered around - Greenwich Village ." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They wandered around",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Greenwich Village (an area in New York)."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442cd"
   },
   "id" : "67fab6d599301022953442cd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Condujeron por el Tower Bridge.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -962,9 +1594,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "También sin artículo: parques, estaciones, puentes y áreas, como $Central Park$ o $Tower Bridge$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They drove over",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Tower Bridge.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -983,20 +1650,20 @@
       "kind" : "TEXT",
       "text" : "Tower Bridge.",
       "options" : null
-    } ],
-    "sentences" : [ "They drove over - Tower Bridge." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953442ce"
   },
   "id" : "67fab6d599301022953442ce",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d439"
   },
   "title" : "Sitios con nombre",
-  "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
+  "instructions" : "Elige 'the' o – si no se requiere ningún artículo.",
   "translation" : "Él está matriculado en la Universidad de Harvard.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
@@ -1014,14 +1681,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.06.11.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con «of» va $the$: $the University of Cambridge$. Sin «of», nada: $Harvard University$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He is enrolled at",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Harvard University.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -1036,6 +1733,11 @@
       "text" : "Harvard University.",
       "options" : null
     } ],
-    "sentences" : [ "He is enrolled at - Harvard University." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'the' o – si no se requiere ningún artículo."
 } ]

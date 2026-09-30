@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295343542"
   },
   "id" : "67fab6d59930102295343542",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Condujimos a otra ciudad.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -26,9 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We drove to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "city.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,20 +82,20 @@
       "kind" : "TEXT",
       "text" : "city.",
       "options" : null
-    } ],
-    "sentences" : [ "We drove to another city." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343543"
   },
   "id" : "67fab6d59930102295343543",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Él prefiere las otras opciones.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -78,14 +113,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He prefers",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "options.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -100,19 +165,24 @@
       "text" : "options.",
       "options" : null
     } ],
-    "sentences" : [ "He prefers the other options." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343544"
   },
   "id" : "67fab6d59930102295343544",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Los profesores conocieron a los otros autores famosos.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -130,41 +200,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The professors met",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "famous authors.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The professors met",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the other" ]
     }, {
       "kind" : "TEXT",
       "text" : "famous authors.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "The professors met the other famous authors." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343545"
   },
   "id" : "67fab6d59930102295343545",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "¿Quieres otra galleta?",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -182,9 +288,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cookie?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +344,20 @@
       "kind" : "TEXT",
       "text" : "cookie?",
       "options" : null
-    } ],
-    "sentences" : [ "Would you like another cookie?" ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343546"
   },
   "id" : "67fab6d59930102295343546",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Prefiero las otras frutas.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -234,14 +375,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I prefer",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "fruits.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -256,19 +427,24 @@
       "text" : "fruits.",
       "options" : null
     } ],
-    "sentences" : [ "I prefer the other fruits." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343547"
   },
   "id" : "67fab6d59930102295343547",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Ella leyó otra historia.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -286,9 +462,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She read",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "story.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -307,20 +518,20 @@
       "kind" : "TEXT",
       "text" : "story.",
       "options" : null
-    } ],
-    "sentences" : [ "She read another story." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343548"
   },
   "id" : "67fab6d59930102295343548",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Ella me envió los otros calcetines.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -338,10 +549,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +565,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the other" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "socks.",
       "options" : null
     } ],
-    "sentences" : [ "She sent me the other socks." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She sent me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "text" : "socks.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343549"
   },
   "id" : "67fab6d59930102295343549",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Ellos bebieron otro vaso de jugo.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -390,9 +636,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They drank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "glass of juice.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -411,20 +692,20 @@
       "kind" : "TEXT",
       "text" : "glass of juice.",
       "options" : null
-    } ],
-    "sentences" : [ "They drank another glass of juice." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534354a"
   },
   "id" : "67fab6d5993010229534354a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Ella necesita otro gato para hacerle compañía.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -442,41 +723,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She needs",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cat to keep her company.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She needs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "another" ]
     }, {
       "kind" : "TEXT",
       "text" : "cat to keep her company.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "She needs another cat to keep her company." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534354b"
   },
   "id" : "67fab6d5993010229534354b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Cenamos en otro pub.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -494,10 +811,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,25 +827,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "another" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "pub.",
       "options" : null
     } ],
-    "sentences" : [ "We dined at another pub." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "We dined at"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "pub.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534354c"
   },
   "id" : "67fab6d5993010229534354c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Ellos eligieron otro coche.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -546,10 +898,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,25 +914,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "another" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "car.",
       "options" : null
     } ],
-    "sentences" : [ "They chose another car." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "They chose",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "another" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "car.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534354d"
   },
   "id" : "67fab6d5993010229534354d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Probamos las otras tartas.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -598,9 +985,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We tasted",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pies.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -619,20 +1041,20 @@
       "kind" : "TEXT",
       "text" : "pies.",
       "options" : null
-    } ],
-    "sentences" : [ "We tasted the other pies." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534354e"
   },
   "id" : "67fab6d5993010229534354e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Ella eligió las otras bolsas.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -650,10 +1072,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -666,25 +1088,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the other" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "bags.",
       "options" : null
     } ],
-    "sentences" : [ "She chose the other bags." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She chose"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bags.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534354f"
   },
   "id" : "67fab6d5993010229534354f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "¿Tienes los otros bolígrafos?",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -702,9 +1159,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pens?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -723,20 +1215,20 @@
       "kind" : "TEXT",
       "text" : "pens?",
       "options" : null
-    } ],
-    "sentences" : [ "Do you have the other pens?" ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343550"
   },
   "id" : "67fab6d59930102295343550",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Sirvieron las otras cervezas.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -754,9 +1246,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They served",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "beers.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -775,20 +1302,20 @@
       "kind" : "TEXT",
       "text" : "beers.",
       "options" : null
-    } ],
-    "sentences" : [ "They served the other beers." ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343551"
   },
   "id" : "67fab6d59930102295343551",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Él rompió los otros platos.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -806,10 +1333,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -822,25 +1349,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the other" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "plates.",
       "options" : null
     } ],
-    "sentences" : [ "He broke the other plates." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He broke",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the other" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "plates."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343552"
   },
   "id" : "67fab6d59930102295343552",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Los adultos disfrutaron de otra obra de teatro.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -858,10 +1420,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -874,25 +1436,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "another" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "play.",
       "options" : null
     } ],
-    "sentences" : [ "The adults enjoyed another play." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "The adults enjoyed",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "play.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343553"
   },
   "id" : "67fab6d59930102295343553",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "¿Puedes esperar otro minuto?",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -910,10 +1507,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -926,25 +1523,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "another" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "minute?",
       "options" : null
     } ],
-    "sentences" : [ "Can you wait another minute?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Can you wait",
+      "options" : null
+    }, {
+      "options" : [ "another" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "minute?"
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343554"
   },
   "id" : "67fab6d59930102295343554",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Ellos requieren otro mes.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -962,10 +1594,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -978,25 +1610,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "another" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "month.",
       "options" : null
     } ],
-    "sentences" : [ "They require another month." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They require",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "another" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "month.",
+      "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343555"
   },
   "id" : "67fab6d59930102295343555",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
   "title" : "Uno más o el que queda",
-  "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
+  "instructions" : "Si es posible, elige 'another'. De lo contrario, elige 'the other'.",
   "translation" : "Ella cubrió los otros períodos en la clase de historia.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
@@ -1014,22 +1681,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.07.08.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$another$ es uno más. $the other$ es el otro, el que ya está identificado.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She covered",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "periods in history class.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "another",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "another"
+    }, {
+      "id" : "the other",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the other"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She covered",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the other" ]
     }, {
       "kind" : "TEXT",
@@ -1037,5 +1739,6 @@
       "options" : null
     } ],
     "sentences" : [ "She covered the other periods in history class." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'."
 } ]

@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953438bb"
   },
   "id" : "67fab6d599301022953438bb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Él devolvió la camisa que compré.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -26,9 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He returned the shirt that I bought.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,20 +82,20 @@
       "kind" : "TEXT",
       "text" : "",
       "options" : null
-    } ],
-    "sentences" : [ "He returned the shirt that I bought. object" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438bc"
   },
   "id" : "67fab6d599301022953438bc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Ella preparó la ensalada que ellos ordenaron.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -78,10 +113,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +129,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "object" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "She prepared the salad that they ordered. object" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She prepared the salad that they ordered."
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "object" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438bd"
   },
   "id" : "67fab6d599301022953438bd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Llamamos al DJ que vive al lado.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -130,37 +200,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We called the DJ that lives next door.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We called the DJ that lives next door.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "subject" ]
     } ],
     "sentences" : [ "We called the DJ that lives next door. subject" ]
-  }
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438be"
   },
   "id" : "67fab6d599301022953438be",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Tomé prestada la flauta que usaste.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -178,37 +280,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I borrowed the flute that you used.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I borrowed the flute that you used.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "object" ]
     } ],
     "sentences" : [ "I borrowed the flute that you used. object" ]
-  }
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438bf"
   },
   "id" : "67fab6d599301022953438bf",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Ella visitó el parque que está cerca de su casa.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -226,9 +360,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She visited the park that is near her house.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -247,20 +416,20 @@
       "kind" : "TEXT",
       "text" : "",
       "options" : null
-    } ],
-    "sentences" : [ "She visited the park that is near her house. subject" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438c0"
   },
   "id" : "67fab6d599301022953438c0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Ellos vieron a la mujer que enseña yoga aquí.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -278,10 +447,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -294,25 +463,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They saw the woman that teaches yoga here."
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "subject" ]
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "They saw the woman that teaches yoga here. subject" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438c1"
   },
   "id" : "67fab6d599301022953438c1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Él vio la película que seleccionó.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -330,10 +534,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -346,25 +550,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "object" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "He watched the movie that he selected. object" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He watched the movie that he selected.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "object" ]
+    }, {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438c2"
   },
   "id" : "67fab6d599301022953438c2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Ellos encontraron la carta que estaba sobre la mesa.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -382,10 +621,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They found the letter that was on the table.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -400,23 +673,24 @@
       "text" : "",
       "options" : [ "subject" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : ""
     } ],
-    "sentences" : [ "They found the letter that was on the table. subject" ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438c3"
   },
   "id" : "67fab6d599301022953438c3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Me gustó la canción que compartiste.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -434,10 +708,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -450,25 +724,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "object" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "I liked the song that you shared. object" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I liked the song that you shared."
+    }, {
+      "text" : "",
+      "options" : [ "object" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438c4"
   },
   "id" : "67fab6d599301022953438c4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Ella recordó el paraguas que estaba detrás de la puerta.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -486,13 +795,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She remembered the umbrella that was behind the door.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -508,19 +848,23 @@
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "She remembered the umbrella that was behind the door. subject" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438c5"
   },
   "id" : "67fab6d599301022953438c5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Ellos encontraron al gatito que los vecinos amaban.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -538,9 +882,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They found the kitten that the neighbors loved.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -559,20 +938,20 @@
       "kind" : "TEXT",
       "text" : "",
       "options" : null
-    } ],
-    "sentences" : [ "They found the kitten that the neighbors loved. object" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438c6"
   },
   "id" : "67fab6d599301022953438c6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Ella horneó un pastel que estaba increíble.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -590,10 +969,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -606,25 +985,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "subject" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "She baked a cake that was amazing. subject" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She baked a cake that was amazing.",
+      "options" : null
+    }, {
+      "options" : [ "subject" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438c7"
   },
   "id" : "67fab6d599301022953438c7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Ahí está el restaurante que te describí.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -642,10 +1056,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -658,25 +1072,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "object" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "There's the restaurant that I described. object" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "There's the restaurant that I described."
+    }, {
+      "options" : [ "object" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438c8"
   },
   "id" : "67fab6d599301022953438c8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Él visitó el museo que ella sugirió.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -694,10 +1143,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -710,25 +1159,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "object" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "He visited the museum that she suggested. object" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He visited the museum that she suggested.",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "object" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    } ]
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438c9"
   },
   "id" : "67fab6d599301022953438c9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Laura diseñó un edificio que era eficiente.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -746,37 +1230,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Laura designed a building that was efficient.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Laura designed a building that was efficient.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "subject" ]
     } ],
     "sentences" : [ "Laura designed a building that was efficient. subject" ]
-  }
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438ca"
   },
   "id" : "67fab6d599301022953438ca",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Ellos cocinaron los platos que ella sugirió.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -794,10 +1310,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -810,25 +1326,60 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "object" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "They cooked the dishes that she suggested. object" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They cooked the dishes that she suggested.",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "object" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438cb"
   },
   "id" : "67fab6d599301022953438cb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Yo rendí el examen que ella escribió.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -846,37 +1397,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I took the exam that she wrote.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I took the exam that she wrote.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "object" ]
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "I took the exam that she wrote. object" ]
-  }
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438cc"
   },
   "id" : "67fab6d599301022953438cc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Ella saludó a los niños que juegan afuera.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -894,10 +1477,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She greeted the kids that play outside.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -916,19 +1533,20 @@
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "She greeted the kids that play outside. subject" ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438cd"
   },
   "id" : "67fab6d599301022953438cd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Él le sonrió al perro que miró el auto.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -946,37 +1564,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He smiled at the dog that looked at the car.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He smiled at the dog that looked at the car.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "subject" ]
     } ],
     "sentences" : [ "He smiled at the dog that looked at the car. subject" ]
-  }
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953438ce"
   },
   "id" : "67fab6d599301022953438ce",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33a"
   },
   "title" : "Función de $that$",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe $subject$ u $object$.",
+  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause?",
   "translation" : "Ellos derramaron el jugo que estaba lleno de azúcar.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
@@ -994,10 +1644,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.03.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1010,12 +1660,1746 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "subject" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "",
       "options" : null
     } ],
-    "sentences" : [ "They spilled the juice that was full of sugar. subject" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They spilled the juice that was full of sugar.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "subject" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344602"
+  },
+  "id" : "67fab6d59930102295344602",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Él necesita una computadora portátil que funcione bien. Sujeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He needs a laptop that functions well.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He needs a laptop that functions well.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Subject" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344603"
+  },
+  "id" : "67fab6d59930102295344603",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Ellos tienen todos los juguetes que ella encontró. Objeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have all the toys that she found.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have all the toys that she found.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Object" ]
+    }, {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344604"
+  },
+  "id" : "67fab6d59930102295344604",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Ella disfrutó la película que mencioné. Objeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She enjoyed the movie that I mentioned.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She enjoyed the movie that I mentioned."
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Object" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344605"
+  },
+  "id" : "67fab6d59930102295344605",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Los jugadores ganaron el juego que involucraba correr. Sujeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The players won the game that involved running.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "The players won the game that involved running."
+    }, {
+      "text" : "",
+      "options" : [ "Subject" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344606"
+  },
+  "id" : "67fab6d59930102295344606",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Nosotros horneamos el pastel que estaba en el mostrador. Sujeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We baked the cake that was on the counter.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We baked the cake that was on the counter.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Subject" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344607"
+  },
+  "id" : "67fab6d59930102295344607",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Los padres adoran al perro que se queda arriba. Sujeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The parents adore the dog that stays upstairs.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The parents adore the dog that stays upstairs.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Subject" ]
+    } ],
+    "sentences" : [ "The parents adore the dog that stays upstairs. Subject" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344608"
+  },
+  "id" : "67fab6d59930102295344608",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Ella acarició suavemente el caballo que estaba galopando. Sujeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She gently stroked the horse that was galloping.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She gently stroked the horse that was galloping.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Subject" ]
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "She gently stroked the horse that was galloping. Subject" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344609"
+  },
+  "id" : "67fab6d59930102295344609",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Ellos quieren todo el helado que pedimos. Objeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They want all of the ice cream that we ordered.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They want all of the ice cream that we ordered.",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "Object" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534460a"
+  },
+  "id" : "67fab6d5993010229534460a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Harry vendió una bicicleta vieja que odiaba. Objeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Harry sold an old bike that he hated.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Harry sold an old bike that he hated.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Object" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534460b"
+  },
+  "id" : "67fab6d5993010229534460b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Nosotros bebimos el jugo que él preparó. Objeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We drank the juice that he prepared.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We drank the juice that he prepared.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Object" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534460c"
+  },
+  "id" : "67fab6d5993010229534460c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Amy va a cantar la canción que ellos eligieron. Objeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Amy is going to sing the song that they chose.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Amy is going to sing the song that they chose.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Object" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534460d"
+  },
+  "id" : "67fab6d5993010229534460d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Él se sentó en la silla que me gusta. Objeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He sat in the chair that I like.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He sat in the chair that I like.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Object" ]
+    }, {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534460e"
+  },
+  "id" : "67fab6d5993010229534460e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Ellos necesitan un lavavajillas que lave los platos. Sujeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They need a dishwasher that washes dishes.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They need a dishwasher that washes dishes.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Subject" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534460f"
+  },
+  "id" : "67fab6d5993010229534460f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Podemos tomar el dinero que está en la caja fuerte. Sujeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We can take the money that is in the safe.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "We can take the money that is in the safe.",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Subject" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344610"
+  },
+  "id" : "67fab6d59930102295344610",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Ella quiere quedarse en un hotel que tenga piscina. Sujeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wants to stay in a hotel that has a pool.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She wants to stay in a hotel that has a pool.",
+      "options" : null
+    }, {
+      "options" : [ "Subject" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344611"
+  },
+  "id" : "67fab6d59930102295344611",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Ellos revisaron el auto que ella había reparado. Objeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They checked the car that she had repaired.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They checked the car that she had repaired.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Object" ]
+    } ],
+    "sentences" : [ "They checked the car that she had repaired. Object" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344612"
+  },
+  "id" : "67fab6d59930102295344612",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Él publicó la imagen que estaba en la página. Sujeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He posted the image that was on the page.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He posted the image that was on the page.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Subject" ]
+    }, {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344613"
+  },
+  "id" : "67fab6d59930102295344613",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Nosotros limpiamos la basura que el zorro creó. Objeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We cleared up the garbage that the fox created.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We cleared up the garbage that the fox created.",
+      "options" : null
+    }, {
+      "options" : [ "Object" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344614"
+  },
+  "id" : "67fab6d59930102295344614",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Ella va al café que está junto al parque. Sujeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's going to the cafe that is by the park.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's going to the cafe that is by the park.",
+      "options" : null
+    }, {
+      "options" : [ "Subject" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344615"
+  },
+  "id" : "67fab6d59930102295344615",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d33a"
+  },
+  "title" : "Función de $that$",
+  "instructions" : "¿Es el 'relative pronoun' (that) el sujeto o el objeto de la 'relative clause'?",
+  "translation" : "Ella necesita los pinceles que estás usando. Objeto",
+  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después del $that$ viene un verbo, es sujeto. Si viene otro sujeto, es objeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She requires the brushes that you're using.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "object",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "object"
+    }, {
+      "id" : "subject",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "subject"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She requires the brushes that you're using.",
+      "options" : null
+    }, {
+      "options" : [ "Object" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
   }
 } ]

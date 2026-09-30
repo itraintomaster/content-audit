@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mean$ → $meant$, $grow$ → $grown$, $write$ → $written$, $bring$ → $brought$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -78,7 +78,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $break$ → $broken$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -94,13 +94,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "has not broken/hasn't broken" ]
+      "options" : [ "has not broken|hasn't broken" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / break) anything.",
       "options" : null
     } ],
-    "sentences" : [ "The rock has not broken/hasn't broken anything." ]
+    "sentences" : [ "The rock has not broken anything.", "The rock hasn't broken anything." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "has not broken/hasn't broken" ]
   }
 }, {
   "_id" : {
@@ -130,29 +133,32 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mean$ → $meant$, $grow$ → $grown$, $write$ → $written$, $bring$ → $brought$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The tree",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
-      "options" : [ "has not grown/hasn't grown" ]
+      "text" : "",
+      "options" : [ "has not grown|hasn't grown" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / grow) yet.",
       "options" : null
     } ],
-    "sentences" : [ "The tree has not grown/hasn't grown yet." ]
+    "sentences" : [ "The tree has not grown yet.", "The tree hasn't grown yet." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "has not grown/hasn't grown" ]
   }
 }, {
   "_id" : {
@@ -182,7 +188,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mean$ → $meant$, $grow$ → $grown$, $write$ → $written$, $bring$ → $brought$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -198,13 +204,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "have not written/haven't written" ]
+      "options" : [ "have not written|haven't written" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / write) the email.",
       "options" : null
     } ],
-    "sentences" : [ "They have not written/haven't written the email." ]
+    "sentences" : [ "They have not written the email.", "They haven't written the email." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "have not written/haven't written" ]
   }
 }, {
   "_id" : {
@@ -234,7 +243,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El participio regular termina en $-ed$, como el pasado simple.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -286,7 +295,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mean$ → $meant$, $grow$ → $grown$, $write$ → $written$, $bring$ → $brought$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -338,7 +347,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $find$ → $found$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -390,7 +399,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $stand$ → $stood$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -442,7 +451,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El participio regular termina en $-ed$, como el pasado simple.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -494,7 +503,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $show$ → $shown$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -546,18 +555,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $break$ → $broken$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Have you broken" ]
     }, {
       "kind" : "TEXT",
@@ -594,7 +603,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $eat$ → $eaten$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -610,13 +619,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "has not eaten / hasn't eaten" ]
+      "options" : [ "has not eaten|hasn't eaten" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / eat) your cake.",
       "options" : null
     } ],
-    "sentences" : [ "He has not eaten / hasn't eaten your cake." ]
+    "sentences" : [ "He has not eaten your cake.", "He hasn't eaten your cake." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "has not eaten / hasn't eaten" ]
   }
 }, {
   "_id" : {
@@ -646,7 +658,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $fly$ → $flown$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -662,13 +674,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "have not flown / haven't flown" ]
+      "options" : [ "have not flown|haven't flown" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / fly) in an airplane.",
       "options" : null
     } ],
-    "sentences" : [ "We have not flown / haven't flown in an airplane." ]
+    "sentences" : [ "We have not flown in an airplane.", "We haven't flown in an airplane." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "have not flown / haven't flown" ]
   }
 }, {
   "_id" : {
@@ -698,7 +713,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $make$ → $made$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -750,7 +765,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $buy$ → $bought$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -802,18 +817,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $see$ → $seen$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Has the dog seen" ]
     }, {
       "kind" : "TEXT",
@@ -850,7 +865,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $see$ → $seen$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -902,22 +917,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $eat$ → $eaten$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "have not eaten|haven't eaten" ]
     }, {
       "kind" : "TEXT",
@@ -954,7 +969,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $find$ → $found$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1006,7 +1021,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El participio de $read$ no cambia: sigue siendo $read$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1058,22 +1073,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.21",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El participio regular termina en $-ed$, como el pasado simple.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "has watched" ]
     }, {
       "kind" : "TEXT",
@@ -1110,7 +1125,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.22",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $buy$ → $bought$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1126,13 +1141,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "has not bought/hasn't bought" ]
+      "options" : [ "has not bought|hasn't bought" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / buy) her a drink.",
       "options" : null
     } ],
-    "sentences" : [ "She has not bought/hasn't bought her a drink." ]
+    "sentences" : [ "She has not bought her a drink.", "She hasn't bought her a drink." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "has not bought/hasn't bought" ]
   }
 }, {
   "_id" : {
@@ -1162,7 +1180,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.23",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "El participio regular termina en $-ed$, como el pasado simple.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1178,13 +1196,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "has not liked/hasn't liked" ]
+      "options" : [ "has not liked|hasn't liked" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / like) the ice cream.",
       "options" : null
     } ],
-    "sentences" : [ "She has not liked/hasn't liked the ice cream." ]
+    "sentences" : [ "She has not liked the ice cream.", "She hasn't liked the ice cream." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "has not liked/hasn't liked" ]
   }
 }, {
   "_id" : {
@@ -1214,22 +1235,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.04.06.24",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Es irregular: $see$ → $seen$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "have seen" ]
     }, {
       "kind" : "TEXT",

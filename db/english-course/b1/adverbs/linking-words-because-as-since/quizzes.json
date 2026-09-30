@@ -3,7 +3,7 @@
     "$oid" : "67fab6d59930102295343c2b"
   },
   "id" : "67fab6d59930102295343c2b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36e"
   },
@@ -26,10 +26,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.10.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited the museum",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / on account of) it was free.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -48,14 +106,14 @@
       "text" : "(as / on account of) it was free.",
       "options" : null
     } ],
-    "sentences" : [ "We visited the museum as it was free." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c2c"
   },
   "id" : "67fab6d59930102295343c2c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36e"
   },
@@ -78,14 +136,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.10.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy Paris",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) its history.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -100,14 +212,18 @@
       "text" : "(because / because of) its history.",
       "options" : null
     } ],
-    "sentences" : [ "I enjoy Paris because of its history." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c2d"
   },
   "id" : "67fab6d59930102295343c2d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36e"
   },
@@ -130,9 +246,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.10.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He started doing exercise",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / as a result of) he felt unfit.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -151,15 +326,14 @@
       "kind" : "TEXT",
       "text" : "(since / as a result of) he felt unfit.",
       "options" : null
-    } ],
-    "sentences" : [ "He started doing exercise since he felt unfit." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c2e"
   },
   "id" : "67fab6d59930102295343c2e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36e"
   },
@@ -182,9 +356,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.10.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They wore a jacket",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) it was cold.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,15 +436,14 @@
       "kind" : "TEXT",
       "text" : "(because / because of) it was cold.",
       "options" : null
-    } ],
-    "sentences" : [ "They wore a jacket because it was cold." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c2f"
   },
   "id" : "67fab6d59930102295343c2f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36e"
   },
@@ -234,9 +466,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.10.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She left the company",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / on account of) her colleagues.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -255,15 +546,14 @@
       "kind" : "TEXT",
       "text" : "(as / on account of) her colleagues.",
       "options" : null
-    } ],
-    "sentences" : [ "She left the company on account of her colleagues." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c30"
   },
   "id" : "67fab6d59930102295343c30",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36e"
   },
@@ -286,9 +576,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.10.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He ate chocolate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) he was hungry.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -307,15 +656,14 @@
       "kind" : "TEXT",
       "text" : "(because / because of) he was hungry.",
       "options" : null
-    } ],
-    "sentences" : [ "He ate chocolate because he was hungry." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c31"
   },
   "id" : "67fab6d59930102295343c31",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36e"
   },
@@ -338,9 +686,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.10.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$because of$, $as a result of$ y $on account of$ van con sustantivo, no con oración.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We missed the train",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / as a result of) the traffic.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,15 +766,14 @@
       "kind" : "TEXT",
       "text" : "(since / as a result of) the traffic.",
       "options" : null
-    } ],
-    "sentences" : [ "We missed the train as a result of the traffic." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c32"
   },
   "id" : "67fab6d59930102295343c32",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36e"
   },
@@ -390,28 +796,87 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.10.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She adores Italy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
-      "options" : [ "on account of" ]
+      "text" : "",
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(as / on account of) the wine.",
       "options" : null
     } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She adores Italy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on account of" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "(as / on account of) the wine."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "She adores Italy on account of the wine." ]
   }
 }, {
@@ -419,7 +884,7 @@
     "$oid" : "67fab6d59930102295343c33"
   },
   "id" : "67fab6d59930102295343c33",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36e"
   },
@@ -442,9 +907,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.10.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students were silent",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / as a result of) they had an exam.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -463,15 +987,14 @@
       "kind" : "TEXT",
       "text" : "(since / as a result of) they had an exam.",
       "options" : null
-    } ],
-    "sentences" : [ "The students were silent since they had an exam." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c34"
   },
   "id" : "67fab6d59930102295343c34",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36e"
   },
@@ -494,9 +1017,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.10.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We stayed inside",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the storm.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -517,5 +1099,2208 @@
       "options" : null
     } ],
     "sentences" : [ "We stayed inside because of the storm." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344986"
+  },
+  "id" : "67fab6d59930102295344986",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Ella fue a Italia debido a sus vacaciones.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She went to Italy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) her vacation.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She went to Italy",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) her vacation.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344987"
+  },
+  "id" : "67fab6d59930102295344987",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Él estaba triste porque no recibió un regalo.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was sad",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) he didn't get a gift.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was sad",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "(because / because of) he didn't get a gift."
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344988"
+  },
+  "id" : "67fab6d59930102295344988",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Ella trabaja de forma remota a causa de su gerente.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She works remotely",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) her manager.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She works remotely"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on account of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) her manager.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344989"
+  },
+  "id" : "67fab6d59930102295344989",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Él vendió su viejo televisor porque era demasiado viejo.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He sold his old television",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) it was too old.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He sold his old television",
+      "options" : null
+    }, {
+      "options" : [ "since" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "(since / on account of) it was too old.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534498a"
+  },
+  "id" : "67fab6d5993010229534498a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Ellos llegaron más temprano debido al tráfico.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They arrived earlier",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the traffic.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They arrived earlier",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the traffic.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534498b"
+  },
+  "id" : "67fab6d5993010229534498b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Los jugadores estaban cansados como resultado del juego.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as a result of$ también va con sustantivo, como $because of$ y $on account of$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The players were tired",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) the game.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The players were tired",
+      "options" : null
+    }, {
+      "options" : [ "as a result of" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) the game.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534498c"
+  },
+  "id" : "67fab6d5993010229534498c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Les traje a los adultos una bebida ya que tenían sed.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I brought the adults a drink",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) they were thirsty.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I brought the adults a drink",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "since" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) they were thirsty.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534498d"
+  },
+  "id" : "67fab6d5993010229534498d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Cerramos la ventana porque hacía frío.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We closed the window",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) it was cold.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We closed the window",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "text" : "(as / as a result of) it was cold.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534498e"
+  },
+  "id" : "67fab6d5993010229534498e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Ella traerá una chaqueta ya que hace frío.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She'll get a jacket",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) it's cold.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She'll get a jacket",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "since" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "(since / on account of) it's cold."
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534498f"
+  },
+  "id" : "67fab6d5993010229534498f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Ellos compraron un coche nuevo porque necesitaban viajar.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They bought a new car",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) they needed to travel.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They bought a new car",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) they needed to travel.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344990"
+  },
+  "id" : "67fab6d59930102295344990",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Vimos una película debido a la oscuridad.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We watched a movie",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the darkness.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We watched a movie",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the darkness.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344991"
+  },
+  "id" : "67fab6d59930102295344991",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "El jardín creció como resultado de su estrategia.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as a result of$ también va con sustantivo, como $because of$ y $on account of$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The garden grew",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) her strategy.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The garden grew",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as a result of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) her strategy.",
+      "options" : null
+    } ],
+    "sentences" : [ "The garden grew as a result of her strategy." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344992"
+  },
+  "id" : "67fab6d59930102295344992",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Estábamos enfermos a causa del batido de fresa.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We were sick",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) the strawberry milkshake.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We were sick",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on account of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) the strawberry milkshake.",
+      "options" : null
+    } ],
+    "sentences" : [ "We were sick on account of the strawberry milkshake." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344993"
+  },
+  "id" : "67fab6d59930102295344993",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Los atletas descansaron porque el entrenamiento había terminado.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The athletes had a rest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the training was finished.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The athletes had a rest",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the training was finished.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344994"
+  },
+  "id" : "67fab6d59930102295344994",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Ella tomó un autobús porque perdió el tren.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She took a bus",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) she missed the train.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She took a bus",
+      "options" : null
+    }, {
+      "options" : [ "as" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "(as / as a result of) she missed the train.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344995"
+  },
+  "id" : "67fab6d59930102295344995",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Estaba emocionado porque comí pizza.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I was excited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) I ate pizza.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I was excited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) I ate pizza.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344996"
+  },
+  "id" : "67fab6d59930102295344996",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Él estaba preocupado por el vuelo.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was worried",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the flight.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was worried",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "because of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(because / because of) the flight.",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344997"
+  },
+  "id" : "67fab6d59930102295344997",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Susan se despertó porque la molestaron.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Susan woke up",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) she was disturbed.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Susan woke up",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) she was disturbed.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344998"
+  },
+  "id" : "67fab6d59930102295344998",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Él está furioso a causa del correo electrónico.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$because$, $as$ y $since$ van con oración. $because of$ y $on account of$, con sustantivo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's furious",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) the email.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He's furious"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "on account of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(since / on account of) the email.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344999"
+  },
+  "id" : "67fab6d59930102295344999",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36e"
+  },
+  "title" : "Conectores de causa",
+  "instructions" : "Elige la palabra de enlace correcta.",
+  "translation" : "Las cosechas fracasaron como resultado del calor.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.07.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$as a result of$ también va con sustantivo, como $because of$ y $on account of$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The crops failed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) the heat.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "as",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "as"
+    }, {
+      "id" : "as a result of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "as a result of"
+    }, {
+      "id" : "because",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because"
+    }, {
+      "id" : "because of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "because of"
+    }, {
+      "id" : "on account of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "on account of"
+    }, {
+      "id" : "since",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "since"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The crops failed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "as a result of" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(as / as a result of) the heat.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "The crops failed as a result of the heat." ]
   }
 } ]

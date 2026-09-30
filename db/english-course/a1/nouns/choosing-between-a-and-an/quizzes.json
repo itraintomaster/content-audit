@@ -3,12 +3,12 @@
     "$oid" : "67fab6d5993010229534233f"
   },
   "id" : "67fab6d5993010229534233f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Un hombre emocionado",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -26,18 +26,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "excited man",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "An" ]
     }, {
       "kind" : "TEXT",
@@ -51,12 +82,12 @@
     "$oid" : "67fab6d59930102295342340"
   },
   "id" : "67fab6d59930102295342340",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Una bolsa roja",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -74,10 +105,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -90,25 +121,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "A" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "red bag",
       "options" : null
     } ],
-    "sentences" : [ "A red bag" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "text" : "red bag",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342341"
   },
   "id" : "67fab6d59930102295342341",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Una bolsa barata",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -126,18 +191,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cheap bag",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "A" ]
     }, {
       "kind" : "TEXT",
@@ -151,12 +247,12 @@
     "$oid" : "67fab6d59930102295342342"
   },
   "id" : "67fab6d59930102295342342",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Una reunión importante",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -174,9 +270,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "important meeting",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -195,20 +326,19 @@
       "kind" : "TEXT",
       "text" : "important meeting",
       "options" : null
-    } ],
-    "sentences" : [ "An important meeting" ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342343"
   },
   "id" : "67fab6d59930102295342343",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Un jardín",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -226,10 +356,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -242,25 +372,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "A" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "garden",
       "options" : null
     } ],
-    "sentences" : [ "A garden" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "text" : "garden",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342344"
   },
   "id" : "67fab6d59930102295342344",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Un juego emocionante",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -278,10 +442,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -294,25 +458,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "An" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "exciting game",
       "options" : null
     } ],
-    "sentences" : [ "An exciting game" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "An" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "exciting game",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342345"
   },
   "id" : "67fab6d59930102295342345",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Un chico moreno",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -330,18 +528,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dark boy",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "A" ]
     }, {
       "kind" : "TEXT",
@@ -355,12 +584,12 @@
     "$oid" : "67fab6d59930102295342346"
   },
   "id" : "67fab6d59930102295342346",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Una casa vieja",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -378,18 +607,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "old house",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "An" ]
     }, {
       "kind" : "TEXT",
@@ -403,12 +663,12 @@
     "$oid" : "67fab6d59930102295342347"
   },
   "id" : "67fab6d59930102295342347",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Una nariz grande",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -426,24 +686,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "big nose",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "A" ]
     }, {
       "kind" : "TEXT",
       "text" : "big nose",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "A big nose" ]
   }
 }, {
@@ -451,12 +742,12 @@
     "$oid" : "67fab6d59930102295342348"
   },
   "id" : "67fab6d59930102295342348",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Una mesa",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -474,9 +765,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "table",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -495,20 +821,19 @@
       "kind" : "TEXT",
       "text" : "table",
       "options" : null
-    } ],
-    "sentences" : [ "A table" ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342349"
   },
   "id" : "67fab6d59930102295342349",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Una cosa ligera",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -526,18 +851,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "light thing",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "A" ]
     }, {
       "kind" : "TEXT",
@@ -551,12 +907,12 @@
     "$oid" : "67fab6d5993010229534234a"
   },
   "id" : "67fab6d5993010229534234a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Una falda amarilla",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -574,18 +930,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "yellow skirt",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "A" ]
     }, {
       "kind" : "TEXT",
@@ -599,12 +986,12 @@
     "$oid" : "67fab6d5993010229534234b"
   },
   "id" : "67fab6d5993010229534234b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Una película interesante",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -622,24 +1009,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "interesting movie",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "An" ]
     }, {
       "kind" : "TEXT",
       "text" : "interesting movie",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "An interesting movie" ]
   }
 }, {
@@ -647,12 +1065,12 @@
     "$oid" : "67fab6d5993010229534234c"
   },
   "id" : "67fab6d5993010229534234c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Una oreja abierta",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -670,18 +1088,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "open ear",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "An" ]
     }, {
       "kind" : "TEXT",
@@ -695,12 +1144,12 @@
     "$oid" : "67fab6d5993010229534234d"
   },
   "id" : "67fab6d5993010229534234d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Un bebé",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -718,9 +1167,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "baby",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -736,23 +1220,22 @@
       "text" : "",
       "options" : [ "A" ]
     }, {
-      "kind" : "TEXT",
       "text" : "baby",
-      "options" : null
-    } ],
-    "sentences" : [ "A baby" ]
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534234e"
   },
   "id" : "67fab6d5993010229534234e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Un ejemplo de octubre",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -770,24 +1253,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "October example",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "An" ]
     }, {
       "kind" : "TEXT",
       "text" : "October example",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "An October example" ]
   }
 }, {
@@ -795,12 +1309,12 @@
     "$oid" : "67fab6d5993010229534234f"
   },
   "id" : "67fab6d5993010229534234f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Una manzana",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -818,10 +1332,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -834,25 +1348,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "An" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "apple",
       "options" : null
     } ],
-    "sentences" : [ "An apple" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "An" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "apple",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342350"
   },
   "id" : "67fab6d59930102295342350",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Una persona amable",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -870,10 +1418,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -886,25 +1434,59 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "A" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "kind person",
       "options" : null
     } ],
-    "sentences" : [ "A kind person" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "text" : "kind person",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342351"
   },
   "id" : "67fab6d59930102295342351",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Un picnic rápido",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -922,18 +1504,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "quick picnic",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "A" ]
     }, {
       "kind" : "TEXT",
@@ -947,12 +1560,12 @@
     "$oid" : "67fab6d59930102295342352"
   },
   "id" : "67fab6d59930102295342352",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
   "title" : "$A$ o $an$",
-  "instructions" : "Elige $a$ o $an$.",
+  "instructions" : "Elige 'a' o 'an'.",
   "translation" : "Un DVD viejo",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
@@ -970,18 +1583,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.06.05.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an excited man$. Sonido de consonante → $a$: $a red bag$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "old DVD",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "An" ]
     }, {
       "kind" : "TEXT",
@@ -990,4 +1634,889 @@
     } ],
     "sentences" : [ "An old DVD" ]
   }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a06"
+  },
+  "id" : "67fab6d59930102295342a06",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "$A$ o $an$",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Ella necesita una cita.",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an orange$, $an idea$. El resto, $a$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She needs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "appointment.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She needs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "an" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "appointment.",
+      "options" : null
+    } ],
+    "sentences" : [ "She needs an appointment." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'an'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'an'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a07"
+  },
+  "id" : "67fab6d59930102295342a07",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "$A$ o $an$",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "¿Te comerías una naranja?",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an orange$, $an idea$. El resto, $a$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you eat",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "orange?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Would you eat",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "an" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "orange?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'an'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'an'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a08"
+  },
+  "id" : "67fab6d59930102295342a08",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "$A$ o $an$",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Esto es un teléfono.",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an orange$, $an idea$. El resto, $a$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "telephone.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This is",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "a" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "telephone.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'an'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'an'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a09"
+  },
+  "id" : "67fab6d59930102295342a09",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "$A$ o $an$",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Hay una botella de agua.",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an orange$, $an idea$. El resto, $a$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bottle of water.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There is",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "a" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "bottle of water.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'an'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'an'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a0a"
+  },
+  "id" : "67fab6d59930102295342a0a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "$A$ o $an$",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Prepararé una tortilla.",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an orange$, $an idea$. El resto, $a$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I will prepare",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "omelette.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I will prepare",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "an" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "omelette.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "I will prepare an omelette." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'an'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'an'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a0b"
+  },
+  "id" : "67fab6d59930102295342a0b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "$A$ o $an$",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Tengo una idea para ti.",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an orange$, $an idea$. El resto, $a$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "idea for you.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "an" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "idea for you.",
+      "options" : null
+    } ],
+    "sentences" : [ "I have an idea for you." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'an'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'an'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a0c"
+  },
+  "id" : "67fab6d59930102295342a0c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "$A$ o $an$",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Parece un hombre increíble.",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an orange$, $an idea$. El resto, $a$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He seems like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "amazing man.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He seems like",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "an" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "amazing man.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "He seems like an amazing man." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'an'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'an'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a0d"
+  },
+  "id" : "67fab6d59930102295342a0d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "$A$ o $an$",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Él no pudo elegir una universidad.",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an orange$, $an idea$. El resto, $a$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He could not pick",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "college.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He could not pick",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "college.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'an'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'an'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a0e"
+  },
+  "id" : "67fab6d59930102295342a0e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "$A$ o $an$",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "Ella es alemana.",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an orange$, $an idea$. El resto, $a$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "German.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She is"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "German.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'an'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'an'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342a0f"
+  },
+  "id" : "67fab6d59930102295342a0f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3c8"
+  },
+  "title" : "$A$ o $an$",
+  "instructions" : "Elige 'a' o 'an'.",
+  "translation" : "¿Necesitan una razón?",
+  "theoryId" : "a1.06.A_or_An_",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Sonido de vocal → $an$: $an orange$, $an idea$. El resto, $a$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do they need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "reason?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "an",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "an"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do they need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "reason?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "Do they need a reason?" ]
+  },
+  "instructionsAnteriores" : "Elegí con 'a' o 'an'.",
+  "instructionsAntesDeRevisar" : "Elige con 'a' o 'an'."
 } ]

@@ -8,7 +8,7 @@
     "$oid" : "6814dafa7d73e7209a13d2cb"
   },
   "title" : "Posición de $just$",
-  "instructions" : "Escribe oraciones usando $just$.",
+  "instructions" : "Escribe oraciones usando 'just'.",
   "translation" : "El estudiante acaba de leer el libro.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.10.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$just$ va entre $have$ / $has$ y el participio: $He has just arrived$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -42,13 +42,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "The student has just read the book / The student's just read the book" ]
+      "options" : [ "The student has just read the book|The student's just read the book" ]
     }, {
       "kind" : "TEXT",
       "text" : "(the student / read / the book).",
       "options" : null
     } ],
-    "sentences" : [ "The student has just read the book / The student's just read the book." ]
+    "sentences" : [ "The student has just read the book.", "The student's just read the book." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "The student has just read the book / The student's just read the book" ]
   }
 }, {
   "_id" : {
@@ -60,7 +63,7 @@
     "$oid" : "6814dafa7d73e7209a13d2cb"
   },
   "title" : "Posición de $just$",
-  "instructions" : "Escribe oraciones usando $just$.",
+  "instructions" : "Escribe oraciones usando 'just'.",
   "translation" : "Los gatos acaban de comer su comida.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -78,7 +81,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.10.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$just$ va entre $have$ / $has$ y el participio: $He has just arrived$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -112,7 +115,7 @@
     "$oid" : "6814dafa7d73e7209a13d2cb"
   },
   "title" : "Posición de $just$",
-  "instructions" : "Escribe oraciones usando $just$.",
+  "instructions" : "Escribe oraciones usando 'just'.",
   "translation" : "Él acaba de llegar.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -130,7 +133,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.10.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$just$ va entre $have$ / $has$ y el participio: $He has just arrived$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -146,13 +149,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "He has just arrived / He's just arrived" ]
+      "options" : [ "He has just arrived|He's just arrived" ]
     }, {
       "kind" : "TEXT",
       "text" : "(he / arrive).",
       "options" : null
     } ],
-    "sentences" : [ "He has just arrived / He's just arrived." ]
+    "sentences" : [ "He has just arrived.", "He's just arrived." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "He has just arrived / He's just arrived" ]
   }
 }, {
   "_id" : {
@@ -164,7 +170,7 @@
     "$oid" : "6814dafa7d73e7209a13d2cb"
   },
   "title" : "Posición de $just$",
-  "instructions" : "Escribe oraciones usando $just$.",
+  "instructions" : "Escribe oraciones usando 'just'.",
   "translation" : "Acabas de volver a casa.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -182,7 +188,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.10.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$just$ va entre $have$ / $has$ y el participio: $He has just arrived$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -198,13 +204,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "You have just come back home / You've just come back home" ]
+      "options" : [ "You have just come back home|You've just come back home" ]
     }, {
       "kind" : "TEXT",
       "text" : "(you / come / back home).",
       "options" : null
     } ],
-    "sentences" : [ "You have just come back home / You've just come back home." ]
+    "sentences" : [ "You have just come back home.", "You've just come back home." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "You have just come back home / You've just come back home" ]
   }
 }, {
   "_id" : {
@@ -216,7 +225,7 @@
     "$oid" : "6814dafa7d73e7209a13d2cb"
   },
   "title" : "Posición de $just$",
-  "instructions" : "Escribe oraciones usando $just$.",
+  "instructions" : "Escribe oraciones usando 'just'.",
   "translation" : "Él acaba de empezar.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -234,7 +243,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.10.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$just$ va entre $have$ / $has$ y el participio: $He has just arrived$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -250,13 +259,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "He has just started / He's just started" ]
+      "options" : [ "He has just started|He's just started" ]
     }, {
       "kind" : "TEXT",
       "text" : "(he / start).",
       "options" : null
     } ],
-    "sentences" : [ "He has just started / He's just started." ]
+    "sentences" : [ "He has just started.", "He's just started." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "He has just started / He's just started" ]
   }
 }, {
   "_id" : {
@@ -268,7 +280,7 @@
     "$oid" : "6814dafa7d73e7209a13d2cb"
   },
   "title" : "Posición de $just$",
-  "instructions" : "Escribe oraciones usando $just$.",
+  "instructions" : "Escribe oraciones usando 'just'.",
   "translation" : "Ellos acaban de quedarse dormidos.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -286,7 +298,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.10.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$just$ va entre $have$ / $has$ y el participio: $He has just arrived$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -302,13 +314,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "They have just fallen asleep / They've just fallen asleep" ]
+      "options" : [ "They have just fallen asleep|They've just fallen asleep" ]
     }, {
       "kind" : "TEXT",
       "text" : "(they / fall asleep).",
       "options" : null
     } ],
-    "sentences" : [ "They have just fallen asleep / They've just fallen asleep." ]
+    "sentences" : [ "They have just fallen asleep.", "They've just fallen asleep." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "They have just fallen asleep / They've just fallen asleep" ]
   }
 }, {
   "_id" : {
@@ -320,7 +335,7 @@
     "$oid" : "6814dafa7d73e7209a13d2cb"
   },
   "title" : "Posición de $just$",
-  "instructions" : "Escribe oraciones usando $just$.",
+  "instructions" : "Escribe oraciones usando 'just'.",
   "translation" : "Acabo de darme cuenta de mi error.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -338,25 +353,28 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.10.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$just$ va entre $have$ / $has$ y el participio: $He has just arrived$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
-      "options" : [ "I have just realized my mistake / I've just realized my mistake" ]
+      "text" : "",
+      "options" : [ "I have just realized my mistake|I've just realized my mistake" ]
     }, {
       "kind" : "TEXT",
       "text" : "(I / realize / my mistake).",
       "options" : null
     } ],
-    "sentences" : [ "I have just realized my mistake / I've just realized my mistake." ]
+    "sentences" : [ "I have just realized my mistake.", "I've just realized my mistake." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "0" : [ "I have just realized my mistake / I've just realized my mistake" ]
   }
 }, {
   "_id" : {
@@ -368,7 +386,7 @@
     "$oid" : "6814dafa7d73e7209a13d2cb"
   },
   "title" : "Posición de $just$",
-  "instructions" : "Escribe oraciones usando $just$.",
+  "instructions" : "Escribe oraciones usando 'just'.",
   "translation" : "Ella acaba de conocer a Tom.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -386,7 +404,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.10.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$just$ va entre $have$ / $has$ y el participio: $He has just arrived$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -402,13 +420,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "She has just met Tom / She's just met Tom" ]
+      "options" : [ "She has just met Tom|She's just met Tom" ]
     }, {
       "kind" : "TEXT",
       "text" : "(She / meet / Tom).",
       "options" : null
     } ],
-    "sentences" : [ "She has just met Tom / She's just met Tom." ]
+    "sentences" : [ "She has just met Tom.", "She's just met Tom." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "She has just met Tom / She's just met Tom" ]
   }
 }, {
   "_id" : {
@@ -420,7 +441,7 @@
     "$oid" : "6814dafa7d73e7209a13d2cb"
   },
   "title" : "Posición de $just$",
-  "instructions" : "Escribe oraciones usando $just$.",
+  "instructions" : "Escribe oraciones usando 'just'.",
   "translation" : "Mi hermano acaba de comprar un coche nuevo.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -438,7 +459,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.10.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$just$ va entre $have$ / $has$ y el participio: $He has just arrived$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -454,13 +475,16 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "My brother has just bought a new car / My brother's just bought a new car" ]
+      "options" : [ "My brother has just bought a new car|My brother's just bought a new car" ]
     }, {
       "kind" : "TEXT",
       "text" : "(My brother / buy / a new car).",
       "options" : null
     } ],
-    "sentences" : [ "My brother has just bought a new car / My brother's just bought a new car." ]
+    "sentences" : [ "My brother has just bought a new car.", "My brother's just bought a new car." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "My brother has just bought a new car / My brother's just bought a new car" ]
   }
 }, {
   "_id" : {
@@ -472,7 +496,7 @@
     "$oid" : "6814dafa7d73e7209a13d2cb"
   },
   "title" : "Posición de $just$",
-  "instructions" : "Escribe oraciones usando $just$.",
+  "instructions" : "Escribe oraciones usando 'just'.",
   "translation" : "Ellos acaban de empezar.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
@@ -490,7 +514,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.02.10.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$just$ va entre $have$ / $has$ y el participio: $He has just arrived$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -506,12 +530,15 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "They have just started / They've just started" ]
+      "options" : [ "They have just started|They've just started" ]
     }, {
       "kind" : "TEXT",
       "text" : "(They / start).",
       "options" : null
     } ],
-    "sentences" : [ "They have just started / They've just started." ]
+    "sentences" : [ "They have just started.", "They've just started." ]
+  },
+  "opcionesAntesDePreguntas" : {
+    "1" : [ "They have just started / They've just started" ]
   }
 } ]

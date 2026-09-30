@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342c5e"
   },
   "id" : "67fab6d59930102295342c5e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27e"
   },
-  "title" : "Contraste de cantidad",
-  "instructions" : "Elige $all$ o $zero$.",
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everything' o 'nothing'.",
   "translation" : "Nada",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -26,10 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.13.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Todo → $everything$. Nada → $nothing$, y el verbo queda en afirmativo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: What did you find? B:",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", it was empty.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -44,23 +78,24 @@
       "text" : "",
       "options" : [ "Nothing" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : ", it was empty.",
-      "options" : null
+      "text" : ", it was empty."
     } ],
-    "sentences" : [ "A: What did you find? B: Nothing, it was empty." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAntesDeRevisar" : "Elige 'all' o 'zero'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c5f"
   },
   "id" : "67fab6d59930102295342c5f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27e"
   },
-  "title" : "Contraste de cantidad",
-  "instructions" : "Elige $all$ o $zero$.",
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everything' o 'nothing'.",
   "translation" : "Todo",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -78,10 +113,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.13.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Todo → $everything$. Nada → $nothing$, y el verbo queda en afirmativo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +129,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Everything" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "looks perfect, so I think we are ready.",
       "options" : null
     } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "Everything" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "looks perfect, so I think we are ready.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
     "sentences" : [ "Everything looks perfect, so I think we are ready." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige 'all' o 'zero'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c60"
   },
   "id" : "67fab6d59930102295342c60",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27e"
   },
-  "title" : "Contraste de cantidad",
-  "instructions" : "Elige $all$ o $zero$.",
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everything' o 'nothing'.",
   "translation" : "No se dijo nada importante durante la reunión. Fue malo.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -130,37 +201,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.13.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Todo → $everything$. Nada → $nothing$, y el verbo queda en afirmativo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "important was said during the meeting. It was bad!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Nothing" ]
     }, {
       "kind" : "TEXT",
       "text" : "important was said during the meeting. It was bad!",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "Nothing important was said during the meeting. It was bad!" ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige 'all' o 'zero'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c61"
   },
   "id" : "67fab6d59930102295342c61",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27e"
   },
-  "title" : "Contraste de cantidad",
-  "instructions" : "Elige $all$ o $zero$.",
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everything' o 'nothing'.",
   "translation" : "Ella no sabe nada sobre el examen.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -178,41 +281,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.13.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Todo → $everything$. Nada → $nothing$, y el verbo queda en afirmativo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She knows",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "about the examination!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She knows",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "nothing" ]
     }, {
       "kind" : "TEXT",
       "text" : "about the examination!",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "She knows nothing about the examination!" ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige 'all' o 'zero'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c62"
   },
   "id" : "67fab6d59930102295342c62",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27e"
   },
-  "title" : "Contraste de cantidad",
-  "instructions" : "Elige $all$ o $zero$.",
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everything' o 'nothing'.",
   "translation" : "todo",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -230,9 +369,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.13.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Todo → $everything$. Nada → $nothing$, y el verbo queda en afirmativo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She hates",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "about the city. She even hates the views!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -251,20 +425,20 @@
       "kind" : "TEXT",
       "text" : "about the city. She even hates the views!",
       "options" : null
-    } ],
-    "sentences" : [ "She hates everything about the city. She even hates the views!" ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige 'all' o 'zero'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c63"
   },
   "id" : "67fab6d59930102295342c63",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27e"
   },
-  "title" : "Contraste de cantidad",
-  "instructions" : "Elige $all$ o $zero$.",
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everything' o 'nothing'.",
   "translation" : "nada",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -282,10 +456,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.13.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Todo → $everything$. Nada → $nothing$, y el verbo queda en afirmativo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -298,6 +472,41 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "from the store. The shelves were empty.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "They took"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "nothing" ]
     }, {
       "kind" : "TEXT",
@@ -305,18 +514,19 @@
       "options" : null
     } ],
     "sentences" : [ "They took nothing from the store. The shelves were empty." ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige 'all' o 'zero'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c64"
   },
   "id" : "67fab6d59930102295342c64",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27e"
   },
-  "title" : "Contraste de cantidad",
-  "instructions" : "Elige $all$ o $zero$.",
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everything' o 'nothing'.",
   "translation" : "todo",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -334,9 +544,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.13.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Todo → $everything$. Nada → $nothing$, y el verbo queda en afirmativo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We drank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "in the fridge. Now, we need more drinks!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -355,20 +600,20 @@
       "kind" : "TEXT",
       "text" : "in the fridge. Now, we need more drinks!",
       "options" : null
-    } ],
-    "sentences" : [ "We drank everything in the fridge. Now, we need more drinks!" ]
-  }
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige 'all' o 'zero'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c65"
   },
   "id" : "67fab6d59930102295342c65",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27e"
   },
-  "title" : "Contraste de cantidad",
-  "instructions" : "Elige $all$ o $zero$.",
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everything' o 'nothing'.",
   "translation" : "El viento estaba fuerte y todo salió volando del escritorio.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -386,22 +631,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.13.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Todo → $everything$. Nada → $nothing$, y el verbo queda en afirmativo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The wind was strong and",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "flew off the desk!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The wind was strong and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "everything" ]
     }, {
       "kind" : "TEXT",
@@ -409,18 +689,19 @@
       "options" : null
     } ],
     "sentences" : [ "The wind was strong and everything flew off the desk!" ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige 'all' o 'zero'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c66"
   },
   "id" : "67fab6d59930102295342c66",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27e"
   },
-  "title" : "Contraste de cantidad",
-  "instructions" : "Elige $all$ o $zero$.",
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everything' o 'nothing'.",
   "translation" : "Quería pedir todo. ¡Los platos parecían internacionales!",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -438,41 +719,77 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.13.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Todo → $everything$. Nada → $nothing$, y el verbo queda en afirmativo.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I wanted to order",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "! The plates looked international!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everything",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I wanted to order",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "everything" ]
     }, {
       "kind" : "TEXT",
       "text" : "! The plates looked international!",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "I wanted to order everything! The plates looked international!" ]
-  }
+  },
+  "instructionsAntesDeRevisar" : "Elige 'all' o 'zero'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c67"
   },
   "id" : "67fab6d59930102295342c67",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27e"
   },
-  "title" : "Contraste de cantidad",
-  "instructions" : "Elige $all$ o $zero$.",
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everything' o 'nothing'.",
   "translation" : "nada",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
@@ -490,9 +807,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.08.13.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Todo → $everything$. Nada → $nothing$, y el verbo queda en afirmativo.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I offered them cake, but the children ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ". They are not hungry!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everything",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everything"
+    }, {
+      "id" : "nothing",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nothing"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -511,7 +863,2740 @@
       "kind" : "TEXT",
       "text" : ". They are not hungry!",
       "options" : null
+    } ]
+  },
+  "instructionsAntesDeRevisar" : "Elige 'all' o 'zero'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c68"
+  },
+  "id" : "67fab6d59930102295342c68",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everybody' o 'nobody'.",
+  "translation" : "Nadie me llamó. Mi teléfono no sonó ni una vez.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.14.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$everybody$ es todos; $nobody$ es ninguno, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "called me. My phone didn't ring once.",
+      "options" : null
     } ],
-    "sentences" : [ "I offered them cake, but the children ate nothing. They are not hungry!" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Nobody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "called me. My phone didn't ring once.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'everybody' o 'nobody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c69"
+  },
+  "id" : "67fab6d59930102295342c69",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everybody' o 'nobody'.",
+  "translation" : "Todos disfrutaron del espectáculo. Todos trabajaron duro.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.14.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$everybody$ es todos; $nobody$ es ninguno, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "enjoyed the show. They all worked hard.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Everybody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "enjoyed the show. They all worked hard.",
+      "options" : null
+    } ],
+    "sentences" : [ "Everybody enjoyed the show. They all worked hard." ]
+  },
+  "instructionsAnteriores" : "Elegí 'everybody' o 'nobody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c6a"
+  },
+  "id" : "67fab6d59930102295342c6a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everybody' o 'nobody'.",
+  "translation" : "Conoce a todo el mundo en la oficina. Lleva años trabajando allí.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.14.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$everybody$ es todos; $nobody$ es ninguno, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He knows",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "in the office. He's worked there for years.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He knows",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everybody" ]
+    }, {
+      "text" : "in the office. He's worked there for years.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'everybody' o 'nobody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c6b"
+  },
+  "id" : "67fab6d59930102295342c6b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everybody' o 'nobody'.",
+  "translation" : "Nadie sabía el camino. No había señales.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.14.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$everybody$ es todos; $nobody$ es ninguno, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "knew the way. There were no signs.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Nobody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "knew the way. There were no signs.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "Nobody knew the way. There were no signs." ]
+  },
+  "instructionsAnteriores" : "Elegí 'everybody' o 'nobody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c6c"
+  },
+  "id" : "67fab6d59930102295342c6c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everybody' o 'nobody'.",
+  "translation" : "No vi a nadie en el parque. Estaba muy tranquilo.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.14.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$everybody$ es todos; $nobody$ es ninguno, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "at the park. It was very quiet.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nobody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "at the park. It was very quiet.",
+      "options" : null
+    } ],
+    "sentences" : [ "I saw nobody at the park. It was very quiet." ]
+  },
+  "instructionsAnteriores" : "Elegí 'everybody' o 'nobody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c6d"
+  },
+  "id" : "67fab6d59930102295342c6d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everybody' o 'nobody'.",
+  "translation" : "Todo el mundo está invitado a la fiesta. ¡Por favor, ven y baila!",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.14.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$everybody$ es todos; $nobody$ es ninguno, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "is invited to the party. Please come and dance!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Everybody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "is invited to the party. Please come and dance!",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "Everybody is invited to the party. Please come and dance!" ]
+  },
+  "instructionsAnteriores" : "Elegí 'everybody' o 'nobody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c6e"
+  },
+  "id" : "67fab6d59930102295342c6e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everybody' o 'nobody'.",
+  "translation" : "Casi nadie entendió la lección. El maestro habló demasiado rápido.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.14.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$everybody$ es todos; $nobody$ es ninguno, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Almost",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "understood the lesson. The teacher spoke too fast.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Almost",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nobody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "understood the lesson. The teacher spoke too fast.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "Almost nobody understood the lesson. The teacher spoke too fast." ]
+  },
+  "instructionsAnteriores" : "Elegí 'everybody' o 'nobody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c6f"
+  },
+  "id" : "67fab6d59930102295342c6f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everybody' o 'nobody'.",
+  "translation" : "El concierto comenzó y todo el mundo se puso de pie.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.14.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$everybody$ es todos; $nobody$ es ninguno, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The concert started and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "stood up.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The concert started and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everybody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "stood up.",
+      "options" : null
+    } ],
+    "sentences" : [ "The concert started and everybody stood up." ]
+  },
+  "instructionsAnteriores" : "Elegí 'everybody' o 'nobody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c70"
+  },
+  "id" : "67fab6d59930102295342c70",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everybody' o 'nobody'.",
+  "translation" : "¡Envié invitaciones a todos los que conozco!",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.14.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$everybody$ es todos; $nobody$ es ninguno, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I sent invitations to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "I know!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everybody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I sent invitations to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everybody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "I know!",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'everybody' o 'nobody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c71"
+  },
+  "id" : "67fab6d59930102295342c71",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'everybody' o 'nobody'.",
+  "translation" : "Miró a su alrededor pero no vio a nadie. La habitación estaba vacía.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.14.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$everybody$ es todos; $nobody$ es ninguno, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He looked around but he saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ". The room was empty.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everybody",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everybody"
+    }, {
+      "id" : "nobody",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "nobody"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He looked around but he saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nobody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ". The room was empty.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'everybody' o 'nobody'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c72"
+  },
+  "id" : "67fab6d59930102295342c72",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'somewhere' o 'everywhere'.",
+  "translation" : "Fueron a algún lugar la semana pasada.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.15.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ es algún lugar; $everywhere$, todos. El verbo va en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They went",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "last week.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everywhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They went",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "last week.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "They went somewhere last week." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somewhere' o 'nowhere'.",
+  "instructionsAntesDeRevisar" : "Elige 'somewhere' o 'nowhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c73"
+  },
+  "id" : "67fab6d59930102295342c73",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'somewhere' o 'everywhere'.",
+  "translation" : "Buscó sus llaves por todas partes.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.15.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ es algún lugar; $everywhere$, todos. El verbo va en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She looked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "for her keys.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everywhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She looked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "for her keys.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "She looked everywhere for her keys." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somewhere' o 'nowhere'.",
+  "instructionsAntesDeRevisar" : "Elige 'somewhere' o 'nowhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c74"
+  },
+  "id" : "67fab6d59930102295342c74",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'somewhere' o 'everywhere'.",
+  "translation" : "En algún lugar de España hace frío durante el verano.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.15.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ es algún lugar; $everywhere$, todos. El verbo va en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "in Spain is cold during summer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everywhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "in Spain is cold during summer.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "Somewhere in Spain is cold during summer." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somewhere' o 'nowhere'.",
+  "instructionsAntesDeRevisar" : "Elige 'somewhere' o 'nowhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c75"
+  },
+  "id" : "67fab6d59930102295342c75",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'somewhere' o 'everywhere'.",
+  "translation" : "Me encantaría viajar por toda Asia. Amo Asia.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.15.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ es algún lugar; $everywhere$, todos. El verbo va en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'd love to travel",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "in Asia. I love Asia.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everywhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I'd love to travel",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "in Asia. I love Asia.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'somewhere' o 'nowhere'.",
+  "instructionsAntesDeRevisar" : "Elige 'somewhere' o 'nowhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c76"
+  },
+  "id" : "67fab6d59930102295342c76",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'somewhere' o 'everywhere'.",
+  "translation" : "¡Ella ha estado en todas partes! ¡Ha visto todas las catedrales!",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.15.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ es algún lugar; $everywhere$, todos. El verbo va en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has been",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "! She has seen all the cathedrals!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everywhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has been",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "! She has seen all the cathedrals!",
+      "options" : null
+    } ],
+    "sentences" : [ "She has been everywhere! She has seen all the cathedrals!" ]
+  },
+  "instructionsAnteriores" : "Elegí 'somewhere' o 'nowhere'.",
+  "instructionsAntesDeRevisar" : "Elige 'somewhere' o 'nowhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c77"
+  },
+  "id" : "67fab6d59930102295342c77",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'somewhere' o 'everywhere'.",
+  "translation" : "Hay algún lugar donde quiero estar contigo.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.15.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ es algún lugar; $everywhere$, todos. El verbo va en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "I want to be with you.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everywhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "I want to be with you.",
+      "options" : null
+    } ],
+    "sentences" : [ "There is somewhere I want to be with you." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somewhere' o 'nowhere'.",
+  "instructionsAntesDeRevisar" : "Elige 'somewhere' o 'nowhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c78"
+  },
+  "id" : "67fab6d59930102295342c78",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'somewhere' o 'everywhere'.",
+  "translation" : "Los animales tenían algún lugar adonde ir. La multitud los encontró.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.15.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ es algún lugar; $everywhere$, todos. El verbo va en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The animals had",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to go. The crowd found them.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everywhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The animals had",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "to go. The crowd found them.",
+      "options" : null
+    } ],
+    "sentences" : [ "The animals had somewhere to go. The crowd found them." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somewhere' o 'nowhere'.",
+  "instructionsAntesDeRevisar" : "Elige 'somewhere' o 'nowhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c79"
+  },
+  "id" : "67fab6d59930102295342c79",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'somewhere' o 'everywhere'.",
+  "translation" : "¡Había comida por todas partes! ¡La cocina estaba llena de cebollas!",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.15.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ es algún lugar; $everywhere$, todos. El verbo va en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There was food",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "! The kitchen was full of onions!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everywhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There was food",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "! The kitchen was full of onions!",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "There was food everywhere! The kitchen was full of onions!" ]
+  },
+  "instructionsAnteriores" : "Elegí 'somewhere' o 'nowhere'.",
+  "instructionsAntesDeRevisar" : "Elige 'somewhere' o 'nowhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c7a"
+  },
+  "id" : "67fab6d59930102295342c7a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'somewhere' o 'everywhere'.",
+  "translation" : "En todos los lugares que viajamos en Italia, la comida era fresca.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.15.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ es algún lugar; $everywhere$, todos. El verbo va en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we travelled in Italy, the food was fresh.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everywhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "everywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Everywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "we travelled in Italy, the food was fresh.",
+      "options" : null
+    } ],
+    "sentences" : [ "Everywhere we travelled in Italy, the food was fresh." ]
+  },
+  "instructionsAnteriores" : "Elegí 'somewhere' o 'nowhere'.",
+  "instructionsAntesDeRevisar" : "Elige 'somewhere' o 'nowhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342c7b"
+  },
+  "id" : "67fab6d59930102295342c7b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige 'somewhere' o 'everywhere'.",
+  "translation" : "¡Deberíamos ir a algún lugar divertido como este club!",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.08.15.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$somewhere$ es algún lugar; $everywhere$, todos. El verbo va en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We should go",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "fun like this club!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "everywhere",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "everywhere"
+    }, {
+      "id" : "somewhere",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "somewhere"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We should go",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "somewhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "fun like this club!",
+      "options" : null
+    } ],
+    "sentences" : [ "We should go somewhere fun like this club!" ]
+  },
+  "instructionsAnteriores" : "Elegí 'somewhere' o 'nowhere'.",
+  "instructionsAntesDeRevisar" : "Elige 'somewhere' o 'nowhere'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343979"
+  },
+  "id" : "67fab6d59930102295343979",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Él habla con todo el mundo. Disfruta hablar con la gente.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He speaks to everybody / nobody. He enjoys talking with people.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everybody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He speaks to everybody / nobody. He enjoys talking with people. everybody" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534397a"
+  },
+  "id" : "67fab6d5993010229534397a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "¡Nada es tan urgente como mantenerse hidratado! ¡Bebé agua ahora mismo!",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Everything / Nothing is as urgent as staying hydrated! Drink water right now!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Nothing" ]
+    } ],
+    "sentences" : [ "Everything / Nothing is as urgent as staying hydrated! Drink water right now! Nothing" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534397b"
+  },
+  "id" : "67fab6d5993010229534397b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Me disgustó todo de su actuación. Fue terrible.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I disliked everything / nothing about his performance. It was terrible.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everything" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I disliked everything / nothing about his performance. It was terrible. everything" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534397c"
+  },
+  "id" : "67fab6d5993010229534397c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "A ella no le cae mal nadie. Es una persona muy antipática.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She dislikes everybody / nobody. She's such an unfriendly person.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nobody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She dislikes everybody / nobody. She's such an unfriendly person. nobody" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534397d"
+  },
+  "id" : "67fab6d5993010229534397d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "No vio a nadie durante su viaje. Toda la población se había ido.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He saw everybody / nobody during his journey. The whole population had left.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nobody" ]
+    } ],
+    "sentences" : [ "He saw everybody / nobody during his journey. The whole population had left. nobody" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534397e"
+  },
+  "id" : "67fab6d5993010229534397e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Mi padre hizo todo en la oficina. Hizo todo el repaso.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My father did everything / nothing at the office. He did all the revision.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everything" ]
+    } ],
+    "sentences" : [ "My father did everything / nothing at the office. He did all the revision. everything" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534397f"
+  },
+  "id" : "67fab6d5993010229534397f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Ella tiene la intención de ir a todas partes este verano. Quiere visitar el país.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She intends to go everywhere / nowhere this summer. She wants to visit the country.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She intends to go everywhere / nowhere this summer. She wants to visit the country. everywhere" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343980"
+  },
+  "id" : "67fab6d59930102295343980",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "No viajaron a ninguna parte. Permanecieron en la ciudad.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They travelled everywhere / nowhere. They remained in the city.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nowhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "They travelled everywhere / nowhere. They remained in the city. nowhere" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343981"
+  },
+  "id" : "67fab6d59930102295343981",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "¡Nadie se presentó al concurso. Ella fue la única persona involucrada!",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Everybody / Nobody entered the contest. She was the only person involved!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Nobody" ]
+    } ],
+    "sentences" : [ "Everybody / Nobody entered the contest. She was the only person involved! Nobody" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343982"
+  },
+  "id" : "67fab6d59930102295343982",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "¡Ella pierde sus recetas médicas en todas partes! Es muy desorganizada.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She loses her prescriptions everywhere / nowhere! She's so disorganized.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everywhere" ]
+    } ],
+    "sentences" : [ "She loses her prescriptions everywhere / nowhere! She's so disorganized. everywhere" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343983"
+  },
+  "id" : "67fab6d59930102295343983",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Se bebió todo lo que había en su vaso. Después estaba vacío.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He drank everything / nothing in his glass. It was empty afterwards.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everything" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "He drank everything / nothing in his glass. It was empty afterwards. everything" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343984"
+  },
+  "id" : "67fab6d59930102295343984",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Busqué mi billetera por todas partes, pero no pude encontrarla.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I searched everywhere / nowhere for my wallet but I couldn't locate it.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everywhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I searched everywhere / nowhere for my wallet but I couldn't locate it. everywhere" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343985"
+  },
+  "id" : "67fab6d59930102295343985",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "No hay nada en la caja. Está completamente vacía.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There is everything / nothing in the box. It's completely empty.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nothing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "There is everything / nothing in the box. It's completely empty. nothing" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343986"
+  },
+  "id" : "67fab6d59930102295343986",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "¡No usé nada de mi mochila! No necesitaba lo que traje.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I used everything / nothing in my backpack! I didn't need what I brought.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nothing" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "I used everything / nothing in my backpack! I didn't need what I brought. nothing" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343987"
+  },
+  "id" : "67fab6d59930102295343987",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "Ella ama a todo el mundo. Es muy alegre.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She loves everybody / nobody. She's so cheerful.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everybody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She loves everybody / nobody. She's so cheerful. everybody" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343988"
+  },
+  "id" : "67fab6d59930102295343988",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "¡Ningún lugar es más emocionante que este juego! ¡Es la cosa más increíble del mundo!",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Everywhere / Nowhere is more exciting than this game! It's the most amazing thing in the world!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Nowhere" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "Everywhere / Nowhere is more exciting than this game! It's the most amazing thing in the world! Nowhere" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295343989"
+  },
+  "id" : "67fab6d59930102295343989",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "¡Ella no conocía a nadie! No reconoció a una sola persona.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She knew everybody / nobody! She didn't recognize a single person.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nobody" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "She knew everybody / nobody! She didn't recognize a single person. nobody" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534398a"
+  },
+  "id" : "67fab6d5993010229534398a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "No invité a nadie a entrar en nuestra habitación. No me gusta tener amigos cerca.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I invited everybody / nobody to enter our room. I dislike having friends around.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "nobody" ]
+    } ],
+    "sentences" : [ "I invited everybody / nobody to enter our room. I dislike having friends around. nobody" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534398b"
+  },
+  "id" : "67fab6d5993010229534398b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "A nadie le gusta pagar por afeitadas. ¡A todos nos disgusta!",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Everybody / Nobody enjoys paying for shaves. We all dislike it!",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Nobody" ]
+    } ],
+    "sentences" : [ "Everybody / Nobody enjoys paying for shaves. We all dislike it! Nobody" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534398c"
+  },
+  "id" : "67fab6d5993010229534398c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d27e"
+  },
+  "title" : "Indefinidos con $every$ o $no$",
+  "instructions" : "Elige la palabra correcta.",
+  "translation" : "¡Espero ver todo! Estoy agradecido de ver lugares.",
+  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+  "topicName" : "Pronouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.13.04.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$every-$ es todo o todos; $no-$ es nada o nadie, con el verbo en afirmativo.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I hope to see everywhere / nowhere! I'm grateful to see places.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "everywhere" ]
+    } ],
+    "sentences" : [ "I hope to see everywhere / nowhere! I'm grateful to see places. everywhere" ]
   }
 } ]

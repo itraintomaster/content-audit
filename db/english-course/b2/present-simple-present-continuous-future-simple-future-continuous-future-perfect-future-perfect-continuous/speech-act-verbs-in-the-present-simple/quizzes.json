@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295343e01"
   },
   "id" : "67fab6d59930102295343e01",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3f7"
   },
   "title" : "Verbos performativos",
-  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos $promise$, $swear$, $demand$, $forbid$ y $apologise$. Usa $promise$ con $to$ y $swear$ con $that$.",
+  "instructions" : "Elige el verbo con el que la oración hace lo que dice: 'promise', 'swear', 'demand', 'forbid' o 'apologise'. 'Promise' va con 'to' y 'swear' con 'that'.",
   "translation" : "Prometo llamarte.",
   "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
@@ -26,9 +26,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.01.07.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$promise$ pide $to$ y $swear$ pide $that$; los dos van en presente simple.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to call you.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "apologise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "apologise"
+    }, {
+      "id" : "demand",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "demand"
+    }, {
+      "id" : "forbid",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "forbid"
+    }, {
+      "id" : "promise",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "promise"
+    }, {
+      "id" : "swear",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "swear"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,20 +100,21 @@
       "kind" : "TEXT",
       "text" : "to call you.",
       "options" : null
-    } ],
-    "sentences" : [ "I promise to call you." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elegí 'promise' con 'to' y 'swear' con 'that'.",
+  "instructionsAntesDeRevisar" : "Elige una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elige 'promise' con 'to' y 'swear' con 'that'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343e02"
   },
   "id" : "67fab6d59930102295343e02",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3f7"
   },
   "title" : "Verbos performativos",
-  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos $promise$, $swear$, $demand$, $forbid$ y $apologise$. Usa $promise$ con $to$ y $swear$ con $that$.",
+  "instructions" : "Elige el verbo con el que la oración hace lo que dice: 'promise', 'swear', 'demand', 'forbid' o 'apologise'. 'Promise' va con 'to' y 'swear' con 'that'.",
   "translation" : "Me disculpo por reírme.",
   "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
@@ -78,10 +132,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.01.07.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Apologise$, $demand$ y $forbid$ funcionan igual: presente simple, nunca continuo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,25 +148,79 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "apologise" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "for laughing.",
       "options" : null
     } ],
-    "sentences" : [ "I apologise for laughing." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "apologise",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "apologise"
+    }, {
+      "id" : "demand",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "demand"
+    }, {
+      "id" : "forbid",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "forbid"
+    }, {
+      "id" : "promise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "promise"
+    }, {
+      "id" : "swear",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "swear"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "apologise" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "for laughing.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elegí 'promise' con 'to' y 'swear' con 'that'.",
+  "instructionsAntesDeRevisar" : "Elige una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elige 'promise' con 'to' y 'swear' con 'that'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343e03"
   },
   "id" : "67fab6d59930102295343e03",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3f7"
   },
   "title" : "Verbos performativos",
-  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos $promise$, $swear$, $demand$, $forbid$ y $apologise$. Usa $promise$ con $to$ y $swear$ con $that$.",
+  "instructions" : "Elige el verbo con el que la oración hace lo que dice: 'promise', 'swear', 'demand', 'forbid' o 'apologise'. 'Promise' va con 'to' y 'swear' con 'that'.",
   "translation" : "Exijo ver a Peter.",
   "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
@@ -130,10 +238,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.01.07.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Apologise$, $demand$ y $forbid$ funcionan igual: presente simple, nunca continuo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,25 +254,126 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "demand" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "to see Peter.",
       "options" : null
     } ],
-    "sentences" : [ "I demand to see Peter." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "apologise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "apologise"
+    }, {
+      "id" : "demand",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "demand"
+    }, {
+      "id" : "forbid",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "forbid"
+    }, {
+      "id" : "swear",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "swear"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "options" : [ "demand" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "to see Peter.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elegí 'promise' con 'to' y 'swear' con 'that'.",
+  "instructionsAntesDeRevisar" : "Elige una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elige 'promise' con 'to' y 'swear' con 'that'.",
+  "formAntesDeRevisar" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "selection" : "SINGLE",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to see Peter.",
+      "options" : null
+    } ],
+    "items" : [ {
+      "id" : "apologise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "apologise"
+    }, {
+      "id" : "demand",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "demand"
+    }, {
+      "id" : "forbid",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "forbid"
+    }, {
+      "id" : "promise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "promise"
+    }, {
+      "id" : "swear",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "swear"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343e04"
   },
   "id" : "67fab6d59930102295343e04",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3f7"
   },
   "title" : "Verbos performativos",
-  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos $promise$, $swear$, $demand$, $forbid$ y $apologise$. Usa $promise$ con $to$ y $swear$ con $that$.",
+  "instructions" : "Elige el verbo con el que la oración hace lo que dice: 'promise', 'swear', 'demand', 'forbid' o 'apologise'. 'Promise' va con 'to' y 'swear' con 'that'.",
   "translation" : "Juro que pagaré.",
   "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
@@ -182,10 +391,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.01.07.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$promise$ pide $to$ y $swear$ pide $that$; los dos van en presente simple.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -198,25 +407,79 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "that I will pay.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "apologise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "apologise"
+    }, {
+      "id" : "demand",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "demand"
+    }, {
+      "id" : "forbid",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "forbid"
+    }, {
+      "id" : "promise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "promise"
+    }, {
+      "id" : "swear",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "swear"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "text" : "I",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "swear" ]
     }, {
       "kind" : "TEXT",
       "text" : "that I will pay.",
       "options" : null
     } ],
-    "sentences" : [ "I swear that I will pay." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elegí 'promise' con 'to' y 'swear' con 'that'.",
+  "instructionsAntesDeRevisar" : "Elige una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elige 'promise' con 'to' y 'swear' con 'that'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343e05"
   },
   "id" : "67fab6d59930102295343e05",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3f7"
   },
   "title" : "Verbos performativos",
-  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos $promise$, $swear$, $demand$, $forbid$ y $apologise$. Usa $promise$ con $to$ y $swear$ con $that$.",
+  "instructions" : "Elige el verbo con el que la oración hace lo que dice: 'promise', 'swear', 'demand', 'forbid' o 'apologise'. 'Promise' va con 'to' y 'swear' con 'that'.",
   "translation" : "Te prohíbo comprar nada más.",
   "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
@@ -234,10 +497,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.01.07.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Apologise$, $demand$ y $forbid$ funcionan igual: presente simple, nunca continuo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +513,79 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "forbid" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "you from buying anything else.",
       "options" : null
     } ],
-    "sentences" : [ "I forbid you from buying anything else." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "apologise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "apologise"
+    }, {
+      "id" : "demand",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "demand"
+    }, {
+      "id" : "forbid",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "forbid"
+    }, {
+      "id" : "promise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "promise"
+    }, {
+      "id" : "swear",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "swear"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "options" : [ "forbid" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "you from buying anything else.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elegí 'promise' con 'to' y 'swear' con 'that'.",
+  "instructionsAntesDeRevisar" : "Elige una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elige 'promise' con 'to' y 'swear' con 'that'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343e06"
   },
   "id" : "67fab6d59930102295343e06",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3f7"
   },
   "title" : "Verbos performativos",
-  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos $promise$, $swear$, $demand$, $forbid$ y $apologise$. Usa $promise$ con $to$ y $swear$ con $that$.",
+  "instructions" : "Elige el verbo con el que la oración hace lo que dice: 'promise', 'swear', 'demand', 'forbid' o 'apologise'. 'Promise' va con 'to' y 'swear' con 'that'.",
   "translation" : "Exijo que regreses inmediatamente.",
   "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
@@ -286,13 +603,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.01.07.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Apologise$, $demand$ y $forbid$ funcionan igual: presente simple, nunca continuo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "that you return immediately.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "apologise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "apologise"
+    }, {
+      "id" : "demand",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "demand"
+    }, {
+      "id" : "forbid",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "forbid"
+    }, {
+      "id" : "promise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "promise"
+    }, {
+      "id" : "swear",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "swear"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -308,19 +674,24 @@
       "text" : "that you return immediately.",
       "options" : null
     } ],
-    "sentences" : [ "I demand that you return immediately." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elegí 'promise' con 'to' y 'swear' con 'that'.",
+  "instructionsAntesDeRevisar" : "Elige una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elige 'promise' con 'to' y 'swear' con 'that'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343e07"
   },
   "id" : "67fab6d59930102295343e07",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3f7"
   },
   "title" : "Verbos performativos",
-  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos $promise$, $swear$, $demand$, $forbid$ y $apologise$. Usa $promise$ con $to$ y $swear$ con $that$.",
+  "instructions" : "Elige el verbo con el que la oración hace lo que dice: 'promise', 'swear', 'demand', 'forbid' o 'apologise'. 'Promise' va con 'to' y 'swear' con 'that'.",
   "translation" : "Me disculpo por el problema.",
   "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
@@ -338,10 +709,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.01.07.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Apologise$, $demand$ y $forbid$ funcionan igual: presente simple, nunca continuo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +725,79 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "for the problem.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "apologise",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "apologise"
+    }, {
+      "id" : "demand",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "demand"
+    }, {
+      "id" : "forbid",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "forbid"
+    }, {
+      "id" : "promise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "promise"
+    }, {
+      "id" : "swear",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "swear"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "apologise" ]
     }, {
       "kind" : "TEXT",
       "text" : "for the problem.",
       "options" : null
     } ],
-    "sentences" : [ "I apologise for the problem." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elegí 'promise' con 'to' y 'swear' con 'that'.",
+  "instructionsAntesDeRevisar" : "Elige una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elige 'promise' con 'to' y 'swear' con 'that'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343e08"
   },
   "id" : "67fab6d59930102295343e08",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3f7"
   },
   "title" : "Verbos performativos",
-  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos $promise$, $swear$, $demand$, $forbid$ y $apologise$. Usa $promise$ con $to$ y $swear$ con $that$.",
+  "instructions" : "Elige el verbo con el que la oración hace lo que dice: 'promise', 'swear', 'demand', 'forbid' o 'apologise'. 'Promise' va con 'to' y 'swear' con 'that'.",
   "translation" : "Te prohíbo entrar aquí.",
   "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
@@ -390,10 +815,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.01.07.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Apologise$, $demand$ y $forbid$ funcionan igual: presente simple, nunca continuo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -406,25 +831,79 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "forbid" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "you from entering here.",
       "options" : null
     } ],
-    "sentences" : [ "I forbid you from entering here." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "apologise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "apologise"
+    }, {
+      "id" : "demand",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "demand"
+    }, {
+      "id" : "forbid",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "forbid"
+    }, {
+      "id" : "promise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "promise"
+    }, {
+      "id" : "swear",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "swear"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "forbid" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "you from entering here.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elegí 'promise' con 'to' y 'swear' con 'that'.",
+  "instructionsAntesDeRevisar" : "Elige una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elige 'promise' con 'to' y 'swear' con 'that'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343e09"
   },
   "id" : "67fab6d59930102295343e09",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3f7"
   },
   "title" : "Verbos performativos",
-  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos $promise$, $swear$, $demand$, $forbid$ y $apologise$. Usa $promise$ con $to$ y $swear$ con $that$.",
+  "instructions" : "Elige el verbo con el que la oración hace lo que dice: 'promise', 'swear', 'demand', 'forbid' o 'apologise'. 'Promise' va con 'to' y 'swear' con 'that'.",
   "translation" : "Prometo llegar a tiempo.",
   "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
@@ -442,9 +921,62 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.01.07.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$promise$ pide $to$ y $swear$ pide $that$; los dos van en presente simple.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "to be on time.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "apologise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "apologise"
+    }, {
+      "id" : "demand",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "demand"
+    }, {
+      "id" : "forbid",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "forbid"
+    }, {
+      "id" : "promise",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "promise"
+    }, {
+      "id" : "swear",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "swear"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -463,20 +995,21 @@
       "kind" : "TEXT",
       "text" : "to be on time.",
       "options" : null
-    } ],
-    "sentences" : [ "I promise to be on time." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elegí 'promise' con 'to' y 'swear' con 'that'.",
+  "instructionsAntesDeRevisar" : "Elige una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elige 'promise' con 'to' y 'swear' con 'that'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343e0a"
   },
   "id" : "67fab6d59930102295343e0a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3f7"
   },
   "title" : "Verbos performativos",
-  "instructions" : "Crea una oración que realice la acción del verbo. Usa los verbos $promise$, $swear$, $demand$, $forbid$ y $apologise$. Usa $promise$ con $to$ y $swear$ con $that$.",
+  "instructions" : "Elige el verbo con el que la oración hace lo que dice: 'promise', 'swear', 'demand', 'forbid' o 'apologise'. 'Promise' va con 'to' y 'swear' con 'that'.",
   "translation" : "Juro que haré lo que desees.",
   "theoryId" : "b2.01.Present_Simple_with_Speech_Act_Verbs",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
@@ -494,10 +1027,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.01.07.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$promise$ pide $to$ y $swear$ pide $that$; los dos van en presente simple.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,12 +1043,66 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "that I'll do as you wish.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "apologise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "apologise"
+    }, {
+      "id" : "demand",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "demand"
+    }, {
+      "id" : "forbid",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "forbid"
+    }, {
+      "id" : "promise",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "promise"
+    }, {
+      "id" : "swear",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "swear"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "I",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "swear" ]
     }, {
       "kind" : "TEXT",
       "text" : "that I'll do as you wish.",
       "options" : null
     } ],
-    "sentences" : [ "I swear that I'll do as you wish." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elegí 'promise' con 'to' y 'swear' con 'that'.",
+  "instructionsAntesDeRevisar" : "Elige una oración que realice la acción del verbo. usá los verbos 'promise', 'swear', 'demand', 'forbid' y 'apologise'. Elige 'promise' con 'to' y 'swear' con 'that'."
 } ]

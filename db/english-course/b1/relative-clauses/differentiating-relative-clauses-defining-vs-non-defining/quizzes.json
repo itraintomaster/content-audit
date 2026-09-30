@@ -3,7 +3,7 @@
     "$oid" : "67fab6d599301022953438a7"
   },
   "id" : "67fab6d599301022953438a7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -26,22 +26,53 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She ate a huge amount of pizza, which is her favourite food.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She ate a huge amount of pizza, which is her favourite food.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Non-defining" ]
     } ],
     "sentences" : [ "She ate a huge amount of pizza, which is her favourite food. Non-defining" ]
@@ -51,7 +82,7 @@
     "$oid" : "67fab6d599301022953438a8"
   },
   "id" : "67fab6d599301022953438a8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -74,24 +105,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The movie that I watched was realistic.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The movie that I watched was realistic.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "The movie that I watched was realistic. Defining" ]
   }
 }, {
@@ -99,7 +161,7 @@
     "$oid" : "67fab6d599301022953438a9"
   },
   "id" : "67fab6d599301022953438a9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -122,22 +184,53 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The shoes that he bought broke.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The shoes that he bought broke.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
     "sentences" : [ "The shoes that he bought broke. Defining" ]
@@ -147,7 +240,7 @@
     "$oid" : "67fab6d599301022953438aa"
   },
   "id" : "67fab6d599301022953438aa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -170,24 +263,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "His property, which is very bright, has a pool.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His property, which is very bright, has a pool.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Non-defining" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "His property, which is very bright, has a pool. Non-defining" ]
   }
 }, {
@@ -195,7 +319,7 @@
     "$oid" : "67fab6d599301022953438ab"
   },
   "id" : "67fab6d599301022953438ab",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -218,24 +342,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We hired the candidate who applied first.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We hired the candidate who applied first.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "We hired the candidate who applied first. Defining" ]
   }
 }, {
@@ -243,7 +398,7 @@
     "$oid" : "67fab6d599301022953438ac"
   },
   "id" : "67fab6d599301022953438ac",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -266,22 +421,53 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The former murderer who we work well with wasn't at work.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The former murderer who we work well with wasn't at work.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
     "sentences" : [ "The former murderer who we work well with wasn't at work. Defining" ]
@@ -291,7 +477,7 @@
     "$oid" : "67fab6d599301022953438ad"
   },
   "id" : "67fab6d599301022953438ad",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -314,24 +500,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He listened to the general that was on the radio.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He listened to the general that was on the radio.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "He listened to the general that was on the radio. Defining" ]
   }
 }, {
@@ -339,7 +556,7 @@
     "$oid" : "67fab6d599301022953438ae"
   },
   "id" : "67fab6d599301022953438ae",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -362,24 +579,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The reporters who often study hard passed the test.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The reporters who often study hard passed the test.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "The reporters who often study hard passed the test. Defining" ]
   }
 }, {
@@ -387,7 +635,7 @@
     "$oid" : "67fab6d599301022953438af"
   },
   "id" : "67fab6d599301022953438af",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -410,24 +658,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He traveled to Paris, which is a famous attraction in Europe.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He traveled to Paris, which is a famous attraction in Europe.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Non-defining" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "He traveled to Paris, which is a famous attraction in Europe. Non-defining" ]
   }
 }, {
@@ -435,7 +714,7 @@
     "$oid" : "67fab6d599301022953438b0"
   },
   "id" : "67fab6d599301022953438b0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -458,24 +737,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "My father, who lives in the valley, is a teacher.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My father, who lives in the valley, is a teacher.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Non-defining" ]
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "My father, who lives in the valley, is a teacher. Non-defining" ]
   }
 }, {
@@ -483,7 +793,7 @@
     "$oid" : "67fab6d599301022953438b1"
   },
   "id" : "67fab6d599301022953438b1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -506,22 +816,53 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He walked his dog to the park that is near their apartment.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He walked his dog to the park that is near their apartment.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
     "sentences" : [ "He walked his dog to the park that is near their apartment. Defining" ]
@@ -531,7 +872,7 @@
     "$oid" : "67fab6d599301022953438b2"
   },
   "id" : "67fab6d599301022953438b2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -554,24 +895,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The captain who goes to our church was at the show.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The captain who goes to our church was at the show.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "The captain who goes to our church was at the show. Defining" ]
   }
 }, {
@@ -579,7 +951,7 @@
     "$oid" : "67fab6d599301022953438b3"
   },
   "id" : "67fab6d599301022953438b3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -602,22 +974,53 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I'm about to read the financial thriller that Mary wrote.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I'm about to read the financial thriller that Mary wrote.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
     "sentences" : [ "I'm about to read the financial thriller that Mary wrote. Defining" ]
@@ -627,7 +1030,7 @@
     "$oid" : "67fab6d599301022953438b4"
   },
   "id" : "67fab6d599301022953438b4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -650,22 +1053,53 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I ordered a packet, which I'm going to give to Susan.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I ordered a packet, which I'm going to give to Susan.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Non-defining" ]
     } ],
     "sentences" : [ "I ordered a packet, which I'm going to give to Susan. Non-defining" ]
@@ -675,7 +1109,7 @@
     "$oid" : "67fab6d599301022953438b5"
   },
   "id" : "67fab6d599301022953438b5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -698,24 +1132,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "His sister, who works for an airline, knows the system well.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "His sister, who works for an airline, knows the system well.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Non-defining" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "His sister, who works for an airline, knows the system well. Non-defining" ]
   }
 }, {
@@ -723,7 +1188,7 @@
     "$oid" : "67fab6d599301022953438b6"
   },
   "id" : "67fab6d599301022953438b6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -746,24 +1211,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I wonder about the man who works in the tourism industry.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I wonder about the man who works in the tourism industry.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "I wonder about the man who works in the tourism industry. Defining" ]
   }
 }, {
@@ -771,7 +1267,7 @@
     "$oid" : "67fab6d599301022953438b7"
   },
   "id" : "67fab6d599301022953438b7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -794,24 +1290,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She loved all the videos that you shot.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She loved all the videos that you shot.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "She loved all the videos that you shot. Defining" ]
   }
 }, {
@@ -819,7 +1346,7 @@
     "$oid" : "67fab6d599301022953438b8"
   },
   "id" : "67fab6d599301022953438b8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -842,24 +1369,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I texted my daughter who was still at the ceremony.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I texted my daughter who was still at the ceremony.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "I texted my daughter who was still at the ceremony. Defining" ]
   }
 }, {
@@ -867,7 +1425,7 @@
     "$oid" : "67fab6d599301022953438b9"
   },
   "id" : "67fab6d599301022953438b9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -890,24 +1448,55 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The dessert that we love was ordinary.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dessert that we love was ordinary.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "The dessert that we love was ordinary. Defining" ]
   }
 }, {
@@ -915,7 +1504,7 @@
     "$oid" : "67fab6d599301022953438ba"
   },
   "id" : "67fab6d599301022953438ba",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d339"
   },
@@ -938,24 +1527,1698 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.12.02.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$, y va sin comas.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The tourists who visited the waterfall enjoyed the view.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The tourists who visited the waterfall enjoyed the view.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Defining" ]
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "The tourists who visited the waterfall enjoyed the view. Defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445ee"
+  },
+  "id" : "67fab6d599301022953445ee",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "El vestido que ella usó era elegante.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dress that she wore was elegant.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dress that she wore was elegant.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445ef"
+  },
+  "id" : "67fab6d599301022953445ef",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Presencié el milagro, que Sarah describió en detalle.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I witnessed the miracle, which Sarah described in detail.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I witnessed the miracle, which Sarah described in detail.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    } ],
+    "sentences" : [ "I witnessed the miracle, which Sarah described in detail. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445f0"
+  },
+  "id" : "67fab6d599301022953445f0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Visitamos la biblioteca donde tú estudias.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited the library where you study.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited the library where you study.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445f1"
+  },
+  "id" : "67fab6d599301022953445f1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Disfruté esta película única, la cual recibió premios.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoyed this unique film, which received awards.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoyed this unique film, which received awards.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "I enjoyed this unique film, which received awards. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445f2"
+  },
+  "id" : "67fab6d599301022953445f2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Alice, quien trabaja como psicóloga, es increíble.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Alice, who works as a psychologist, is amazing.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Alice, who works as a psychologist, is amazing.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "sentences" : [ "Alice, who works as a psychologist, is amazing. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445f3"
+  },
+  "id" : "67fab6d599301022953445f3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Conozco al chico que le enseña a Mary.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I know the guy who teaches Mary.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I know the guy who teaches Mary.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445f4"
+  },
+  "id" : "67fab6d599301022953445f4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Esta silla, que tiene verdadero encanto, es extremadamente valiosa.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This chair, which has real charm, is extremely valuable.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This chair, which has real charm, is extremely valuable.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "This chair, which has real charm, is extremely valuable. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445f5"
+  },
+  "id" : "67fab6d599301022953445f5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Las cartas que ella escribió eran personales.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The letters that she wrote were personal.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The letters that she wrote were personal.",
+      "options" : null
+    }, {
+      "options" : [ "Defining" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445f6"
+  },
+  "id" : "67fab6d599301022953445f6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "La película que estamos viendo será emocionante.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The movie that we're watching will be exciting.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The movie that we're watching will be exciting.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445f7"
+  },
+  "id" : "67fab6d599301022953445f7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Me fijé en la mujer que pinta tus uñas.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I noticed the woman who paints your nails.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I noticed the woman who paints your nails."
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445f8"
+  },
+  "id" : "67fab6d599301022953445f8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "El nuevo avión, que está cerca del aeropuerto, es caro.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The new aircraft, which is near the airport, is expensive.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The new aircraft, which is near the airport, is expensive.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    } ],
+    "sentences" : [ "The new aircraft, which is near the airport, is expensive. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445f9"
+  },
+  "id" : "67fab6d599301022953445f9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Él compró una computadora más rápida, la cual es actual.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He purchased a faster computer, which is current.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He purchased a faster computer, which is current.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    } ],
+    "sentences" : [ "He purchased a faster computer, which is current. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445fa"
+  },
+  "id" : "67fab6d599301022953445fa",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "El perro que se queda afuera siempre está ladrando.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dog that stays outside is always barking.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dog that stays outside is always barking.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445fb"
+  },
+  "id" : "67fab6d599301022953445fb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Este bolígrafo, que Emily encontró, pertenece a tu tío.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This pen, which Emily found, belongs to your uncle.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "This pen, which Emily found, belongs to your uncle.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "This pen, which Emily found, belongs to your uncle. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445fc"
+  },
+  "id" : "67fab6d599301022953445fc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Leí esta versión, la cual tu hermano también recomendó.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I read this version, which your brother recommended too.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I read this version, which your brother recommended too.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "I read this version, which your brother recommended too. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445fd"
+  },
+  "id" : "67fab6d599301022953445fd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Él está organizando una fiesta, la cual toda su generación adora.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's organising a party, which his whole generation loves.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He's organising a party, which his whole generation loves.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    } ],
+    "sentences" : [ "He's organising a party, which his whole generation loves. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445fe"
+  },
+  "id" : "67fab6d599301022953445fe",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Mi vecino, quien trabaja para el sindicato, necesita ayuda.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My neighbour, who works for the union, requires some help.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My neighbour, who works for the union, requires some help.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Non-defining" ]
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "My neighbour, who works for the union, requires some help. Non-defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953445ff"
+  },
+  "id" : "67fab6d599301022953445ff",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "El doctor que trabaja allí es realmente objetivo.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The doctor who works there is really objective.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The doctor who works there is really objective.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "The doctor who works there is really objective. Defining" ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344600"
+  },
+  "id" : "67fab6d59930102295344600",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "Aquí está el juguete que estaba en el suelo.",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Here's the toy that was on the floor.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "Here's the toy that was on the floor."
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344601"
+  },
+  "id" : "67fab6d59930102295344601",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d339"
+  },
+  "title" : "¿Con coma o sin coma?",
+  "instructions" : "¿Es la 'relative clause' 'defining' o 'non-defining'?",
+  "translation" : "¿Dónde está la leche que serví?",
+  "theoryId" : "b1.12.Defining_and_Non_-defining_Relative_Clauses",
+  "topicName" : "Relative clauses",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.10.02.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si la información es imprescindible es $defining$ y va sin comas.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where's the milk that I poured?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "defining",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "defining"
+    }, {
+      "id" : "non-defining",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "non-defining"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where's the milk that I poured?",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Defining" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    } ]
   }
 } ]

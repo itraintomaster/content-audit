@@ -8,7 +8,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "Ahora Peter se comerá una manzana.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -26,22 +26,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ para lo que creés que va a pasar: $I think$, $I know$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Now Peter",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "will eat" ]
     }, {
       "kind" : "TEXT",
@@ -49,7 +49,8 @@
       "options" : null
     } ],
     "sentences" : [ "Now Peter will eat an apple." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534213a"
@@ -60,7 +61,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "La película parecerá interesante.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -78,7 +79,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ para lo que creés que va a pasar: $I think$, $I know$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -101,7 +102,8 @@
       "options" : null
     } ],
     "sentences" : [ "The movie will seem interesting." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534213b"
@@ -112,7 +114,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "Mary se irá pronto.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -130,22 +132,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ para lo que creés que va a pasar: $I think$, $I know$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Mary",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "will go" ]
     }, {
       "kind" : "TEXT",
@@ -153,7 +155,8 @@
       "options" : null
     } ],
     "sentences" : [ "Mary will go soon." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534213c"
@@ -164,7 +167,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "¿Jugará al fútbol la semana que viene?",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -182,7 +185,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ para lo que creés que va a pasar: $I think$, $I know$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -205,7 +208,8 @@
       "options" : null
     } ],
     "sentences" : [ "Will he play football next week?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534213d"
@@ -216,7 +220,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "¿Querrán comida los perros?",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -234,7 +238,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ para lo que creés que va a pasar: $I think$, $I know$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -257,7 +261,8 @@
       "options" : null
     } ],
     "sentences" : [ "Will the dogs want food?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534213e"
@@ -268,7 +273,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "Creo que funcionará esta noche.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -286,22 +291,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ para lo que creés que va a pasar: $I think$, $I know$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I think it",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "'ll work" ]
     }, {
       "kind" : "TEXT",
@@ -309,7 +314,8 @@
       "options" : null
     } ],
     "sentences" : [ "I think it 'll work tonight." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534213f"
@@ -320,7 +326,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "Sé que dormirás bien esta noche.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -338,22 +344,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ para lo que creés que va a pasar: $I think$, $I know$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I know you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "'ll sleep" ]
     }, {
       "kind" : "TEXT",
@@ -361,7 +367,8 @@
       "options" : null
     } ],
     "sentences" : [ "I know you 'll sleep well tonight." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342140"
@@ -372,7 +379,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "A los padres les encantará este libro.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -390,22 +397,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ para lo que creés que va a pasar: $I think$, $I know$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The parents",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "will love" ]
     }, {
       "kind" : "TEXT",
@@ -413,7 +420,8 @@
       "options" : null
     } ],
     "sentences" : [ "The parents will love this book." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342141"
@@ -424,7 +432,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "No será más fácil.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -442,7 +450,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ para lo que creés que va a pasar: $I think$, $I know$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -465,7 +473,8 @@
       "options" : null
     } ],
     "sentences" : [ "It won't get easier." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342142"
@@ -476,7 +485,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "El profesor no estará contento.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -494,7 +503,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ para lo que creés que va a pasar: $I think$, $I know$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -517,7 +526,8 @@
       "options" : null
     } ],
     "sentences" : [ "The teacher won't be happy." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342143"
@@ -528,7 +538,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "¿Te vas ahora? Te llamaré.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -546,22 +556,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ también es la decisión que tomás ahí mismo: una oferta o una promesa.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Going now? I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "'ll call" ]
     }, {
       "kind" : "TEXT",
@@ -569,7 +579,8 @@
       "options" : null
     } ],
     "sentences" : [ "Going now? I 'll call you." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342144"
@@ -580,7 +591,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "No haré la cena esta noche.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -598,22 +609,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ también es la decisión que tomás ahí mismo: una oferta o una promesa.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "won't make" ]
     }, {
       "kind" : "TEXT",
@@ -621,7 +632,8 @@
       "options" : null
     } ],
     "sentences" : [ "I won't make dinner tonight." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342145"
@@ -632,7 +644,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "Me quedaré aquí.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -650,22 +662,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ también es la decisión que tomás ahí mismo: una oferta o una promesa.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "'ll stay" ]
     }, {
       "kind" : "TEXT",
@@ -673,7 +685,8 @@
       "options" : null
     } ],
     "sentences" : [ "I 'll stay here." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342146"
@@ -684,7 +697,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "Dice que no beberá zumo.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -702,22 +715,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ también es la decisión que tomás ahí mismo: una oferta o una promesa.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He says he",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "won't drink" ]
     }, {
       "kind" : "TEXT",
@@ -725,7 +738,8 @@
       "options" : null
     } ],
     "sentences" : [ "He says he won't drink juice." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342147"
@@ -736,7 +750,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "¿Estás cansado? Te prepararé un poco de té.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -754,7 +768,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ también es la decisión que tomás ahí mismo: una oferta o una promesa.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -777,7 +791,8 @@
       "options" : null
     } ],
     "sentences" : [ "You're tired? I'll make some tea for you." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342148"
@@ -788,7 +803,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "A: No hay café. B: Yo prepararé un poco.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -806,7 +821,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ también es la decisión que tomás ahí mismo: una oferta o una promesa.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -829,7 +844,8 @@
       "options" : null
     } ],
     "sentences" : [ "A: There's no coffee. B: I'll make some." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342149"
@@ -840,7 +856,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "¡Yo abriré la puerta!",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -858,7 +874,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ también es la decisión que tomás ahí mismo: una oferta o una promesa.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -881,7 +897,8 @@
       "options" : null
     } ],
     "sentences" : [ "I'll answer the door!" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534214a"
@@ -892,7 +909,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "¡Robert está aquí! ¡Ya voy!",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -910,22 +927,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ también es la decisión que tomás ahí mismo: una oferta o una promesa.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Robert is here! I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "'ll come" ]
     }, {
       "kind" : "TEXT",
@@ -933,7 +950,8 @@
       "options" : null
     } ],
     "sentences" : [ "Robert is here! I 'll come!" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534214b"
@@ -944,7 +962,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "Visitaré a mi familia.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -962,22 +980,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ también es la decisión que tomás ahí mismo: una oferta o una promesa.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "'ll visit" ]
     }, {
       "kind" : "TEXT",
@@ -985,7 +1003,8 @@
       "options" : null
     } ],
     "sentences" : [ "I 'll visit my family." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534214c"
@@ -996,7 +1015,7 @@
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
   "title" : "Predicciones y decisiones",
-  "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones utilizando 'will'.",
   "translation" : "Creo que correré hoy.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
@@ -1014,22 +1033,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.03.04.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$will$ para lo que creés que va a pasar: $I think$, $I know$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I think I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "'ll run" ]
     }, {
       "kind" : "TEXT",
@@ -1037,5 +1056,6 @@
       "options" : null
     } ],
     "sentences" : [ "I think I 'll run today." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms')."
 } ]

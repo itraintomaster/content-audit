@@ -8,7 +8,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "No estoy corriendo.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Con $I$ no existe $isn't$: la única negativa es $I'm not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -49,7 +49,8 @@
       "options" : null
     } ],
     "sentences" : [ "I'm not running." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342054"
@@ -60,7 +61,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Ella no está jugando fútbol.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -78,7 +79,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -101,7 +102,8 @@
       "options" : null
     } ],
     "sentences" : [ "She isn't playing soccer.", "She's not playing soccer." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342055"
@@ -112,7 +114,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Él no está durmiendo ahora.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -130,26 +132,27 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He is not sleeping now.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "He isn't sleeping now.|He's not sleeping now." ]
     } ],
     "sentences" : [ "He isn't sleeping now.", "He's not sleeping now." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342056"
@@ -160,7 +163,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Estamos bebiendo agua.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -178,7 +181,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -201,7 +204,8 @@
       "options" : null
     } ],
     "sentences" : [ "We're drinking water." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342057"
@@ -212,7 +216,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "No está funcionando.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -230,26 +234,27 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It is not working.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "It isn't working.|It's not working." ]
     } ],
     "sentences" : [ "It isn't working.", "It's not working." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342058"
@@ -260,7 +265,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Ella no está nadando.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -278,7 +283,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -301,7 +306,8 @@
       "options" : null
     } ],
     "sentences" : [ "She isn't swimming.", "She's not swimming." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342059"
@@ -312,7 +318,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Ellos están jugando en el parque.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -330,7 +336,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -353,7 +359,8 @@
       "options" : null
     } ],
     "sentences" : [ "They're playing in the park." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534205a"
@@ -364,7 +371,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Estoy caminando a la escuela.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -382,7 +389,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -405,7 +412,8 @@
       "options" : null
     } ],
     "sentences" : [ "I'm walking to school." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534205b"
@@ -416,7 +424,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Él está saliendo.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -434,7 +442,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -457,7 +465,8 @@
       "options" : null
     } ],
     "sentences" : [ "He's going outside." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534205c"
@@ -468,7 +477,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Él está escribiendo.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -486,7 +495,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -509,7 +518,8 @@
       "options" : null
     } ],
     "sentences" : [ "He's writing." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534205d"
@@ -520,7 +530,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Ellos están contando una historia.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -538,26 +548,27 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They are telling a story.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "They're telling a story." ]
     } ],
     "sentences" : [ "They're telling a story." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534205e"
@@ -568,7 +579,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Peter no viene.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -586,7 +597,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -609,7 +620,8 @@
       "options" : null
     } ],
     "sentences" : [ "Peter isn't coming.", "Peter's not coming." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534205f"
@@ -620,7 +632,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "No estamos caminando.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -638,7 +650,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -661,7 +673,8 @@
       "options" : null
     } ],
     "sentences" : [ "We aren't walking." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342060"
@@ -672,7 +685,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Los gatos no están comiendo.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -690,7 +703,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -713,7 +726,8 @@
       "options" : null
     } ],
     "sentences" : [ "The cats aren't eating." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342061"
@@ -724,7 +738,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Me reuniré con ella mañana.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -742,7 +756,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -765,7 +779,8 @@
       "options" : null
     } ],
     "sentences" : [ "I'm meeting her tomorrow." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342062"
@@ -776,7 +791,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Ella está escuchando música.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -794,7 +809,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -817,7 +832,8 @@
       "options" : null
     } ],
     "sentences" : [ "She's listening to music." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342063"
@@ -828,7 +844,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Ellos no vienen mañana.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -846,7 +862,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -869,7 +885,8 @@
       "options" : null
     } ],
     "sentences" : [ "They aren't coming tomorrow.", "They're not coming tomorrow." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342064"
@@ -880,7 +897,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Ella está almorzando.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -898,7 +915,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -921,7 +938,8 @@
       "options" : null
     } ],
     "sentences" : [ "She's having lunch." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342065"
@@ -932,7 +950,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "No estamos comiendo.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -950,7 +968,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -973,7 +991,8 @@
       "options" : null
     } ],
     "sentences" : [ "We aren't eating.", "We're not eating." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342066"
@@ -984,7 +1003,7 @@
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
   "title" : "Contracciones",
-  "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
+  "instructions" : "Escribe la oración con $short forms$. Para la forma negativa hay dos posibilidades.",
   "translation" : "Estamos haciendo galletas.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
@@ -1002,24 +1021,25 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.02.08.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$I'm$, $he's$, $they're$… + $-ing$. Para negar valen las dos: $isn't$ o $'s not$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We are making cookies.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "We're making cookies." ]
     } ],
     "sentences" : [ "We're making cookies." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa."
 } ]

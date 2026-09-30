@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953421bb"
   },
   "id" : "67fab6d599301022953421bb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Dónde estuvo ella anoche?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -26,9 +26,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / be) last night?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -44,23 +103,24 @@
       "text" : "",
       "options" : [ "was she" ]
     }, {
-      "kind" : "TEXT",
       "text" : "(she / be) last night?",
-      "options" : null
-    } ],
-    "sentences" : [ "Where was she last night?" ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421bc"
   },
   "id" : "67fab6d599301022953421bc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Estaba él en el tren?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -78,10 +138,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be) on the train?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -100,19 +218,21 @@
       "text" : "(he / be) on the train?",
       "options" : null
     } ],
-    "sentences" : [ "Was he on the train?" ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421bd"
   },
   "id" : "67fab6d599301022953421bd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Por qué estaba triste?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -130,10 +250,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,25 +266,85 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was he" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(he / be) sad?",
       "options" : null
     } ],
-    "sentences" : [ "Why was he sad?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "options" : [ "was he" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be) sad?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421be"
   },
   "id" : "67fab6d599301022953421be",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Cuándo fue en el invierno?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -182,9 +362,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(it / be) in the winter?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +442,21 @@
       "kind" : "TEXT",
       "text" : "(it / be) in the winter?",
       "options" : null
-    } ],
-    "sentences" : [ "When was it in the winter?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421bf"
   },
   "id" : "67fab6d599301022953421bf",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Eran ellos de Berlín?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -234,10 +474,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +490,85 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Were they" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(they / be) from Berlin?",
       "options" : null
     } ],
-    "sentences" : [ "Were they from Berlin?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Were they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / be) from Berlin?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421c0"
   },
   "id" : "67fab6d599301022953421c0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Qué tan alto era?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -286,14 +586,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "How tall",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be)?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -308,19 +662,25 @@
       "text" : "(he / be)?",
       "options" : null
     } ],
-    "sentences" : [ "How tall was he?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421c1"
   },
   "id" : "67fab6d599301022953421c1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Estaba en el jardín?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -338,9 +698,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(it / be) in the garden?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -359,20 +778,21 @@
       "kind" : "TEXT",
       "text" : "(it / be) in the garden?",
       "options" : null
-    } ],
-    "sentences" : [ "Was it in the garden?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421c2"
   },
   "id" : "67fab6d599301022953421c2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Estaban seguros afuera?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -390,37 +810,94 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / be) safe outside?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Were they" ]
     }, {
       "kind" : "TEXT",
       "text" : "(they / be) safe outside?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "Were they safe outside?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421c3"
   },
   "id" : "67fab6d599301022953421c3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Era ella estudiante?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -438,18 +915,73 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / be) a student?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Was she" ]
     }, {
       "kind" : "TEXT",
@@ -457,18 +989,20 @@
       "options" : null
     } ],
     "sentences" : [ "Was she a student?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421c4"
   },
   "id" : "67fab6d599301022953421c4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Con quién estaba?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -486,9 +1020,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Who",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be) with?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -507,20 +1100,21 @@
       "kind" : "TEXT",
       "text" : "(he / be) with?",
       "options" : null
-    } ],
-    "sentences" : [ "Who was he with?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421c5"
   },
   "id" : "67fab6d599301022953421c5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Estabas en el restaurante?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -538,10 +1132,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -554,25 +1148,85 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Were you" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(you / be) at the restaurant?",
       "options" : null
     } ],
-    "sentences" : [ "Were you at the restaurant?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Were you" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / be) at the restaurant?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421c6"
   },
   "id" : "67fab6d599301022953421c6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Tenía razón?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -590,13 +1244,68 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be) right?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -612,19 +1321,24 @@
       "text" : "(he / be) right?",
       "options" : null
     } ],
-    "sentences" : [ "Was he right?" ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421c7"
   },
   "id" : "67fab6d599301022953421c7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Era ella una niña?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -642,37 +1356,94 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / be) a child?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "Was she" ]
     }, {
       "kind" : "TEXT",
       "text" : "(she / be) a child?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Was she a child?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421c8"
   },
   "id" : "67fab6d599301022953421c8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Estaba en la escuela?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -690,10 +1461,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -706,25 +1477,85 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Was he" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(he / be) at school?",
       "options" : null
     } ],
-    "sentences" : [ "Was he at school?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "Was he" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be) at school?",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421c9"
   },
   "id" : "67fab6d599301022953421c9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Era el autobús correcto?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -742,10 +1573,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -758,25 +1589,85 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Was it" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(it / be) the right bus?",
       "options" : null
     } ],
-    "sentences" : [ "Was it the right bus?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "Was it" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "(it / be) the right bus?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421ca"
   },
   "id" : "67fab6d599301022953421ca",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Quién era esa mujer?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -794,10 +1685,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -810,25 +1701,85 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was that woman" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(that woman / be)?",
       "options" : null
     } ],
-    "sentences" : [ "Who was that woman?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Who",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was that woman" ]
+    }, {
+      "text" : "(that woman / be)?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421cb"
   },
   "id" : "67fab6d599301022953421cb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Por qué era importante?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -846,41 +1797,102 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be) important?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "was he" ]
     }, {
       "kind" : "TEXT",
       "text" : "(he / be) important?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "Why was he important?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421cc"
   },
   "id" : "67fab6d599301022953421cc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Por qué estaban contentos?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -898,22 +1910,81 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / be) happy?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "were they" ]
     }, {
       "kind" : "TEXT",
@@ -921,18 +1992,20 @@
       "options" : null
     } ],
     "sentences" : [ "Why were they happy?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421cd"
   },
   "id" : "67fab6d599301022953421cd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Por qué era aburrido?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -950,22 +2023,81 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(it / be) boring?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "was it" ]
     }, {
       "kind" : "TEXT",
@@ -973,18 +2105,20 @@
       "options" : null
     } ],
     "sentences" : [ "Why was it boring?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953421ce"
   },
   "id" : "67fab6d599301022953421ce",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
   "title" : "Preguntas con $be$",
-  "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
+  "instructions" : "Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.",
   "translation" : "¿Por qué estaba en el parque?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
@@ -1002,10 +2136,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.03.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1018,12 +2152,72 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "was he" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(he / be) at the park?",
       "options" : null
     } ],
-    "sentences" : [ "Why was he at the park?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "was he",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "was he"
+    }, {
+      "id" : "was it",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was it"
+    }, {
+      "id" : "was she",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was she"
+    }, {
+      "id" : "was that woman",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "was that woman"
+    }, {
+      "id" : "were they",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were they"
+    }, {
+      "id" : "were you",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "were you"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "options" : [ "was he" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be) at the park?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
+  "instructionsAntesDeRevisar" : "Elige preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'."
 } ]

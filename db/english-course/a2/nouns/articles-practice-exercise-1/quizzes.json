@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342a9c"
   },
   "id" : "67fab6d59930102295342a9c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Hablé con el hombre que trabaja abajo.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -26,9 +26,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I spoke with",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "man who works downstairs (the listener knows which man).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,20 +88,21 @@
       "kind" : "TEXT",
       "text" : "man who works downstairs (the listener knows which man).",
       "options" : null
-    } ],
-    "sentences" : [ "I spoke with the man who works downstairs ." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a9d"
   },
   "id" : "67fab6d59930102295342a9d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Estamos contentos con la música.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -78,41 +120,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We're happy about",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "music (in general).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We're happy about",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "music (in general).",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "We're happy about - music." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a9e"
   },
   "id" : "67fab6d59930102295342a9e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "La familia tenía un pájaro. El pájaro cantaba bien.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -130,22 +215,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The family had a bird.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bird sang well.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The family had a bird.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
@@ -153,18 +279,20 @@
       "options" : null
     } ],
     "sentences" : [ "The family had a bird. The bird sang well." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342a9f"
   },
   "id" : "67fab6d59930102295342a9f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "¿Alguna vez has viajado a los Emiratos Árabes Unidos?",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -182,9 +310,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo, salvo si dicen union, kingdom, republic, o son plural: ahí va $the$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever travelled to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "UAE?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +372,21 @@
       "kind" : "TEXT",
       "text" : "UAE?",
       "options" : null
-    } ],
-    "sentences" : [ "Have you ever travelled to the UAE?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aa0"
   },
   "id" : "67fab6d59930102295342aa0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Ella viene de España.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -234,10 +404,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo, salvo si dicen union, kingdom, republic, o son plural: ahí va $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +420,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Spain.",
       "options" : null
     } ],
-    "sentences" : [ "She comes from - Spain." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She comes from",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spain.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aa1"
   },
   "id" : "67fab6d59930102295342aa1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Él sí bebe leche.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -286,22 +498,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He sure drinks",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "milk (in general).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He sure drinks",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -309,18 +562,20 @@
       "options" : null
     } ],
     "sentences" : [ "He sure drinks - milk." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aa2"
   },
   "id" : "67fab6d59930102295342aa2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Ella me ofreció un bolígrafo. El bolígrafo escribía mal.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -338,22 +593,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She offered me",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pen. The pen wrote badly.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She offered me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
@@ -361,18 +657,20 @@
       "options" : null
     } ],
     "sentences" : [ "She offered me a pen. The pen wrote badly." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aa3"
   },
   "id" : "67fab6d59930102295342aa3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Adoran el hockey.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -390,41 +688,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They adore",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hockey (in general).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They adore",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "hockey (in general).",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "They adore - hockey." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aa4"
   },
   "id" : "67fab6d59930102295342aa4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Ella devolvió los lápices sobre el escritorio.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -442,10 +783,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -458,25 +799,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "the" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "pencils on the desk (the listener knows which pencils).",
       "options" : null
     } ],
-    "sentences" : [ "She returned the pencils on the desk ." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She returned",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "text" : "pencils on the desk (the listener knows which pencils).",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aa5"
   },
   "id" : "67fab6d59930102295342aa5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "¿Alguna vez has visitado Italia?",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -494,10 +877,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo, salvo si dicen union, kingdom, republic, o son plural: ahí va $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -510,25 +893,67 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "-" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "Italy?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever visited - Italy?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Have you ever visited",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "Italy?",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aa6"
   },
   "id" : "67fab6d59930102295342aa6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Necesitamos pimienta.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -546,22 +971,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si es incontable y no sabe cuál, tampoco es $a$: va sin nada, aunque no hables en general.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pepper (the listener doesn't know which pepper).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
@@ -569,18 +1035,20 @@
       "options" : null
     } ],
     "sentences" : [ "We need - pepper." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aa7"
   },
   "id" : "67fab6d59930102295342aa7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "La fruta es saludable para tu cuerpo.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -598,9 +1066,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "fruit is healthy for your body (in general).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -619,20 +1128,21 @@
       "kind" : "TEXT",
       "text" : "fruit is healthy for your body (in general).",
       "options" : null
-    } ],
-    "sentences" : [ "- fruit is healthy for your body ." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aa8"
   },
   "id" : "67fab6d59930102295342aa8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Prefiero el té.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -650,9 +1160,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I prefer",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "tea (in general).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -671,20 +1222,21 @@
       "kind" : "TEXT",
       "text" : "tea (in general).",
       "options" : null
-    } ],
-    "sentences" : [ "I prefer - tea ." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aa9"
   },
   "id" : "67fab6d59930102295342aa9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Visitamos los Estados Unidos.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -702,41 +1254,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo, salvo si dicen union, kingdom, republic, o son plural: ahí va $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We visited",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "USA.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We visited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "USA.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "We visited the USA." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aaa"
   },
   "id" : "67fab6d59930102295342aaa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Visitaron Francia.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -754,10 +1349,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo, salvo si dicen union, kingdom, republic, o son plural: ahí va $the$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They visited",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "France.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -776,19 +1411,21 @@
       "text" : "France.",
       "options" : null
     } ],
-    "sentences" : [ "They visited - France." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aab"
   },
   "id" : "67fab6d59930102295342aab",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Consiguieron una casa (el oyente no sabe qué casa).",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -806,22 +1443,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They got",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "house (the listener doesn't know which house).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They got",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
@@ -829,18 +1507,20 @@
       "options" : null
     } ],
     "sentences" : [ "They got a house." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aac"
   },
   "id" : "67fab6d59930102295342aac",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Vemos conciertos.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -858,41 +1538,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We see",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "concerts (in general).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We see",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "concerts (in general).",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "We see - concerts." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aad"
   },
   "id" : "67fab6d59930102295342aad",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Ella preparó tostadas y mermelada. La mermelada estaba buena.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -910,41 +1633,84 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She prepared toast and jam.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "jam was good.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She prepared toast and jam.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
       "text" : "jam was good.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "She prepared toast and jam. The jam was good." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aae"
   },
   "id" : "67fab6d59930102295342aae",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Vi a un hombre.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -962,22 +1728,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$the$ si el otro sabe cuál. $a$ si es uno cualquiera. Nada si hablás en general.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I saw",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "man (the listener doesn't know which man).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I saw",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
@@ -985,18 +1792,20 @@
       "options" : null
     } ],
     "sentences" : [ "I saw a man." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342aaf"
   },
   "id" : "67fab6d59930102295342aaf",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Artículos: práctica 1",
-  "instructions" : "Completa con $the$ o $a$ o $an$ o $-$ si no necesitamos un artículo.",
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
   "translation" : "Ella voló a los Países Bajos.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
@@ -1014,9 +1823,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.06.13.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Los países van sin artículo, salvo si dicen union, kingdom, republic, o son plural: ahí va $the$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She flew to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Netherlands.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -1035,7 +1885,3773 @@
       "kind" : "TEXT",
       "text" : "Netherlands.",
       "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab0"
+  },
+  "id" : "67fab6d59930102295342ab0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "¿Podrías darme el libro?",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si ya se sabe cuál es (por contexto, o porque ya se nombró antes), va $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you give me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "book (the listener knows which book)?",
+      "options" : null
     } ],
-    "sentences" : [ "She flew to the Netherlands." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you give me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "book (the listener knows which book)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Could you give me the book?" ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab1"
+  },
+  "id" : "67fab6d59930102295342ab1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "París está en Francia.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "En general no va artículo: $I love bookcases$. Los países tampoco: $France$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Paris is in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "France.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Paris is in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "France.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "Paris is in - France." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab2"
+  },
+  "id" : "67fab6d59930102295342ab2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Me encantan las estanterías.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "En general no va artículo: $I love bookcases$. Los países tampoco: $France$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I love",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bookcases (in general).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I love",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bookcases (in general).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "I love - bookcases." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab3"
+  },
+  "id" : "67fab6d59930102295342ab3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Él comió manzanas.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si es plural o incontable y no se sabe cuál es, no va artículo: ni $a$ ni $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "apples (the listener doesn't know which apples).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He ate",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "apples (the listener doesn't know which apples)."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab4"
+  },
+  "id" : "67fab6d59930102295342ab4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Bebí leche y un vaso de jugo.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Lo incontable no se cuenta solo: el envase sí lleva $a$: $a$ glass of juice.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I drank milk and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "glass of juice.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I drank milk and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "glass of juice.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "I drank milk and a glass of juice." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab5"
+  },
+  "id" : "67fab6d59930102295342ab5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Él disfruta del helado.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "En general no va artículo: $I love bookcases$. Los países tampoco: $France$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He enjoys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ice cream (in general).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He enjoys",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "-" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "ice cream (in general).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab6"
+  },
+  "id" : "67fab6d59930102295342ab6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Viajamos a España.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "En general no va artículo: $I love bookcases$. Los países tampoco: $France$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We traveled to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spain.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We traveled to",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "Spain.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab7"
+  },
+  "id" : "67fab6d59930102295342ab7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Ella es del Reino Unido.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Los países no llevan artículo, salvo los que dicen unión, reino o república: $the$ United Kingdom.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She's from",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "United Kingdom.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "She's from",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "United Kingdom."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab8"
+  },
+  "id" : "67fab6d59930102295342ab8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Vendieron la casa que nos mostraron.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si ya se sabe cuál es (por contexto, o porque ya se nombró antes), va $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They sold",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "house that they showed us (the listener knows which house).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They sold",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "the" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "house that they showed us (the listener knows which house).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ab9"
+  },
+  "id" : "67fab6d59930102295342ab9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Él se comió las manzanas que ella cocinó.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si ya se sabe cuál es (por contexto, o porque ya se nombró antes), va $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "apples that she cooked (the listener knows which apples).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "apples that she cooked (the listener knows which apples).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342aba"
+  },
+  "id" : "67fab6d59930102295342aba",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Ella tiene una falda y un vestido. Ella usa la falda a menudo.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si ya se sabe cuál es (por contexto, o porque ya se nombró antes), va $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has a skirt and a dress. She wears",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "skirt often.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has a skirt and a dress. She wears",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "skirt often.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342abb"
+  },
+  "id" : "67fab6d59930102295342abb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Comimos pan y mantequilla. La mantequilla era muy rica.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si es plural o incontable y no se sabe cuál es, no va artículo: ni $a$ ni $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bread and butter. The butter was rich.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We ate",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bread and butter. The butter was rich.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "We ate - bread and butter. The butter was rich." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342abc"
+  },
+  "id" : "67fab6d59930102295342abc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Él adora los insectos.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "En general no va artículo: $I love bookcases$. Los países tampoco: $France$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He adores",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "insects (in general).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He adores",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "insects (in general).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "He adores - insects." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342abd"
+  },
+  "id" : "67fab6d59930102295342abd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Ella tuvo una clase de matemáticas y una clase de inglés. La clase de inglés fue más fácil.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si ya se sabe cuál es (por contexto, o porque ya se nombró antes), va $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She had a math class and an English class.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "English class was easier.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She had a math class and an English class."
+    }, {
+      "options" : [ "The" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "English class was easier.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342abe"
+  },
+  "id" : "67fab6d59930102295342abe",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Ellos viven en Nueva Zelanda.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "En general no va artículo: $I love bookcases$. Los países tampoco: $France$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They live in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "New Zealand.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They live in",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "New Zealand.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342abf"
+  },
+  "id" : "67fab6d59930102295342abf",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Compré huevos y leche. Los huevos estaban frescos.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si es plural o incontable y no se sabe cuál es, no va artículo: ni $a$ ni $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I bought eggs and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "milk. The eggs were fresh.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I bought eggs and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "milk. The eggs were fresh."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac0"
+  },
+  "id" : "67fab6d59930102295342ac0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Ella me ofreció galletas",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si es plural o incontable y no se sabe cuál es, no va artículo: ni $a$ ni $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She offered me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cookies (the listener doesn't know which cookies)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She offered me",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "cookies (the listener doesn't know which cookies)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac1"
+  },
+  "id" : "67fab6d59930102295342ac1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Ella come carne y pescado. ¡El pescado es mejor!",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si ya se sabe cuál es (por contexto, o porque ya se nombró antes), va $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She eats meat and fish.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "fish is better!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She eats meat and fish.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "fish is better!",
+      "options" : null
+    } ],
+    "sentences" : [ "She eats meat and fish. The fish is better!" ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac2"
+  },
+  "id" : "67fab6d59930102295342ac2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Ella tiene miedo de los aviones.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "En general no va artículo: $I love bookcases$. Los países tampoco: $France$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is afraid of",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "aeroplanes (in general).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is afraid of",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "aeroplanes (in general).",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "She is afraid of - aeroplanes." ]
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ac3"
+  },
+  "id" : "67fab6d59930102295342ac3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'the' o 'a', o '-' si no necesitamos un artículo.",
+  "translation" : "Ella lleva una camiseta y jeans. Los jeans son nuevos.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.06.14.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si es plural o incontable y no se sabe cuál es, no va artículo: ni $a$ ni $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is wearing a t-shirt and",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "jeans. The jeans are new.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She is wearing a t-shirt and",
+      "options" : null
+    }, {
+      "options" : [ "-" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "jeans. The jeans are new.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
+  "instructionsAntesDeRevisar" : "Elige con 'the' o 'a / an' o '-' si no necesitamos un artículo."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434c0"
+  },
+  "id" : "67fab6d599301022953434c0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Él bebió jugo.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He drank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "juice. (The listener doesn't know which juice.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He drank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "juice. (The listener doesn't know which juice.)",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434c1"
+  },
+  "id" : "67fab6d599301022953434c1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Él bebió el jugo que estaba muy frío.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He drank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "juice that was very cold.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He drank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "juice that was very cold.",
+      "options" : null
+    } ],
+    "sentences" : [ "He drank the juice that was very cold." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434c2"
+  },
+  "id" : "67fab6d599301022953434c2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Ella notó un perro cerca de la calle concurrida.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She noticed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dog near the busy street. (The listener doesn't know which dog.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She noticed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "dog near the busy street. (The listener doesn't know which dog.)",
+      "options" : null
+    } ],
+    "sentences" : [ "She noticed a dog near the busy street." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434c3"
+  },
+  "id" : "67fab6d599301022953434c3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Ella se llevó el perro que fue dejado cerca del parque.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She took",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dog that was left near the park.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She took",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "dog that was left near the park.",
+      "options" : null
+    } ],
+    "sentences" : [ "She took the dog that was left near the park." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434c4"
+  },
+  "id" : "67fab6d599301022953434c4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Ellos hornearon pasteles.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They baked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cakes. (The listener doesn't know which cakes.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They baked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "cakes. (The listener doesn't know which cakes.)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434c5"
+  },
+  "id" : "67fab6d599301022953434c5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Ellos hornearon los pasteles que eran para la fiesta.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They baked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cakes that were for the party.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "They baked",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "cakes that were for the party.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434c6"
+  },
+  "id" : "67fab6d599301022953434c6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Los estudiantes estaban estudiando en la biblioteca.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "students were studying in the library. (The listener doesn't know which students.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "students were studying in the library. (The listener doesn't know which students.)"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434c7"
+  },
+  "id" : "67fab6d599301022953434c7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Los estudiantes que asistieron a la conferencia estaban estudiando en la biblioteca.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "students who attended the lecture were studying in the library.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "The" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "students who attended the lecture were studying in the library.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434c8"
+  },
+  "id" : "67fab6d599301022953434c8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Ella encontró una billetera.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She found",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "wallet. (The listener doesn't know which wallet.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She found",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "wallet. (The listener doesn't know which wallet.)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434c9"
+  },
+  "id" : "67fab6d599301022953434c9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Ella encontró la billetera que se perdió ayer.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She found",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "wallet that was lost yesterday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She found",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "text" : "wallet that was lost yesterday.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434ca"
+  },
+  "id" : "67fab6d599301022953434ca",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Ella sirvió leche.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She poured",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "milk. (The listener doesn't know which milk.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She poured"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "milk. (The listener doesn't know which milk.)",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434cb"
+  },
+  "id" : "67fab6d599301022953434cb",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Ella sirvió la leche que estaba en la nevera.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She poured",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "milk that was in the fridge.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She poured",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "milk that was in the fridge."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434cc"
+  },
+  "id" : "67fab6d599301022953434cc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Un pájaro estaba en el árbol.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bird was on the tree. (The listener doesn't know which bird.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "A" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "bird was on the tree. (The listener doesn't know which bird.)"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434cd"
+  },
+  "id" : "67fab6d599301022953434cd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "El pájaro con las alas coloridas estaba en el árbol.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "No sólo that/who identifican: una frase con with/from/in también pide $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "bird with the colorful wings was on the tree.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "The" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "bird with the colorful wings was on the tree.",
+      "options" : null
+    } ],
+    "sentences" : [ "The bird with the colorful wings was on the tree." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434ce"
+  },
+  "id" : "67fab6d599301022953434ce",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Él necesitaba un pedazo de papel.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He needed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "piece of paper. (The listener doesn't know which piece.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He needed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "a" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "piece of paper. (The listener doesn't know which piece.)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434cf"
+  },
+  "id" : "67fab6d599301022953434cf",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Él necesitaba el pedazo de papel que tenía las instrucciones.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He needed",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "piece of paper that had the directions on it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He needed"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "piece of paper that had the directions on it.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434d0"
+  },
+  "id" : "67fab6d599301022953434d0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Ella compró flores.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She bought",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "flowers. (The listener doesn't know which flowers.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "She bought",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "flowers. (The listener doesn't know which flowers.)",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434d1"
+  },
+  "id" : "67fab6d599301022953434d1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Ella compró las flores de la tienda nueva de su barrio.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "No sólo that/who identifican: una frase con with/from/in también pide $the$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She bought",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "flowers from the new shop in her district.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She bought",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "the" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "flowers from the new shop in her district.",
+      "options" : null
+    } ],
+    "sentences" : [ "She bought the flowers from the new shop in her district." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434d2"
+  },
+  "id" : "67fab6d599301022953434d2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Nosotros vimos películas.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We watched",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "movies. (The listener doesn't know which movies.)",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "We watched",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "-" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "movies. (The listener doesn't know which movies.)",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953434d3"
+  },
+  "id" : "67fab6d599301022953434d3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d261"
+  },
+  "title" : "Artículos: $a$, $the$ o nada",
+  "instructions" : "Elige 'a' o 'the', o '-' si no hace falta artículo.",
+  "translation" : "Nosotros vimos las películas que descargamos la semana pasada.",
+  "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
+  "topicName" : "Nouns",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.07.01.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We watched",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "movies that we downloaded last week.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "-",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "-"
+    }, {
+      "id" : "a",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a"
+    }, {
+      "id" : "the",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "the"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "We watched",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "the" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "movies that we downloaded last week.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario)."
 } ]

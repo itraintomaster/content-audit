@@ -8,9 +8,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "¿Se pueden tomar fotos aquí?",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can you$ para preguntar si algo está permitido.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -60,9 +60,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "No se puede comer en la escuela.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -78,22 +78,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's not okay to eat in the school.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "You can't eat in the school." ]
     } ],
     "sentences" : [ "You can't eat in the school." ]
@@ -108,9 +108,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "¿Se puede poner música aquí?",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -126,7 +126,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can you$ para preguntar si algo está permitido.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -160,9 +160,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "¿Se puede nadar en el mar?",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -178,22 +178,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can you$ para preguntar si algo está permitido.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Is it okay to swim in the sea?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Can you swim in the sea?" ]
     } ],
     "sentences" : [ "Can you swim in the sea?" ]
@@ -208,9 +208,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "No se puede hablar durante la clase.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -226,22 +226,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's not okay to talk during the lesson.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "You can't talk during the lesson." ]
     } ],
     "sentences" : [ "You can't talk during the lesson." ]
@@ -256,9 +256,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "No te puedes sentar en la mesa.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -274,7 +274,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -308,9 +308,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "Puedes comer un sándwich aquí.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -326,7 +326,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -360,9 +360,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "Puedes tomar un café en la estación.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -378,7 +378,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -412,9 +412,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "¿Se puede usar una habitación aquí?",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -430,22 +430,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can you$ para preguntar si algo está permitido.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Is it okay to use a room here?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Can you use a room here?" ]
     } ],
     "sentences" : [ "Can you use a room here?" ]
@@ -460,9 +460,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "Te puedes sentar.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -478,22 +478,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's okay to sit down.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "You can sit down." ]
     } ],
     "sentences" : [ "You can sit down." ]
@@ -508,9 +508,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "No se puede correr adentro.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -526,22 +526,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's not okay to run inside.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "You can't run inside." ]
     } ],
     "sentences" : [ "You can't run inside." ]
@@ -556,9 +556,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "No se puede beber cerveza en el trabajo.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -574,7 +574,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -608,9 +608,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "No se puede volar sin un billete.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -626,22 +626,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's not okay to fly without a ticket.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "You can't fly without a ticket." ]
     } ],
     "sentences" : [ "You can't fly without a ticket." ]
@@ -656,9 +656,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "No se puede cantar durante septiembre.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -674,22 +674,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's not okay to sing during September.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "You can't sing during September." ]
     } ],
     "sentences" : [ "You can't sing during September." ]
@@ -704,9 +704,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "No se puede dormir aquí.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -722,7 +722,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -756,9 +756,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "Se puede bailar en la casa.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -774,22 +774,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's okay to dance in the house.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "You can dance in the house." ]
     } ],
     "sentences" : [ "You can dance in the house." ]
@@ -804,9 +804,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "No puedes esperar cerca de la puerta.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -822,22 +822,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's not okay to wait near the door.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "You can't wait near the door." ]
     } ],
     "sentences" : [ "You can't wait near the door." ]
@@ -852,9 +852,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "No se puede cocinar en el aula.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -870,22 +870,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's not okay to cook in the classroom.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "You can't cook in the classroom." ]
     } ],
     "sentences" : [ "You can't cook in the classroom." ]
@@ -900,9 +900,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "¿Se puede caminar por el parque?",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -918,7 +918,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$Can you$ para preguntar si algo está permitido.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -952,9 +952,9 @@
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
   "title" : "Permiso general",
-  "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
   "translation" : "Puedes llevar niños al cine.",
-  "theoryId" : "",
+  "theoryId" : "a1.10.Can_For_Permission",
   "topicName" : "Modal Verbs",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -970,24 +970,536 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.10.04.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$You can$ para lo que está permitido, $You can't$ para lo que no.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's okay to take children into the cinema.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "You can take children into the cinema." ]
     } ],
     "sentences" : [ "You can take children into the cinema." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342de4"
+  },
+  "id" : "67fab6d59930102295342de4",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e6"
+  },
+  "title" : "Permiso general",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+  "translation" : "No se puede beber alcohol aquí.",
+  "theoryId" : "a1.10.Can_For_Permission",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$You can$ si está permitido, $You can't$ si no. El $you$ es la gente en general.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's not okay to drink alcohol here.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You can't drink alcohol here." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "You can't drink alcohol here." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342de5"
+  },
+  "id" : "67fab6d59930102295342de5",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e6"
+  },
+  "title" : "Permiso general",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+  "translation" : "Se puede caminar sobre el césped.",
+  "theoryId" : "a1.10.Can_For_Permission",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$You can$ si está permitido, $You can't$ si no. El $you$ es la gente en general.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's okay to walk on the grass.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You can walk on the grass." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "You can walk on the grass." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342de6"
+  },
+  "id" : "67fab6d59930102295342de6",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e6"
+  },
+  "title" : "Permiso general",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+  "translation" : "Se puede comer aquí.",
+  "theoryId" : "a1.10.Can_For_Permission",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$You can$ si está permitido, $You can't$ si no. El $you$ es la gente en general.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's okay to eat here.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You can eat here." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "You can eat here." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342de7"
+  },
+  "id" : "67fab6d59930102295342de7",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e6"
+  },
+  "title" : "Permiso general",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+  "translation" : "No se puede cocinar si eres menor de dieciséis años.",
+  "theoryId" : "a1.10.Can_For_Permission",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$You can$ si está permitido, $You can't$ si no. El $you$ es la gente en general.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's not okay to cook if you're under sixteen.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You can't cook if you're under sixteen." ]
+    } ],
+    "sentences" : [ "You can't cook if you're under sixteen." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342de8"
+  },
+  "id" : "67fab6d59930102295342de8",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e6"
+  },
+  "title" : "Permiso general",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+  "translation" : "No se pueden tomar videos en el museo.",
+  "theoryId" : "a1.10.Can_For_Permission",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$You can$ si está permitido, $You can't$ si no. El $you$ es la gente en general.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's not okay to take videos in the museum.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You can't take videos in the museum." ]
+    } ],
+    "sentences" : [ "You can't take videos in the museum." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342de9"
+  },
+  "id" : "67fab6d59930102295342de9",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e6"
+  },
+  "title" : "Permiso general",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+  "translation" : "Te puedes quedar en el hotel.",
+  "theoryId" : "a1.10.Can_For_Permission",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$You can$ si está permitido, $You can't$ si no. El $you$ es la gente en general.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's okay to stay in the hotel.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You can stay in the hotel." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "You can stay in the hotel." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dea"
+  },
+  "id" : "67fab6d59930102295342dea",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e6"
+  },
+  "title" : "Permiso general",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+  "translation" : "Puedes traer a tus mascotas al parque.",
+  "theoryId" : "a1.10.Can_For_Permission",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$You can$ si está permitido, $You can't$ si no. El $you$ es la gente en general.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's okay to bring your pets into the park.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You can bring your pets into the park." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "You can bring your pets into the park." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342deb"
+  },
+  "id" : "67fab6d59930102295342deb",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e6"
+  },
+  "title" : "Permiso general",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+  "translation" : "No se pueden traer bebidas al concierto.",
+  "theoryId" : "a1.10.Can_For_Permission",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$You can$ si está permitido, $You can't$ si no. El $you$ es la gente en general.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's not okay to bring drinks into the concert.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You can't bring drinks into the concert." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "You can't bring drinks into the concert." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342dec"
+  },
+  "id" : "67fab6d59930102295342dec",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e6"
+  },
+  "title" : "Permiso general",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+  "translation" : "No se puede poner música alta en la biblioteca.",
+  "theoryId" : "a1.10.Can_For_Permission",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$You can$ si está permitido, $You can't$ si no. El $you$ es la gente en general.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's not okay to play loud music in the library.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You can't play loud music in the library." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "You can't play loud music in the library." ]
+  }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342ded"
+  },
+  "id" : "67fab6d59930102295342ded",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3e6"
+  },
+  "title" : "Permiso general",
+  "instructions" : "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
+  "translation" : "Se puede pedir comida en línea.",
+  "theoryId" : "a1.10.Can_For_Permission",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A2.10.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$You can$ si está permitido, $You can't$ si no. El $you$ es la gente en general.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It's okay to order food online.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "You can order food online." ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    } ],
+    "sentences" : [ "You can order food online." ]
   }
 } ]

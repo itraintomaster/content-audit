@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295342e16"
   },
   "id" : "67fab6d59930102295342e16",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "No debes hacer ruido en una biblioteca.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -26,9 +26,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "make noise in a library.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,20 +88,19 @@
       "kind" : "TEXT",
       "text" : "make noise in a library.",
       "options" : null
-    } ],
-    "sentences" : [ "You mustn't make noise in a library." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e17"
   },
   "id" : "67fab6d59930102295342e17",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "Los perros no deben comer de la mesa.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -78,15 +118,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "eat from the table.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The dogs",
@@ -100,19 +175,24 @@
       "text" : "eat from the table.",
       "options" : null
     } ],
-    "sentences" : [ "The dogs mustn't eat from the table." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e18"
   },
   "id" : "67fab6d59930102295342e18",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "No tienes que ir a la escuela mañana. Es festivo.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -130,10 +210,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,25 +226,65 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "don't have to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "go to school tomorrow. It's a holiday.",
       "options" : null
     } ],
-    "sentences" : [ "You don't have to go to school tomorrow. It's a holiday." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "options" : [ "don't have to" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "go to school tomorrow. It's a holiday.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e19"
   },
   "id" : "67fab6d59930102295342e19",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "No tengo que cocinar la cena esta noche. Vamos a comer fuera.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -182,9 +302,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cook dinner tonight. We are eating out.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,20 +364,19 @@
       "kind" : "TEXT",
       "text" : "cook dinner tonight. We are eating out.",
       "options" : null
-    } ],
-    "sentences" : [ "I don't have to cook dinner tonight. We are eating out." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e1a"
   },
   "id" : "67fab6d59930102295342e1a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "No debemos olvidar las llaves. ¡Vamos a comprobarlo!",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -234,10 +394,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,25 +410,65 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "mustn't" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "forget the keys. Let's check!",
       "options" : null
     } ],
-    "sentences" : [ "We mustn't forget the keys. Let's check!" ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "forget the keys. Let's check!"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e1b"
   },
   "id" : "67fab6d59930102295342e1b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "No tienes que usar sombrero adentro. Puedes quitártelo.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -286,14 +486,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "wear a hat inside. You can take it off.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -308,19 +544,23 @@
       "text" : "wear a hat inside. You can take it off.",
       "options" : null
     } ],
-    "sentences" : [ "You don't have to wear a hat inside. You can take it off." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e1c"
   },
   "id" : "67fab6d59930102295342e1c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "Los estudiantes no tienen que leer esta noche. Leyeron ayer.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -338,10 +578,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +594,65 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "don't have to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "read tonight. They read yesterday.",
       "options" : null
     } ],
-    "sentences" : [ "The students don't have to read tonight. They read yesterday." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "read tonight. They read yesterday."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e1d"
   },
   "id" : "67fab6d59930102295342e1d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "Los visitantes no deben ponerse perfume en el museo.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -390,28 +670,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The visitors",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "wear perfume in the museum.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The visitors",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
       "text" : "wear perfume in the museum.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "The visitors mustn't wear perfume in the museum." ]
   }
 }, {
@@ -419,12 +740,12 @@
     "$oid" : "67fab6d59930102295342e1e"
   },
   "id" : "67fab6d59930102295342e1e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "No debes usar tijeras si estás cansado.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -442,22 +763,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "use scissors if you are tired.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
@@ -471,12 +833,12 @@
     "$oid" : "67fab6d59930102295342e1f"
   },
   "id" : "67fab6d59930102295342e1f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "Ella no tiene que estudiar Matemáticas. Lo estudia porque le gusta.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -494,9 +856,50 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "study Maths. She studies it because she likes it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -515,20 +918,19 @@
       "kind" : "TEXT",
       "text" : "study Maths. She studies it because she likes it.",
       "options" : null
-    } ],
-    "sentences" : [ "She doesn't have to study Maths. She studies it because she likes it." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e20"
   },
   "id" : "67fab6d59930102295342e20",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "No tienes que llamar ahora. Puedes llamar más tarde.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -546,10 +948,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,25 +964,65 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "don't have to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "call now. You can call later.",
       "options" : null
     } ],
-    "sentences" : [ "You don't have to call now. You can call later." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "don't have to" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "call now. You can call later."
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e21"
   },
   "id" : "67fab6d59930102295342e21",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "Ella no tiene que pagar alquiler. Vive en su casa.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -598,22 +1040,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "pay rent. She lives in her house.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "doesn't have to" ]
     }, {
       "kind" : "TEXT",
@@ -627,12 +1110,12 @@
     "$oid" : "67fab6d59930102295342e22"
   },
   "id" : "67fab6d59930102295342e22",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "No tenemos que reservar entradas temprano para el museo.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -650,22 +1133,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "book tickets early for the museum.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "don't have to" ]
     }, {
       "kind" : "TEXT",
@@ -679,12 +1203,12 @@
     "$oid" : "67fab6d59930102295342e23"
   },
   "id" : "67fab6d59930102295342e23",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "Él no tiene que caminar hasta la tienda. Tiene una bicicleta.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -702,10 +1226,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -718,25 +1242,65 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "walk to the shop. He has a bike.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "doesn't have to" ]
     }, {
       "kind" : "TEXT",
       "text" : "walk to the shop. He has a bike.",
       "options" : null
     } ],
-    "sentences" : [ "He doesn't have to walk to the shop. He has a bike." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e24"
   },
   "id" : "67fab6d59930102295342e24",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "Los invitados no tienen que lavar los platos. Lo haremos más tarde.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -754,10 +1318,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -770,25 +1334,65 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "don't have to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "wash the dishes. We will do it later.",
       "options" : null
     } ],
-    "sentences" : [ "The guests don't have to wash the dishes. We will do it later." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "The guests",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "don't have to" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "wash the dishes. We will do it later.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342e25"
   },
   "id" : "67fab6d59930102295342e25",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "¡No debemos olvidar la cita! El médico se enfada.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -806,22 +1410,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "forget the appointment! The doctor gets angry.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
@@ -835,12 +1480,12 @@
     "$oid" : "67fab6d59930102295342e26"
   },
   "id" : "67fab6d59930102295342e26",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "No debes aparcar ahí. Es peligroso.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -858,22 +1503,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "park there. It's dangerous.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
@@ -887,12 +1573,12 @@
     "$oid" : "67fab6d59930102295342e27"
   },
   "id" : "67fab6d59930102295342e27",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "Realmente no debo repetir este error.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -910,28 +1596,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I really",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "repeat this mistake.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I really",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
       "text" : "repeat this mistake.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "I really mustn't repeat this mistake." ]
   }
 }, {
@@ -939,12 +1666,12 @@
     "$oid" : "67fab6d59930102295342e28"
   },
   "id" : "67fab6d59930102295342e28",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "Los huéspedes no deben dejar sus maletas en el pasillo.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -962,22 +1689,63 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The guests",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "leave their suitcases in the hall.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The guests",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
@@ -991,12 +1759,12 @@
     "$oid" : "67fab6d59930102295342e29"
   },
   "id" : "67fab6d59930102295342e29",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29b"
   },
   "title" : "$Mustn$t$ o $don$t have to$",
-  "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
   "translation" : "¡No debe beber tanto! ¡Se pondrá enfermo!",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
@@ -1014,10 +1782,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.10.07.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -1030,12 +1798,1937 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "drink so much! He'll be ill!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
       "text" : "drink so much! He'll be ill!",
       "options" : null
     } ],
-    "sentences" : [ "He mustn't drink so much! He'll be ill!" ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437d5"
+  },
+  "id" : "67fab6d599301022953437d5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "Los perros no deben correr por el parque. Hay muchos niños pequeños.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "run around the park. There are many little children.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The dogs",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "run around the park. There are many little children.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437d6"
+  },
+  "id" : "67fab6d599301022953437d6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No debes montar esa bicicleta rota. No es seguro.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "ride that broken bicycle. It's not safe.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "mustn't" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "ride that broken bicycle. It's not safe.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437d7"
+  },
+  "id" : "67fab6d599301022953437d7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "Los empleados no tienen que trabajar este sábado. Pueden descansar hasta el lunes.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The employees",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "work this Saturday. They can rest until Monday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The employees",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "don't have to" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "work this Saturday. They can rest until Monday.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437d8"
+  },
+  "id" : "67fab6d599301022953437d8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tienes que lavar los platos. Yo puedo hacerlo.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "wash the dishes. I can do it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "wash the dishes. I can do it.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437d9"
+  },
+  "id" : "67fab6d599301022953437d9",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tenemos que leer todos los libros este mes. También hay tiempo el mes que viene.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "read all the books this month. There's time next month too.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "read all the books this month. There's time next month too.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437da"
+  },
+  "id" : "67fab6d599301022953437da",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "¡No debemos olvidar las llaves! No hay una llave de repuesto en casa.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "forget the keys! There isn't a spare key at home.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "forget the keys! There isn't a spare key at home.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437db"
+  },
+  "id" : "67fab6d599301022953437db",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "¡No debo beber tantos refrescos! Realmente quiero sentirme más saludable.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "drink so many fizzy drinks! I really want to feel healthier.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "drink so many fizzy drinks! I really want to feel healthier.",
+      "options" : null
+    } ],
+    "sentences" : [ "I mustn't drink so many fizzy drinks! I really want to feel healthier." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437dc"
+  },
+  "id" : "67fab6d599301022953437dc",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tenemos que vestirnos perfectamente. No importa lo que llevemos puesto.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "dress perfectly. It doesn't matter what we wear.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "dress perfectly. It doesn't matter what we wear.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "sentences" : [ "We don't have to dress perfectly. It doesn't matter what we wear." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437dd"
+  },
+  "id" : "67fab6d599301022953437dd",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "Él no debe gritar fuerte en la biblioteca. Va en contra de las reglas.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "shout loudly in the library. It's against the rules.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "shout loudly in the library. It's against the rules.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437de"
+  },
+  "id" : "67fab6d599301022953437de",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tengo que ir a la escuela. Es fin de semana.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "go to school. It's the weekend.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "go to school. It's the weekend.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437df"
+  },
+  "id" : "67fab6d599301022953437df",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No deben hacer ruido. El bebé está durmiendo.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "be noisy. The baby is sleeping.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "options" : [ "mustn't" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "be noisy. The baby is sleeping."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e0"
+  },
+  "id" : "67fab6d599301022953437e0",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "Los invitados no deben grabar el concierto. No está permitido.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The guests",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "record the concert. It's not allowed.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The guests",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "record the concert. It's not allowed.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentences" : [ "The guests mustn't record the concert. It's not allowed." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e1"
+  },
+  "id" : "67fab6d599301022953437e1",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tienes que despertarte a las 6 de la mañana. ¡Las 8 de la mañana es lo suficientemente temprano!",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "wake up at 6 am. 8 am is early enough!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "You",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "text" : "",
+      "options" : [ "don't have to" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "wake up at 6 am. 8 am is early enough!",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e2"
+  },
+  "id" : "67fab6d599301022953437e2",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No debes aparcar aquí. Es privado.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "park here. It's private.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "options" : [ "mustn't" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "park here. It's private.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e3"
+  },
+  "id" : "67fab6d599301022953437e3",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No debo dormir hasta tarde. ¡Perderé la clase!",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "sleep late. I'll miss the class!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "mustn't" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "sleep late. I'll miss the class!",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e4"
+  },
+  "id" : "67fab6d599301022953437e4",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tengo que alimentar al gato. Emily ya lo hizo.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "feed the cat. Emily already did.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "don't have to" ],
+      "kind" : "CLOZE"
+    }, {
+      "text" : "feed the cat. Emily already did.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e5"
+  },
+  "id" : "67fab6d599301022953437e5",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "Ella no debe comer cocos. Es alérgica a ellos.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "have coconuts. She's allergic to them.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "mustn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "have coconuts. She's allergic to them.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "sentences" : [ "She mustn't have coconuts. She's allergic to them." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e6"
+  },
+  "id" : "67fab6d599301022953437e6",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tienes que jugar en el juego. Es tu elección.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "play in the game. It's your choice.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "play in the game. It's your choice.",
+      "options" : null
+    } ],
+    "sentences" : [ "You don't have to play in the game. It's your choice." ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e7"
+  },
+  "id" : "67fab6d599301022953437e7",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "Ella no tiene que practicar mucho. Ya es muy buena.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "practice much. She is already very good.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "She",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "doesn't have to" ]
+    }, {
+      "text" : "practice much. She is already very good.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d599301022953437e8"
+  },
+  "id" : "67fab6d599301022953437e8",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d29b"
+  },
+  "title" : "$Mustn$t$ o $don$t have to$",
+  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
+  "translation" : "No tienes que llamar a un taxi. Puedo llevarte, si quieres.",
+  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
+  "topicName" : "Modal Verbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B1.11.03.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$mustn't$ es que está prohibido. $don't have to$ es que no hace falta.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "call a taxi. I can drive you, if you want.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "doesn't have to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "doesn't have to"
+    }, {
+      "id" : "don't have to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "don't have to"
+    }, {
+      "id" : "mustn't",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "mustn't"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "don't have to" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "call a taxi. I can drive you, if you want.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'mustn't' o 'don't / doesn't have to'."
 } ]

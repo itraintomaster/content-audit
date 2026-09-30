@@ -3,12 +3,12 @@
     "$oid" : "67fab6d599301022953423a3"
   },
   "id" : "67fab6d599301022953423a3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Ella compró un poco de comida.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -26,22 +26,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She bought",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "food.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She bought",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
@@ -49,18 +84,20 @@
       "options" : null
     } ],
     "sentences" : [ "She bought a little food." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423a4"
   },
   "id" : "67fab6d599301022953423a4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Bebimos un poco de leche.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -78,41 +115,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We drank",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "milk.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We drank",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
       "text" : "milk.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "We drank a little milk." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423a5"
   },
   "id" : "67fab6d599301022953423a5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Hubo un poco de nieve la semana pasada.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -130,9 +204,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There was",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "snow last week.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -148,23 +257,24 @@
       "text" : "",
       "options" : [ "a little" ]
     }, {
-      "kind" : "TEXT",
       "text" : "snow last week.",
-      "options" : null
-    } ],
-    "sentences" : [ "There was a little snow last week." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423a6"
   },
   "id" : "67fab6d599301022953423a6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Hizo algunos amigos en junio.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -182,22 +292,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He made",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "friends in June.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He made",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
@@ -205,18 +350,20 @@
       "options" : null
     } ],
     "sentences" : [ "He made a few friends in June." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423a7"
   },
   "id" : "67fab6d599301022953423a7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Necesitan unas horas.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -234,41 +381,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hours.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
       "text" : "hours.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "They need a few hours." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423a8"
   },
   "id" : "67fab6d599301022953423a8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Pon un poco de agua en mi té.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -286,22 +470,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Put",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "water in my tea.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Put",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
@@ -309,18 +528,20 @@
       "options" : null
     } ],
     "sentences" : [ "Put a little water in my tea." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423a9"
   },
   "id" : "67fab6d599301022953423a9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Usa un poco de agua con el arroz.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -338,22 +559,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Use",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "water with the rice.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Use",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
@@ -361,18 +617,20 @@
       "options" : null
     } ],
     "sentences" : [ "Use a little water with the rice." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423aa"
   },
   "id" : "67fab6d599301022953423aa",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Necesito un poco de tiempo para pensar.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -390,41 +648,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "time to think.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
       "text" : "time to think.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "I need a little time to think." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423ab"
   },
   "id" : "67fab6d599301022953423ab",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Necesitamos un poco de comida.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -442,22 +737,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "food.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
@@ -465,18 +795,20 @@
       "options" : null
     } ],
     "sentences" : [ "We need a little food." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423ac"
   },
   "id" : "67fab6d599301022953423ac",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "La señorita Lee tiene algunas vacas.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -494,22 +826,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Miss Lee has",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "cows.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Miss Lee has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
@@ -517,18 +884,20 @@
       "options" : null
     } ],
     "sentences" : [ "Miss Lee has a few cows." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423ad"
   },
   "id" : "67fab6d599301022953423ad",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "¿Podríamos escuchar un poco de conversación?",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -546,10 +915,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -562,25 +931,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "a little" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "conversation?",
       "options" : null
     } ],
-    "sentences" : [ "Could we hear a little conversation?" ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could we hear",
+      "options" : null
+    }, {
+      "options" : [ "a little" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "text" : "conversation?",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423ae"
   },
   "id" : "67fab6d599301022953423ae",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "¿Podrías mostrarme unos escritorios?",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -598,41 +1003,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Could you show me",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "desks?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you show me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
       "text" : "desks?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "Could you show me a few desks?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423af"
   },
   "id" : "67fab6d599301022953423af",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "¿Podrías darme un poco de sopa?",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -650,41 +1092,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Could you give me",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "soup?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you give me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
       "text" : "soup?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Could you give me a little soup?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423b0"
   },
   "id" : "67fab6d599301022953423b0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Tengo algunos días.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -702,41 +1181,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I've got",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "days.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I've got",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
       "text" : "days.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "I've got a few days." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423b1"
   },
   "id" : "67fab6d599301022953423b1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Encontró algunos trabajos.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -754,22 +1270,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He found",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "jobs.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He found",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
@@ -777,18 +1328,20 @@
       "options" : null
     } ],
     "sentences" : [ "He found a few jobs." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423b2"
   },
   "id" : "67fab6d599301022953423b2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Tiene un poco de dinero.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -806,22 +1359,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He has",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "money.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
@@ -829,18 +1417,20 @@
       "options" : null
     } ],
     "sentences" : [ "He has a little money." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423b3"
   },
   "id" : "67fab6d599301022953423b3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Hay algunos lunes en junio.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -858,22 +1448,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "Mondays in June.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "There are",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
@@ -881,18 +1506,20 @@
       "options" : null
     } ],
     "sentences" : [ "There are a few Mondays in June." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423b4"
   },
   "id" : "67fab6d599301022953423b4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Ella usó un poco de sal.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -910,22 +1537,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She used",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "salt.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She used",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
@@ -933,18 +1595,20 @@
       "options" : null
     } ],
     "sentences" : [ "She used a little salt." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423b5"
   },
   "id" : "67fab6d599301022953423b5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "¿Podrías esperar unos segundos?",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -962,41 +1626,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Could you wait",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "seconds?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Could you wait",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
       "text" : "seconds?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "Could you wait a few seconds?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423b6"
   },
   "id" : "67fab6d599301022953423b6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
   "title" : "$A little$ vs $a few$",
-  "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
+  "instructions" : "Elige 'a little' o 'a few'.",
   "translation" : "Tengo algunos minutos.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
@@ -1014,28 +1715,65 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.03.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$a little$ va con incontables. $a few$ va con contables en plural.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "minutes.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "a few",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "a few"
+    }, {
+      "id" : "a little",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "a little"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
       "text" : "minutes.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "I have a few minutes." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'a little' o 'a few'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'a little' o 'a few'."
 } ]

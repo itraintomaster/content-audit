@@ -3,12 +3,12 @@
     "$oid" : "67fab6d59930102295343c17"
   },
   "id" : "67fab6d59930102295343c17",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36c"
   },
   "title" : "Conectores de contraste",
-  "instructions" : "Crea oraciones utilizando $though$ o $however$.",
+  "instructions" : "Elige 'though' o 'however'.",
   "translation" : "Comí mucho pastel aunque sabía que no era saludable.",
   "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
   "topicName" : "Adverbs",
@@ -26,13 +26,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.08.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$though$ une dos mitades; $however$ arranca una oración nueva, con coma.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I ate lots of cake",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "I knew it was unhealthy.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -48,19 +79,24 @@
       "text" : "I knew it was unhealthy.",
       "options" : null
     } ],
-    "sentences" : [ "I ate lots of cake though I knew it was unhealthy." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'though' o 'however'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'though' o 'however'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c18"
   },
   "id" : "67fab6d59930102295343c18",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36c"
   },
   "title" : "Conectores de contraste",
-  "instructions" : "Crea oraciones utilizando $though$ o $however$.",
+  "instructions" : "Elige 'though' o 'however'.",
   "translation" : "Buscó sus gafas durante mucho tiempo. Sin embargo, no pudo localizarlas.",
   "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
   "topicName" : "Adverbs",
@@ -78,9 +114,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.08.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$though$ une dos mitades; $however$ arranca una oración nueva, con coma.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She searched for her glasses for ages.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", she couldn't locate them.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -99,20 +170,21 @@
       "kind" : "TEXT",
       "text" : ", she couldn't locate them.",
       "options" : null
-    } ],
-    "sentences" : [ "She searched for her glasses for ages. However, she couldn't locate them." ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'though' o 'however'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'though' o 'however'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c19"
   },
   "id" : "67fab6d59930102295343c19",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36c"
   },
   "title" : "Conectores de contraste",
-  "instructions" : "Crea oraciones utilizando $though$ o $however$.",
+  "instructions" : "Elige 'though' o 'however'.",
   "translation" : "Aunque tenía sed, se negó a beber jugo.",
   "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
   "topicName" : "Adverbs",
@@ -130,14 +202,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.08.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$though$ une dos mitades; $however$ arranca una oración nueva, con coma.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "he was thirsty, he refused to drink juice.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -152,19 +254,25 @@
       "text" : "he was thirsty, he refused to drink juice.",
       "options" : null
     } ],
-    "sentences" : [ "Though he was thirsty, he refused to drink juice." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'though' o 'however'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'though' o 'however'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c1a"
   },
   "id" : "67fab6d59930102295343c1a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36c"
   },
   "title" : "Conectores de contraste",
-  "instructions" : "Crea oraciones utilizando $though$ o $however$.",
+  "instructions" : "Elige 'though' o 'however'.",
   "translation" : "Aprobó el examen aunque no había estudiado.",
   "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
   "topicName" : "Adverbs",
@@ -182,22 +290,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.08.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$though$ une dos mitades; $however$ arranca una oración nueva, con coma.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She passed the test",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "she hadn't studied.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She passed the test",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "though" ]
     }, {
       "kind" : "TEXT",
@@ -205,18 +348,20 @@
       "options" : null
     } ],
     "sentences" : [ "She passed the test though she hadn't studied." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'though' o 'however'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'though' o 'however'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c1b"
   },
   "id" : "67fab6d59930102295343c1b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36c"
   },
   "title" : "Conectores de contraste",
-  "instructions" : "Crea oraciones utilizando $though$ o $however$.",
+  "instructions" : "Elige 'though' o 'however'.",
   "translation" : "Llegó temprano. Sin embargo, esperó afuera.",
   "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
   "topicName" : "Adverbs",
@@ -234,13 +379,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.08.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$though$ une dos mitades; $however$ arranca una oración nueva, con coma.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He was early.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", he waited outside.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -256,19 +432,24 @@
       "text" : ", he waited outside.",
       "options" : null
     } ],
-    "sentences" : [ "He was early. However, he waited outside." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'though' o 'however'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'though' o 'however'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c1c"
   },
   "id" : "67fab6d59930102295343c1c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36c"
   },
   "title" : "Conectores de contraste",
-  "instructions" : "Crea oraciones utilizando $though$ o $however$.",
+  "instructions" : "Elige 'though' o 'however'.",
   "translation" : "Aunque los gatos estaban activos, no atraparon nada.",
   "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
   "topicName" : "Adverbs",
@@ -286,15 +467,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.08.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$though$ une dos mitades; $however$ arranca una oración nueva, con coma.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
     "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the cats were active, they didn't catch anything.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "",
@@ -308,19 +518,26 @@
       "text" : "the cats were active, they didn't catch anything.",
       "options" : null
     } ],
-    "sentences" : [ "Though the cats were active, they didn't catch anything." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'though' o 'however'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'though' o 'however'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c1d"
   },
   "id" : "67fab6d59930102295343c1d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36c"
   },
   "title" : "Conectores de contraste",
-  "instructions" : "Crea oraciones utilizando $though$ o $however$.",
+  "instructions" : "Elige 'though' o 'however'.",
   "translation" : "Aunque entrenó todos los días, todavía no pudo ganar.",
   "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
   "topicName" : "Adverbs",
@@ -338,10 +555,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.08.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$though$ une dos mitades; $however$ arranca una oración nueva, con coma.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,25 +571,61 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Though" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "he trained every day, he still couldn't win.",
       "options" : null
     } ],
-    "sentences" : [ "Though he trained every day, he still couldn't win." ]
-  }
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Though" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "he trained every day, he still couldn't win."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'though' o 'however'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'though' o 'however'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c1e"
   },
   "id" : "67fab6d59930102295343c1e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36c"
   },
   "title" : "Conectores de contraste",
-  "instructions" : "Crea oraciones utilizando $though$ o $however$.",
+  "instructions" : "Elige 'though' o 'however'.",
   "translation" : "Ella leyó el libro. Sin embargo, no entendió el argumento.",
   "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
   "topicName" : "Adverbs",
@@ -390,22 +643,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.08.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$though$ une dos mitades; $however$ arranca una oración nueva, con coma.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She read the book.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", she didn't understand the argument.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She read the book.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "However" ]
     }, {
       "kind" : "TEXT",
@@ -413,18 +701,20 @@
       "options" : null
     } ],
     "sentences" : [ "She read the book. However , she didn't understand the argument." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'though' o 'however'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'though' o 'however'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c1f"
   },
   "id" : "67fab6d59930102295343c1f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36c"
   },
   "title" : "Conectores de contraste",
-  "instructions" : "Crea oraciones utilizando $though$ o $however$.",
+  "instructions" : "Elige 'though' o 'however'.",
   "translation" : "El tipo trabajó toda la semana. Sin embargo, el jardín todavía se veía desordenado.",
   "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
   "topicName" : "Adverbs",
@@ -442,41 +732,78 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.08.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$though$ une dos mitades; $however$ arranca una oración nueva, con coma.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The guy worked all week.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", the garden still looked messy.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The guy worked all week.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "However" ]
     }, {
       "kind" : "TEXT",
       "text" : ", the garden still looked messy.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "The guy worked all week. However , the garden still looked messy." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'though' o 'however'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'though' o 'however'."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295343c20"
   },
   "id" : "67fab6d59930102295343c20",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36c"
   },
   "title" : "Conectores de contraste",
-  "instructions" : "Crea oraciones utilizando $though$ o $however$.",
+  "instructions" : "Elige 'though' o 'however'.",
   "translation" : "Intentó llamar a su hermana. Sin embargo, ella no respondió.",
   "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
   "topicName" : "Adverbs",
@@ -494,13 +821,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B1.16.08.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$though$ une dos mitades; $however$ arranca una oración nueva, con coma.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He tried to call his sister.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", she didn't answer.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -516,6 +874,1765 @@
       "text" : ", she didn't answer.",
       "options" : null
     } ],
-    "sentences" : [ "He tried to call his sister. However, she didn't answer." ]
-  }
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí oraciones utilizando 'though' o 'however'.",
+  "instructionsAntesDeRevisar" : "Elige oraciones utilizando 'though' o 'however'."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534495e"
+  },
+  "id" : "67fab6d5993010229534495e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Estábamos cansados aunque habíamos dormido mucho.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We were tired",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we had slept a lot.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "We were tired"
+    }, {
+      "options" : [ "though" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "we had slept a lot."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534495f"
+  },
+  "id" : "67fab6d5993010229534495f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Sin embargo, no conocen a muchos colegas.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have worked here for years.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", they don't know many colleagues.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They have worked here for years.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "However" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", they don't know many colleagues.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344960"
+  },
+  "id" : "67fab6d59930102295344960",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Están planeando correr a casa aunque sea una larga distancia.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They are planning to run home",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "it's a long distance.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They are planning to run home",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "though" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "it's a long distance.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344961"
+  },
+  "id" : "67fab6d59930102295344961",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Aunque ama a los gatos, evitó a mi gato.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "he loves cats, he avoided my cat.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ""
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Though" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "he loves cats, he avoided my cat.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344962"
+  },
+  "id" : "67fab6d59930102295344962",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Sin embargo, no le gusta jugar delante de la gente.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He plays the guitar really well.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", he doesn't like playing in front of people.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He plays the guitar really well.",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "options" : [ "However" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : ", he doesn't like playing in front of people.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344963"
+  },
+  "id" : "67fab6d59930102295344963",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Sin embargo, no me sentí descansado.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I relaxed all day.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", I didn't feel rested.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I relaxed all day.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "However" ]
+    }, {
+      "text" : ", I didn't feel rested.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344964"
+  },
+  "id" : "67fab6d59930102295344964",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Tenía sed aunque había bebido mucha agua.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She was thirsty.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", she had drunk a lot of water.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She was thirsty.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "However" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", she had drunk a lot of water.",
+      "options" : null
+    } ],
+    "sentences" : [ "She was thirsty. However , she had drunk a lot of water." ]
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344965"
+  },
+  "id" : "67fab6d59930102295344965",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Sin embargo, se quemó al día siguiente.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They sold their old house.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", it burned down the next day.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They sold their old house.",
+      "options" : null
+    }, {
+      "options" : [ "However" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : ", it burned down the next day.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344966"
+  },
+  "id" : "67fab6d59930102295344966",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Aunque hacía sol, nos quedamos adentro.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "it was sunny, we still stayed inside.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "Though" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "it was sunny, we still stayed inside.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344967"
+  },
+  "id" : "67fab6d59930102295344967",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Sin embargo, todavía cometía errores.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She practiced hard for the concert.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", she still made mistakes.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She practiced hard for the concert.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "However" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", she still made mistakes.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344968"
+  },
+  "id" : "67fab6d59930102295344968",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Ella seguía hablando aunque había terminado.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She was still speaking",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "it was over.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "She was still speaking",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "though" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "it was over.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344969"
+  },
+  "id" : "67fab6d59930102295344969",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Sin embargo, nadie lo tocó.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I prepared lunch.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", nobody touched it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I prepared lunch."
+    }, {
+      "options" : [ "However" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : ", nobody touched it."
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534496a"
+  },
+  "id" : "67fab6d5993010229534496a",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Sin embargo, nadie respondió.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He texted his family.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", nobody replied.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He texted his family.",
+      "options" : null
+    }, {
+      "options" : [ "However" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : ", nobody replied.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534496b"
+  },
+  "id" : "67fab6d5993010229534496b",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Disfruto bailar aunque no soy muy hábil en ello.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy dancing",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "I'm not very skilled at it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy dancing",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "though" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "I'm not very skilled at it.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534496c"
+  },
+  "id" : "67fab6d5993010229534496c",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Sin embargo, odia los cepillos.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He likes painting.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", he hates brushes.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He likes painting.",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "However" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : ", he hates brushes.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534496d"
+  },
+  "id" : "67fab6d5993010229534496d",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Aunque le gusta el pop, no escuchó la canción.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "she likes pop, she didn't listen to the song.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "Though" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "she likes pop, she didn't listen to the song."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534496e"
+  },
+  "id" : "67fab6d5993010229534496e",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Sin embargo, ella regresó rápidamente.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She went out for a run.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", she returned quickly.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She went out for a run.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "However" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", she returned quickly.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534496f"
+  },
+  "id" : "67fab6d5993010229534496f",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Aunque ordenamos bien nuestro jardín, todavía se veía descuidado.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "we tidied our garden nicely, it still looked overgrown.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Though" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "we tidied our garden nicely, it still looked overgrown.",
+      "options" : null
+    } ],
+    "sentences" : [ "Though we tidied our garden nicely, it still looked overgrown." ]
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344970"
+  },
+  "id" : "67fab6d59930102295344970",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Aunque no tenía mucho dinero, estaba contenta.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "she didn't have much money, she was content.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Though" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "she didn't have much money, she was content.",
+      "options" : null
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295344971"
+  },
+  "id" : "67fab6d59930102295344971",
+  "kind" : "MULTIPLE_CHOICE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d36c"
+  },
+  "title" : "Conectores de contraste",
+  "instructions" : "Elige 'though' o 'however'.",
+  "translation" : "Sin embargo, hoy no les gustó.",
+  "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
+  "topicName" : "Adverbs",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "B2.14.05.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "$though$ une dos mitades; $However$ arranca una oración nueva, con coma.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The boys usually like pizza.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ", today they didn't like it.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "however",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "however"
+    }, {
+      "id" : "though",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "though"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The boys usually like pizza.",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "However" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : ", today they didn't like it.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
+  },
+  "instructionsAnteriores" : "Elegí 'though' o 'however' a la oración.",
+  "instructionsAntesDeRevisar" : "Elige 'though' o 'however' a la oración."
 } ]

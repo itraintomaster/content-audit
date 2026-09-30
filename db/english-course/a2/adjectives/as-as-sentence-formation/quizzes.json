@@ -8,9 +8,9 @@
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
   "title" : "Oraciones con $as ... as$",
-  "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
+  "instructions" : "Crea oraciones usando 'as ... as' o 'not as ... as'.",
   "translation" : "Mary es tan lista como Peter.",
-  "theoryId" : "a2.11.Adjectives_Structures",
+  "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,7 +26,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.06.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ + adjetivo + $as$ para lo igual. Para lo distinto, $not as … as$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -60,9 +60,9 @@
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
   "title" : "Oraciones con $as ... as$",
-  "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
+  "instructions" : "Crea oraciones usando 'as ... as' o 'not as ... as'.",
   "translation" : "Esta sopa no está tan caliente como aquella sopa.",
-  "theoryId" : "a2.11.Adjectives_Structures",
+  "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -78,22 +78,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.06.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ + adjetivo + $as$ para lo igual. Para lo distinto, $not as … as$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This soup is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "not as hot as" ]
     }, {
       "kind" : "TEXT",
@@ -112,9 +112,9 @@
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
   "title" : "Oraciones con $as ... as$",
-  "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
+  "instructions" : "Crea oraciones usando 'as ... as' o 'not as ... as'.",
   "translation" : "París está tan muerto como Roma.",
-  "theoryId" : "a2.11.Adjectives_Structures",
+  "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -130,22 +130,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.06.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ + adjetivo + $as$ para lo igual. Para lo distinto, $not as … as$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Paris is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "as dead as" ]
     }, {
       "kind" : "TEXT",
@@ -164,9 +164,9 @@
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
   "title" : "Oraciones con $as ... as$",
-  "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
+  "instructions" : "Crea oraciones usando 'as ... as' o 'not as ... as'.",
   "translation" : "Susan no es tan amigable como su hermana.",
-  "theoryId" : "a2.11.Adjectives_Structures",
+  "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -182,7 +182,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.06.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ + adjetivo + $as$ para lo igual. Para lo distinto, $not as … as$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -216,9 +216,9 @@
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
   "title" : "Oraciones con $as ... as$",
-  "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
+  "instructions" : "Crea oraciones usando 'as ... as' o 'not as ... as'.",
   "translation" : "Ellos no fueron tan madrugadores como nosotros.",
-  "theoryId" : "a2.11.Adjectives_Structures",
+  "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -234,7 +234,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.06.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ + adjetivo + $as$ para lo igual. Para lo distinto, $not as … as$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -268,9 +268,9 @@
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
   "title" : "Oraciones con $as ... as$",
-  "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
+  "instructions" : "Crea oraciones usando 'as ... as' o 'not as ... as'.",
   "translation" : "Inglaterra es tan neblinosa como Gales.",
-  "theoryId" : "a2.11.Adjectives_Structures",
+  "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -286,7 +286,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.06.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ + adjetivo + $as$ para lo igual. Para lo distinto, $not as … as$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -320,9 +320,9 @@
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
   "title" : "Oraciones con $as ... as$",
-  "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
+  "instructions" : "Crea oraciones usando 'as ... as' o 'not as ... as'.",
   "translation" : "Los dulces no son tan saludables como la fruta.",
-  "theoryId" : "a2.11.Adjectives_Structures",
+  "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -338,22 +338,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.06.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ + adjetivo + $as$ para lo igual. Para lo distinto, $not as … as$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Candy is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "not as healthy as" ]
     }, {
       "kind" : "TEXT",
@@ -372,9 +372,9 @@
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
   "title" : "Oraciones con $as ... as$",
-  "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
+  "instructions" : "Crea oraciones usando 'as ... as' o 'not as ... as'.",
   "translation" : "Canadá no es tan cálido como México.",
-  "theoryId" : "a2.11.Adjectives_Structures",
+  "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -390,7 +390,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.06.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ + adjetivo + $as$ para lo igual. Para lo distinto, $not as … as$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -424,9 +424,9 @@
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
   "title" : "Oraciones con $as ... as$",
-  "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
+  "instructions" : "Crea oraciones usando 'as ... as' o 'not as ... as'.",
   "translation" : "La pizza es tan buena como la pasta.",
-  "theoryId" : "a2.11.Adjectives_Structures",
+  "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -442,22 +442,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.06.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ + adjetivo + $as$ para lo igual. Para lo distinto, $not as … as$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Pizza is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "as good as" ]
     }, {
       "kind" : "TEXT",
@@ -476,9 +476,9 @@
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
   "title" : "Oraciones con $as ... as$",
-  "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
+  "instructions" : "Crea oraciones usando 'as ... as' o 'not as ... as'.",
   "translation" : "Michael es tan fuerte como su padre.",
-  "theoryId" : "a2.11.Adjectives_Structures",
+  "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -494,7 +494,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.11.06.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$as$ + adjetivo + $as$ para lo igual. Para lo distinto, $not as … as$.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",

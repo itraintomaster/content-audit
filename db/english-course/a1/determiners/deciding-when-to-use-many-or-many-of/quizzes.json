@@ -3,14 +3,14 @@
     "$oid" : "67fab6d599301022953423cb"
   },
   "id" : "67fab6d599301022953423cb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "Leí muchas de las páginas.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,43 +26,80 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I read",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the pages.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I read",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many of" ]
     }, {
       "kind" : "TEXT",
       "text" : "the pages.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "I read many of the pages." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423cc"
   },
   "id" : "67fab6d599301022953423cc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "Conseguimos muchos CDs.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -78,43 +115,80 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We get",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "CDs.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We get",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : "CDs.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "We get many CDs." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423cd"
   },
   "id" : "67fab6d599301022953423cd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "Le gustan los relojes y compra muchos.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -130,43 +204,80 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He likes watches and he buys",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He likes watches and he buys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "He likes watches and he buys many." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423ce"
   },
   "id" : "67fab6d599301022953423ce",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "Ella tiene muchos de los DVD.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -182,43 +293,80 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She has",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "the DVDs.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many of" ]
     }, {
       "kind" : "TEXT",
       "text" : "the DVDs.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "She has many of the DVDs." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423cf"
   },
   "id" : "67fab6d599301022953423cf",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "¿Juegas a muchos de estos juegos?",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -234,22 +382,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you play",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "these games?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you play",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many of" ]
     }, {
       "kind" : "TEXT",
@@ -257,20 +440,22 @@
       "options" : null
     } ],
     "sentences" : [ "Do you play many of these games?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423d0"
   },
   "id" : "67fab6d599301022953423d0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "A: ¿Tienes galletas? B: Sí, muchas.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -286,9 +471,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Do you have any cookies? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -304,25 +524,26 @@
       "text" : "",
       "options" : [ "many" ]
     }, {
-      "kind" : "TEXT",
       "text" : ".",
-      "options" : null
-    } ],
-    "sentences" : [ "A: Do you have any cookies? B: Yes, many." ]
-  }
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423d1"
   },
   "id" : "67fab6d599301022953423d1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "¿Los gatos comen muchos peces?",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -338,9 +559,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do the cats eat",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "fish?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -361,20 +617,22 @@
       "options" : null
     } ],
     "sentences" : [ "Do the cats eat many fish?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423d2"
   },
   "id" : "67fab6d599301022953423d2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "No tengo muchos sombreros.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -390,43 +648,80 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I don't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "hats.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : "hats.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "I don't have many hats." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423d3"
   },
   "id" : "67fab6d599301022953423d3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "Muchos de estos móviles son nuevos.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -442,18 +737,49 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "these mobiles are new.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many of" ]
     }, {
       "kind" : "TEXT",
@@ -461,20 +787,22 @@
       "options" : null
     } ],
     "sentences" : [ "many of these mobiles are new." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423d4"
   },
   "id" : "67fab6d599301022953423d4",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "No tenemos muchas bebidas.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -490,43 +818,80 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We don't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "drinks.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We don't have",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : "drinks.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "We don't have many drinks." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423d5"
   },
   "id" : "67fab6d599301022953423d5",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "¿Refrescos? Sí, tomo muchos.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -542,13 +907,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Sodas? Yes, I drink",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -564,21 +960,27 @@
       "text" : ".",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "Sodas? Yes, I drink many." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423d6"
   },
   "id" : "67fab6d599301022953423d6",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "Tiene tres coches, ¡pero quiere muchos!",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -594,43 +996,80 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He has three cars but wants",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He has three cars but wants",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : "!",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "He has three cars but wants many!" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423d7"
   },
   "id" : "67fab6d599301022953423d7",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "¿Recibes muchas llamadas?",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -646,22 +1085,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you get",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "calls?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you get",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
@@ -669,20 +1143,22 @@
       "options" : null
     } ],
     "sentences" : [ "Do you get many calls?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423d8"
   },
   "id" : "67fab6d599301022953423d8",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "Te gustan las películas, ¿verdad? ¿Ves muchas?",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -698,9 +1174,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You like films, don't you? Do you watch",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -719,22 +1230,23 @@
       "kind" : "TEXT",
       "text" : "?",
       "options" : null
-    } ],
-    "sentences" : [ "You like films, don't you? Do you watch many?" ]
-  }
+    } ]
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423d9"
   },
   "id" : "67fab6d599301022953423d9",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "A: ¿Tienen perros? B: Sí, muchos.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -750,10 +1262,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "A: Do they have any dogs? B: Yes,",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -772,21 +1318,23 @@
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Do they have any dogs? B: Yes, many." ]
-  }
+    "kind" : "CLOZE"
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423da"
   },
   "id" : "67fab6d599301022953423da",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "¿Conoces a mucha gente?",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -802,10 +1350,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Do you know",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "people?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -824,21 +1406,24 @@
       "text" : "people?",
       "options" : null
     } ],
+    "kind" : "CLOZE",
     "sentences" : [ "Do you know many people?" ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423db"
   },
   "id" : "67fab6d599301022953423db",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "A ella le encantan las plantas y tiene muchas.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -854,22 +1439,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She loves plants and she has",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : ".",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She loves plants and she has",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
@@ -877,20 +1497,22 @@
       "options" : null
     } ],
     "sentences" : [ "She loves plants and she has many." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423dc"
   },
   "id" : "67fab6d599301022953423dc",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "Él disfruta de muchas películas.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -906,9 +1528,44 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He enjoys",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "movies.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -929,20 +1586,22 @@
       "options" : null
     } ],
     "sentences" : [ "He enjoys many movies." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423dd"
   },
   "id" : "67fab6d599301022953423dd",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "No necesitan muchas cosas.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -958,22 +1617,57 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They don't need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "things.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They don't need",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
@@ -981,20 +1675,22 @@
       "options" : null
     } ],
     "sentences" : [ "They don't need many things." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953423de"
   },
   "id" : "67fab6d599301022953423de",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
   "title" : "$Many$ o $many of$",
-  "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
+  "instructions" : "Elige 'many' o 'many of'.",
   "translation" : "No tomo muchas vacaciones.",
-  "theoryId" : "a1.07.A_Lot_of_Lots_of",
+  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -1010,28 +1706,65 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.07.05.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$many of$ sólo delante de $the$, $my$, $these$… Suelto va $many$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I don't take",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "holidays.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "many",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "many"
+    }, {
+      "id" : "many of",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "many of"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I don't take",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : "holidays.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
     "sentences" : [ "I don't take many holidays." ]
-  }
+  },
+  "instructionsAnteriores" : "Elegí los espacios en blanco con 'many' o 'many of'.",
+  "instructionsAntesDeRevisar" : "Elige los espacios en blanco con 'many' o 'many of'."
 } ]

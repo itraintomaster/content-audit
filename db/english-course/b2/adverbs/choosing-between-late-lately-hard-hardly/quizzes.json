@@ -3,7 +3,7 @@
     "$oid" : "67fab6d599301022953449ea"
   },
   "id" : "67fab6d599301022953449ea",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d49f"
   },
@@ -26,9 +26,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.14.12.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$hard$ es con esfuerzo y $hardly$ es casi nada; $late$ es tarde y $lately$, últimamente.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Did you arrive",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(late / lately) and miss the beginning?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "hard",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hard"
+    }, {
+      "id" : "hardly",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hardly"
+    }, {
+      "id" : "late",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "late"
+    }, {
+      "id" : "lately",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "lately"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,15 +94,14 @@
       "kind" : "TEXT",
       "text" : "(late / lately) and miss the beginning?",
       "options" : null
-    } ],
-    "sentences" : [ "Did you arrive late and miss the beginning?" ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953449eb"
   },
   "id" : "67fab6d599301022953449eb",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d49f"
   },
@@ -78,10 +124,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.14.12.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$hard$ es con esfuerzo y $hardly$ es casi nada; $late$ es tarde y $lately$, últimamente.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,20 +140,66 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "hard" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(hard / hardly).",
       "options" : null
     } ],
-    "sentences" : [ "The test was hard." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "hard",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "hard"
+    }, {
+      "id" : "hardly",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hardly"
+    }, {
+      "id" : "late",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "late"
+    }, {
+      "id" : "lately",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "lately"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "The test was",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "hard" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(hard / hardly).",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953449ec"
   },
   "id" : "67fab6d599301022953449ec",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d49f"
   },
@@ -130,10 +222,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.14.12.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$hard$ es con esfuerzo y $hardly$ es casi nada; $late$ es tarde y $lately$, últimamente.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -146,20 +238,66 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(late / lately).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "hard",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hard"
+    }, {
+      "id" : "hardly",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hardly"
+    }, {
+      "id" : "late",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "late"
+    }, {
+      "id" : "lately",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "lately"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "text" : "He's been busy",
+      "options" : null,
+      "kind" : "TEXT"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "lately" ]
     }, {
       "kind" : "TEXT",
       "text" : "(late / lately).",
       "options" : null
     } ],
-    "sentences" : [ "He's been busy lately." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953449ed"
   },
   "id" : "67fab6d599301022953449ed",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d49f"
   },
@@ -182,9 +320,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.14.12.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$hard$ es con esfuerzo y $hardly$ es casi nada; $late$ es tarde y $lately$, últimamente.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They practice",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(hard / hardly).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "hard",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "hard"
+    }, {
+      "id" : "hardly",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hardly"
+    }, {
+      "id" : "late",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "late"
+    }, {
+      "id" : "lately",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "lately"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,15 +388,14 @@
       "kind" : "TEXT",
       "text" : "(hard / hardly).",
       "options" : null
-    } ],
-    "sentences" : [ "They practice hard." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953449ee"
   },
   "id" : "67fab6d599301022953449ee",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d49f"
   },
@@ -234,10 +418,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.14.12.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$hard$ es con esfuerzo y $hardly$ es casi nada; $late$ es tarde y $lately$, últimamente.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -250,20 +434,66 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "hardly" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(hard / hardly) ever smiles.",
       "options" : null
     } ],
-    "sentences" : [ "He hardly ever smiles." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "hard",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hard"
+    }, {
+      "id" : "hardly",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "hardly"
+    }, {
+      "id" : "late",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "late"
+    }, {
+      "id" : "lately",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "lately"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "hardly" ]
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "(hard / hardly) ever smiles."
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953449ef"
   },
   "id" : "67fab6d599301022953449ef",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d49f"
   },
@@ -286,10 +516,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.14.12.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$hard$ es con esfuerzo y $hardly$ es casi nada; $late$ es tarde y $lately$, últimamente.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,20 +532,66 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "late" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(late / lately) this morning.",
       "options" : null
     } ],
-    "sentences" : [ "She arrived late this morning." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "hard",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hard"
+    }, {
+      "id" : "hardly",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hardly"
+    }, {
+      "id" : "late",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "late"
+    }, {
+      "id" : "lately",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "lately"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "She arrived"
+    }, {
+      "options" : [ "late" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "(late / lately) this morning.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953449f0"
   },
   "id" : "67fab6d599301022953449f0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d49f"
   },
@@ -338,10 +614,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.14.12.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$late$ también va antes de un sustantivo (a late train); $lately$ nunca es adjetivo.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -354,20 +630,66 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "late" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(late / lately) book from that author.",
       "options" : null
     } ],
-    "sentences" : [ "We read the late book from that author." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "hard",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hard"
+    }, {
+      "id" : "hardly",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hardly"
+    }, {
+      "id" : "late",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "late"
+    }, {
+      "id" : "lately",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "lately"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We read the",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "late" ]
+    }, {
+      "text" : "(late / lately) book from that author.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953449f1"
   },
   "id" : "67fab6d599301022953449f1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d49f"
   },
@@ -390,9 +712,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.14.12.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$hard$ es con esfuerzo y $hardly$ es casi nada; $late$ es tarde y $lately$, últimamente.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What have you been watching",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(late / lately)?",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "hard",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hard"
+    }, {
+      "id" : "hardly",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hardly"
+    }, {
+      "id" : "late",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "late"
+    }, {
+      "id" : "lately",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "lately"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -411,15 +780,14 @@
       "kind" : "TEXT",
       "text" : "(late / lately)?",
       "options" : null
-    } ],
-    "sentences" : [ "What have you been watching lately?" ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953449f2"
   },
   "id" : "67fab6d599301022953449f2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d49f"
   },
@@ -442,14 +810,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.14.12.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$hard$ es con esfuerzo y $hardly$ es casi nada; $late$ es tarde y $lately$, últimamente.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(hard / hardly) understand her accent.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "hard",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hard"
+    }, {
+      "id" : "hardly",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "hardly"
+    }, {
+      "id" : "late",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "late"
+    }, {
+      "id" : "lately",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "lately"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -464,14 +874,18 @@
       "text" : "(hard / hardly) understand her accent.",
       "options" : null
     } ],
-    "sentences" : [ "I hardly understand her accent." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d599301022953449f3"
   },
   "id" : "67fab6d599301022953449f3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d49f"
   },
@@ -494,14 +908,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "B2.14.12.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$hard$ es con esfuerzo y $hardly$ es casi nada; $late$ es tarde y $lately$, últimamente.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
     "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You always train",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(hard / hardly).",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "hard",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "hard"
+    }, {
+      "id" : "hardly",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "hardly"
+    }, {
+      "id" : "late",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "late"
+    }, {
+      "id" : "lately",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "lately"
+    } ]
+  },
+  "formCloze" : {
     "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
@@ -516,6 +972,10 @@
       "text" : "(hard / hardly).",
       "options" : null
     } ],
-    "sentences" : [ "You always train hard." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 } ]

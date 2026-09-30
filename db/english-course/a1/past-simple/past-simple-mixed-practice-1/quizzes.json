@@ -7,10 +7,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "¿Él cenó?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,18 +26,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si no es be, para preguntar $did$ va adelante y el verbo vuelve a la base.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Did he have" ]
     }, {
       "kind" : "TEXT",
@@ -45,7 +45,8 @@
       "options" : null
     } ],
     "sentences" : [ "Did he have dinner?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342220"
@@ -55,10 +56,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "¿Estaba él gordo?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -74,18 +75,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Was he" ]
     }, {
       "kind" : "TEXT",
@@ -93,7 +94,8 @@
       "options" : null
     } ],
     "sentences" : [ "Was he fat?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342221"
@@ -103,10 +105,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "Ellos no parecían geniales.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -122,22 +124,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "didn't look" ]
     }, {
       "kind" : "TEXT",
@@ -145,7 +147,8 @@
       "options" : null
     } ],
     "sentences" : [ "They didn't look great." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342222"
@@ -155,10 +158,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "¿Disfrutó ella del juego?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -174,18 +177,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si no es be, para preguntar $did$ va adelante y el verbo vuelve a la base.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Did she enjoy" ]
     }, {
       "kind" : "TEXT",
@@ -193,7 +196,8 @@
       "options" : null
     } ],
     "sentences" : [ "Did she enjoy the game?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342223"
@@ -203,10 +207,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "¡No jugaste en la playa!",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -222,22 +226,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "didn't play" ]
     }, {
       "kind" : "TEXT",
@@ -245,7 +249,8 @@
       "options" : null
     } ],
     "sentences" : [ "You didn't play at the beach!" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342224"
@@ -255,10 +260,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "Hacía mucho calor.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -274,7 +279,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -297,7 +302,8 @@
       "options" : null
     } ],
     "sentences" : [ "It was very hot." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342225"
@@ -307,10 +313,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "Ellos no usaron los brazos.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -326,22 +332,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "didn't use" ]
     }, {
       "kind" : "TEXT",
@@ -349,7 +355,8 @@
       "options" : null
     } ],
     "sentences" : [ "They didn't use their arms." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342226"
@@ -359,10 +366,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "¿Por qué cerró él la puerta?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -378,7 +385,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si no es be, para preguntar $did$ va adelante y el verbo vuelve a la base.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -401,7 +408,8 @@
       "options" : null
     } ],
     "sentences" : [ "Why did he close the door?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342227"
@@ -411,10 +419,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "Ella no estaba en el trabajo.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -430,7 +438,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -453,7 +461,8 @@
       "options" : null
     } ],
     "sentences" : [ "She wasn't at work." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342228"
@@ -463,10 +472,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "¿Hacía frío afuera?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -482,18 +491,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Was it" ]
     }, {
       "kind" : "TEXT",
@@ -501,7 +510,8 @@
       "options" : null
     } ],
     "sentences" : [ "Was it cold outside?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342229"
@@ -511,10 +521,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "Yo no estaba feliz.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -530,22 +540,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "wasn't" ]
     }, {
       "kind" : "TEXT",
@@ -553,7 +563,8 @@
       "options" : null
     } ],
     "sentences" : [ "I wasn't happy." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534222a"
@@ -563,10 +574,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "¿Cómo estaba él?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -582,7 +593,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -605,7 +616,8 @@
       "options" : null
     } ],
     "sentences" : [ "How was he?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534222b"
@@ -615,10 +627,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "Él estudió las lecciones.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -634,7 +646,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Consonante + $y$ pasa a $-ied$: study se escribe studied.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -657,7 +669,8 @@
       "options" : null
     } ],
     "sentences" : [ "He studied the lessons." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534222c"
@@ -667,10 +680,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "Ella estaba en Madrid.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -686,7 +699,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -709,7 +722,8 @@
       "options" : null
     } ],
     "sentences" : [ "She was in Madrid." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534222d"
@@ -719,10 +733,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "¿Estabas tú en la fiesta?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -738,7 +752,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -761,7 +775,8 @@
       "options" : null
     } ],
     "sentences" : [ "Were you at the party?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534222e"
@@ -771,10 +786,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "Él no estaba en la escuela conmigo.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -790,22 +805,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "wasn't" ]
     }, {
       "kind" : "TEXT",
@@ -813,7 +828,8 @@
       "options" : null
     } ],
     "sentences" : [ "He wasn't at school with me." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d5993010229534222f"
@@ -823,10 +839,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "¿Estaba ella en la casa?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -842,18 +858,18 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "Was she" ]
     }, {
       "kind" : "TEXT",
@@ -861,7 +877,8 @@
       "options" : null
     } ],
     "sentences" : [ "Was she at the house?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342230"
@@ -871,10 +888,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "No tuve que ir a correr.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -890,22 +907,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "didn't have" ]
     }, {
       "kind" : "TEXT",
@@ -913,7 +930,8 @@
       "options" : null
     } ],
     "sentences" : [ "I didn't have to go running." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342231"
@@ -923,10 +941,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "Tú no estabas en el parque.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -942,22 +960,22 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "CLOZE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
       "options" : [ "weren't" ]
     }, {
       "kind" : "TEXT",
@@ -965,7 +983,8 @@
       "options" : null
     } ],
     "sentences" : [ "You weren't at the park." ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342232"
@@ -975,10 +994,10 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b8"
   },
-  "title" : "Práctica mixta 1",
-  "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
   "translation" : "¿Quién era esa persona?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
+  "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -994,7 +1013,7 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A1.04.08.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
   "successMessage" : "",
   "form" : {
     "kind" : "CLOZE",
@@ -1017,5 +1036,3158 @@
       "options" : null
     } ],
     "sentences" : [ "Who was that person?" ]
-  }
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342233"
+  },
+  "id" : "67fab6d59930102295342233",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Cuándo fue ella allí?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did she go" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / go) there?",
+      "options" : null
+    } ],
+    "sentences" : [ "When did she go there?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342234"
+  },
+  "id" : "67fab6d59930102295342234",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "A él le gustó la gente.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "liked" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(like) the people.",
+      "options" : null
+    } ],
+    "sentences" : [ "He liked the people." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342235"
+  },
+  "id" : "67fab6d59930102295342235",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Qué domingo elegiste?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Which Sunday",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did you choose" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / choose)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Which Sunday did you choose?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342236"
+  },
+  "id" : "67fab6d59930102295342236",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Ella no escuchó la pregunta.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't hear" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / hear) the question.",
+      "options" : null
+    } ],
+    "sentences" : [ "She didn't hear the question." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342237"
+  },
+  "id" : "67fab6d59930102295342237",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Qué querían comprar ellos?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did they want" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / want) to buy?",
+      "options" : null
+    } ],
+    "sentences" : [ "What did they want to buy?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342238"
+  },
+  "id" : "67fab6d59930102295342238",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Yo estaba en casa.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "$Was$ va con I, he, she, it; $were$ va con you, we, they.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) at home.",
+      "options" : null
+    } ],
+    "sentences" : [ "I was at home." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342239"
+  },
+  "id" : "67fab6d59930102295342239",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Ella estudió muy duro.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Consonante + $y$ cambia a $-ied$: study se escribe studied.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "studied" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(study) very hard.",
+      "options" : null
+    } ],
+    "sentences" : [ "She studied very hard." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534223a"
+  },
+  "id" : "67fab6d5993010229534223a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Ella no vio el coche.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't see" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / see) the car.",
+      "options" : null
+    } ],
+    "sentences" : [ "She didn't see the car." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534223b"
+  },
+  "id" : "67fab6d5993010229534223b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Estaban ellos en la fiesta?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Be se arregla solo: para preguntar, $was$/$were$ se pone antes del sujeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Were they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / be) at the party?",
+      "options" : null
+    } ],
+    "sentences" : [ "Were they at the party?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534223c"
+  },
+  "id" : "67fab6d5993010229534223c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Estaban ellos en el parque?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "Be se arregla solo: para preguntar, $was$/$were$ se pone antes del sujeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Were they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / be) in the park?",
+      "options" : null
+    } ],
+    "sentences" : [ "Were they in the park?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534223d"
+  },
+  "id" : "67fab6d5993010229534223d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "No me gustó la lección.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / like) the lesson.",
+      "options" : null
+    } ],
+    "sentences" : [ "I didn't like the lesson." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534223e"
+  },
+  "id" : "67fab6d5993010229534223e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Ella cogió el autobús?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Did she catch" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / catch) the bus?",
+      "options" : null
+    } ],
+    "sentences" : [ "Did she catch the bus?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534223f"
+  },
+  "id" : "67fab6d5993010229534223f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Cómo estuvo tu día?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "Be se arregla solo: para preguntar, $was$/$were$ se pone antes del sujeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "How",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was your day" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(your day / be)?",
+      "options" : null
+    } ],
+    "sentences" : [ "How was your day?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342240"
+  },
+  "id" : "67fab6d59930102295342240",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Tuvimos el examen?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Did we have" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(we / have) the test?",
+      "options" : null
+    } ],
+    "sentences" : [ "Did we have the test?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342241"
+  },
+  "id" : "67fab6d59930102295342241",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Estaba ella lista para la reunión?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "Be se arregla solo: para preguntar, $was$/$were$ se pone antes del sujeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Was she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / be) ready for the meeting?",
+      "options" : null
+    } ],
+    "sentences" : [ "Was she ready for the meeting?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342242"
+  },
+  "id" : "67fab6d59930102295342242",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Visitaron ellos al señor Smith?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Did they visit" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / visit) Mr Smith?",
+      "options" : null
+    } ],
+    "sentences" : [ "Did they visit Mr Smith?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342243"
+  },
+  "id" : "67fab6d59930102295342243",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Viste una película?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Did you watch" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / watch) a film?",
+      "options" : null
+    } ],
+    "sentences" : [ "Did you watch a film?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342244"
+  },
+  "id" : "67fab6d59930102295342244",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Cuánto costó el curso?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Be se arregla solo: para preguntar, $was$/$were$ se pone antes del sujeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "How much",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was the course" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(the course / be)?",
+      "options" : null
+    } ],
+    "sentences" : [ "How much was the course?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342245"
+  },
+  "id" : "67fab6d59930102295342245",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Ellos no se fueron durante la película.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't leave" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / leave) during the film.",
+      "options" : null
+    } ],
+    "sentences" : [ "They didn't leave during the film." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342246"
+  },
+  "id" : "67fab6d59930102295342246",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Cuándo estuvo ella allí la semana pasada?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.09.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Be se arregla solo: para preguntar, $was$/$were$ se pone antes del sujeto.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / be) there last week?",
+      "options" : null
+    } ],
+    "sentences" : [ "When was she there last week?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342247"
+  },
+  "id" : "67fab6d59930102295342247",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Él no estaba en casa ayer.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "be no lleva $did$: $wasn't$. Los demás verbos sí: $didn't$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wasn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) at home yesterday.",
+      "options" : null
+    } ],
+    "sentences" : [ "He wasn't at home yesterday." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342248"
+  },
+  "id" : "67fab6d59930102295342248",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Cuándo empezó ella a correr?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas, be se adelanta: $was$/$were$. Los demás llevan $did$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did she start" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / start) running?",
+      "options" : null
+    } ],
+    "sentences" : [ "When did she start running?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342249"
+  },
+  "id" : "67fab6d59930102295342249",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "A él no le gustó la película.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "be no lleva $did$: $wasn't$. Los demás verbos sí: $didn't$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't like" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / like) the movie.",
+      "options" : null
+    } ],
+    "sentences" : [ "He didn't like the movie." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534224a"
+  },
+  "id" : "67fab6d5993010229534224a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Sonó la música?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas, be se adelanta: $was$/$were$. Los demás llevan $did$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Did the music play" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(the music / play)?",
+      "options" : null
+    } ],
+    "sentences" : [ "Did the music play?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534224b"
+  },
+  "id" : "67fab6d5993010229534224b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Ellos no estaban en el parque.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "be no lleva $did$: $wasn't$. Los demás verbos sí: $didn't$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "weren't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) at the park.",
+      "options" : null
+    } ],
+    "sentences" : [ "They weren't at the park." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534224c"
+  },
+  "id" : "67fab6d5993010229534224c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Éramos buenos amigos.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, be usa $was$/$were$; los demás suman $-ed$ (sólo $-d$ si ya termina en e).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) good friends.",
+      "options" : null
+    } ],
+    "sentences" : [ "We were good friends." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534224d"
+  },
+  "id" : "67fab6d5993010229534224d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "La señorita Green era una buena estudiante.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, be usa $was$/$were$; los demás suman $-ed$ (sólo $-d$ si ya termina en e).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Miss Green",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) a good student.",
+      "options" : null
+    } ],
+    "sentences" : [ "Miss Green was a good student." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534224e"
+  },
+  "id" : "67fab6d5993010229534224e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Qué fue ese ruido?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas, be se adelanta: $was$/$were$. Los demás llevan $did$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was that noise" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(that noise / be)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What was that noise?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534224f"
+  },
+  "id" : "67fab6d5993010229534224f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Qué tuvo él?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas, be se adelanta: $was$/$were$. Los demás llevan $did$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "What",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did he have" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / have)?",
+      "options" : null
+    } ],
+    "sentences" : [ "What did he have?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342250"
+  },
+  "id" : "67fab6d59930102295342250",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Nosotros limpiamos el baño.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, be usa $was$/$were$; los demás suman $-ed$ (sólo $-d$ si ya termina en e).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "cleaned" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(clean) the bathroom.",
+      "options" : null
+    } ],
+    "sentences" : [ "We cleaned the bathroom." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342251"
+  },
+  "id" : "67fab6d59930102295342251",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Por qué estaba cansado?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas, be se adelanta: $was$/$were$. Los demás llevan $did$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be) tired?",
+      "options" : null
+    } ],
+    "sentences" : [ "Why was he tired?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342252"
+  },
+  "id" : "67fab6d59930102295342252",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Pensaste en tu boleto?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas, be se adelanta: $was$/$were$. Los demás llevan $did$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Did you think" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / think) about your ticket?",
+      "options" : null
+    } ],
+    "sentences" : [ "Did you think about your ticket?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342253"
+  },
+  "id" : "67fab6d59930102295342253",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Se fueron a casa?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas, be se adelanta: $was$/$were$. Los demás llevan $did$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Did they go" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / go) home?",
+      "options" : null
+    } ],
+    "sentences" : [ "Did they go home?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342254"
+  },
+  "id" : "67fab6d59930102295342254",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Estaba ella feliz?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas, be se adelanta: $was$/$were$. Los demás llevan $did$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Was she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / be) happy?",
+      "options" : null
+    } ],
+    "sentences" : [ "Was she happy?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342255"
+  },
+  "id" : "67fab6d59930102295342255",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿A quién llamaste esta mañana?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas, be se adelanta: $was$/$were$. Los demás llevan $did$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Who",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did you call" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / call) this morning?",
+      "options" : null
+    } ],
+    "sentences" : [ "Who did you call this morning?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342256"
+  },
+  "id" : "67fab6d59930102295342256",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Cuándo empezaron el trabajo?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas, be se adelanta: $was$/$were$. Los demás llevan $did$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did they start" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / start) the work?",
+      "options" : null
+    } ],
+    "sentences" : [ "When did they start the work?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342257"
+  },
+  "id" : "67fab6d59930102295342257",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Estuvo él en el partido?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "En preguntas, be se adelanta: $was$/$were$. Los demás llevan $did$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Was he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be) at the game?",
+      "options" : null
+    } ],
+    "sentences" : [ "Was he at the game?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342258"
+  },
+  "id" : "67fab6d59930102295342258",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Me gustó que él se quedara.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, be usa $was$/$were$; los demás suman $-ed$ (sólo $-d$ si ya termina en e).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "liked" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(like) that he'd stay.",
+      "options" : null
+    } ],
+    "sentences" : [ "I liked that he'd stay." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342259"
+  },
+  "id" : "67fab6d59930102295342259",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Eso ayudó un poco.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, be usa $was$/$were$; los demás suman $-ed$ (sólo $-d$ si ya termina en e).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "helped" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(help) a little.",
+      "options" : null
+    } ],
+    "sentences" : [ "It helped a little." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534225a"
+  },
+  "id" : "67fab6d5993010229534225a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Yo no estaba listo para la lluvia.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.10.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "be no lleva $did$: $wasn't$. Los demás verbos sí: $didn't$ + verbo base.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wasn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) ready for the rain.",
+      "options" : null
+    } ],
+    "sentences" : [ "I wasn't ready for the rain." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534225b"
+  },
+  "id" : "67fab6d5993010229534225b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Ella no estuvo en la escuela ayer.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.01",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para negar $be$ sumás $not$: $wasn't$ / $weren't$, no $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wasn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) at school yesterday.",
+      "options" : null
+    } ],
+    "sentences" : [ "She wasn't at school yesterday." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534225c"
+  },
+  "id" : "67fab6d5993010229534225c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Por qué estaba él muy triste?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.02",
+  "answerImageUrl" : "",
+  "miniTheory" : "Preguntá con $Was$ / $Were$ si el verbo es be, y con $Did$ si es cualquier otro.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was he" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(he / be) very sad?",
+      "options" : null
+    } ],
+    "sentences" : [ "Why was he very sad?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534225d"
+  },
+  "id" : "67fab6d5993010229534225d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Cuándo llegaste a casa?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.03",
+  "answerImageUrl" : "",
+  "miniTheory" : "Preguntá con $Was$ / $Were$ si el verbo es be, y con $Did$ si es cualquier otro.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "When",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did you get" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / get) home?",
+      "options" : null
+    } ],
+    "sentences" : [ "When did you get home?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534225e"
+  },
+  "id" : "67fab6d5993010229534225e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Él fue muy bueno.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.04",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, $be$ es $was$ (I/he/she/it) o $were$ (you/we/they).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) very good.",
+      "options" : null
+    } ],
+    "sentences" : [ "He was very good." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534225f"
+  },
+  "id" : "67fab6d5993010229534225f",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Trabajé en la escuela todo el día.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.05",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, el verbo suma $-ed$ para el pasado.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "worked" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(work) at the school all day.",
+      "options" : null
+    } ],
+    "sentences" : [ "I worked at the school all day." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342260"
+  },
+  "id" : "67fab6d59930102295342260",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Ellos no estaban en el parque.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.06",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para negar $be$ sumás $not$: $wasn't$ / $weren't$, no $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "weren't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) at the park.",
+      "options" : null
+    } ],
+    "sentences" : [ "They weren't at the park." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342261"
+  },
+  "id" : "67fab6d59930102295342261",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Dónde estuvo ella anoche? ¡No lo sé!",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.07",
+  "answerImageUrl" : "",
+  "miniTheory" : "Preguntá con $Was$ / $Were$ si el verbo es be, y con $Did$ si es cualquier otro.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Where",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / be) last night? I don't know!",
+      "options" : null
+    } ],
+    "sentences" : [ "Where was she last night? I don't know!" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342262"
+  },
+  "id" : "67fab6d59930102295342262",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Escuchaste la radio?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.08",
+  "answerImageUrl" : "",
+  "miniTheory" : "Preguntá con $Was$ / $Were$ si el verbo es be, y con $Did$ si es cualquier otro.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Did you listen" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / listen) to the radio?",
+      "options" : null
+    } ],
+    "sentences" : [ "Did you listen to the radio?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342263"
+  },
+  "id" : "67fab6d59930102295342263",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "No hacía mucho frío.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.09",
+  "answerImageUrl" : "",
+  "miniTheory" : "Para negar $be$ sumás $not$: $wasn't$ / $weren't$, no $didn't$.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "It",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wasn't" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / be) very cold.",
+      "options" : null
+    } ],
+    "sentences" : [ "It wasn't very cold." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342264"
+  },
+  "id" : "67fab6d59930102295342264",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Ella veía la televisión a menudo.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.10",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, el verbo suma $-ed$ para el pasado.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "watched" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(watch) TV often.",
+      "options" : null
+    } ],
+    "sentences" : [ "She watched TV often." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342265"
+  },
+  "id" : "67fab6d59930102295342265",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Tú ayudaste a tu hermana.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.11",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, el verbo suma $-ed$ para el pasado.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "helped" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(help) your sister.",
+      "options" : null
+    } ],
+    "sentences" : [ "You helped your sister." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342266"
+  },
+  "id" : "67fab6d59930102295342266",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Ella era muy dulce.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.12",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, $be$ es $was$ (I/he/she/it) o $were$ (you/we/they).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) very sweet.",
+      "options" : null
+    } ],
+    "sentences" : [ "She was very sweet." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342267"
+  },
+  "id" : "67fab6d59930102295342267",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Tú querías la tarea.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.13",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, el verbo suma $-ed$ para el pasado.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "wanted" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(want) the homework.",
+      "options" : null
+    } ],
+    "sentences" : [ "You wanted the homework." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342268"
+  },
+  "id" : "67fab6d59930102295342268",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Estaba ella feliz a las 5 pm?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.14",
+  "answerImageUrl" : "",
+  "miniTheory" : "Preguntá con $Was$ / $Were$ si el verbo es be, y con $Did$ si es cualquier otro.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "Was she" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(she / be) happy at 5 pm?",
+      "options" : null
+    } ],
+    "sentences" : [ "Was she happy at 5 pm?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d59930102295342269"
+  },
+  "id" : "67fab6d59930102295342269",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Ellos fueron amables con nosotros.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.15",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, $be$ es $was$ (I/he/she/it) o $were$ (you/we/they).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) nice to us.",
+      "options" : null
+    } ],
+    "sentences" : [ "They were nice to us." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534226a"
+  },
+  "id" : "67fab6d5993010229534226a",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Tú estuviste en París.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.16",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, $be$ es $was$ (I/he/she/it) o $were$ (you/we/they).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "You",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) in Paris.",
+      "options" : null
+    } ],
+    "sentences" : [ "You were in Paris." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534226b"
+  },
+  "id" : "67fab6d5993010229534226b",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Mi viejo coche era negro.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.17",
+  "answerImageUrl" : "",
+  "miniTheory" : "En afirmativo, $be$ es $was$ (I/he/she/it) o $were$ (you/we/they).",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "My old car",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "was" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(be) black.",
+      "options" : null
+    } ],
+    "sentences" : [ "My old car was black." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534226c"
+  },
+  "id" : "67fab6d5993010229534226c",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "Ella no habló con su hermano.",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.18",
+  "answerImageUrl" : "",
+  "miniTheory" : "Con $didn't$ el verbo va en base, sin $-ed$: didn't talk, no didn't talked.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "didn't talk" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(not / talk) with her brother.",
+      "options" : null
+    } ],
+    "sentences" : [ "She didn't talk with her brother." ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534226d"
+  },
+  "id" : "67fab6d5993010229534226d",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Qué tan buenos fueron ellos en el partido?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.19",
+  "answerImageUrl" : "",
+  "miniTheory" : "Preguntá con $Was$ / $Were$ si el verbo es be, y con $Did$ si es cualquier otro.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "How good",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "were they" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(they / be) at the game?",
+      "options" : null
+    } ],
+    "sentences" : [ "How good were they at the game?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
+}, {
+  "_id" : {
+    "$oid" : "67fab6d5993010229534226e"
+  },
+  "id" : "67fab6d5993010229534226e",
+  "kind" : "CLOZE",
+  "knowledgeId" : {
+    "$oid" : "6814dafa7d73e7209a13d3b8"
+  },
+  "title" : "Práctica mixta",
+  "instructions" : "Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.",
+  "translation" : "¿Por qué viste a ese hombre?",
+  "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
+  "topicName" : "Past Simple",
+  "difficulty" : {
+    "$numberDouble" : "0.0"
+  },
+  "retries" : {
+    "$numberDouble" : "0.0"
+  },
+  "noScoreRetries" : {
+    "$numberDouble" : "0.0"
+  },
+  "code" : "",
+  "audioUrl" : "",
+  "imageUrl" : "",
+  "answerAudioUrl" : "A1.04.11.20",
+  "answerImageUrl" : "",
+  "miniTheory" : "Preguntá con $Was$ / $Were$ si el verbo es be, y con $Did$ si es cualquier otro.",
+  "successMessage" : "",
+  "form" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Why",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "did you see" ]
+    }, {
+      "kind" : "TEXT",
+      "text" : "(you / see) that man?",
+      "options" : null
+    } ],
+    "sentences" : [ "Why did you see that man?" ]
+  },
+  "instructionsAntesDeShortForms" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible."
 } ]

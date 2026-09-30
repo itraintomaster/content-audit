@@ -3,14 +3,14 @@
     "$oid" : "67fab6d59930102295342c90"
   },
   "id" : "67fab6d59930102295342c90",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Quiero quedarme de jueves a domingo.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -26,9 +26,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.01",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I want to stay",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(from / to / before) Thursday to Sunday.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -47,22 +94,21 @@
       "kind" : "TEXT",
       "text" : "(from / to / before) Thursday to Sunday.",
       "options" : null
-    } ],
-    "sentences" : [ "I want to stay from Thursday to Sunday." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c91"
   },
   "id" : "67fab6d59930102295342c91",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Están disponibles de domingo a miércoles.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -78,10 +124,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.02",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -94,27 +140,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(from / after / to) Wednesday.",
       "options" : null
     } ],
-    "sentences" : [ "They are available from Sunday to Wednesday." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "They are available from Sunday",
+      "options" : null
+    }, {
+      "options" : [ "to" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "(from / after / to) Wednesday.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c92"
   },
   "id" : "67fab6d59930102295342c92",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "La película es de 7 a 9.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -130,9 +222,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.03",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The movie is",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(to / after / from) 7 to 9.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -151,22 +290,21 @@
       "kind" : "TEXT",
       "text" : "(to / after / from) 7 to 9.",
       "options" : null
-    } ],
-    "sentences" : [ "The movie is from 7 to 9." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c93"
   },
   "id" : "67fab6d59930102295342c93",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Ella me envió un mensaje de texto antes de llegar.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -182,9 +320,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.04",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She texted me",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(before / to / from) arriving.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -203,22 +388,21 @@
       "kind" : "TEXT",
       "text" : "(before / to / from) arriving.",
       "options" : null
-    } ],
-    "sentences" : [ "She texted me before arriving." ]
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c94"
   },
   "id" : "67fab6d59930102295342c94",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Los estudiantes leyeron los apuntes antes del examen.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -234,22 +418,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.05",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The students read the notes",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(after / to / before) the test.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The students read the notes",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "before" ]
     }, {
       "kind" : "TEXT",
@@ -263,14 +494,14 @@
     "$oid" : "67fab6d59930102295342c95"
   },
   "id" : "67fab6d59930102295342c95",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Él duerme de 11 pm a 7 am.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -286,10 +517,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.06",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -302,27 +533,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(before / from / to) 7 am.",
       "options" : null
     } ],
-    "sentences" : [ "He sleeps from 11 pm to 7 am." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He sleeps from 11 pm",
+      "options" : null
+    }, {
+      "options" : [ "to" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "(before / from / to) 7 am.",
+      "options" : null
+    } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : ""
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c96"
   },
   "id" : "67fab6d59930102295342c96",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Él trabaja allí de mayo a noviembre.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -338,13 +615,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.07",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "He works there",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(to / after / from) May to November.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "label" : "",
     "name" : "",
     "sentenceParts" : [ {
@@ -360,21 +680,24 @@
       "text" : "(to / after / from) May to November.",
       "options" : null
     } ],
-    "sentences" : [ "He works there from May to November." ]
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    }
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c97"
   },
   "id" : "67fab6d59930102295342c97",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "El médico está en el hospital de 9 a 5.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -390,10 +713,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.08",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -406,27 +729,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "to" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(before / after / to) 5.",
       "options" : null
     } ],
-    "sentences" : [ "The doctor is at the hospital from 9 to 5." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The doctor is at the hospital from 9",
+      "options" : null
+    }, {
+      "text" : "",
+      "options" : [ "to" ],
+      "kind" : "CLOZE"
+    }, {
+      "kind" : "TEXT",
+      "text" : "(before / after / to) 5.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c98"
   },
   "id" : "67fab6d59930102295342c98",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Después de estudiar, ¡deberías tomar un descanso!",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -442,24 +811,67 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.09",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(from / to / after) studying, you should take a break!",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "After" ]
     }, {
       "kind" : "TEXT",
       "text" : "(from / to / after) studying, you should take a break!",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "After studying, you should take a break!" ]
   }
 }, {
@@ -467,14 +879,14 @@
     "$oid" : "67fab6d59930102295342c99"
   },
   "id" : "67fab6d59930102295342c99",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Ella pensó antes de comenzar.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -490,22 +902,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.10",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She thought",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(from / before / to) beginning.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "She thought",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "before" ]
     }, {
       "kind" : "TEXT",
@@ -519,14 +978,14 @@
     "$oid" : "67fab6d59930102295342c9a"
   },
   "id" : "67fab6d59930102295342c9a",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Después de viajar, se quedó en el hotel.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -542,24 +1001,67 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.11",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(after / from / to) traveling, he stayed at the hotel.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "After" ]
     }, {
       "kind" : "TEXT",
       "text" : "(after / from / to) traveling, he stayed at the hotel.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
     "sentences" : [ "After traveling, he stayed at the hotel." ]
   }
 }, {
@@ -567,14 +1069,14 @@
     "$oid" : "67fab6d59930102295342c9b"
   },
   "id" : "67fab6d59930102295342c9b",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Juego de 9 am a 7 pm.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -590,10 +1092,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.12",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -606,27 +1108,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "from" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(before / to / from) 9 am to 7 pm.",
       "options" : null
     } ],
-    "sentences" : [ "I play from 9 am to 7 pm." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "I play"
+    }, {
+      "text" : "",
+      "options" : [ "from" ],
+      "kind" : "CLOZE"
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "(before / to / from) 9 am to 7 pm."
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c9c"
   },
   "id" : "67fab6d59930102295342c9c",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Disfruto de un trozo de pastel después de terminar el almuerzo.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -642,10 +1190,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.13",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -658,27 +1206,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "after" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(before / after / from) finishing lunch.",
       "options" : null
     } ],
-    "sentences" : [ "I enjoy a piece of cake after finishing lunch." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I enjoy a piece of cake",
+      "options" : null
+    }, {
+      "options" : [ "after" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "(before / after / from) finishing lunch."
+    } ],
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c9d"
   },
   "id" : "67fab6d59930102295342c9d",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Tenemos clases de 2 a 5 pm.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -694,9 +1288,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.14",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We have classes from 2",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(from / after / to) 5 pm.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "kind" : "CLOZE",
     "incidence" : {
       "$numberDouble" : "1.0"
@@ -712,25 +1353,24 @@
       "text" : "",
       "options" : [ "to" ]
     }, {
+      "options" : null,
       "kind" : "TEXT",
-      "text" : "(from / after / to) 5 pm.",
-      "options" : null
-    } ],
-    "sentences" : [ "We have classes from 2 to 5 pm." ]
+      "text" : "(from / after / to) 5 pm."
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c9e"
   },
   "id" : "67fab6d59930102295342c9e",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Se duchó después de entrenar.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -746,10 +1386,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.15",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -762,27 +1402,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "after" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(from / after / to) training.",
       "options" : null
     } ],
-    "sentences" : [ "He took a shower after training." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "options" : null,
+      "kind" : "TEXT",
+      "text" : "He took a shower"
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : [ "after" ]
+    }, {
+      "text" : "(from / after / to) training.",
+      "options" : null,
+      "kind" : "TEXT"
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342c9f"
   },
   "id" : "67fab6d59930102295342c9f",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Antes de viajar, debes empacar.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -798,10 +1484,10 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.16",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -814,27 +1500,73 @@
     }, {
       "kind" : "CLOZE",
       "text" : "",
-      "options" : [ "Before" ]
+      "options" : null
     }, {
       "kind" : "TEXT",
       "text" : "(to / from / before) traveling, you should pack.",
       "options" : null
     } ],
-    "sentences" : [ "Before traveling, you should pack." ]
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "",
+      "options" : null
+    }, {
+      "options" : [ "Before" ],
+      "kind" : "CLOZE",
+      "text" : ""
+    }, {
+      "kind" : "TEXT",
+      "text" : "(to / from / before) traveling, you should pack.",
+      "options" : null
+    } ]
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ca0"
   },
   "id" : "67fab6d59930102295342ca0",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Compré un bocadillo antes de empezar a trabajar.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -850,10 +1582,56 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.17",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : "MULTIPLE_CHOICE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "I bought a snack",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(before / to / from) starting work.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
     "incidence" : {
       "$numberDouble" : "1.0"
     },
@@ -868,25 +1646,25 @@
       "text" : "",
       "options" : [ "before" ]
     }, {
-      "kind" : "TEXT",
       "text" : "(before / to / from) starting work.",
-      "options" : null
+      "options" : null,
+      "kind" : "TEXT"
     } ],
-    "sentences" : [ "I bought a snack before starting work." ]
+    "kind" : "CLOZE"
   }
 }, {
   "_id" : {
     "$oid" : "67fab6d59930102295342ca1"
   },
   "id" : "67fab6d59930102295342ca1",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "La sala de conciertos está reservada de 9 p. m. a 1 a. m.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -902,22 +1680,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.18",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The concert hall is booked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(to / from / after) 9pm to 1am.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "The concert hall is booked",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "from" ]
     }, {
       "kind" : "TEXT",
@@ -931,14 +1756,14 @@
     "$oid" : "67fab6d59930102295342ca2"
   },
   "id" : "67fab6d59930102295342ca2",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Trabajamos en Roma del 2000 al 2005.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -954,28 +1779,75 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.19",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We worked in Rome from 2000",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(to / from / after) 2005.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "We worked in Rome from 2000",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "(to / from / after) 2005.",
       "options" : null
     } ],
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
     "sentences" : [ "We worked in Rome from 2000 to 2005." ]
   }
 }, {
@@ -983,14 +1855,14 @@
     "$oid" : "67fab6d59930102295342ca3"
   },
   "id" : "67fab6d59930102295342ca3",
-  "kind" : "CLOZE",
+  "kind" : "MULTIPLE_CHOICE",
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Pon salsa sobre la pasta antes de comer.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+  "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
     "$numberDouble" : "0.0"
@@ -1006,22 +1878,69 @@
   "imageUrl" : "",
   "answerAudioUrl" : "A2.09.02.20",
   "answerImageUrl" : "",
-  "miniTheory" : "",
+  "miniTheory" : "$from$ abre y $to$ cierra. $before$ y $after$ ordenan: $before arriving$.",
   "successMessage" : "",
   "form" : {
-    "kind" : null,
+    "kind" : "MULTIPLE_CHOICE",
     "incidence" : {
-      "$numberDouble" : "0.0"
+      "$numberDouble" : "1.0"
     },
-    "label" : null,
-    "name" : null,
+    "label" : "",
+    "name" : "",
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Put sauce on the pasta",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : null,
+      "text" : "",
+      "options" : null
+    }, {
+      "kind" : "TEXT",
+      "text" : "(to / before / from) eating.",
+      "options" : null
+    } ],
+    "selection" : "SINGLE",
+    "items" : [ {
+      "id" : "after",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "after"
+    }, {
+      "id" : "before",
+      "incidence" : {
+        "$numberDouble" : "1.0"
+      },
+      "label" : "before"
+    }, {
+      "id" : "from",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "from"
+    }, {
+      "id" : "to",
+      "incidence" : {
+        "$numberDouble" : "0.0"
+      },
+      "label" : "to"
+    } ]
+  },
+  "formCloze" : {
+    "kind" : "CLOZE",
+    "incidence" : {
+      "$numberDouble" : "1.0"
+    },
+    "label" : "",
+    "name" : "",
+    "sentenceParts" : [ {
+      "kind" : "TEXT",
+      "text" : "Put sauce on the pasta",
+      "options" : null
+    }, {
+      "kind" : "CLOZE",
+      "text" : "",
       "options" : [ "before" ]
     }, {
       "kind" : "TEXT",
