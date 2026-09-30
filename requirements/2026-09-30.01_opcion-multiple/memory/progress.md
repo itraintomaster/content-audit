@@ -44,3 +44,9 @@
 2026-09-30 — analyst — Por revision del coordinador, R009 pasa a AUTO_VALIDATED: José acepto la recomendacion, no confirmo el texto.
 
 2026-09-30 — qa-tester — Por revision del coordinador: la descripcion del parche se reescribio con `patch propose --replace` (el resto del parche queda byte a byte: 9 reglas, 34 tests, 28 portados, 6 nuevos). TECH_SPEC: «Registrar FEAT-OPMUL y ubicar sus tres journeys» al dia y un parrafo sobre las 34 pruebas; quedan 11 comunes (39 - 28), no 12, porque quizFormKindFallsBackToQuizKind paso a portado.
+
+2026-09-30 — developer — Opcion A aplicada: lo que generate borro de FormEntity y QuizTemplateEntity (constructores de copia, formKind()) vive en FormEntities y QuizTemplateEntities, escritas a mano en course-domain; 9 formKind() y 5 copias migradas, compila (50c68001). FormKind.from y correctItem() no se perdieron.
+2026-09-30 — developer — 405 llamadas de tests en 81 archivos pasadas a las aridades nuevas con null, el valor que dejaba el constructor viejo (f3962d68).
+2026-09-30 — test-writer — 28 pruebas portadas a su {Impl}Test y originales borrados (f55dfb66); 6 nuevas (70acda33); J001-J003 con 12 caminos (6247e06a). Verde: 1.714 tests, ArchUnit incluido.
+2026-09-30 — developer — Control sobre copias en scratch: analyze sin juez da 73,9 % y 96,5 · 94,2 · 79,5 · 63,5; el plan, 4.036 tareas (841 MC), identico al plan-2026-09-30T11-54-12 de main. `sentinel verify`: VERIFY OK, sin drift.
+2026-09-30 — developer — Proximo paso: revision del orquestador y OK de José para llevar la rama a main.

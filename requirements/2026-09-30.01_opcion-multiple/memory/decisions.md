@@ -66,3 +66,8 @@
 
 2026-09-30 — qa-tester — R009 con 2 handwrittenTests: el caso de MultipleChoiceModelTest.quizFormKindFallsBackToQuizKind se porta a DefaultRevisionEngine (formulario sin tipo en un ejercicio MC: rechazo; formulario CLOZE: se corrige) y uno nuevo va a DefaultPreservationRepair (MC cuyo formulario perdio su tipo: repair no lo devuelve al CLOZE de su foto).
   why: un modelo no lleva handwrittenTests y formKind() sale del modelo; la prueba vieja no llegaba a repair, donde la regla evita el daño real.
+
+2026-09-30 — developer — Opcion A: FormEntities y QuizTemplateEntities (course-domain, a mano, sin @Generated) con formKind() y copyOf(); FormKind.from y correctItem() se quedan en sus archivos, que siguen escritos a mano.
+  why: uno a uno con lo que perdio cada modelo; sin tocar sentinel.yaml. `sentinel analyze` las lista como clases sin declarar; declararlas es del arquitecto.
+2026-09-30 — developer — Donde el relleno de generate dejo un null seguido de un setter (mapper, vista del juez, repositorio), el valor real va al constructor. PlainSentenceDeriver conserva su null: es un formulario temporal.
+2026-09-30 — test-writer — Dos portadas cambian algo mas que el lugar: las de CourseElementFieldDiff pasan por verify() (decision del qa-tester); y dos se completan para cubrir su nombre (items en un CLOZE; una referencia sin opciones).
