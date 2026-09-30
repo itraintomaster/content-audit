@@ -19,4 +19,14 @@ public class DefaultMiniTheoryConfig implements MiniTheoryConfig {
     public double getScoreFor(FindingSeverity severity) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
+
+    /**
+     * SelfDescribingConfig, which this config's interface extends: generate did not add it to
+     * the stub (the build needs it). Left unimplemented, like the rest of the stub, for its
+     * package to write.
+     */
+    @Override
+    public java.util.Map<String, Object> describe() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

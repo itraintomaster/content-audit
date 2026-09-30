@@ -11,7 +11,9 @@ public class DefaultLemmaCountConfigLoader implements LemmaCountConfigLoader {
     @Override
     public LemmaCountConfig load(String rawThreshold) {
         if (rawThreshold == null) {
-            return new DefaultLemmaCountConfig(4);
+            // FEAT-POCOV (package D) turns this default into the bands 8 · 6 · 4 · 3; until it is
+            // built the loader keeps today's 4 for every word (an empty band table).
+            return new DefaultLemmaCountConfig(4, java.util.List.of());
         }
         String trimmed = rawThreshold.trim();
         if (trimmed.isEmpty()) {
@@ -32,6 +34,6 @@ public class DefaultLemmaCountConfigLoader implements LemmaCountConfigLoader {
             throw new IllegalArgumentException(
                     "El umbral de lemma-count debe ser mayor que 0, pero se recibió: " + parsed);
         }
-        return new DefaultLemmaCountConfig(parsed);
+        return new DefaultLemmaCountConfig(parsed, java.util.List.of());
     }
 }

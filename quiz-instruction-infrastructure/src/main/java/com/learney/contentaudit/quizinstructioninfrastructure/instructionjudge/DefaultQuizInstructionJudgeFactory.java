@@ -69,9 +69,11 @@ public DefaultQuizInstructionJudgeFactory(LlmProviderResolver llmProviderResolve
         }
 
         LlmProviderResolved provider = (LlmProviderResolved) resolution;
+        // FEAT-JEXAM (package C) makes the judge ask the probe before its first consultation;
+        // until it is built the judge only receives it.
         return new QuizInstructionAgentJudge(config, agentGraphRunner,
                 new DefaultQuizInstructionJudgeVersionResolver(agentDefinitionLocator),
-                chatModelFactory, provider);
+                chatModelFactory, provider, readinessProbe);
     }
 
     /**
