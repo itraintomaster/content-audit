@@ -36,8 +36,9 @@ que escribe es la muestra y sus respuestas.
 ## Reglas de Negocio
 
 Grupos: **A**, la muestra de pares (R001–R004); **B**, dos personas y la tasa de error (R005–R006). *Tanda*: las
-pendientes aplicables del plan activo, como en FEAT-METAS [ASSUMPTION: la define el paquete E]. *Par*: un cambio de la
-tanda, con su antes (el ejercicio como está, con lo aprobado) y su después (con la propuesta).
+propuestas pendientes de la tanda abierta (paquete E, FEAT-TANDA); sin tanda abierta, las pendientes aplicables del plan
+activo, como en FEAT-METAS. *Par*: un cambio de la tanda, con su antes (el ejercicio como está, con lo aprobado) y su
+después (con la propuesta).
 
 ### Grupo A — La muestra de pares
 
@@ -76,19 +77,23 @@ de un par a otro según el sorteo. Usa el ejercicio como lo ve el alumno, que pi
 
 <a id="F-CIEGA-R004"></a>
 ### Rule[F-CIEGA-R004] - El resultado se publica con su margen, contra la meta
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+**Severity**: critical | **Validation**: VALIDATED
 
 > Al cerrar, content-audit publica, sobre los pares respondidos, cuántos quedaron mejor o igual, cuántos peor —el antes
 > era mejor— y en cuántos los dos tienen un error, cada uno con su intervalo al 95 %, y si la meta de la muestra se
-> cumple con el criterio que ella declara: lo observado o la cota del intervalo.
+> cumple con el criterio que ella declara: lo observado o la cota del intervalo. Publica además, sumando las muestras
+> cerradas desde la línea base, cuántos pares y cuántos peores lleva el curso, la cota de los peores y si queda por
+> debajo de la meta del curso.
 
 <details><summary>Detail</summary>
 
 **Criterio**: 100 pares con 95 mejor o igual, 1 peor y 4 con error en los dos publican 95 % [88,8; 97,8], 1 % [0,2; 5,4]
-y 4 % [1,6; 9,8]. Con la meta «al menos 90 mejor o igual y a lo sumo 1 peor, observados», cumple; con «la cota de peores
-por debajo de 2 %», no cumple, porque con 100 pares la cota más baja posible es 3,0 %. La meta y su criterio viven en la
-declaración de metas ([F-METAS-R005](#F-METAS-R005)); el resultado entra en el veredicto de la tanda
-([F-METAS-R008](#F-METAS-R008)).
+y 4 % [1,6; 9,8]. Con la meta de José del 30/9, «al menos 90 mejor o igual y a lo sumo 1 peor, observados», cumple; con
+«la cota de peores por debajo de 2 %», no cumple, porque con 100 pares la cota más baja posible es 3,0 %. Por eso el
+«menos de 2 %» se afirma sumando tandas: con 300 pares y 2 peores la cota es 2,1 %; con 400 y 2, 1,6 %
+([DOUBT-TAMANO-CIEGA](#DOUBT-TAMANO-CIEGA)). La meta y su criterio viven en la declaración de metas
+([F-METAS-R005](#F-METAS-R005)); el resultado entra en el veredicto de la tanda ([F-METAS-R008](#F-METAS-R008)) y la
+suma es una meta de avance, que no decide.
 
 </details>
 
@@ -96,10 +101,13 @@ declaración de metas ([F-METAS-R005](#F-METAS-R005)); el resultado entra en el 
 
 <a id="F-CIEGA-R005"></a>
 ### Rule[F-CIEGA-R005] - Con dos personas, cuánto coinciden
-**Severity**: major | **Validation**: AUTO_VALIDATED
+**Severity**: major | **Validation**: VALIDATED
 
 > Si dos personas responden pares en común, content-audit publica en cuántos coinciden y su kappa sobre esos pares; el
 > resultado de la tanda usa las respuestas de quien la meta nombra como responsable.
+
+La responsable es José; en la primera tanda un tester responde 30 de los mismos pares, los primeros de la muestra, para
+medir si el criterio se comparte (José, 30/9: [DOUBT-QUIEN-CIEGA](#DOUBT-QUIEN-CIEGA)).
 
 <a id="F-CIEGA-R006"></a>
 ### Rule[F-CIEGA-R006] - La tasa de error a ciegas mide lo que los analizadores no ven
@@ -144,8 +152,9 @@ con 5 %, 96. Por eso la meta declara su criterio (R004) y el tamaño queda para 
 ([DOUBT-TAMANO-CIEGA](#DOUBT-TAMANO-CIEGA)).
 
 Para que sea ciega, quien revisa no puede haber visto los cambios antes: si José aprueba la tanda en la bandeja y
-después responde la muestra, ya sabe cuál es el nuevo. [ASSUMPTION] La muestra se responde antes de abrir la tanda en la
-bandeja, o la responde otra persona.
+después responde la muestra, ya sabe cuál es el nuevo. Por eso José la responde antes de ver el resto de la bandeja
+(José, 30/9), y la bandeja del paquete E la pone primero y sola hasta que se cierra (a alinear en FEAT-BANDEJA). La tasa
+de error a ciegas de 400 ejercicios, al empezar y al terminar, la hace un tester.
 
 ## Alcance
 
@@ -193,30 +202,29 @@ journeys:
 
 <a id="DOUBT-QUIEN-CIEGA"></a>
 ### Doubt[DOUBT-QUIEN-CIEGA] - ¿Quién responde la muestra ciega?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): José, antes de abrir la tanda en la bandeja; en la primera tanda, un tester responde 30 de
+- [x] Opción A (recomendada): José, antes de abrir la tanda en la bandeja; en la primera tanda, un tester responde 30 de
   los mismos pares para medir cuánto coinciden (R005). La tasa de error a ciegas (R006), 400 al empezar y 400 al
   terminar, la hace un tester.
 - [ ] Opción B: siempre un tester, que no aprueba nada; José lee el resultado.
 - [ ] Opción C: José y un tester en todas las tandas, sobre los mismos pares.
 
-**Answer**: Pendiente. Recomiendo A: José es quien sabe qué es «mejor» para Learney, y 100 pares llevan, estimado a unos
-20 segundos por par, media hora; el tester en la primera tanda dice si ese criterio se comparte. Si José ya vio la tanda en la bandeja, deja de ser
-ciega: por eso va antes. La tasa de 400 son 800 ejercicios y no hace falta que sean de José.
+**Answer**: **Opción A** (José, 30/9): la hace José antes de abrir la bandeja; en la primera tanda un tester repite 30
+pares; la tasa de error de 400 ejercicios la hace un tester.
 
 <a id="DOUBT-TAMANO-CIEGA"></a>
 ### Doubt[DOUBT-TAMANO-CIEGA] - ¿Cuántos pares por tanda, y cómo se lee «menos de 2 % que empeoran»?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): 100 pares por tanda; la tanda pasa con al menos 90 mejor o igual y a lo sumo 1 peor,
+- [x] Opción A (recomendada): 100 pares por tanda; la tanda pasa con al menos 90 mejor o igual y a lo sumo 1 peor,
   observados; y el «menos de 2 %» se afirma sobre la suma de las tandas (con 300 pares y 2 peores la cota es 2,1 %; con
   400 y 2, 1,6 %).
 - [ ] Opción B: 150 pares por tanda, y pasa sólo con 0 peores (cota 2,0 %).
 - [ ] Opción C: 100 pares y sólo lo observado, sin cota.
 
-**Answer**: Pendiente. Recomiendo A: con 100 pares, «menos de 2 %» no se puede afirmar por tanda, y B hace fallar 78 de
-cada 100 tandas que empeoran sólo el 1 %. C no dice cuánto se puede confiar.
+**Answer**: **Opción A** (José, 30/9): 100 pares por tanda, con la meta sobre lo contado; el «menos de 2 %» se afirma
+sumando tandas (R004).
 
 ## References
 

@@ -1,0 +1,13 @@
+code: FEAT-CERO
+description: "FEAT-CERO: cada corrida del motor empieza de cero. Sin cambios de estructura:\
+  \ el diseño de FEAT-HALL, ya aplicado, construye cada analizador de nuevo en cada\
+  \ corrida con su proveedor, y ninguna implementación inyecta ya un ContentAnalyzer.\
+  \ El parche registra la feature para que su journey y sus pruebas —dos corridas\
+  \ en el mismo proceso dan lo mismo que una invocación nueva, y la segunda no toca\
+  \ el informe de la primera— lleguen a la generación."
+modules:
+- name: audit-domain
+  _change: modify
+features:
+- id: FEAT-CERO
+  code: F-CERO

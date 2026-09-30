@@ -5,6 +5,8 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — `tech-spec write` se niega a achicar el TECH_SPEC sin `--replace` («Refusing to shrink»); al reescribir una sección con menos líneas, pasar `--replace`.
+
 2026-09-30 — analyst — `requirement validate --file` pide la carpeta del requirement, no el REQUIREMENT.md («Not a directory» si se le pasa el archivo). Se corrió sobre una copia del worktree en el scratchpad.
   why: la regla del paquete: nada de Sentinel que escriba fuera de la carpeta del requirement.
 

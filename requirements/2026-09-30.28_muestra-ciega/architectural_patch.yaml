@@ -1,0 +1,509 @@
+code: FEAT-CIEGA
+description: "FEAT-CIEGA: la muestra ciega de cada tanda y la tasa de error a ciegas.\
+  \ Un servicio sortea con semilla, entre los cambios que no vuelven según FEAT-METAS,\
+  \ los pares de la tanda; los muestra como los ve el alumno con el renderizador del\
+  \ integrador de la ronda 1, sin decir cuál es cuál; guarda cada respuesta con quié\
+  n y cuándo; al cerrar revela los lados y publica las tres proporciones con su intervalo,\
+  \ la meta, la suma desde la línea base y el kappa de dos revisores. Publica su resultado\
+  \ por un puerto propio que el veredicto de FEAT-METAS inyecta."
+modules:
+- name: revision-domain
+  interfaces:
+  - name: BlindSampleStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "savePairs(BlindSample sample): void"
+    - signature: "loadPairs(String sampleId): Optional<BlindSample>"
+    - signature: "listPairs(): List<BlindSample>"
+    - signature: "saveErrorRate(ErrorRateSample sample): void"
+    - signature: "loadErrorRate(String sampleId): Optional<ErrorRateSample>"
+    _change: add
+  packages:
+  - name: blindsample
+    description: "FEAT-CIEGA. Contrato de las dos mediciones a ciegas: la muestra\
+      \ de pares de una tanda (antes y después de cada cambio, sin decir cuál es cuá\
+      l) y la tasa de error a ciegas de un nivel o del curso. Lo que ve quien revisa\
+      \ no trae nada que delate el lado, el motivo, la fecha ni el autor; lo guardado\
+      \ sí, y se revela al cerrar."
+    visibility: public
+    models:
+    - name: PairAnswer
+      type: enum
+      fields:
+      - name: A_BETTER
+      - name: B_BETTER
+      - name: EQUAL
+      - name: BOTH_WRONG
+        description: Los dos tienen un error (R003).
+      _change: add
+    - name: BlindSide
+      type: enum
+      fields:
+      - name: A
+      - name: B
+      _change: add
+    - name: StudentSide
+      type: record
+      fields:
+      - name: view
+        type: QuizStudentView
+        description: "El ejercicio como lo ve el alumno antes de contestar: consigna,\
+          \ oración con el hueco, pista, opciones, traducción y miniteoría (renderizador\
+          \ del integrador, pedido 2 de G)."
+      - name: answered
+        type: String
+        description: "La oración terminada, como la ve después de contestar."
+      _change: add
+    - name: BlindPair
+      type: record
+      fields:
+      - name: index
+        type: int
+      - name: proposalId
+        type: String
+        domainLinks:
+        - term: Propuesta de revisión
+          role: carries
+      - name: nodeId
+        type: String
+      - name: sideA
+        type: StudentSide
+      - name: sideB
+        type: StudentSide
+      - name: afterSide
+        type: BlindSide
+        description: "De qué lado quedó el después: sorteado por par con la misma\
+          \ semilla, y revelado recién al cerrar (R002)."
+      _change: add
+    - name: BlindPairView
+      type: record
+      fields:
+      - name: index
+        type: int
+      - name: sideA
+        type: StudentSide
+      - name: sideB
+        type: StudentSide
+      _change: add
+    - name: PairAnswerRecord
+      type: record
+      fields:
+      - name: pairIndex
+        type: int
+      - name: answer
+        type: PairAnswer
+      - name: reviewer
+        type: String
+      - name: answeredAt
+        type: Instant
+      _change: add
+    - name: ProportionEstimate
+      type: record
+      fields:
+      - name: count
+        type: int
+      - name: total
+        type: int
+      - name: share
+        type: double
+      - name: lower95
+        type: double
+        description: "Intervalo de Wilson al 95 %: 95 de 100 da [88,8; 97,8] (R004)."
+      - name: upper95
+        type: double
+      - name: upperOneSided95
+        type: double
+        description: "Cota exacta a una cola: 0 de 100 da 3,0 %; es la del criterio\
+          \ «cota» y la de la suma de tandas."
+      _change: add
+    - name: ReviewerAgreement
+      type: record
+      fields:
+      - name: responsible
+        type: String
+      - name: other
+        type: String
+      - name: commonPairs
+        type: int
+      - name: agreeing
+        type: int
+      - name: kappa
+        type: double
+        description: Kappa de Cohen sobre los pares en común (R005).
+      _change: add
+    - name: CumulativeSample
+      type: record
+      fields:
+      - name: samples
+        type: int
+        description: Muestras cerradas desde la línea base.
+      - name: pairs
+        type: int
+      - name: worse
+        type: int
+      - name: worseUpperBound
+        type: double
+      - name: belowGoal
+        type: boolean
+        description: "Meta de avance: menos de 2 % sumando tandas; no decide (R004)."
+      _change: add
+    - name: BlindSample
+      type: record
+      fields:
+      - name: sampleId
+        type: String
+      - name: scopeId
+        type: String
+        description: El de la tanda de E; con él lee el veredicto de FEAT-METAS.
+      - name: baselineAuditId
+        type: String
+      - name: activeAuditId
+        type: String
+      - name: activePlanId
+        type: String
+      - name: seed
+        type: long
+        description: "Publicada: la misma tanda con la misma semilla da los mismos\
+          \ pares en el mismo orden (R001)."
+      - name: drawnAt
+        type: Instant
+      - name: goal
+        type: BlindSampleGoal
+      - name: pairs
+        type: List<BlindPair>
+      - name: answers
+        type: List<PairAnswerRecord>
+      - name: closedAt
+        type: Instant
+        description: null mientras está abierta; cerrada no acepta respuestas ni cambios
+          (R003).
+      glossarySuggestions:
+      - name: Muestra ciega
+        technicalName: BlindSample
+        kind: process-candidate
+        basedOn: revision-domain/blindsample/BlindSample
+        derivedFrom:
+        - Propuesta de revisión
+        rationale: "La única medida de una tanda que no depende de ningún analizador\
+          \ ni agente: pares de antes y después sin saber cuál es cuál."
+      _change: add
+    - name: BlindSampleResult
+      type: record
+      fields:
+      - name: sampleId
+        type: String
+      - name: scopeId
+        type: String
+      - name: responsible
+        type: String
+      - name: answered
+        type: int
+      - name: betterOrEqual
+        type: ProportionEstimate
+      - name: worse
+        type: ProportionEstimate
+      - name: bothWrong
+        type: ProportionEstimate
+      - name: meetsGoal
+        type: boolean
+      - name: unmetParts
+        type: List<String>
+      - name: agreement
+        type: ReviewerAgreement
+      - name: cumulative
+        type: CumulativeSample
+      - name: revealedPairs
+        type: List<BlindPair>
+      _change: add
+    - name: SampleClosedException
+      type: exception
+      fields:
+      - name: sampleId
+        type: String
+      message: "Sample '%s' is closed: it no longer accepts answers or changes."
+      _change: add
+      extends: RuntimeException
+    - name: SampleOutcome
+      type: record
+      fields:
+      - name: sampleId
+        type: String
+      - name: scopeId
+        type: String
+      - name: closed
+        type: boolean
+      - name: answered
+        type: int
+      - name: betterOrEqual
+        type: int
+      - name: worse
+        type: int
+      - name: bothWrong
+        type: int
+      - name: meetsGoal
+        type: boolean
+        description: "Con el criterio que declara la meta: lo contado o la cota (R004)."
+      - name: detail
+        type: String
+      _change: add
+    - name: ErrorRateItem
+      type: record
+      fields:
+      - name: index
+        type: int
+      - name: quizNodeId
+        type: String
+      - name: fromBaseline
+        type: boolean
+        description: Versión de la línea base o de la proyección; se revela al cerrar
+          (R006).
+      - name: side
+        type: StudentSide
+      _change: add
+    - name: ErrorRateItemView
+      type: record
+      fields:
+      - name: index
+        type: int
+      - name: side
+        type: StudentSide
+      _change: add
+    - name: ErrorMark
+      type: record
+      fields:
+      - name: itemIndex
+        type: int
+      - name: hasError
+        type: boolean
+      - name: reviewer
+        type: String
+      - name: markedAt
+        type: Instant
+      _change: add
+    - name: ErrorRateSample
+      type: record
+      fields:
+      - name: sampleId
+        type: String
+      - name: nodeTarget
+        type: AuditTarget
+      - name: nodeId
+        type: String
+      - name: size
+        type: int
+      - name: seed
+        type: long
+      - name: drawnAt
+        type: Instant
+      - name: baselineAuditId
+        type: String
+      - name: activeAuditId
+        type: String
+      - name: items
+        type: List<ErrorRateItem>
+      - name: marks
+        type: List<ErrorMark>
+      - name: closedAt
+        type: Instant
+      _change: add
+    - name: ErrorRateResult
+      type: record
+      fields:
+      - name: sampleId
+        type: String
+      - name: before
+        type: ProportionEstimate
+      - name: after
+        type: ProportionEstimate
+      - name: analyzersBefore
+        type: ProportionEstimate
+        description: "«Algún error» de los analizadores en esos mismos ejercicios,\
+          \ de la línea base."
+      - name: analyzersAfter
+        type: ProportionEstimate
+      - name: analyzersWithinMargin
+        type: boolean
+        description: "Si no, los analizadores se están perdiendo errores (R006)."
+      _change: add
+    interfaces:
+    - name: BlindSampleService
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "draw(Path coursePath, ProjectionScope scope, Long seed): BlindSample"
+      - signature: "pairs(String sampleId): List<BlindPairView>"
+      - signature: "answer(String sampleId, int pairIndex, PairAnswer answer, String\
+          \ reviewer): void"
+        throwsExceptions:
+        - SampleClosedException
+      - signature: "close(String sampleId): BlindSampleResult"
+      - signature: "result(String sampleId): Optional<BlindSampleResult>"
+      _change: add
+    - name: SampleOutcomeSource
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "outcomeFor(String scopeId): Optional<SampleOutcome>"
+      _change: add
+    - name: BlindErrorRateService
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "draw(Path coursePath, AuditTarget nodeTarget, String nodeId, int\
+          \ size, Long seed): ErrorRateSample"
+      - signature: "items(String sampleId): List<ErrorRateItemView>"
+      - signature: "mark(String sampleId, int itemIndex, boolean hasError, String\
+          \ reviewer): void"
+        throwsExceptions:
+        - SampleClosedException
+      - signature: "close(String sampleId): ErrorRateResult"
+      _change: add
+    _change: add
+  - name: blindsampleengine
+    description: FEAT-CIEGA. El motor de las dos mediciones a ciegas y su estadística.
+      Público sólo para la raíz de composición (P8).
+    visibility: public
+    interfaces:
+    - name: SampleStatistics
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "proportion(int count, int total): ProportionEstimate"
+      - signature: "kappa(List<PairAnswer> responsible, List<PairAnswer> other): double"
+      _change: add
+    implementations:
+    - name: DefaultSampleStatistics
+      visibility: public
+      implements:
+      - SampleStatistics
+      _change: add
+    - name: DefaultBlindSampleService
+      requiresInject:
+      - name: courseProjector
+        type: CourseProjector
+        description: Las fotos approved (antes) y projected (después) de la tanda
+          (FEAT-PROYU).
+      - name: batchComparator
+        type: BatchComparator
+        description: "Se sortea entre los cambios que no vuelven (R001, F-METAS-R003)."
+      - name: goalBook
+        type: GoalBook
+        description: "Tamaño, criterio, responsable y meta de la suma (F-METAS-R005)."
+      - name: baselineStore
+        type: BaselineStore
+        description: La suma de R004 cuenta las muestras cerradas desde esta línea
+          base.
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "El del integrador de la ronda 1 (gancho A-01, pedido 2 de G):\
+          \ F no arma otro."
+      - name: store
+        type: BlindSampleStore
+      - name: statistics
+        type: SampleStatistics
+      visibility: public
+      implements:
+      - BlindSampleService
+      _change: add
+    - name: DefaultSampleOutcomeSource
+      requiresInject:
+      - name: store
+        type: BlindSampleStore
+        description: "Lee la muestra de la tanda por su id de alcance; no conoce el\
+          \ comparador, así que el comparador puede inyectarla sin ciclo."
+      - name: statistics
+        type: SampleStatistics
+        description: Para el criterio «cota» de la meta guardada en la muestra (R004).
+      visibility: public
+      implements:
+      - SampleOutcomeSource
+      _change: add
+    - name: DefaultBlindErrorRateService
+      requiresInject:
+      - name: courseProjector
+        type: CourseProjector
+      - name: baselineStore
+        type: BaselineStore
+      - name: auditReportStore
+        type: AuditReportStore
+        description: "La línea base, con sus ejercicios y su «algún error» por ejercicio."
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      - name: store
+        type: BlindSampleStore
+      - name: statistics
+        type: SampleStatistics
+      visibility: public
+      implements:
+      - BlindErrorRateService
+      _change: add
+    allowedClients:
+    - audit-cli
+    _change: add
+  _change: modify
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemBlindSampleStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: "Raíz bajo la que se escribe .content-audit/blind-samples/: só\
+        lo muestras y respuestas; nada del curso, las propuestas ni el historial (R003)."
+    types:
+    - Repository
+    visibility: public
+    implements:
+    - BlindSampleStore
+    _change: add
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: BlindSampleCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "draw(String coursePath, List<String> proposalIds, Long seed, String\
+        \ format): Integer"
+    - signature: "show(String sampleId, String format): Integer"
+    - signature: "answer(String sampleId, int pairIndex, String answer, String reviewer):\
+        \ Integer"
+    - signature: "close(String sampleId, String format): Integer"
+    _change: add
+  - name: ErrorRateCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "draw(String coursePath, String level, int size, Long seed, String\
+        \ format): Integer"
+    - signature: "show(String sampleId, String format): Integer"
+    - signature: "mark(String sampleId, int itemIndex, boolean hasError, String reviewer):\
+        \ Integer"
+    - signature: "close(String sampleId, String format): Integer"
+    _change: add
+  packages:
+  - name: commands
+    implementations:
+    - name: DefaultBlindSampleCommand
+      requiresInject:
+      - name: blindSampleService
+        type: BlindSampleService
+      types:
+      - Component
+      implements:
+      - BlindSampleCommand
+      _change: add
+    - name: DefaultErrorRateCommand
+      requiresInject:
+      - name: blindErrorRateService
+        type: BlindErrorRateService
+      types:
+      - Component
+      implements:
+      - ErrorRateCommand
+      _change: add
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-CIEGA
+  code: F-CIEGA

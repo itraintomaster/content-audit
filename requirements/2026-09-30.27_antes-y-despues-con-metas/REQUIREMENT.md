@@ -31,8 +31,8 @@ Cómo José decide hoy si una tanda de correcciones empeora algo. El caso: las c
 4. Devuelve lo que empeora → `RejectCommand.reject("proposal", proposalId, planId, reason)`. ✓ Disponible por propuesta,
    pero ⚠️ nadie dice cuáles: «grandmother» no mueve ningún número de nivel ni del curso, y si una tanda de cientos de
    cambios baja un número del nivel, nada señala cuáles lo bajaron.
-5. Cambia una medida → ⚠️ con las bandas 8 · 6 · 4 · 3 que propone el paquete D para `lemma-count`, el mismo curso pasa
-   de 73,9 % a 73,5 %; una resta contra la línea base lo mezcla con el efecto de la tanda.
+5. Cambia una medida → ⚠️ con las bandas 8 · 6 · 4 · 3 de `lemma-count`, que José confirmó el 30/9, el mismo curso pasa
+   de 73,92 % a 73,86 % y A1 de 96,54 % a 96,02 %; una resta contra la línea base lo mezcla con el efecto de la tanda.
 
 **Punto de fricción**: pasos 2 a 5. Hay fotos, pero no hay comparación, ni metas, ni veredicto.
 
@@ -43,8 +43,11 @@ estado, los ejercicios que vuelven y el veredicto de la tanda. La vista consolid
 ## Reglas de Negocio
 
 Grupos: **A**, las filas (R001–R002); **B**, lo que vuelve (R003–R004); **C**, las metas (R005–R007); **D**, el
-veredicto (R008–R009). *Tanda*: las pendientes aplicables del plan activo [ASSUMPTION: la define el paquete E]. *Piso*:
-lo que la tanda no puede empeorar. *Meta de avance*: un valor al que se quiere llegar; se muestra y no decide.
+veredicto (R008–R009). *Tanda*: las propuestas pendientes de la tanda abierta (paquete E, FEAT-TANDA); sin tanda
+abierta, las pendientes aplicables del plan activo. *Inicio de la tanda*: el curso del análisis activo con lo aprobado,
+desde donde la tanda arranca. *Línea base*: la que fija José ([F-PROYU-R006](#F-PROYU-R006)), la misma para todas las
+tandas. *Piso*: lo que la tanda no puede empeorar. *Meta de avance*: un valor al que se quiere llegar; se muestra y no
+decide.
 
 ### Grupo A — Las filas
 
@@ -73,7 +76,8 @@ El cambio de un puntaje se escribe en puntos, con su signo y la palabra: «−0,
 ([F-PIPRE-R013](#F-PIPRE-R013)). Los números son los publicados ([F-HALL-R008](#F-HALL-R008) a
 [F-HALL-R010](#F-HALL-R010)). La vista consolidada sigue sin cambios en su contrato ([F-CDIFF-R010](#F-CDIFF-R010)): el
 cambio es de la comparación, que la lee. La UI dibuja estas filas y no resta nada (paquete G, regla 1.1). La base del
-29/9 corrió sin analizadores de errores, así que hoy esas filas salen vacías.
+29/9 corrió sin analizadores de errores, así que hoy esas filas salen vacías. La fila trae el número del inicio de la
+tanda porque contra él se decide el piso de errores (R005).
 
 </details>
 
@@ -91,12 +95,14 @@ fila dice «no se puede decidir»; con los 30 juzgados y ninguno con error, «cu
 ### Grupo B — Lo que vuelve
 
 <a id="F-METAS-R003"></a>
-### Rule[F-METAS-R003] - Un nodo que la tanda cambió vuelve si gana un hallazgo
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+### Rule[F-METAS-R003] - Un nodo que la tanda cambió vuelve si gana un error o una palabra de otro nivel
+**Severity**: critical | **Validation**: VALIDATED
 
-> Un nodo que la tanda cambió vuelve si en la proyección tiene un hallazgo que no tenía en la línea base —de cualquier
-> analizador y familia, salvo los que sólo ordenan—, o si otro nodo gana un hallazgo que lo nombra como relacionado. La
-> comparación lo lista con ese hallazgo como motivo. Un hallazgo que desaparece cuenta como arreglado.
+> Un nodo que la tanda cambió vuelve si en la proyección tiene un hallazgo que no tenía al inicio de la tanda y que cuenta:
+> uno de la familia de errores, salvo los que sólo ordenan, o uno de vocabulario de gravedad media o más —una palabra de
+> otro nivel o fuera del catálogo, salvo la que el tema enseña—. Un hallazgo de largo nunca devuelve un cambio. También
+> vuelve si otro nodo gana un hallazgo que cuenta y lo nombra como relacionado. La comparación lo lista con ese hallazgo
+> como motivo; un hallazgo que desaparece cuenta como arreglado.
 
 <details><summary>Detail</summary>
 
@@ -104,12 +110,18 @@ Dos hallazgos son el mismo si tienen la misma identidad: analizador, regla, nodo
 ([F-HALL-R014](#F-HALL-R014)); el nodo relacionado sale de su evidencia ([F-HALL-R003](#F-HALL-R003)), como en un
 duplicado. **Criterio**: de las cuatro propuestas, vuelve la de «My grandmother ___ (come) every year.», con el motivo
 «`lemma-absence` · palabra de otro nivel: grandmother es A2» (su ejercicio baja de 1,0 a 0,9); las otras tres no vuelven.
-Un ejercicio que un analizador no evaluó en la proyección queda «sin decidir» para ese analizador, no «no vuelve».
+Un cambio que sólo deja su oración fuera del largo del nivel —como «He isn't in the living-room.», 9 tokens contra 3 a 8
+en A1— no vuelve: el largo se declara y cuenta sólo en el piso del nivel. Un ejercicio que un analizador no evaluó en la proyección queda «sin decidir» para ese
+analizador, no «no vuelve».
 
 Generaliza a toda la tanda y a todos los analizadores la no-regresión léxica de [F-LASAG-R007](#F-LASAG-R007), que sólo
-cuidaba las palabras de un candidato. Con la regla de José del 30/9 («palabra de otro nivel: error desde dos niveles»)
-«grandmother» no es un error, pero sí un hallazgo de vocabulario: ver
-[DOUBT-VUELVE-VOCABULARIO](#DOUBT-VUELVE-VOCABULARIO).
+cuidaba las palabras de un candidato. José eligió el 30/9 que un cambio vuelva también por un hallazgo de vocabulario
+(«grandmother», a un nivel de distancia, no es error: [DOUBT-VUELVE-VOCABULARIO](#DOUBT-VUELVE-VOCABULARIO)); y decidió el
+11/8 que el largo no rechaza una corrección, que es lo que el paquete E mantiene en su compuerta (F-NOEMP-R003). La
+gravedad es la del hallazgo: palabra de otro nivel o fuera del catálogo, media; el resto del vocabulario, baja
+(DOUBT-GRAVEDAD-EXISTENTES de FEAT-HALL). La palabra que el tema enseña —en su título o en las respuestas de sus
+ejercicios— nunca es roja (F-SEMAF-R004 del paquete D, que José aceptó): si una corrección la usa, no vuelve, como no
+vuelve en la mesa del paquete E (F-NOEMP-R002).
 
 </details>
 
@@ -135,43 +147,48 @@ entero cada vez serían 38 s por cambio.
 
 <a id="F-METAS-R005"></a>
 ### Rule[F-METAS-R005] - Las metas se declaran en un solo lugar, y todo analizador tiene la suya
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+**Severity**: critical | **Validation**: VALIDATED
 
 > content-audit lee las metas de una sola declaración, que se puede listar. Cada meta dice su nodo (curso, nivel, topic
-> o tema), su analizador —o «vocabulario», o «algún error»—, si es piso o meta de avance, su valor y su unidad. Todo
-> analizador del catálogo tiene al menos el piso por defecto de su familia, así que uno nuevo queda cubierto sin tocar
-> la declaración.
+> o tema), su analizador —o «vocabulario», o «algún error»—, si es piso o meta de avance, su valor, su unidad y contra
+> qué se mide. La declaración trae también la meta de la muestra ciega. Todo analizador del catálogo tiene al menos el
+> piso por defecto de su familia, así que uno nuevo queda cubierto sin tocar la declaración.
 
 <details><summary>Detail</summary>
 
-Pisos por defecto propuestos, que deciden el veredicto:
+Pisos, que deciden el veredicto (José, 30/9: [DOUBT-METAS](#DOUBT-METAS)):
 
-| Familia | Piso por defecto |
+| Familia | Piso |
 |---|---|
-| Errores | en ningún nodo sube la cantidad de ejercicios con error de ningún analizador, ni la de «algún error» |
+| Errores | en ningún nodo sube la cantidad de ejercicios con error de ningún analizador, ni la de «algún error», contra el inicio de la tanda |
 | Vocabulario | ningún analizador ni el puntaje de vocabulario baja más de 0,5 puntos contra la línea base en un nivel o en el curso |
-| Todas | ningún nodo que la tanda cambió gana un hallazgo (R003) |
+| Todas | ningún nodo que la tanda cambió gana un hallazgo que cuenta (R003) |
+| Muestra ciega | de 100 pares, al menos 90 mejor o igual y a lo sumo 1 peor, contados ([F-CIEGA-R004](#F-CIEGA-R004)) |
 
-Metas de avance propuestas, que se muestran y no deciden: en el nivel de la tanda, al cerrarla, 0 ejercicios que no se
-pueden acertar y 0 de cada analizador de errores (por ejemplo, palabras de otro nivel en A1: 0); en el curso, al cerrar
-las cuatro tandas, «algún error» por debajo de 5 % (la propuesta v2 parte de 25,7 %). El piso es contra la línea
-base y no contra la tanda anterior: cuatro tandas de −0,4 puntos no rompen un piso por tanda y suman −1,6. Valores y
-quién los fija: [DOUBT-METAS](#DOUBT-METAS).
+Metas de avance, que se muestran y no deciden: en el nivel de la tanda, al cerrarla, 0 ejercicios que no se pueden
+acertar y 0 de cada analizador de errores (por ejemplo, palabras de otro nivel en A1: 0); en el curso, al cerrar las
+cuatro tandas, «algún error» por debajo de 5 % (la propuesta v2 parte de 25,7 %), y los peores de la muestra ciega por
+debajo de 2 % sumando tandas. Las fija José antes de cada tanda (R006).
+
+El piso de vocabulario es contra la línea base y no contra la tanda anterior: cuatro tandas de −0,4 puntos no rompen un
+piso por tanda y suman −1,6. El de errores es contra el inicio de la tanda: una tanda no puede sumar un error aunque el
+nivel ya esté por debajo de la base, y como cada tanda arranca donde terminó la anterior, tampoco sube contra la línea
+base. Es la misma cuenta que lee la compuerta del paquete E (F-NOEMP-R005, F-NOEMP-R006).
 
 </details>
 
 <a id="F-METAS-R006"></a>
 ### Rule[F-METAS-R006] - Las metas se fijan antes de correr
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+**Severity**: critical | **Validation**: VALIDATED
 
-> Cuando cambia el análisis activo, content-audit registra la huella de las metas vigentes; volver a apuntar al mismo
-> par no la cambia. Toda comparación publica con qué metas evaluó y, si difieren de las registradas, lo dice y muestra
-> cuáles cambiaron, con su valor de antes y el de ahora.
+> José fija las metas antes de cada tanda con `set-goals`, y abrir una tanda también las fija: content-audit registra
+> entonces su huella y sus valores. Toda comparación publica con qué metas evaluó y, si difieren de las fijadas o nunca
+> se fijaron, lo dice y muestra cuáles cambiaron, con su valor de antes y el de ahora.
 
-**Criterio**: fijada la línea base con el piso de vocabulario en 0,5 puntos, si alguien lo pasa a 1,0 antes de comparar,
-la comparación evalúa con 1,0 y dice «metas cambiadas desde la línea base: piso de vocabulario 0,5 → 1,0». Es lo que pide
-la propuesta: «las metas se escriben antes de correr, para no acomodarlas después». Volver a apuntar al mismo par sigue
-siendo un no-op ([F-CDIFF-R002](#F-CDIFF-R002)).
+**Criterio**: fijadas las metas con el piso de vocabulario en 0,5 puntos, si alguien lo pasa a 1,0 antes de comparar, la
+comparación evalúa con 1,0 y dice «metas cambiadas desde que se fijaron: piso de vocabulario 0,5 → 1,0». Es lo que pide
+la propuesta: «las metas se escriben antes de correr, para no acomodarlas después». Fijar la línea base o cambiar el par
+activo no toca las metas fijadas.
 
 <a id="F-METAS-R007"></a>
 ### Rule[F-METAS-R007] - Un cambio de medida se muestra aparte
@@ -184,11 +201,12 @@ siendo un no-op ([F-CDIFF-R002](#F-CDIFF-R002)).
 
 <details><summary>Detail</summary>
 
-**Criterio**: con las bandas 8 · 6 · 4 · 3 de `lemma-count` (DOUBT-UMBRALES-POR-BANDA del paquete D), la fila de
-vocabulario del curso dice «cambio de medida: 73,9 → 73,5» y el cambio de la tanda se cuenta desde 73,5; la de
-`lemma-count` en el curso, «67,0 → 63,9». Sin esta regla, la primera tanda después de cambiar las bandas rompería el piso
-de vocabulario sin haber tocado una palabra. La ficha es la de [F-HALL-R006](#F-HALL-R006); una medida nueva sin la
-línea base re-medida deja sus filas en «no se puede decidir».
+**Criterio**: con las bandas 8 · 6 · 4 · 3 de `lemma-count`, que José confirmó el 30/9 con el puesto COCA del catálogo,
+la fila de vocabulario del curso dice «cambio de medida: 73,92 → 73,86» y el cambio de la tanda se cuenta desde 73,86;
+la de A1, «96,54 → 96,02»; la de `lemma-count` en el curso, «67,0 → 66,5». Sin esta regla, la primera tanda después de
+cambiar las bandas rompería el piso de vocabulario en A1 (−0,52), A2 (−0,56) y B1 (−0,58) sin haber tocado una palabra.
+La ficha es la de [F-HALL-R006](#F-HALL-R006); una medida nueva sin la línea base re-medida deja sus filas en «no se
+puede decidir».
 
 </details>
 
@@ -237,9 +255,9 @@ A y C. Hasta entonces, la muestra ciega
 ## Alcance
 
 - **Adentro**: R001 a R009.
-- **Afuera**: la proyección (FEAT-PROYU); la muestra ciega (FEAT-CIEGA); qué es una tanda, la mesa y la bandeja donde se
-  aprueba o se devuelve (paquete E); cómo se dibuja (paquete G); el formato de la declaración de metas y del registro de
-  la medida de cada analizador; los valores de las metas, que fija José (DOUBT-METAS).
+- **Afuera**: la proyección y la línea base (FEAT-PROYU); la muestra ciega (FEAT-CIEGA); qué es una tanda, la mesa y la
+  bandeja donde se aprueba o se devuelve (paquete E); cómo se dibuja (paquete G); el formato de la declaración de metas y
+  del registro de la medida de cada analizador; los valores de las metas, que fija José antes de cada tanda.
 
 ## User Journeys
 
@@ -252,7 +270,7 @@ journeys:
     name: Comparar una tanda con la línea base
     flow:
       - id: fijar
-        action: "El operador fija la línea base con set-active y content-audit registra la huella de las metas vigentes"
+        action: "José fija las metas antes de la tanda y content-audit registra su huella y sus valores"
         gate: [F-METAS-R006]
         then: comparar
       - id: comparar
@@ -271,9 +289,9 @@ journeys:
         action: "La comparación revisa los hallazgos de cada nodo que la tanda cambió"
         gate: [F-METAS-R003]
         outcomes:
-          - when: "Algún nodo cambiado ganó un hallazgo que no tenía"
+          - when: "Algún nodo cambiado ganó un hallazgo que cuenta y no tenía"
             then: vuelven
-          - when: "Ningún nodo cambiado ganó un hallazgo"
+          - when: "Ningún nodo cambiado ganó un hallazgo que cuenta"
             then: pisos
       - id: vuelven
         action: "La comparación lista los nodos que vuelven, cada uno con su hallazgo nuevo como motivo, y el veredicto es no pasa"
@@ -301,9 +319,9 @@ journeys:
 
 <a id="DOUBT-METAS"></a>
 ### Doubt[DOUBT-METAS] - ¿Qué metas, contra qué y quién las fija?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): los pisos de R005 —ningún nodo cambiado gana un hallazgo; los errores no suben en ningún
+- [x] Opción A (recomendada): los pisos de R005 —ningún nodo cambiado gana un hallazgo; los errores no suben en ningún
   nodo; el vocabulario no baja más de 0,5 puntos contra la línea base en ningún nivel ni en el curso— y como metas de
   avance, al cerrar cada nivel, 0 que no se pueden acertar y 0 de cada analizador de errores, y «algún error» por debajo
   de 5 % en el curso al cerrar las cuatro tandas. Las fija José antes de abrir cada tanda; content-audit trae los pisos
@@ -311,24 +329,38 @@ journeys:
 - [ ] Opción B: sólo los pisos por familia, sin metas de avance.
 - [ ] Opción C: pisos contra la tanda anterior y no contra la línea base.
 
-**Answer**: Pendiente. Recomiendo A. El piso de 0,5 puntos es el de la propuesta v2 y en el caso medido sobra: cuatro
-cambios no mueven A1 en dos decimales. C deja que las bajas chicas se acumulen: cuatro tandas de −0,4 suman −1,6 sin
-romper nada. Las metas de avance dicen cuándo se cierra un nivel, pero no frenan una tanda que mejora sin llegar.
+**Answer**: **Opción A** (José, 30/9): metas contra la línea base, que José fija antes de cada tanda. Deciden los pisos:
+ningún ejercicio tocado gana un hallazgo, los errores no suben, el vocabulario baja 0,5 como mucho y la muestra ciega da
+90 de 100 mejor o igual, con 1 peor como mucho. Las metas de avance sólo se muestran: 0 imposibles y 0 errores por
+nivel, y menos de 5 % al terminar. El piso de errores se decide contra el inicio de la tanda, que es la cuenta de la
+compuerta del paquete E (R005).
 
 <a id="DOUBT-VUELVE-VOCABULARIO"></a>
 ### Doubt[DOUBT-VUELVE-VOCABULARIO] - ¿Un cambio vuelve por un hallazgo nuevo de vocabulario, o sólo por un error nuevo?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): vuelve por un hallazgo nuevo de cualquier familia, salvo los que sólo ordenan.
+- [x] Opción A (recomendada): vuelve por un hallazgo nuevo de cualquier familia, salvo los que sólo ordenan.
   «Grandmother» vuelve.
 - [ ] Opción B: sólo por un hallazgo nuevo de la familia de errores. «Grandmother» pasa: con tu regla del 30/9, una
   palabra a un nivel de distancia no es error.
 - [ ] Opción C: por cualquier familia, salvo los hallazgos de vocabulario de gravedad baja.
 
-**Answer**: Pendiente. Recomiendo A: es «sin empeorar» en el ejercicio que se tocó, y es el ejemplo de la propuesta
-(«grandmother vuelve»). Quien propone reintenta con una palabra de A1 del verde del semáforo, como «Winter ___ (come)
-every year.». Con B, cada tanda puede meter palabras de un nivel más sin que nada lo frene; C dejaría pasar también
-oraciones fuera de su largo.
+**Answer**: **Opción A** (José, 30/9): un cambio vuelve también por un hallazgo de vocabulario; «grandmother» vuelve y se
+reintenta con una palabra verde, como «Winter ___ (come) every year.». Alineado con el paquete E por la decisión de José
+del 11/8 («el largo no rechaza una corrección»): vuelve por errores y por palabras de otro nivel o fuera del catálogo, y
+el largo nunca devuelve un cambio; cuenta sólo en el piso del nivel (R003).
+
+<a id="DOUBT-ERRORES-CONTRA-QUE"></a>
+### Doubt[DOUBT-ERRORES-CONTRA-QUE] - ¿El piso de errores se mide contra el inicio de la tanda o contra la línea base?
+**Status**: OPEN
+
+- [ ] Opción A (recomendada): contra el inicio de la tanda, y el de vocabulario contra la línea base, acumulado. Una tanda
+  no puede sumar ni un error aunque el nivel ya esté por debajo de la base; encadenadas, tampoco suben contra ella.
+- [ ] Opción B: todo contra la línea base: una tanda podría sumar errores mientras el total siga por debajo de la base.
+
+**Answer**: Pendiente. Recomiendo A, que es como quedó escrito R005 y la cuenta de la compuerta del paquete E
+(F-NOEMP-R005). Tu respuesta del 30/9 fija «contra la línea base» para el vocabulario; con errores, B dejaría pasar una
+tanda que empeora lo que otra ya había arreglado.
 
 ## References
 
@@ -341,3 +373,5 @@ oraciones fuera de su largo.
   notación en puntos ([F-CDIFF-R002](#F-CDIFF-R002), [F-CDIFF-R010](#F-CDIFF-R010), [F-CDIFF-R015](#F-CDIFF-R015),
   [F-PIPRE-R013](#F-PIPRE-R013)). Citado por R001, R006 y R009.
 - **FEAT-LASAG** — No-regresión léxica del candidato ([F-LASAG-R007](#F-LASAG-R007)). Citado por R003.
+- **FEAT-TANDA, FEAT-NOEMP** (paquete E) — Qué es una tanda, desde dónde arranca y la compuerta que lee esta
+  comparación (F-NOEMP-R003, R005, R006). Citado en las definiciones, R003 y R005.

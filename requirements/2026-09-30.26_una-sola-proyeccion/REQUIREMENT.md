@@ -11,8 +11,8 @@ feature:
 ## TL;DR
 
 **Qué**: El curso con lo aprobado y lo pendiente se proyecta de una sola manera, la de `get consolidated`, que da lo
-mismo que `analyze` sobre ese curso escrito; ninguna proyección entra al historial de análisis, y la línea base es el
-análisis activo.
+mismo que `analyze` sobre ese curso escrito; ninguna proyección entra al historial de análisis, y la línea base la fija
+José y no se mueve cuando el análisis activo avanza.
 
 **Por qué**: Hoy hay tres caminos que no coinciden: sobre el mismo caso, la vista consolidada pone A1 en 92,4 % donde
 el análisis de la copia da 96,5 y no muestra el curso, y el plan proyectado deja su análisis como el último.
@@ -22,7 +22,9 @@ el análisis de la copia da 96,5 y no muestra el curso, y el plan proyectado dej
 Cómo José ve hoy el curso con las propuestas de una tanda antes de aprobarlas. El caso: las cuatro propuestas del 077
 para «Afirmativas regulares» (A1 · Present Simple), pendientes.
 
-1. Fija el análisis contra el que compara → `SetActiveAnalysisCommand.setActive(auditId, planId)`. ✓ Disponible.
+1. Fija el análisis contra el que compara → `SetActiveAnalysisCommand.setActive(auditId, planId)`. ✓ Disponible, pero
+   ⚠️ el mismo par es a la vez la línea base y el punto de partida: cuando una tanda se publica, el activo avanza al
+   análisis del curso publicado (paquete E, FEAT-TANDA) y la base se iría con él.
 2. Pide el curso con lo aprobado y lo pendiente → `GetConsolidatedCommand.getConsolidated(coursePath, format)`. ✓
    Disponible, pero ⚠️ con pendientes el motor corre dos veces en el mismo proceso y la segunda arrastra la primera
    ([FEAT-CERO](#F-CERO-R001)): la foto con pendientes da COCA 75 en A1, 76,1 en B1 y 51,3 en B2, donde `analyze` sobre
@@ -50,14 +52,16 @@ se vuelva la línea base.
 **Cambio mínimo necesario**: que la proyección de la vista consolidada dé lo mismo que analizar el curso escrito y sea
 la única; que se pueda guardar fuera del historial y pedir por su identificador, para el plan proyectado y las
 [palabras sugeridas](glossary:Palabra sugerida); que el impacto de cada propuesta salga de esa misma proyección; y que
-el análisis activo sea la línea base y no se borre sin querer.
+la línea base la fije José aparte del análisis activo, y que ninguno de los dos se borre sin querer.
 
 ## Reglas de Negocio
 
 Grupos: **A**, una sola proyección (R001–R003); **B**, la proyección no es un análisis (R004–R005); **C**, la línea base
-y el impacto de cada propuesta (R006–R007). *Proyección*: el curso de la línea base con lo aprobado (foto
+y el impacto de cada propuesta (R006–R007). *Proyección*: el curso del análisis activo con lo aprobado (foto
 `consolidated`) o con lo aprobado y lo pendiente aplicable (foto `pendingProjection`) del plan activo
-([F-CDIFF-R007](#F-CDIFF-R007)). *Línea base*: el análisis activo.
+([F-CDIFF-R007](#F-CDIFF-R007)); si hay una tanda abierta, sólo con las pendientes de esa tanda (paquete E,
+FEAT-TANDA). *Línea base*: el análisis que José fija antes de la primera tanda; el análisis activo avanza cada vez que
+se publica una tanda, y la línea base no.
 
 ### Grupo A — Una sola proyección
 
@@ -154,21 +158,34 @@ no ofrecen una palabra que una pendiente consumió.
 ### Grupo C — La línea base y el impacto de cada propuesta
 
 <a id="F-PROYU-R006"></a>
-### Rule[F-PROYU-R006] - La línea base es el análisis activo, y no se borra sin querer
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+### Rule[F-PROYU-R006] - La línea base la fija José y queda fija; ni ella ni el análisis activo se borran sin querer
+**Severity**: critical | **Validation**: VALIDATED
 
-> Toda comparación mide contra el análisis activo, nunca contra «el último»; correr `analyze` o proyectar no cambia cuál
-> es. `delete audit` rechaza borrar el análisis activo, y `prune audits` lo conserva aunque sea de los más viejos y lo
-> dice en su salida.
+> José fija la línea base con `set-baseline`, eligiendo un análisis del historial. La comparación mide contra ella; la
+> vista consolidada y la proyección parten del análisis activo; nada mide contra «el último». Correr `analyze`,
+> proyectar, cambiar el par activo o publicar una tanda no la cambia. `delete audit` rechaza borrar la línea base o el
+> análisis activo, y `prune audits` los conserva aunque sean de los más viejos y lo dice en su salida.
 
 <details><summary>Detail</summary>
 
-Cambia [F-CLIRV-R003](#F-CLIRV-R003), que conserva sólo los N más recientes: ver
-[DOUBT-PRUNE-ACTIVO](#DOUBT-PRUNE-ACTIVO). `delete audit` ya rechaza un análisis que un plan referencia
+La línea base se separa del par activo porque, desde el paquete E, el activo avanza: cada tanda abre sobre el análisis
+del curso que publicó la anterior (FEAT-TANDA), mientras las metas de vocabulario se miden contra la misma base en las
+cuatro tandas ([F-METAS-R005](#F-METAS-R005)). Una proyección guardada no puede ser línea base: no está en el
+historial (R004).
+
+Cambia [F-CLIRV-R003](#F-CLIRV-R003), que conservaba sólo los N más recientes (José, 30/9:
+[DOUBT-PRUNE-ACTIVO](#DOUBT-PRUNE-ACTIVO)). `delete audit` ya rechaza un análisis que un plan referencia
 ([F-CLIRV-R002](#F-CLIRV-R002)); esta regla lo cubre aunque el plan activo se haya podado. Mantiene
-[F-CDIFF-R002](#F-CDIFF-R002): cambiar el par activo sigue siendo la única manera de mover la línea base.
+[F-CDIFF-R002](#F-CDIFF-R002): el par activo sólo cambia con `set-active`.
+
+**Criterio**: con la base del 29/9 fijada como línea base, tres análisis nuevos y `prune audits --keep 3`, la base sigue
+y la salida dice «Kept the baseline 2026-09-30T11-54-02».
 
 **Error**: "Cannot delete audit '<id>': it is the active analysis. Point 'set-active' to another analysis first."
+
+**Error**: "Cannot delete audit '<id>': it is the baseline. Fix another one with 'set-baseline' first."
+
+**Error**: "Cannot fix '<id>' as the baseline: it is not an analysis in the history."
 
 </details>
 
@@ -184,7 +201,8 @@ Cambia [F-CLIRV-R003](#F-CLIRV-R003), que conserva sólo los N más recientes: v
 
 Mantiene [F-PIPRE-R003](#F-PIPRE-R003) y [F-PIPRE-R004](#F-PIPRE-R004), hoy incumplidas: el impacto se calcula contra el
 último análisis del historial (que puede ser viejo o proyectado) y, para cada contenedor, toma el primero de ese tipo en
-el curso. Con los contenedores reales, «My grandmother ___ (come) every year.» muestra su tema «Afirmativas regulares»
+el curso. Las dos puntas corren los analizadores del análisis del que salió la tarea de la propuesta, como pide R003 (José,
+30/9: el impacto por propuesta se rehace sobre la proyección). Con los contenedores reales, «My grandmother ___ (come) every year.» muestra su tema «Afirmativas regulares»
 de 100,0 a 99,5 en `lemma-absence`; hoy muestra «Afirmativas con $be$» sin cambio, y una propuesta de B2 mostraría el
 nivel A1. Mantiene [F-HALL-R010](#F-HALL-R010): el agregado deja de promediar las 11 claves con los cuartos COCA.
 
@@ -254,7 +272,7 @@ journeys:
         gate: [F-PROYU-R005]
         then: historial
       - id: historial
-        action: "get audits lista los mismos análisis, el último y el activo no cambian, y prune audits no cuenta la proyección"
+        action: "get audits lista los mismos análisis, el último, el activo y la línea base no cambian, y prune audits no cuenta la proyección"
         gate: [F-PROYU-R004, F-PROYU-R006]
         result: success
 ```
@@ -263,29 +281,41 @@ journeys:
 
 <a id="DOUBT-OTROS-CAMINOS"></a>
 ### Doubt[DOUBT-OTROS-CAMINOS] - ¿Qué pasa con los otros caminos de proyección?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): Stats deja de proyectar y lee la comparación (FEAT-METAS); el plan proyectado sigue, sobre
+- [x] Opción A (recomendada): Stats deja de proyectar y lee la comparación (FEAT-METAS); el plan proyectado sigue, sobre
   la proyección guardada de R005 y sin escribir análisis; el impacto por propuesta sigue, calculado como R007. El
   dashboard borra `ProjectedCourseWriter` y `ProjectedAnalysisService`.
 - [ ] Opción B: se retiran los tres ya: sólo quedan la vista consolidada y la comparación. Plan pierde el plan proyectado
   hasta que llegue la tanda del paquete E, y vuelve la misma palabra sugerida dos veces ([F-PLANEF-R001](#F-PLANEF-R001)).
 - [ ] Opción C: quedan como están, marcados «no comparable» en pantalla.
 
-**Answer**: Pendiente. Recomiendo A: la propuesta v2 dice que «la cola, la proyección y el antes y después de cada
-propuesta, que hoy funcionan, se conservan»; A los conserva con un solo cálculo. B corta un flujo que se usa, y C deja
-tres números para lo mismo.
+**Answer**: **Opción A** (José, 30/9): Stats se retira; el plan proyectado y el impacto por propuesta se rehacen sobre la
+proyección (R005 y R007). Sacar Stats y los dos servicios del dashboard es del paquete G.
 
 <a id="DOUBT-PRUNE-ACTIVO"></a>
 ### Doubt[DOUBT-PRUNE-ACTIVO] - ¿`prune audits` puede borrar el análisis activo?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): lo conserva siempre y lo dice («Kept the active analysis <id>»), aunque sea de los viejos.
+- [x] Opción A (recomendada): lo conserva siempre y lo dice («Kept the active analysis <id>»), aunque sea de los viejos.
 - [ ] Opción B: `prune audits` se rechaza entero si fuera a borrarlo.
 - [ ] Opción C: sin cambios; se documenta el riesgo.
 
-**Answer**: Pendiente. Recomiendo A: cambia [F-CLIRV-R003](#F-CLIRV-R003) en un solo caso y nunca pierde la línea base;
-B obliga a mover el activo para limpiar, y con C un `prune` de rutina borra la base contra la que se miden las tandas.
+**Answer**: **Opción A** (José, 30/9): `prune` nunca borra el análisis activo, y avisa; cambia
+[F-CLIRV-R003](#F-CLIRV-R003). Desde que la línea base se separa del activo, vale igual para ella (R006).
+
+<a id="DOUBT-LINEA-BASE-TANDAS"></a>
+### Doubt[DOUBT-LINEA-BASE-TANDAS] - ¿Qué análisis se fija como línea base de las cuatro tandas?
+**Status**: OPEN
+
+- [ ] Opción A (recomendada): un análisis nuevo del curso, corrido con los analizadores de la ronda 1 ya integrados, antes
+  de abrir la primera tanda.
+- [ ] Opción B: el del 29/9 (2026-09-30T11-54-02).
+
+**Answer**: Pendiente. Recomiendo A: el del 29/9 es anterior al contrato del hallazgo; no trae hallazgos, números de
+errores ni la medida de cada analizador, así que las filas de errores saldrían vacías, un cambio de medida no se podría
+mostrar aparte (F-METAS-R007) y la proyección tendría que caer a la corrida base. Con A, todo eso se mide desde el
+primer día y el 29/9 queda como referencia histórica.
 
 ## References
 
@@ -301,4 +331,7 @@ B obliga a mover el activo para limpiar, y con C un `prune` de rutina borra la b
   ([F-PLANEF-R001](#F-PLANEF-R001), [F-PLANEF-R002](#F-PLANEF-R002), [F-CSLATDC-R015](#F-CSLATDC-R015)). Citado por R005.
 - **FEAT-PIPRE** — Impacto por propuesta ([F-PIPRE-R003](#F-PIPRE-R003), [F-PIPRE-R004](#F-PIPRE-R004)). Citado por R007.
 - **FEAT-CLIRV, FEAT-REVAPR** — `delete`, `prune` y cómo `approve` escribe el curso ([F-CLIRV-R002](#F-CLIRV-R002),
-  [F-CLIRV-R003](#F-CLIRV-R003), [F-REVAPR-R011](#F-REVAPR-R011)). Citado por R001 y R006.
+  [F-CLIRV-R003](#F-CLIRV-R003), [F-REVAPR-R011](#F-REVAPR-R011)). Citado por R001 y R006; R006 cambia F-CLIRV-R003.
+- **FEAT-TANDA** (paquete E) — Qué es una tanda y cómo avanza el análisis activo al publicar. Citado en las definiciones
+  y en R006.
+- **FEAT-METAS** — La comparación contra la línea base ([F-METAS-R005](#F-METAS-R005)). Citado por R006.
