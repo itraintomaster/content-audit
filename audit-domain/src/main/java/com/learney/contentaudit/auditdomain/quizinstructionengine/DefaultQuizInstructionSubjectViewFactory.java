@@ -3,6 +3,7 @@ package com.learney.contentaudit.auditdomain.quizinstructionengine;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectView;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectViewFactory;
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import java.util.List;
@@ -30,9 +31,8 @@ public class DefaultQuizInstructionSubjectViewFactory implements QuizInstruction
         List<SentencePartEntity> sentenceParts = form != null ? form.getSentenceParts() : null;
         String subjectRef = quiz != null ? quiz.getId() : null;
 
-        QuizInstructionSubjectView view = new QuizInstructionSubjectView(
-                subjectRef, cefrLevel, topic, title, instructions, sentenceParts, null);
-        view.setMultipleChoice(form != null ? form.getMultipleChoice() : null);
-        return view;
+        MultipleChoiceEntity multipleChoice = form != null ? form.getMultipleChoice() : null;
+        return new QuizInstructionSubjectView(
+                subjectRef, cefrLevel, topic, title, instructions, sentenceParts, multipleChoice);
     }
 }

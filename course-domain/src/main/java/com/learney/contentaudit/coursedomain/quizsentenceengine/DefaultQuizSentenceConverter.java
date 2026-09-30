@@ -1,6 +1,7 @@
 package com.learney.contentaudit.coursedomain.quizsentenceengine;
 import com.learney.contentaudit.coursedomain.SentenceMode;
 
+import com.learney.contentaudit.coursedomain.FormEntities;
 import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
@@ -143,7 +144,7 @@ public class DefaultQuizSentenceConverter implements QuizSentenceConverter {
             }
         }
 
-        FormEntity result = new FormEntity(base, 0.0, null, null, null, null, null);
+        FormEntity result = FormEntities.copyOf(base);
         result.setSentenceParts(mergedParts);
         return result;
     }

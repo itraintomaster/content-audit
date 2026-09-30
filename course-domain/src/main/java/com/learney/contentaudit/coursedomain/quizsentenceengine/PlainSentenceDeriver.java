@@ -1,5 +1,6 @@
 package com.learney.contentaudit.coursedomain.quizsentenceengine;
 
+import com.learney.contentaudit.coursedomain.FormEntities;
 import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.FormKind;
 import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
@@ -84,7 +85,7 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
     List<String> derive(FormEntity form, SentenceMode mode) {
         // A multiple-choice quiz ignores the mode: the student reads the whole sentence and picks
         // one option for the gap, so there is no source sentence to leave out.
-        boolean multipleChoice = form != null && form.formKind() == FormKind.MULTIPLE_CHOICE;
+        boolean multipleChoice = form != null && FormEntities.formKind(form) == FormKind.MULTIPLE_CHOICE;
         if (mode != SentenceMode.REWRITE || multipleChoice) {
             // FILL or null → full-sentence, mode-blind derivation (legacy behaviour)
             // Apply post-processing to remove spaces before punctuation that arise from hint-stripping
@@ -167,7 +168,7 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
         if (form == null || form.getSentenceParts() == null || form.getSentenceParts().isEmpty()) {
             return List.of();
         }
-        if (form.formKind() == FormKind.MULTIPLE_CHOICE) {
+        if (FormEntities.formKind(form) == FormKind.MULTIPLE_CHOICE) {
             return deriveMultipleChoice(form);
         }
 

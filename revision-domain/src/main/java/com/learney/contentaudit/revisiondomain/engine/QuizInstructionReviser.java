@@ -6,7 +6,9 @@ import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionCompl
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectView;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectViewFactory;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
+import com.learney.contentaudit.coursedomain.FormEntities;
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntities;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
@@ -271,10 +273,10 @@ class QuizInstructionReviser implements Reviser {
 
         // Copy everything and change only the parts, so nothing the candidate carried --
         // unmodeled fields included -- is lost in the reconciliation.
-        FormEntity reconciledForm = new FormEntity(afterQuiz.getForm(), 0.0, null, null, null, null, null);
+        FormEntity reconciledForm = FormEntities.copyOf(afterQuiz.getForm());
         reconciledForm.setSentenceParts(reconciledParts);
 
-        QuizTemplateEntity reconciledQuiz = new QuizTemplateEntity(afterQuiz, null, null, null, null, null, null, null, null, null, 0.0, 0.0, 0.0, null, null, null, null, null, null, null, null, null);
+        QuizTemplateEntity reconciledQuiz = QuizTemplateEntities.copyOf(afterQuiz);
         reconciledQuiz.setForm(reconciledForm);
 
         return new CourseElementSnapshot(elementAfter.getNodeTarget(), elementAfter.getNodeId(),

@@ -2,9 +2,11 @@ package com.learney.contentaudit.revisiondomain.preservationengine;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.FormEntities;
 import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.FormKind;
 import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntities;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
@@ -66,7 +68,7 @@ class DefaultPreservationRepair implements PreservationRepair {
                 // does not correct multiple choice, so any snapshot of it predates its conversion
                 // and restoring from it would turn it back into a CLOZE. It is only reported
                 // when it has visibly lost its options.
-                if (quiz.formKind() == FormKind.MULTIPLE_CHOICE) {
+                if (QuizTemplateEntities.formKind(quiz) == FormKind.MULTIPLE_CHOICE) {
                     if (looksDegraded(quiz)) {
                         unrepairable.add(quizId);
                     }
@@ -129,7 +131,7 @@ class DefaultPreservationRepair implements PreservationRepair {
                 || CourseElementFieldDiff.classify(form.getLabel()) == AttributeState.ABSENT
                 || CourseElementFieldDiff.classify(form.getName()) == AttributeState.ABSENT
                 // A multiple-choice form that lost its options cannot be answered at all.
-                || (form.formKind() == FormKind.MULTIPLE_CHOICE && form.getMultipleChoice() == null);
+                || (FormEntities.formKind(form) == FormKind.MULTIPLE_CHOICE && form.getMultipleChoice() == null);
     }
 
     private static void applyRestoration(QuizTemplateEntity quiz, QuizTemplateEntity intact, String path) {
