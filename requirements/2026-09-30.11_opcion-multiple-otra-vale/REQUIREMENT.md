@@ -50,8 +50,9 @@ Alcanza los 2.810: A1 710, A2 860, B1 1.000, B2 240. Mantiene [F-EVCOST-R001](#F
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > En el contexto del enunciado, el veredicto dice qué opciones marcadas como incorrectas también valen y si la marcada
-> como correcta vale. Una opción que difiere de la correcta sólo en la forma —mayúscula, a o an, singular o plural— no
-> cuenta acá: la juzgan las reglas del paquete A.
+> como correcta vale. Una opción que difiere de la correcta sólo en la forma —mayúscula, a o an, singular o plural,
+> contraída o larga— no cuenta acá: la juzgan las reglas del paquete A, y si el juez igual la lista, se descarta con la
+> tabla del corrector ([F-JEXAM-R012](#F-JEXAM-R012)).
 
 <details><summary>Ejemplos de `escribir/unica.json` (`67fab6d5…`)</summary>
 
@@ -76,15 +77,16 @@ Usa las definiciones de [F-HALL-R002](#F-HALL-R002). El 077 puso en los 93 de A1
 
 <a id="F-MCVALE-R004"></a>
 ### Rule[F-MCVALE-R004] - Es una regla del analizador de opción múltiple válida
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: VALIDATED
 
 > El juez es una regla con modelo del analizador de opción múltiple válida (paquete A): sus hallazgos nombran ese
 > analizador y la regla «otra opción también vale», con costo modelo pago; el analizador tiene una sola ficha y un solo
 > nombre para correrlo, excluirlo y fijarle tope.
 
 Es como lo dibuja la propuesta («Analizador 3 · regla y juez») y el ejemplo de [F-HALL-R002](#F-HALL-R002): costo por
-hallazgo, y el de la ficha es el mayor ([F-HALL-R006](#F-HALL-R006)). Con tope 0 por omisión, correr el analizador sólo
-aplica sus reglas y reusa lo juzgado. Alternativa: [DOUBT-MCVALE-ANALIZADOR](#DOUBT-MCVALE-ANALIZADOR).
+hallazgo, y el de la ficha es el mayor ([F-HALL-R006](#F-HALL-R006)). Con tope 0 por omisión ([F-JEXAM-R010](#F-JEXAM-R010)),
+correr el analizador sólo aplica sus reglas y reusa lo juzgado. Lo decidió José el 30/9
+([DOUBT-MCVALE-ANALIZADOR](#DOUBT-MCVALE-ANALIZADOR)): una sola fila y una sola ficha para la opción múltiple.
 
 <a id="F-MCVALE-R005"></a>
 ### Rule[F-MCVALE-R005] - Reuso, tope, fallas y cobertura, como el juez de consigna
@@ -99,7 +101,9 @@ aplica sus reglas y reusa lo juzgado. Alternativa: [DOUBT-MCVALE-ANALIZADOR](#DO
 >    sin evaluar no tiene puntaje ni hallazgo de esta regla ([F-QINST-R004](#F-QINST-R004)).
 
 Valen además los grupos A y B de FEAT-JEXAM. Llega a tema, topic, nivel y curso ([F-HALL-R011](#F-HALL-R011)) sin mover el
-puntaje de vocabulario ([F-HALL-R009](#F-HALL-R009)).
+puntaje de vocabulario ([F-HALL-R009](#F-HALL-R009)). Tope por omisión: 0 ([F-JEXAM-R010](#F-JEXAM-R010)). Un ejercicio que
+las reglas del analizador evaluaron y el juez no, cuenta como no evaluado del todo por el analizador, para leer «algún
+error» como piso ([F-HALL-R008](#F-HALL-R008)) [ASSUMPTION].
 
 <a id="F-MCVALE-R006"></a>
 ### Rule[F-MCVALE-R006] - El examen del juez de opción múltiple
@@ -191,19 +195,24 @@ journeys:
 
 ## Open Questions
 
-Proveedor, tope, curso entero o muestra, y consultas a la vez se deciden una vez para los cinco jueces, en las dudas
-DOUBT-JUECES-* de [FEAT-JEXAM](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PROVEEDOR). Que la
-opción múltiple no la juzgue también una sola respuesta es [DOUBT-UNICA-MC](../2026-09-30.09_una-sola-respuesta/REQUIREMENT.md#DOUBT-UNICA-MC).
+Proveedor (`claude-cli`), tope (0 sin pedido), orden (examen fijo, `escribir/` y A1) y consultas a la vez (4) se
+decidieron una vez para los cinco jueces, en las dudas DOUBT-JUECES-* de
+[FEAT-JEXAM](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PROVEEDOR) (José, 30/9). Que la opción
+múltiple no la juzgue también una sola respuesta es [DOUBT-UNICA-MC](../2026-09-30.09_una-sola-respuesta/REQUIREMENT.md#DOUBT-UNICA-MC),
+resuelta igual.
 
 <a id="DOUBT-MCVALE-ANALIZADOR"></a>
 ### Doubt[DOUBT-MCVALE-ANALIZADOR] - ¿Un analizador de opción múltiple con reglas y juez, o dos analizadores?
-- [ ] Opción A (recomendada): uno, el de opción múltiple válida del paquete A, con el juez como una de sus reglas: una
+- [x] Opción A (recomendada): uno, el de opción múltiple válida del paquete A, con el juez como una de sus reglas: una
   fila y una ficha, como dibuja la propuesta.
 - [ ] Opción B: un analizador aparte, `choice-alternative`, con su ficha: la opción múltiple ocupa dos filas, y el paquete
   A no depende de este.
 
-**Answer**: Pendiente. Recomiendo A. Hay que acordar con el analista del paquete A el nombre y que su ficha declare costo
-modelo pago; si eso traba la ronda, B no cambia ninguna otra regla de este requirement.
+**Status**: RESOLVED (2026-09-30)
+
+**Answer**: **Opción A** (José, 30/9): el juez va dentro del analizador de Opción múltiple del paquete A, con una sola fila
+y una sola ficha. El paquete C diseña el juez (evaluador, libro, huella, guía y examen) y el paquete A el analizador que
+recibe sus veredictos; el nombre, el tope y el examen son los de ese analizador.
 
 ## References
 

@@ -11,7 +11,7 @@ feature:
 ## TL;DR
 
 **Qué**: Un analizador nuevo, `single-answer`, lista con lo que el alumno ve antes de contestar las respuestas que
-también valdrían y el corrector no acepta: la misma en otra forma la deriva a respuestas completas; la distinta, la marca.
+también valdrían y el corrector no acepta: la que ofrece la consigna la deriva a respuestas completas; la distinta, la marca.
 
 **Por qué**: El 077 encontró 476 ejercicios con otra respuesta igual de buena, y el juez de consigna, que revisa la
 resolubilidad, dio «cumple» en los 179 de A1 y A2.
@@ -29,7 +29,8 @@ Cómo quien revisa el curso intenta hoy encontrar ejercicios que marcan mal una 
 **Punto de fricción**: pasos 2 y 3.
 
 **Cambio mínimo necesario**: un analizador `single-answer`, de la familia de errores ([F-HALL-R007](#F-HALL-R007)), que
-juzga cada CLOZE en modo absoluto, separa la otra forma de la otra respuesta y usa lo común de FEAT-JEXAM.
+juzga cada CLOZE en modo absoluto, descarta lo que el corrector ya acepta, separa la opción que ofrece la consigna de la
+otra respuesta y usa lo común de FEAT-JEXAM.
 
 ## Reglas de Negocio
 
@@ -39,32 +40,35 @@ juzga cada CLOZE en modo absoluto, separa la otra forma de la otra respuesta y u
 
 > Por cada ejercicio CLOZE, el juez lee el nombre del tema, la consigna que ve el alumno, el enunciado con su pista y las
 > respuestas aceptadas. No lee la [traducción](glossary:Traducción), la miniteoría ni el audio, que la app muestra recién
-> al corregir. La huella es exactamente eso. Alcanza los 8.477 CLOZE; los 2.810 de opción múltiple son de FEAT-MCVALE
-> [ASSUMPTION].
+> al corregir. La huella es exactamente eso. Alcanza los 8.477 CLOZE; los 2.810 de opción múltiple son de FEAT-MCVALE.
 
 Por nivel: A1 1.692, A2 1.551, B1 3.554, B2 1.680. El nombre del tema no está en la ficha de la propuesta, pero la app lo
-muestra arriba del ejercicio [ASSUMPTION]. La opción múltiple: [DOUBT-UNICA-MC](#DOUBT-UNICA-MC).
+muestra arriba del ejercicio [ASSUMPTION]. La opción múltiple queda afuera por decisión de José, 30/9
+([DOUBT-UNICA-MC](#DOUBT-UNICA-MC)).
 
 <a id="F-UNICA-R002"></a>
-### Rule[F-UNICA-R002] - Lista las respuestas que también valdrían
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+### Rule[F-UNICA-R002] - Lista las respuestas que también valdrían, salvo las que el corrector acepta
+**Severity**: critical | **Validation**: VALIDATED
 
 > El veredicto lista toda respuesta no aceptada que un alumno podría escribir con lo que ve y que es correcta en ese
-> contexto, y clasifica cada una como:
-> 1. **la misma en otra forma**: difiere sólo en contracción o forma larga, en una variante ortográfica, en mayúscula,
->    puntuación o espacios, o en una alternativa que la consigna misma ofrece;
+> contexto, salvo las que el corrector acepta —forma contraída o larga, grafía británica o americana de la lista cerrada,
+> until o till, y lo que el corrector ya pasa por alto—, y clasifica cada una como:
+> 1. **una opción que ofrece la consigna**: la consigna o la pista la nombran —«to / until / till»— y el corrector no la
+>    acepta;
 > 2. **distinta y válida**: cualquier otra.
 >
 > Con la lista vacía, el ejercicio pasa.
 
-La frontera de la primera clase se fija con el paquete A, que imita al corrector: [DOUBT-UNICA-FORMA](#DOUBT-UNICA-FORMA).
+José, 30/9 ([F-JEXAM-R012](#F-JEXAM-R012)): la otra forma nunca es «otra respuesta que falta», porque el corrector la va
+a aceptar. Si el juez igual la lista, se descarta con la tabla del corrector, la misma que imita el paquete A; ninguna
+queda en el veredicto que cuenta. La frontera: [DOUBT-UNICA-FORMA](#DOUBT-UNICA-FORMA).
 
 <a id="F-UNICA-R003"></a>
-### Rule[F-UNICA-R003] - La misma en otra forma se deriva a respuestas completas
+### Rule[F-UNICA-R003] - Una opción que ofrece la consigna se deriva a respuestas completas
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> Una respuesta de la primera clase no cuenta como error de `single-answer`: da un hallazgo que sólo ordena, «la misma
-> respuesta en otra forma», cuya evidencia nombra la respuesta y al analizador de respuestas completas (paquete A) como
+> Una respuesta de la primera clase no cuenta como error de `single-answer`: da un hallazgo que sólo ordena, «una opción
+> que ofrece la consigna», cuya evidencia nombra la respuesta y al analizador de respuestas completas (paquete A) como
 > quien la arregla con una regla. Si todas son de esa clase, el ejercicio no suma error por este analizador.
 
 Evita contar dos veces lo que respuestas completas cuenta, y si ese analizador no marcó el ejercicio, este hallazgo lo deja
@@ -108,7 +112,7 @@ Usa las definiciones de [F-HALL-R002](#F-HALL-R002). El 077 puso en los 86 CLOZE
 >    puntaje ni hallazgo ([F-QINST-R004](#F-QINST-R004)).
 
 Valen además los grupos A y B de FEAT-JEXAM. Llega a tema, topic, nivel y curso ([F-HALL-R011](#F-HALL-R011)) sin mover el
-puntaje de vocabulario ([F-HALL-R009](#F-HALL-R009)).
+puntaje de vocabulario ([F-HALL-R009](#F-HALL-R009)). Tope por omisión: 0 ([F-JEXAM-R010](#F-JEXAM-R010)).
 
 <a id="F-UNICA-R006"></a>
 ### Rule[F-UNICA-R006] - El examen de single-answer
@@ -126,9 +130,9 @@ imposibles por pista faltante o alternativa cortada deberían salir marcados: se
 ### Rule[F-UNICA-R007] - Se arregla con una regla o en la mesa, y la mesa juzga con este juez
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
-> La otra forma se arregla con la regla de respuestas completas, agregándola con «|». La distinta va a la mesa, y cada
-> candidato —que la agrega como aceptada, pone una pista o cambia la oración para que quede una sola— lo juzga este juez
-> ([F-JEXAM-R005](#F-JEXAM-R005)): pasa si su lista queda vacía o sólo con otras formas.
+> La opción que ofrece la consigna se arregla con la regla de respuestas completas, agregándola con «|». La distinta va a
+> la mesa, y cada candidato —que la agrega como aceptada, pone una pista o cambia la oración para que quede una sola— lo
+> juzga este juez ([F-JEXAM-R005](#F-JEXAM-R005)): pasa si su lista queda vacía o sólo con opciones que ofrece la consigna.
 
 Ejemplo de la propuesta: «Does he need water? He ___ .» se arregla con «Yes, he ___». Cómo propone y decide la mesa es del
 paquete E.
@@ -139,7 +143,7 @@ paquete E.
 |---|---|
 | Pregunta | Con lo que ve el alumno, ¿hay otra respuesta igual de buena que el corrector no acepta? |
 | Lee | nombre del tema, consigna, enunciado con pista, respuestas aceptadas |
-| Reglas | otra respuesta distinta vale · la misma respuesta en otra forma (sólo ordena) |
+| Reglas | otra respuesta distinta vale · una opción que ofrece la consigna (sólo ordena) |
 | Meta y familia | 0 ejercicios con error · errores |
 | Evalúa y resuelve | ejercicio CLOZE · mesa, o regla de respuestas completas |
 | Costo | modelo pago: una consulta por ejercicio |
@@ -151,8 +155,8 @@ consigna, respuestas o nombre de tema cambió.
 ## Alcance
 
 - **Adentro**: el analizador, la lista de alternativas y su clase, la derivación, gravedad, puntaje, examen y ficha.
-- **Afuera**: la regla que agrega la otra forma y el imitador del corrector (A); la opción múltiple (FEAT-MCVALE); la mesa
-  (E); lo común de los jueces (FEAT-JEXAM).
+- **Afuera**: la regla que agrega la opción de la consigna, la tabla de equivalencias y el imitador del corrector (A); la
+  opción múltiple (FEAT-MCVALE); la mesa (E); lo común de los jueces (FEAT-JEXAM).
 
 ## User Journeys
 
@@ -173,12 +177,12 @@ journeys:
           - when: "No tiene veredicto y no queda tope"
             then: sin_evaluar
       - id: leer_lista
-        action: "El veredicto lista las otras respuestas válidas, cada una con su clase"
+        action: "El veredicto lista las otras respuestas válidas que el corrector no acepta, cada una con su clase"
         gate: [F-UNICA-R002]
         outcomes:
-          - when: "La lista está vacía"
+          - when: "La lista está vacía, o sólo tenía formas que el corrector acepta"
             then: pasa
-          - when: "Sólo hay la misma respuesta en otra forma"
+          - when: "Sólo hay opciones que ofrece la consigna"
             then: derivada
           - when: "Hay al menos una distinta y válida"
             then: error
@@ -201,31 +205,43 @@ journeys:
 
 ## Open Questions
 
-Proveedor, tope, curso entero o muestra, y consultas a la vez se deciden una vez para los cinco jueces, en las dudas
-DOUBT-JUECES-* de [FEAT-JEXAM](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PROVEEDOR). El choque
-con la vara comparativa de «resoluble» (criterio 5 de F-QICOR-R004) es el mismo de [DOUBT-TRSEN-CATALOGO](../2026-09-30.08_traduccion-y-sentido/REQUIREMENT.md#DOUBT-TRSEN-CATALOGO).
+Proveedor (`claude-cli`), tope (0 sin pedido), orden (examen fijo, `escribir/` y A1) y consultas a la vez (4) se
+decidieron una vez para los cinco jueces, en las dudas DOUBT-JUECES-* de
+[FEAT-JEXAM](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PROVEEDOR) (José, 30/9). El choque con la
+vara comparativa de «resoluble» (criterio 5 de F-QICOR-R004) se resolvió como el de
+[DOUBT-TRSEN-CATALOGO](../2026-09-30.08_traduccion-y-sentido/REQUIREMENT.md#DOUBT-TRSEN-CATALOGO): conviven hasta la mesa.
 
 <a id="DOUBT-UNICA-MC"></a>
 ### Doubt[DOUBT-UNICA-MC] - ¿Una sola respuesta mira también la opción múltiple?
-- [ ] Opción A (recomendada): no. En opción múltiple la pregunta es «¿otra opción también vale?» y la hace FEAT-MCVALE:
+- [x] Opción A (recomendada): no. En opción múltiple la pregunta es «¿otra opción también vale?» y la hace FEAT-MCVALE:
   una consulta por ejercicio y un solo conteo.
 - [ ] Opción B: sí, como dice la ficha de la propuesta («lee las opciones»): 2.810 consultas más y el mismo defecto
   contado por dos analizadores.
 
-**Answer**: Pendiente. Recomiendo A. Los 93 casos de opción múltiple de `escribir/unica.json` pasan al examen de FEAT-MCVALE.
+**Status**: RESOLVED (2026-09-30)
+
+**Answer**: **Opción A** (José, 30/9, «por lo demás, continúa»; la presentación mostraba «sólo los que se escriben:
+8.477»). Los 93 casos de opción múltiple de `escribir/unica.json` pasan al examen de FEAT-MCVALE.
 
 <a id="DOUBT-UNICA-FORMA"></a>
 ### Doubt[DOUBT-UNICA-FORMA] - ¿Qué cuenta como «la misma respuesta en otra forma»?
-- [ ] Opción A (recomendada): contracción o forma larga, variante ortográfica, mayúscula, puntuación o espacios, y las
+- [x] Opción A (recomendada): contracción o forma larga, variante ortográfica, mayúscula, puntuación o espacios, y las
   alternativas que la consigna ofrece: lo que una regla puede agregar con «|», acordado con el paquete A.
 - [ ] Opción B: además sinónimos y paráfrasis: lo que hoy es «distinta y válida» pasa a derivarse y deja de contarse acá.
 
-**Answer**: Pendiente. Recomiendo A: separa lo que arregla una regla de lo que necesita la mesa.
+**Status**: RESOLVED (2026-09-30)
+
+**Answer**: **Opción A, ajustada por José el 30/9** («que acepte siempre ambas»): lo que el corrector acepta —forma
+contraída o larga, grafía británica o americana de la lista cerrada, until o till, y lo que ya pasa por alto— deja de ser
+«otra respuesta» y no da hallazgo; la primera clase se queda con las alternativas que ofrece la consigna y el corrector
+no acepta, que una regla agrega con «|» ([F-UNICA-R002](#F-UNICA-R002), [F-JEXAM-R012](#F-JEXAM-R012)). Los sinónimos
+siguen siendo «distinta y válida».
 
 ## References
 
 - **FEAT-HALL** — Familia de errores, hallazgo que sólo ordena, gravedad y conteos. Citado por R002 a R005.
-- **FEAT-JEXAM** — Examen, conjunto, candidato de la mesa, consultas a la vez y dudas comunes. Citado por R005 a R007.
+- **FEAT-JEXAM** — Examen, conjunto, candidato de la mesa, consultas a la vez, tope 0, formas que el corrector acepta y
+  dudas comunes. Citado por R002 y R005 a R007.
 - **FEAT-EVCOST** — Huella, reuso y fallas. Citado por R005.
 - **FEAT-QINST** — Resolubilidad que el juez de consigna ya mira; fallas y lo no evaluado. Citado por R005.
 - **FEAT-QICOR** — «Resoluble y del mismo tipo» en modo comparativo. Citado en el recorrido.

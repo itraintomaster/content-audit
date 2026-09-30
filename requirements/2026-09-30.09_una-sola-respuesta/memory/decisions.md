@@ -4,6 +4,19 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Mapa de contenido: title, instructions (la del ejercicio), exercise, acceptedAnswers; sólo
+  CLOZE. El clasificador descarta con `CorrectorMatcher.accepts` (paquete A) lo que el corrector ya acepta antes de contar:
+  la regla de las formas no depende del modelo. Un hallazgo por respuesta, con la respuesta como marca.
+
+2026-09-30 — analyst — Cambio de José, 30/9 (short/long forms, «que acepte siempre ambas»): lo que el corrector acepta
+  —contraída o larga, grafías británica/americana de la lista cerrada, until/till, y lo que ya pasa por alto— deja de ser
+  «otra respuesta» y no da hallazgo. La primera clase pasa a ser «una opción que ofrece la consigna» (rank-only, la arregla
+  una regla de A con «|»). R002 reescrita (VALIDATED), R003 y R007 renombradas, J001 ajustado.
+  why: el corrector va a aceptar las dos formas siempre; listarlas sería contar un problema que no existe.
+2026-09-30 — analyst — DOUBT-UNICA-MC → A (José, 30/9, «por lo demás, continúa»): sólo CLOZE; R001 pierde el [ASSUMPTION].
+2026-09-30 — analyst — DOUBT-UNICA-FORMA → A ajustada por el cambio de arriba. Lo que el juez liste igual se descarta
+  con la tabla del corrector (la que imita el paquete A): depende de ese imitador, anotado en los ganchos del integrador.
+
 2026-09-30 — analyst — Código FEAT-UNICA / F-UNICA; nombre del analizador `single-answer`, familia de errores.
 
 2026-09-30 — analyst — Alcance sólo CLOZE (8.477) [ASSUMPTION]; la opción múltiple la juzga FEAT-MCVALE (DOUBT-UNICA-MC).

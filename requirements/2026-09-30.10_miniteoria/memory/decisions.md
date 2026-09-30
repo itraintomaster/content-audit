@@ -4,6 +4,21 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Consulta por tema (onKnowledge arma el sujeto; el tope cuenta temas), pero puntaje, hallazgo y
+  diagnóstico en cada ejercicio: así «sólo donde se muestra» sale sin tocar F-HALL-R008 (el hallazgo de tema contaría en
+  todo el tema). `MiniTheoryErrorScope` (SHOWN_ONLY por omisión, WHOLE_TOPIC) en la config es el parámetro de José.
+2026-09-30 — architect — Mapa de contenido numerado (M1…, E1…) en el orden del tema; el repartidor numera igual. La
+  marca del hallazgo es el texto de la miniteoría, para que la mesa agrupe una reescritura por miniteoría.
+
+2026-09-30 — analyst — DOUBT-MINIT-VARIAS → B (José, 30/9 a la tarde: «cuenta sólo donde se muestra»; ⚠ se confirma
+  con José al volver). R003 reescrita (VALIDATED): el hallazgo va en cada ejercicio que muestra la miniteoría con problema
+  y cuenta ahí; «en todo el tema» queda como parámetro del analizador. R004 (puntaje por ejercicio), R005.4, R007 y J001
+  ajustados.
+  why: corrige la decisión de la mañana, tomada con la premisa equivocada de una miniteoría por tema. Poner el hallazgo en
+  el ejercicio respeta F-HALL-R008 tal como José la aprobó (el de tema cuenta en todo el tema) sin tocar el contrato 0.3.
+2026-09-30 — analyst — DOUBT-MINIT-TEMA-GRANDE → A (José, 30/9, «por lo demás, continúa»): una consulta por tema.
+2026-09-30 — analyst — R002: que la miniteoría pida una forma no es problema de este juez; lo marca A (F-JEXAM-R012).
+
 2026-09-30 — analyst — Código FEAT-MINIT / F-MINIT; nombre del analizador `mini-theory`, familia de errores, evalúa el tema
   (KNOWLEDGE), una consulta por tema (413).
 

@@ -1,0 +1,840 @@
+code: FEAT-JEXAM
+description: "FEAT-JEXAM: lo común de los cinco jueces con modelo y lo que cambia\
+  \ del juez de consigna sin tocar lo que lee. El libro de evaluaciones aprende a\
+  \ resolver en lote con N consultas a la vez, a decir si un contenido ya tiene resultado\
+  \ sin contarlo y a nombrar por qué dejó de consultar; suma un libro de examen que\
+  \ reusa sólo veredictos de la misma versión y escribe aparte. Un runtime común de\
+  \ jueces abre las sesiones con el freno del examen (sin examen aprobado, tope 0),\
+  \ el tope 0 por omisión y las 4 consultas a la vez; arma la cobertura con el costo\
+  \ de lo pendiente y el examen de cada versión. El examen se rinde con un archivo\
+  \ de ejercicios sin lo esperado, sobre la foto del 29/9, y su resultado se mide\
+  \ afuera y se registra por versión. Los adaptadores de los jueces nuevos reusan\
+  \ el módulo del juez de consigna, con un evaluador genérico por agente y una verificació\
+  n sin costo de la sesión del proveedor. Los tipos de 0.2 y 0.3 (AnalyzerDescriptor\
+  \ ampliado, AnalyzerCatalog, AnalyzerRuleCard, FindingSeverity, AuditableQuiz.multipleChoice)\
+  \ se usan sin declararse acá; el render de los jueces es QuizStudentViewRenderer\
+  \ (gancho A-01) y la tabla del corrector, CorrectorMatcher (paquete A)."
+modules:
+- name: evaluation-ledger-domain
+  models:
+  - name: EvaluationRequestMode
+    type: enum
+    fields:
+    - name: REUSE_OR_EVALUATE
+      description: "Lo de resolve: reusa lo registrado y, si falta, consulta dentro\
+        \ del tope (F-EVCOST-R003)."
+    - name: FORCE
+      description: "Lo de resolveForced: consulta aunque haya resultado; si no hay\
+        \ tope, queda pendiente (F-EVCOST-R008)."
+    - name: PREFER_NEW
+      description: "Lo de resolvePreferringNew: consulta si hay tope y, si no, conserva\
+        \ lo registrado (F-QINST-R018)."
+    - name: REUSE_ONLY
+      description: "Lo de resolveWithoutConsulting: nunca consulta ni gasta tope."
+    _change: add
+  - name: EvaluationRequest
+    type: record
+    fields:
+    - name: subject
+      type: EvaluationSubject
+    - name: mode
+      type: EvaluationRequestMode
+      description: Cómo se resuelve este sujeto; mapea uno a uno a los cuatro métodos
+        de a uno de la sesión.
+    _change: add
+  interfaces:
+  - name: EvaluationSession
+    sealed: false
+    exposes:
+    - signature: "resolveAll(List<EvaluationRequest> requests,int maxConcurrent):\
+        \ List<EvaluationResolution>"
+      _change: add
+    - signature: "recorded(EvaluationSubject subject): boolean"
+      _change: add
+    - signature: "unavailableReason(): Optional<String>"
+      _change: add
+    _change: modify
+  - name: EvaluationTimeline
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "recordedTimes(String evaluatorId): List<Instant>"
+    _change: add
+  packages:
+  - name: evaluationsession
+    visibility: public
+    implementations:
+    - name: ExamEvaluationSessionFactory
+      requiresInject:
+      - name: ledger
+        type: EvaluationLedger
+        description: "El mismo libro del curso. Las sesiones que abre lo leen filtrado\
+          \ por versión y escriben en su espacio de examen, nunca en el del curso\
+          \ (F-JEXAM-R002)."
+      - name: fingerprinter
+        type: ContentFingerprinter
+        description: "La misma huella que el curso: un ejercicio del examen se reconoce\
+          \ igual que en el curso."
+      visibility: public
+      implements:
+      - EvaluationSessionFactory
+      _change: add
+    - name: ExamScopedEvaluationLedger
+      requiresInject:
+      - name: ledger
+        type: EvaluationLedger
+      - name: pinnedVersion
+        type: String
+        description: "La versión del evaluador que rinde. findLatest sólo devuelve\
+          \ registros de esta versión, primero del espacio de examen y después del\
+          \ curso; append escribe sólo en el espacio de examen (evaluatorId con prefijo\
+          \ exam:)."
+      implements:
+      - EvaluationLedger
+      _change: add
+    _change: modify
+  _change: modify
+- name: evaluation-ledger-infrastructure
+  implementations:
+  - name: FileSystemEvaluationLedger
+    implements:
+    - EvaluationLedger
+    - EvaluationTimeline
+    _change: modify
+  _change: modify
+- name: audit-domain
+  models:
+  - name: EvaluationRunPurpose
+    type: enum
+    fields:
+    - name: COURSE
+      description: "Corrida sobre un curso (el de hoy o uno candidato de la mesa):\
+        \ libro del curso y freno del examen (F-JEXAM-R003)."
+    - name: EXAM
+      description: "Rendir el examen: libro de examen, sin freno, y sólo se piden\
+        \ los ejercicios del archivo (F-JEXAM-R001, R002)."
+    _change: add
+  - name: EvaluationRunPolicy
+    type: record
+    fields:
+    - name: purpose
+      type: EvaluationRunPurpose
+      description: "Null = COURSE. Lo lee el runtime de jueces, nunca la sesión."
+      _change: add
+    - name: maxConcurrentEvaluations
+      type: Integer
+      description: "Consultas a la vez (F-JEXAM-R006). Null = la del runtime de jueces,\
+        \ 4 (José, 30/9)."
+      _change: add
+    _change: modify
+  interfaces:
+  - name: JudgeExamRegistry
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "record(JudgeExamRecord record): void"
+    - signature: "latest(String judgeName,String judgeVersion): Optional<JudgeExamRecord>"
+    - signature: "history(String judgeName): List<JudgeExamRecord>"
+    _change: add
+  - name: JudgeRuntimeConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getMaxConcurrentEvaluations(): int"
+    - signature: "getDefaultMaxNewEvaluations(String judgeName): int"
+    - signature: "getDefaultRatePerHour(String judgeName): double"
+    _change: add
+    extends:
+    - SelfDescribingConfig
+  packages:
+  - name: judging
+    description: "Contrato común de los jueces con modelo (FEAT-JEXAM grupos A y B):\
+      \ cómo se abre una corrida de un juez (freno del examen, tope 0 por omisión,\
+      \ consultas a la vez), cómo se decide qué pide cada unidad (conjunto declarado,\
+      \ re-evaluación, examen), cómo se declara la cobertura con el costo de lo pendiente\
+      \ y el examen de cada versión y el registro del examen por versión. El render\
+      \ «como lo ve el alumno» (QuizStudentViewRenderer) y la comparación del corrector\
+      \ (CorrectorMatcher) no son de acá: son los del integrador y del paquete A,\
+      \ una sola vez para todos. Lo usan el juez de consigna, los tres analizadores\
+      \ nuevos y el juez de opción múltiple que aloja el analizador del paquete A."
+    visibility: public
+    models:
+    - name: JudgeExamStatus
+      type: enum
+      fields:
+      - name: APPROVED
+        description: "Medido afuera y aprobado: la versión consulta sobre el curso."
+      - name: FAILED
+        description: "Medido afuera y reprobado: la versión sólo reusa (F-JEXAM-R003)."
+      - name: TAKEN
+        description: "Rindió todos los ejercicios y todavía no se registró la medició\
+          n: sólo reusa."
+      - name: NOT_TAKEN
+        description: "Esa versión nunca rindió: sólo reusa."
+      - name: NO_VERSION
+        description: "El juez no puede enunciar su versión: no disponible (F-QINST-R010)."
+      _change: add
+    - name: JudgeExamGroupResult
+      type: record
+      fields:
+      - name: group
+        type: String
+        description: "Nombre del grupo tal como lo mide quien tiene el oro (a, b,\
+          \ c o el de la práctica)."
+      - name: cases
+        type: int
+      - name: asExpected
+        type: int
+      - name: notAsExpected
+        type: int
+      _change: add
+    - name: JudgeExamRecord
+      type: record
+      fields:
+      - name: judgeName
+        type: String
+        description: "Nombre canónico del analizador que aloja al juez (F-HALL-R005);\
+          \ para el de opción múltiple, el del analizador del paquete A."
+      - name: judgeVersion
+        type: String
+        description: "Versión compuesta: la de cada evaluador del juez, en orden,\
+          \ unidas por «+»."
+      - name: status
+        type: JudgeExamStatus
+      - name: casesJudged
+        type: int
+      - name: casesNotJudged
+        type: int
+      - name: groups
+        type: List<JudgeExamGroupResult>
+      - name: mismatchedCaseIds
+        type: List<String>
+        description: "Ejercicios que no dieron lo esperado, según la medición de afuera."
+      - name: goalMet
+        type: boolean
+      - name: photo
+        type: String
+        description: "Qué foto del curso se leyó (ruta y huella de la carpeta), para\
+          \ que un examen no se confunda con otro."
+      - name: measuredBy
+        type: String
+        description: Qué midió el resultado (script y su versión); vacío en un registro
+          TAKEN.
+      - name: recordedAt
+        type: Instant
+      _change: add
+    - name: JudgeExamStanding
+      type: record
+      fields:
+      - name: judgeName
+        type: String
+      - name: judgeVersion
+        type: String
+      - name: status
+        type: JudgeExamStatus
+      - name: consultsOnCourse
+        type: boolean
+        description: "Sólo con APPROVED. Si es false, la corrida sobre el curso tiene\
+          \ tope 0 aunque se haya pedido otro (F-JEXAM-R003)."
+      - name: reason
+        type: String
+        description: "Por qué no consulta, en castellano, para el informe: sin examen,\
+          \ reprobada, rendida sin medir o sin versión."
+      _change: add
+    - name: JudgeVersionStanding
+      type: record
+      fields:
+      - name: judgeVersion
+        type: String
+      - name: verdictCount
+        type: int
+      - name: examStatus
+        type: JudgeExamStatus
+      _change: add
+    - name: JudgeCostEstimate
+      type: record
+      fields:
+      - name: pendingUnits
+        type: int
+        description: Ejercicios o temas sin veredicto para lo que el juez lee hoy
+          (F-JEXAM-R004).
+      - name: pendingConsultations
+        type: int
+        description: "Consultas que faltan: la suma de lo pendiente y fallido de cada\
+          \ evaluador (el de traducción cuenta dos por ejercicio)."
+      - name: ratePerHour
+        type: double
+      - name: rateMeasured
+        type: boolean
+        description: True si sale del promedio entre veredictos seguidos de sus evaluadores
+          dentro de cada corrida (cortando en pausas de más de 10 minutos); false
+          si es el ritmo por omisión.
+      - name: hoursOneAtATime
+        type: double
+      - name: maxConcurrentEvaluations
+        type: int
+      - name: hoursConcurrent
+        type: double
+      _change: add
+    - name: EvaluatorCoverage
+      type: record
+      fields:
+      - name: evaluatorId
+        type: String
+      - name: coverage
+        type: EvaluationCoverage
+      - name: consultedVersion
+        type: String
+        description: Null si esta corrida no lo consultó (F-QINST-R005).
+      _change: add
+    - name: JudgeCoverageDiagnosis
+      type: record
+      fields:
+      - name: judgeName
+        type: String
+      - name: unit
+        type: AuditTarget
+        description: "QUIZ o KNOWLEDGE: la unidad de consulta. Los hallazgos van siempre\
+          \ en el ejercicio."
+      - name: reached
+        type: int
+      - name: evaluated
+        type: int
+      - name: notEvaluated
+        type: int
+      - name: evaluators
+        type: List<EvaluatorCoverage>
+      - name: standing
+        type: JudgeExamStanding
+        description: "El examen de la versión vigente (F-JEXAM-R001 inv. 2, R003)."
+      - name: versions
+        type: List<JudgeVersionStanding>
+        description: "Cada versión que aporta veredictos puntuados, con su examen\
+          \ (F-JEXAM-R001 inv. 2)."
+      - name: unavailableReason
+        type: String
+        description: "Por qué dejó de consultar: la causa y cómo se resuelve (F-JEXAM-R011).\
+          \ Null si no pasó."
+      - name: cost
+        type: JudgeCostEstimate
+      - name: unmatchedDeclaredIds
+        type: List<String>
+      _change: add
+    - name: JudgeSessions
+      type: record
+      fields:
+      - name: judgeName
+        type: String
+      - name: judgeVersion
+        type: String
+        description: Null si algún evaluador no enuncia versión.
+      - name: evaluatorIds
+        type: List<String>
+      - name: sessions
+        type: List<EvaluationSession>
+        description: "Una por evaluador, en el mismo orden, abiertas con el tope efectivo."
+      - name: standing
+        type: JudgeExamStanding
+      - name: effectivePolicy
+        type: EvaluationRunPolicy
+        description: "La política con la que se corre de verdad: propósito, tope (0\
+          \ si el freno aplica) y consultas a la vez completados."
+      _change: add
+    - name: JudgeRequestPlan
+      type: record
+      fields:
+      - name: units
+        type: List<AuditNode>
+        description: "Las unidades que se piden, en el orden del recorrido. En EXAM,\
+          \ sólo las del archivo."
+      - name: modes
+        type: List<EvaluationRequestMode>
+        description: Alineada con units.
+      - name: unmatchedDeclaredIds
+        type: List<String>
+      _change: add
+    - name: JudgeUnitTally
+      type: record
+      fields:
+      - name: unit
+        type: AuditTarget
+      - name: reached
+        type: int
+      - name: evaluated
+        type: int
+      - name: notEvaluated
+        type: int
+      - name: verdictsByVersion
+        type: "Map<String,Integer>"
+      - name: unmatchedDeclaredIds
+        type: List<String>
+      _change: add
+    - name: JudgeExamOutcome
+      type: enum
+      fields:
+      - name: FAILS
+        description: Tiene al menos un hallazgo que cuenta como error de las reglas
+          del juez.
+      - name: MARKED
+        description: Sólo hallazgos que ordenan (p. ej. «los jueces no coinciden»).
+      - name: PASSES
+      - name: NOT_JUDGED
+      _change: add
+    - name: JudgeExamVerdict
+      type: record
+      fields:
+      - name: caseId
+        type: String
+      - name: judgeName
+        type: String
+      - name: judgeVersion
+        type: String
+      - name: outcome
+        type: JudgeExamOutcome
+      - name: worstSeverity
+        type: FindingSeverity
+        description: Null si no hay hallazgo que cuente.
+      - name: rules
+        type: List<String>
+      - name: detail
+        type: String
+        description: "La observación de cada hallazgo, en castellano, para revisar\
+          \ a mano."
+      _change: add
+    interfaces:
+    - name: JudgeRuntime
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "open(String judgeName,List<Evaluator> evaluators,EvaluationRunPolicy\
+          \ policy): JudgeSessions"
+        throwsExceptions:
+        - EmptyReevaluationSetException
+        - AmbiguousReevaluationScopeException
+      - signature: "plan(List<AuditNode> units,EvaluationRunPolicy policy): JudgeRequestPlan"
+      - signature: "coverage(JudgeSessions opened,JudgeUnitTally tally): JudgeCoverageDiagnosis"
+      - signature: "standing(String judgeName,String judgeVersion): JudgeExamStanding"
+      _change: add
+    - name: JudgeExamVerdictExporter
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "export(AuditReport report,AnalyzerDescriptor card,Set<String>\
+          \ caseIds,JudgeCoverageDiagnosis coverage): List<JudgeExamVerdict>"
+      _change: add
+    _change: add
+  - name: judgingengine
+    description: "Motor común de los jueces. Sus clases sólo las construye la raí\
+      z de composición; los jueces reciben los puertos de judging por inyección. DefaultJudgeRuntime\
+      \ es el único lugar que decide el freno del examen y los valores por omisió\
+      n, así que ningún juez puede olvidarlos."
+    visibility: public
+    implementations:
+    - name: DefaultJudgeRuntime
+      requiresInject:
+      - name: courseSessions
+        type: EvaluationSessionFactory
+        description: Sesiones sobre el libro del curso (propósito COURSE).
+      - name: examSessions
+        type: EvaluationSessionFactory
+        description: "ExamEvaluationSessionFactory: sesiones del examen (propósito\
+          \ EXAM)."
+      - name: examRegistry
+        type: JudgeExamRegistry
+      - name: timeline
+        type: EvaluationTimeline
+        description: "Para el ritmo medido: el promedio entre veredictos seguidos\
+          \ de los evaluadores del juez, dentro de cada corrida. La mediana subestima\
+          \ las horas (15,5 s contra 20,4 s en el juez de consigna)."
+      - name: config
+        type: JudgeRuntimeConfig
+      visibility: public
+      implements:
+      - JudgeRuntime
+      _change: add
+    - name: DefaultJudgeExamVerdictExporter
+      visibility: public
+      implements:
+      - JudgeExamVerdictExporter
+      _change: add
+    allowedClients:
+    - audit-cli
+    _change: add
+  - name: quizinstruction
+    visibility: public
+    models:
+    - name: QuizInstructionCoverageDiagnosis
+      type: record
+      fields:
+      - name: judge
+        type: JudgeCoverageDiagnosis
+        description: "Lo común de todo juez: examen de la versión y de las que aportan,\
+          \ costo de lo pendiente y por qué dejó de consultar. Se suma sin tocar los\
+          \ campos de hoy."
+        _change: add
+      _change: modify
+    _change: modify
+  - name: quizinstructionengine
+    visibility: public
+    models:
+    - name: QuizInstructionReevaluationDecision
+      type: enum
+      fields:
+      - name: EXAM_CASE
+        description: "Propósito EXAM y el ejercicio está en el archivo: se resuelve\
+          \ como ORDINARY, así una versión que ya rindió vuelve a rendir sin consultar\
+          \ (F-JEXAM-R002)."
+        _change: add
+      - name: NOT_REQUESTED
+        description: "Propósito EXAM y el ejercicio no está en el archivo: no se pide\
+          \ ni se cuenta."
+        _change: add
+      visibility: internal
+      _change: modify
+    implementations:
+    - name: DefaultQuizInstructionAnalyzerFactory
+      requiresInject:
+      - name: sessionFactory
+        type: EvaluationSessionFactory
+        _change: delete
+      - name: runtime
+        type: JudgeRuntime
+        description: "Abre la sesión con el freno del examen (DOUBT-CONSIGNA-HABILITA,\
+          \ José 30/9), el tope 0 por omisión (F-JEXAM-R010) y las consultas a la\
+          \ vez. El rechazo de un conjunto ininterpretable sigue antes de abrir nada."
+      _change: modify
+    - name: QuizInstructionAnalyzer
+      requiresInject:
+      - name: opened
+        type: JudgeSessions
+        description: "Lo que abrió el runtime: la versión, su examen y la política\
+          \ efectiva. La sesión sigue llegando por su parámetro de hoy."
+      - name: runtime
+        type: JudgeRuntime
+        description: "Arma en onCourseComplete la parte común de la cobertura. onQuiz\
+          \ junta los pedidos y onCourseComplete los resuelve con resolveAll: lo que\
+          \ lee y la huella no cambian (F-JEXAM-R007)."
+      _change: modify
+    _change: modify
+  _change: modify
+- name: quiz-instruction-infrastructure
+  description: "Adaptadores de los jueces con modelo. Nació con el del juez de consigna\
+    \ (instructionjudge: agente quiz-instruction-validator, cinco entradas verbatim,\
+    \ veredicto conservador como OUTPUT_UNUSABLE, fallas de servicio como EVALUATOR_UNAVAILABLE,\
+    \ versión derivada de la definición, el modelo y el proveedor) y desde FEAT-JEXAM\
+    \ aloja también el evaluador genérico por agente de los jueces nuevos (agentjudge)\
+    \ y los lectores de sus veredictos, un paquete por juez. Todos comparten la verificació\
+    n sin costo de la sesión del proveedor (F-JEXAM-R011). allowedClients=[audit-cli]:\
+    \ es un detalle de la raíz de composición."
+  models:
+  - name: AgentJudgeSpec
+    type: record
+    fields:
+    - name: evaluatorId
+      type: String
+      description: "Nombre del agente bajo .sentinel/agents/ y del evaluador en el\
+        \ libro: dice qué pregunta se hizo (F-EVCOST-R001)."
+    - name: verdictArtifactKey
+      type: String
+      description: Artifact que emite el agente con el veredicto JSON.
+    - name: displayName
+      type: String
+      description: Cómo se lo nombra en los mensajes al operador.
+    _change: add
+  - name: AgentJudgeConfig
+    type: record
+    fields:
+    - name: providerName
+      type: String
+      description: "claude-cli por omisión (José, 30/9)."
+    - name: baseUrl
+      type: String
+    - name: apiKey
+      type: String
+    - name: modelName
+      type: String
+    - name: temperature
+      type: Double
+    - name: timeoutSeconds
+      type: Integer
+    _change: add
+  - name: JudgeUnavailabilityCause
+    type: enum
+    fields:
+    - name: SESSION_EXPIRED
+      description: "El proveedor de sesión local no tiene sesión o venció: se renueva\
+        \ con su herramienta (claude auth login)."
+    - name: QUOTA_EXHAUSTED
+    - name: SERVICE_UNREACHABLE
+    - name: TIMEOUT
+    - name: NOT_INSTALLED
+    - name: UNKNOWN
+    _change: add
+  - name: JudgeProviderReadiness
+    type: record
+    fields:
+    - name: ready
+      type: boolean
+    - name: cause
+      type: JudgeUnavailabilityCause
+    - name: detail
+      type: String
+    - name: remedy
+      type: String
+      description: "Cómo se resuelve, en castellano, listo para el informe."
+    _change: add
+  interfaces:
+  - name: AgentJudgeFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(AgentJudgeSpec spec,AgentJudgeConfig config,AgentGraphRunner\
+        \ agentGraphRunner,AgentDefinitionLocator agentDefinitionLocator): Evaluator"
+    _change: add
+  - name: JudgeProviderReadinessProbe
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "probe(LlmProviderResolved provider): JudgeProviderReadiness"
+    - signature: "explain(LlmProviderResolved provider,String failure): JudgeProviderReadiness"
+    _change: add
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultQuizInstructionJudgeFactory
+    suppressed: false
+    interface: QuizInstructionJudgeFactory
+  - type: Factory
+    implementations:
+    - DefaultAgentJudgeFactory
+    suppressed: false
+    interface: AgentJudgeFactory
+  packages:
+  - name: agentjudge
+    description: "Evaluador genérico de los jueces nuevos: corre el agente de su AgentJudgeSpec\
+      \ con el mapa de contenido verbatim como entradas, lee el artifact del veredicto\
+      \ y lo devuelve como EvaluationEmitted; un veredicto conservador ({\"outputUnusable\"\
+      : true}) es OUTPUT_UNUSABLE y toda falla de servicio EVALUATOR_UNAVAILABLE,\
+      \ con la causa y el remedio que da la verificación del proveedor. Antes de su\
+      \ primera consulta verifica sin costo la sesión del proveedor, una sola vez\
+      \ por instancia aunque haya varias consultas a la vez. La versión es el mismo\
+      \ digest que la del juez de consigna: definición del agente, modelo y proveedor\
+      \ efectivo. Sólo la factory y la verificación son públicas."
+    visibility: public
+    interfaces:
+    - name: AgentJudgeVersionResolver
+      sealed: false
+      exposes:
+      - signature: "resolve(AgentJudgeSpec spec,AgentJudgeConfig config,LlmProviderResolved\
+          \ provider): Optional<String>"
+      visibility: internal
+      _change: add
+    - name: AgentJudgeChatModelFactory
+      sealed: false
+      exposes:
+      - signature: "create(AgentJudgeConfig config,LlmProviderResolved provider):\
+          \ ChatModel"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultAgentJudgeFactory
+      requiresInject:
+      - name: llmProviderResolver
+        type: LlmProviderResolver
+        description: El mismo criterio de validez de configuración que el juez de
+          consigna (F-QINST-R016).
+      - name: readinessProbe
+        type: JudgeProviderReadinessProbe
+      visibility: public
+      implements:
+      - AgentJudgeFactory
+      _change: add
+    - name: AgentJudge
+      requiresInject:
+      - name: spec
+        type: AgentJudgeSpec
+      - name: config
+        type: AgentJudgeConfig
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      - name: versionResolver
+        type: AgentJudgeVersionResolver
+      - name: chatModelFactory
+        type: AgentJudgeChatModelFactory
+      - name: provider
+        type: LlmProviderResolved
+      - name: readinessProbe
+        type: JudgeProviderReadinessProbe
+      implements:
+      - Evaluator
+      _change: add
+    - name: DefaultAgentJudgeVersionResolver
+      requiresInject:
+      - name: agentDefinitionLocator
+        type: AgentDefinitionLocator
+      implements:
+      - AgentJudgeVersionResolver
+      _change: add
+    - name: SentinelAgentsAgentJudgeChatModelFactory
+      implements:
+      - AgentJudgeChatModelFactory
+      _change: add
+    - name: DefaultJudgeProviderReadinessProbe
+      visibility: public
+      implements:
+      - JudgeProviderReadinessProbe
+      _change: add
+    _change: add
+  - name: instructionjudge
+    visibility: public
+    implementations:
+    - name: DefaultQuizInstructionJudgeFactory
+      requiresInject:
+      - name: readinessProbe
+        type: JudgeProviderReadinessProbe
+        description: La misma verificación sin costo que los jueces nuevos (F-JEXAM-R011).
+          No cambia la versión ni la huella.
+      _change: modify
+    - name: QuizInstructionAgentJudge
+      requiresInject:
+      - name: readinessProbe
+        type: JudgeProviderReadinessProbe
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemJudgeExamRegistry
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: "Raíz bajo la que se resuelve .content-audit/judge-exams/<juez>.jsonl,\
+        \ una línea por registro, sólo en modo append, como el libro de evaluaciones.\
+        \ Borrar informes no lo toca."
+    visibility: public
+    implements:
+    - JudgeExamRegistry
+    _change: add
+  _change: modify
+- name: audit-application
+  models:
+  - name: JudgeExamRequest
+    type: record
+    fields:
+    - name: judgeName
+      type: String
+      description: Nombre canónico del analizador que aloja al juez.
+    - name: photoCourse
+      type: Path
+      description: "La foto congelada del curso del 29/9, no el curso vivo (F-JEXAM-R001)."
+    - name: caseIds
+      type: Set<String>
+      description: Los ejercicios del archivo del examen; nunca lo esperado.
+    - name: maxNewEvaluations
+      type: int
+      description: "0 = ensayo: reusa lo de esa versión y dice cuántas consultas faltan,\
+        \ sin pagar (F-JEXAM-R010)."
+    - name: maxConcurrentEvaluations
+      type: Integer
+    _change: add
+  - name: JudgeExamTaken
+    type: record
+    fields:
+    - name: judgeName
+      type: String
+    - name: judgeVersion
+      type: String
+    - name: verdicts
+      type: List<JudgeExamVerdict>
+    - name: coverage
+      type: JudgeCoverageDiagnosis
+    - name: recordedAsTaken
+      type: boolean
+      description: True si todos los ejercicios tienen veredicto y quedó el registro
+        TAKEN que habilita registrar la medición.
+    _change: add
+  - name: JudgeExamNotTakenException
+    type: exception
+    fields:
+    - name: judgeName
+      type: String
+    - name: judgeVersion
+      type: String
+    message: "La versión %2$s del juez '%1$s' no rindió el examen completo: no se\
+      \ puede registrar su resultado"
+    _change: add
+    extends: IllegalArgumentException
+  interfaces:
+  - name: JudgeExamService
+    stereotype: service
+    sealed: false
+    exposes:
+    - signature: "take(JudgeExamRequest request): JudgeExamTaken"
+    - signature: "record(JudgeExamRecord measured): JudgeExamStanding"
+      throwsExceptions:
+      - JudgeExamNotTakenException
+    - signature: "history(String judgeName): List<JudgeExamRecord>"
+    _change: add
+  implementations:
+  - name: DefaultJudgeExamService
+    requiresInject:
+    - name: auditRunner
+      type: AuditRunner
+      description: "Rinde por el mismo camino que analyze, sobre la foto y sólo con\
+        \ el analizador del juez: leído igual que en el curso por construcción. El\
+        \ informe no se guarda."
+    - name: analyzerCatalog
+      type: AnalyzerCatalog
+      description: "De 0.3: valida el nombre y da la ficha, de la que salen las reglas\
+        \ del juez (las de costo modelo pago)."
+    - name: exporter
+      type: JudgeExamVerdictExporter
+    - name: examRegistry
+      type: JudgeExamRegistry
+    - name: runtime
+      type: JudgeRuntime
+    visibility: public
+    implements:
+    - JudgeExamService
+    _change: add
+  - name: DefaultJudgeRuntimeConfig
+    types:
+    - Component
+    visibility: public
+    implements:
+    - JudgeRuntimeConfig
+    _change: add
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: ExamCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "takeExam(String judgeName,String casesFile,String photoCourse,Integer\
+        \ budget,Integer concurrency,String verdictsOut): Integer"
+    - signature: "recordExam(String resultFile): Integer"
+    - signature: "showExams(String judgeName): Integer"
+    _change: add
+  packages:
+  - name: commands
+    visibility: internal
+    implementations:
+    - name: ExamCmd
+      requiresInject:
+      - name: examService
+        type: JudgeExamService
+        description: "Lee el archivo de ejercicios y el resultado medido afuera, escribe\
+          \ un veredicto por línea y delega todo lo demás."
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - ExamCommand
+      _change: add
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-JEXAM
+  code: F-JEXAM

@@ -1,0 +1,243 @@
+code: FEAT-MINIT
+description: "FEAT-MINIT: el analizador mini-theory. Una consulta por tema: el juez\
+  \ lee el nivel, el nombre y la consigna del tema, cada miniteoría distinta con los\
+  \ ejercicios que la muestran, y cada ejercicio con su enunciado, su pista y sus\
+  \ respuestas u opciones; dice por cada miniteoría si es cierta y qué ejercicios\
+  \ la contradicen o quedan afuera. El hallazgo va en cada ejercicio que muestra la\
+  \ miniteoría con problema y cuenta ahí (José, 30/9: «sólo donde se muestra»); contar\
+  \ en todo el tema es un valor de la configuración, no otro diseño. Así el contrato\
+  \ 0.3 no cambia: el hallazgo de tema de F-HALL-R008 no se usa. Usa el runtime comú\
+  n de FEAT-JEXAM (el tope cuenta temas) y el evaluador genérico por agente. Necesita\
+  \ la miniteoría en AuditableQuiz, que va como gancho del integrador. El proveedor\
+  \ se declara como clase con las cinco firmas de AnalyzerProvider (0.3); el integrador\
+  \ lo pasa a implements AnalyzerProvider."
+modules:
+- name: audit-domain
+  interfaces:
+  - name: MiniTheoryConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getErrorScope(): MiniTheoryErrorScope"
+    - signature: "getScoreFor(FindingSeverity severity): double"
+    _change: add
+    extends:
+    - SelfDescribingConfig
+  packages:
+  - name: minitheory
+    description: "Contrato de mini-theory (FEAT-MINIT): el veredicto del tema, con\
+      \ una evaluación por miniteoría, y el diagnóstico de cada ejercicio, que dice\
+      \ qué miniteoría muestra y qué se le reprocha."
+    visibility: public
+    models:
+    - name: MiniTheoryProblem
+      type: enum
+      fields:
+      - name: FALSE_RULE
+        description: Afirma como regla del inglés algo falso. HIGH.
+      - name: OVERSTATED
+        description: Un «siempre» o un «nunca» con excepciones comunes. MEDIUM.
+      - name: CONTRADICTED_BY_EXERCISE
+        description: Un ejercicio que la muestra la contradice. HIGH.
+      - name: NOT_COVERING_EXERCISE
+        description: Es cierta pero no cubre el caso del ejercicio que la muestra.
+          LOW.
+      _change: add
+    - name: MiniTheoryErrorScope
+      type: enum
+      fields:
+      - name: SHOWN_ONLY
+        description: "Por omisión (José, 30/9): una miniteoría falsa o exagerada cuenta\
+          \ en los ejercicios que la muestran."
+      - name: WHOLE_TOPIC
+        description: Una miniteoría falsa o exagerada cuenta en todos los ejercicios
+          del tema. Las de un ejercicio que la contradice o queda afuera cuentan siempre
+          sólo en ese ejercicio.
+      _change: add
+    - name: MiniTheoryAssessment
+      type: record
+      fields:
+      - name: miniTheory
+        type: int
+        description: "Qué miniteoría (M1, M2…, desde 1), en el orden en que aparece\
+          \ por primera vez en el tema."
+      - name: holds
+        type: boolean
+      - name: problem
+        type: MiniTheoryProblem
+        description: Null si holds.
+      - name: severity
+        type: FindingSeverity
+      - name: counterexample
+        type: String
+        description: Una oración en inglés que muestra lo que tiene de falso.
+      - name: exercises
+        type: List<Integer>
+        description: "Los ejercicios involucrados (E1, E2…, desde 1, en el orden del\
+          \ tema): los que la contradicen o quedan afuera."
+      - name: explanation
+        type: String
+      _change: add
+    - name: MiniTheoryVerdict
+      type: record
+      fields:
+      - name: assessments
+        type: List<MiniTheoryAssessment>
+        description: Una por miniteoría distinta del tema.
+      - name: rationale
+        type: String
+      _change: add
+    - name: MiniTheoryDiagnosis
+      type: record
+      fields:
+      - name: knowledgeId
+        type: String
+        description: El tema que se juzgó con una consulta.
+      - name: miniTheory
+        type: String
+        description: "El texto de la miniteoría que muestra este ejercicio, tal cual."
+      - name: assessments
+        type: List<MiniTheoryAssessment>
+        description: Lo que el veredicto del tema le reprocha a este ejercicio; vacía
+          si nada.
+      - name: score
+        type: double
+        description: "1 sin hallazgo; si no, 0,8, 0,6 o 0,3 según la gravedad más\
+          \ alta."
+      - name: reusedFromPreviousRun
+        type: boolean
+      _change: add
+    interfaces:
+    - name: MiniTheoryVerdictReader
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "read(String payload): MiniTheoryVerdict"
+      _change: add
+    _change: add
+  - name: minitheoryengine
+    description: "Motor de mini-theory. Sólo el proveedor es público. La unidad de\
+      \ consulta es el tema: onKnowledge arma el sujeto con el tema entero (el recorrido\
+      \ llega al tema antes que a sus ejercicios) y onCourseComplete resuelve los\
+      \ temas con resolveAll; el tope cuenta temas (F-MINIT-R005). El repartidor lleva\
+      \ el veredicto a los ejercicios con el mismo orden con que el constructor los\
+      \ numeró (miniteorías por primera aparición, ejercicios en el orden del tema),\
+      \ así que E3 y M2 significan lo mismo en los dos. Puntaje, diagnóstico, hallazgos\
+      \ y lo sin evaluar van en cada ejercicio; el tema, el nivel y el curso suben\
+      \ por la agregación genérica."
+    visibility: public
+    models:
+    - name: MiniTheoryQuizOutcome
+      type: record
+      fields:
+      - name: quizId
+        type: String
+      - name: diagnosis
+        type: MiniTheoryDiagnosis
+      - name: findings
+        type: List<FindingDraft>
+        description: "La marca es el texto de la miniteoría: los ejercicios de una\
+          \ misma miniteoría comparten identidad salvo por el nodo, y así los agrupa\
+          \ la mesa (F-MINIT-R007)."
+      - name: score
+        type: double
+      visibility: internal
+      _change: add
+    interfaces:
+    - name: MiniTheorySubjectBuilder
+      sealed: false
+      exposes:
+      - signature: "build(AuditNode knowledgeNode): EvaluationSubject"
+      visibility: internal
+      _change: add
+    - name: MiniTheoryDistributor
+      sealed: false
+      exposes:
+      - signature: "distribute(MiniTheoryVerdict verdict,AuditNode knowledgeNode,boolean\
+          \ reused): List<MiniTheoryQuizOutcome>"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: MiniTheoryAnalyzerProvider
+      requiresInject:
+      - name: runtime
+        type: JudgeRuntime
+      - name: judge
+        type: Evaluator
+        description: Agente mini-theory-judge.
+      - name: verdictReader
+        type: MiniTheoryVerdictReader
+      - name: config
+        type: MiniTheoryConfig
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      visibility: public
+      stereotype: class
+      exposes:
+      - signature: "analyzerName(): String"
+      - signature: "describe(): AnalyzerDescriptor"
+      - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
+      - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
+      - signature: "config(): Optional<SelfDescribingConfig>"
+      _change: add
+    - name: MiniTheoryAnalyzer
+      requiresInject:
+      - name: opened
+        type: JudgeSessions
+      - name: runtime
+        type: JudgeRuntime
+      - name: subjectBuilder
+        type: MiniTheorySubjectBuilder
+      - name: distributor
+        type: MiniTheoryDistributor
+      - name: verdictReader
+        type: MiniTheoryVerdictReader
+      implements:
+      - ContentAnalyzer
+      _change: add
+    - name: DefaultMiniTheorySubjectBuilder
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "Las claves y su orden son la huella: cefrLevel, topic, instructions\
+          \ (la del tema), miniTheories, exercises. Cualquier cambio de una miniteorí\
+          a o de un ejercicio vuelve a juzgar el tema entero (F-MINIT-R001)."
+      implements:
+      - MiniTheorySubjectBuilder
+      _change: add
+    - name: DefaultMiniTheoryDistributor
+      requiresInject:
+      - name: config
+        type: MiniTheoryConfig
+        description: "De acá sale el alcance del error: SHOWN_ONLY o WHOLE_TOPIC."
+      implements:
+      - MiniTheoryDistributor
+      _change: add
+    _change: add
+  _change: modify
+- name: quiz-instruction-infrastructure
+  packages:
+  - name: minitheoryverdict
+    description: Lectura del payload del juez de miniteoría.
+    visibility: public
+    implementations:
+    - name: JacksonMiniTheoryVerdictReader
+      visibility: public
+      implements:
+      - MiniTheoryVerdictReader
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultMiniTheoryConfig
+    types:
+    - Component
+    visibility: public
+    implements:
+    - MiniTheoryConfig
+    _change: add
+  _change: modify
+features:
+- id: FEAT-MINIT
+  code: F-MINIT

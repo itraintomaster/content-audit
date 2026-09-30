@@ -28,7 +28,8 @@ Cómo quien revisa el curso intenta hoy encontrar miniteorías falsas:
 **Punto de fricción**: pasos 2 y 3.
 
 **Cambio mínimo necesario**: un analizador `mini-theory`, de la familia de errores ([F-HALL-R007](#F-HALL-R007)), que
-evalúa el tema con una consulta y usa lo común de FEAT-JEXAM.
+evalúa el tema con una consulta, cuenta el error en los ejercicios que muestran la miniteoría con problema y usa lo común
+de FEAT-JEXAM.
 
 ## Reglas de Negocio
 
@@ -54,7 +55,8 @@ o más, hasta 50, y hay 1.488 distintas. La cascada es buscada, como la de la co
 > 2. si algún ejercicio del tema que la muestra la contradice, o queda fuera de lo que dice.
 >
 > Por cada problema da la gravedad y una evidencia que cumple [F-HALL-R003](#F-HALL-R003): el texto de la miniteoría, lo
-> que tiene de falso con un contraejemplo, y los ejercicios involucrados.
+> que tiene de falso con un contraejemplo, y los ejercicios involucrados. Que una miniteoría pida una forma no es un
+> problema de este juez: lo marca el paquete A ([F-JEXAM-R012](#F-JEXAM-R012)).
 
 <details><summary>Ejemplos de `escribir/miniteoria.json`</summary>
 
@@ -68,24 +70,29 @@ o más, hasta 50, y hay 1.488 distintas. La cascada es buscada, como la de la co
 </details>
 
 <a id="F-MINIT-R003"></a>
-### Rule[F-MINIT-R003] - El hallazgo es del tema y cuenta en cada ejercicio del tema
+### Rule[F-MINIT-R003] - La miniteoría con problema cuenta como error sólo donde se muestra
 **Severity**: critical | **Validation**: VALIDATED
 
-> Cada miniteoría con problema da un hallazgo en el tema, identificado por su texto ([F-HALL-R014](#F-HALL-R014)). El
-> puntaje de `mini-theory` está en el tema y sube por la agregación genérica; el hallazgo cuenta como error en cada
-> ejercicio del tema, para `mini-theory` y para «algún error» ([F-HALL-R008](#F-HALL-R008)).
+> Cada miniteoría con problema da un hallazgo en cada ejercicio que la muestra, identificado por su texto
+> ([F-HALL-R014](#F-HALL-R014)), y cuenta como error ahí, para `mini-theory` y para «algún error»
+> ([F-HALL-R008](#F-HALL-R008)); en los ejercicios del tema que no la muestran, no. El puntaje de `mini-theory` está en
+> cada ejercicio y sube por la agregación genérica.
 
-Es la decisión de José del 30/9 sobre DOUBT-HALLAZGO-DE-TEMA. Se tomó con la premisa de que la miniteoría es una por tema,
-que vale en 154 de 413: [DOUBT-MINIT-VARIAS](#DOUBT-MINIT-VARIAS).
+José, 30/9 ([DOUBT-MINIT-VARIAS](#DOUBT-MINIT-VARIAS)): «cuenta sólo donde se muestra». Corrige su decisión anterior
+(DOUBT-HALLAZGO-DE-TEMA de FEAT-HALL, «en cada ejercicio del tema»), que partió de un dato equivocado: hay 1.488
+miniteorías, no una por tema. ⚠ Se confirma con José al volver. Contar «en todo el tema» queda como un parámetro del
+analizador, no como otro diseño: con él, una miniteoría falsa cuenta en cada ejercicio del tema; un ejercicio que la
+contradice o queda afuera cuenta siempre sólo donde se muestra. En «Contraste inicial» (A1, 80 ejercicios), la de «enjoy»
+cuenta en 9, como contó el 077; con el parámetro, en 80.
 
 <a id="F-MINIT-R004"></a>
-### Rule[F-MINIT-R004] - Gravedad y puntaje del tema
+### Rule[F-MINIT-R004] - Gravedad y puntaje de cada ejercicio
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > La gravedad es **alta** si la regla es falsa o un ejercicio la contradice, **media** si exagera («siempre» o «nunca»
 > donde hay excepciones comunes) y **baja** si es cierta pero no cubre el caso del ejercicio que la muestra. Nunca es
-> bloqueante: la miniteoría se ve después de contestar. El puntaje del tema es 1 sin errores y, si no, 0,3, 0,6 u 0,8
-> según la más grave [ASSUMPTION].
+> bloqueante: la miniteoría se ve después de contestar. El puntaje de cada ejercicio es 1 sin hallazgo y, si no, 0,3, 0,6
+> u 0,8 según el más grave [ASSUMPTION]; el del tema, el nivel y el curso sube por la agregación genérica.
 
 Usa las definiciones de [F-HALL-R002](#F-HALL-R002). El 077 puso en A1 y A2 43 altas, 41 medias y 28 bajas.
 
@@ -98,11 +105,12 @@ Usa las definiciones de [F-HALL-R002](#F-HALL-R002). El 077 puso en A1 y A2 43 a
 > 2. el tope cuenta temas: no juzga más temas nuevos por corrida que su tope;
 > 3. una falla del servicio o una salida inutilizable no corta la corrida ni queda registrada ([F-EVCOST-R005](#F-EVCOST-R005),
 >    [F-EVCOST-R009](#F-EVCOST-R009), [F-QINST-R007](#F-QINST-R007), [F-QINST-R013](#F-QINST-R013));
-> 4. la cobertura declara temas alcanzados, evaluados y sin evaluar, y los ejercicios que contienen; un tema sin evaluar
->    no tiene puntaje ni hallazgo ([F-QINST-R004](#F-QINST-R004)).
+> 4. la cobertura declara temas alcanzados, evaluados y sin evaluar, y los ejercicios que contienen; los ejercicios de un
+>    tema sin evaluar no tienen puntaje ni hallazgo de `mini-theory` y cuentan como sin evaluar
+>    ([F-QINST-R004](#F-QINST-R004)).
 
-Valen además los grupos A y B de FEAT-JEXAM. Llega a topic, nivel y curso ([F-HALL-R011](#F-HALL-R011)) sin mover el
-puntaje de vocabulario ([F-HALL-R009](#F-HALL-R009)).
+Valen además los grupos A y B de FEAT-JEXAM. Llega a tema, topic, nivel y curso ([F-HALL-R011](#F-HALL-R011)) sin mover el
+puntaje de vocabulario ([F-HALL-R009](#F-HALL-R009)). Tope por omisión: 0 temas ([F-JEXAM-R010](#F-JEXAM-R010)).
 
 <a id="F-MINIT-R006"></a>
 ### Rule[F-MINIT-R006] - El examen de mini-theory
@@ -118,14 +126,16 @@ la traducción, no la regla. 123 ejercicios comparten miniteoría con uno marcad
 contarlos como marcas de más. Se mide con los 20 temas y 40 sin fila al azar: 60 consultas.
 
 <a id="F-MINIT-R007"></a>
-### Rule[F-MINIT-R007] - Se resuelve una vez por tema
+### Rule[F-MINIT-R007] - Se resuelve una vez por miniteoría
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
 > Lo que marca se resuelve en la mesa con una reescritura de la miniteoría que llega a todos los ejercicios que la
-> muestran; como el puntaje menor que 1 está en el tema, su tarea es del tema y no de cada ejercicio, y cada candidato lo
+> muestran: los ejercicios marcados por la misma miniteoría se resuelven juntos, con un solo candidato, y cada candidato lo
 > juzga este mismo juez ([F-JEXAM-R005](#F-JEXAM-R005)).
 
-Mantiene [F-HALL-R004](#F-HALL-R004): tarea sólo con puntaje menor que 1. El tipo de tarea y la mesa son del paquete E.
+Mantiene [F-HALL-R004](#F-HALL-R004): tarea sólo con puntaje menor que 1, que ahora está en los ejercicios que la
+muestran; los hallazgos de una misma miniteoría comparten su texto como identidad, y así se agrupan. El tipo de tarea y la
+mesa son del paquete E.
 
 ## Contexto
 
@@ -135,7 +145,7 @@ Mantiene [F-HALL-R004](#F-HALL-R004): tarea sólo con puntaje menor que 1. El ti
 | Lee | nivel, nombre y consigna del tema, sus miniteorías y sus ejercicios con sus respuestas u opciones |
 | Reglas | la regla es falsa o exagera · un ejercicio la contradice o queda afuera |
 | Meta y familia | 0 ejercicios con error · errores |
-| Evalúa y resuelve | tema · mesa, una reescritura por miniteoría |
+| Evalúa y resuelve | consulta por tema, cuenta en cada ejercicio que la muestra · mesa, una reescritura por miniteoría |
 | Costo | modelo pago: una consulta por tema |
 
 **Costo.** El curso entero son 413 consultas: A1 83, A2 91, B1 147, B2 92. Son más largas que las de un ejercicio (media
@@ -144,7 +154,8 @@ consulta por tema tocado.
 
 ## Alcance
 
-- **Adentro**: el analizador, qué lee del tema, qué decide, el hallazgo del tema, gravedad, puntaje, examen y ficha.
+- **Adentro**: el analizador, qué lee del tema, qué decide, el hallazgo en cada ejercicio que muestra la miniteoría, el
+  parámetro «en todo el tema», gravedad, puntaje, examen y ficha.
 - **Afuera**: la reescritura y su tipo de tarea (E); la teoría larga de cada tema; lo común de los jueces (FEAT-JEXAM).
 
 ## User Journeys
@@ -174,43 +185,52 @@ journeys:
           - when: "Al menos una tiene problema"
             then: error
       - id: pasa
-        action: "El tema no tiene hallazgo de mini-theory y su puntaje es 1"
+        action: "Ningún ejercicio del tema tiene hallazgo de mini-theory y el puntaje de cada uno es 1"
         result: success
       - id: error
-        action: "El tema tiene un hallazgo por miniteoría con problema, con gravedad y evidencia, y cuenta como error en cada ejercicio del tema"
+        action: "Cada ejercicio que muestra una miniteoría con problema tiene su hallazgo, con gravedad y evidencia, y cuenta como error; los que no la muestran, no"
         gate: [F-MINIT-R003, F-MINIT-R004]
         result: success
       - id: sin_evaluar
-        action: "El tema queda sin evaluar, sin puntaje ni hallazgo, y la cobertura lo cuenta con sus ejercicios"
+        action: "El tema queda sin evaluar: sus ejercicios no tienen puntaje ni hallazgo de mini-theory, y la cobertura lo cuenta con sus ejercicios"
         gate: [F-MINIT-R005]
         result: success
 ```
 
 ## Open Questions
 
-Proveedor, tope, curso entero o muestra, y consultas a la vez se deciden una vez para los cinco jueces, en las dudas
-DOUBT-JUECES-* de [FEAT-JEXAM](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PROVEEDOR). Este es el
-más barato: 413 consultas para el curso entero.
+Proveedor (`claude-cli`), tope (0 sin pedido), orden (examen fijo, `escribir/` y A1) y consultas a la vez (4) se
+decidieron una vez para los cinco jueces, en las dudas DOUBT-JUECES-* de
+[FEAT-JEXAM](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PROVEEDOR) (José, 30/9). Este es el más
+barato: 413 consultas para el curso entero.
 
 <a id="DOUBT-MINIT-VARIAS"></a>
 ### Doubt[DOUBT-MINIT-VARIAS] - Si el tema tiene varias miniteorías, ¿en qué ejercicios cuenta la que tiene problema?
-- [ ] Opción A: en todos los del tema, como dice hoy [F-MINIT-R003](#F-MINIT-R003) por la decisión del 30/9.
-- [ ] Opción B (recomendada): en los que la muestran; en los 154 temas de una sola miniteoría es lo mismo que A.
+- [ ] Opción A: en todos los del tema, como decía [F-MINIT-R003](#F-MINIT-R003) por la decisión del 30/9 a la mañana.
+- [x] Opción B (recomendada): en los que la muestran; en los 154 temas de una sola miniteoría es lo mismo que A.
 
-**Answer**: Pendiente. Recomiendo B. La decisión se tomó con la razón de que «la ven todos sus ejercicios», que no se
-cumple en 259 temas: en «Sujeto u objeto» (A1, 28 ejercicios) 16 muestran la de they/them y 12 la de she/her. Con A, una
-tarjeta falsa en 12 ejercicios de un tema de 170 contaría 170. Cambiar la decisión es tuyo.
+**Status**: RESOLVED (2026-09-30)
+
+**Answer**: **Opción B** (José, 30/9 a la tarde): «cuenta sólo donde se muestra». Corrige su decisión de la mañana, que
+partió de un dato equivocado (hay 1.488 miniteorías, no una por tema). ⚠ Se confirma con José al volver; por eso A queda
+como un parámetro del analizador y no como otro diseño ([F-MINIT-R003](#F-MINIT-R003)). En «Sujeto u objeto» (A1, 28
+ejercicios) 16 muestran la de they/them y 12 la de she/her: con B, una tarjeta falsa cuenta donde se ve.
 
 <a id="DOUBT-MINIT-TEMA-GRANDE"></a>
 ### Doubt[DOUBT-MINIT-TEMA-GRANDE] - ¿Los temas grandes se juzgan en una sola consulta?
-- [ ] Opción A (recomendada): sí, siempre una por tema, que es lo que permite comparar la regla con todo el tema.
+- [x] Opción A (recomendada): sí, siempre una por tema, que es lo que permite comparar la regla con todo el tema.
 - [ ] Opción B: partir por miniteoría los temas de 100 ejercicios o más (hoy son 4; el mayor tiene 170 y 18 miniteorías).
 
-**Answer**: Pendiente. Recomiendo A, y pasar a B sólo si el examen muestra que en los temas grandes se le escapan.
+**Status**: RESOLVED (2026-09-30)
+
+**Answer**: **Opción A** (José, 30/9, «por lo demás, continúa»; la presentación mostraba «una consulta, aunque tenga 170
+ejercicios»). Se pasa a B sólo si el examen muestra que en los temas grandes se le escapan.
 
 ## References
 
-- **FEAT-HALL** — Hallazgo de tema, gravedad, conteos, identidad y tareas. Citado por R002 a R005 y R007.
-- **FEAT-JEXAM** — Examen, conjunto de temas, candidato de la mesa, consultas a la vez y dudas comunes. Citado por R005 a R007.
+- **FEAT-HALL** — Hallazgo, gravedad, conteos, identidad y tareas. Citado por R002 a R005 y R007. El hallazgo va en el
+  ejercicio y no en el tema, así que la regla de F-HALL-R008 para hallazgos de tema no se aplica acá.
+- **FEAT-JEXAM** — Examen, conjunto de temas, candidato de la mesa, consultas a la vez, tope 0, formas y dudas comunes.
+  Citado por R002 y R005 a R007.
 - **FEAT-EVCOST** — Huella, reuso y fallas. Citado por R005.
 - **FEAT-QINST** — La cascada de la consigna, fallas y lo no evaluado. Citado por R001 y R005.

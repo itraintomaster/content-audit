@@ -75,17 +75,18 @@ por estilo, por sinónimos válidos ni por ser corta o sin contexto.
 
 <a id="F-TRSEN-R003"></a>
 ### Rule[F-TRSEN-R003] - Dos jueces que no se hablan
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+**Severity**: critical | **Validation**: VALIDATED
 
 > Cada ejercicio lo juzgan dos jueces, cada uno en un contexto limpio y sin ver al otro; cada uno es un evaluador propio
 > en el libro, así que sus veredictos no se pisan y se reusan por separado. Un ejercicio está evaluado cuando tiene los
 > dos. Juntos:
 > 1. si los dos dicen que cumple, no hay hallazgo;
 > 2. si los dos dicen que no, hay un hallazgo por cada condición que marcó alguno, y cuenta como error;
-> 3. si no coinciden, hay un solo hallazgo que sólo ordena, «los jueces no coinciden», con los dos veredictos [ASSUMPTION].
+> 3. si no coinciden, hay un solo hallazgo que sólo ordena, «los jueces no coinciden», con los dos veredictos, y el
+>    ejercicio queda marcado para la bandeja.
 
 Si fueran un solo evaluador, el más reciente pisaría al otro ([F-EVCOST-R006](#F-EVCOST-R006)). Uno parte del inglés y el
-otro de la traducción [ASSUMPTION]. Cómo se combinan: [DOUBT-TRSEN-COMBINAR](#DOUBT-TRSEN-COMBINAR).
+otro de la traducción. La combinación es la de José, 30/9 ([DOUBT-TRSEN-COMBINAR](#DOUBT-TRSEN-COMBINAR)).
 
 <a id="F-TRSEN-R004"></a>
 ### Rule[F-TRSEN-R004] - Gravedad y puntaje
@@ -112,7 +113,8 @@ A2 97 bajas, 177 medias y 11 altas: el examen dirá si la escala coincide.
 >    puntaje ni hallazgo ([F-QINST-R004](#F-QINST-R004)).
 
 Valen además los grupos A y B de FEAT-JEXAM. Llega a tema, topic, nivel y curso ([F-HALL-R011](#F-HALL-R011)) sin mover el
-puntaje de vocabulario ([F-HALL-R009](#F-HALL-R009)). Tope por omisión: [DOUBT-JUECES-PRESUPUESTO](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PRESUPUESTO).
+puntaje de vocabulario ([F-HALL-R009](#F-HALL-R009)). Tope por omisión: 0, sin pedido no consulta
+([F-JEXAM-R010](#F-JEXAM-R010)); con tope, a lo sumo 4 consultas a la vez ([F-JEXAM-R006](#F-JEXAM-R006)).
 
 <a id="F-TRSEN-R006"></a>
 ### Rule[F-TRSEN-R006] - El examen de translation-sense
@@ -203,27 +205,35 @@ journeys:
 
 ## Open Questions
 
-Proveedor, tope, curso entero o muestra, y consultas a la vez se deciden una vez para los cinco jueces, en las dudas
-DOUBT-JUECES-* de [FEAT-JEXAM](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PROVEEDOR). Este juez
-es el más caro: 22.574 de las 41.700 consultas del curso entero.
+Proveedor (`claude-cli`), tope (0 sin pedido), orden (examen fijo, `escribir/` y A1) y consultas a la vez (4) se
+decidieron una vez para los cinco jueces, en las dudas DOUBT-JUECES-* de
+[FEAT-JEXAM](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PROVEEDOR) (José, 30/9). Este juez es el
+más caro: 22.574 de las 41.700 consultas del curso entero.
 
 <a id="DOUBT-TRSEN-COMBINAR"></a>
 ### Doubt[DOUBT-TRSEN-COMBINAR] - ¿Qué hace el analizador cuando los dos jueces no coinciden?
 - [ ] Opción A: basta con uno: el ejercicio cuenta como error. Encuentra más y marca más de lo que hay.
 - [ ] Opción B: hacen falta los dos, y el desacuerdo no se ve.
-- [ ] Opción C (recomendada): los dos, error; uno solo, un marcado que no cuenta y va a la bandeja como desempate.
+- [x] Opción C (recomendada): los dos, error; uno solo, un marcado que no cuenta y va a la bandeja como desempate.
 
-**Answer**: Pendiente. Recomiendo C, que es lo que especifica [F-TRSEN-R003](#F-TRSEN-R003): el número de errores no se
-infla y el desacuerdo llega a la bandeja, como pide la propuesta. El examen sobre `escribir/` mide A y C.
+**Status**: RESOLVED (2026-09-30)
+
+**Answer**: **Opción C** (José, 30/9): «si los dos de traducción no coinciden, queda marcado para la bandeja». Es lo que
+fija [F-TRSEN-R003](#F-TRSEN-R003): el número de errores no se infla y el desacuerdo llega a quien desempata. El examen
+sobre `escribir/` informa además cuánto encontraría A.
 
 <a id="DOUBT-TRSEN-CATALOGO"></a>
 ### Doubt[DOUBT-TRSEN-CATALOGO] - ¿La corrección de consigna usa este juez para la traducción y el sentido?
-- [ ] Opción A (recomendada): no por ahora: la corrección de consigna sigue con su vara comparativa y la mesa usa esta.
+- [x] Opción A (recomendada): no por ahora: la corrección de consigna sigue con su vara comparativa y la mesa usa esta.
 - [ ] Opción B: sí: los criterios 4 y 6 de [F-QICOR-R004](#F-QICOR-R004) consultan este juez, como pide
   [F-QICOR-R015](#F-QICOR-R015) («una sola definición»); un candidato cuya traducción ya estaba mal pasaría a reprobar.
 
-**Answer**: Pendiente. Recomiendo A: la mesa del paquete E reemplaza a esa corrección, y cambiarla ahora mueve resultados
-de FEAT-QICOR. Es el único choque con una regla existente: dos definiciones de «traducción fiel» conviven hasta entonces.
+**Status**: RESOLVED (2026-09-30)
+
+**Answer**: **Opción A** (José, 30/9, «por lo demás, continúa», sobre la presentación que la mostraba en «Lo que no toca»):
+la corrección de consigna sigue comparando con el original y sus criterios conviven con los de este juez hasta que la mesa
+del paquete E la reemplace. Es el único choque con una regla existente: dos definiciones de «traducción fiel» conviven
+hasta entonces.
 
 ## References
 

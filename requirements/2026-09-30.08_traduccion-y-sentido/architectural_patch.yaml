@@ -1,0 +1,234 @@
+code: FEAT-TRSEN
+description: "FEAT-TRSEN: el analizador translation-sense. Dos jueces que no se hablan\
+  \ —uno parte del inglés, el otro de la traducción— son dos evaluadores propios en\
+  \ el libro, con la misma huella de contenido: nivel, consigna del ejercicio, enunciado\
+  \ con pista, oración con cada respuesta aceptada y traducción, y nada más. Los dos\
+  \ «no» dan un hallazgo por condición y cuentan como error; si no coinciden, un hallazgo\
+  \ que sólo ordena y va a la bandeja. Usa el runtime común de FEAT-JEXAM (freno del\
+  \ examen, tope 0 por omisión, consultas a la vez, costo pendiente) y el evaluador\
+  \ genérico por agente; acá sólo lo propio: veredicto, combinación, puntaje, ficha\
+  \ y lector. El proveedor se declara como clase con las cinco firmas de AnalyzerProvider\
+  \ (0.3); el integrador lo pasa a implements AnalyzerProvider."
+modules:
+- name: audit-domain
+  interfaces:
+  - name: TranslationSenseConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getScoreFor(FindingSeverity severity): double"
+    _change: add
+    extends:
+    - SelfDescribingConfig
+  packages:
+  - name: translationsense
+    description: "Contrato de translation-sense (FEAT-TRSEN): el veredicto de cada\
+      \ juez, sus cuatro condiciones y el diagnóstico del ejercicio con los dos veredictos\
+      \ y su acuerdo. Público porque el lector del payload vive en la infraestructura\
+      \ de los jueces y porque el diagnóstico viaja en el informe."
+    visibility: public
+    models:
+    - name: TranslationSenseCondition
+      type: enum
+      fields:
+      - name: SAME_MEANING
+        description: "La traducción no afirma, omite ni invierte nada del inglés:\
+          \ polaridad, tiempo, persona, número."
+      - name: NATIVE_WOULD_SAY
+        description: "Se entiende, puede pasar en el mundo real y no es un calco."
+      - name: WORDS_GO_TOGETHER
+        description: "Verbo y objeto, adjetivo y sustantivo, preposición."
+      - name: LEVEL_REGISTER
+        description: El registro es del nivel.
+      _change: add
+    - name: TranslationSenseFailure
+      type: record
+      fields:
+      - name: condition
+        type: TranslationSenseCondition
+      - name: severity
+        type: FindingSeverity
+        description: HIGH si enseña algo falso; MEDIUM si se entiende pero está mal;
+          LOW si sólo es el registro. Nunca BLOCKING (F-TRSEN-R004).
+      - name: fragment
+        type: String
+        description: "El pedazo del inglés o de la traducción que falla, tal como\
+          \ se ve."
+      - name: evidence
+        type: String
+        description: Una línea en castellano que nombra el problema (F-HALL-R003).
+      _change: add
+    - name: TranslationSenseVerdict
+      type: record
+      fields:
+      - name: passes
+        type: boolean
+      - name: failures
+        type: List<TranslationSenseFailure>
+        description: Vacía si passes; una por condición que falla.
+      - name: rationale
+        type: String
+      _change: add
+    - name: TranslationSenseAgreement
+      type: enum
+      fields:
+      - name: BOTH_PASS
+      - name: BOTH_FAIL
+      - name: SPLIT
+        description: "No coinciden: marcado para la bandeja, no cuenta como error\
+          \ (José, 30/9)."
+      _change: add
+    - name: TranslationSenseDiagnosis
+      type: record
+      fields:
+      - name: fromEnglish
+        type: TranslationSenseVerdict
+      - name: fromTranslation
+        type: TranslationSenseVerdict
+      - name: agreement
+        type: TranslationSenseAgreement
+      - name: score
+        type: double
+        description: "1 sin errores; si no, 0,8, 0,6 o 0,3 según la gravedad más alta.\
+          \ Con SPLIT, 1."
+      - name: reusedFromPreviousRun
+        type: boolean
+        description: True si los dos veredictos salieron del libro sin consultar.
+      _change: add
+    interfaces:
+    - name: TranslationSenseVerdictReader
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "read(String payload): TranslationSenseVerdict"
+      _change: add
+    _change: add
+  - name: translationsenseengine
+    description: "Motor de translation-sense. Sólo el proveedor es público. onQuiz\
+      \ junta los dos pedidos de cada ejercicio; onCourseComplete reparte el tope\
+      \ de a pares en el orden del recorrido (un ejercicio necesita hasta dos consultas\
+      \ y las dos cuentan contra el mismo tope, F-TRSEN-R005), resuelve cada juez\
+      \ con resolveAll y escribe puntaje, diagnóstico y lo sin evaluar en cada ejercicio.\
+      \ Un ejercicio está evaluado sólo con los dos veredictos. Los dos jueces leen\
+      \ el mismo mapa de contenido: la huella es la misma y la clave del libro difiere\
+      \ sólo por el evaluador."
+    visibility: public
+    models:
+    - name: TranslationSenseOutcome
+      type: record
+      fields:
+      - name: agreement
+        type: TranslationSenseAgreement
+      - name: findings
+        type: List<FindingDraft>
+        description: "BOTH_FAIL: uno por condición marcada por alguno, con la gravedad\
+          \ más alta de los dos. SPLIT: uno solo, judges-disagree, que sólo ordena.\
+          \ BOTH_PASS: ninguno."
+      - name: score
+        type: double
+      visibility: internal
+      _change: add
+    interfaces:
+    - name: TranslationSenseSubjectBuilder
+      sealed: false
+      exposes:
+      - signature: "build(AuditNode quizNode): EvaluationSubject"
+      visibility: internal
+      _change: add
+    - name: TranslationSenseCombiner
+      sealed: false
+      exposes:
+      - signature: "combine(TranslationSenseVerdict fromEnglish,TranslationSenseVerdict\
+          \ fromTranslation): TranslationSenseOutcome"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: TranslationSenseAnalyzerProvider
+      requiresInject:
+      - name: runtime
+        type: JudgeRuntime
+      - name: fromEnglishJudge
+        type: Evaluator
+        description: "Agente translation-sense-from-english: parte del inglés y mira\
+          \ si la traducción lo dice."
+      - name: fromTranslationJudge
+        type: Evaluator
+        description: "Agente translation-sense-from-translation: parte de la traducció\
+          n y mira si el inglés la dice y si un nativo lo diría."
+      - name: verdictReader
+        type: TranslationSenseVerdictReader
+      - name: config
+        type: TranslationSenseConfig
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      visibility: public
+      stereotype: class
+      exposes:
+      - signature: "analyzerName(): String"
+      - signature: "describe(): AnalyzerDescriptor"
+      - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
+      - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
+      - signature: "config(): Optional<SelfDescribingConfig>"
+      _change: add
+    - name: TranslationSenseAnalyzer
+      requiresInject:
+      - name: opened
+        type: JudgeSessions
+      - name: runtime
+        type: JudgeRuntime
+      - name: subjectBuilder
+        type: TranslationSenseSubjectBuilder
+      - name: combiner
+        type: TranslationSenseCombiner
+      - name: verdictReader
+        type: TranslationSenseVerdictReader
+      implements:
+      - ContentAnalyzer
+      _change: add
+    - name: DefaultTranslationSenseSubjectBuilder
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "Las claves y su orden son la huella: cefrLevel, instructions\
+          \ (la del ejercicio), exercise, acceptedSentences, translation. Cambiar\
+          \ el render re-cobra todo."
+      implements:
+      - TranslationSenseSubjectBuilder
+      _change: add
+    - name: DefaultTranslationSenseCombiner
+      requiresInject:
+      - name: config
+        type: TranslationSenseConfig
+      implements:
+      - TranslationSenseCombiner
+      _change: add
+    _change: add
+  _change: modify
+- name: quiz-instruction-infrastructure
+  packages:
+  - name: translationsenseverdict
+    description: "Lectura del payload de los dos jueces de traducción. Pública por\
+      \ la misma razón que la del juez de consigna: el analizador lee veredictos reusados\
+      \ que nunca pasan por el evaluador."
+    visibility: public
+    implementations:
+    - name: JacksonTranslationSenseVerdictReader
+      visibility: public
+      implements:
+      - TranslationSenseVerdictReader
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultTranslationSenseConfig
+    types:
+    - Component
+    visibility: public
+    implements:
+    - TranslationSenseConfig
+    _change: add
+  _change: modify
+features:
+- id: FEAT-TRSEN
+  code: F-TRSEN

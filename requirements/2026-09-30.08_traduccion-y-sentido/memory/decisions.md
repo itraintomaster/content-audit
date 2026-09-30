@@ -4,6 +4,19 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Dos evaluadores (translation-sense-from-english / -from-translation) con el mismo mapa de
+  contenido: cefrLevel, instructions (la del ejercicio), exercise, acceptedSentences, translation. El analizador reparte el
+  tope de a pares con `recorded()` en el orden del recorrido y resuelve cada juez con resolveAll.
+  why: con tope por sesión el primer juez se comería el tope y ningún ejercicio quedaría con los dos veredictos.
+2026-09-30 — architect — Combinación en `DefaultTranslationSenseCombiner`: BOTH_FAIL un hallazgo por condición con la
+  gravedad más alta; SPLIT uno solo `judges-disagree` que sólo ordena, puntaje 1 (José, 30/9). Escala en la config.
+
+2026-09-30 — analyst — DOUBT-TRSEN-COMBINAR → C (José, 30/9: «si los dos de traducción no coinciden, queda marcado
+  para la bandeja»). R003 pasa a VALIDATED y pierde sus [ASSUMPTION].
+2026-09-30 — analyst — DOUBT-TRSEN-CATALOGO → A (José, 30/9: «por lo demás, continúa»; la presentación lo mostraba en
+  «Lo que no toca»). Las dos definiciones de «traducción fiel» conviven hasta que la mesa de E reemplace a QICOR.
+2026-09-30 — analyst — R005: tope por omisión 0 (F-JEXAM-R010) y 4 consultas a la vez (F-JEXAM-R006), por José, 30/9.
+
 2026-09-30 — analyst — Código FEAT-TRSEN / F-TRSEN; nombre del analizador `translation-sense`, familia de errores.
 
 2026-09-30 — analyst — Los dos jueces son dos evaluadores distintos en el libro (R003).

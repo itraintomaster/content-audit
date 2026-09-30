@@ -1,0 +1,217 @@
+code: FEAT-UNICA
+description: "FEAT-UNICA: el analizador single-answer. Un juez lee cada ejercicio\
+  \ para escribir como lo ve el alumno antes de contestar —nombre del tema, consigna\
+  \ del ejercicio, enunciado con pista y respuestas aceptadas— y lista las respuestas\
+  \ que también valdrían. Lo que el corrector ya acepta (contraída o larga, grafí\
+  as de la lista cerrada, until o till) se descarta con CorrectorMatcher, la comparació\
+  n del corrector del paquete A, aunque el juez lo liste; una opción que ofrece la\
+  \ consigna da un hallazgo que sólo ordena y se deriva a respuestas completas; una\
+  \ distinta y válida es error, con su gravedad. Usa el runtime común de FEAT-JEXAM\
+  \ y el evaluador genérico por agente. La opción múltiple no entra: la juzga el juez\
+  \ de FEAT-MCVALE. El proveedor se declara como clase con las cinco firmas de AnalyzerProvider\
+  \ (0.3); el integrador lo pasa a implements AnalyzerProvider."
+modules:
+- name: audit-domain
+  interfaces:
+  - name: SingleAnswerConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getScoreFor(FindingSeverity severity): double"
+    _change: add
+    extends:
+    - SelfDescribingConfig
+  packages:
+  - name: singleanswer
+    description: "Contrato de single-answer (FEAT-UNICA): las respuestas que el juez\
+      \ lista con su clase y el diagnóstico del ejercicio, que separa lo que cuenta\
+      \ de lo que se descartó porque el corrector ya lo acepta."
+    visibility: public
+    models:
+    - name: AlternativeAnswerKind
+      type: enum
+      fields:
+      - name: OFFERED_BY_INSTRUCTION
+        description: "La consigna o la pista la nombran y el corrector no la acepta:\
+          \ sólo ordena y la arregla una regla de respuestas completas (F-UNICA-R003)."
+      - name: DIFFERENT_VALID
+        description: "Cualquier otra respuesta correcta que el corrector rechaza:\
+          \ error, a la mesa (F-UNICA-R004)."
+      _change: add
+    - name: AlternativeAnswer
+      type: record
+      fields:
+      - name: answer
+        type: String
+        description: Lo que escribiría el alumno en el hueco.
+      - name: gap
+        type: int
+        description: "Qué hueco, desde 1, en el orden del enunciado."
+      - name: kind
+        type: AlternativeAnswerKind
+      - name: severity
+        type: FindingSeverity
+        description: BLOCKING si no se puede saber cuál acepta; HIGH si rechaza otra
+          igual de buena; MEDIUM si rechaza otra correcta menos esperable.
+      - name: reason
+        type: String
+      _change: add
+    - name: SingleAnswerVerdict
+      type: record
+      fields:
+      - name: alternatives
+        type: List<AlternativeAnswer>
+      - name: rationale
+        type: String
+      _change: add
+    - name: SingleAnswerDiagnosis
+      type: record
+      fields:
+      - name: verdict
+        type: SingleAnswerVerdict
+        description: El veredicto tal como lo emitió el juez.
+      - name: counted
+        type: List<AlternativeAnswer>
+        description: "Las que quedan después de descartar lo que el corrector acepta:\
+          \ son las que dan hallazgo."
+      - name: droppedAsAccepted
+        type: List<String>
+        description: "Las que el juez listó y el corrector acepta (F-JEXAM-R012):\
+          \ se ven, no cuentan."
+      - name: score
+        type: double
+        description: "1 sin errores; si no, 0,6, 0,3 o 0 según la gravedad más alta."
+      - name: reusedFromPreviousRun
+        type: boolean
+      _change: add
+    interfaces:
+    - name: SingleAnswerVerdictReader
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "read(String payload): SingleAnswerVerdict"
+      _change: add
+    _change: add
+  - name: singleanswerengine
+    description: "Motor de single-answer. Sólo el proveedor es público. Pide sólo\
+      \ ejercicios para escribir (sin opciones de opción múltiple): onQuiz los junta\
+      \ y onCourseComplete los resuelve con resolveAll y el tope del runtime. El clasificador\
+      \ descarta con CorrectorMatcher (paquete A) lo que el corrector ya acepta antes\
+      \ de contar, así que la regla de las formas no depende de que el juez la cumpla."
+    visibility: public
+    models:
+    - name: SingleAnswerOutcome
+      type: record
+      fields:
+      - name: diagnosis
+        type: SingleAnswerDiagnosis
+      - name: findings
+        type: List<FindingDraft>
+        description: "Uno por respuesta que cuenta, con la respuesta como marca: different-valid-answer\
+          \ (mesa) u offered-alternative (sólo ordena)."
+      - name: score
+        type: double
+      visibility: internal
+      _change: add
+    interfaces:
+    - name: SingleAnswerSubjectBuilder
+      sealed: false
+      exposes:
+      - signature: "build(AuditNode quizNode): EvaluationSubject"
+      visibility: internal
+      _change: add
+    - name: SingleAnswerClassifier
+      sealed: false
+      exposes:
+      - signature: "classify(SingleAnswerVerdict verdict,AuditableQuiz quiz,boolean\
+          \ reused): SingleAnswerOutcome"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: SingleAnswerAnalyzerProvider
+      requiresInject:
+      - name: runtime
+        type: JudgeRuntime
+      - name: judge
+        type: Evaluator
+        description: Agente single-answer-judge.
+      - name: verdictReader
+        type: SingleAnswerVerdictReader
+      - name: config
+        type: SingleAnswerConfig
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      - name: correctorMatcher
+        type: CorrectorMatcher
+        description: "El imitador del corrector del paquete A: una sola tabla de equivalencias\
+          \ (José, 30/9). Es el CorrectorMatcher del paquete A (FEAT-RESPC)."
+      visibility: public
+      stereotype: class
+      exposes:
+      - signature: "analyzerName(): String"
+      - signature: "describe(): AnalyzerDescriptor"
+      - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
+      - signature: "planBinding(): Optional<AnalyzerPlanBinding>"
+      - signature: "config(): Optional<SelfDescribingConfig>"
+      _change: add
+    - name: SingleAnswerAnalyzer
+      requiresInject:
+      - name: opened
+        type: JudgeSessions
+      - name: runtime
+        type: JudgeRuntime
+      - name: subjectBuilder
+        type: SingleAnswerSubjectBuilder
+      - name: classifier
+        type: SingleAnswerClassifier
+      - name: verdictReader
+        type: SingleAnswerVerdictReader
+      implements:
+      - ContentAnalyzer
+      _change: add
+    - name: DefaultSingleAnswerSubjectBuilder
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "Las claves y su orden son la huella: title (el nombre que muestra\
+          \ la app), instructions (la del ejercicio), exercise, acceptedAnswers."
+      implements:
+      - SingleAnswerSubjectBuilder
+      _change: add
+    - name: DefaultSingleAnswerClassifier
+      requiresInject:
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      - name: config
+        type: SingleAnswerConfig
+      implements:
+      - SingleAnswerClassifier
+      _change: add
+    _change: add
+  _change: modify
+- name: quiz-instruction-infrastructure
+  packages:
+  - name: singleanswerverdict
+    description: Lectura del payload del juez de una sola respuesta.
+    visibility: public
+    implementations:
+    - name: JacksonSingleAnswerVerdictReader
+      visibility: public
+      implements:
+      - SingleAnswerVerdictReader
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultSingleAnswerConfig
+    types:
+    - Component
+    visibility: public
+    implements:
+    - SingleAnswerConfig
+    _change: add
+  _change: modify
+features:
+- id: FEAT-UNICA
+  code: F-UNICA
