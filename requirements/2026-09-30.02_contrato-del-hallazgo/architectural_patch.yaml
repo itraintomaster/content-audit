@@ -4,7 +4,12 @@ description: "FEAT-HALL: contrato del hallazgo, catálogo de analizadores y núm
   \ lo construye limpio en cada corrida; el motor corre exactamente lo pedido en una\
   \ sola pasada, recoge los hallazgos antes de agregar y publica en cada nodo el puntaje\
   \ de vocabulario de hoy y los errores contados. Un analizador nuevo agrega su paquete\
-  \ y su proveedor; lo compartido que todavía toca queda listado como enganche."
+  \ y su proveedor; lo compartido que todavía toca queda listado como enganche.; qa-tester:\
+  \ traza las 15 reglas de FEAT-HALL a 101 handwrittenTests en 35 implementaciones,\
+  \ todos nuevos (ninguno portado: ningun test existente verifica una regla de FEAT-HALL,\
+  \ que todavia no esta en el codigo) y ubica F-HALL-J001 y J002 en audit-cli, paquete\
+  \ com.learney.contentaudit.auditcli.commands (6 caminos). Los casos y numeros salen\
+  \ del analisis base 2026-09-30T11-54-02."
 modules:
 - name: audit-domain
   models:
@@ -174,6 +179,67 @@ modules:
       type: ContextNumbersCalculator
       description: "Se invoca al final, sobre el árbol ya agregado, con las fichas\
         \ de lo que corrió."
+    handwrittenTests:
+    - name: "should leave no sentence-length finding on the knowledge «Be: preguntas\
+        \ yes / no», although aggregation gives it 0,995, because findings are collected\
+        \ before aggregating"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R001
+    - name: "should aggregate in the same run the quiz-instruction scores of the judged\
+        \ quizzes into their knowledge, topic, level and course, averaging only quizzes\
+        \ with a verdict and leaving without score a knowledge that has none"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R011
+    - name: "should count the breaches the judge found as errors of their knowledge,\
+        \ topic, level and course in the same run, declaring the quizzes it left unjudged"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R011
+    - name: "should publish on every node the same vocabulary score whether the judge\
+        \ ran or not, the quizzes it judged included"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R011
+    - name: "should run exactly the analyzers of the selection, in catalog order,\
+        \ and leave no score, finding or number of any other"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R012
+    - name: should reject a selection naming an analyzer the catalog does not have
+        before building any analyzer or touching the tree
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R012
+    - name: "should give through runAudit of a course, as before the contract, the\
+        \ scores of the seven classic analyzers and none from the judge, the run that\
+        \ the consolidated view and the impact preview rely on"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R013
+    - name: "should give two runs in the same process over the same course the same\
+        \ findings, in the same order and with the same numbers, the course scores\
+        \ of coca-buckets-distribution, lemma-absence, lemma-count and lemma-recurrence\
+        \ included"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R014
+    - name: "should keep the identity of the finding on «Where is my wallet?» when\
+        \ «He isn't in the living-room.», another quiz of its knowledge, changes"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R014
+    - name: "should leave as not evaluated by quiz-instruction a quiz on which the\
+        \ judge failed, so that it counts among the unevaluated quizzes"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R008
+    - name: should leave the auditable course untouched when an analyzer returns a
+        finding that is resolved by a rule
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R015
     _change: modify
   - name: SentenceLengthAnalyzerProvider
     requiresInject:
@@ -182,19 +248,71 @@ modules:
     - name: config
       type: SentenceLengthConfig
     visibility: public
+    handwrittenTests:
+    - name: "should describe sentence-length in its card as vocabulary, evaluating\
+        \ the quiz, resolved at the panel and instant, with the goal A1 3 to 8 tokens\
+        \ that the code applies"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R006
     implements:
     - AnalyzerProvider
     _change: add
   - name: KnowledgeTitleLengthAnalyzerProvider
     visibility: public
+    handwrittenTests:
+    - name: "should describe knowledge-title-length in its card as vocabulary, evaluating\
+        \ the knowledge, resolved at the panel and instant"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R006
     implements:
     - AnalyzerProvider
     _change: add
   - name: KnowledgeInstructionsLengthAnalyzerProvider
     visibility: public
+    handwrittenTests:
+    - name: "should describe knowledge-instructions-length in its card as vocabulary,\
+        \ evaluating the knowledge, rank-only and instant"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R006
     implements:
     - AnalyzerProvider
     _change: add
+  - name: SentenceLengthAnalyzer
+    handwrittenTests:
+    - name: "should grade low and resolve at the panel the finding of «He isn't in\
+        \ the living-room.», one token over the 3 to 8 of A1"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R002
+    - name: "should give the finding of «He isn't in the living-room.» as evidence\
+        \ the sentence as the student reads it and its measure next to its goal, 9\
+        \ tokens against the 3 to 8 of A1, never the internal format of the course"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R003
+    - name: "should keep emitting for «He isn't in the living-room.» the same SentenceLengthDiagnosis\
+        \ as before, 9 tokens against 3 to 8 with delta 1 and margin 5, with nothing\
+        \ of it copied into its finding"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R001
+  - name: KnowledgeTitleLengthAnalyzer
+    handwrittenTests:
+    - name: "should give the finding of «Participios irregulares: repaso 1» the weighted\
+        \ length of its title against the 28 that fit in a phone"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R003
+  - name: KnowledgeInstructionsLengthAnalyzer
+    handwrittenTests:
+    - name: "should give the finding of «Be o do: armar preguntas» the weighted length\
+        \ of its instructions against its limits of 70 and 100"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R003
   packages:
   - name: finding
     description: "Contrato del hallazgo (FEAT-HALL grupo A). Una sola forma para todo\
@@ -628,16 +746,203 @@ modules:
         description: "En el orden de registro, que es el orden del catálogo, de la\
           \ corrida y de los hallazgos dentro de un nodo. Se valida al construir (InvalidAnalyzerCardException)."
       visibility: public
+      handwrittenTests:
+      - name: "should build from the eight real providers eight cards with every field\
+          \ filled: name, question, what it reads, rules, goal, family, evaluated\
+          \ nodes, resolutions and cost"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R006
+      - name: "should refuse at startup a card with an empty field, naming the analyzer\
+          \ and the field"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R006
+      - name: should refuse at startup a card whose cost is not the highest cost of
+          its rules
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R006
+      - name: "should refuse at startup two providers with the same name, or a card\
+          \ whose name differs from the one its provider publishes"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R005
+      - name: "should add the card of a new analyzer, like pista coherente, and leave\
+          \ the eight existing cards unchanged"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R006
+      - name: "should put the seven classic analyzers in the vocabulary family and\
+          \ quiz-instruction in the errors family, each card in a single family"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R007
       implements:
       - AnalyzerCatalog
       _change: add
     - name: DefaultFindingCollector
       visibility: public
+      handwrittenTests:
+      - name: "should stamp one finding with its eight fields filled, analyzer, rule,\
+          \ node, severity, evidence, resolution, cost and identity, on «He isn't\
+          \ in the living-room.», which scores 0,8 in sentence-length with 9 tokens\
+          \ against the 3 to 8 of A1"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R001
+      - name: "should leave no sentence-length finding on «Where is my wallet?», whose\
+          \ 5 tokens fit A1 and score 1"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R001
+      - name: "should ask an analyzer for findings only on the levels its card evaluates,\
+          \ leaving none on the 55 topics that coca-buckets-distribution scores below\
+          \ 1 without a goal"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R001
+      - name: "should stop the run with a contract violation when an analyzer leaves\
+          \ a node it evaluated below 1 without a finding, or returns a finding on\
+          \ a node that passes"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R001
+      - name: "should stamp on each finding the cost of the card rule that produced\
+          \ it, so an instant rule of a card that also has a paid-model rule gives\
+          \ instant findings"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R002
+      - name: should stop the run with a contract violation when a finding comes without
+          a severity or without a resolution
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R002
+      - name: should stop the run with a contract violation when a finding comes with
+          no examined part or no observation
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R003
+      - name: "should stop the run with a contract violation when an errors analyzer\
+          \ leaves at 1 a quiz with a finding that counts as error, or below 1 a quiz\
+          \ whose only findings rank only"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R004
+      - name: should stop the run with a contract violation when a finding names a
+          rule its card does not declare or a resolution its card does not list
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R006
+      - name: should leave every score and typed diagnosis of the tree exactly as
+          the analyzer left them
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R013
+      - name: "should give each finding the identity analyzer, rule, node and marker,\
+          \ the same whatever the run, the traversal order, the time or the judge\
+          \ version, as lemma-absence, its rule, quiz 67fab6d599301022953425b1 and\
+          \ wallet for «Where is my wallet?»"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R014
+      - name: should stop the run with a contract violation when an analyzer returns
+          two findings with the same identity on one node
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R014
+      - name: "should order the findings of a node by the catalog order of their analyzer,\
+          \ then by rule, then by what they mark, whatever order the analyzers returned\
+          \ them in"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R014
       implements:
       - FindingCollector
       _change: add
     - name: DefaultContextNumbersCalculator
       visibility: public
+      handwrittenTests:
+      - name: "should keep out of the error counts the 950 quizzes that lemma-absence\
+          \ scores below 1, because lemma-absence is a vocabulary analyzer"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R007
+      - name: "should count for each errors analyzer, in every knowledge, topic, level\
+          \ and the course, the quizzes it reaches, evaluates, leaves unevaluated\
+          \ and finds with an error, and its error share over the evaluated ones,\
+          \ with evaluated plus unevaluated adding up to reached"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R008
+      - name: should count a quiz once in «algún error» however many error findings
+          it has from however many errors analyzers
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R008
+      - name: "should split «algún error» by the highest severity of each quiz, so\
+          \ that blocking, high, medium and low add up to it"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R008
+      - name: should make every count of a node the sum of the counts of its children
+          and recompute its percentages from those sums instead of averaging the percentages
+          of its children
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R008
+      - name: "should publish apart, as marked, the findings that only rank, and count\
+          \ no quiz that has only such findings as a quiz with error"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R008
+      - name: "should count a finding on a knowledge in every quiz of that knowledge,\
+          \ for its analyzer and for «algún error», as a finding on the mini-theory\
+          \ of «In time u on time» counts in its 40 quizzes"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R008
+      - name: "should declare as not fully evaluated each quiz that some errors analyzer\
+          \ reached and did not evaluate, like those the judge leaves pending past\
+          \ its budget of 500, so that «algún error» reads as a floor"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R008
+      - name: "should publish no error counts on any node when no errors analyzer\
+          \ ran, as in the 29/9 base analysis made without the judge"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R008
+      - name: "should publish 73,9 % as the vocabulary score of the course of the\
+          \ 29/9 base, the average of the course scores of its seven vocabulary analyzers\
+          \ (86,4, 72,5, 89,3, 67,0, 8,0, 98,8 and 95,5), and not 83,4 %, the average\
+          \ of its four levels"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R009
+      - name: "should publish as vocabulary scores of the levels of the 29/9 base\
+          \ A1 96,5 %, A2 94,2 %, B1 79,5 % and B2 63,5 %"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R009
+      - name: "should leave the quiz-instruction score out of the vocabulary score\
+          \ of every node, the quizzes it judged included"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R009
+      - name: "should average into the vocabulary score only the vocabulary analyzers\
+          \ that ran, so that sentence-length alone gives the course of the 29/9 base\
+          \ 86,4 %"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R009
+      - name: "should publish the four COCA quarters as sub-metrics of coca-buckets-distribution\
+          \ and keep them out of every average, 73,9 % on the course of the 29/9 base\
+          \ and not the 73,4 % of averaging its eleven keys"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R010
       implements:
       - ContextNumbersCalculator
       _change: add
@@ -648,9 +953,51 @@ modules:
     visibility: public
     implementations:
     - name: DefaultQuizInstructionAnalyzerFactory
+      handwrittenTests:
+      - name: "should describe quiz-instruction in its card as errors, evaluating\
+          \ the quiz, resolved at the panel and costing a paid model"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R006
       implements:
       - AnalyzerProvider
       _change: modify
+    - name: QuizInstructionAnalyzer
+      handwrittenTests:
+      - name: should leave no finding on a quiz the judge left pending or failed
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R001
+      - name: "should grade blocking a critical breach, high a major one and medium\
+          \ a minor one, the breaches it scores 0,0, 0,3 and 0,6"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R002
+      - name: "should put in the evidence of its finding every violation the judge\
+          \ reported, with the constraint it breaks and its textual evidence"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R003
+      - name: should leave a finding that counts as error on every quiz it scores
+          below 1 and none on a quiz it scores 1
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R004
+      - name: should mark as not evaluated by quiz-instruction the quizzes it leaves
+          pending for budget or failed
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R008
+      - name: should leave on a quiz whose verdict was reused from an earlier run
+          the same finding as on one judged in this run
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R011
+      - name: "should leave a single finding per breaching quiz, whose identity depends\
+          \ neither on the violation codes the model writes nor on the judge version"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R014
     _change: modify
   - name: coca
     visibility: internal
@@ -662,9 +1009,23 @@ modules:
       - name: cocaBucketsConfig
         type: CocaBucketsConfig
       visibility: public
+      handwrittenTests:
+      - name: "should describe coca-buckets-distribution in its card as vocabulary,\
+          \ evaluating the levels and the course but not the topics, rank-only and\
+          \ instant"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R006
       implements:
       - AnalyzerProvider
       _change: add
+    - name: CocaBucketsAnalyzer
+      handwrittenTests:
+      - name: "should give the finding of B2, which it scores 32,2 %, the share of\
+          \ each frequency band against the targets of its level"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R003
     _change: modify
   - name: lrec
     visibility: internal
@@ -674,9 +1035,22 @@ modules:
       - name: lemmaRecurrenceConfig
         type: LemmaRecurrenceConfig
       visibility: public
+      handwrittenTests:
+      - name: "should describe lemma-recurrence in its card as vocabulary, evaluating\
+          \ only the course, rank-only and instant"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R006
       implements:
       - AnalyzerProvider
       _change: add
+    - name: LemmaRecurrenceAnalyzer
+      handwrittenTests:
+      - name: "should give its course finding the measure 8,0 %, the share of the\
+          \ most used lemmas that come back at a healthy interval, next to its goal"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R003
     _change: modify
   - name: labs
     visibility: internal
@@ -690,9 +1064,38 @@ modules:
       - name: sentenceLexicalScorer
         type: SentenceLexicalScorer
       visibility: public
+      handwrittenTests:
+      - name: "should describe lemma-absence in its card as vocabulary, evaluating\
+          \ the quiz, the levels and the course, resolved at the panel on the quiz\
+          \ and rank-only on levels and course, and instant"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R006
       implements:
       - AnalyzerProvider
       _change: add
+    - name: LemmaByLevelAbsenceAnalyzer
+      handwrittenTests:
+      - name: "should grade medium and resolve at the panel the finding of wallet,\
+          \ an A2 word, in the A1 quiz «Where is my wallet?»"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R002
+      - name: "should resolve as rank-only the lemma-absence findings of a level and\
+          \ of the course, while those of a quiz go to the panel"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R002
+      - name: should say in the evidence of «Where is my wallet?» that wallet is an
+          A2 word found in an A1 quiz
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R003
+      - name: "should mark each misplaced word apart, so that «Where is my wallet?»\
+          \ has one finding whose marker is wallet"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R014
     _change: modify
   - name: lemmacount
     visibility: internal
@@ -704,9 +1107,22 @@ modules:
       - name: lemmaCountConfig
         type: LemmaCountConfig
       visibility: public
+      handwrittenTests:
+      - name: "should describe lemma-count in its card as vocabulary, evaluating the\
+          \ levels and the course, rank-only and instant"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R006
       implements:
       - AnalyzerProvider
       _change: add
+    - name: LemmaCountAnalyzer
+      handwrittenTests:
+      - name: "should give the finding of the course, which it scores 67,0 %, the\
+          \ lemmas that appear in fewer sentences than their target"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R003
     _change: modify
   _change: modify
 - name: audit-application
@@ -733,6 +1149,34 @@ modules:
       description: "Para validar cada nombre pedido, excluido o con tope antes de\
         \ cargar el curso, y armar la selección exacta en orden del catálogo (F-HALL-R012).\
         \ El runner ya no construye motores ni conoce jueces."
+    handwrittenTests:
+    - name: "should run exactly sentence-length when a run asks only for it, leaving\
+        \ no score, finding or number of the other six classic analyzers"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R012
+    - name: "should run exactly quiz-instruction when a run asks only for it, with\
+        \ its findings, numbers and coverage and nothing from the seven classic analyzers"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R012
+    - name: "should reject before loading the course a run that asks for quiz-instructions,\
+        \ a name get analyzers does not list, with the message that points to get\
+        \ analyzers"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R012
+    - name: "should reject before loading the course a run that excludes a name get\
+        \ analyzers does not list, instead of ignoring it"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R012
+    - name: "should publish on the 29/9 course, with the seven classic analyzers,\
+        \ the same score of each one on each of its 11.760 nodes and the same typed\
+        \ diagnoses as the analysis 2026-09-30T11-54-02"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R013
     _change: modify
   - name: DefaultAnalyzerRegistry
     requiresInject:
@@ -747,6 +1191,12 @@ modules:
       description: "get analyzers, config y stats leen del mismo catálogo que corre\
         \ analyze: quiz-instruction aparece y config analyzer deja de decir not found\
         \ (F-HALL-R005)."
+    handwrittenTests:
+    - name: "should list in get analyzers the eight analyzers analyze accepts, quiz-instruction\
+        \ included, each once under its catalog name"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R005
     _change: modify
   _change: modify
 - name: refiner-domain
@@ -783,6 +1233,35 @@ modules:
         \ AnalyzerPlanBinding, no de listas por nivel ni de un switch por nombre.\
         \ Las fichas de los ocho reproducen esas listas, así que el plan de hoy no\
         \ cambia (F-HALL-R013)."
+    handwrittenTests:
+    - name: "should derive from the 29/9 analysis the same 4.036 tasks as before the\
+        \ contract: 3.051 SENTENCE_LENGTH, 950 LEMMA_ABSENCE, 25 KNOWLEDGE_INSTRUCTIONS_LENGTH,\
+        \ 6 KNOWLEDGE_TITLE_LENGTH, 3 COCA_BUCKETS and 1 LEMMA_RECURRENCE"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R013
+    - name: "should declare, instead of dropping them in silence, the analyzer and\
+        \ the number of nodes whose scores below 1 it could not turn into tasks because\
+        \ the analyzer has no task kind, as happened to the judge before F-QINST-R017"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R004
+    - name: should declare as unconverted the scores below 1 of an analyzer whose
+        plan binding names a task kind the plan does not know
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R004
+    - name: "should turn the scores below 1 of a new errors analyzer into tasks through\
+        \ its plan binding, without the plan knowing its name"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R004
+    - name: "should declare nothing about lemma-count, whose scores below 1 on the\
+        \ levels and the course (67,0 %) have no task as before, because the declaration\
+        \ covers only errors analyzers"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R004
     domainLinks:
     - term: Tarea de corrección
       role: produces
@@ -800,7 +1279,161 @@ modules:
         \ como atajo de quiz-instruction (F-HALL-R005, F-QINST-R006/R015)."
       _change: add
     _change: modify
+  packages:
+  - name: commands
+    implementations:
+    - name: AnalyzeCmd
+      handwrittenTests:
+      - name: "should print that analyzer quiz-instructions was not found with the\
+          \ hint to run content-audit get analyzers, exit non-zero and save no analysis\
+          \ when asked to run a name the catalog does not have"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R012
+      - name: "should cap the judge queries with --budget quiz-instruction=N, the\
+          \ name get analyzers lists, as --instruction-budget does"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R005
+      - name: "should leave the 886 files of the 29/9 course identical byte for byte\
+          \ after analyzing it with any selection of analyzers, such as all of them,\
+          \ sentence-length alone or quiz-instruction alone"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R015
+      - name: "should write in a run nothing but its analysis and, when the judge\
+          \ ran, its new verdicts in the evaluation ledger"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R015
+    - name: GetCmd
+      handwrittenTests:
+      - name: "should show in get analyzers and in get analyzer quiz-instruction the\
+          \ whole card of each analyzer: question, what it reads, rules, goal, family,\
+          \ evaluated nodes, resolutions and cost"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R006
+      - name: "should show in get audit and get audits the vocabulary score published\
+          \ on the course, 73,9 % for the 29/9 base, instead of 73,4 %, the average\
+          \ of its eleven course keys"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R010
+    - name: ConfigAnalyzerCmd
+      handwrittenTests:
+      - name: should print the configuration of quiz-instruction instead of reporting
+          analyzer quiz-instruction not found
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R005
+      - name: "should answer config analyzer knowledge-title-length, which has no\
+          \ configuration, without reporting it not found"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R005
+    - name: StatsAnalyzerCmd
+      handwrittenTests:
+      - name: "should show the stats of quiz-instruction from the verdicts already\
+          \ recorded, with no new judge query, and declare how many quizzes lack a\
+          \ verdict"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R005
+      - name: "should show in stats analyzer coca-buckets-distribution the course\
+          \ score 72,5 % published for it, with its quarters Q1 to Q4 as sub-metrics\
+          \ outside any average"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R010
+    - name: PlanCmd
+      handwrittenTests:
+      - name: should warn after deriving a plan which analyzer and how many nodes
+          had scores below 1 it could not turn into tasks
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R004
+  - name: formatting
+    implementations:
+    - name: DefaultReportViewModelTransformer
+      handwrittenTests:
+      - name: "should show in analyze the vocabulary score published on the course\
+          \ and on each level, 73,9 % on the course even when the run included quiz-instruction,\
+          \ instead of averaging the keys of the node"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R010
+    - name: RawJsonReportFormatter
+      handwrittenTests:
+      - name: "should write as overall score in analyze -f raw the vocabulary score\
+          \ published on the course, 73,9 % for the 29/9 base, instead of 73,4 %,\
+          \ the average of its eleven course keys"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R010
   _change: modify
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemAuditReportStore
+    handwrittenTests:
+    - name: "should list each saved analysis with the vocabulary score published on\
+        \ its course, 73,9 % for the 29/9 base, instead of 73,4 %, the average of\
+        \ its eleven course keys"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R010
+    - name: "should save with each analysis a digest without the course entities whose\
+        \ numbers, findings and unevaluated analyzers are copied from the report and\
+        \ not recomputed, and load it by the analysis id"
+      traceability:
+        feature: FEAT-HALL
+        rule: F-HALL-R010
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: DefaultImpactPreviewComputer
+      handwrittenTests:
+      - name: "should compute the before and after of each level of the impact preview\
+          \ from the vocabulary scores published on the base and simulated reports,\
+          \ 73,9 % before on the course of the 29/9 base instead of 73,4 %"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R010
+    - name: DefaultConsolidatedViewBuilder
+      handwrittenTests:
+      - name: "should carry into the consolidated view the vocabulary score and the\
+          \ error counts the engine published on each node of each snapshot, without\
+          \ computing them again"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R010
+  - name: fielddiff
+    implementations:
+    - name: RecursiveNodeFieldDiffer
+      handwrittenTests:
+      - name: should report as unchanged the finding on «Where is my wallet?» when
+          only «He isn't in the living-room.» changed between the original and the
+          consolidated snapshots
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R014
+    - name: DefaultListIdentityRegistry
+      handwrittenTests:
+      - name: "should identify a finding within a list by its analyzer, its rule and\
+          \ what it marks, so that snapshots are compared by identity and not by position"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R014
 features:
 - id: FEAT-HALL
   code: F-HALL
+  journeys:
+  - id: F-HALL-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+  - id: F-HALL-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands

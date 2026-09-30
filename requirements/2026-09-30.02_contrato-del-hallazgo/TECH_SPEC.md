@@ -1,7 +1,7 @@
 ---
 patch: FEAT-HALL
 requirement: 2026-09-30.02_contrato-del-hallazgo
-generated: 2026-09-30T15:40:00Z
+generated: 2026-09-30T20:00:00Z
 ---
 
 # Tech Spec: Contrato del hallazgo, catálogo de analizadores y números por contexto (FEAT-HALL)
@@ -714,4 +714,99 @@ modules:
 features:
   - id: FEAT-HALL
     code: F-HALL
+```
+
+## Ubicar F-HALL-J001 y J002 en audit-cli
+Los dos journeys recorren verbos de la CLI: `analyze`, `get analyzers`, `get audit`, la vista consolidada y `plan`. Esos
+comandos son clases de paquete en `com.learney.contentaudit.auditcli.commands`, y audit-cli es el único módulo que ve a
+la vez el catálogo, el juez y el libro de evaluaciones: el mismo criterio que F-CDIFF-J001, F-PIPRE-J002 y F-PLANEF. Con
+la ubicación en el parche, `patch apply` registra la compuerta con los dos ya ubicados, `feature sync` no hace falta y
+`generate` deja de abortar: crea `FHallJ001JourneyTest`, con 4 caminos, y `FHallJ002JourneyTest`, con 2. Sin ella,
+aplicado el parche del arquitecto después del de 0.2, `generate` aborta por J001 y J002 sin `testModule`.
+
+```architecture
+features:
+  - id: FEAT-HALL
+    code: F-HALL
+    journeys:
+      - { id: F-HALL-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
+      - { id: F-HALL-J002, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
+modules:
+  - name: audit-cli
+    _change: modify
+```
+
+## Declarar las 101 pruebas de FEAT-HALL
+El parche declara 101 handwrittenTests en 35 implementaciones, y las 15 reglas tienen prueba. Ninguna es portada. El
+criterio es el del qa-tester de 0.2: se porta un test existente si verifica la regla. Acá ninguno lo hace, porque el
+contrato todavía no existe en el código. Los tests vecinos verifican reglas de otras features y conservan su traza:
+F-QINST-R004, R011 y R015, F-CLIRV-R016 y R021, F-RCLA-R001 y F-SLEN-R003 a R016. Cada prueba nueva nombra su caso real de
+la base del 29/9, y donde la regla promete un número, lo fija.
+
+| Regla | Pruebas | Dónde | Caso real o número que fija |
+|---|---|---|---|
+| R001 | 7 | recolector (4), motor, largo de oración, juez | «He isn't in the living-room.»: 9 tokens contra 3 a 8, 0,8; su tema, 0,995 y sin hallazgo; los 55 topics con COCA bajo 1 |
+| R002 | 6 | recolector (2), largo de oración, ausencia de lemas (2), juez | wallet, de A2, en «Where is my wallet?»: media; juez crítica, mayor y menor (0,0, 0,3 y 0,6) |
+| R003 | 9 | recolector y los ocho analizadores | 9 tokens contra 3 a 8; B2 de COCA con 32,2 %; lemas del curso con 67,0 %; recurrencia con 8,0 %; «Participios irregulares: repaso 1» contra 28 |
+| R004 | 7 | recolector, juez, plan (4), `plan` | el juez sin tipo de tarea antes de F-QINST-R017; lemma-count con 67,0 % sigue sin tareas |
+| R005 | 6 | catálogo, registro, `analyze`, `config` (2), `stats` | los ocho en `get analyzers`; `config analyzer quiz-instruction` sin «not found» |
+| R006 | 14 | catálogo (4), recolector, `get analyzers` y las ocho fichas | la meta de A1, de 3 a 8 tokens, la que aplica el código |
+| R007 | 2 | catálogo, calculador | siete de vocabulario y uno de errores; los 950 ejercicios con lemma-absence bajo 1 no son errores |
+| R008 | 10 | calculador (8), motor, juez | la miniteoría de «In time u on time» en sus 40 ejercicios; el tope de 500 del juez |
+| R009 | 4 | calculador | 73,9 % y no 83,4 %; A1 96,5 · A2 94,2 · B1 79,5 · B2 63,5; sentence-length sola, 86,4 % |
+| R010 | 9 | calculador, `analyze`, `-f raw`, almacén (2), `get audit`, `stats`, vista previa y vista consolidada | 73,9 % y no 73,4 % en `get audits`, `get audit`, `-f raw` y la vista previa; COCA 72,5 % en `stats` |
+| R011 | 4 | motor (3), juez | el juez en tema, topic, nivel y curso en la misma corrida |
+| R012 | 7 | motor (2), runner (4), `analyze` | quiz-instructions, un nombre que no está, se rechaza antes de cargar el curso |
+| R013 | 4 | motor, recolector, runner, plan | 11.760 nodos iguales al análisis 2026-09-30T11-54-02; 4.036 tareas |
+| R014 | 9 | recolector (3), motor (2), juez, ausencia de lemas, vista consolidada (2) | el hallazgo de wallet conserva su identidad al cambiar «He isn't in the living-room.» |
+| R015 | 3 | `analyze` (2), motor | los 886 archivos del curso, idénticos byte a byte |
+
+El parche no cambia ninguna regla ni ninguna traza existente, pero el cambio de estructura rompe cuerpos de tests de
+otras features. Hay 26 construcciones de `DefaultAuditRunner` en 3 archivos, 8 de `IAuditEngine` en 4, 2 de
+`DefaultRefinerEngine` y 25 referencias a `EvaluationAnalyzerFactory` en 4 archivos. El test de F-QINST-R007 del runner
+tiene que pasar por el motor real, porque la falla del juez ahora se aísla ahí. Además, la prueba común sin declarar de
+`FileSystemAuditReportStoreTest`, «should list saved reports with correct summary information», afirma el promedio viejo y
+choca con R010: hay que adaptarla o borrarla.
+
+## Fijar los números de la base del 29/9
+Cada número que promete el requirement queda fijado por una prueba, medido sobre el archivo del análisis
+2026-09-30T11-54-02. Las siete claves del curso dan 0,73923; las once, con los cuartos, 0,73420; los niveles, 96,54, 94,16,
+79,45 y 63,51, y su promedio, 83,42. Los 55 topics tienen COCA bajo 1, y hay 3.051 + 950 + 25 + 6 + 3 + 1 notas bajo 1
+donde el plan hace tarea. Para el calculador alcanzan esas claves como fixture. La prueba del runner y la del plan
+necesitan los puntajes de cada nodo: un fixture compacto sacado del análisis, o volver a analizar `db/english-course`.
+
+```architecture
+modules:
+  - name: audit-domain
+    packages:
+      - name: findingengine
+        implementations:
+          - name: DefaultContextNumbersCalculator
+            handwrittenTests:
+              - name: "should publish 73,9 % as the vocabulary score of the course of the 29/9 base, the average of the course scores of its seven vocabulary analyzers (86,4, 72,5, 89,3, 67,0, 8,0, 98,8 and 95,5), and not 83,4 %, the average of its four levels"
+                traceability: { feature: FEAT-HALL, rule: F-HALL-R009 }
+              - name: "should publish as vocabulary scores of the levels of the 29/9 base A1 96,5 %, A2 94,2 %, B1 79,5 % and B2 63,5 %"
+                traceability: { feature: FEAT-HALL, rule: F-HALL-R009 }
+              - name: "should publish the four COCA quarters as sub-metrics of coca-buckets-distribution and keep them out of every average, 73,9 % on the course of the 29/9 base and not the 73,4 % of averaging its eleven keys"
+                traceability: { feature: FEAT-HALL, rule: F-HALL-R010 }
+  - name: audit-application
+    implementations:
+      - name: DefaultAuditRunner
+        handwrittenTests:
+          - name: "should publish on the 29/9 course, with the seven classic analyzers, the same score of each one on each of its 11.760 nodes and the same typed diagnoses as the analysis 2026-09-30T11-54-02"
+            traceability: { feature: FEAT-HALL, rule: F-HALL-R013 }
+  - name: refiner-domain
+    implementations:
+      - name: DefaultRefinerEngine
+        handwrittenTests:
+          - name: "should derive from the 29/9 analysis the same 4.036 tasks as before the contract: 3.051 SENTENCE_LENGTH, 950 LEMMA_ABSENCE, 25 KNOWLEDGE_INSTRUCTIONS_LENGTH, 6 KNOWLEDGE_TITLE_LENGTH, 3 COCA_BUCKETS and 1 LEMMA_RECURRENCE"
+            traceability: { feature: FEAT-HALL, rule: F-HALL-R013 }
+  - name: audit-cli
+    packages:
+      - name: commands
+        implementations:
+          - name: AnalyzeCmd
+            handwrittenTests:
+              - name: "should leave the 886 files of the 29/9 course identical byte for byte after analyzing it with any selection of analyzers, such as all of them, sentence-length alone or quiz-instruction alone"
+                traceability: { feature: FEAT-HALL, rule: F-HALL-R015 }
 ```
