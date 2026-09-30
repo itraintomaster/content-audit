@@ -41,12 +41,13 @@ marcados que sirva de conjunto para un juez.
 > respuesta aceptada. Un ejercicio cuya oración no tiene verbo o es una sola palabra («go - going», «hard work
 > uncountable») no alcanza: no tiene número ni hallazgo.
 
-En A1–A2 no alcanzan 76 de 4.813. La contraída y la larga valen igual (decisión de José, ronda 1): con el método de
-[DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO) opción B hay que leer la forma larga, porque ese cálculo castiga la contraída.
+En A1–A2 no alcanzan 76 de 4.813. La contraída y la larga valen igual (decisión de José, ronda 1): la pregunta de R002
+no castiga la contraída, así que la oración se lee como queda. SLOR sí la castigaba y obligaba a leer la forma larga,
+y quedó descartado ([DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO)).
 
 <a id="F-NATUR-R002"></a>
 ### Rule[F-NATUR-R002] - Un número por ejercicio: qué tan poco probable es que un nativo lo diga así
-**Severity**: critical | **Validation**: ASSUMPTION
+**Severity**: critical | **Validation**: VALIDATED
 
 > Al modelo local se le pregunta si un hablante nativo diría esa oración, con ese sentido y esas palabras, y el número
 > de naturalidad es cuánto más probable ve el «no» que el «sí» (el logaritmo del cociente): 0 es «tanto sí como no», y
@@ -54,20 +55,23 @@ En A1–A2 no alcanzan 76 de 4.813. La contraída y la larga valen igual (decisi
 > ([F-MLOCAL-R002](#F-MLOCAL-R002)).
 
 Es una consulta de un token por oración, local y gratis. Se usa el cociente y no la probabilidad del «no» porque ésta
-se amontona en 1: más de 300 ejercicios por nivel pasan de 0,999. El método de la propuesta (SLOR) se midió peor: ver
-Contexto y [DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO).
+se amontona en 1: más de 300 ejercicios por nivel pasan de 0,999. El método de la propuesta (SLOR) se midió peor y
+quedó descartado (José, 30/9): ver Contexto y [DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO).
 
 <a id="F-NATUR-R003"></a>
 ### Rule[F-NATUR-R003] - Marca el 5 % más dudoso de cada nivel, y no cuenta como error
-**Severity**: critical | **Validation**: ASSUMPTION
+**Severity**: critical | **Validation**: VALIDATED
 
 > Un ejercicio cuyo número queda por encima del umbral de su nivel tiene un hallazgo que sólo ordena: gravedad *baja*,
 > resolución *sólo ordena* ([F-HALL-R002](#F-HALL-R002)). No baja el puntaje, no produce tarea
 > ([F-HALL-R004](#F-HALL-R004)) y se cuenta como marcado, nunca como error ([F-HALL-R008](#F-HALL-R008)). El umbral de
 > cada nivel es fijo y deja marcado el 5 % de ese nivel en la base del 29/9; a igual número, el orden es el del curso.
 
-Fijo, para que cambiar un ejercicio no mueva la marca de otro ([F-HALL-R014](#F-HALL-R014)):
-[DOUBT-NATUR-UMBRAL](#DOUBT-NATUR-UMBRAL).
+Fijo, para que cambiar un ejercicio no mueva la marca de otro ([F-HALL-R014](#F-HALL-R014)); lo decidió José el 30/9
+([DOUBT-NATUR-UMBRAL](#DOUBT-NATUR-UMBRAL)). Con llama3 8B en la versión medida, 9,07 en A1 (116 de 2.334) y 10,2 en A2
+(120 de 2.403). Los de B1 y B2 se calculan igual sobre la base del 29/9 antes de publicar: unos 9 minutos de modelo.
+Un modelo en otra versión da otros números, así que sus umbrales se vuelven a calcular con su examen
+([F-MLOCAL-R006](#F-MLOCAL-R006)).
 
 <a id="F-NATUR-R004"></a>
 ### Rule[F-NATUR-R004] - La evidencia dice cuánto duda el modelo
@@ -121,7 +125,8 @@ scratchpad del analista, sin instalar nada: llama3 8B (Q4_0) en Ollama, el únic
 | Pregunta sí o no, R002 | 51 (27,4 %) | 47,9 % | 6 min |
 
 Con la cola del 10 %, la pregunta trae el 43,5 %; con la del 20 %, el 64 %. De los 47 de gramática del examen, 9 caen en
-la cola del 5 % (LanguageTool encuentra 1). Los umbrales del 5 % quedan en 10,0 (A1) y 10,2 (A2); lo más dudoso de A2 es
+la cola del 5 % (LanguageTool encuentra 1). Los umbrales del 5 % quedan en 9,1 (A1; exacto, 9,07) y 10,2 (A2), medidos
+sobre `yn-a1a2.jsonl`; la presentación decía 10,0 para A1 y era un error. Lo más dudoso de A2 es
 «She is an engineer of hers.», «Jakarta is the capital of the Philippines.» y «This idea does not very good.». Fuera de
 todo oro, la cola trae oraciones igual de raras que el 077 no anotó, como «She bought at the market.».
 
@@ -178,36 +183,37 @@ journeys:
 
 <a id="DOUBT-NATUR-METODO"></a>
 ### Doubt[DOUBT-NATUR-METODO] - ¿Preguntarle al modelo o calcular la probabilidad (SLOR)?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): preguntarle al modelo local si un nativo lo diría así (R002). Aprueba el examen con el
+- [x] Opción A (recomendada): preguntarle al modelo local si un nativo lo diría así (R002). Aprueba el examen con el
   modelo ya instalado: 51 de 186 en la cola del 5 %.
 - [ ] Opción B: SLOR, como dice la propuesta, con un modelo chico que dé la probabilidad exacta (GPT-2, unos 500 MB).
   Con lo instalado dio 14 de 186, casi el azar; con GPT-2 no se midió.
 - [ ] Opción C: medir B con GPT-2 antes de elegir.
 
-**Answer**: Pendiente. Recomiendo A: ya aprueba, no hay que bajar nada y tarda minutos. C cuesta una hora y el OK para
-bajar el modelo; vale si José quiere un modelo más chico que llama3.
+**Answer**: **Opción A** (José, 30/9: «Dale con … el método nuevo de naturalidad»): se le pregunta al modelo si un
+nativo lo diría, con respuesta sí o no, y el número es ln(P(no)/P(sí)) del primer token. SLOR queda descartado y no se
+baja ningún modelo.
 
 <a id="DOUBT-NATUR-MARCA"></a>
 ### Doubt[DOUBT-NATUR-MARCA] - ¿Sólo ordena, o también cuenta como error?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): sólo ordena, como aprobó José en el brief 089.
+- [x] Opción A (recomendada): sólo ordena, como aprobó José en el brief 089.
 - [ ] Opción B: lo marcado cuenta como error, *baja*.
 
-**Answer**: Pendiente. Recomiendo A: de los marcados, 48 de cada 100 están en algún oro del 077; como error, la mitad de
-lo que sumaría a «algún error» serían oraciones que el 077 dio por buenas.
+**Answer**: **Opción A** (José, 30/9): sólo ordena, no cuenta errores. De los marcados, 48 de cada 100 están en algún
+oro del 077; como error, la mitad de lo que sumaría a «algún error» serían oraciones que el 077 dio por buenas.
 
 <a id="DOUBT-NATUR-UMBRAL"></a>
 ### Doubt[DOUBT-NATUR-UMBRAL] - ¿El 5 % de cada corrida o un umbral fijo?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): umbral fijo por nivel, el que marcaba el 5 % en la base del 29/9.
+- [x] Opción A (recomendada): umbral fijo por nivel, el que marcaba el 5 % en la base del 29/9.
 - [ ] Opción B: el 5 % de cada nivel en cada corrida, como dice la propuesta.
 
-**Answer**: Pendiente. Recomiendo A: con B, cada tanda que arregla oraciones raras hace marcar otras que no cambiaron, y
-el antes y después (paquete F) mostraría marcas nuevas sin cambios.
+**Answer**: **Opción A** (José, 30/9): el umbral es fijo por nivel. Con B, cada tanda que arregla oraciones raras hace
+marcar otras que no cambiaron, y el antes y después (paquete F) mostraría marcas nuevas sin cambios.
 
 ## References
 

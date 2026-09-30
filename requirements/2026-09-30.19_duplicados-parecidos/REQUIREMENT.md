@@ -57,7 +57,7 @@ leaving.» sí piden lo mismo: el pronombre lo copia el alumno del enunciado.
 
 <a id="F-DUPAR-R002"></a>
 ### Rule[F-DUPAR-R002] - Casi iguales: cambia sólo el sujeto, el demostrativo, el posesivo o el tiempo, o dicen lo mismo
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: VALIDATED
 
 > Un candidato es casi duplicado si cumple una de dos condiciones:
 > 1. los dos ejercicios terminados quedan iguales al cambiar por un comodín los pronombres, los demostrativos, los
@@ -73,7 +73,7 @@ leaving.» sí piden lo mismo: el pronombre lo copia el alumno del enunciado.
 
 Sin el modelo, la condición 1 sola encuentra 5 de los 6 del 077 en `escribir/`; el que falta es el de Rome. El modelo
 suma «They cooked lunch…» / «They prepared lunch…» y «The show started on time.» / «Did the show begin on time?». El
-umbral: [DOUBT-DUPAR-UMBRAL](#DOUBT-DUPAR-UMBRAL).
+umbral es 0,95 (José, 30/9: [DOUBT-DUPAR-UMBRAL](#DOUBT-DUPAR-UMBRAL)).
 
 </details>
 
@@ -89,14 +89,14 @@ Es la regla de FEAT-DUPEX ([F-DUPEX-R002](#F-DUPEX-R002)), con su misma duda sob
 
 <a id="F-DUPAR-R004"></a>
 ### Rule[F-DUPAR-R004] - El hallazgo es de gravedad baja y va a la mesa
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: VALIDATED
 
 > Todo hallazgo de `near-duplicates` tiene gravedad *baja* y resolución *mesa*, y cuenta como error
 > ([F-HALL-R008](#F-HALL-R008)); con uno, el ejercicio tiene puntaje 0 en este analizador, y sin ninguno, 1. Su costo
 > ([F-HALL-R002](#F-HALL-R002)) es *instantáneo* si lo encontró el comodín y *modelo local* si lo encontró el parecido.
 
 *Baja* porque se puede acertar, como los exactos. *Mesa* porque el arreglo es escribir un ejercicio nuevo con palabras
-del semáforo del tema. Si cuenta como error o sólo ordena: [DOUBT-DUPAR-CUENTA](#DOUBT-DUPAR-CUENTA).
+del semáforo del tema. Cuenta como error y no sólo ordena (José, 30/9: [DOUBT-DUPAR-CUENTA](#DOUBT-DUPAR-CUENTA)).
 
 <a id="F-DUPAR-R005"></a>
 ### Rule[F-DUPAR-R005] - La evidencia muestra los dos ejercicios y qué cambia
@@ -192,25 +192,24 @@ journeys:
 
 <a id="DOUBT-DUPAR-CUENTA"></a>
 ### Doubt[DOUBT-DUPAR-CUENTA] - ¿Un casi duplicado cuenta como error o sólo se marca para revisar?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): cuenta como error, *baja*, como los exactos.
+- [x] Opción A (recomendada): cuenta como error, *baja*, como los exactos.
 - [ ] Opción B: sólo ordena: se marca «para revisar», como dice la propuesta, y no entra en «algún error».
 
-**Answer**: Pendiente. Recomiendo A: el 077 los contó como duplicados, y con la misma respuesta como condición son
-reales entre 7 y 9 de cada 10, según cuenten los dudosos. B conviene si los ejercicios de repetición de *Respuestas
-cortas* («Can I…» / «Could I…») tienen que quedar como están.
+**Answer**: **Opción A** (José, 30/9): cuenta como error de gravedad baja, como los exactos. El 077 los contó como
+duplicados, y con la misma respuesta como condición son reales entre 7 y 9 de cada 10, según cuenten los dudosos.
 
 <a id="DOUBT-DUPAR-UMBRAL"></a>
 ### Doubt[DOUBT-DUPAR-UMBRAL] - ¿Desde qué parecido dos ejercicios dicen lo mismo?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): 0,95. Da 45 pares y los 6 del 077.
+- [x] Opción A (recomendada): 0,95. Da 45 pares y los 6 del 077.
 - [ ] Opción B: 0,97. Da 36 pares y los 6 del 077; pierde «Did the show begin on time?».
 - [ ] Opción C: sin modelo, sólo la condición del comodín: 24 pares, 5 de los 6.
 
-**Answer**: Pendiente. Recomiendo A, confirmada con la muestra ciega de R007. C evita la dependencia pero deja de ver la
-misma idea con otro verbo, como el de Rome.
+**Answer**: **Opción A** (José, 30/9): 0,95, confirmada con la muestra ciega de R007. C evitaba la dependencia pero
+dejaba de ver la misma idea con otro verbo, como el de Rome.
 
 ## References
 

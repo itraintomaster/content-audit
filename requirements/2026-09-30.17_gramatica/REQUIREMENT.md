@@ -68,7 +68,7 @@ aceptadas, nunca marca una contra la otra y nunca dice que falta una. Eso últim
 
 <a id="F-GRAMA-R002"></a>
 ### Rule[F-GRAMA-R002] - Sólo gramática y ortografía, y sólo lo que marcan el inglés americano y el británico
-**Severity**: critical | **Validation**: ASSUMPTION
+**Severity**: critical | **Validation**: VALIDATED
 
 > Una marca de LanguageTool da hallazgo sólo si cumple las cuatro condiciones:
 > 1. su regla es de gramática, ortografía, palabras confundidas o colocaciones, o es una de las de datos (falta el
@@ -91,8 +91,8 @@ aceptadas, nunca marca una contra la otra y nunca dice que falta una. Eso últim
 | Reglas apagadas por omisión | +48 | «You prefer Italian food.» → «an Italian food» | 42 de ARTICLE_MISSING, todas falsas |
 | Contradicen al curso | 2 | «The band are so talented. (UK)» | el tema *Nombres colectivos* enseña las dos |
 
-La lista de las que contradicen al curso empieza con SINGULAR_AGREEMENT_SENT_START: [DOUBT-GRAMA-REGLAS](#DOUBT-GRAMA-REGLAS).
-Con el filtro quedan 59 marcas en 39 ejercicios.
+La lista de las que contradicen al curso es SINGULAR_AGREEMENT_SENT_START, la de los colectivos (José, 30/9:
+[DOUBT-GRAMA-REGLAS](#DOUBT-GRAMA-REGLAS)). Con el filtro quedan 59 marcas en 39 ejercicios.
 
 </details>
 
@@ -159,14 +159,16 @@ unos 10 segundos.
 > Sobre `escribir/gramatica.json` encuentra al menos los 4 que encontró el prototipo; sobre `examinar/`, en la misma
 > proporción; y en una muestra de 50 marcas fuera del oro revisadas a mano, 7 de cada 10 son errores reales.
 
-La meta es baja a propósito: de los 47 casos de A1–A2, 18 son «gone to» por «been to» y el resto, calcos y colocaciones
+La meta es baja a propósito: de los 47 casos de A1–A2, 17 son «gone to» por «been to» y el resto, calcos y colocaciones
 («He knew French with Anna»): eso es sentido, y lo busca FEAT-TRSEN. La ficha dice cuántos agarra cada uno.
 
 ## Contexto
 
 Base: curso vivo del 29/9 en `db/english-course`, medido con un prototipo en el scratchpad del analista, sin tocar
 content-audit. LanguageTool **6.5**, la copia que trae IntelliJ (Grazie), sin el agrupador de OpenNLP, cuyos modelos no
-vienen: el LanguageTool completo puede marcar algo más.
+vienen: el LanguageTool completo puede marcar algo más. La dependencia que entra en content-audit es LanguageTool **6.8**
+(`org.languagetool:language-en:6.8`), la 6.x vigente en Maven Central, con el agrupador: estos números los vuelve a
+medir el examen de esa versión antes de publicar ([F-MLOCAL-R006](#F-MLOCAL-R006)).
 
 | Medida | A1 | A2 | B1 | B2 | Total |
 |---|---:|---:|---:|---:|---:|
@@ -174,9 +176,10 @@ vienen: el LanguageTool completo puede marcar algo más.
 | Errores reales, revisados a mano | 12 | 4 | 12 | 8 | 36 |
 | Marcados por el 077 como inglés incorrecto | 7 | 40 | ~46 | ~29 | 122 |
 
-B1 y B2 del 077 salen de los porcentajes de la propuesta (1,0 % y 1,5 %). De los 49: 36 reales —4 bloqueantes, 13
-«videogames», 7 espacios que faltan—, 3 discutibles («those ones», «a water») y 10 falsos («The artist … gave a speech»
-→ «give»). **Precisión**: unas 7 de cada 10 (36 de 49). **Costo**: todo el curso en unos 10 segundos más 1 de
+B1 y B2 del 077 salen de los porcentajes de la propuesta (1,0 % y 1,5 %). De los 49: 36 reales —3 bloqueantes, las tres
+repeticiones pegadas al hueco de R004, 13 «videogames», 7 espacios que faltan—, 3 discutibles («those ones», «a
+water») y 10 falsos («The artist … gave a speech» → «give»). «He've had» no es bloqueante: con R004 es *alta*, porque
+toca una respuesta aceptada y se puede acertar. **Precisión**: unas 7 de cada 10 (36 de 49). **Costo**: todo el curso en unos 10 segundos más 1 de
 arranque, en la máquina.
 
 **El examen.** Sobre los 47 de `escribir/gramatica.json` encuentra 4 (8,5 %): «explained us» y tres signos finales.
@@ -230,27 +233,29 @@ journeys:
 
 <a id="DOUBT-GRAMA-REGLAS"></a>
 ### Doubt[DOUBT-GRAMA-REGLAS] - ¿Qué reglas de LanguageTool quedan afuera?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): las categorías de R002, lo que no marcan las dos variantes, las apagadas por omisión y
+- [x] Opción A (recomendada): las categorías de R002, lo que no marcan las dos variantes, las apagadas por omisión y
   SINGULAR_AGREEMENT_SENT_START. Da 49 ejercicios, unos 7 de cada 10 reales.
 - [ ] Opción B: además, las ocho reglas que dieron un solo falso en el curso (AT_TIME, GAVE_GIVE…). Da 41, casi todos
   reales, pero es afinar contra el mismo curso.
 - [ ] Opción C: todo lo que LanguageTool trae prendido. Da 693 marcas; la mayoría, mayúsculas y estilo.
 
-**Answer**: Pendiente. Recomiendo A: los falsos que quedan los descarta la mesa, y B deja de ver esas reglas en los
-candidatos nuevos, que es donde más sirven.
+**Answer**: **Opción A** (José, 30/9: «Dale con LanguageTool»): quedan afuera estilo, mayúsculas, compuestos, variantes
+regionales, lo que no marcan las dos variantes, las reglas apagadas por omisión y SINGULAR_AGREEMENT_SENT_START, la de
+los colectivos. Los falsos que quedan los descarta la mesa.
 
 <a id="DOUBT-GRAMA-ALCANCE"></a>
 ### Doubt[DOUBT-GRAMA-ALCANCE] - Si encuentra 4 de 47, ¿vale la pena?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): sí, como control barato: los 36 errores reales de hoy (4 bloqueantes) y cada candidato
+- [x] Opción A (recomendada): sí, como control barato: los 36 errores reales de hoy (3 bloqueantes) y cada candidato
   de la mesa, en milisegundos, antes de pagarle a un juez.
 - [ ] Opción B: no; el inglés incorrecto lo busca sólo FEAT-TRSEN.
 
-**Answer**: Pendiente. Recomiendo A: el juez de [traducción](glossary:Traducción) y sentido cuesta dos consultas por
-candidato, y un «He have had» nuevo tiene que frenarse antes, gratis.
+**Answer**: **Opción A** (José, 30/9): Gramática sirve de control gratis de los arreglos de la mesa. El juez de
+[traducción](glossary:Traducción) y sentido cuesta dos consultas por candidato, y un «He have had» nuevo tiene que
+frenarse antes, gratis.
 
 ## References
 

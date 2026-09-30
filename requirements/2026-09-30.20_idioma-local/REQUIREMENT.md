@@ -31,7 +31,8 @@ Cómo el operador intenta hoy correr un analizador que necesita una herramienta 
 **Punto de fricción**: pasos 2 a 4.
 
 **Cambio mínimo necesario**: fijar para `grammar`, `naturalness` y `near-duplicates` qué garantizan sobre su herramienta,
-su versión, cuándo corren y cómo leen un candidato. Qué herramienta es cada una y dónde corre: dudas de este requirement.
+su versión, cuándo corren y cómo leen un candidato. Qué herramienta es cada una y dónde corre lo decidió José el 30/9:
+LanguageTool dentro de content-audit y los dos modelos que ya están en Ollama.
 
 ## Reglas de Negocio
 
@@ -76,13 +77,14 @@ jueces ([F-EVCOST-R003](#F-EVCOST-R003)) sin costo; además, una tanda sólo rec
 
 <a id="F-MLOCAL-R004"></a>
 ### Rule[F-MLOCAL-R004] - Qué corre sin pedirlo
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: VALIDATED
 
 > `analyze` sin selección corre los tres. La corrida base, la que usan la vista consolidada y la previa de impacto,
 > corre sólo los de costo *instantáneo* (FEAT-HALL): `grammar` sí; `naturalness` y `near-duplicates`, no.
 
-Es la regla del contrato para la corrida base, aplicada a los nuevos. Que corran sin pedirlo en `analyze`:
-[DOUBT-MLOCAL-POR-OMISION](#DOUBT-MLOCAL-POR-OMISION).
+Es la regla del contrato para la corrida base, aplicada a los nuevos; que los tres corran sin pedirlo en `analyze` lo
+decidió José el 30/9 ([DOUBT-MLOCAL-POR-OMISION](#DOUBT-MLOCAL-POR-OMISION)). Sin pedirlos, los de modelo local no
+tienen tope de consultas: son gratis, y el tope 0 por omisión de los jueces es para los de modelo pago.
 
 <a id="F-MLOCAL-R005"></a>
 ### Rule[F-MLOCAL-R005] - Los tres leen un candidato de la mesa y dicen qué cambia
@@ -93,7 +95,9 @@ Es la regla del contrato para la corrida base, aplicada a los nuevos. Que corran
 > cuáles saca respecto del ejercicio al que reemplaza.
 
 Es lo que [F-JEXAM-R005](#F-JEXAM-R005) pide a los jueces, sin costo. Si un hallazgo nuevo frena el candidato lo decide
-el paquete E («qué significa no empeorar»); acá sólo se garantiza que se sepa, en segundos y gratis.
+el paquete E («qué significa no empeorar»); acá sólo se garantiza que se sepa, en segundos y gratis. Hoy la mesa de E
+mide los candidatos sólo con los analizadores instantáneos ([F-MESA-R004](#F-MESA-R004)), que deja afuera a
+`naturalness` y `near-duplicates`: [DOUBT-MLOCAL-MESA](#DOUBT-MLOCAL-MESA).
 
 <a id="F-MLOCAL-R006"></a>
 ### Rule[F-MLOCAL-R006] - Cada versión rinde su examen antes de publicar
@@ -112,7 +116,7 @@ Lo medido en el prototipo del analista, sobre el curso del 29/9 y en esta Mac, s
 
 | Analizador | Herramienta medida | Qué hay en la máquina | Tiempo |
 |---|---|---|---|
-| `grammar` | LanguageTool 6.5 (la copia de IntelliJ) | nada propio de content-audit | curso entero, unos 10 s |
+| `grammar` | LanguageTool 6.5 (la copia de IntelliJ); entra la 6.8 | nada propio de content-audit | curso entero, unos 10 s |
 | `near-duplicates` | nomic-embed-text, 137M, en Ollama | Ollama y el modelo, ya instalados | curso entero, unos 4 min |
 | `naturalness` | llama3 8B (Q4_0) en Ollama, pregunta sí o no | Ollama y el modelo, ya instalados | A1–A2, 6 min; el curso, unos 15 (estimado) |
 
@@ -163,18 +167,20 @@ journeys:
 
 <a id="DOUBT-MLOCAL-DEPENDENCIAS"></a>
 ### Doubt[DOUBT-MLOCAL-DEPENDENCIAS] - ¿OK para sumar las dependencias?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): LanguageTool, y para los modelos los dos que ya están en Ollama, nomic-embed-text y
+- [x] Opción A (recomendada): LanguageTool, y para los modelos los dos que ya están en Ollama, nomic-embed-text y
   llama3. No se baja nada más.
 - [ ] Opción B: además, un modelo más chico para Naturalidad (phi3.5 o GPT-2), a medir antes de cambiar.
 - [ ] Opción C: sólo LanguageTool; Duplicados parecidos con la condición del comodín, sin modelo, y Naturalidad afuera.
 
-**Answer**: Pendiente. Recomiendo A: todo lo que pide ya está en la máquina, salvo LanguageTool.
+**Answer**: **Opción A** (José, 30/9: «Dale con LanguageTool»): LanguageTool 6.x dentro de content-audit —la vigente es la
+6.8, `org.languagetool:language-en:6.8`, del 5/5/2026— y los dos modelos que ya están en Ollama, nomic-embed-text y
+llama3 8B. No se baja nada más.
 
 | Dependencia | Para | Licencia | Tamaño | En esta Mac | Cómo se instala |
 |---|---|---|---|---|---|
-| LanguageTool 6.x, inglés | `grammar` | LGPL 2.1 | unos 50 MB de bibliotecas | sí, dentro de content-audit | biblioteca Java de Maven Central |
+| LanguageTool 6.8, inglés | `grammar` | LGPL 2.1 | unos 50 MB de bibliotecas | sí, dentro de content-audit | biblioteca Java de Maven Central |
 | Ollama 0.34 | los dos modelos | MIT | — | ya instalado, servicio local | ya está |
 | nomic-embed-text, 137M | `near-duplicates` | Apache 2.0 | 274 MB | ya instalado | `ollama pull nomic-embed-text` |
 | all-MiniLM-L6-v2, 22M (alternativa) | `near-duplicates` | Apache 2.0 | unos 90 MB | sí, en Ollama o dentro de content-audit | `ollama pull all-minilm` |
@@ -184,27 +190,42 @@ journeys:
 
 <a id="DOUBT-MLOCAL-DONDE"></a>
 ### Doubt[DOUBT-MLOCAL-DONDE] - ¿Dónde corre cada herramienta?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): LanguageTool dentro de content-audit, como biblioteca; los dos modelos en Ollama, el
+- [x] Opción A (recomendada): LanguageTool dentro de content-audit, como biblioteca; los dos modelos en Ollama, el
   servicio local que ya corre en la Mac.
 - [ ] Opción B: todo dentro de content-audit, con los modelos convertidos para Java; llama3 no entra así.
 - [ ] Opción C: los modelos en un proceso local de Python, como el de spaCy que content-audit ya corre.
 
-**Answer**: Pendiente. Recomiendo A: no instala nada nuevo salvo LanguageTool, y Ollama ya está probado con los dos
-modelos. C sólo hace falta si se elige SLOR con GPT-2. Lo decide el arquitecto con el OK de José.
+**Answer**: **Opción A** (José, 30/9): LanguageTool dentro de content-audit, como biblioteca, y los dos modelos en
+Ollama, que ya corre en la Mac. C sólo hacía falta con SLOR, que quedó descartado.
 
 <a id="DOUBT-MLOCAL-POR-OMISION"></a>
 ### Doubt[DOUBT-MLOCAL-POR-OMISION] - ¿Corren en todo `analyze`, sin pedirlos?
-**Status**: OPEN
+**Status**: RESOLVED (2026-09-30)
 
-- [ ] Opción A (recomendada): sí, los tres: son minutos y gratis, y el «analyze completo con todo» del plan los incluye.
+- [x] Opción A (recomendada): sí, los tres: son minutos y gratis, y el «analyze completo con todo» del plan los incluye.
 - [ ] Opción B: sólo `grammar`; los de modelo local, sólo pedidos por nombre.
 
-**Answer**: Pendiente. Recomiendo A, con R003: sin la herramienta, el analizador queda sin evaluar y el resto corre.
+**Answer**: **Opción A** (José, 30/9): los tres corren en todo `analyze`; en la corrida base, sólo Gramática. Con R003:
+sin la herramienta, el analizador queda sin evaluar y el resto corre.
+
+<a id="DOUBT-MLOCAL-MESA"></a>
+### Doubt[DOUBT-MLOCAL-MESA] - ¿La mesa mide cada candidato también con los dos de modelo local?
+**Status**: OPEN
+
+- [ ] Opción A (recomendada): sí: la mesa mide cada candidato con los instantáneos y con los de modelo local. Suma una
+  consulta de un token y un vector por oración nueva, en la Mac y gratis, y así ve el candidato que copia a un hermano
+  del tema, que es justo lo que puede pasar al reescribir una copia.
+- [ ] Opción B: no: la mesa mide sólo con los instantáneos ([F-MESA-R004](#F-MESA-R004)), y R005 queda sólo para
+  `grammar`; `naturalness` y `near-duplicates` vuelven a mirar el ejercicio en el análisis siguiente.
+
+**Answer**: Pendiente. Recomiendo A: cuesta menos de un segundo por candidato y no paga nada; con B, un candidato que
+queda casi igual a otro del tema entra al curso y recién el análisis siguiente lo marca como copia.
 
 ## References
 
 - **FEAT-HALL** — Ficha, identidad, conteo de lo sin evaluar y corrida base: R002 a R004.
 - **FEAT-JEXAM** — Examen por versión y candidatos de la mesa para los jueces, que acá se copian sin costo: R005, R006.
+- **FEAT-MESA** — La mesa de E, que mide los candidatos: R005 y DOUBT-MLOCAL-MESA.
 - **FEAT-GRAMA, FEAT-NATUR, FEAT-DUPAR** — Los tres analizadores de idioma.

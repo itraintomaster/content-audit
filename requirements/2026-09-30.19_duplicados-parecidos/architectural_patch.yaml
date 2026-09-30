@@ -1,0 +1,129 @@
+code: FEAT-DUPAR
+description: |
+  FEAT-DUPAR, paquete B de la ronda 2: el analizador near-duplicates. Dentro de cada tema junta los pares que piden la misma respuesta como el corrector y no son iguales tal cual, los marca por el comodín o por un parecido de 0,95 o más con nomic-embed-text en Ollama, y deja un hallazgo bajo, a la mesa, en cada copia. Usa EmbeddingModel y LocalToolGate de FEAT-MLOCAL, y CorrectorMatcher (FEAT-RESPC) y QuizStudentViewRenderer (gancho A-01) de la ronda 1: se aplica después de FEAT-MLOCAL y de la integración de la ronda 1.
+modules:
+- name: audit-domain
+  packages:
+  - name: nearduplicates
+    description: |
+      El analizador near-duplicates (FEAT-DUPAR): compara cada ejercicio con los anteriores de su tema, en onKnowledge, como exact-duplicates. Un par es candidato si pide la misma respuesta comparada como el corrector y no es un duplicado exacto (R001); es casi duplicado si queda igual al tapar pronombres, demostrativos, posesivos y el tiempo del auxiliar, o si el parecido de sus vectores llega a 0,95 (R002). El vector de cada ejercicio se guarda en el libro de evaluaciones con la versión del modelo en el id del evaluador, así que después sólo se pide el de lo que cambió (F-MLOCAL-R002 inv. 2). Familia errores, evalúa el ejercicio, costo modelo local: no entra en la corrida base. Sólo los registros y el proveedor son públicos.
+    visibility: public
+    models:
+    - name: NearDuplicateCondition
+      type: enum
+      fields:
+      - name: WILDCARD
+        description: "Quedan iguales al tapar pronombres, demostrativos, posesivos\
+          \ y el tiempo del auxiliar (F-DUPAR-R002 inv. 1). Regla same-but-wildcard,\
+          \ instantánea."
+      - name: SIMILARITY
+        description: "El parecido de sus vectores llega al umbral, 0,95 (F-DUPAR-R002\
+          \ inv. 2). Regla same-meaning, modelo local."
+      _change: add
+    - name: NearDuplicateDiagnosis
+      type: record
+      fields:
+      - name: keptQuizId
+        type: String
+        description: "El ejercicio que queda: el primero del tema con el que es casi\
+          \ igual (F-DUPAR-R003). Es la marca del hallazgo."
+      - name: condition
+        type: NearDuplicateCondition
+        description: "Si las dos se cumplen, WILDCARD: es la que no depende del modelo."
+      - name: difference
+        type: String
+        description: "Qué cambia, para la evidencia: «He → She». Vacío si es por parecido."
+      - name: similarity
+        type: double
+        description: "El parecido de los dos vectores, redondeado a dos decimales\
+          \ en la evidencia («parecido 0,99»)."
+      - name: finishedExercise
+        type: String
+        description: "Este ejercicio terminado, el que se comparó."
+      - name: keptFinishedExercise
+        type: String
+      - name: score
+        type: double
+        description: "0: tener el diagnóstico es ser una copia (F-DUPAR-R004). El\
+          \ que queda no lleva diagnóstico y conserva 1."
+      _change: add
+    interfaces:
+    - name: NearDuplicateRules
+      sealed: false
+      exposes:
+      - signature: "sameRequest(AuditableQuiz first,AuditableQuiz second): boolean"
+      - signature: "wildcardDifference(AuditableQuiz first,AuditableQuiz second):\
+          \ Optional<String>"
+      visibility: internal
+      _change: add
+    - name: NearDuplicatesConfig
+      sealed: false
+      exposes:
+      - signature: "methodId(): String"
+      - signature: "inputPrefix(): String"
+      - signature: "similarityThreshold(): double"
+      visibility: internal
+      _change: add
+      extends:
+      - SelfDescribingConfig
+    implementations:
+    - name: NearDuplicatesAnalyzerProvider
+      requiresInject:
+      - name: embeddingModel
+        type: EmbeddingModel
+      - name: sessionFactory
+        type: EvaluationSessionFactory
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      - name: localToolGate
+        type: LocalToolGate
+      visibility: public
+      implements:
+      - AnalyzerProvider
+      _change: add
+    - name: NearDuplicatesAnalyzer
+      requiresInject:
+      - name: session
+        type: EvaluationSession
+      - name: rules
+        type: NearDuplicateRules
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      - name: config
+        type: NearDuplicatesConfig
+      - name: gateDecision
+        type: LocalToolGateDecision
+      implements:
+      - ContentAnalyzer
+      _change: add
+    - name: SentenceEmbeddingEvaluator
+      requiresInject:
+      - name: embeddingModel
+        type: EmbeddingModel
+      - name: config
+        type: NearDuplicatesConfig
+      - name: examinedVersion
+        type: String
+      implements:
+      - Evaluator
+      _change: add
+    - name: DefaultNearDuplicateRules
+      requiresInject:
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      implements:
+      - NearDuplicateRules
+      _change: add
+    - name: DefaultNearDuplicatesConfig
+      implements:
+      - NearDuplicatesConfig
+      _change: add
+    _change: add
+  _change: modify
+features:
+- id: FEAT-DUPAR
+  code: F-DUPAR

@@ -5,6 +5,18 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Usa dos piezas de la ronda 1 (A) sin declarar otras: `CorrectorMatcher.sameAnswer` para «la misma
+  respuesta» y para descartar los exactos, y `QuizStudentViewRenderer` (A-01) para el ejercicio terminado y la evidencia. Se
+  aplica después de integrar la ronda 1.
+  why: decisión 1 de José, una sola tabla de equivalencias; y así ningún par cuenta en exact-duplicates y acá a la vez.
+
+2026-09-30 — architect — Compara en `onKnowledge` contra los anteriores del tema, como exact-duplicates; el primero con el que es
+  casi igual queda. Vectores en el libro de evaluaciones con la versión examinada en el id (hace falta el índice del gancho B-09:
+  46 MB). Si se cumplen las dos condiciones gana el comodín. Sin modelo o sin examen, el analizador entero queda sin evaluar.
+
+2026-09-30 — analyst — José, 30/9: DOUBT-DUPAR-CUENTA → A (error de gravedad baja, como los exactos) y DOUBT-DUPAR-UMBRAL → A
+  (0,95). R002 y R004 pasan a VALIDATED.
+
 2026-09-30 — analyst — Código FEAT-DUPAR / F-DUPAR y nombre `near-duplicates` (estilo de `exact-duplicates`): nuevos.
 
 2026-09-30 — analyst — Condición previa: misma respuesta (como el corrector, contraída = larga, sin el pronombre o

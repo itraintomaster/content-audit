@@ -5,6 +5,29 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Las herramientas son de este parche: puertos `GrammarChecker`, `YesNoModel` y `EmbeddingModel` (los
+  tres extienden `LocalTool`) en `audit-domain.localtools`, y sus adaptadores en el módulo nuevo `local-language-infrastructure`
+  (`allowedClients: [audit-cli]`; audit-cli depende de él): LanguageTool 6.8 en el proceso y Ollama detrás de una fábrica.
+  Los otros tres parches traen sólo su analizador.
+  why: `patch propose` rechaza un `implements` hacia una interfaz de otro parche; y «el modelo y dónde corre» es de MLOCAL.
+
+2026-09-30 — architect — Una sola decisión de publicar para los tres (`LocalToolGate`, con `DefaultLocalToolGate` en
+  `localtoolsengine`): herramienta disponible y examen aprobado de la versión examinada (herramienta + methodId del analizador),
+  o corrida de examen (`purpose = EXAM`). Usa el registro de exámenes de FEAT-JEXAM; B no declara otro (gancho B-11).
+  why: el orquestador pidió no duplicar lo de la ronda 1; la dependencia queda en una sola clase.
+
+2026-09-30 — architect — La tarjeta de la herramienta va en la ficha (campo `tools`, gancho B-01) y el runner rechaza desde ahí lo
+  pedido por nombre, antes de cargar el curso (B-05); cada corrida deja una fila por analizador en el curso (B-03). Los números de
+  modelo, en el libro de evaluaciones con la versión examinada en el id del evaluador; el libro necesita un índice (B-09).
+
+2026-09-30 — analyst — Nueva DOUBT-MLOCAL-MESA (OPEN, recomendada A): F-MESA-R004 (E) mide los candidatos sólo con los
+  instantáneos y R005 pide que los tres de B lean el candidato.
+
+2026-09-30 — analyst — José, 30/9: DOUBT-MLOCAL-DEPENDENCIAS → A (LanguageTool 6.x dentro de content-audit, la vigente es
+  `org.languagetool:language-en:6.8` del 5/5/2026; nomic-embed-text y llama3 8B en Ollama; no se baja nada más),
+  DOUBT-MLOCAL-DONDE → A y DOUBT-MLOCAL-POR-OMISION → A (los tres en todo `analyze`; en la corrida base, sólo Gramática).
+  R004 pasa a VALIDATED.
+
 2026-09-30 — analyst — Naturalidad cambia de método (ver FEAT-NATUR): pregunta sí/no a llama3 en Ollama, que aprueba el examen;
   con eso las dos herramientas de modelo corren en Ollama, ya instalado, y no hace falta bajar nada (DOUBT-MLOCAL-DEPENDENCIAS A).
 
