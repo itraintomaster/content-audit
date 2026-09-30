@@ -52,6 +52,9 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 - should load sentences verbatim for a transformation-pattern quiz even when sentenceParts would yield a different concatenation → FEAT-DBSENT/F-DBSENT-R001
 - should preserve each quiz plain sentences identically after a load save load round-trip → FEAT-DBSENT/F-DBSENT-R004
 - should preserve the plain sentences of every quiz in a multi-quiz course after a whole-course save without dropping or cross-contaminating any list → FEAT-DBSENT/F-DBSENT-R004
+- should write every file of a course with multiple choice quizzes back byte for byte when it is loaded and saved without changes → FEAT-OPMUL/F-OPMUL-R001
+- should keep selection and items on a form that is not multiple choice as data it does not interpret, with their value, when saving → FEAT-OPMUL/F-OPMUL-R002
+- should write back the quiz and form data it does not interpret after the data it does, with their value and in their original order → FEAT-OPMUL/F-OPMUL-R002
 
 ## Dependency Contracts
 
@@ -171,6 +174,7 @@ The following models and interfaces are available from dependencies. You can use
 | miniTheory | `String` |
 | successMessage | `String` |
 | sentences | `List<String>` |
+| unmodeledFields | `Map<String,Object>` |
 
 ### FormEntity (`record`)
 
@@ -181,6 +185,8 @@ The following models and interfaces are available from dependencies. You can use
 | label | `String` |
 | name | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
+| multipleChoice | `MultipleChoiceEntity` |
+| unmodeledFields | `Map<String,Object>` |
 
 ### SentencePartEntity (`record`)
 
@@ -207,6 +213,29 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | REWRITE | `null` |
 | FILL | `null` |
+
+### FormKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| CLOZE | `null` |
+| MULTIPLE_CHOICE | `null` |
+| OTHER | `null` |
+
+### MultipleChoiceItemEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| incidence | `double` |
+| label | `String` |
+
+### MultipleChoiceEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| selection | `String` |
+| items | `List<MultipleChoiceItemEntity>` |
 
 ### CourseRepository (port)
 

@@ -325,7 +325,7 @@ public class FQinstJ003JourneyTest {
         node.setScores(new LinkedHashMap<>());
         node.setMetadata(new LinkedHashMap<>());
         node.setEntity(new AuditableQuiz(List.of(), quizId, "label", "code", null,
-                List.of("She is happy."), null, null, List.of()));
+                List.of("She is happy."), null, null, List.of(), null));
         return node;
     }
 

@@ -99,14 +99,14 @@ public class RepairCmdTest {
         // and the CLOZE part's text absent instead of present-and-empty (F-RPRES-R001 table).
         FormEntity degradedForm = new FormEntity(null, 0.0, null, null,
                 List.of(new SentencePartEntity(SentencePartKind.TEXT, "She ", null),
-                        new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("plays tennis."))));
+                        new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("plays tennis."))), null, null);
         CourseEntity courseBefore = buildCourse(quizWithForm(degradedForm));
 
         // The repair restores exactly those attributes from the intact counterpart —
         // no value is invented, no default is materialized (F-RPRES-R002/R005).
         FormEntity repairedForm = new FormEntity("CLOZE", 1.0, "", "",
                 List.of(new SentencePartEntity(SentencePartKind.TEXT, "She ", null),
-                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("plays tennis."))));
+                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("plays tennis."))), null, null);
         CourseEntity repairedCourse = buildCourse(quizWithForm(repairedForm));
 
         RepairReport report = new RepairReport(repairedCourse, 1, 1, List.of(), List.of());

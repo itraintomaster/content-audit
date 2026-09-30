@@ -374,9 +374,8 @@ public class FileSystemCourseRepository implements CourseRepository {
                     id, oidId, kind, knowledgeId, title, instructions, translation,
                     theoryId, topicName, form, difficulty, retries, noScoreRetries,
                     code, audioUrl, imageUrl, answerAudioUrl, answerImageUrl,
-                    miniTheory, successMessage, sentences
+                    miniTheory, successMessage, sentences, unmodeledFields(q, QUIZ_KNOWN_KEYS)
             );
-            quiz.setUnmodeledFields(unmodeledFields(q, QUIZ_KNOWN_KEYS));
             quizzes.add(quiz);
         }
         return quizzes;
@@ -400,14 +399,11 @@ public class FileSystemCourseRepository implements CourseRepository {
             }
         }
 
-        FormEntity form = new FormEntity(kind, incidence, label, name, sentenceParts);
-        boolean multipleChoice = form.formKind() == FormKind.MULTIPLE_CHOICE;
-        if (multipleChoice) {
-            form.setMultipleChoice(loadMultipleChoice(formJson));
-        }
-        form.setUnmodeledFields(unmodeledFields(formJson,
-                multipleChoice ? MULTIPLE_CHOICE_FORM_KNOWN_KEYS : FORM_KNOWN_KEYS));
-        return form;
+        boolean multipleChoice = FormKind.from(kind) == FormKind.MULTIPLE_CHOICE;
+        return new FormEntity(kind, incidence, label, name, sentenceParts,
+                multipleChoice ? loadMultipleChoice(formJson) : null,
+                unmodeledFields(formJson,
+                        multipleChoice ? MULTIPLE_CHOICE_FORM_KNOWN_KEYS : FORM_KNOWN_KEYS));
     }
 
     private MultipleChoiceEntity loadMultipleChoice(Map<String, Object> formJson) {

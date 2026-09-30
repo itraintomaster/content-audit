@@ -160,7 +160,7 @@ public class FRpresJ002JourneyTest {
     private FormEntity form(String... clozeOptions) {
         return new FormEntity("CLOZE", 1.0, "", "",
                 List.of(new SentencePartEntity(SentencePartKind.TEXT, "She ", null),
-                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(clozeOptions))));
+                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(clozeOptions))), null, null);
     }
 
     @Test

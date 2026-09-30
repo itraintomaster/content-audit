@@ -140,7 +140,7 @@ public class FClexJ001JourneyTest {
         // sentence that reintroduces a B1 word ("transfer"), the real motivating case
         // (gate F-CLEX-R001, F-CLEX-R002).
         String quizSentence = "The bank will ____ [transfer] (transfer) the money today.";
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of());
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of(), null, null);
         String canonicalFilled = "The bank will transfer the money today.";
         CefrLevel sentenceLevel = CefrLevel.A1;
         List<NlpToken> tokens = List.of(
@@ -192,7 +192,7 @@ public class FClexJ001JourneyTest {
         // Step: request_query — the agent invokes the lexical query with a sentence that is
         // entirely clean for the level (gate F-CLEX-R001, F-CLEX-R002).
         String quizSentence = "She ____ [walks] (walk) to school every day.";
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of());
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", List.of(), null, null);
         String canonicalFilled = "She walks to school every day.";
         CefrLevel sentenceLevel = CefrLevel.A1;
         List<NlpToken> tokens = List.of(

@@ -42,11 +42,11 @@ public class DistinctnessCriterionTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She ", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(clozeOption)),
                 new SentencePartEntity(SentencePartKind.TEXT, " at school every day.", null));
-        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts);
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts, null, null);
         return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1", "Daily routines",
                 "Complete with the correct verb", "Ella llega a la escuela todos los dias.",
                 "milestone.1.routines", "Daily Routines", form, 0.0, 0.0, 0.0, "", "", "", "", "",
-                "", "", List.of(sentenceText));
+                "", "", List.of(sentenceText), null);
     }
 
     private static CourseElementSnapshot snapshot(QuizTemplateEntity quiz) {

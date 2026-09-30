@@ -36,7 +36,7 @@ public class LedgerBackedQuizInstructionComplianceCheckerTest {
                 "quiz-1", "B1", "Verb Tenses", "Present Perfect", "Complete with present perfect",
                 List.of(
                         new SentencePartEntity(SentencePartKind.TEXT, "I ", null),
-                        new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("have eaten", "'ve eaten"))));
+                        new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("have eaten", "'ve eaten"))), null);
 
         QuizInstructionSubjectBuilder subjectBuilder = Mockito.mock(QuizInstructionSubjectBuilder.class);
         EvaluationSubject subject = new EvaluationSubject("quiz-1", Map.of("quiz", "I have eaten"));

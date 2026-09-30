@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.labs;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -855,6 +856,12 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
     @Override
     public String getDescription() {
         return "Detects expected vocabulary absent from each CEFR level";
+    }
+
+
+    @Override
+    public List<FindingDraft> findingsAt(AuditNode node) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
 }

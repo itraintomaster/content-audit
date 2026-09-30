@@ -630,4 +630,12 @@ public class RecursiveNodeFieldDifferTest {
         assertFalse(claveTokenCount2.contains("quiz-011b"),
                 "La clave del field no debe contener el id especifico del nodo (R023.2)");
     }
+
+    @Test
+    @DisplayName("should report as unchanged the finding on «Where is my wallet?» when only «He isn't in the living-room.» changed between the original and the consolidated snapshots")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R014")
+    public void shouldReportAsUnchangedTheFindingOnWhereIsMyWalletWhenOnlyHeIsntInTheLivingroomChangedBetweenTheOriginalAndTheConsolidatedSnapshots() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

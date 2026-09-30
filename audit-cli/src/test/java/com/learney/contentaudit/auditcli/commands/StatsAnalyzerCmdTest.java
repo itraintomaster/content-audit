@@ -183,4 +183,20 @@ public class StatsAnalyzerCmdTest {
                         || output.toLowerCase().contains("content_audit_content_folder"),
                 "Output should explain the missing course path; got:\n" + output);
     }
+
+    @Test
+    @DisplayName("should show the stats of quiz-instruction from the verdicts already recorded, with no new judge query, and declare how many quizzes lack a verdict")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R005")
+    public void shouldShowTheStatsOfQuizinstructionFromTheVerdictsAlreadyRecordedWithNoNewJudgeQueryAndDeclareHowManyQuizzesLackAVerdict() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should show in stats analyzer coca-buckets-distribution the course score 72,5 % published for it, with its quarters Q1 to Q4 as sub-metrics outside any average")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R010")
+    public void shouldShowInStatsAnalyzerCocabucketsdistributionTheCourseScore725PublishedForItWithItsQuartersQ1ToQ4AsSubmetricsOutsideAnyAverage() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

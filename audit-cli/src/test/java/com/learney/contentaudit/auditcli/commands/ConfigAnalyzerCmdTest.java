@@ -65,4 +65,20 @@ public class ConfigAnalyzerCmdTest {
         assertEquals(1, exitCode,
                 "config analyzer <unknown-name> must exit non-zero when the analyzer is not registered");
     }
+
+    @Test
+    @DisplayName("should print the configuration of quiz-instruction instead of reporting analyzer quiz-instruction not found")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R005")
+    public void shouldPrintTheConfigurationOfQuizinstructionInsteadOfReportingAnalyzerQuizinstructionNotFound() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should answer config analyzer knowledge-title-length, which has no configuration, without reporting it not found")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R005")
+    public void shouldAnswerConfigAnalyzerKnowledgetitlelengthWhichHasNoConfigurationWithoutReportingItNotFound() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

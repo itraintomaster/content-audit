@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -8,4 +9,6 @@ import javax.annotation.processing.Generated;
 )
 public interface AuditEngine {
     AuditReport runAudit(AuditableCourse course);
+
+    AuditReport runAudit(AuditableCourse course, AnalyzerRunSelection selection);
 }

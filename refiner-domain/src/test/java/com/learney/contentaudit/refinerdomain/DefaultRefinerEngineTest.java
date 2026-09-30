@@ -299,4 +299,44 @@ public class DefaultRefinerEngineTest {
                 "The single QUIZ_INSTRUCTION task must target the control quiz, not the compliant "
                         + "or the unjudged one");
     }
+
+    @Test
+    @DisplayName("should derive from the 29/9 analysis the same 4.036 tasks as before the contract: 3.051 SENTENCE_LENGTH, 950 LEMMA_ABSENCE, 25 KNOWLEDGE_INSTRUCTIONS_LENGTH, 6 KNOWLEDGE_TITLE_LENGTH, 3 COCA_BUCKETS and 1 LEMMA_RECURRENCE")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R013")
+    public void shouldDeriveFromThe299AnalysisTheSame4036TasksAsBeforeTheContract3051SENTENCELENGTH950LEMMAABSENCE25KNOWLEDGEINSTRUCTIONSLENGTH6KNOWLEDGETITLELENGTH3COCABUCKETSAnd1LEMMARECURRENCE() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare, instead of dropping them in silence, the analyzer and the number of nodes whose scores below 1 it could not turn into tasks because the analyzer has no task kind, as happened to the judge before F-QINST-R017")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R004")
+    public void shouldDeclareInsteadOfDroppingThemInSilenceTheAnalyzerAndTheNumberOfNodesWhoseScoresBelow1ItCouldNotTurnIntoTasksBecauseTheAnalyzerHasNoTaskKindAsHappenedToTheJudgeBeforeFQINSTR017() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare as unconverted the scores below 1 of an analyzer whose plan binding names a task kind the plan does not know")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R004")
+    public void shouldDeclareAsUnconvertedTheScoresBelow1OfAnAnalyzerWhosePlanBindingNamesATaskKindThePlanDoesNotKnow() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should turn the scores below 1 of a new errors analyzer into tasks through its plan binding, without the plan knowing its name")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R004")
+    public void shouldTurnTheScoresBelow1OfANewErrorsAnalyzerIntoTasksThroughItsPlanBindingWithoutThePlanKnowingItsName() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare nothing about lemma-count, whose scores below 1 on the levels and the course (67,0 %) have no task as before, because the declaration covers only errors analyzers")
+    @Tag("FEAT-HALL")
+    @Tag("F-HALL-R004")
+    public void shouldDeclareNothingAboutLemmacountWhoseScoresBelow1OnTheLevelsAndTheCourse670HaveNoTaskAsBeforeBecauseTheDeclarationCoversOnlyErrorsAnalyzers() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

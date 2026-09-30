@@ -186,7 +186,7 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
 
             AnalyzeOptions options = new AnalyzeOptions(this.formatName, this.level, this.topic,
                     this.knowledge, this.analyzerFilter, this.excludeAnalyzers, this.detailed,
-                    this.instructionBudget, this.reevaluateInstructions, reevaluateInstructionQuizIds);
+                    this.instructionBudget, this.reevaluateInstructions, reevaluateInstructionQuizIds, null);
             return analyze(this.coursePath, options);
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());

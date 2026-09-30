@@ -109,7 +109,7 @@ public class FLabsJ001JourneyTest {
                 AuditableKnowledge knowledge = new AuditableKnowledge(
                         List.of(), "title", "instructions", true, "k1", "label", "code", null, null);
                 AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
-                AuditableQuiz quiz = new AuditableQuiz(tokens, quizId, "label", "code", null, List.of("sentence"), null, null, null);
+                AuditableQuiz quiz = new AuditableQuiz(tokens, quizId, "label", "code", null, List.of("sentence"), null, null, null, null);
                 makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
             }
         }
@@ -129,7 +129,7 @@ public class FLabsJ001JourneyTest {
                 AuditableKnowledge knowledge = new AuditableKnowledge(
                         List.of(), "title", "instructions", true, "k1", "label", "code", null, null);
                 AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
-                AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "label", "code", null, List.of("sentence"), null, null, null);
+                AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "label", "code", null, List.of("sentence"), null, null, null, null);
                 makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
             }
         }

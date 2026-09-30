@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditinfrastructure;
+import com.learney.contentaudit.auditdomain.contextnumbers.AuditDigest;
 import javax.annotation.processing.Generated;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -196,4 +197,10 @@ public FileSystemAuditReportStore(Path baseDir) {
                 .average()
                 .orElse(0.0);
     }
+
+    @Override
+    public Optional<AuditDigest> loadDigest(String id) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }
