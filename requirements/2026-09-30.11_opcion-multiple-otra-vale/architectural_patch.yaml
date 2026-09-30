@@ -1,0 +1,382 @@
+code: FEAT-MCVALE
+description: "FEAT-MCVALE: el juez «¿otra opción también vale?» de la opción múltiple.\
+  \ No es un analizador: es una regla con modelo del analizador de Opción múltiple\
+  \ del paquete A (José, 30/9), que recibe sus veredictos por una sola puerta, ChoiceAlternativeJudgeRunFactory.\
+  \ Acá va el juez entero: su huella (nombre del tema, consigna del ejercicio, enunciado\
+  \ con pista y opciones en orden con la correcta marcada), su evaluador en el libro\
+  \ (choice-alternative-judge), su veredicto, su clasificación y puntaje, sus reglas\
+  \ para la ficha del analizador y su lector. Lo que difiere sólo en la forma, contraí\
+  da o larga incluida, se descarta con CorrectorMatcher (paquete A). Usa el runtime\
+  \ común de FEAT-JEXAM: el nombre, el tope, el freno del examen y el examen son los\
+  \ del analizador que lo aloja.; qa-tester: traza las 7 reglas de FEAT-MCVALE a handwrittenTests\
+  \ nuevas, con juez falso o grabado y sin modelo pago; la opción que difiere sólo\
+  \ como «isn't» e «is not» se prueba bajo F-MCVALE-R002. F-MCVALE-J001 va a audit-domain,\
+  \ paquete multiplechoicevalidity, donde el paquete A ubica F-OMVAL-J001: depende\
+  \ de reconciliar la interfaz del juez con A-07 (gancho C-09)."
+modules:
+- name: audit-domain
+  interfaces:
+  - name: ChoiceAlternativeConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getScoreFor(FindingSeverity severity): double"
+    _change: add
+    extends:
+    - SelfDescribingConfig
+  packages:
+  - name: choicealternative
+    description: "Contrato del juez de opción múltiple (FEAT-MCVALE) y la puerta por\
+      \ la que lo usa el analizador de Opción múltiple del paquete A: abrir una corrida\
+      \ del juez con la política del analizador, pedir los ejercicios en onQuiz, resolverlos\
+      \ juntos en onCourseComplete y leer el juicio de cada uno, listo para sumar\
+      \ sus hallazgos y su puntaje a los de las reglas instantáneas, y la cobertura\
+      \ del juez para el informe."
+    visibility: public
+    models:
+    - name: ChoiceAlternativeOption
+      type: record
+      fields:
+      - name: label
+        type: String
+        description: La opción como la ve el alumno.
+      - name: severity
+        type: FindingSeverity
+        description: HIGH si vale igual que la correcta; MEDIUM si es defendible pero
+          menos natural.
+      - name: reason
+        type: String
+      _change: add
+    - name: ChoiceAlternativeVerdict
+      type: record
+      fields:
+      - name: correctIsValid
+        type: boolean
+        description: "False con la clave invertida: la marcada como correcta no vale\
+          \ y otra sí (BLOCKING)."
+      - name: validAlternatives
+        type: List<ChoiceAlternativeOption>
+        description: Las incorrectas que también valen en el contexto del enunciado.
+      - name: correctProblem
+        type: String
+        description: Por qué no vale la correcta; null si vale.
+      - name: rationale
+        type: String
+      _change: add
+    - name: ChoiceAlternativeJudgmentStatus
+      type: enum
+      fields:
+      - name: JUDGED
+        description: "Hay veredicto, nuevo o reusado."
+      - name: PENDING
+        description: "Sin veredicto: sin tope, o la versión no aprobó su examen (F-JEXAM-R003,\
+          \ R010)."
+      - name: FAILED
+        description: "El juez no respondió o respondió algo inusable, incluida la\
+          \ sesión vencida (F-QINST-R007, R013, F-JEXAM-R011)."
+      - name: NOT_AVAILABLE
+        description: El juez no enuncia versión o no está conectado. Los tres sin
+          veredicto no tienen puntaje ni hallazgo del juez (F-MCVALE-R005).
+      _change: add
+    - name: ChoiceAlternativeJudgment
+      type: record
+      fields:
+      - name: quizId
+        type: String
+      - name: status
+        type: ChoiceAlternativeJudgmentStatus
+      - name: verdict
+        type: ChoiceAlternativeVerdict
+        description: Null si no hay veredicto.
+      - name: droppedAsForm
+        type: List<String>
+        description: "Opciones que el juez listó y el corrector acepta como la misma\
+          \ respuesta: las marca el paquete A, no este juez (F-MCVALE-R002)."
+      - name: findings
+        type: List<FindingDraft>
+        description: "Listos para el analizador de A, todos de la regla another-option-valid:\
+          \ uno por opción que también vale, con la opción como marca (HIGH o MEDIUM),\
+          \ y uno con marca «(correcta)» si la correcta no vale (BLOCKING). Vacía\
+          \ si pasa o si no hay veredicto."
+      - name: score
+        type: Double
+        description: "1, 0,6, 0,3 o 0 según la más grave (F-MCVALE-R003); null si\
+          \ no hay veredicto."
+      - name: evaluatorVersion
+        type: String
+      - name: reused
+        type: boolean
+      - name: notJudgedReason
+        type: String
+      _change: add
+    interfaces:
+    - name: ChoiceAlternativeVerdictReader
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "read(String payload): ChoiceAlternativeVerdict"
+      _change: add
+    - name: ChoiceAlternativeJudgeRun
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "request(AuditNode quizNode): void"
+      - signature: "resolveAll(): void"
+      - signature: "judgmentOf(AuditNode quizNode): ChoiceAlternativeJudgment"
+      - signature: "coverage(): JudgeCoverageDiagnosis"
+      _change: add
+    - name: ChoiceAlternativeJudgeRunFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "judgeRule(): AnalyzerRuleCard"
+      - signature: "open(EvaluationRunPolicy policy): ChoiceAlternativeJudgeRun"
+        throwsExceptions:
+        - EmptyReevaluationSetException
+        - AmbiguousReevaluationScopeException
+      _change: add
+    _change: add
+  - name: choicealternativeengine
+    description: "Motor del juez de opción múltiple. Sólo la factory es pública. open\
+      \ abre la sesión con el runtime común usando el nombre del analizador que lo\
+      \ aloja, que la factory recibe al construirse, así el tope --budget, el freno\
+      \ del examen y el examen son los de ese analizador (F-HALL-R005); judgeRule\
+      \ da la regla another-option-valid, costo modelo pago, para la ficha; request\
+      \ ignora lo que no es opción múltiple; resolveAll resuelve con el plan del runtime\
+      \ y consultas a la vez; judgmentOf es puro y se puede pedir las veces que haga\
+      \ falta."
+    visibility: public
+    interfaces:
+    - name: ChoiceAlternativeSubjectBuilder
+      sealed: false
+      exposes:
+      - signature: "build(AuditNode quizNode): EvaluationSubject"
+      visibility: internal
+      _change: add
+    - name: ChoiceAlternativeClassifier
+      sealed: false
+      exposes:
+      - signature: "classify(ChoiceAlternativeVerdict verdict,AuditableQuiz quiz,EvaluationResolution\
+          \ resolution): ChoiceAlternativeJudgment"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultChoiceAlternativeJudgeRunFactory
+      requiresInject:
+      - name: hostAnalyzerName
+        type: String
+        description: "El nombre del analizador que aloja al juez (multiple-choice-validity,\
+          \ paquete A): con él se abren las sesiones, así el tope, el freno del examen\
+          \ y el examen son los de ese analizador (F-HALL-R005)."
+      - name: runtime
+        type: JudgeRuntime
+      - name: judge
+        type: Evaluator
+        description: Agente choice-alternative-judge.
+      - name: verdictReader
+        type: ChoiceAlternativeVerdictReader
+      - name: config
+        type: ChoiceAlternativeConfig
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      visibility: public
+      handwrittenTests:
+      - name: should give for the card of multiple-choice-validity the judge rule
+          another-option-valid with paid model cost
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R004
+      - name: "should open the judge's sessions under the name multiple-choice-validity,\
+          \ so its budget, exam brake and exam are those of that analyzer"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R004
+      - name: "should consult nothing when the run asks no budget for multiple-choice-validity,\
+          \ reusing what was judged"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R004
+      implements:
+      - ChoiceAlternativeJudgeRunFactory
+      _change: add
+    - name: LedgerBackedChoiceAlternativeJudgeRun
+      requiresInject:
+      - name: opened
+        type: JudgeSessions
+      - name: runtime
+        type: JudgeRuntime
+      - name: subjectBuilder
+        type: ChoiceAlternativeSubjectBuilder
+      - name: classifier
+        type: ChoiceAlternativeClassifier
+      - name: verdictReader
+        type: ChoiceAlternativeVerdictReader
+      handwrittenTests:
+      - name: "should ignore a CLOZE quiz requested to it, neither judging it nor\
+          \ counting it"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R001
+      - name: "should judge a quiz from its recorded verdict without consulting, as\
+          \ JUDGED and reused"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R005
+      - name: "should leave PENDING, without score and without findings, the quizzes\
+          \ the budget did not reach"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R005
+      - name: "should leave FAILED with its reason, without score and without findings,\
+          \ a quiz whose judge failed or answered something unusable, and finish"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R005
+      - name: "should leave every quiz NOT_AVAILABLE, without score and without findings,\
+          \ when the judge states no version"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R005
+      - name: "should declare in its coverage the multiple choice quizzes reached,\
+          \ evaluated and unevaluated"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R005
+      - name: should resolve all requested quizzes together within the budget and
+          give the same judgment of a quiz however many times it is asked
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R005
+      - name: "should judge in an EXAM run only the multiple choice exercises of the\
+          \ file, …47cc among them, and not the CLOZE verduras"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R006
+      - name: "should judge a candidate with the same judge and version, and reuse\
+          \ its verdict once the candidate enters the course"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R007
+      implements:
+      - ChoiceAlternativeJudgeRun
+      _change: add
+    - name: DefaultChoiceAlternativeSubjectBuilder
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "Las claves y su orden son la huella: title, instructions (la\
+          \ del ejercicio), exercise, options. Cambiar la correcta cambia la huella."
+      handwrittenTests:
+      - name: "should build for «There's a cat ___ the window.» the content title,\
+          \ instructions, exercise and options at, in and on in the order shown with\
+          \ at marked correct, and nothing else"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R001
+      - name: should build different contents for two quizzes that differ only in
+          which option is correct
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R001
+      - name: "should build the same content when only the translation, the mini-theory\
+          \ or the audio of the quiz changes"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R001
+      implements:
+      - ChoiceAlternativeSubjectBuilder
+      _change: add
+    - name: DefaultChoiceAlternativeClassifier
+      requiresInject:
+      - name: correctorMatcher
+        type: CorrectorMatcher
+        description: Descarta la opción que el corrector acepta como la misma que
+          la correcta (isn't / is not). Es el CorrectorMatcher del paquete A (FEAT-RESPC).
+      - name: config
+        type: ChoiceAlternativeConfig
+      handwrittenTests:
+      - name: "should drop «is not» listed as also valid for a quiz whose correct\
+          \ option is «isn't», leaving it without finding of another-option-valid"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R002
+      - name: "should keep «a» of «She wants ___ hot tea.» as an option that also\
+          \ counts, with the judge's reason in its evidence"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R002
+      - name: "should give «Are you thirsty? ___ , let's drink water soon.» a blocking\
+          \ finding marked «(correcta)» and score 0 when the judge says «if not» is\
+          \ not valid and «if so» is"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R003
+      - name: should give «I don't enjoy extra food ___ .» a high finding for «a lot»
+          and score 0.3
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R003
+      - name: should give «There's a cat ___ the window.» a medium finding for «in»
+          and score 0.6
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R003
+      - name: "should give one finding of the rule another-option-valid per option\
+          \ that also counts, marked with the option"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R003
+      - name: should pass a candidate whose options leave only the correct one valid
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R007
+      implements:
+      - ChoiceAlternativeClassifier
+      _change: add
+    _change: add
+  _change: modify
+- name: quiz-instruction-infrastructure
+  packages:
+  - name: choicealternativeverdict
+    description: Lectura del payload del juez de opción múltiple.
+    visibility: public
+    implementations:
+    - name: JacksonChoiceAlternativeVerdictReader
+      visibility: public
+      handwrittenTests:
+      - name: "should read whether the correct option is valid and why not, and each\
+          \ valid alternative with its severity and reason"
+        traceability:
+          feature: FEAT-MCVALE
+          rule: F-MCVALE-R002
+      implements:
+      - ChoiceAlternativeVerdictReader
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultChoiceAlternativeConfig
+    types:
+    - Component
+    visibility: public
+    handwrittenTests:
+    - name: "should score a quiz 0 for a blocking, 0.3 for a high and 0.6 for a medium\
+        \ worst severity"
+      traceability:
+        feature: FEAT-MCVALE
+        rule: F-MCVALE-R003
+    implements:
+    - ChoiceAlternativeConfig
+    _change: add
+  _change: modify
+features:
+- id: FEAT-MCVALE
+  code: F-MCVALE
+  journeys:
+  - id: F-MCVALE-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.multiplechoicevalidity
