@@ -1,0 +1,31 @@
+code: __proposal__
+description: "Integración de la ronda 1, paso 16: devolverles a cuatro paquetes los\
+  \ clientes que declararon y que el patch apply del jar descartó al crearlos (findingengine\
+  \ de 0.3, judgingengine de FEAT-JEXAM, offlevelwords de FEAT-NIVFR y topicwords\
+  \ de FEAT-SEMAF). Sólo modifica allowedClients: ni visibilidad ni contenido. Con\
+  \ el jar de hoy no entra: PatchApplier se queda con los clientes que ya había al\
+  \ modificar un paquete (bug 09 de Sentinel); se aplica después de arreglarlo."
+modules:
+- name: audit-domain
+  packages:
+  - name: findingengine
+    allowedClients:
+    - audit-cli
+    _change: modify
+  - name: judgingengine
+    allowedClients:
+    - audit-cli
+    _change: modify
+  - name: offlevelwords
+    allowedClients:
+    - audit-cli
+    - refiner-domain
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  packages:
+  - name: topicwords
+    allowedClients:
+    - audit-cli
+    _change: modify
+  _change: modify

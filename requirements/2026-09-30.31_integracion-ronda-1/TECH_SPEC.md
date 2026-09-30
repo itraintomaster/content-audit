@@ -1,7 +1,7 @@
 ---
 patch: FEAT-RONDA1
 requirement: 2026-09-30.31_integracion-ronda-1
-generated: 2026-09-30T21:30:00Z
+generated: 2026-09-30T22:30:00Z
 ---
 
 # Tech Spec: Integración de la ronda 1 (FEAT-RONDA1)
@@ -477,14 +477,95 @@ modules:
     _change: modify
 ```
 
+## Devolver los clientes de cuatro paquetes, en un parche aparte al final
+Cuatro paquetes declararon quién puede usarlos: `findingengine` de 0.3 y, en esta ronda, `judgingengine`, `offlevelwords`
+y `topicwords`. El `sentinel.yaml` real ya no tiene los de `findingengine`: el `patch apply` del jar de hoy descarta los
+`allowedClients` de un paquete al crearlo, y también al modificarlo, porque se queda con los que había. Probado en
+memoria: un parche que sólo los modifica valida con 0 conflictos y no deja nada. Por eso van en un parche aparte,
+`clientes-de-paquetes.yaml` en esta carpeta, hecho con `patch propose -o` y sin requirement propio: toca sólo esos cuatro
+`allowedClients`. Es el paso 16 de la ronda y queda pendiente hasta arreglar `PatchApplier` en Sentinel, que son dos
+líneas (borrador del bug 09 en el scratchpad del integrador). Con el arreglo, la cadena da el mismo modelo que con el jar
+salvo esos cuatro campos, `generate` no aborta y `ArchUnitGenerator` vuelve a generar las cuatro reglas. Si se arregla
+antes de aplicar la ronda, los tres paquetes nuevos ya entran con sus clientes; el resultado final es el mismo. No hay
+fence: el parche aparte no está en `architectural_patch.yaml`.
+
+## Declarar las 43 pruebas de FEAT-RONDA1
+Las 43 son nuevas y cubren las ocho reglas. No había pruebas que portar, porque todo lo que piden las reglas es de la
+integración. Van sobre implementaciones que existen cuando se aplica este parche, que es el primero de la ronda: las que
+declara el parche y las que ya están en `sentinel.yaml`. Ninguna va sobre una pieza de un paquete, que todavía no
+existiría. Cada nombre lleva un caso real del curso del 29/9 o el número que fija su regla. Se sumaron con `patch
+propose` en modo fusión, y la comparación del parche antes y después, sin contar las pruebas, dio 0 pérdidas. Ninguna de
+las implementaciones que tocó la fusión tenía `domainLinks`.
+
+| Regla | Pruebas | Dónde | Caso real o número |
+|---|---:|---|---|
+| R001 | 8 | renderizador | «You ___ (see) cats.» con su pista, su respuesta y su traducción; «\|» y no «/»; «The show started ___ time.» con *on* correcta; la reescritura de *Adjetivos atributivos*; mismo texto en dos corridas |
+| R002 | 3 | almacén de informes | el resumen dice «You ___ (see) cats.» y no «Afirmativas regulares»; el informe completo no cambia |
+| R003 | 8 | consulta del tema (4) y `get` (4) | los 20 de *Afirmativas regulares*; la clave A1.01.06.01; audio vacío si el registro no lo conoce; tema que no está, código 1; no escribe nada |
+| R004 | 5 | catálogo (2), `get`, `analyze`, `Main` | ficha sin nombre o con nombre repetido, rechazada; «Largo de oración» junto a `sentence-length`; los 17 en orden |
+| R005 | 7 | calculador (4), ficha y analizador del largo (3) | las gravedades suman los marcados; las reglas suman los hallazgos; «He isn't in the living-room.» es «más larga» |
+| R006 | 5 | calculador (2), colector (2), almacén | «___ a child? (He)» con el juez pendiente: cuenta, y el nivel lo declara a medias |
+| R007 | 3 | motor | la corrida base corre `multiple-choice-validity` con tope 0 y deja afuera a los jueces sin reglas instantáneas |
+| R008 | 4 | runner (2), plan, `analyze` | 73,86 % con 8 · 6 · 4 · 3 y 73,92 % con 4 para todas; 4.036 tareas; los 886 archivos idénticos |
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: studentview
+        implementations:
+          - name: DefaultQuizStudentViewRenderer
+            handwrittenTests:
+              - name: "should finish «The show started ___ time.» with its correct option, as «The show started on time.»"
+                traceability: { feature: FEAT-RONDA1, rule: F-RONDA1-R001 }
+          - name: DefaultTopicStudentViewQuery
+            handwrittenTests:
+              - name: "should leave the recorded audio text empty when the recordings registry does not know the key, never building it from the sentence"
+                traceability: { feature: FEAT-RONDA1, rule: F-RONDA1-R003 }
+      - name: findingengine
+        implementations:
+          - name: DefaultAnalyzerCatalog
+            handwrittenTests:
+              - name: "should reject at startup a card without a Spanish name with InvalidAnalyzerCardException"
+                traceability: { feature: FEAT-RONDA1, rule: F-RONDA1-R004 }
+          - name: DefaultContextNumbersCalculator
+            handwrittenTests:
+              - name: "should count the nodes with findings by their highest severity, so the four severities add up to the nodes with findings"
+                traceability: { feature: FEAT-RONDA1, rule: F-RONDA1-R005 }
+          - name: DefaultFindingCollector
+            handwrittenTests:
+              - name: "should accept the findings of an analyzer on an exercise it evaluated halfway, as multiple-choice-validity on «___ a child? (He)» with its judge pending"
+                traceability: { feature: FEAT-RONDA1, rule: F-RONDA1-R006 }
+    implementations:
+      - name: IAuditEngine
+        handwrittenTests:
+          - name: "should leave quiz-instruction, translation-sense, single-answer and mini-theory out of the base run, since none has an instant rule"
+            traceability: { feature: FEAT-RONDA1, rule: F-RONDA1-R007 }
+  - name: audit-infrastructure
+    _change: modify
+    implementations:
+      - name: FileSystemAuditReportStore
+        handwrittenTests:
+          - name: "should label each exercise of the digest with its statement as the student sees it, «You ___ (see) cats.» and not «Afirmativas regulares»"
+            traceability: { feature: FEAT-RONDA1, rule: F-RONDA1-R002 }
+  - name: refiner-domain
+    _change: modify
+    implementations:
+      - name: DefaultRefinerEngine
+        handwrittenTests:
+          - name: "should derive from the 29/9 analysis with the seventeen analyzers of round 1 the same 4,036 tasks, declaring the scores below 1 of the new errors analyzers as without task kind and those of off-level-words as covered by LEMMA_ABSENCE"
+            traceability: { feature: FEAT-RONDA1, rule: F-RONDA1-R008 }
+```
+
 ## Aplicar la ronda en orden, y generar al final
 Orden: esta integración; los cinco de A (PISTA, RESPC, OMVAL, DATOS, DUPEX); JEXAM y después los otros cuatro de C
-(TRSEN, UNICA, MINIT, MCVALE); y D con SEMAF después de NIVFR y POCOV (NIVFR, POCOV, SEMAF, RECUR). A va antes que C
-porque la comparación del corrector es de RESPC y la usan dos jueces; JEXAM antes que TRSEN porque éste suma pruebas a una
-pieza de JEXAM. Simulado con la librería del jar, cada `patch validate` pasa contra el modelo que deja el anterior, con 0
-conflictos, y sobre el modelo final `generate` no aborta: sin choques de nombre, sin tipos sin resolver y con las 456
-pruebas de la ronda trazadas. Esta feature no trae journeys, así que `generate` no espera ubicaciones; sus pruebas las
-diseña el qa-tester.
+(TRSEN, UNICA, MINIT, MCVALE); D con SEMAF después de NIVFR y POCOV (NIVFR, POCOV, SEMAF, RECUR); y los clientes de los
+cuatro paquetes, cuando Sentinel los conserve. A va antes que C porque la comparación del corrector es de RESPC y la usan
+dos jueces; JEXAM antes que TRSEN porque éste suma pruebas a una pieza de JEXAM. Simulado con la librería del jar, cada
+`patch validate` pasa contra el modelo que deja el anterior, con 0 conflictos. Sobre el modelo final, `generate` no
+aborta: no hay choques de nombre ni tipos sin resolver, y las 499 pruebas de la ronda están trazadas (456 de los
+paquetes y 43 de esta feature). Esta feature no trae journeys, así que `generate` no espera ubicaciones.
 
 ```architecture
 features:

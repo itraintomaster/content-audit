@@ -5,6 +5,15 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — integrador — allowedClients de paquete: el apply del jar los descarta al crear (stripPackageAnnotations) y al
+  modificar (mergePackage se queda con los de antes); findingengine ya los perdió en 0.3. No hay camino por el CLI hasta
+  arreglar PatchApplier (dos líneas, borrador del bug 09): el paso 16 queda preparado y el script lo corre sólo si una
+  prueba en memoria con el jar instalado los conserva.
+  why: editar sentinel.yaml a mano está prohibido; arreglar antes o después de la ronda da el mismo modelo final.
+2026-09-30 — qa-tester (integrador) — Las pruebas de FEAT-RONDA1 van sólo sobre implementaciones que existen cuando se aplica la
+  integración (las suyas y las del sentinel.yaml real): una prueba sobre una pieza de un paquete entraría como
+  implementación vacía, porque la integración se aplica primero.
+
 2026-09-30 — integrador — Juez de opción múltiple: queda el contrato de C, en dos tiempos (request en onQuiz, resolveAll y
   judgmentOf en onCourseComplete), en el paquete choicealternative de ESTE parche. A cede: salen sus dos interfaces y cuatro
   modelos, cambian dos inyecciones, un campo del diagnóstico y el nombre de la fábrica «sin juez».

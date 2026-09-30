@@ -9,7 +9,13 @@ description: "FEAT-RONDA1, integración de la ronda 1 de «corregir sin empeorar
   \ analyze por juez, la configuración de los jueces desde el entorno y las inyecciones\
   \ de get y stats. Se aplica primero: los catorce se rebasaron sobre él. Los lugares\
   \ tipados y algunas inyecciones nombran tipos que declaran los parches de los paquetes,\
-  \ así que generate corre recién con la ronda entera aplicada."
+  \ así que generate corre recién con la ronda entera aplicada.; qa-tester: traza\
+  \ las 8 reglas de FEAT-RONDA1 a 43 handwrittenTests nuevas (no hay pruebas previas\
+  \ que portar: las ocho reglas son de la integración), cada una con un caso real\
+  \ del curso del 29/9 o un número que la regla fija. Sin journeys: la feature no\
+  \ tiene. Las pruebas van sobre implementaciones que existen cuando se aplica la\
+  \ integración, que es la primera de la ronda: las que declara este parche y las\
+  \ que ya están en sentinel.yaml."
 modules:
 - name: audit-domain
   models:
@@ -95,6 +101,44 @@ modules:
       throwsExceptions:
       - StudentViewKnowledgeNotFoundException
     _change: add
+  implementations:
+  - name: SentenceLengthAnalyzerProvider
+    handwrittenTests:
+    - name: should declare in the sentence-length card one rule for sentences shorter
+        than the goal and another for longer ones
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R005
+  - name: SentenceLengthAnalyzer
+    handwrittenTests:
+    - name: "should mark «He isn't in the living-room.», 9 tokens against the 3 to\
+        \ 8 of A1, with the rule for longer sentences"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R005
+    - name: should mark a sentence under the minimum of its level with the rule for
+        shorter sentences
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R005
+  - name: IAuditEngine
+    handwrittenTests:
+    - name: "should run multiple-choice-validity in the base run with budget 0 for\
+        \ its judge, so its instant rules mark «___ a child? (He)» and no consultation\
+        \ is paid"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R007
+    - name: "should count in the base run only the multiple choice verdicts already\
+        \ recorded, reused without a new consultation"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R007
+    - name: "should leave quiz-instruction, translation-sense, single-answer and mini-theory\
+        \ out of the base run, since none has an instant rule"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R007
   packages:
   - name: studentview
     description: "El ejercicio como lo ve el alumno (pedido 2 de la UI y gancho A-01):\
@@ -217,6 +261,52 @@ modules:
       - name: quizSentenceConverter
         type: QuizSentenceConverter
       visibility: public
+      handwrittenTests:
+      - name: "should render «You ___ (see) cats.» with one gap whose hint is «(see)»\
+          \ and whose only accepted answer and first answer are «see», never the internal\
+          \ format «You ____ [see] (see) cats.»"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R001
+      - name: "should split the accepted answers of a gap on «|» and never on «/»\
+          , so «has not cut | hasn't cut» gives two answers and «has not cut/hasn't\
+          \ cut» only one"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R001
+      - name: "should give «The show started ___ time.» its options «in» and «on»\
+          \ in the student's order, with «on» marked as the correct one"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R001
+      - name: "should bring with the view the instructions, the translation and the\
+          \ mini theory of the exercise, as «Escribe la forma afirmativa en presente\
+          \ simple.», «Ves gatos.» and «Con he, she, it el verbo lleva $-s$…» for\
+          \ «You ___ (see) cats.»"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R001
+      - name: "should finish «You ___ (see) cats.» of a FILL topic as «You see cats.»\
+          , with its first answer and without the hint"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R001
+      - name: "should finish «The show started ___ time.» with its correct option,\
+          \ as «The show started on time.»"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R001
+      - name: should finish the REWRITE exercise of Adjetivos atributivos with the
+          saved sentence «That is classic rubbish from a respected newspaper today.»
+          and not with its whole text
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R001
+      - name: "should render the same exercise to the same text, byte for byte, in\
+          \ two runs"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R001
       implements:
       - QuizStudentViewRenderer
       _change: add
@@ -227,6 +317,28 @@ modules:
       - name: recordings
         type: AudioRecordingRegistry
       visibility: public
+      handwrittenTests:
+      - name: should return the 20 exercises of Afirmativas regulares in course order
+          under the topic instructions «Escribe la forma correcta del verbo.»
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R003
+      - name: "should give «You ___ (see) cats.» its view, its finished sentence «\
+          You see cats.», its audio key A1.01.06.01 and the text the recordings registry\
+          \ has for that key"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R003
+      - name: "should leave the recorded audio text empty when the recordings registry\
+          \ does not know the key, never building it from the sentence"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R003
+      - name: should reject a knowledge that is not in the report with StudentViewKnowledgeNotFoundException
+          and the message «Knowledge <id> not found in the analysis.»
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R003
       implements:
       - TopicStudentViewQuery
       _change: add
@@ -413,6 +525,65 @@ modules:
         type: int
       _change: add
     _change: modify
+  - name: findingengine
+    implementations:
+    - name: DefaultAnalyzerCatalog
+      handwrittenTests:
+      - name: should reject at startup a card without a Spanish name with InvalidAnalyzerCardException
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R004
+      - name: should reject at startup two cards that share a Spanish name
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R004
+    - name: DefaultContextNumbersCalculator
+      handwrittenTests:
+      - name: "should publish for every analyzer that ran and every node type it evaluates\
+          \ how many nodes it reaches, evaluates and marks and how many findings it\
+          \ leaves, also for a vocabulary analyzer like sentence-length"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R005
+      - name: "should count the nodes with findings by their highest severity, so\
+          \ the four severities add up to the nodes with findings"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R005
+      - name: "should count each rule of the card with its nodes and findings, so\
+          \ the findings of the rules add up to those of the analyzer"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R005
+      - name: "should count in a context the sum of its children plus the node itself\
+          \ when the analyzer evaluates it, as lemma-absence in a level"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R005
+      - name: "should count an exercise evaluated halfway as evaluated by the analyzer,\
+          \ in its halfway count and in the node's count of exercises not fully evaluated"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R006
+      - name: "should count as errors the rule findings of an exercise the judge did\
+          \ not see, as the capital letter of «___ a child? (He)», so «algún error»\
+          \ reads as a floor"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R006
+    - name: DefaultFindingCollector
+      handwrittenTests:
+      - name: "should accept the findings of an analyzer on an exercise it evaluated\
+          \ halfway, as multiple-choice-validity on «___ a child? (He)» with its judge\
+          \ pending"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R006
+      - name: should reject an exercise that names the same analyzer as evaluated
+          halfway and as not evaluated
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R006
   _change: modify
 - name: audit-infrastructure
   implementations:
@@ -421,6 +592,26 @@ modules:
     - name: studentViewRenderer
       type: QuizStudentViewRenderer
       _change: add
+    handwrittenTests:
+    - name: "should label each exercise of the digest with its statement as the student\
+        \ sees it, «You ___ (see) cats.» and not «Afirmativas regulares»"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R002
+    - name: "should keep in the digest the labels of the course, the levels, the topic\
+        \ groups and the topics"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R002
+    - name: "should keep «Afirmativas regulares» as the exercise label of the saved\
+        \ report, the title the quiz instruction judge reads"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R002
+    - name: should copy into the digest the analyzers that evaluated each node halfway
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R006
     _change: modify
   _change: modify
 - name: refiner-domain
@@ -436,6 +627,16 @@ modules:
         \ antes (F-POCOV-R007, F-RCLA-R003b)."
       _change: modify
     _change: modify
+  implementations:
+  - name: DefaultRefinerEngine
+    handwrittenTests:
+    - name: "should derive from the 29/9 analysis with the seventeen analyzers of\
+        \ round 1 the same 4,036 tasks, declaring the scores below 1 of the new errors\
+        \ analyzers as without task kind and those of off-level-words as covered by\
+        \ LEMMA_ABSENCE"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R008
   _change: modify
 - name: audit-cli
   models:
@@ -469,6 +670,32 @@ modules:
       - name: activeAnalysisSelectionStore
         type: ActiveAnalysisSelectionStore
         _change: add
+      handwrittenTests:
+      - name: "should print as JSON the whole topic as the student sees it with get\
+          \ student-view 6814dafa7d73e7209a13d389, Afirmativas regulares"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R003
+      - name: "should read for get student-view the analysis chosen with set-active-analysis\
+          \ and, when none is chosen, the latest one"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R003
+      - name: should exit with code 1 and print «Knowledge <id> not found in the analysis.»
+          for a knowledge that is not in the analysis
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R003
+      - name: should leave the stored analyses and the course byte for byte identical
+          after get student-view
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R003
+      - name: "should show in get analyzers the Spanish name of each analyzer next\
+          \ to its unique name, «Largo de oración» next to sentence-length"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R004
       _change: modify
     - name: StatsAnalyzerCmd
       requiresInject:
@@ -476,6 +703,26 @@ modules:
         type: "Map<String,DetailedFormatter>"
         _change: add
       _change: modify
+    - name: AnalyzeCmd
+      handwrittenTests:
+      - name: "should reject «Largo de oración» as an analyzer name, since only the\
+          \ unique name sentence-length names the analyzer"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R004
+      - name: should leave the 886 files of the 29/9 course identical byte for byte
+          after analyzing it with the seventeen analyzers of round 1
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R008
+    - name: Main
+      handwrittenTests:
+      - name: "should register the seventeen analyzers of round 1 in catalog order,\
+          \ from sentence-length to mini-theory, each with the Spanish name of its\
+          \ card, «Largo de oración» to «Miniteoría»"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R004
     _change: modify
   - name: bootstrap
     interfaces:
@@ -492,6 +739,22 @@ modules:
       _change: add
     _change: modify
   _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    handwrittenTests:
+    - name: "should publish on the 29/9 course with the seventeen analyzers of round\
+        \ 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels\
+        \ 96.0, 93.6, 78.9 and 63.9"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R008
+    - name: "should publish on the 29/9 course with the seventeen analyzers of round\
+        \ 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2,\
+        \ 79.5 and 63.5"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R008
 features:
 - id: FEAT-RONDA1
   code: F-RONDA1
