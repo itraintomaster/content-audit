@@ -1,0 +1,151 @@
+code: FEAT-DUPEX
+description: "FEAT-DUPEX: exact-duplicates, el analizador de errores que marca cada\
+  \ ejercicio que repite, tal cual, a otro de su mismo tema: el ejercicio terminado\
+  \ (texto fijo sin la pista, con la primera respuesta o la opción correcta) comparado\
+  \ como el corrector. La copia es la que viene después en el orden del tema; los\
+  \ iguales de temas distintos quedan afuera (José, 30/9). Diseñado contra el modelo\
+  \ después de 0.2 y 0.3; usa la comparación del corrector del parche de FEAT-RESPC\
+  \ y el renderizador QuizStudentViewRenderer del integrador, que arma el ejercicio\
+  \ terminado.; qa-tester: traza las 5 reglas de FEAT-DUPEX a 14 handwrittenTests\
+  \ nuevas (no hay tests previos que portar), cada una con un caso real del curso,\
+  \ entre ellas las 23 copias exactas del curso del 29/9, y ubica F-DUPEX-J001 en\
+  \ audit-domain, paquete exactduplicates. Dependen del integrador: el ejercicio terminado\
+  \ y la evidencia (A-01)."
+modules:
+- name: audit-domain
+  packages:
+  - name: exactduplicates
+    description: "Analizador exact-duplicates (FEAT-DUPEX), familia errores, evalú\
+      a QUIZ. En onKnowledge arma el ejercicio terminado de cada ejercicio del tema,\
+      \ en el orden del curso, y busca para cada uno un anterior igual comparado como\
+      \ el corrector; en onQuiz deja el puntaje y el diagnóstico sólo en las copias\
+      \ (el primero queda con 1). Todo es dentro del tema: no mira otros temas. Pú\
+      blicos: el proveedor y el diagnóstico."
+    visibility: public
+    models:
+    - name: ExactDuplicateDiagnosis
+      type: record
+      fields:
+      - name: keptQuizId
+        type: String
+        description: "El ejercicio que queda: el primero del tema que termina igual\
+          \ (F-DUPEX-R002). Va en la evidencia como el otro nodo del hallazgo."
+      - name: finishedExercise
+        type: String
+        description: "El ejercicio terminado que comparten, como lo ve el alumno."
+      - name: score
+        type: double
+        description: 0 en la copia; el ejercicio que queda no lleva diagnóstico y
+          tiene 1 (F-DUPEX-R005).
+      _change: add
+    implementations:
+    - name: ExactDuplicatesAnalyzerProvider
+      requiresInject:
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      visibility: public
+      handwrittenTests:
+      - name: "should describe exact-duplicates in the catalog as an errors analyzer\
+          \ that evaluates exercises, resolves at the panel and costs instant, asking\
+          \ «¿Dos ejercicios del mismo tema dicen lo mismo?»"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R005
+      implements:
+      - AnalyzerProvider
+      _change: add
+    - name: ExactDuplicatesAnalyzer
+      requiresInject:
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      handwrittenTests:
+      - name: "should find the 23 exact copies of the course of 29/9 inside their\
+          \ 14 topics, 17 in A1, 2 in A2 and 4 in B1, as «They weren't at the park.»\
+          \ twice in Práctica mixta"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R001
+      - name: "should take as duplicates two exercises that finish the same although\
+          \ their options differ, as «The show started on time.» twice in In time\
+          \ u on time"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R001
+      - name: "should leave the hint out of the comparison, taking as duplicates «\
+          rice ___ (no plural form)» and «rice ___» of Contable o incontable"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R001
+      - name: "should keep the starting sentence in the comparison, so the eleven\
+          \ «So am I.» of Presente simple: so/neither that answer different sentences\
+          \ are not duplicates"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R001
+      - name: "should not compare exercises of different topics, leaving «She dances\
+          \ ___ (good / well).» of Adjetivo o adverbio without finding although ¿\
+          Good o well? has the same exercise"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R001
+      - name: "should not take as exact duplicates two exercises that differ in a\
+          \ word, as «I don't have ___ time.» and «I didn't have ___ time.»"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R001
+      - name: "should leave without finding the first exercise in the order of the\
+          \ topic and mark the one that comes after it, as 67fab6d59930102295342260\
+          \ after 67fab6d5993010229534224b in Práctica mixta"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R002
+      - name: "should mark n minus 1 exercises in a group of n equal exercises of\
+          \ a topic, as two copies if «stop - ___» appeared three times in Doble consonante\
+          \ y e"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R002
+      - name: "should name in each finding the exercise that stays, as 67fab6d5993010229534224b\
+          \ in the finding of 67fab6d59930102295342260"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R002
+      - name: "should mark the same copies in two runs of the same course, as the\
+          \ second «stop - stopping» of Doble consonante y e"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R002
+      - name: "should give every copy a low finding for the panel that counts as an\
+          \ error, as the second «rice ___» of Contable o incontable"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R003
+      - name: "should show as evidence both exercises as the student sees them, the\
+          \ finished exercise they share and «Idéntico a 67fab6d5993010229534224b\
+          \ del mismo tema», never the internal format «They ____ [weren't] (not /\
+          \ be)»"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R004
+      - name: "should score 0 the copy and 1 the exercise that stays and every exercise\
+          \ without a twin, as in Práctica mixta"
+        traceability:
+          feature: FEAT-DUPEX
+          rule: F-DUPEX-R005
+      implements:
+      - ContentAnalyzer
+      _change: add
+    _change: add
+  _change: modify
+features:
+- id: FEAT-DUPEX
+  code: F-DUPEX
+  journeys:
+  - id: F-DUPEX-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.exactduplicates
