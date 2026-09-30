@@ -43,7 +43,7 @@ public class DefaultKnowledgeTitleProposalDeriverTest {
                 "She reads books.", "Complete the sentence.", "Ella lee libros.",
                 "basics.01.Present_Tense", "Present Tense", null,
                 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
-                List.of("She reads books."));
+                List.of("She reads books."), null);
         KnowledgeEntity beforeKnowledge = new KnowledgeEntity(
                 "know-ktlr-1", "know-ktlr-1", NodeKind.KNOWLEDGE,
                 "Present Simple Affirmative Sentences With Third Person Singular Verbs",

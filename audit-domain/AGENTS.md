@@ -64,6 +64,7 @@ Core business logic
 | quizSentence | `String` |
 | instructions | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
+| multipleChoice | `MultipleChoiceEntity` |
 
 ### CefrLevel (`enum`)
 
@@ -660,6 +661,7 @@ The following models and interfaces are available from dependencies. You can use
 | miniTheory | `String` |
 | successMessage | `String` |
 | sentences | `List<String>` |
+| unmodeledFields | `Map<String,Object>` |
 
 ### FormEntity (`record`)
 
@@ -670,6 +672,8 @@ The following models and interfaces are available from dependencies. You can use
 | label | `String` |
 | name | `String` |
 | sentenceParts | `List<SentencePartEntity>` |
+| multipleChoice | `MultipleChoiceEntity` |
+| unmodeledFields | `Map<String,Object>` |
 
 ### SentencePartEntity (`record`)
 
@@ -696,6 +700,29 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | REWRITE | `null` |
 | FILL | `null` |
+
+### FormKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| CLOZE | `null` |
+| MULTIPLE_CHOICE | `null` |
+| OTHER | `null` |
+
+### MultipleChoiceItemEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| id | `String` |
+| incidence | `double` |
+| label | `String` |
+
+### MultipleChoiceEntity (`record`)
+
+| Field | Type |
+|-------|------|
+| selection | `String` |
+| items | `List<MultipleChoiceItemEntity>` |
 
 ### CourseRepository (port)
 

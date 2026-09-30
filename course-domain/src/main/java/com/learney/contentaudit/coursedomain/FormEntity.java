@@ -20,42 +20,23 @@ public class FormEntity {
 
     private List<SentencePartEntity> sentenceParts;
 
-    // Multiple-choice payload (form.selection + form.items); null for every other form kind.
     private MultipleChoiceEntity multipleChoice;
 
-    // Form-level keys the model does not interpret, in their original order, so a
-    // load->save round trip gives them back untouched. Null when there are none.
     private Map<String, Object> unmodeledFields;
 
     public FormEntity() {
     }
 
     public FormEntity(String kind, double incidence, String label, String name,
-            List<SentencePartEntity> sentenceParts) {
+            List<SentencePartEntity> sentenceParts, MultipleChoiceEntity multipleChoice,
+            Map<String, Object> unmodeledFields) {
         this.kind = kind;
         this.incidence = incidence;
         this.label = label;
         this.name = name;
         this.sentenceParts = sentenceParts;
-    }
-
-    /**
-     * Shallow copy of every field. Code that needs "the same form with one thing changed" copies
-     * with this and then sets that one thing, so a field added later is never silently dropped.
-     */
-    public FormEntity(FormEntity other) {
-        this.kind = other.kind;
-        this.incidence = other.incidence;
-        this.label = other.label;
-        this.name = other.name;
-        this.sentenceParts = other.sentenceParts;
-        this.multipleChoice = other.multipleChoice;
-        this.unmodeledFields = other.unmodeledFields;
-    }
-
-    /** Typed reading of {@link #getKind()}. Not a bean accessor on purpose: it is derived. */
-    public FormKind formKind() {
-        return FormKind.from(this.kind);
+        this.multipleChoice = multipleChoice;
+        this.unmodeledFields = unmodeledFields;
     }
 
     public String getKind() {

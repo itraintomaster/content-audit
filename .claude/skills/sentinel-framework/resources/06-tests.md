@@ -259,6 +259,9 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should stamp the canonical sentence at index 0 of QuizTemplateEntity sentences as the NLP batch key for the AuditableQuiz tokens → FEAT-DBSENT/F-DBSENT-R002
 - should carry every sentence part and every accepted option of the quiz template into the auditable quiz → FEAT-QINST/F-QINST-R009
 - should carry the knowledge instructions and the topic name into the auditable knowledge → FEAT-QINST/F-QINST-R009
+- should map a course that mixes CLOZE and multiple choice quizzes without failing and hand every quiz to measurement → FEAT-OPMUL/F-OPMUL-R003
+- should map a quiz whose form declares a kind the system does not recognize exactly like a CLOZE quiz → FEAT-OPMUL/F-OPMUL-R003
+- should measure a multiple choice quiz on the plain sentence stored with it and never on one derived during the audit → FEAT-OPMUL/F-OPMUL-R004
 
 ### DefaultAuditRunner (audit-application)
 
@@ -406,6 +409,9 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should load sentences verbatim for a transformation-pattern quiz even when sentenceParts would yield a different concatenation → FEAT-DBSENT/F-DBSENT-R001
 - should preserve each quiz plain sentences identically after a load save load round-trip → FEAT-DBSENT/F-DBSENT-R004
 - should preserve the plain sentences of every quiz in a multi-quiz course after a whole-course save without dropping or cross-contaminating any list → FEAT-DBSENT/F-DBSENT-R004
+- should write every file of a course with multiple choice quizzes back byte for byte when it is loaded and saved without changes → FEAT-OPMUL/F-OPMUL-R001
+- should keep selection and items on a form that is not multiple choice as data it does not interpret, with their value, when saving → FEAT-OPMUL/F-OPMUL-R002
+- should write back the quiz and form data it does not interpret after the data it does, with their value and in their original order → FEAT-OPMUL/F-OPMUL-R002
 
 ### FileSystemAuditReportStore (audit-infrastructure)
 

@@ -242,7 +242,7 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 ### course-domain
 
-**Models:** NodeKind, SentencePartKind, CourseEntity, RootNodeEntity, MilestoneEntity, TopicEntity, KnowledgeEntity, QuizTemplateEntity, FormEntity, SentencePartEntity, CourseValidationException, SentenceMode
+**Models:** NodeKind, SentencePartKind, CourseEntity, RootNodeEntity, MilestoneEntity, TopicEntity, KnowledgeEntity, QuizTemplateEntity, FormEntity, SentencePartEntity, CourseValidationException, SentenceMode, FormKind, MultipleChoiceItemEntity, MultipleChoiceEntity
 
 **Interfaces:** CourseRepository, CourseValidator
 

@@ -146,7 +146,7 @@ public class FRclalenJ002JourneyTest {
                 List.of(), "quiz-within-range-001", "Quiz 1", "Q001",
                 "Ella va al mercado hoy",
                 List.of("She goes to the market today"),
-                null, null, null);
+                null, null, null, null);
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Affirmative sentences in the present simple",

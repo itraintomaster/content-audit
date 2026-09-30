@@ -73,7 +73,7 @@ public class IAuditEngineTest {
             quizzes.add(new AuditableQuiz(
                     Collections.nCopies(tc, tok()),
                     "q" + tc, "Quiz", null, null,
-                    List.of("sentence text"), null, null, null));
+                    List.of("sentence text"), null, null, null, null));
         }
         AuditableKnowledge k = new AuditableKnowledge(quizzes, "K", "Complete", true, "k1", "K", "K", null, null);
         AuditableTopic t = new AuditableTopic(List.of(k), "t1", "T", "T");
@@ -194,8 +194,8 @@ public class IAuditEngineTest {
         // The lemma-recurrence score must be equal for both.
 
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 100, false, false);
-        AuditableQuiz quizA1 = new AuditableQuiz(List.of(catToken), null, null, null, null, List.of("the cat"), null, null, null);
-        AuditableQuiz quizA2 = new AuditableQuiz(List.of(catToken), null, null, null, null, List.of("a cat"), null, null, null);
+        AuditableQuiz quizA1 = new AuditableQuiz(List.of(catToken), null, null, null, null, List.of("the cat"), null, null, null, null);
+        AuditableQuiz quizA2 = new AuditableQuiz(List.of(catToken), null, null, null, null, List.of("a cat"), null, null, null, null);
 
         AuditableTopic topicA1 = new AuditableTopic(List.of(new AuditableKnowledge(List.of(quizA1), "K-A1", null, false, "k1", "l1", "C1", null, null)), "t1", "TopicA1", "T1");
         AuditableTopic topicA2 = new AuditableTopic(List.of(new AuditableKnowledge(List.of(quizA2), "K-A2", null, false, "k2", "l2", "C2", null, null)), "t2", "TopicA2", "T2");
@@ -313,7 +313,7 @@ public class IAuditEngineTest {
         // Zero case: course with no sentence quizzes → no milestone score → course score not set or zero
         // Build a course where the milestone has no scoring quizzes (non-sentence knowledge)
         AuditableQuiz nonSentQuiz = new AuditableQuiz(
-                Collections.nCopies(3, tok()), "q1", "Q", null, null, List.of("word"), null, null, null);
+                Collections.nCopies(3, tok()), "q1", "Q", null, null, List.of("word"), null, null, null, null);
         AuditableKnowledge nonSentK = new AuditableKnowledge(
                 List.of(nonSentQuiz), "K", "Complete", false, "k1", "K", "K", null, null);
         AuditableTopic t = new AuditableTopic(List.of(nonSentK), "t1", "T", "T");

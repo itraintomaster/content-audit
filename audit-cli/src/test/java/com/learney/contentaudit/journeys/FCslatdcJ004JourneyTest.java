@@ -191,7 +191,7 @@ public class FCslatdcJ004JourneyTest {
 
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), quizId, "Quiz about A1 nouns", null,
-                "El gato come.", List.of("The cat eats."), null, null, null);
+                "El gato come.", List.of("The cat eats."), null, null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "A1 Nouns", "Fill in the blank.", true,
                 "know-j004", "Knowledge 1", null, null, null);

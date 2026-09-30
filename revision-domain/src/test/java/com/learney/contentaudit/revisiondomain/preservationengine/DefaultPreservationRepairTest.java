@@ -35,6 +35,11 @@ import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -122,6 +127,71 @@ public class DefaultPreservationRepairTest {
     private RevisionArtifact buildApprovedArtifact(RevisionProposal proposal, Instant decidedAt) {
         return new RevisionArtifact(proposal, RevisionVerdict.APPROVED, null, null,
                 decidedAt, null, null, null);
+    }
+
+    // FEAT-OPMUL helpers: "She ___ English." as quiz-1 of knowledge k1, with or without options
+    // and with or without the data the system does not interpret.
+
+    private static FormEntity form(String kind, List<String> gapOptions) {
+        return new FormEntity(kind, 1.0, "", "", new ArrayList<>(List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", gapOptions),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null))), null, null);
+    }
+
+    private static MultipleChoiceEntity choices(String correct) {
+        List<MultipleChoiceItemEntity> items = new ArrayList<>();
+        for (String label : List.of("am", "is")) {
+            items.add(new MultipleChoiceItemEntity(label, label.equals(correct) ? 1.0 : 0.0, label));
+        }
+        return new MultipleChoiceEntity("SINGLE", items);
+    }
+
+    private static QuizTemplateEntity quiz(FormEntity form, Map<String, Object> unmodeled) {
+        QuizTemplateEntity quiz = new QuizTemplateEntity();
+        quiz.setId("quiz-1");
+        quiz.setKind(form.getKind());
+        quiz.setKnowledgeId("k1");
+        quiz.setForm(form);
+        quiz.setSentences(List.of("She is English."));
+        quiz.setUnmodeledFields(unmodeled);
+        return quiz;
+    }
+
+    private static Map<String, Object> backups() {
+        Map<String, Object> unmodeled = new LinkedHashMap<>();
+        unmodeled.put("formCloze", Map.of("kind", "CLOZE"));
+        unmodeled.put("instructionsAnteriores", "Elegi la forma de be.");
+        return unmodeled;
+    }
+
+    private static CourseEntity courseWith(QuizTemplateEntity quiz) {
+        KnowledgeEntity knowledge = new KnowledgeEntity();
+        knowledge.setId("k1");
+        knowledge.setQuizTemplates(new ArrayList<>(List.of(quiz)));
+        TopicEntity topic = new TopicEntity();
+        topic.setKnowledges(List.of(knowledge));
+        MilestoneEntity milestone = new MilestoneEntity();
+        milestone.setTopics(List.of(topic));
+        RootNodeEntity root = new RootNodeEntity();
+        root.setMilestones(List.of(milestone));
+        CourseEntity course = new CourseEntity();
+        course.setRoot(root);
+        return course;
+    }
+
+    /** A repair whose only approved revision of quiz-1 recorded {@code intact} as its snapshot. */
+    private static DefaultPreservationRepair repairWithSnapshot(QuizTemplateEntity intact) {
+        CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-1", intact, null);
+        RevisionProposal proposal = new RevisionProposal("p-1", "t-1", "plan", "audit",
+                DiagnosisKind.QUIZ_INSTRUCTION, AuditTarget.QUIZ, "quiz-1", before, before, "old", "qicor",
+                Instant.parse("2026-08-01T00:00:00Z"), null, null, null);
+        RevisionArtifactStore store = mock(RevisionArtifactStore.class);
+        when(store.list()).thenReturn(List.of(new RevisionArtifact(proposal, RevisionVerdict.APPROVED, null,
+                null, Instant.parse("2026-08-01T00:05:00Z"), null, null, null)));
+        CorrectionScope scope = mock(CorrectionScope.class);
+        when(scope.changeableFields(DiagnosisKind.QUIZ_INSTRUCTION, AuditTarget.QUIZ)).thenReturn(Set.of());
+        return new DefaultPreservationRepair(store, scope);
     }
 
     // ---------------------------------------------------------------------------
@@ -473,5 +543,78 @@ public class DefaultPreservationRepairTest {
                 "form.label must not be filled with a fabricated default (e.g. '') when no intact counterpart exists (F-RPRES-R002)");
         assertNull(resultQuiz.getForm().getName(),
                 "form.name must not be filled with a fabricated default (e.g. '') when no intact counterpart exists (F-RPRES-R002)");
+    }
+
+    @Test
+    @DisplayName("should never restore a multiple choice quiz from a snapshot recorded when it was a CLOZE, leaving its options and its data as they are")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R007")
+    public void shouldNeverRestoreAMultipleChoiceQuizFromASnapshotRecordedWhenItWasACLOZELeavingItsOptionsAndItsDataAsTheyAre() {
+        QuizTemplateEntity clozeEraSnapshot = quiz(form("CLOZE", List.of("is")), null);
+        FormEntity mc = form("MULTIPLE_CHOICE", null);
+        mc.setMultipleChoice(choices("is"));
+        QuizTemplateEntity current = quiz(mc, backups());
+
+        RepairReport report = repairWithSnapshot(clozeEraSnapshot).repair(courseWith(current));
+
+        assertEquals(0, report.getElementsRepaired());
+        assertEquals("MULTIPLE_CHOICE", current.getForm().getKind());
+        assertNull(current.getForm().getSentenceParts().get(1).getOptions());
+        assertEquals(choices("is"), current.getForm().getMultipleChoice());
+        assertEquals(backups(), current.getUnmodeledFields());
+    }
+
+    @Test
+    @DisplayName("should report a multiple choice quiz that lost its options as unrepairable without filling them in")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R007")
+    public void shouldReportAMultipleChoiceQuizThatLostItsOptionsAsUnrepairableWithoutFillingThemIn() {
+        QuizTemplateEntity lost = quiz(form("MULTIPLE_CHOICE", null), null);
+        RevisionArtifactStore store = mock(RevisionArtifactStore.class);
+        when(store.list()).thenReturn(List.of());
+
+        RepairReport report = new DefaultPreservationRepair(store, mock(CorrectionScope.class))
+                .inspect(courseWith(lost));
+
+        assertEquals(List.of("quiz-1"), report.getUnrepairable());
+    }
+
+    @Test
+    @DisplayName("should keep the data the system does not interpret of a CLOZE quiz when repairing it from a snapshot that did not know them")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R008")
+    public void shouldKeepTheDataTheSystemDoesNotInterpretOfACLOZEQuizWhenRepairingItFromASnapshotThatDidNotKnowThem() {
+        QuizTemplateEntity oldSnapshot = quiz(form("CLOZE", List.of("is")), null);
+        QuizTemplateEntity current = quiz(form("CLOZE", List.of("is")), backups());
+
+        repairWithSnapshot(oldSnapshot).repair(courseWith(current));
+
+        assertEquals(backups(), current.getUnmodeledFields());
+    }
+
+    @Test
+    @DisplayName("should never restore a quiz whose own kind is multiple choice and whose form lost its kind from a snapshot recorded when it was a CLOZE")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R009")
+    public void shouldNeverRestoreAQuizWhoseOwnKindIsMultipleChoiceAndWhoseFormLostItsKindFromASnapshotRecordedWhenItWasACLOZE() {
+        // Recorded when the quiz was still a CLOZE. Today it is multiple choice by its own kind, but
+        // its form lost the kind: the quiz-level kind decides (F-OPMUL-R009), so repair must not
+        // turn it back into the CLOZE of the snapshot.
+        QuizTemplateEntity clozeEraSnapshot = quiz(form("CLOZE", List.of("is")), null);
+        FormEntity lostItsKind = form(null, null);
+        lostItsKind.setMultipleChoice(choices("is"));
+        QuizTemplateEntity current = quiz(lostItsKind, backups());
+        current.setKind("MULTIPLE_CHOICE");
+
+        RepairReport report = repairWithSnapshot(clozeEraSnapshot).repair(courseWith(current));
+
+        assertEquals(0, report.getElementsRepaired(), "R009: nothing is restored from the CLOZE-era snapshot");
+        assertTrue(report.getRestored().isEmpty(), report.getRestored().toString());
+        assertEquals("MULTIPLE_CHOICE", current.getKind());
+        assertNull(current.getForm().getKind(), "the form must not get the CLOZE kind of the snapshot back");
+        assertNull(current.getForm().getSentenceParts().get(1).getOptions(),
+                "the gap must not get the CLOZE answer of the snapshot back");
+        assertEquals(choices("is"), current.getForm().getMultipleChoice());
+        assertEquals(backups(), current.getUnmodeledFields());
     }
 }

@@ -120,7 +120,7 @@ public class FLabsJ006JourneyTest {
                         List.of(), "title", "instructions", true, "k" + i, "label", "code", null, null);
                 AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
                 AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "label", "code", null,
-                        List.of("sentence"), null, null, null);
+                        List.of("sentence"), null, null, null, null);
                 makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
             }
         }

@@ -2,6 +2,7 @@ package com.learney.contentaudit.revisiondomain.engine;
 import com.learney.contentaudit.coursedomain.SentenceMode;
 
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntities;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceParseException;
@@ -83,7 +84,7 @@ public final class DefaultLemmaAbsenceProposalDeriver implements LemmaAbsencePro
         // except form (quiz structure), translation (from candidate) and the derived sentences.
         // The title is NOT in scope of a lexical correction (F-LAPS-R014, F-RPRES-R004) — it
         // tracks the knowledge label only, so it is preserved unchanged from beforeQuiz.
-        QuizTemplateEntity afterQuiz = new QuizTemplateEntity(beforeQuiz);
+        QuizTemplateEntity afterQuiz = QuizTemplateEntities.copyOf(beforeQuiz);
         afterQuiz.setTranslation(candidate.getTranslation());
         afterQuiz.setForm(newForm);
         afterQuiz.setSentences(plainSentences);

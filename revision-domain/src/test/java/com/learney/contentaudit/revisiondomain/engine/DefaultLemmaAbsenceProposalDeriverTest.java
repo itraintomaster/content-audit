@@ -23,6 +23,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -36,6 +38,23 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
 
     private LemmaAbsenceProposalDeriver deriver;
     private QuizSentenceConverter converter;
+
+    /** A quiz of the given form carrying data the system does not interpret, as production writes it. */
+    private static QuizTemplateEntity quiz(String id, FormEntity form) {
+        QuizTemplateEntity quiz = new QuizTemplateEntity();
+        quiz.setId(id);
+        quiz.setOidId(id);
+        quiz.setKind(form.getKind());
+        quiz.setKnowledgeId("k1");
+        quiz.setTitle("old title");
+        quiz.setForm(form);
+        quiz.setSentences(List.of("She is English."));
+        Map<String, Object> unmodeled = new LinkedHashMap<>();
+        unmodeled.put("formCloze", Map.of("kind", "CLOZE"));
+        unmodeled.put("instructionsAnteriores", "Elegi la forma de be.");
+        quiz.setUnmodeledFields(unmodeled);
+        return quiz;
+    }
 
     @BeforeEach
     void setUp() {
@@ -55,7 +74,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("reads")),
                 new SentencePartEntity(SentencePartKind.TEXT, "(read) books.", null)
-        ));
+        ), null, null);
         QuizTemplateEntity quiz = new QuizTemplateEntity(
                 "quiz-id-001",             // id
                 "quiz-id-001",             // oidId
@@ -77,7 +96,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 "",                        // answerImageUrl
                 "",                        // miniTheory
                 "",                        // successMessage
-                List.of("She reads (read) books.") // sentences
+                List.of("She reads (read) books."), null // sentences
         );
         return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-id-001", quiz, null);
     }
@@ -365,7 +384,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         FormEntity originalForm = new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(
                 new SentencePartEntity(SentencePartKind.TEXT, "You should watch the DVD.", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("Watch the DVD."))
-        ));
+        ), null, null);
         QuizTemplateEntity originalQuiz = new QuizTemplateEntity(
                 "quiz-dvd-001",
                 "quiz-dvd-001",
@@ -379,7 +398,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 originalForm,
                 0.0, 0.0, 0.0,
                 "", "", "", "", "", "", "",
-                List.of("Watch the DVD.")            // sentences[0]: frase canonica original (4 tokens)
+                List.of("Watch the DVD."), null            // sentences[0]: frase canonica original (4 tokens)
         );
         CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-001", originalQuiz, null);
 
@@ -427,7 +446,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         FormEntity originalForm = new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(
                 new SentencePartEntity(SentencePartKind.TEXT, "You should watch the DVD.", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("Watch the DVD."))
-        ));
+        ), null, null);
         QuizTemplateEntity originalQuiz = new QuizTemplateEntity(
                 "quiz-dvd-002",
                 "quiz-dvd-002",
@@ -441,7 +460,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 originalForm,
                 0.0, 0.0, 0.0,
                 "", "", "", "", "", "", "",
-                List.of("Watch the DVD.")                // sentences[0] original: 4 tokens
+                List.of("Watch the DVD."), null                // sentences[0] original: 4 tokens
         );
         CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-002", originalQuiz, null);
 
@@ -511,5 +530,31 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         assertNotEquals(after.getQuiz().getTitle(), after.getQuiz().getSentences().get(0),
                 "the scenario requires the derived plain sentence to differ from the preserved title; "
                         + "otherwise this test would pass trivially without exercising the guard");
+    }
+
+    @Test
+    @DisplayName("should keep the quiz and form data the system does not interpret when deriving the lexical correction of a CLOZE quiz")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R002")
+    public void shouldKeepTheQuizAndFormDataTheSystemDoesNotInterpretWhenDerivingTheLexicalCorrectionOfACLOZEQuiz() {
+        FormEntity cloze = new FormEntity("CLOZE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("is")),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
+        Map<String, Object> formExtra = new LinkedHashMap<>();
+        formExtra.put("futureKey", "kept");
+        cloze.setUnmodeledFields(formExtra);
+        QuizTemplateEntity before = quiz("cloze-1", cloze);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "cloze-1", before, null);
+
+        CourseElementSnapshot after = new DefaultLemmaAbsenceProposalDeriver(DefaultQuizSentenceConverter.create())
+                .derive(snapshot, new LemmaAbsenceQuizCandidate("She ____ [is] Irish.", "Ella es irlandesa."),
+                        SentenceMode.FILL);
+
+        QuizTemplateEntity afterQuiz = after.getQuiz();
+        assertEquals(before.getUnmodeledFields(), afterQuiz.getUnmodeledFields());
+        assertEquals(formExtra, afterQuiz.getForm().getUnmodeledFields());
+        assertEquals(List.of("She is Irish."), afterQuiz.getSentences());
+        assertEquals("Ella es irlandesa.", afterQuiz.getTranslation());
     }
 }

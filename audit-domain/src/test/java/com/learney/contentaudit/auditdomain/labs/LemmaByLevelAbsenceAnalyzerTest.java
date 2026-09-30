@@ -95,7 +95,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
 
     /** Build a single-quiz course at level-index miIdx (0=A1,1=A2,2=B1,3=B2). */
     private AuditableCourse courseWithQuiz(int miIdx, String quizId, List<NlpToken> tokens) {
-        AuditableQuiz quiz = new AuditableQuiz(tokens, quizId, "label", "code", null, List.of("sentence"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(tokens, quizId, "label", "code", null, List.of("sentence"), null, null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(quiz), "title", "instructions", true, "k1", "label", "code", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "label", "code");
@@ -147,7 +147,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
                 AuditableKnowledge knowledge = new AuditableKnowledge(
                         List.of(), "title", "instructions", true, "k1", "label", "code", null, null);
                 AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
-                AuditableQuiz quiz = new AuditableQuiz(tokens, quizId, "label", "code", null, List.of("sentence"), null, null, null);
+                AuditableQuiz quiz = new AuditableQuiz(tokens, quizId, "label", "code", null, List.of("sentence"), null, null, null, null);
                 makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
             }
         }
@@ -168,7 +168,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
                 AuditableKnowledge knowledge = new AuditableKnowledge(
                         List.of(), "title", "instructions", true, "k1", "label", "code", null, null);
                 AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
-                AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "label", "code", null, List.of("sentence"), null, null, null);
+                AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "label", "code", null, List.of("sentence"), null, null, null, null);
                 makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
             }
         }
@@ -561,7 +561,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
 
         NlpToken nullLemmaToken = new NlpToken("word", null, "NOUN", 0, false, false);
         // milestone traversal handled by tree structure
-        AuditableQuiz quiz = new AuditableQuiz(Arrays.asList(null, nullLemmaToken), "q1", "l", "c", null, List.of("s"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(Arrays.asList(null, nullLemmaToken), "q1", "l", "c", null, List.of("s"), null, null, null, null);
 
         assertDoesNotThrow(() -> sut.onQuiz(makeNode(AuditTarget.QUIZ, quiz, null)));
     }
@@ -572,7 +572,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     @Tag("F-LABS-R002")
     public void shouldSkipQuizWhenTokensListIsNull() {
         // milestone traversal handled by tree structure
-        AuditableQuiz quiz = new AuditableQuiz(null, "q1", "l", "c", null, List.of("sentence"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(null, "q1", "l", "c", null, List.of("sentence"), null, null, null, null);
         assertDoesNotThrow(() -> sut.onQuiz(makeNode(AuditTarget.QUIZ, quiz, null)));
         // No tokens accumulated; results still empty before courseComplete
         // No results to check - analyzer writes to nodes directly
@@ -585,7 +585,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     public void shouldSkipQuizWhenCurrentLevelIsNull() {
         // No onMilestone call -> currentLevel = null; also milestoneId in ctx is invalid
         NlpToken token = new NlpToken("cat", "cat", "NOUN", 0, false, false);
-        AuditableQuiz quiz = new AuditableQuiz(List.of(token), "q1", "l", "c", null, List.of("cat"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(token), "q1", "l", "c", null, List.of("cat"), null, null, null, null);
         // milestoneId "INVALID" cannot be parsed as CefrLevel
         assertDoesNotThrow(() -> sut.onQuiz(makeNode(AuditTarget.QUIZ, quiz, null)));
         // No results to check - analyzer writes to nodes directly
@@ -1207,7 +1207,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
 
     // Helper: build course where first milestone (A1) has a quiz with a given token
     private AuditableCourse buildCourseForQuizScoring(NlpToken token) {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(token), "q1", "label", "code", null, List.of("sentence"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(token), "q1", "label", "code", null, List.of("sentence"), null, null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(quiz), "t", "i", true, "k1", "l", "c", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "l", "c");
@@ -2723,7 +2723,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
         knowledgeNode.setDiagnoses(new DefaultKnowledgeDiagnoses());
 
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null, null, null, null);
         AuditNode quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
         quizNode.setDiagnoses(new DefaultQuizDiagnoses());
 
@@ -2784,7 +2784,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code", null, null);
         AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
         knowledgeNode.setDiagnoses(new DefaultKnowledgeDiagnoses());
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null, null, null, null);
         AuditNode quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
         quizNode.setDiagnoses(new DefaultQuizDiagnoses());
 
@@ -2815,7 +2815,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code", null, null);
         AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null, null, null, null);
         AuditNode quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
 
         // R011: quiz can navigate up to its milestone ancestor
@@ -2850,7 +2850,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "label", "code", null, null);
         AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
         knowledgeNode.setDiagnoses(new DefaultKnowledgeDiagnoses());
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null, null, null, null);
         AuditNode quizNode = makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
         quizNode.setDiagnoses(new DefaultQuizDiagnoses());
 

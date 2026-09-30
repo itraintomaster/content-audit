@@ -106,7 +106,7 @@ project-root/
 | Depends On | (none — leaf module) |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 12 (NodeKind, SentencePartKind, CourseEntity, RootNodeEntity, MilestoneEntity, TopicEntity, KnowledgeEntity, QuizTemplateEntity, FormEntity, SentencePartEntity, CourseValidationException, SentenceMode) |
+| Models | 15 (NodeKind, SentencePartKind, CourseEntity, RootNodeEntity, MilestoneEntity, TopicEntity, KnowledgeEntity, QuizTemplateEntity, FormEntity, SentencePartEntity, CourseValidationException, SentenceMode, FormKind, MultipleChoiceItemEntity, MultipleChoiceEntity) |
 | Interfaces | 2 (CourseRepository, CourseValidator) |
 | Implementations | 0 |
 | Packages | 2 (quizsentence [public], quizsentenceengine [internal]) |

@@ -21,9 +21,48 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import org.mockito.ArgumentCaptor;
 
 @ExtendWith(MockitoExtension.class)
 public class CourseToAuditableMapperTest {
+
+    // -----------------------------------------------------------------------
+    // FEAT-OPMUL helpers: one knowledge ("Be", A1) holding the given quizzes
+    // -----------------------------------------------------------------------
+
+    private static QuizTemplateEntity quiz(String id, FormEntity form, String sentence) {
+        QuizTemplateEntity qt = new QuizTemplateEntity();
+        qt.setId(id);
+        qt.setKind(form.getKind());
+        qt.setForm(form);
+        qt.setSentences(List.of(sentence));
+        return qt;
+    }
+
+    private static CourseEntity course(QuizTemplateEntity... quizzes) {
+        KnowledgeEntity knowledge = new KnowledgeEntity();
+        knowledge.setId("k1");
+        knowledge.setLabel("Be");
+        knowledge.setQuizTemplates(List.of(quizzes));
+        TopicEntity topic = new TopicEntity();
+        topic.setId("t1");
+        topic.setLabel("Present Simple");
+        topic.setKnowledges(List.of(knowledge));
+        MilestoneEntity milestone = new MilestoneEntity();
+        milestone.setId("m1");
+        milestone.setLabel("A1");
+        milestone.setTopics(List.of(topic));
+        RootNodeEntity root = new RootNodeEntity();
+        root.setMilestones(List.of(milestone));
+        CourseEntity course = new CourseEntity();
+        course.setRoot(root);
+        return course;
+    }
+
+    private static List<AuditableQuiz> mappedQuizzes(AuditableCourse course) {
+        return course.getMilestones().get(0).getTopics().get(0).getKnowledge().get(0).getQuizzes();
+    }
 
     @Test
     @DisplayName("Given a course with quizzes, when map is called, then analyzeTokensBatch is invoked and returns an AuditableCourse")
@@ -36,7 +75,7 @@ public class CourseToAuditableMapperTest {
                 .thenReturn(Map.of("cat", List.of(token)));
 
         SentencePartEntity part = new SentencePartEntity(SentencePartKind.TEXT, "cat", null);
-        FormEntity form = new FormEntity(null, 0, null, null, List.of(part));
+        FormEntity form = new FormEntity(null, 0, null, null, List.of(part), null, null);
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q1");
         qt.setForm(form);
@@ -97,7 +136,7 @@ public class CourseToAuditableMapperTest {
                 .thenThrow(new RuntimeException("NLP failure"));
 
         SentencePartEntity part = new SentencePartEntity(SentencePartKind.TEXT, "cat", null);
-        FormEntity form = new FormEntity(null, 0, null, null, List.of(part));
+        FormEntity form = new FormEntity(null, 0, null, null, List.of(part), null, null);
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q1");
         qt.setForm(form);
@@ -140,7 +179,7 @@ public class CourseToAuditableMapperTest {
         SentencePartEntity textPart = new SentencePartEntity(SentencePartKind.TEXT, "He", null);
         SentencePartEntity clozePart = new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("is|'s"));
         SentencePartEntity tailPart = new SentencePartEntity(SentencePartKind.TEXT, " (to be) great.", null);
-        FormEntity form = new FormEntity(null, 0, null, null, List.of(textPart, clozePart, tailPart));
+        FormEntity form = new FormEntity(null, 0, null, null, List.of(textPart, clozePart, tailPart), null, null);
 
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q-rclaqs-r002a");
@@ -194,14 +233,14 @@ public class CourseToAuditableMapperTest {
         QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
 
         SentencePartEntity part1 = new SentencePartEntity(SentencePartKind.TEXT, "The cat sits.", null);
-        FormEntity form1 = new FormEntity(null, 0, null, null, List.of(part1));
+        FormEntity form1 = new FormEntity(null, 0, null, null, List.of(part1), null, null);
         QuizTemplateEntity qt1 = new QuizTemplateEntity();
         qt1.setId("q-rclaqs-r002b-1");
         qt1.setForm(form1);
         qt1.setSentences(List.of("The cat sits."));
 
         SentencePartEntity part2 = new SentencePartEntity(SentencePartKind.TEXT, "The dog runs.", null);
-        FormEntity form2 = new FormEntity(null, 0, null, null, List.of(part2));
+        FormEntity form2 = new FormEntity(null, 0, null, null, List.of(part2), null, null);
         QuizTemplateEntity qt2 = new QuizTemplateEntity();
         qt2.setId("q-rclaqs-r002b-2");
         qt2.setForm(form2);
@@ -257,7 +296,7 @@ public class CourseToAuditableMapperTest {
         QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
 
         SentencePartEntity textPart = new SentencePartEntity(SentencePartKind.TEXT, "She sings.", null);
-        FormEntity form = new FormEntity(null, 0, null, null, List.of(textPart));
+        FormEntity form = new FormEntity(null, 0, null, null, List.of(textPart), null, null);
 
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q-rclaqs-r003");
@@ -313,7 +352,7 @@ public class CourseToAuditableMapperTest {
 
         // Invalid: TEXT part with non-empty options violates FEAT-QSENT R003
         SentencePartEntity invalidTextPart = new SentencePartEntity(SentencePartKind.TEXT, "He is", List.of("invalid-option"));
-        FormEntity invalidForm = new FormEntity(null, 0, null, null, List.of(invalidTextPart));
+        FormEntity invalidForm = new FormEntity(null, 0, null, null, List.of(invalidTextPart), null, null);
 
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q-rclaqs-r004-text");
@@ -359,7 +398,7 @@ public class CourseToAuditableMapperTest {
 
         // Invalid: CLOZE with null options violates FEAT-QSENT R004
         SentencePartEntity clozePart = new SentencePartEntity(SentencePartKind.CLOZE, null, null);
-        FormEntity invalidForm = new FormEntity(null, 0, null, null, List.of(clozePart));
+        FormEntity invalidForm = new FormEntity(null, 0, null, null, List.of(clozePart), null, null);
 
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q-rclaqs-r004-cloze");
@@ -405,11 +444,11 @@ public class CourseToAuditableMapperTest {
         QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
 
         SentencePartEntity validPart = new SentencePartEntity(SentencePartKind.TEXT, "She runs.", null);
-        FormEntity validForm = new FormEntity(null, 0, null, null, List.of(validPart));
+        FormEntity validForm = new FormEntity(null, 0, null, null, List.of(validPart), null, null);
 
         // CLOZE with empty options list — invalid per FEAT-QSENT R004
         SentencePartEntity invalidClozePart = new SentencePartEntity(SentencePartKind.CLOZE, null, List.of());
-        FormEntity invalidForm = new FormEntity(null, 0, null, null, List.of(invalidClozePart));
+        FormEntity invalidForm = new FormEntity(null, 0, null, null, List.of(invalidClozePart), null, null);
 
         QuizTemplateEntity qtValid = new QuizTemplateEntity();
         qtValid.setId("q-rclaqs-r004c-valid");
@@ -472,7 +511,7 @@ public class CourseToAuditableMapperTest {
 
         // Build a course with one quiz whose sentence contains frequency-ranked vocabulary
         SentencePartEntity part = new SentencePartEntity(SentencePartKind.TEXT, "She was running", null);
-        FormEntity form = new FormEntity(null, 0, null, null, List.of(part));
+        FormEntity form = new FormEntity(null, 0, null, null, List.of(part), null, null);
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q1");
         qt.setForm(form);
@@ -547,7 +586,7 @@ public class CourseToAuditableMapperTest {
         List<String> persistedSentences = List.of("The dogs are barking loudly.");
 
         SentencePartEntity part = new SentencePartEntity(SentencePartKind.TEXT, "The dogs are barking loudly.", null);
-        FormEntity form = new FormEntity(null, 0, null, null, List.of(part));
+        FormEntity form = new FormEntity(null, 0, null, null, List.of(part), null, null);
 
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q-dbsent-r002a");
@@ -599,14 +638,14 @@ public class CourseToAuditableMapperTest {
         QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
 
         SentencePartEntity part1 = new SentencePartEntity(SentencePartKind.TEXT, "The cat sat.", null);
-        FormEntity form1 = new FormEntity(null, 0, null, null, List.of(part1));
+        FormEntity form1 = new FormEntity(null, 0, null, null, List.of(part1), null, null);
         QuizTemplateEntity qt1 = new QuizTemplateEntity();
         qt1.setId("q-dbsent-r002b-1");
         qt1.setForm(form1);
         qt1.setSentences(List.of("The cat sat."));
 
         SentencePartEntity part2 = new SentencePartEntity(SentencePartKind.TEXT, "The dog ran.", null);
-        FormEntity form2 = new FormEntity(null, 0, null, null, List.of(part2));
+        FormEntity form2 = new FormEntity(null, 0, null, null, List.of(part2), null, null);
         QuizTemplateEntity qt2 = new QuizTemplateEntity();
         qt2.setId("q-dbsent-r002b-2");
         qt2.setForm(form2);
@@ -658,7 +697,7 @@ public class CourseToAuditableMapperTest {
         NlpToken barkToken = new NlpToken("barking", "bark", "VERB", 850, false, false);
 
         SentencePartEntity part = new SentencePartEntity(SentencePartKind.TEXT, "The dogs / bark / loudly.", null);
-        FormEntity form = new FormEntity(null, 0, null, null, List.of(part));
+        FormEntity form = new FormEntity(null, 0, null, null, List.of(part), null, null);
 
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q-dbsent-r002c");
@@ -722,7 +761,7 @@ public class CourseToAuditableMapperTest {
         SentencePartEntity clozePart = new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("is", "'s"));
         SentencePartEntity tailPart = new SentencePartEntity(SentencePartKind.TEXT, " great.", null);
         List<SentencePartEntity> parts = List.of(textPart, clozePart, tailPart);
-        FormEntity form = new FormEntity(null, 0, null, null, parts);
+        FormEntity form = new FormEntity(null, 0, null, null, parts, null, null);
 
         QuizTemplateEntity qt = new QuizTemplateEntity();
         qt.setId("q-qinst-r009a");
@@ -804,5 +843,111 @@ public class CourseToAuditableMapperTest {
                 "R009: AuditableKnowledge.instructions must carry the knowledge's instructions verbatim");
         assertEquals("Verbs", auditableKnowledge.getTopicName(),
                 "R009: AuditableKnowledge.topicName must carry the label of the topic that contains it");
+    }
+
+    @Test
+    @DisplayName("should map a course that mixes CLOZE and multiple choice quizzes without failing and hand every quiz to measurement")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R003")
+    public void shouldMapACourseThatMixesCLOZEAndMultipleChoiceQuizzesWithoutFailingAndHandEveryQuizToMeasurement() {
+        FormEntity multipleChoice = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", null),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
+        MultipleChoiceEntity options = new MultipleChoiceEntity("SINGLE", List.of(
+                new MultipleChoiceItemEntity("am", 0.0, "am"),
+                new MultipleChoiceItemEntity("is", 1.0, "is")));
+        multipleChoice.setMultipleChoice(options);
+        FormEntity cloze = new FormEntity("CLOZE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "They", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("are")),
+                new SentencePartEntity(SentencePartKind.TEXT, "here.", null)), null, null);
+
+        NlpTokenizer tokenizer = mock(NlpTokenizer.class);
+        NlpToken she = new NlpToken("She", "she", "PRON", 0, true, false);
+        when(tokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of("She is English.", List.of(she)));
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(tokenizer, DefaultQuizSentenceConverter.create());
+
+        List<AuditableQuiz> quizzes = mappedQuizzes(mapper.map(course(
+                quiz("mc", multipleChoice, "She is English."),
+                quiz("cloze", cloze, "They are here."))));
+
+        AuditableQuiz mapped = quizzes.get(0);
+        assertNull(mapped.getQuizSentence());
+        assertSame(options, mapped.getMultipleChoice());
+        assertEquals(List.of("She is English."), mapped.getSentences());
+        assertEquals(List.of(she), mapped.getTokens());
+
+        AuditableQuiz clozeMapped = quizzes.get(1);
+        assertEquals("They ____ [are] here.", clozeMapped.getQuizSentence());
+        assertNull(clozeMapped.getMultipleChoice());
+    }
+
+    @Test
+    @DisplayName("should map a quiz whose form declares a kind the system does not recognize exactly like a CLOZE quiz")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R003")
+    public void shouldMapAQuizWhoseFormDeclaresAKindTheSystemDoesNotRecognizeExactlyLikeACLOZEQuiz() {
+        // The same gap with an accepted answer, once in a CLOZE form and once in a form whose kind
+        // the system does not recognize (F-OPMUL-R003: only a form that declares multiple choice is one).
+        List<SentencePartEntity> parts = List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "They", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("are")),
+                new SentencePartEntity(SentencePartKind.TEXT, "here.", null));
+        FormEntity cloze = new FormEntity("CLOZE", 1.0, "", "", parts, null, null);
+        FormEntity unknownKind = new FormEntity("ORDERING", 1.0, "", "", parts, null, null);
+
+        NlpTokenizer tokenizer = mock(NlpTokenizer.class);
+        NlpToken they = new NlpToken("They", "they", "PRON", 0, true, false);
+        when(tokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of("They are here.", List.of(they)));
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(tokenizer, DefaultQuizSentenceConverter.create());
+
+        List<AuditableQuiz> quizzes = mappedQuizzes(mapper.map(course(
+                quiz("cloze", cloze, "They are here."),
+                quiz("unknown", unknownKind, "They are here."))));
+
+        AuditableQuiz asCloze = quizzes.get(0);
+        AuditableQuiz asUnknown = quizzes.get(1);
+        assertEquals("They ____ [are] here.", asUnknown.getQuizSentence(),
+                "R003: a kind the system does not recognize keeps its quiz sentence, like a CLOZE");
+        assertEquals(asCloze.getQuizSentence(), asUnknown.getQuizSentence());
+        assertEquals(asCloze.getSentences(), asUnknown.getSentences());
+        assertEquals(asCloze.getTokens(), asUnknown.getTokens());
+        assertEquals(asCloze.getSentenceParts(), asUnknown.getSentenceParts());
+        assertNull(asUnknown.getMultipleChoice(), "R003: an unrecognized kind carries no multiple-choice options");
+    }
+
+    @Test
+    @DisplayName("should measure a multiple choice quiz on the plain sentence stored with it and never on one derived during the audit")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R004")
+    public void shouldMeasureAMultipleChoiceQuizOnThePlainSentenceStoredWithItAndNeverOnOneDerivedDuringTheAudit() {
+        // Stem "She ___ English." with "is" correct: derived now it would read "She is English.".
+        // The sentence stored with the quiz says something else on purpose, so the test can tell
+        // which one the audit measures (F-OPMUL-R004.3: the audit reads the stored one).
+        FormEntity multipleChoice = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", null),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
+        multipleChoice.setMultipleChoice(new MultipleChoiceEntity("SINGLE", List.of(
+                new MultipleChoiceItemEntity("am", 0.0, "am"),
+                new MultipleChoiceItemEntity("is", 1.0, "is"))));
+
+        NlpTokenizer tokenizer = mock(NlpTokenizer.class);
+        NlpToken maria = new NlpToken("Maria", "Maria", "PROPN", null, false, false);
+        when(tokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of("Maria is English.", List.of(maria)));
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(tokenizer, DefaultQuizSentenceConverter.create());
+
+        AuditableQuiz mapped = mappedQuizzes(mapper.map(course(
+                quiz("mc", multipleChoice, "Maria is English.")))).get(0);
+
+        assertEquals(List.of("Maria is English."), mapped.getSentences(),
+                "R004: the audit measures the sentence stored with the quiz");
+        assertEquals(List.of(maria), mapped.getTokens());
+        @SuppressWarnings("unchecked")
+        ArgumentCaptor<List<String>> tokenized = ArgumentCaptor.forClass(List.class);
+        verify(tokenizer).analyzeTokensBatch(tokenized.capture());
+        assertFalse(tokenized.getValue().contains("She is English."),
+                "R004: no sentence derived during the audit is measured: " + tokenized.getValue());
     }
 }

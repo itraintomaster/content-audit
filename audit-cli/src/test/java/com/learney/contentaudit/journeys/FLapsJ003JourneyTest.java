@@ -118,7 +118,7 @@ public class FLapsJ003JourneyTest {
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella hace cosas complicadas.",
                 List.of("She does complicated things."),
-                "She ____ [does] (do) complicated things.", null, null);
+                "She ____ [does] (do) complicated things.", null, null, null);
 
         AbsentLemma absent = new AbsentLemma(
                 new LemmaAndPos("complicated", "ADJ"), CefrLevel.B1,
@@ -170,7 +170,7 @@ public class FLapsJ003JourneyTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("does")),
                 new SentencePartEntity(SentencePartKind.TEXT, "(do) complicated things.", null)
-        ));
+        ), null, null);
         QuizTemplateEntity quiz = new QuizTemplateEntity(
                 QUIZ_ID, QUIZ_ID, "CLOZE", "knowledge-laps-j003",
                 "She does complicated things.",
@@ -178,7 +178,7 @@ public class FLapsJ003JourneyTest {
                 "Ella hace cosas complicadas.",
                 "basics.01.Grammar", "Grammar",
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
-                List.of("She does complicated things."));
+                List.of("She does complicated things."), null);
         return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
     }
 

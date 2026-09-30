@@ -42,7 +42,6 @@ public class QuizInstructionCorrectionRunReport {
 
     private int proposedOutOfLengthRange;
 
-    // Tasks on multiple-choice quizzes: content-audit does not correct them, so revise skips them.
     private int multipleChoiceUnsupported;
 
     public QuizInstructionCorrectionRunReport() {

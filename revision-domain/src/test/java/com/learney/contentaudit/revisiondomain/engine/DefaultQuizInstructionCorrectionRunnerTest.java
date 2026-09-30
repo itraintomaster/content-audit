@@ -10,6 +10,8 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
@@ -41,6 +43,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import java.nio.file.Path;
+import org.mockito.ArgumentCaptor;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -49,6 +53,12 @@ import org.mockito.Mockito;
 public class DefaultQuizInstructionCorrectionRunnerTest {
 
     private static final String PLAN_ID = "plan-qicor-1";
+
+    private static final Path COURSE_PATH = Path.of("db/english-course");
+
+    private static RefinementTask task(String id, String nodeId, DiagnosisKind kind) {
+        return new RefinementTask(id, AuditTarget.QUIZ, nodeId, "Be", kind, 1, RefinementTaskStatus.PENDING);
+    }
 
     private static RefinementTask task(String id, int priority, DiagnosisKind kind) {
         return new RefinementTask(id, AuditTarget.QUIZ, "quiz-" + id, "Quiz " + id, kind, priority,
@@ -601,5 +611,37 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
         assertNull(outcome.getProposalId(),
                 "no proposal is pending for a task with no deliverable candidate, so it remains "
                         + "available for another run (R006)");
+    }
+
+    @Test
+    @DisplayName("should count a task on a multiple choice quiz apart, neither corrected nor failed, and leave it SKIPPED at the end of the run")
+    @Tag("FEAT-OPMUL")
+    @Tag("F-OPMUL-R006")
+    public void shouldCountATaskOnAMultipleChoiceQuizApartNeitherCorrectedNorFailedAndLeaveItSKIPPEDAtTheEndOfTheRun() {
+        RevisionEngine engine = mock(RevisionEngine.class);
+        RefinementPlanStore planStore = mock(RefinementPlanStore.class);
+        QuizInstructionCorrectionRunStore runStore = mock(QuizInstructionCorrectionRunStore.class);
+        RefinementTask multipleChoice = task("t-mc", "mc-1", DiagnosisKind.QUIZ_INSTRUCTION);
+        RefinementTask stale = task("t-stale", "cloze-1", DiagnosisKind.QUIZ_INSTRUCTION);
+        when(planStore.load(PLAN_ID)).thenReturn(Optional.of(
+                new RefinementPlan(PLAN_ID, "audit-mc", Instant.now(), List.of(multipleChoice, stale))));
+        when(engine.revise(eq(PLAN_ID), eq("t-mc"), any(), any())).thenReturn(
+                new RevisionOutcome(RevisionOutcomeKind.MULTIPLE_CHOICE_UNSUPPORTED, null, "es de opcion multiple"));
+        when(engine.revise(eq(PLAN_ID), eq("t-stale"), any(), any())).thenReturn(
+                new RevisionOutcome(RevisionOutcomeKind.DIAGNOSIS_NOT_SUSTAINED, null, "ya cumple"));
+        when(runStore.save(any())).thenReturn("run-1");
+
+        QuizInstructionCorrectionRunReport report = new DefaultQuizInstructionCorrectionRunner(
+                engine, planStore, runStore, new QuizInstructionCorrectionConfig(3, 20))
+                .run(new QuizInstructionCorrectionRunRequest(PLAN_ID, COURSE_PATH, 5));
+
+        assertEquals(1, report.getMultipleChoiceUnsupported());
+        assertEquals(0, report.getFailed());
+        assertEquals(QuizInstructionTaskOutcomeKind.MULTIPLE_CHOICE_UNSUPPORTED, report.getOutcomes().get(0).getKind());
+        ArgumentCaptor<RefinementPlan> saved = ArgumentCaptor.forClass(RefinementPlan.class);
+        verify(planStore).save(saved.capture());
+        assertEquals(RefinementTaskStatus.SKIPPED, saved.getValue().getTasks().get(0).getStatus(),
+                "the runner's own save must not put the multiple-choice task back to PENDING");
+        assertEquals(RefinementTaskStatus.STALE, saved.getValue().getTasks().get(1).getStatus());
     }
 }

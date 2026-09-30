@@ -48,7 +48,7 @@ public class DefaultQuizInstructionScopeMatcherTest {
         AuditNode node = new AuditNode();
         node.setTarget(AuditTarget.QUIZ);
         node.setEntity(new AuditableQuiz(
-                List.of(), quizId, "Q", "Q", null, List.of("s"), null, "Instructions", List.of()));
+                List.of(), quizId, "Q", "Q", null, List.of("s"), null, "Instructions", List.of(), null));
         node.setParent(knowledgeNode);
         node.setChildren(new ArrayList<>());
         node.setScores(new LinkedHashMap<>());

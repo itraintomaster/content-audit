@@ -228,7 +228,7 @@ public class FQicorJ001JourneyTest {
                 List.of(), QUIZ_ID, "Past Simple Quiz 1", "Q001",
                 "Ella camina a la escuela todos los dias.",
                 List.of("She walks to school every day."),
-                BEFORE_QUIZ_SENTENCE, null, null);
+                BEFORE_QUIZ_SENTENCE, null, null, null);
 
         AuditNode courseNode = buildCourseNode();
         AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone);
@@ -252,14 +252,14 @@ public class FQicorJ001JourneyTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("walks")),
                 new SentencePartEntity(SentencePartKind.TEXT, "(walk) to school every day.", null)
-        ));
+        ), null, null);
         QuizTemplateEntity quiz = new QuizTemplateEntity(
                 QUIZ_ID, QUIZ_ID, "CLOZE", KNOWLEDGE_ID,
                 KNOWLEDGE_TITLE, "",
                 "Ella camina a la escuela todos los dias.",
                 "basics.02.PastSimple", TOPIC_LABEL,
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
-                List.of("She walks to school every day."));
+                List.of("She walks to school every day."), null);
         return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
     }
 
@@ -279,14 +279,14 @@ public class FQicorJ001JourneyTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("walks")),
                 new SentencePartEntity(SentencePartKind.TEXT, "(walk) to school every day.", null)
-        ));
+        ), null, null);
         QuizTemplateEntity quiz = new QuizTemplateEntity(
                 QUIZ_ID, QUIZ_ID, "CLOZE", KNOWLEDGE_ID,
                 KNOWLEDGE_TITLE, "",
                 "Ella camina a la escuela todos los dias.",
                 "basics.02.PastSimple", TOPIC_LABEL,
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
-                List.of("She walks to school every day."));
+                List.of("She walks to school every day."), null);
         return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
     }
 

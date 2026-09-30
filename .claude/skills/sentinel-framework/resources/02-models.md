@@ -129,10 +129,11 @@ new AuditableMilestone(List<AuditableTopic> topics, String id, String label, Str
 | `quizSentence` | `String` |  |
 | `instructions` | `String` |  |
 | `sentenceParts` | `List<SentencePartEntity>` | Import `java.util.List` |
+| `multipleChoice` | `MultipleChoiceEntity` |  |
 
 **Generated constructor:**
 ```java
-new AuditableQuiz(List<NlpToken> tokens, String id, String label, String code, String translation, List<String> sentences, String quizSentence, String instructions, List<SentencePartEntity> sentenceParts)
+new AuditableQuiz(List<NlpToken> tokens, String id, String label, String code, String translation, List<String> sentences, String quizSentence, String instructions, List<SentencePartEntity> sentenceParts, MultipleChoiceEntity multipleChoice)
 ```
 
 #### CefrLevel
@@ -1082,6 +1083,7 @@ new AmbiguousReevaluationScopeException(String analyzerName, String declaredScop
 | `title` | `String` |
 | `instructions` | `String` |
 | `sentenceParts` | `List<SentencePartEntity>` |
+| `multipleChoice` | `MultipleChoiceEntity` |
 
 #### QuizInstructionComplianceStatus (package: quizinstruction)
 
@@ -1293,10 +1295,11 @@ new KnowledgeEntity(String id, String code, NodeKind kind, String label, String 
 | `miniTheory` | `String` |  |
 | `successMessage` | `String` |  |
 | `sentences` | `List<String>` | Import `java.util.List` |
+| `unmodeledFields` | `Map<String,Object>` |  |
 
 **Generated constructor:**
 ```java
-new QuizTemplateEntity(String id, String oidId, String kind, String knowledgeId, String title, String instructions, String translation, String theoryId, String topicName, FormEntity form, double difficulty, double retries, double noScoreRetries, String code, String audioUrl, String imageUrl, String answerAudioUrl, String answerImageUrl, String miniTheory, String successMessage, List<String> sentences)
+new QuizTemplateEntity(String id, String oidId, String kind, String knowledgeId, String title, String instructions, String translation, String theoryId, String topicName, FormEntity form, double difficulty, double retries, double noScoreRetries, String code, String audioUrl, String imageUrl, String answerAudioUrl, String answerImageUrl, String miniTheory, String successMessage, List<String> sentences, Map<String,Object> unmodeledFields)
 ```
 
 #### FormEntity
@@ -1311,10 +1314,12 @@ new QuizTemplateEntity(String id, String oidId, String kind, String knowledgeId,
 | `label` | `String` |  |
 | `name` | `String` |  |
 | `sentenceParts` | `List<SentencePartEntity>` | Import `java.util.List` |
+| `multipleChoice` | `MultipleChoiceEntity` |  |
+| `unmodeledFields` | `Map<String,Object>` |  |
 
 **Generated constructor:**
 ```java
-new FormEntity(String kind, double incidence, String label, String name, List<SentencePartEntity> sentenceParts)
+new FormEntity(String kind, double incidence, String label, String name, List<SentencePartEntity> sentenceParts, MultipleChoiceEntity multipleChoice, Map<String,Object> unmodeledFields)
 ```
 
 #### SentencePartEntity
@@ -1363,6 +1368,53 @@ new CourseValidationException(String path, String detail)
 **Generated constructor:**
 ```java
 new SentenceMode(null REWRITE, null FILL)
+```
+
+#### FormKind
+
+**Package:** `com.learney.contentaudit.coursedomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `CLOZE` | `null` |  |
+| `MULTIPLE_CHOICE` | `null` |  |
+| `OTHER` | `null` |  |
+
+**Generated constructor:**
+```java
+new FormKind(null CLOZE, null MULTIPLE_CHOICE, null OTHER)
+```
+
+#### MultipleChoiceItemEntity
+
+**Package:** `com.learney.contentaudit.coursedomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `id` | `String` |  |
+| `incidence` | `double` |  |
+| `label` | `String` |  |
+
+**Generated constructor:**
+```java
+new MultipleChoiceItemEntity(String id, double incidence, String label)
+```
+
+#### MultipleChoiceEntity
+
+**Package:** `com.learney.contentaudit.coursedomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `selection` | `String` |  |
+| `items` | `List<MultipleChoiceItemEntity>` | Import `java.util.List` |
+
+**Generated constructor:**
+```java
+new MultipleChoiceEntity(String selection, List<MultipleChoiceItemEntity> items)
 ```
 
 #### QuizSentenceSerializationException (package: quizsentence)
@@ -2182,10 +2234,11 @@ new RevisionVerdict(null APPROVED, null REJECTED, null PENDING_APPROVAL)
 | `OVERRIDE_NOT_APPLICABLE` | `null` |  |
 | `DIAGNOSIS_NOT_SUSTAINED` | `null` |  |
 | `NO_ACCEPTABLE_CANDIDATE` | `null` |  |
+| `MULTIPLE_CHOICE_UNSUPPORTED` | `null` |  |
 
 **Generated constructor:**
 ```java
-new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND, null PENDING_APPROVAL_PERSISTED, null ALREADY_PENDING_DECISION, null NO_ACTIVE_STRATEGY, null STRATEGY_FAILED, null OVERRIDE_INVALID, null OVERRIDE_NOT_APPLICABLE, null DIAGNOSIS_NOT_SUSTAINED, null NO_ACCEPTABLE_CANDIDATE)
+new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NO_REVISER, null CONTEXT_UNAVAILABLE, null ELEMENT_NOT_FOUND, null PENDING_APPROVAL_PERSISTED, null ALREADY_PENDING_DECISION, null NO_ACTIVE_STRATEGY, null STRATEGY_FAILED, null OVERRIDE_INVALID, null OVERRIDE_NOT_APPLICABLE, null DIAGNOSIS_NOT_SUSTAINED, null NO_ACCEPTABLE_CANDIDATE, null MULTIPLE_CHOICE_UNSUPPORTED)
 ```
 
 #### CourseElementSnapshot
@@ -2332,10 +2385,11 @@ new ApprovalMode(null AUTO, null HUMAN)
 | `NOT_FOUND` | `null` |  |
 | `ALREADY_DECIDED` | `null` |  |
 | `PRESERVATION_VIOLATED` | `null` |  |
+| `MULTIPLE_CHOICE_UNSUPPORTED` | `null` |  |
 
 **Generated constructor:**
 ```java
-new ProposalDecisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NOT_FOUND, null ALREADY_DECIDED, null PRESERVATION_VIOLATED)
+new ProposalDecisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NOT_FOUND, null ALREADY_DECIDED, null PRESERVATION_VIOLATED, null MULTIPLE_CHOICE_UNSUPPORTED)
 ```
 
 #### ProposalDecisionOutcome
@@ -3105,6 +3159,7 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `DIAGNOSIS_STALE` | `null` |
 | `NOT_ATTEMPTED` | `null` |
 | `FAILED` | `null` |
+| `MULTIPLE_CHOICE_UNSUPPORTED` | `null` |
 
 #### QuizInstructionTaskOutcome (package: quizinstruction)
 
@@ -3148,6 +3203,7 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `outcomes` | `List<QuizInstructionTaskOutcome>` |
 | `proposedWithUnmetCriteria` | `int` |
 | `proposedOutOfLengthRange` | `int` |
+| `multipleChoiceUnsupported` | `int` |
 
 #### QuizInstructionBestCandidate (package: quizinstruction)
 

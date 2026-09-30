@@ -191,7 +191,7 @@ public class FRclaJ001JourneyTest {
 
         // Step: verificar_auditoria (gate F-RCLA-R005) — build audit tree
         // Quiz: sentence with misplaced lemma "negotiate" (B2 found in A1 quiz)
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-negotiate-001", "Quiz 1", "Q001", "Ella necesita negociar el contrato antes del viernes", List.of("She needs to negotiate the contract before Friday"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-negotiate-001", "Quiz 1", "Q001", "Ella necesita negociar el contrato antes del viernes", List.of("She needs to negotiate the contract before Friday"), null, null, null, null);
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Affirmative sentences in the present simple",
@@ -269,7 +269,7 @@ public class FRclaJ001JourneyTest {
                 DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING);
 
         // Step: verificar_auditoria — build audit tree
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-negotiate-002", "Quiz 2", "Q002", "Ella puede negociar con habilidad", List.of("She can negotiate with skill"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-negotiate-002", "Quiz 2", "Q002", "Ella puede negociar con habilidad", List.of("She can negotiate with skill"), null, null, null, null);
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Modal verbs in context",
@@ -322,7 +322,7 @@ public class FRclaJ001JourneyTest {
                 DiagnosisKind.LEMMA_ABSENCE, 3, RefinementTaskStatus.PENDING);
 
         // Step: verificar_auditoria — audit tree exists and quiz node can be found
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-no-diagnosis-003", "Quiz 3", "Q003", "El corre todos los dias", List.of("He runs every day"), null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-no-diagnosis-003", "Quiz 3", "Q003", "El corre todos los dias", List.of("He runs every day"), null, null, null, null);
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Present habits",
@@ -365,7 +365,7 @@ public class FRclaJ001JourneyTest {
 
         // Step: verificar_auditoria — audit tree exists but the referenced quiz node is NOT in it
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-different-id-004", // different id from task.nodeId
-                "Quiz 4", "Q004", "A ella le gusta leer", List.of("She likes to read"), null, null, null);
+                "Quiz 4", "Q004", "A ella le gusta leer", List.of("She likes to read"), null, null, null, null);
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Hobbies",

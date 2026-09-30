@@ -49,7 +49,7 @@ public class FQinstJ001JourneyTest {
         AuditNode node = new AuditNode();
         node.setTarget(AuditTarget.QUIZ);
         node.setEntity(new AuditableQuiz(List.of(), "q1", "label", null, null,
-                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of()));
+                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of(), null));
         node.setChildren(new ArrayList<>());
         node.setScores(new LinkedHashMap<>());
         node.setMetadata(new LinkedHashMap<>());

@@ -52,49 +52,9 @@ public class QuizTemplateEntity {
 
     private List<String> sentences;
 
-    // Quiz-level keys the model does not interpret (formCloze, instructionsAnteriores, ...), in
-    // their original order, so a load->save round trip gives them back untouched. Null when none.
     private Map<String, Object> unmodeledFields;
 
     public QuizTemplateEntity() {
-    }
-
-    /**
-     * Shallow copy of every field. Code that needs "the same quiz with one thing changed" copies
-     * with this and then sets that one thing, so a field added later is never silently dropped.
-     */
-    public QuizTemplateEntity(QuizTemplateEntity other) {
-        this.id = other.id;
-        this.oidId = other.oidId;
-        this.kind = other.kind;
-        this.knowledgeId = other.knowledgeId;
-        this.title = other.title;
-        this.instructions = other.instructions;
-        this.translation = other.translation;
-        this.theoryId = other.theoryId;
-        this.topicName = other.topicName;
-        this.form = other.form;
-        this.difficulty = other.difficulty;
-        this.retries = other.retries;
-        this.noScoreRetries = other.noScoreRetries;
-        this.code = other.code;
-        this.audioUrl = other.audioUrl;
-        this.imageUrl = other.imageUrl;
-        this.answerAudioUrl = other.answerAudioUrl;
-        this.answerImageUrl = other.answerImageUrl;
-        this.miniTheory = other.miniTheory;
-        this.successMessage = other.successMessage;
-        this.sentences = other.sentences;
-        this.unmodeledFields = other.unmodeledFields;
-    }
-
-    /**
-     * The kind of this quiz's form. Falls back to the quiz-level {@code kind} when the form
-     * carries no recognizable kind of its own. Not a bean accessor on purpose: it is derived.
-     */
-    public FormKind formKind() {
-        FormKind fromForm = this.form != null ? this.form.formKind() : FormKind.OTHER;
-        return fromForm != FormKind.OTHER ? fromForm : FormKind.from(this.kind);
     }
 
     public QuizTemplateEntity(String id, String oidId, String kind, String knowledgeId,
@@ -102,7 +62,7 @@ public class QuizTemplateEntity {
             String topicName, FormEntity form, double difficulty, double retries,
             double noScoreRetries, String code, String audioUrl, String imageUrl,
             String answerAudioUrl, String answerImageUrl, String miniTheory, String successMessage,
-            List<String> sentences) {
+            List<String> sentences, Map<String, Object> unmodeledFields) {
         this.id = id;
         this.oidId = oidId;
         this.kind = kind;
@@ -124,6 +84,7 @@ public class QuizTemplateEntity {
         this.miniTheory = miniTheory;
         this.successMessage = successMessage;
         this.sentences = sentences;
+        this.unmodeledFields = unmodeledFields;
     }
 
     public String getId() {

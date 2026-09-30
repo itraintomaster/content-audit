@@ -1,0 +1,392 @@
+code: FEAT-OPMUL
+description: "Deuda de 83228e54 (FEAT-OPMUL): declara en sentinel.yaml lo que el soporte\
+  \ de opcion multiple ya agrego al codigo sin pasar por Sentinel. Tres tipos nuevos\
+  \ en course-domain (FormKind, MultipleChoiceEntity, MultipleChoiceItemEntity); campos\
+  \ nuevos en FormEntity, QuizTemplateEntity, AuditableQuiz, QuizInstructionSubjectView\
+  \ y QuizInstructionCorrectionRunReport; el desenlace MULTIPLE_CHOICE_UNSUPPORTED\
+  \ en tres enums; y el registro de FEAT-OPMUL. No agrega comportamiento ni cambia\
+  \ firmas de interfaces.; qa-tester: traza las 9 reglas de FEAT-OPMUL a 34 handwrittenTests\
+  \ (28 portan un test MC existente de 83228e54 y 6 son nuevos; R009 porta quizFormKindFallsBackToQuizKind\
+  \ a revise y suma uno nuevo en repair) y ubica F-OPMUL-J001 a J003. Declarar un\
+  \ test es llevar su cuerpo a la clase {Impl}Test: generate ignora className y sourceFile."
+modules:
+- name: course-domain
+  models:
+  - name: FormKind
+    type: enum
+    fields:
+    - name: CLOZE
+      description: "Formulario de huecos: el kind que el sistema conocia antes de\
+        \ la opcion multiple."
+    - name: MULTIPLE_CHOICE
+      description: "Formulario de opcion multiple: sus opciones viven en FormEntity.multipleChoice\
+        \ (F-OPMUL-R003)."
+    - name: OTHER
+      description: "Cualquier kind que el sistema no reconoce. Se trata como CLOZE,\
+        \ igual que antes de la opcion multiple (F-OPMUL-R003)."
+    _change: add
+  - name: MultipleChoiceItemEntity
+    type: record
+    fields:
+    - name: id
+      type: String
+      description: "Identificador de la opcion (form.items[].id), tal cual viene del\
+        \ curso."
+    - name: incidence
+      type: double
+      description: Mayor que cero en la opcion correcta; el curso trae exactamente
+        una por formulario (F-OPMUL-R004).
+    - name: label
+      type: String
+      description: Texto que ve el alumno. Entra tal cual en el hueco para formar
+        la oracion medible (F-OPMUL-R004) y en lo que recibe el juez (F-OPMUL-R005).
+    _change: add
+  - name: MultipleChoiceEntity
+    type: record
+    fields:
+    - name: selection
+      type: String
+      description: "Modo de seleccion crudo (form.selection). Solo se observo SINGLE\
+        \ y nada ramifica sobre el: viaja como string para volver byte a byte (F-OPMUL-R001)."
+    - name: items
+      type: List<MultipleChoiceItemEntity>
+      description: "Opciones en el orden en que las ve el alumno (form.items), orden\
+        \ que se conserva al guardar (F-OPMUL-R001) y al mostrarlas al juez (F-OPMUL-R005)."
+    glossarySuggestions:
+    - name: Ejercicio de opcion multiple
+      technicalName: MultipleChoice
+      kind: value-object-candidate
+      basedOn: course-domain/MultipleChoiceEntity
+      rationale: "FEAT-OPMUL convierte al MC en un tipo de ejercicio con reglas propias\
+        \ (se mide, no se corrige) y lo nombra en cada regla. Hoy no hay termino canonico\
+        \ que las enlace."
+    _change: add
+  - name: FormEntity
+    type: record
+    fields:
+    - name: multipleChoice
+      type: MultipleChoiceEntity
+      description: Opciones de un formulario MULTIPLE_CHOICE (form.selection + form.items);
+        null en cualquier otro kind (F-OPMUL-R001).
+      _change: add
+    - name: unmodeledFields
+      type: "Map<String,Object>"
+      description: "Claves del formulario que el modelo no interpreta, en su orden\
+        \ original, para que cargar y guardar las devuelva intactas; null si no hay\
+        \ (F-OPMUL-R001, F-OPMUL-R002)."
+      _change: add
+    glossarySuggestions:
+    - name: Dato no interpretado
+      technicalName: UnmodeledField
+      kind: value-object-candidate
+      basedOn: course-domain/FormEntity
+      rationale: "F-OPMUL-R001, R002 y R008 descansan en la nocion de 'lo que el sistema\
+        \ no interpreta' de un ejercicio o de su formulario, que se conserva con su\
+        \ valor y en su orden. Vive en FormEntity.unmodeledFields y QuizTemplateEntity.unmodeledFields."
+    _change: modify
+  - name: QuizTemplateEntity
+    type: record
+    fields:
+    - name: unmodeledFields
+      type: "Map<String,Object>"
+      description: "Claves del ejercicio que el modelo no interpreta (formCloze, respaldos\
+        \ de instrucciones...), en su orden original; null si no hay (F-OPMUL-R001,\
+        \ F-OPMUL-R002)."
+      _change: add
+    _change: modify
+  packages:
+  - name: quizsentenceengine
+    implementations:
+    - name: DefaultQuizSentenceConverter
+      handwrittenTests:
+      - name: should keep the data the system does not interpret of the base form
+          when a corrected quiz sentence is parsed onto it
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R002
+      - name: "should derive the plain sentence of a multiple choice quiz as its stem\
+          \ with the text of the correct option in the gap, as written"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+      - name: should derive for a multiple choice quiz the same plain sentence as
+          the CLOZE whose only accepted answer is its correct option
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+      - name: should keep the sentence before the gap in the plain sentence of a multiple
+          choice quiz even when its knowledge is in REWRITE mode
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+      - name: should take a pipe inside the correct option of a multiple choice quiz
+          as literal text and derive a single plain sentence
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+      - name: should leave the quiz sentence of a multiple choice form empty instead
+          of failing on its gap without options
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+      - name: should fail to derive the plain sentence of a multiple choice quiz that
+          has no correct option
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+      - name: should fail to derive the plain sentence of a multiple choice quiz that
+          has more than one gap
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R004
+  _change: modify
+- name: audit-domain
+  models:
+  - name: AuditableQuiz
+    type: record
+    fields:
+    - name: multipleChoice
+      type: MultipleChoiceEntity
+      description: "Opciones de un MC, copiadas tal cual desde su formulario por CourseToAuditableMapper;\
+        \ null en cualquier otro kind. Son parte del contenido que recibe el juez\
+        \ de consigna (F-OPMUL-R005)."
+      _change: add
+    _change: modify
+  packages:
+  - name: quizinstruction
+    models:
+    - name: QuizInstructionSubjectView
+      type: record
+      fields:
+      - name: multipleChoice
+        type: MultipleChoiceEntity
+        description: "Opciones de un MC; null en cualquier otro kind. El render del\
+          \ juez las pone en el hueco, en el orden del alumno y con la correcta marcada\
+          \ [CORRECT]; un CLOZE se renderiza igual que antes (F-OPMUL-R005)."
+        _change: add
+      _change: modify
+    _change: modify
+  - name: quizinstructionengine
+    implementations:
+    - name: DefaultQuizInstructionSubjectBuilder
+      handwrittenTests:
+      - name: "should show the judge every option of a multiple choice quiz in its\
+          \ gap, in the order the student sees them, with the correct one marked"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R005
+      - name: should render a multiple choice quiz for the judge on the revalidation
+          and candidate path exactly as on the analysis path
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R005
+      - name: should give different judged content to two multiple choice quizzes
+          that differ only in their correct option
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R005
+      - name: should render a CLOZE quiz for the judge character for character as
+          it did before multiple choice existed
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R005
+      - name: "should render a quiz whose gap has no options and that carries no multiple\
+          \ choice options the CLOZE way, as before"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R005
+  _change: modify
+- name: revision-domain
+  models:
+  - name: RevisionOutcomeKind
+    type: enum
+    fields:
+    - name: MULTIPLE_CHOICE_UNSUPPORTED
+      description: "revise rechazo la tarea porque su ejercicio es de opcion multiple,\
+        \ para cualquier tipo de diagnostico y antes de consultar a ningun modelo:\
+        \ el curso no se escribe y la tarea queda SKIPPED (F-OPMUL-R006)."
+      _change: add
+    _change: modify
+  - name: ProposalDecisionOutcomeKind
+    type: enum
+    fields:
+    - name: MULTIPLE_CHOICE_UNSUPPORTED
+      description: "approve no aplico la propuesta porque el ejercicio es de opcion\
+        \ multiple en la propuesta o en el curso de hoy, aunque la propuesta sea de\
+        \ cuando era CLOZE. No se escribe nada y la propuesta queda sin decidir (F-OPMUL-R006)."
+      _change: add
+    _change: modify
+  packages:
+  - name: quizinstruction
+    models:
+    - name: QuizInstructionTaskOutcomeKind
+      type: enum
+      fields:
+      - name: MULTIPLE_CHOICE_UNSUPPORTED
+        description: "La tarea cae sobre un ejercicio de opcion multiple: ni corregida\
+          \ ni fallida. Queda SKIPPED para que la corrida siguiente no la vuelva a\
+          \ tomar (F-OPMUL-R006)."
+        _change: add
+      _change: modify
+    - name: QuizInstructionCorrectionRunReport
+      type: record
+      fields:
+      - name: multipleChoiceUnsupported
+        type: int
+        description: "Tareas salteadas por caer sobre un ejercicio de opcion multiple;\
+          \ el reporte las informa como 'Opcion multiple (salteadas): N'. No suma\
+          \ a failed ni a notCorrected (F-OPMUL-R006)."
+        _change: add
+      _change: modify
+    _change: modify
+  - name: engine
+    implementations:
+    - name: DefaultRevisionEngine
+      handwrittenTests:
+      - name: "should reject revising a task on a multiple choice quiz before any\
+          \ reviser runs, writing nothing but the plan and leaving the task SKIPPED"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R006
+      - name: "should reject revising a quiz whose own kind is multiple choice when\
+          \ its form does not say one, but not when its form says CLOZE"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R009
+    - name: DefaultQuizInstructionCorrectionRunner
+      handwrittenTests:
+      - name: "should count a task on a multiple choice quiz apart, neither corrected\
+          \ nor failed, and leave it SKIPPED at the end of the run"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R006
+    - name: DefaultQuizInstructionCandidateAssessor
+      handwrittenTests:
+      - name: should declare the consultation unavailable for a task on a multiple
+          choice quiz without judging any candidate
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R006
+    - name: DefaultProposalDecisionService
+      handwrittenTests:
+      - name: should leave undecided and unapplied a proposal on a quiz that is multiple
+          choice in today's course even if the proposal saw it as a CLOZE
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R006
+      - name: should leave undecided and unapplied a proposal whose corrected quiz
+          is itself multiple choice
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R006
+      - name: should write nothing when approving a correction would drop the data
+          the system does not interpret that the quiz carries in today's course
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R008
+    - name: DefaultCourseElementLocator
+      handwrittenTests:
+      - name: should change nothing but the title of a multiple choice sibling when
+          aligning quiz titles to a corrected knowledge label
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R002
+    - name: DefaultLemmaAbsenceProposalDeriver
+      handwrittenTests:
+      - name: should keep the quiz and form data the system does not interpret when
+          deriving the lexical correction of a CLOZE quiz
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R002
+  - name: preservationengine
+    implementations:
+    - name: DefaultPreservationCheck
+      handwrittenTests:
+      - name: should report a violation when a correction drops the data the system
+          does not interpret or changes the multiple choice options the reference
+          carries
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R008
+      - name: should not take as a violation the absence of options or of data the
+          system does not interpret in a reference recorded before they existed
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R008
+    - name: DefaultPreservationRepair
+      handwrittenTests:
+      - name: "should never restore a multiple choice quiz from a snapshot recorded\
+          \ when it was a CLOZE, leaving its options and its data as they are"
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R007
+      - name: should report a multiple choice quiz that lost its options as unrepairable
+          without filling them in
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R007
+      - name: should keep the data the system does not interpret of a CLOZE quiz when
+          repairing it from a snapshot that did not know them
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R008
+      - name: should never restore a quiz whose own kind is multiple choice and whose
+          form lost its kind from a snapshot recorded when it was a CLOZE
+        traceability:
+          feature: FEAT-OPMUL
+          rule: F-OPMUL-R009
+  _change: modify
+- name: course-infrastructure
+  implementations:
+  - name: FileSystemCourseRepository
+    handwrittenTests:
+    - name: should write every file of a course with multiple choice quizzes back
+        byte for byte when it is loaded and saved without changes
+      traceability:
+        feature: FEAT-OPMUL
+        rule: F-OPMUL-R001
+    - name: "should keep selection and items on a form that is not multiple choice\
+        \ as data it does not interpret, with their value, when saving"
+      traceability:
+        feature: FEAT-OPMUL
+        rule: F-OPMUL-R002
+    - name: "should write back the quiz and form data it does not interpret after\
+        \ the data it does, with their value and in their original order"
+      traceability:
+        feature: FEAT-OPMUL
+        rule: F-OPMUL-R002
+- name: audit-application
+  implementations:
+  - name: CourseToAuditableMapper
+    handwrittenTests:
+    - name: should map a course that mixes CLOZE and multiple choice quizzes without
+        failing and hand every quiz to measurement
+      traceability:
+        feature: FEAT-OPMUL
+        rule: F-OPMUL-R003
+    - name: should map a quiz whose form declares a kind the system does not recognize
+        exactly like a CLOZE quiz
+      traceability:
+        feature: FEAT-OPMUL
+        rule: F-OPMUL-R003
+    - name: should measure a multiple choice quiz on the plain sentence stored with
+        it and never on one derived during the audit
+      traceability:
+        feature: FEAT-OPMUL
+        rule: F-OPMUL-R004
+features:
+- id: FEAT-OPMUL
+  code: F-OPMUL
+  journeys:
+  - id: F-OPMUL-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-application
+    testPackage: com.learney.contentaudit.auditapplication
+  - id: F-OPMUL-J002
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.engine
+  - id: F-OPMUL-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

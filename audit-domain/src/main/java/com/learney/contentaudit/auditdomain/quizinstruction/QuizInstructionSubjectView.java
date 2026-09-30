@@ -23,20 +23,21 @@ public class QuizInstructionSubjectView {
 
     private List<SentencePartEntity> sentenceParts;
 
-    /** The options of a multiple-choice quiz; null for every other kind. */
     private MultipleChoiceEntity multipleChoice;
 
     public QuizInstructionSubjectView() {
     }
 
     public QuizInstructionSubjectView(String subjectRef, String cefrLevel, String topic,
-            String title, String instructions, List<SentencePartEntity> sentenceParts) {
+            String title, String instructions, List<SentencePartEntity> sentenceParts,
+            MultipleChoiceEntity multipleChoice) {
         this.subjectRef = subjectRef;
         this.cefrLevel = cefrLevel;
         this.topic = topic;
         this.title = title;
         this.instructions = instructions;
         this.sentenceParts = sentenceParts;
+        this.multipleChoice = multipleChoice;
     }
 
     public String getSubjectRef() {
@@ -111,7 +112,6 @@ public class QuizInstructionSubjectView {
 
     @Override
     public int hashCode() {
-        return Objects.hash(subjectRef, cefrLevel, topic, title, instructions, sentenceParts,
-                multipleChoice);
+        return Objects.hash(subjectRef, cefrLevel, topic, title, instructions, sentenceParts, multipleChoice);
     }
 }

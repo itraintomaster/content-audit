@@ -202,7 +202,7 @@ public class FQicorJ002JourneyTest {
                 List.of(), quizId, "Past Simple Quiz " + quizId, "Q-" + quizId,
                 "Ella camina a la escuela todos los dias.",
                 List.of("She walks to school every day."),
-                BEFORE_QUIZ_SENTENCE, null, null);
+                BEFORE_QUIZ_SENTENCE, null, null, null);
 
         DefaultQuizDiagnoses quizDx = new DefaultQuizDiagnoses();
         quizDx.setQuizInstructionDiagnosis(new QuizInstructionDiagnosis(stillViolatingVerdict(), 40.0, false));
@@ -249,14 +249,14 @@ public class FQicorJ002JourneyTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "She", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("walks")),
                 new SentencePartEntity(SentencePartKind.TEXT, "(walk) to school every day.", null)
-        ));
+        ), null, null);
         QuizTemplateEntity quiz = new QuizTemplateEntity(
                 quizId, quizId, "CLOZE", KNOWLEDGE_ID,
                 KNOWLEDGE_TITLE, "",
                 "Ella camina a la escuela todos los dias.",
                 "basics.02.PastSimple", TOPIC_LABEL,
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
-                List.of("She walks to school every day."));
+                List.of("She walks to school every day."), null);
         return new CourseElementSnapshot(AuditTarget.QUIZ, quizId, quiz, null);
     }
 
