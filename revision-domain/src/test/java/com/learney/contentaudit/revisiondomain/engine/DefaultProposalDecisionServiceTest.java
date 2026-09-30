@@ -51,6 +51,7 @@ import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -107,6 +108,37 @@ public class DefaultProposalDecisionServiceTest {
         unmodeled.put("instructionsAnteriores", "Elegi la forma de be.");
         quiz.setUnmodeledFields(unmodeled);
         return quiz;
+    }
+
+    /** One knowledge ("Be", k1) of one topic of A1 holding {@code quiz}, as the preservation check walks it. */
+    private static CourseEntity courseWith(QuizTemplateEntity quiz) {
+        KnowledgeEntity knowledge = new KnowledgeEntity();
+        knowledge.setId("k1");
+        knowledge.setKind(NodeKind.KNOWLEDGE);
+        knowledge.setLabel("Be");
+        knowledge.setInstructions("Elige la forma de be.");
+        knowledge.setQuizTemplates(List.of(quiz));
+        TopicEntity topic = new TopicEntity();
+        topic.setId("t1");
+        topic.setKind(NodeKind.TOPIC);
+        topic.setLabel("Present Simple");
+        topic.setRuleIds(List.of("k1"));
+        topic.setKnowledges(List.of(knowledge));
+        MilestoneEntity milestone = new MilestoneEntity();
+        milestone.setId("m1");
+        milestone.setKind(NodeKind.MILESTONE);
+        milestone.setLabel("A1");
+        milestone.setTopics(List.of(topic));
+        RootNodeEntity root = new RootNodeEntity();
+        root.setId("root-1");
+        root.setKind(NodeKind.ROOT);
+        root.setMilestones(List.of(milestone));
+        CourseEntity course = new CourseEntity();
+        course.setId("course-1");
+        course.setTitle("english-course");
+        course.setKnowledgeIds(List.of("k1"));
+        course.setRoot(root);
+        return course;
     }
 
     private DefaultProposalDecisionService buildService() {
@@ -1067,7 +1099,33 @@ public class DefaultProposalDecisionServiceTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R006")
     public void shouldLeaveUndecidedAndUnappliedAProposalWhoseCorrectedQuizIsItselfMultipleChoice() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The proposal corrects a CLOZE into a multiple-choice quiz: its elementAfter is multiple
+        // choice, whatever today's course says (F-OPMUL-R006: approve looks at the proposal too).
+        FormEntity cloze = new FormEntity("CLOZE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("is")),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
+        CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, "mc-1", quiz("mc-1", cloze), null);
+        CourseElementSnapshot after = new CourseElementSnapshot(AuditTarget.QUIZ, "mc-1",
+                quiz("mc-1", multipleChoiceForm()), null);
+        RevisionProposal proposal = new RevisionProposal("p-2", "task-2", PLAN_ID, "audit-mc",
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, "mc-1", before, after, "to multiple choice",
+                "lemma-absence-llm", Instant.now(), null, null, null);
+        RevisionArtifact artifact = new RevisionArtifact(proposal, RevisionVerdict.PENDING_APPROVAL, null,
+                RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, null, null, null, null);
+        when(artifactStore.findByProposalId(eq("p-2"), any())).thenReturn(Optional.of(artifact));
+        when(refinementPlanStore.load(PLAN_ID)).thenReturn(Optional.of(
+                new RefinementPlan(PLAN_ID, "audit-mc", Instant.now(), List.of())));
+        when(courseRepository.load(COURSE_PATH)).thenReturn(courseWith(quiz("mc-1", cloze)));
+
+        ProposalDecisionOutcome outcome = buildService()
+                .approve("p-2", Optional.empty(), Optional.empty(), COURSE_PATH);
+
+        assertEquals(ProposalDecisionOutcomeKind.MULTIPLE_CHOICE_UNSUPPORTED, outcome.getKind(),
+                "R006: a proposal whose corrected quiz is multiple choice is never applied");
+        verify(artifactStore, never()).save(any());
+        verify(courseRepository, never()).save(any(), any());
+        verify(elementLocator, never()).replace(any(), any());
     }
 
     @Test
@@ -1075,6 +1133,55 @@ public class DefaultProposalDecisionServiceTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R008")
     public void shouldWriteNothingWhenApprovingACorrectionWouldDropTheDataTheSystemDoesNotInterpretThatTheQuizCarriesInTodaysCourse() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // A lexical correction recorded before the model knew the data it does not interpret: its
+        // quizzes carry none. Today the same CLOZE quiz carries two backups (formCloze and an old
+        // instruction). Applying the proposal as recorded would drop them (F-OPMUL-R008).
+        FormEntity isForm = new FormEntity("CLOZE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("is")),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
+        QuizTemplateEntity recordedBefore = quiz("cloze-1", isForm);
+        recordedBefore.setUnmodeledFields(null);
+        QuizTemplateEntity recordedAfter = QuizTemplateEntities.copyOf(recordedBefore);
+        recordedAfter.setForm(new FormEntity("CLOZE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("was")),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null));
+        recordedAfter.setSentences(List.of("She was English."));
+        recordedAfter.setTranslation("Ella era inglesa.");
+        QuizTemplateEntity today = quiz("cloze-1", isForm);
+
+        CourseElementSnapshot elementBefore = new CourseElementSnapshot(AuditTarget.QUIZ, "cloze-1", recordedBefore, null);
+        CourseElementSnapshot elementAfter = new CourseElementSnapshot(AuditTarget.QUIZ, "cloze-1", recordedAfter, null);
+        RevisionProposal proposal = new RevisionProposal("p-3", "task-3", PLAN_ID, "audit-mc",
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, "cloze-1", elementBefore, elementAfter,
+                "lexical correction", "lemma-absence-llm", Instant.parse("2026-08-01T00:00:00Z"), null, null, null);
+        RevisionArtifact artifact = new RevisionArtifact(proposal, RevisionVerdict.PENDING_APPROVAL, null,
+                RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, null, null, null, null);
+        CourseEntity courseToday = courseWith(today);
+        CourseEntity courseAfterReplace = courseWith(recordedAfter);
+        when(artifactStore.findByProposalId(eq("p-3"), any())).thenReturn(Optional.of(artifact));
+        when(refinementPlanStore.load(PLAN_ID)).thenReturn(Optional.of(
+                new RefinementPlan(PLAN_ID, "audit-mc", Instant.now(), List.of())));
+        when(courseRepository.load(COURSE_PATH)).thenReturn(courseToday);
+        when(elementLocator.snapshot(courseToday, AuditTarget.QUIZ, "cloze-1")).thenReturn(Optional.of(
+                new CourseElementSnapshot(AuditTarget.QUIZ, "cloze-1", today, null)));
+        when(elementLocator.replace(courseToday, elementAfter)).thenReturn(courseAfterReplace);
+
+        // The real preservation check, as in production: it is what knows the data went missing.
+        PreservationCheck realCheck = new DefaultPreservationFactory().createCheck();
+        ProposalDecisionOutcome outcome = new DefaultProposalDecisionService(
+                artifactStore, courseRepository, elementLocator, refinementPlanStore, realCheck)
+                .approve("p-3", Optional.empty(), Optional.empty(), COURSE_PATH);
+
+        assertEquals(ProposalDecisionOutcomeKind.PRESERVATION_VIOLATED, outcome.getKind(),
+                "R008: today's course carries the data, so losing it violates the preservation");
+        verify(courseRepository, never()).save(any(), any());
+        verify(artifactStore, never()).save(any());
+        verify(refinementPlanStore, never()).save(any());
+        List<String> violated = realCheck.verify(courseToday, courseAfterReplace, elementAfter,
+                DiagnosisKind.LEMMA_ABSENCE).stream().map(PreservationViolation::getPath).toList();
+        assertEquals(List.of("unmodeledFields"), violated,
+                "the only thing the recorded correction breaks is the data it did not know");
     }
 }

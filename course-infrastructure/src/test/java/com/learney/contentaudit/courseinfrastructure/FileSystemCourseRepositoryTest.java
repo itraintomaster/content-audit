@@ -591,7 +591,54 @@ public class FileSystemCourseRepositoryTest {
     @DisplayName("should write back the quiz and form data it does not interpret after the data it does, with their value and in their original order")
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R002")
-    public void shouldWriteBackTheQuizAndFormDataItDoesNotInterpretAfterTheDataItDoesWithTheirValueAndInTheirOriginalOrder() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    @SuppressWarnings("unchecked")
+    public void shouldWriteBackTheQuizAndFormDataItDoesNotInterpretAfterTheDataItDoesWithTheirValueAndInTheirOriginalOrder(
+            @TempDir Path work) throws Exception {
+        // The CLOZE quiz of the fixture already ends with two backup fields. Put more data the system
+        // does not interpret among the data it does: one key before everything at quiz level and one
+        // in the middle of the form.
+        Path course = copyFixture(work.resolve("course"));
+        Path quizzesFile = course.resolve("a1/topic/knowledge/quizzes.json");
+        List<Map<String, Object>> onDisk = mapper.readValue(quizzesFile.toFile(), List.class);
+        int clozeIndex = -1;
+        for (int i = 0; i < onDisk.size(); i++) {
+            if (CLOZE_ID.equals(onDisk.get(i).get("id"))) {
+                clozeIndex = i;
+            }
+        }
+        Map<String, Object> original = onDisk.get(clozeIndex);
+        Map<String, Object> mixedQuiz = new LinkedHashMap<>();
+        mixedQuiz.put("reviewNote", "kept first");
+        mixedQuiz.putAll(original);
+        Map<String, Object> originalForm = (Map<String, Object>) original.get("form");
+        Map<String, Object> mixedForm = new LinkedHashMap<>();
+        originalForm.forEach((key, value) -> {
+            mixedForm.put(key, value);
+            if (key.equals("kind")) {
+                mixedForm.put("layout", List.of("stacked", 2));
+            }
+        });
+        mixedQuiz.put("form", mixedForm);
+        onDisk.set(clozeIndex, mixedQuiz);
+        writeJson(quizzesFile, onDisk);
+
+        repository.save(repository.load(course), course);
+
+        List<Map<String, Object>> written = mapper.readValue(quizzesFile.toFile(), List.class);
+        Map<String, Object> quiz = written.stream().filter(q -> CLOZE_ID.equals(q.get("id")))
+                .findFirst().orElseThrow();
+        List<String> quizKeys = List.copyOf(quiz.keySet());
+        assertEquals(List.of("reviewNote", "instructionsAntesDeShortForms", "miniTheoryAntesDeShortForms"),
+                quizKeys.subList(quizKeys.size() - 3, quizKeys.size()),
+                "R002: the quiz data the system does not interpret goes last, in its original order: " + quizKeys);
+        assertEquals("kept first", quiz.get("reviewNote"));
+        assertEquals(original.get("instructionsAntesDeShortForms"), quiz.get("instructionsAntesDeShortForms"));
+        assertEquals(original.get("miniTheoryAntesDeShortForms"), quiz.get("miniTheoryAntesDeShortForms"));
+
+        Map<String, Object> form = (Map<String, Object>) quiz.get("form");
+        List<String> formKeys = List.copyOf(form.keySet());
+        assertEquals("layout", formKeys.get(formKeys.size() - 1),
+                "R002: the form data the system does not interpret goes after the data it does: " + formKeys);
+        assertEquals(List.of("stacked", 2), form.get("layout"));
     }
 }

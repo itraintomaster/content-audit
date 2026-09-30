@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import org.mockito.ArgumentCaptor;
 
 @ExtendWith(MockitoExtension.class)
 public class CourseToAuditableMapperTest {
@@ -887,7 +888,33 @@ public class CourseToAuditableMapperTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R003")
     public void shouldMapAQuizWhoseFormDeclaresAKindTheSystemDoesNotRecognizeExactlyLikeACLOZEQuiz() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The same gap with an accepted answer, once in a CLOZE form and once in a form whose kind
+        // the system does not recognize (F-OPMUL-R003: only a form that declares multiple choice is one).
+        List<SentencePartEntity> parts = List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "They", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("are")),
+                new SentencePartEntity(SentencePartKind.TEXT, "here.", null));
+        FormEntity cloze = new FormEntity("CLOZE", 1.0, "", "", parts, null, null);
+        FormEntity unknownKind = new FormEntity("ORDERING", 1.0, "", "", parts, null, null);
+
+        NlpTokenizer tokenizer = mock(NlpTokenizer.class);
+        NlpToken they = new NlpToken("They", "they", "PRON", 0, true, false);
+        when(tokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of("They are here.", List.of(they)));
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(tokenizer, DefaultQuizSentenceConverter.create());
+
+        List<AuditableQuiz> quizzes = mappedQuizzes(mapper.map(course(
+                quiz("cloze", cloze, "They are here."),
+                quiz("unknown", unknownKind, "They are here."))));
+
+        AuditableQuiz asCloze = quizzes.get(0);
+        AuditableQuiz asUnknown = quizzes.get(1);
+        assertEquals("They ____ [are] here.", asUnknown.getQuizSentence(),
+                "R003: a kind the system does not recognize keeps its quiz sentence, like a CLOZE");
+        assertEquals(asCloze.getQuizSentence(), asUnknown.getQuizSentence());
+        assertEquals(asCloze.getSentences(), asUnknown.getSentences());
+        assertEquals(asCloze.getTokens(), asUnknown.getTokens());
+        assertEquals(asCloze.getSentenceParts(), asUnknown.getSentenceParts());
+        assertNull(asUnknown.getMultipleChoice(), "R003: an unrecognized kind carries no multiple-choice options");
     }
 
     @Test
@@ -895,6 +922,32 @@ public class CourseToAuditableMapperTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R004")
     public void shouldMeasureAMultipleChoiceQuizOnThePlainSentenceStoredWithItAndNeverOnOneDerivedDuringTheAudit() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Stem "She ___ English." with "is" correct: derived now it would read "She is English.".
+        // The sentence stored with the quiz says something else on purpose, so the test can tell
+        // which one the audit measures (F-OPMUL-R004.3: the audit reads the stored one).
+        FormEntity multipleChoice = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", null),
+                new SentencePartEntity(SentencePartKind.TEXT, "English.", null)), null, null);
+        multipleChoice.setMultipleChoice(new MultipleChoiceEntity("SINGLE", List.of(
+                new MultipleChoiceItemEntity("am", 0.0, "am"),
+                new MultipleChoiceItemEntity("is", 1.0, "is"))));
+
+        NlpTokenizer tokenizer = mock(NlpTokenizer.class);
+        NlpToken maria = new NlpToken("Maria", "Maria", "PROPN", null, false, false);
+        when(tokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of("Maria is English.", List.of(maria)));
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(tokenizer, DefaultQuizSentenceConverter.create());
+
+        AuditableQuiz mapped = mappedQuizzes(mapper.map(course(
+                quiz("mc", multipleChoice, "Maria is English.")))).get(0);
+
+        assertEquals(List.of("Maria is English."), mapped.getSentences(),
+                "R004: the audit measures the sentence stored with the quiz");
+        assertEquals(List.of(maria), mapped.getTokens());
+        @SuppressWarnings("unchecked")
+        ArgumentCaptor<List<String>> tokenized = ArgumentCaptor.forClass(List.class);
+        verify(tokenizer).analyzeTokensBatch(tokenized.capture());
+        assertFalse(tokenized.getValue().contains("She is English."),
+                "R004: no sentence derived during the audit is measured: " + tokenized.getValue());
     }
 }

@@ -597,6 +597,24 @@ public class DefaultPreservationRepairTest {
     @Tag("FEAT-OPMUL")
     @Tag("F-OPMUL-R009")
     public void shouldNeverRestoreAQuizWhoseOwnKindIsMultipleChoiceAndWhoseFormLostItsKindFromASnapshotRecordedWhenItWasACLOZE() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Recorded when the quiz was still a CLOZE. Today it is multiple choice by its own kind, but
+        // its form lost the kind: the quiz-level kind decides (F-OPMUL-R009), so repair must not
+        // turn it back into the CLOZE of the snapshot.
+        QuizTemplateEntity clozeEraSnapshot = quiz(form("CLOZE", List.of("is")), null);
+        FormEntity lostItsKind = form(null, null);
+        lostItsKind.setMultipleChoice(choices("is"));
+        QuizTemplateEntity current = quiz(lostItsKind, backups());
+        current.setKind("MULTIPLE_CHOICE");
+
+        RepairReport report = repairWithSnapshot(clozeEraSnapshot).repair(courseWith(current));
+
+        assertEquals(0, report.getElementsRepaired(), "R009: nothing is restored from the CLOZE-era snapshot");
+        assertTrue(report.getRestored().isEmpty(), report.getRestored().toString());
+        assertEquals("MULTIPLE_CHOICE", current.getKind());
+        assertNull(current.getForm().getKind(), "the form must not get the CLOZE kind of the snapshot back");
+        assertNull(current.getForm().getSentenceParts().get(1).getOptions(),
+                "the gap must not get the CLOZE answer of the snapshot back");
+        assertEquals(choices("is"), current.getForm().getMultipleChoice());
+        assertEquals(backups(), current.getUnmodeledFields());
     }
 }
