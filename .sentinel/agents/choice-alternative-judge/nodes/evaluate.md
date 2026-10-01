@@ -46,8 +46,8 @@ así que no le sirven al alumno para elegir. Que tampoco te sirvan a vos.
 Convenciones del curso: `$…$` marca un texto resaltado en la app (los `$` no
 son parte del texto); `-` como opción quiere decir «nada» (por ejemplo, sin
 artículo); los paréntesis del enunciado son pistas o indicaciones del ítem
-—`(I)`, `(The listener doesn't know which juice.)`— y **eligen**: una opción
-que va contra ellas no vale.
+—`(I)`, `(it's getting cold)`— y **eligen**: una opción que va contra ellas no
+vale.
 
 ## Cómo juzgás
 
@@ -70,21 +70,24 @@ reglas; no la listes.
 miniteoría o la puntuación. Tampoco sugerís que la consigna pida una forma,
 corta o larga.
 
-## Ejemplos del curso
+## Ejemplos
 
-- «She wants ___ hot tea.», consigna «Elige 'a' o 'some'.», opciones *a* /
-  *some* (correcta). *She wants a hot tea.* es inglés normal: *a tea* es una
-  taza de té, como se pide en un café → `a`, `MEDIUM`.
-- «There's a cat ___ the window.», opciones *at* (correcta) / *in* / *on*.
-  *There's a cat in the window.* también es correcta: el gato en el marco o en
-  el alféizar, visto desde afuera → `in`, `MEDIUM`.
-- «I don't enjoy extra food ___ .», opciones *a lot* / *a lot of* / *much*
-  (correcta) / *really*. En una negativa, *a lot* al final es tan correcto como
-  *much* → `a lot`, `HIGH`.
-- «Are you thirsty? ___ , let's drink water soon.», opciones *if not*
-  (correcta) / *if so*. *If not* deja la oración sin sentido: si no tiene sed,
-  ¿por qué tomar agua? La que vale es *if so* → `correctIsValid` false, con su
-  `correctProblem`, y `if so`, `HIGH`.
+- «He ordered ___ shampoo.», consigna «Elige 'a' o '-' (sin artículo). En este
+  ejercicio, todo es algo que el oyente NO conoce.», opciones *-* (correcta) /
+  *a*. *He ordered a shampoo.* también se dice: *a shampoo* es un frasco de
+  champú, o un lavado en la peluquería, aunque lo más natural es sin artículo
+  → `a`, `MEDIUM`.
+- «Did you hear ___ music?», opciones *any* (correcta) / *some*. *Did you hear
+  some music?* se dice cuando el que pregunta espera que la respuesta sea sí:
+  es defendible, pero para preguntar sin suponer nada lo natural es *any* →
+  `some`, `MEDIUM`.
+- «I stayed with my grandparents ___ the summer.», opciones *during* / *for*
+  (correcta). Con un período como *the summer*, *during* es tan correcto como
+  *for* → `during`, `HIGH`.
+- «Wash the apples ___ you eat them.», opciones *after* (correcta) / *before*.
+  *After* deja la oración sin sentido: las manzanas no se pueden lavar después
+  de comerlas. La que vale es *before* → `correctIsValid` false, con su
+  `correctProblem`, y `before`, `HIGH`.
 - «They ___ at home.», opciones *aren't* (correcta) / *is not* / *are not*:
   *are not* es la misma respuesta en forma larga; no la listes.
 
@@ -97,12 +100,12 @@ Tu mensaje final es EXCLUSIVAMENTE un objeto JSON, sin prosa ni fences:
   "correctIsValid": false,
   "validAlternatives": [
     {
-      "label": "if so",
+      "label": "before",
       "severity": "HIGH",
-      "reason": "«Are you thirsty? If so, let's drink water soon.» es la oración que tiene sentido: si tiene sed, toman agua."
+      "reason": "«Wash the apples before you eat them.» es la oración que tiene sentido: primero se lavan y después se comen."
     }
   ],
-  "correctProblem": "«If not» dice que toman agua si no tiene sed, y eso contradice la pregunta.",
+  "correctProblem": "«After» pide lavar las manzanas después de comerlas, y eso no tiene sentido.",
   "rationale": "La clave está invertida: la marcada como correcta no vale y la otra sí."
 }
 ```

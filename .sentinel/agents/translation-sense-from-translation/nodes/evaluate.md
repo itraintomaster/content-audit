@@ -52,14 +52,14 @@ Convenciones del curso, que no son defectos:
 
 - `$…$` marca un texto resaltado en la app; los `$` no son parte del texto.
 - Los paréntesis del enunciado son pistas o indicaciones: `(eat)`,
-  `(he / play)` y `(not / come)` dicen qué verbo o sujeto usar;
+  `(he / play)` y `(not / have)` dicen qué verbo o sujeto usar;
   `(present simple)` o `(I'm holding the object.)` dicen qué hacer en ese
   ítem. Se ven en pantalla pero no son parte de la oración.
-- Una elección con barra (`he / him`, `something / anything`) ofrece
+- Una elección con barra (`my / mine`, `their / theirs`) ofrece
   alternativas; en la oración terminada queda sólo la elegida.
-- Un esqueleto con barras (`Peter / cook / very badly these days.`) o una
-  oración seguida de `___` es algo a construir o transformar: la traducción le
-  corresponde a la oración terminada de `acceptedSentences`.
+- Un esqueleto con barras (`He invested / in London / learning English / time.`)
+  o una oración seguida de `___` es algo a construir o transformar: la
+  traducción le corresponde a la oración terminada de `acceptedSentences`.
 - Varias líneas en `acceptedSentences` son la misma oración con cada respuesta
   aceptada. Compará la traducción con cada una: alcanza con que una falle para
   reprobar. Que una diga *isn't* y otra *is not* no es un problema.
@@ -81,7 +81,8 @@ Convenciones del curso, que no son defectos:
    alguien diría.
 3. **`WORDS_GO_TOGETHER` — las palabras van juntas.** En el inglés, el verbo
    con su objeto, el adjetivo con su sustantivo, la preposición que pide cada
-   palabra: *meet* va con personas, no con cosas; *drink* no va con *meat*.
+   palabra: *lose* va con lo que no encontrás, no con el autobús que no
+   alcanzaste; *drink* no va con *meat*.
 4. **`LEVEL_REGISTER` — el registro es del nivel.** El inglés no es rebuscado,
    ni literario, ni usa una palabra muy por encima del nivel del ejercicio; y la
    traducción está en un castellano neutro, sin una palabra regional que en
@@ -118,30 +119,32 @@ Si no podés citarlo, no es una falla.
 uses `BLOCKING`: la traducción se ve después de contestar, así que el alumno
 igual puede acertar.
 
-## Ejemplos del curso
+## Ejemplos
 
-- «Me gustan mucho las verduras.» dice cuánto le gustan las verduras. El
-  inglés, *I love a lot of vegetables.* («I ___ a lot of vegetables.», acepta
-  «love»), dice otra cosa: que le encantan muchas verduras; *a lot of* cuenta
-  verduras. → `SAME_MEANING`, `HIGH`, fragmento `a lot of`.
-- «Sí, lo son.» contesta con «ser», como si dijera qué son. El inglés,
-  «A: Are they at the beach? Yes, they are.», habla de dónde están: en
-  castellano va «estar». → `SAME_MEANING`, `MEDIUM`, fragmento `Sí, lo son.`
-- «Yakarta es la capital de Filipinas.» es falso, y el inglés dice lo mismo:
-  *Jakarta is the capital of the Philippines.* (opción múltiple, *the*
-  correcta). Yakarta es la capital de Indonesia. → `NATIVE_WOULD_SAY`, `HIGH`.
-- «¡Es el momento de cenar!» es castellano natural, pero *It's the moment for
-  dinner!* («It's the moment ___ dinner!», acepta «for») es ese castellano
-  traducido palabra por palabra; un nativo dice *It's time for dinner!*
-  → `NATIVE_WOULD_SAY`, `MEDIUM`.
-- «No me encontré con nada.» no se entiende, y el inglés tampoco:
-  *I didn't meet anything.* («I didn't meet something / anything. ___»);
-  *meet* va con personas, no con cosas. → `WORDS_GO_TOGETHER`, `MEDIUM`.
+- «Vivimos en una casa larga.» dice que la casa es larga. El inglés,
+  *We live in a large house.* («We ___ (live) in a large house.», acepta
+  «live»), dice otra cosa: que es grande; *large* es grande, no larga.
+  → `SAME_MEANING`, `HIGH`, fragmento `larga`.
+- «El cine es lleno esta noche.» usa «ser», como si lleno fuera una
+  característica del cine. El inglés, *The cinema is full tonight.*
+  («The cinema ___ (be) full tonight.»), habla de cómo está esta noche: en
+  castellano va «estar». → `SAME_MEANING`, `MEDIUM`, fragmento `es lleno`.
+- «Una araña tiene seis patas.» es falso, y el inglés dice lo mismo:
+  *A spider has six legs.* («A spider ___ (have) six legs.»). Las arañas tienen
+  ocho patas. → `NATIVE_WOULD_SAY`, `HIGH`.
+- «Somos cinco en mi familia.» es castellano natural, pero *We are five in my
+  family.* («We ___ (be) five in my family.», acepta «are») es ese castellano
+  traducido palabra por palabra; un nativo dice *There are five of us in my
+  family.* → `NATIVE_WOULD_SAY`, `MEDIUM`.
+- «Perdí el autobús esta mañana.» es castellano natural, pero el inglés no
+  junta bien las palabras: *I lost the bus this morning.* («I ___ (lose) the
+  bus this morning.»); *lose* va con lo que no encontrás, y el autobús que no
+  alcanzaste se *miss*. → `WORDS_GO_TOGETHER`, `MEDIUM`.
 - «Compramos pan todos los días.» en A1 traduce *We purchase bread every day.*:
   *purchase* es formal y está muy por encima del nivel; en A1 se dice *buy*.
   → `LEVEL_REGISTER`, `LOW`.
-- «Ella juega al tenis los domingos.» y *She plays tennis on Sundays.* dicen lo
-  mismo, en una oración natural y del nivel → pasa.
+- «El estudiante estudia mucho.» y *The student studies hard.* dicen lo mismo,
+  en una oración natural y del nivel → pasa.
 
 ## Salida
 
@@ -154,11 +157,11 @@ Tu mensaje final es EXCLUSIVAMENTE un objeto JSON, sin prosa ni fences:
     {
       "condition": "SAME_MEANING",
       "severity": "HIGH",
-      "fragment": "a lot of",
-      "evidence": "«mucho» dice cuánto le gustan; «a lot of» cuenta verduras (muchas verduras)."
+      "fragment": "larga",
+      "evidence": "«larga» es long; «large» es grande: la traducción dice otra cosa."
     }
   ],
-  "rationale": "La traducción habla de cuánto le gustan las verduras y el inglés, de cuántas: no dicen lo mismo."
+  "rationale": "La traducción habla de una casa larga y el inglés, de una casa grande: no dicen lo mismo."
 }
 ```
 

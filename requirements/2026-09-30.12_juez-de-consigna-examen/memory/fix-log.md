@@ -4,6 +4,10 @@ Fixes that worked, with a short why. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (C, líder) — El run_evals.py del juez de consigna ya estaba rojo en 71ba5182: «cases[0].quiz is
+  not an exact full copy of source», porque db/ cambió bajo la fixture el 11/8 (…2145) y el 29/9 (consignas y
+  miniteorías). Contra el db de 10ba66c4 pasa entero, antes y después de descontaminar.
+
 2026-09-30 — developer (C) — `analyze` con el libro real de consigna tardaba 716 s (40 s sin libro): `findLatest`
   releía y parseaba los 25 MB del archivo por cada ejercicio, 11.287 veces (la base 859e96af igual, 737 s). Cada archivo
   se lee una vez mientras sea el mismo archivo con el mismo tamaño y fecha; toda escritura lo alarga y se relee. Informe

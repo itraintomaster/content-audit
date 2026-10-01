@@ -25,60 +25,60 @@
     "*until* / *till*",
     "corta, simple, artificial o sin contexto"
   ],
-  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes, y que emit produzca translationSenseVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (cefrLevel, instructions, exercise, acceptedSentences, translation) de los ejemplos de F-TRSEN-R002.",
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes, y que emit produzca translationSenseVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (cefrLevel, instructions, exercise, acceptedSentences, translation) de los ejemplos de la guía y de un ejercicio del curso con tres respuestas aceptadas.",
   "inputs": {
-    "verduras": {
+    "casa": {
       "cefrLevel": "A1",
-      "instructions": "Escribe la forma afirmativa en presente simple.",
-      "exercise": "I ___ a lot of vegetables.",
-      "acceptedSentences": "I love a lot of vegetables.",
-      "translation": "Me gustan mucho las verduras."
+      "instructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+      "exercise": "We ___ (live) in a large house.",
+      "acceptedSentences": "We live in a large house.",
+      "translation": "Vivimos en una casa larga."
     },
-    "playa": {
+    "cine": {
       "cefrLevel": "A1",
-      "instructions": "Usa $short forms$ si es posible. Escribe la respuesta corta correcta.",
-      "exercise": "A: Are they at the beach? Yes, they ___ .",
-      "acceptedSentences": "A: Are they at the beach? Yes, they are.",
-      "translation": "Sí, lo son."
+      "instructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+      "exercise": "The cinema ___ (be) full tonight.",
+      "acceptedSentences": "The cinema is full tonight.",
+      "translation": "El cine es lleno esta noche."
     },
-    "yakarta": {
-      "cefrLevel": "A2",
-      "instructions": "Elige 'the' o usa – si no se necesita ningún artículo.",
-      "exercise": "Jakarta is the capital of ___ Philippines.",
-      "acceptedSentences": "Jakarta is the capital of the Philippines.",
-      "translation": "Yakarta es la capital de Filipinas."
-    },
-    "cena": {
-      "cefrLevel": "A2",
-      "instructions": "Coloca las preposiciones correctas.",
-      "exercise": "It's the moment ___ dinner!",
-      "acceptedSentences": "It's the moment for dinner!",
-      "translation": "¡Es el momento de cenar!"
-    },
-    "no-vendra": {
+    "arana": {
       "cefrLevel": "A1",
-      "instructions": "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
-      "exercise": "She ___ (not / come).",
-      "acceptedSentences": "She isn't going to come.\nShe is not going to come.\nShe's not going to come.",
-      "translation": "Ella no va a venir."
+      "instructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+      "exercise": "A spider ___ (have) six legs.",
+      "acceptedSentences": "A spider has six legs.",
+      "translation": "Una araña tiene seis patas."
+    },
+    "familia": {
+      "cefrLevel": "A1",
+      "instructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+      "exercise": "We ___ (be) five in my family.",
+      "acceptedSentences": "We are five in my family.",
+      "translation": "Somos cinco en mi familia."
+    },
+    "lunes-a-viernes": {
+      "cefrLevel": "A1",
+      "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+      "exercise": "We study from Monday ___ Friday.",
+      "acceptedSentences": "We study from Monday to Friday.\nWe study from Monday till Friday.\nWe study from Monday until Friday.",
+      "translation": "Estudiamos de lunes a viernes."
     }
   },
   "cases": [
     {
-      "caseId": "verduras-reprueba-con-alta",
-      "note": "Las verduras (…1ecd): «a lot of» cuenta verduras y «mucho» dice cuánto gustan. F-TRSEN-R002 cond. 1.",
-      "inputs": "verduras",
+      "caseId": "casa-reprueba-con-alta",
+      "note": "La casa (inventado): «large» es grande y «larga» es long. F-TRSEN-R002 cond. 1.",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "SAME_MEANING",
             "severity": "HIGH",
-            "fragment": "a lot of",
-            "evidence": "«a lot of» cuenta verduras (muchas verduras); «mucho» dice cuánto le gustan."
+            "fragment": "larga",
+            "evidence": "«large» es grande; «larga» es long: la traducción dice otra cosa."
           }
         ],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho."
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
       },
       "expect": {
         "route": "passed",
@@ -86,20 +86,20 @@
       }
     },
     {
-      "caseId": "playa-ser-por-estar-media",
-      "note": "«Sí, lo son.» usa ser donde va estar (…25ea): se entiende pero está mal.",
-      "inputs": "playa",
+      "caseId": "cine-ser-por-estar-media",
+      "note": "«El cine es lleno esta noche.» usa ser donde va estar (inventado): se entiende pero está mal.",
+      "inputs": "cine",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "SAME_MEANING",
             "severity": "MEDIUM",
-            "fragment": "Sí, lo son.",
-            "evidence": "Usa «ser» donde el castellano pide «estar»: están en la playa."
+            "fragment": "es lleno",
+            "evidence": "Usa «ser» donde el castellano pide «estar»: el cine está lleno."
           }
         ],
-        "rationale": "La traducción no dice dónde están."
+        "rationale": "La traducción no dice cómo está el cine."
       },
       "expect": {
         "route": "passed",
@@ -107,17 +107,17 @@
       }
     },
     {
-      "caseId": "yakarta-dato-falso-alta",
-      "note": "Opción múltiple: la oración con la correcta afirma un dato falso (…350b).",
-      "inputs": "yakarta",
+      "caseId": "arana-dato-falso-alta",
+      "note": "La oración terminada afirma un dato falso (inventado): las arañas tienen ocho patas.",
+      "inputs": "arana",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "NATIVE_WOULD_SAY",
             "severity": "HIGH",
-            "fragment": "Jakarta is the capital of the Philippines.",
-            "evidence": "Dato falso: Yakarta es la capital de Indonesia, no de Filipinas."
+            "fragment": "A spider has six legs.",
+            "evidence": "Dato falso: las arañas tienen ocho patas, no seis."
           }
         ],
         "rationale": "Enseña un dato falso, en inglés y en castellano."
@@ -128,17 +128,17 @@
       }
     },
     {
-      "caseId": "cena-calco-media",
-      "note": "«It's the moment ___ dinner!» (…2d9e): calco; un nativo dice «It's time for dinner!».",
-      "inputs": "cena",
+      "caseId": "familia-calco-media",
+      "note": "«We ___ (be) five in my family.» (inventado): calco; un nativo dice «There are five of us in my family».",
+      "inputs": "familia",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "NATIVE_WOULD_SAY",
             "severity": "MEDIUM",
-            "fragment": "It's the moment for dinner!",
-            "evidence": "Calco de «es el momento de cenar»: un nativo dice «It's time for dinner!»."
+            "fragment": "We are five in my family.",
+            "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
           }
         ],
         "rationale": "La oración se entiende pero un nativo no la diría así."
@@ -150,8 +150,8 @@
     },
     {
       "caseId": "pasa-con-tres-formas",
-      "note": "Las tres formas aceptadas (isn't, is not, 's not) no son un problema: pasa.",
-      "inputs": "no-vendra",
+      "note": "Las tres formas aceptadas (to, till, until) no son un problema: pasa (…2469).",
+      "inputs": "lunes-a-viernes",
       "verdict": {
         "passes": true,
         "failures": [],
@@ -165,32 +165,32 @@
     {
       "caseId": "cuatro-condiciones",
       "note": "Una entrada por condición, con LOW sólo en LEVEL_REGISTER.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "SAME_MEANING",
             "severity": "HIGH",
-            "fragment": "a lot of",
+            "fragment": "larga",
             "evidence": "Una línea que dice qué está mal."
           },
           {
             "condition": "NATIVE_WOULD_SAY",
             "severity": "MEDIUM",
-            "fragment": "love a lot of",
+            "fragment": "a large house",
             "evidence": "Una línea que dice qué está mal."
           },
           {
             "condition": "WORDS_GO_TOGETHER",
             "severity": "MEDIUM",
-            "fragment": "love a lot of vegetables",
+            "fragment": "live in a large house",
             "evidence": "Una línea que dice qué está mal."
           },
           {
             "condition": "LEVEL_REGISTER",
             "severity": "LOW",
-            "fragment": "verduras",
+            "fragment": "casa larga",
             "evidence": "Una línea que dice qué está mal."
           }
         ],
@@ -204,15 +204,15 @@
     {
       "caseId": "enums-en-minusculas-y-texto-en-varias-lineas",
       "note": "Mayúsculas de los enums y espacios de los textos se canonicalizan sin reintentar.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "same_meaning",
             "severity": " High ",
-            "fragment": "  a lot of ",
-            "evidence": "«a lot of» cuenta verduras;\n«mucho» dice   cuánto le gustan."
+            "fragment": "  larga ",
+            "evidence": "«large» es grande;\n«larga» es   long."
           }
         ],
         "rationale": "  No dicen\nlo mismo. "
@@ -225,8 +225,8 @@
             {
               "condition": "SAME_MEANING",
               "severity": "HIGH",
-              "fragment": "a lot of",
-              "evidence": "«a lot of» cuenta verduras; «mucho» dice cuánto le gustan."
+              "fragment": "larga",
+              "evidence": "«large» es grande; «larga» es long."
             }
           ],
           "rationale": "No dicen lo mismo."
@@ -236,18 +236,18 @@
     {
       "caseId": "clave-de-mas",
       "note": "Sin campos extra: confidence no es parte del veredicto.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "SAME_MEANING",
             "severity": "HIGH",
-            "fragment": "a lot of",
-            "evidence": "«a lot of» cuenta verduras (muchas verduras); «mucho» dice cuánto le gustan."
+            "fragment": "larga",
+            "evidence": "«large» es grande; «larga» es long: la traducción dice otra cosa."
           }
         ],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho.",
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga.",
         "confidence": 0.9
       },
       "expect": {
@@ -261,15 +261,15 @@
     {
       "caseId": "falta-rationale",
       "note": "Falta una clave del objeto cerrado.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "SAME_MEANING",
             "severity": "HIGH",
-            "fragment": "a lot of",
-            "evidence": "«a lot of» cuenta verduras (muchas verduras); «mucho» dice cuánto le gustan."
+            "fragment": "larga",
+            "evidence": "«large» es grande; «larga» es long: la traducción dice otra cosa."
           }
         ]
       },
@@ -284,19 +284,19 @@
     {
       "caseId": "falla-con-clave-de-mas",
       "note": "Cada falla es un objeto cerrado: suggestion sobra.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "SAME_MEANING",
             "severity": "HIGH",
-            "fragment": "a lot of",
-            "evidence": "«a lot of» cuenta verduras (muchas verduras); «mucho» dice cuánto le gustan.",
-            "suggestion": "Me encantan muchas verduras."
+            "fragment": "larga",
+            "evidence": "«large» es grande; «larga» es long: la traducción dice otra cosa.",
+            "suggestion": "Vivimos en una casa grande."
           }
         ],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho."
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
       },
       "expect": {
         "route": "failed",
@@ -309,18 +309,18 @@
     {
       "caseId": "pasa-con-fallas",
       "note": "passes true con fallas: contradicción.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": true,
         "failures": [
           {
             "condition": "SAME_MEANING",
             "severity": "HIGH",
-            "fragment": "a lot of",
-            "evidence": "«a lot of» cuenta verduras (muchas verduras); «mucho» dice cuánto le gustan."
+            "fragment": "larga",
+            "evidence": "«large» es grande; «larga» es long: la traducción dice otra cosa."
           }
         ],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho."
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
       },
       "expect": {
         "route": "failed",
@@ -333,11 +333,11 @@
     {
       "caseId": "reprueba-sin-fallas",
       "note": "passes false sin fallas: no dice qué falla.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho."
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
       },
       "expect": {
         "route": "failed",
@@ -350,18 +350,18 @@
     {
       "caseId": "bloqueante",
       "note": "translation-sense nunca es BLOCKING: la traducción se ve después de contestar (F-TRSEN-R004).",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "SAME_MEANING",
             "severity": "BLOCKING",
-            "fragment": "a lot of",
+            "fragment": "larga",
             "evidence": "Una línea que dice qué está mal."
           }
         ],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho."
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
       },
       "expect": {
         "route": "failed",
@@ -374,18 +374,18 @@
     {
       "caseId": "condicion-desconocida",
       "note": "Sólo las cuatro condiciones.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "GRAMMAR",
             "severity": "HIGH",
-            "fragment": "a lot of",
+            "fragment": "larga",
             "evidence": "Una línea que dice qué está mal."
           }
         ],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho."
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
       },
       "expect": {
         "route": "failed",
@@ -398,18 +398,18 @@
     {
       "caseId": "registro-que-no-es-baja",
       "note": "LEVEL_REGISTER es siempre LOW.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "LEVEL_REGISTER",
             "severity": "MEDIUM",
-            "fragment": "a lot of",
+            "fragment": "larga",
             "evidence": "Una línea que dice qué está mal."
           }
         ],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho."
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
       },
       "expect": {
         "route": "failed",
@@ -422,18 +422,18 @@
     {
       "caseId": "baja-fuera-del-registro",
       "note": "LOW es sólo para LEVEL_REGISTER.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "SAME_MEANING",
             "severity": "LOW",
-            "fragment": "a lot of",
+            "fragment": "larga",
             "evidence": "Una línea que dice qué está mal."
           }
         ],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho."
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
       },
       "expect": {
         "route": "failed",
@@ -446,24 +446,24 @@
     {
       "caseId": "condicion-repetida",
       "note": "Una sola entrada por condición; JSON Schema no lo puede decir, el gate sí.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "SAME_MEANING",
             "severity": "HIGH",
-            "fragment": "a lot of",
+            "fragment": "larga",
             "evidence": "Una línea que dice qué está mal."
           },
           {
             "condition": "SAME_MEANING",
             "severity": "MEDIUM",
-            "fragment": "mucho",
+            "fragment": "una casa larga",
             "evidence": "Una línea que dice qué está mal."
           }
         ],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho."
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
       },
       "expect": {
         "route": "failed",
@@ -476,18 +476,18 @@
     {
       "caseId": "passes-como-texto",
       "note": "passes es boolean, no el texto \"false\".",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": "false",
         "failures": [
           {
             "condition": "SAME_MEANING",
             "severity": "HIGH",
-            "fragment": "a lot of",
-            "evidence": "«a lot of» cuenta verduras (muchas verduras); «mucho» dice cuánto le gustan."
+            "fragment": "larga",
+            "evidence": "«large» es grande; «larga» es long: la traducción dice otra cosa."
           }
         ],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho."
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
       },
       "expect": {
         "route": "failed",
@@ -500,18 +500,18 @@
     {
       "caseId": "evidencia-vacia",
       "note": "La evidencia no va vacía.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "SAME_MEANING",
             "severity": "HIGH",
-            "fragment": "a lot of",
+            "fragment": "larga",
             "evidence": ""
           }
         ],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho."
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
       },
       "expect": {
         "route": "failed",
@@ -524,7 +524,7 @@
     {
       "caseId": "fragmento-demasiado-largo",
       "note": "El fragmento es un pedazo, hasta 300 caracteres.",
-      "inputs": "verduras",
+      "inputs": "casa",
       "verdict": {
         "passes": false,
         "failures": [
@@ -535,7 +535,7 @@
             "evidence": "Una línea que dice qué está mal."
           }
         ],
-        "rationale": "La traducción cambia de qué habla la cantidad: el inglés dice que le encantan muchas verduras y el castellano, que le gustan mucho."
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
       },
       "expect": {
         "route": "failed",
@@ -548,15 +548,15 @@
     {
       "caseId": "run-dir-por-state-json",
       "note": "Sin run_dir en las entradas: project_root + el run_id (UUID) del state.json, como lo proyecta el CLI.",
-      "inputs": "cena",
+      "inputs": "familia",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "NATIVE_WOULD_SAY",
             "severity": "MEDIUM",
-            "fragment": "It's the moment for dinner!",
-            "evidence": "Calco de «es el momento de cenar»: un nativo dice «It's time for dinner!»."
+            "fragment": "We are five in my family.",
+            "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
           }
         ],
         "rationale": "La oración se entiende pero un nativo no la diría así."
@@ -570,15 +570,15 @@
     {
       "caseId": "run-id-ambiguo",
       "note": "Dos state.json con el mismo runId: el gate no adivina; emit sale conservador.",
-      "inputs": "cena",
+      "inputs": "familia",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "NATIVE_WOULD_SAY",
             "severity": "MEDIUM",
-            "fragment": "It's the moment for dinner!",
-            "evidence": "Calco de «es el momento de cenar»: un nativo dice «It's time for dinner!»."
+            "fragment": "We are five in my family.",
+            "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
           }
         ],
         "rationale": "La oración se entiende pero un nativo no la diría así."
@@ -594,15 +594,15 @@
     {
       "caseId": "run-id-inseguro",
       "note": "Un run_id que escaparía del directorio de runs se rechaza.",
-      "inputs": "cena",
+      "inputs": "familia",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "NATIVE_WOULD_SAY",
             "severity": "MEDIUM",
-            "fragment": "It's the moment for dinner!",
-            "evidence": "Calco de «es el momento de cenar»: un nativo dice «It's time for dinner!»."
+            "fragment": "We are five in my family.",
+            "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
           }
         ],
         "rationale": "La oración se entiende pero un nativo no la diría así."
@@ -618,15 +618,15 @@
     {
       "caseId": "sin-run-dir",
       "note": "Sin run_dir ni project_root no hay dónde leer: falla el gate y emit da outputUnusable.",
-      "inputs": "cena",
+      "inputs": "familia",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "NATIVE_WOULD_SAY",
             "severity": "MEDIUM",
-            "fragment": "It's the moment for dinner!",
-            "evidence": "Calco de «es el momento de cenar»: un nativo dice «It's time for dinner!»."
+            "fragment": "We are five in my family.",
+            "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
           }
         ],
         "rationale": "La oración se entiende pero un nativo no la diría así."
@@ -642,7 +642,7 @@
     {
       "caseId": "sin-salida-de-evaluate",
       "note": "evaluate no dejó verdicts.json.",
-      "inputs": "cena",
+      "inputs": "familia",
       "expect": {
         "route": "failed",
         "errorContains": [
@@ -653,7 +653,7 @@
     {
       "caseId": "validated-viejo-se-borra",
       "note": "Un validated-verdict.json de un intento anterior no sobrevive a un gate que falla.",
-      "inputs": "cena",
+      "inputs": "familia",
       "raw": "no hay veredicto",
       "staleValidated": true,
       "expect": {
@@ -666,7 +666,7 @@
     {
       "caseId": "no-es-json",
       "note": "Prosa sin objeto JSON.",
-      "inputs": "cena",
+      "inputs": "familia",
       "raw": "No puedo juzgar este ejercicio.",
       "expect": {
         "route": "failed",
@@ -678,7 +678,7 @@
     {
       "caseId": "lista-en-vez-de-objeto",
       "note": "Un array no es el veredicto.",
-      "inputs": "cena",
+      "inputs": "familia",
       "raw": "[1, 2]",
       "expect": {
         "route": "failed",
@@ -690,7 +690,7 @@
     {
       "caseId": "output-unusable-del-modelo",
       "note": "{\"outputUnusable\": true} lo produce emit, nunca el modelo: el gate lo rechaza.",
-      "inputs": "cena",
+      "inputs": "familia",
       "verdict": {
         "outputUnusable": true
       },
@@ -704,15 +704,15 @@
     {
       "caseId": "validated-corrupto-antes-de-emit",
       "note": "Si validated-verdict.json no se puede leer, emit no inventa: outputUnusable.",
-      "inputs": "cena",
+      "inputs": "familia",
       "verdict": {
         "passes": false,
         "failures": [
           {
             "condition": "NATIVE_WOULD_SAY",
             "severity": "MEDIUM",
-            "fragment": "It's the moment for dinner!",
-            "evidence": "Calco de «es el momento de cenar»: un nativo dice «It's time for dinner!»."
+            "fragment": "We are five in my family.",
+            "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
           }
         ],
         "rationale": "La oración se entiende pero un nativo no la diría así."
@@ -726,8 +726,8 @@
     {
       "caseId": "fence-json",
       "note": "La salida en un fence ```json se acepta sin pagar otra consulta.",
-      "inputs": "cena",
-      "raw": "```json\n{\n  \"passes\": false,\n  \"failures\": [\n    {\n      \"condition\": \"NATIVE_WOULD_SAY\",\n      \"severity\": \"MEDIUM\",\n      \"fragment\": \"It's the moment for dinner!\",\n      \"evidence\": \"Calco de «es el momento de cenar»: un nativo dice «It's time for dinner!».\"\n    }\n  ],\n  \"rationale\": \"La oración se entiende pero un nativo no la diría así.\"\n}\n```",
+      "inputs": "familia",
+      "raw": "```json\n{\n  \"passes\": false,\n  \"failures\": [\n    {\n      \"condition\": \"NATIVE_WOULD_SAY\",\n      \"severity\": \"MEDIUM\",\n      \"fragment\": \"We are five in my family.\",\n      \"evidence\": \"Calco de «somos cinco»: un nativo dice «There are five of us in my family».\"\n    }\n  ],\n  \"rationale\": \"La oración se entiende pero un nativo no la diría así.\"\n}\n```",
       "expect": {
         "route": "passed",
         "canonical": {
@@ -736,8 +736,8 @@
             {
               "condition": "NATIVE_WOULD_SAY",
               "severity": "MEDIUM",
-              "fragment": "It's the moment for dinner!",
-              "evidence": "Calco de «es el momento de cenar»: un nativo dice «It's time for dinner!»."
+              "fragment": "We are five in my family.",
+              "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
             }
           ],
           "rationale": "La oración se entiende pero un nativo no la diría así."
@@ -747,8 +747,8 @@
     {
       "caseId": "prosa-alrededor",
       "note": "Prosa antes y una etiqueta después: se toma el objeto.",
-      "inputs": "cena",
-      "raw": "Este es mi veredicto:\n{\"passes\": false, \"failures\": [{\"condition\": \"NATIVE_WOULD_SAY\", \"severity\": \"MEDIUM\", \"fragment\": \"It's the moment for dinner!\", \"evidence\": \"Calco de «es el momento de cenar»: un nativo dice «It's time for dinner!».\"}], \"rationale\": \"La oración se entiende pero un nativo no la diría así.\"}\nLABEL: done",
+      "inputs": "familia",
+      "raw": "Este es mi veredicto:\n{\"passes\": false, \"failures\": [{\"condition\": \"NATIVE_WOULD_SAY\", \"severity\": \"MEDIUM\", \"fragment\": \"We are five in my family.\", \"evidence\": \"Calco de «somos cinco»: un nativo dice «There are five of us in my family».\"}], \"rationale\": \"La oración se entiende pero un nativo no la diría así.\"}\nLABEL: done",
       "expect": {
         "route": "passed",
         "canonical": {
@@ -757,8 +757,8 @@
             {
               "condition": "NATIVE_WOULD_SAY",
               "severity": "MEDIUM",
-              "fragment": "It's the moment for dinner!",
-              "evidence": "Calco de «es el momento de cenar»: un nativo dice «It's time for dinner!»."
+              "fragment": "We are five in my family.",
+              "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
             }
           ],
           "rationale": "La oración se entiende pero un nativo no la diría así."
@@ -768,8 +768,8 @@
     {
       "caseId": "json-dentro-de-un-string",
       "note": "El objeto serializado dentro de un string JSON se desenvuelve.",
-      "inputs": "cena",
-      "raw": "\"{\\\"passes\\\": false, \\\"failures\\\": [{\\\"condition\\\": \\\"NATIVE_WOULD_SAY\\\", \\\"severity\\\": \\\"MEDIUM\\\", \\\"fragment\\\": \\\"It's the moment for dinner!\\\", \\\"evidence\\\": \\\"Calco de «es el momento de cenar»: un nativo dice «It's time for dinner!».\\\"}], \\\"rationale\\\": \\\"La oración se entiende pero un nativo no la diría así.\\\"}\"",
+      "inputs": "familia",
+      "raw": "\"{\\\"passes\\\": false, \\\"failures\\\": [{\\\"condition\\\": \\\"NATIVE_WOULD_SAY\\\", \\\"severity\\\": \\\"MEDIUM\\\", \\\"fragment\\\": \\\"We are five in my family.\\\", \\\"evidence\\\": \\\"Calco de «somos cinco»: un nativo dice «There are five of us in my family».\\\"}], \\\"rationale\\\": \\\"La oración se entiende pero un nativo no la diría así.\\\"}\"",
       "expect": {
         "route": "passed",
         "canonical": {
@@ -778,8 +778,8 @@
             {
               "condition": "NATIVE_WOULD_SAY",
               "severity": "MEDIUM",
-              "fragment": "It's the moment for dinner!",
-              "evidence": "Calco de «es el momento de cenar»: un nativo dice «It's time for dinner!»."
+              "fragment": "We are five in my family.",
+              "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
             }
           ],
           "rationale": "La oración se entiende pero un nativo no la diría así."

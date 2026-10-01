@@ -46,7 +46,7 @@ pedagógico dado.
    dos: la parte es de tipo `TEXT` y su texto es `Mary` — no `Mary:`. Pero
    `TEXT:Guess: You:|` tiene tres, y el del medio es contenido: el texto de esa
    parte es `Guess: You`, entera. Lo mismo con `TEXT:First: If we:|`
-   (texto `First: If we`) o `TEXT:Normal request: I want a glass of water.:|`.
+   (texto `First: If we`) o `TEXT:A: There's no coffee. B: I:|`.
    Nunca reportes que "falta el sujeto" o que "la parte no aporta el texto"
    porque cortaste en un dos puntos del medio: la etiqueta y lo que sigue van
    juntos.
@@ -62,7 +62,7 @@ pedagógico dado.
    - Nunca levantes `INVALID_ANSWER_RECONSTRUCTION` ni "opción sin tipo ni
      campos" por una barra dentro de una opción.
    - Sí es defecto cuando al partir por `|` alguno de los trozos **no es una
-     respuesta completa** —`from March to` / `until` / `till August` deja dos
+     respuesta completa** —`from June to` / `until` / `till September` deja dos
      fragmentos colgados—. Ahí el problema es que partieron una frase, no que
      usaron la barra.
 
@@ -133,16 +133,16 @@ conjugar.
 alternativas entre las que el alumno elige; la elegida es la que va en el hueco,
 y las demás **no** se escriben.
 
-    Dogs looked at he / him [him].        →   Dogs looked at him.
+    My brother visited he / him [him].    →   My brother visited him.
 
 **(c) Esqueleto de transformación.** Una parte `TEXT` compuesta de fragmentos
-separados por barras —`Peter / cook / very badly these days.`,
-`This is / tasty cake / I / eat.`— es la oración a construir, en notación
+separados por barras —`She invested / writing / six hours.`,
+`He invested / reading / a book / time.`— es la oración a construir, en notación
 abreviada. Cuando aparece, el hueco suele contener **la respuesta completa**, y
 esa respuesta es lo único que se juzga.
 
-    Peter / cook / very badly these days. [Peter is cooking very badly these days.]
-    →   Peter is cooking very badly these days.
+    She invested / writing / six hours. [She invested six hours writing.]
+    →   She invested six hours writing.
 
 ### No todo paréntesis es un cue: algunos SON la consigna del ítem
 
@@ -153,7 +153,7 @@ sujeto, sueltos, a veces con `/` o `not /`. Esos se descartan.
 de contexto— no es un cue: es la consigna de ESE ítem, y hay que leerla y
 juzgar contra ella.**
 
-    (Emphasise that it will be finished.)     (the glass is close to you)
+    (Emphasise that it will be finished.)     (it's getting cold)
     (UK)          (present simple)            (I'm holding the object.)
 
 Se distinguen sin esfuerzo: un cue son una o dos palabras sueltas en forma base;
@@ -263,8 +263,8 @@ los tres.
 - En preguntas con inversión, `Will he play...?` y `Will the dogs want...?` son
   correctas: no existe una contracción natural que reemplace ese `Will` inicial.
 - No exijas contracciones marginales con sujetos nominales: `Peter will eat`,
-  `Mary will go`, `The movie will seem` y `The parents will love` son naturales;
-  no penalices por evitar `Peter'll`, `Mary'll`, `movie'll` o `parents'll`.
+  `Mary will go`, `The shop will close` y `The parents will love` son naturales;
+  no penalices por evitar `Peter'll`, `Mary'll`, `shop'll` o `parents'll`.
 - Las negativas naturales `won't` satisfacen la consigna. Una respuesta aceptada
   `will not` normalmente falla si la consigna exige short forms.
 - Cuando el hueco empieza por `'ll`, un espacio técnico entre partes no convierte

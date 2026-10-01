@@ -4,6 +4,14 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (C, líder) — Qué es «del examen» para el guardián: los casos (escribir/ y el examen fijo, con
+  sus gemelos) en todo agente; en mini-theory-judge, además, todo ejercicio de un tema de su examen (su unidad es el
+  tema). Un ejercicio de esos temas en otra guía no contamina: ese juez no rinde temas.
+2026-10-01 — developer (C, líder) — Reemplazos: primero un ejercicio del pozo (A1/A2 fuera del examen, tema dentro de
+  los universos de escribir) que muestre lo mismo tal como está; si no hay, uno inventado que no exista en el curso.
+  Nunca uno real alterado: el juez después ve el real. Todo defecto que el 077 encontró está en el examen, así que la
+  mayoría de los ejemplos de defecto quedaron inventados.
+
 2026-09-30 — developer (C, líder) — El juez de consigna resuelve siempre en lote (onQuiz junta, onCourseComplete resuelve), sin
   camino de a uno aparte: sus 27 pruebas de FEAT-QINST resuelven cada ejercicio con un onCourseComplete después de pedirlo, con
   una sesión falsa que contesta resolveAll con sus respuestas de a uno. Lo que leen y su huella no cambian (R007).
