@@ -626,9 +626,10 @@ public class OffLevelWordsAnalyzerTest {
 
         OffLevelWordsAnalyzerProvider provider() {
             LemmaAbsenceConfig config = config();
-            return new OffLevelWordsAnalyzerProvider(new DefaultSentenceLexicalScorer(evp(), new DefaultContentWordFilter(),
+            EvpCatalogPort evp = evp();
+            return new OffLevelWordsAnalyzerProvider(new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(),
                     config), config, new DefaultTopicTeachingResolver(),
-                    new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()), evp());
+                    new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()), evp);
         }
 
         ContentAnalyzer analyzer() {
