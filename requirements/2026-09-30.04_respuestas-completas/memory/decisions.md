@@ -5,6 +5,20 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — architect (impl A) — Las reglas del corrector que son código las dice la tabla en rules, una lista de
+  CorrectorRule (enum), como invertsNegativeQuestions: sin bandera en el código (pedido del coordinador, 1/10). Enum y
+  no textos: una regla que content-audit no sabe imitar para la corrida al leer la tabla. Hace falta el parche porque
+  FormEquivalenceTable es generado; mientras tanto el código queda probado en la simulación.
+2026-10-01 — architect (impl A) — accepts es el Matches de Go (el alumno recibe la duda; la aceptada, los paréntesis);
+  sameAnswer, que usan opción múltiple, datos y duplicados, es «el corrector toma cualquiera por el otro»; canonicalForms
+  no cambia. Sin reglas, todo es el #1191 igual (los 153 casos de oro lo prueban).
+2026-10-01 — qa-tester (impl A) — Cada corrector prueba sus casos de oro: los 192 de la rama no tienen columna del #1191
+  (326a tiene la misma regla until-till que los de antes y el #1191 lo rechaza), así que no se puede derivar qué daba;
+  los 153 de casos-de-oro/ siguen siendo los de producción hasta el deploy.
+2026-10-01 — developer (impl A) — El generador contrae have después de los adverbios (not, already…): sin eso
+  answer-completeness no veía 4 de los 14 de contracción ambigua que contó el censo de Go («She's not responded yet»).
+  Los 38 de paréntesis no los ve answer-completeness (no es una clase de R002 a R004): los cuenta el censo aparte.
+
 2026-10-01 — qa-tester (impl A) — Los dos nombres van en un parche de esta carpeta y no en el de PISTA: ninguna prueba
   aplicada en el repo traza a otra feature que la de su carpeta. La regla de cada una no cambia (R005 y R006).
 

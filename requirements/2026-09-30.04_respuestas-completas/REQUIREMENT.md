@@ -57,7 +57,11 @@ la propuesta («parte en «|», pasa a minúsculas y saca signos»), y además s
 desde el 19/5/2025 (#884); `escribir/respuestas.json` dice lo contrario de `67fab6d599301022953422c5` («Don't run in
 the café.»), y el corrector acepta «cafe». La tabla la construye la rama `claude/corrector-formas-equivalentes` de
 ittm, con sus casos de oro en un archivo que comparten los dos lados ([DOUBT-RESPC-IMITAR](#DOUBT-RESPC-IMITAR)). La
-copia de content-audit es la del corrector que está en producción: se actualiza cuando el corrector sale.
+copia de content-audit es la del corrector que está en producción: se actualiza cuando el corrector sale. Cada copia
+dice su versión y las reglas del corrector que son código y no tabla («reglas»): ninguna en el #1191. La de un
+corrector que todavía no salió va al lado, con sus casos de oro, para medir el antes y el después: la de las cuatro
+reglas del 1/10 (contracción ambigua del alumno, participios de la lista estándar, sujetos propios de till y
+paréntesis opcionales en la aceptada) es `formas-equivalentes-corrector-nuevo.json`.
 
 <a id="F-RESPC-R002"></a>
 ### Rule[F-RESPC-R002] - Están la contraída y la larga, pida lo que pida la consigna
