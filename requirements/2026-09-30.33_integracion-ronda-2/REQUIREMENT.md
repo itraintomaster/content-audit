@@ -76,7 +76,7 @@ Son los nombres de la presentación de B que vio José (gancho B-17). Los paquet
 
 Si el tope 0 alcanzara a los modelos locales, `naturalness` y `near-duplicates` nunca calcularían nada en un `analyze`
 sin opciones, y José decidió que los tres de B corren en todo `analyze` ([F-MLOCAL-R004](#F-MLOCAL-R004)). Si el runner
-les diera «sin tope» por ser de B, sin Ollama ese «sin tope» le llegaría a claude -p: 11.872 consultas que nadie pidió,
+les diera «sin tope» por ser de B, sin Ollama ese «sin tope» le llegaría a claude -p: 11.873 consultas que nadie pidió,
 unas 67 horas de a una ([F-MLOCAL-R007](#F-MLOCAL-R007)). Por eso el tope no lo decide el costo de la ficha —las dos
 fichas de B son de modelo pago, el mayor de sus reglas— sino la ruta (gancho B-06, tal como quedó el 30/9 a la noche).
 

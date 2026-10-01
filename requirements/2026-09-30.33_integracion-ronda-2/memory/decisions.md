@@ -31,7 +31,7 @@ should not re-litigate. Newest entries on top.
 2026-10-01 — integrador — B-06 invertido (B, 30/9 noche), regla R002: el tope por omisión depende de a quién se consulta.
   El runner NO completa la política (sin --budget llega vacía); el proveedor de B usa la política sin tope de su modelo
   local o le pasa la de la corrida al runtime de C, que pone el 0 de F-JEXAM-R010 a claude -p.
-  why: si el runner diera «sin tope» a los de B, sin Ollama le llegaría a claude -p: 11.872 consultas que nadie pidió.
+  why: si el runner diera «sin tope» a los de B, sin Ollama le llegaría a claude -p: 11.873 consultas que nadie pidió.
 2026-10-01 — integrador — B-10, regla R003: la corrida base deja afuera a todo analizador con una regla de modelo local, aunque
   tenga otra instantánea. No por costo de ficha (las dos de B pasaron a modelo pago por la alternativa), ni por nombre, ni
   con una marca nueva en la ficha.
