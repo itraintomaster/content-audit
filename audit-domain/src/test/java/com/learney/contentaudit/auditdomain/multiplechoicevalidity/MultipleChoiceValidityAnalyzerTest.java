@@ -328,7 +328,7 @@ public class MultipleChoiceValidityAnalyzerTest {
         @Override
         public JudgeCoverageDiagnosis coverage() {
             return new JudgeCoverageDiagnosis("multiple-choice-validity", AuditTarget.QUIZ, requested.size(), 0,
-                    requested.size(), List.of(), null, List.of(), "sin juez", null, List.of());
+                    requested.size(), List.of(), null, List.of(), "sin juez", null, List.of(), null);
         }
     }
 

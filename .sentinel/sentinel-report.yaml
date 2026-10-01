@@ -1,4 +1,4 @@
-generatedAt: 2026-10-01T03:06:27.867671Z
+generatedAt: 2026-10-01T04:28:07.583867Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -4083,11 +4083,11 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-RECUR
-  state: IMPLEMENTED
+  state: IMPLEMENTING
   requirementFile: ./requirements/2026-09-30.16_recurrencia/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RECUR-R001
-    state: PASSING
+    state: FAILING
     tests:
     - name: "should keep the course vocabulary score at 73.92% with lemma-recurrence\
         \ at 0.08 publishing its course diagnosis, on the published scores of the\
@@ -4096,17 +4096,17 @@ features:
       passing: true
       module: audit-domain
       implementation: IAuditEngine
-    - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
-        \ 134 normal, 1,570 under-exposed and 46 over-exposed of its 1,750 returning\
-        \ lemmas"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: LemmaRecurrenceAnalyzer
     - name: "should score the course as before, normal lemmas over analysed lemmas\
         \ rounded to two decimals, while it also publishes its course diagnosis"
       implemented: true
       passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
+    - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
+        \ 131 normal, 1,566 under-exposed and 46 over-exposed of its 1,743 returning\
+        \ lemmas"
+      implemented: true
+      passing: false
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-RECUR-R002
@@ -4174,7 +4174,7 @@ features:
       module: audit-cli
       implementation: LemmaRecurrenceDetailedFormatter
   - ruleId: F-RECUR-R004
-    state: PASSING
+    state: FAILING
     tests:
     - name: "should keep the vocabulary score of every level at 96.54, 94.16, 79.45\
         \ and 63.51 with the recurrence of each level published as detail"
@@ -4195,21 +4195,21 @@ features:
       passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
-    - name: "should publish for the course of 29/9 A1 450 returning lemmas with 178\
-        \ normal (39.6%), A2 752 with 155 (20.6%), B1 1,139 with 161 (14.1%) and B2\
-        \ 819 with 165 (20.1%)"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: LemmaRecurrenceAnalyzer
     - name: should keep the recurrence of each level as detail of the course diagnosis
         and never write a lemma-recurrence score on a milestone
       implemented: true
       passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
+    - name: "should publish for the course of 29/9 A1 448 returning lemmas with 176\
+        \ normal (39.3%), A2 752 with 155 (20.6%), B1 1,137 with 161 (14.2%) and B2\
+        \ 818 with 165 (20.2%)"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-RECUR-R005
-    state: PASSING
+    state: FAILING
     tests:
     - name: "should leave in the course one finding per under-exposed or over-exposed\
         \ lemma, of rule F-RECUR-R005, low severity, only ordering and instant cost,\
@@ -4242,10 +4242,10 @@ features:
       passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
-    - name: "should leave 1,616 findings in the course of 29/9, 1,570 for under-exposed\
+    - name: "should leave 1,612 findings in the course of 29/9, 1,566 for under-exposed\
         \ and 46 for over-exposed lemmas"
       implemented: true
-      passing: true
+      passing: false
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-RECUR-R006
@@ -11080,15 +11080,15 @@ features:
       passing: true
       module: audit-domain
       implementation: HintCoherenceAnalyzer
-    - name: "should count hints only among exercises of the same shape, so the 20\
-        \ transformations without hint of El posesivo are not measured against its\
-        \ 20 hinted gaps"
+    - name: "should neither count nor mark multiple choice exercises, as «My brother\
+        \ is a ___ (good / well) driver.» in ¿Good o well?"
       implemented: true
       passing: true
       module: audit-domain
       implementation: HintCoherenceAnalyzer
-    - name: "should neither count nor mark multiple choice exercises, as «My brother\
-        \ is a ___ (good / well) driver.» in ¿Good o well?"
+    - name: "should count hints by shape and in the whole topic, so the 20 transformations\
+        \ without hint of El posesivo have no finding, since neither their shape (0\
+        \ of 20) nor the topic (20 of 40) reaches three quarters"
       implemented: true
       passing: true
       module: audit-domain
@@ -11268,6 +11268,47 @@ features:
       passing: true
       module: audit-domain
       implementation: DefaultHintAnswerCheck
+  - ruleId: F-PISTA-R006
+    state: PASSING
+    tests:
+    - name: "should raise a blocking finding for the panel, identified by the word,\
+        \ on a rewrite that asks for a word nothing announces, as «opinion» in «I\
+        \ think it's a good idea for her to see a dentist. ___» answered «She ought\
+        \ to see a dentist, in my opinion.»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: HintCoherenceAnalyzer
+    - name: "should look for unannounced words only in answers that are the whole\
+        \ sentence, leaving a gap inside the sentence to R002, as «rain» in «It ___\
+        \ (be) soon.» answered «'s going to rain»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: HintCoherenceAnalyzer
+    - name: "should report a content word of a rewrite that comes neither from the\
+        \ sentence it rewrites nor from its hint or instructions, as «have» in «Polite\
+        \ request: I want to eat some cake. ___» answered «Could I have some cake?»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
+    - name: "should take as announced the words the instructions name, so only «practise»\
+        \ is reported in «The coach encouraged the players to repeat the drill. ___»\
+        \ answered «The coach made the players practise the drill.» under «Crea oraciones\
+        \ utilizando 'let' o 'make'.»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
+    - name: "should not report the grammar a rewrite brings by itself, as the perfect\
+        \ and the time shift of reported speech in «“I overslept this morning” (the\
+        \ boy whispered) ___» answered «The boy whispered that he had overslept that\
+        \ morning.»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
   journeysCoverage:
   - journeyId: F-PISTA-J001
     state: PASSING
@@ -11276,7 +11317,7 @@ features:
       result: success
       state: PASSING
       tests:
-      - name: path1_elEjercicioNoTienePistaYTresCuartosOMsDeSuTemaDelMismoTipoS_success
+      - name: path1_elEjercicioNoTienePistaYLaLlevanTresCuartosOMsDeSuTipoODeTodoSuTema_success
         implemented: true
         passing: true
         module: audit-domain
@@ -11346,6 +11387,7 @@ features:
 - id: FEAT-NIVFR
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-09-30.13_nivel-con-frases/REQUIREMENT.md
+  patchFile: ./requirements/2026-09-30.13_nivel-con-frases/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-NIVFR-R001
     state: PASSING
@@ -13698,11 +13740,11 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-RESPC
-  state: IMPLEMENTED
+  state: IMPLEMENTING
   requirementFile: ./requirements/2026-09-30.04_respuestas-completas/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RESPC-R001
-    state: PASSING
+    state: FAILING
     tests:
     - name: "should accept «cafe» where the accepted answer says «café» and take «\
         everyday» as «every day», as the backend corrector does for «Don't run in\
@@ -13739,12 +13781,34 @@ features:
       passing: true
       module: audit-domain
       implementation: DefaultCorrectorMatcher
-    - name: "should decide every golden case of the backend corrector as its «acepta»\
-        \ column says with the copy of the new corrector's table, reading each gap\
-        \ with the sentence around it, as «is» for «It ___ (be) hot inside.» answered\
-        \ «'s»"
+    - name: "should decide every golden case of the corrector with the four rules\
+        \ of 1/10 as its «acepta» column says with the copy of its table, which names\
+        \ those rules, as «'s forgotten» for «He ___ (forget) to pay.» and «Peter\
+        \ was admired.» for «Peter was admired (by Mary).»"
       implemented: true
       passing: true
+      module: audit-domain
+      implementation: DefaultCorrectorMatcher
+    - name: "should give the benefit of the doubt only to the student, so an ambiguous\
+        \ contraction counts as any of its long forms when the student writes it and\
+        \ stays as written in the accepted answer, as «'s forgotten» for «has forgotten»\
+        \ but not «is trained» for «'s trained»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultCorrectorMatcher
+    - name: "should decide every golden case of the corrector #1191 as its «acepta»\
+        \ column says with the copy of its table, reading each gap with the sentence\
+        \ around it, as «is» for «It ___ (be) hot inside.» answered «'s»"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultCorrectorMatcher
+    - name: "should take two texts as the same answer when the corrector matches them\
+        \ in either order, so «He's forgotten to pay.» and «He has forgotten to pay.»\
+        \ are one answer with the four rules of #1194 and two with #1191"
+      implemented: true
+      passing: false
       module: audit-domain
       implementation: DefaultCorrectorMatcher
     - name: "should read from the copy of the corrector's table its version, each\
@@ -13752,6 +13816,13 @@ features:
         \ of equivalent words with its class, as travelled and traveled"
       implemented: true
       passing: true
+      module: vocabulary-infrastructure
+      implementation: FileSystemFormEquivalenceTableSource
+    - name: "should read from «reglas» the rules that are code of the version of the\
+        \ corrector, the four in the copy of #1194, in production, and none in the\
+        \ copy of #1191, and stop at a rule it does not know"
+      implemented: true
+      passing: false
       module: vocabulary-infrastructure
       implementation: FileSystemFormEquivalenceTableSource
   - ruleId: F-RESPC-R002
@@ -13876,13 +13947,6 @@ features:
       passing: true
       module: audit-domain
       implementation: AnswerCompletenessAnalyzer
-    - name: "should resolve by adding it after «|» a missing form the new corrector\
-        \ still rejects, as «has trained» if «He ___ (train) hard today.» only accepted\
-        \ «'s trained», a limit of the corrector"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: AnswerCompletenessAnalyzer
     - name: "should stop reporting the forms the new corrector's table equates, reading\
         \ the gap with the sentence around it, as «is» for «It ___ (be) hot inside.»\
         \ answered «'s»"
@@ -13897,13 +13961,21 @@ features:
       passing: true
       module: audit-domain
       implementation: AnswerCompletenessAnalyzer
+    - name: "should only rank a missing form of a class the corrector in production\
+        \ equates and still rejects, naming the rule the corrector lacks instead of\
+        \ adding it after «|», as «has trained» if «He ___ (train) hard today.» only\
+        \ accepted «'s trained»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: AnswerCompletenessAnalyzer
   - ruleId: F-RESPC-R006
     state: PASSING
     tests:
     - name: "should describe answer-completeness in the catalog as an errors analyzer\
-        \ that evaluates exercises, resolves by rule or at the panel and costs instant,\
-        \ asking «¿El corrector acepta todas las formas de la respuesta, y ninguna\
-        \ consigna pide una?»"
+        \ that evaluates exercises, resolves by rule, at the panel or by ranking only,\
+        \ and costs instant, asking «¿El corrector acepta todas las formas de la respuesta,\
+        \ y ninguna consigna pide una?»"
       implemented: true
       passing: true
       module: audit-domain
@@ -16696,136 +16768,136 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-CIERRE
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-09-30.32_cierre-ronda-1/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CIERRE-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should declare in its tally as many exercises as quizzes, in each state"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: QuizInstructionAnalyzer
     - name: "should declare in the coverage of a topic judge the exercises its topics\
         \ hold, under the state of each topic"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultJudgeRuntime
     - name: "should declare for a judge that consults by exercise as many exercises\
         \ as units, in each state"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultJudgeRuntime
     - name: "should declare in its tally as many exercises as quizzes, in each state"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: TranslationSenseAnalyzer
     - name: "should declare in its tally as many exercises as quizzes, in each state"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: SingleAnswerAnalyzer
     - name: "should count in its tally every exercise of each topic under the state\
         \ of that topic, evaluated or not"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: MiniTheoryAnalyzer
     - name: should declare as exercises without evaluation exactly the exercises the
         report marks as not evaluated by mini-theory
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: MiniTheoryAnalyzer
     - name: "should declare in its coverage as many exercises as quizzes, in each\
         \ state"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LedgerBackedChoiceAlternativeJudgeRun
   - ruleId: F-CIERRE-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should name in a judgment that failed the cause of its own consultation,\
         \ not the first failure of the run"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LedgerBackedChoiceAlternativeJudgeRun
     - name: should return a failed resolution carrying the kind and reason the evaluator
         gave when its output is unusable
       implemented: true
-      passing: false
+      passing: true
       module: evaluation-ledger-domain
       implementation: DefaultEvaluationSession
     - name: "should return a failed resolution as evaluator unavailable, with the\
         \ exception message as its reason, when the evaluator throws"
       implemented: true
-      passing: false
+      passing: true
       module: evaluation-ledger-domain
       implementation: DefaultEvaluationSession
     - name: "should give each failed resolution of a batch the cause of its own consultation,\
         \ not the first failure of the run"
       implemented: true
-      passing: false
+      passing: true
       module: evaluation-ledger-domain
       implementation: DefaultEvaluationSession
     - name: "should leave without cause every resolution that is reused, evaluated\
         \ or pending, including the pending left by a stopped service"
       implemented: true
-      passing: false
+      passing: true
       module: evaluation-ledger-domain
       implementation: DefaultEvaluationSession
     - name: should never write the cause of a failed consultation into the ledger
       implemented: true
-      passing: false
+      passing: true
       module: evaluation-ledger-domain
       implementation: DefaultEvaluationSession
   - ruleId: F-CIERRE-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should write the statement and the finished sentence of its evidence with
         the student view renderer it receives
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultSingleAnswerClassifier
     - name: should keep the marker of each finding whatever text the student view
         renderer gives the exercise
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultSingleAnswerClassifier
     - name: should write the finished sentence of each exercise in its evidence with
         the student view renderer it receives
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultMiniTheoryDistributor
     - name: "should write the statement, the options and the finished sentence of\
         \ its evidence with the student view renderer it receives"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultChoiceAlternativeClassifier
   - ruleId: F-CIERRE-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should describe the analyze budget of quiz-instruction from the judges\
         \ runtime config and the revise-instructions budget of 500, each named with\
         \ its command"
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultQuizInstructionConfig
     - name: "should describe a different analyze budget when the judges runtime config\
         \ gives another one, without copying 0"
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultQuizInstructionConfig
   quality:
@@ -21653,8 +21725,8 @@ elements:
 
       then:
         report.getRoot().getScores().get("lemma-recurrence") == 0.08
-        ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaRecurrenceDiagnosis().orElseThrow().getResult().getLemmaStats().size() == 1750
-        report.getRoot().getFindings().stream().filter(f -> "lemma-recurrence".equals(f.getAnalyzer())).count() == 1616
+        ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaRecurrenceDiagnosis().orElseThrow().getResult().getLemmaStats().size() == 1743
+        report.getRoot().getFindings().stream().filter(f -> "lemma-recurrence".equals(f.getAnalyzer())).count() == 1612
         percent2(report.getRoot().getNumbers().getVocabularyScore()) == "73,92"
     - |
       test: "should keep the vocabulary score of every level at 96.54, 94.16, 79.45 and 63.51 with the recurrence of each level published as detail"
@@ -24080,11 +24152,6 @@ elements:
         \ used lemmas that come back at a healthy interval, next to its goal"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
-    - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
-        \ 134 normal, 1,570 under-exposed and 46 over-exposed of its 1,750 returning\
-        \ lemmas"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: "should score the course as before, normal lemmas over analysed lemmas\
         \ rounded to two decimals, while it also publishes its course diagnosis"
       status: EXISTS
@@ -24116,11 +24183,6 @@ elements:
         \ over-exposed lemmas equal its returning lemmas"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
-    - name: "should publish for the course of 29/9 A1 450 returning lemmas with 178\
-        \ normal (39.6%), A2 752 with 155 (20.6%), B1 1,139 with 161 (14.1%) and B2\
-        \ 819 with 165 (20.1%)"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: should keep the recurrence of each level as detail of the course diagnosis
         and never write a lemma-recurrence score on a milestone
       status: EXISTS
@@ -24146,9 +24208,19 @@ elements:
     - name: should identify each finding by its lemma
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
-    - name: "should leave 1,616 findings in the course of 29/9, 1,570 for under-exposed\
+    - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
+        \ 131 normal, 1,566 under-exposed and 46 over-exposed of its 1,743 returning\
+        \ lemmas"
+      status: MISSING
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
+    - name: "should publish for the course of 29/9 A1 448 returning lemmas with 176\
+        \ normal (39.3%), A2 752 with 155 (20.6%), B1 1,137 with 161 (14.2%) and B2\
+        \ 818 with 165 (20.2%)"
+      status: MISSING
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
+    - name: "should leave 1,612 findings in the course of 29/9, 1,566 for under-exposed\
         \ and 46 for over-exposed lemmas"
-      status: EXISTS
+      status: MISSING
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     testCleanViews:
     - |
@@ -24474,8 +24546,8 @@ elements:
 
       then:
         run.root.getScores().get("lemma-recurrence") == 0.08
-        result.getLemmaStats().size() == 1750
-        List.of(result.getExposureSummary().getNormalCount(), result.getExposureSummary().getSubExposedCount(), result.getExposureSummary().getOverExposedCount()) == List.of(134, 1570, 46)
+        result.getLemmaStats().size() == 1743
+        List.of(result.getExposureSummary().getNormalCount(), result.getExposureSummary().getSubExposedCount(), result.getExposureSummary().getOverExposedCount()) == List.of(131, 1566, 46)
         run.positions == 91873
     - |
       test: "should score the course as before, normal lemmas over analysed lemmas rounded to two decimals, while it also publishes its course diagnosis"
@@ -24570,7 +24642,7 @@ elements:
         levels = run299().diagnosis().getLevels().stream().map(l -> l.getLevel() + " " + l.getPositions() + " " + l.getReturningLemmas() + " " + l.getNormalCount() + " " + l.getSubExposedCount() + " " + l.getOverExposedCount() + " " + String.format(java.util.Locale.ROOT, "%.1f", 100 * l.getNormalShare())).toList()
 
       then:
-        levels == List.of("A1 15802 450 178 257 15 39.6", "A2 18967 752 155 569 28 20.6", "B1 38949 1139 161 938 40 14.1", "B2 18155 819 165 607 47 20.1")
+        levels == List.of("A1 15802 448 176 257 15 39.3", "A2 18967 752 155 569 28 20.6", "B1 38949 1137 161 938 38 14.2", "B2 18155 818 165 607 46 20.2")
     - |
       test: "should keep the recurrence of each level as detail of the course diagnosis and never write a lemma-recurrence score on a milestone"
       trace: FEAT-RECUR / F-RECUR-R004
@@ -24669,8 +24741,8 @@ elements:
         sut.forEach(d -> d.getEvidence().getExamined().stream().filter(p -> "Estado".equals(p.getLabel())).forEach(p -> byState.merge(p.getText(), 1, Integer::sum)))
 
       then:
-        drafts.size() == 1616
-        byState == Map.of("poco vista", 1570, "sobre-expuesta", 46)
+        drafts.size() == 1612
+        byState == Map.of("poco vista", 1566, "sobre-expuesta", 46)
   - name: DefaultContentWordFilter
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/lrec/DefaultContentWordFilter.java
@@ -29953,7 +30025,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1", null)
         verdictReader.read("payload") -> verdict
         scorer.score(verdict) -> 0.3
 
@@ -29989,7 +30061,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1", null)
         verdictReader.read("payload") -> verdict
         scorer.score(verdict) -> 1.0
 
@@ -30018,7 +30090,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1", null)
         verdictReader.read("payload") -> verdict
         scorer.score(verdict) -> 0.6
 
@@ -30043,7 +30115,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null)
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null)
 
       then:
         node.getScores().isEmpty() is true
@@ -30067,7 +30139,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null)
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null)
 
       then:
         node.getScores().isEmpty() is true
@@ -30152,7 +30224,7 @@ elements:
 
       mock:
         subjectBuilder.build(quizNode) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "stored-payload", "v1")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "stored-payload", "v1", null)
         verdictReader.read("stored-payload") -> verdict
         scorer.score(verdict) -> 1.0
         session.coverage() -> coverage
@@ -30184,10 +30256,10 @@ elements:
       mock:
         subjectBuilder.build(withinBudget) -> subj1
         subjectBuilder.build(beyondBudget) -> subj2
-        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1")
+        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1", null)
         verdictReader.read("payload-1") -> verdict
         scorer.score(verdict) -> 0.6
-        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null)
+        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null)
 
       then:
         assertDoesNotThrow(() -> {
@@ -30220,9 +30292,9 @@ elements:
         verdictReader.read("reused-payload") -> verdict
         scorer.score(verdict) -> 1.0
         subjectBuilder.build(zeroBudgetNode) -> zeroBudgetSubject
-        zeroBudgetSession.resolve(zeroBudgetSubject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1")
+        zeroBudgetSession.resolve(zeroBudgetSubject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1", null)
         subjectBuilder.build(highBudgetNode) -> highBudgetSubject
-        highBudgetSession.resolve(highBudgetSubject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1")
+        highBudgetSession.resolve(highBudgetSubject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1", null)
 
       then:
         zeroBudgetNode.getScores().isEmpty() is false
@@ -30250,10 +30322,10 @@ elements:
       mock:
         subjectBuilder.build(judgedBeforeFailure) -> subj1
         subjectBuilder.build(notReachedAfterFailure) -> subj2
-        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1")
+        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1", null)
         verdictReader.read("payload-1") -> verdict
         scorer.score(verdict) -> 0.3
-        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null)
+        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null)
 
       then:
         assertDoesNotThrow(() -> {
@@ -30285,10 +30357,10 @@ elements:
       mock:
         subjectBuilder.build(judgedBeforeFailure) -> subj1
         subjectBuilder.build(notReachedAfterFailure) -> subj2
-        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1")
+        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1", null)
         verdictReader.read("payload-1") -> verdict
         scorer.score(verdict) -> 0.3
-        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null)
+        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null)
 
       then:
         judgedBeforeFailure.getScores().isEmpty() is false
@@ -30314,7 +30386,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "stored-payload", "v1")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "stored-payload", "v1", null)
         verdictReader.read("stored-payload") -> verdict
         scorer.score(verdict) -> 0.6
 
@@ -30347,12 +30419,12 @@ elements:
         subjectBuilder.build(quizB) -> subjB
         verdictReader.read(anyString()) -> verdict
         scorer.score(verdict) -> 0.6
-        session.resolve(subjA) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1")
-        session.resolve(subjB) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null)
+        session.resolve(subjA) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1", null)
+        session.resolve(subjB) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null)
         subjectBuilder.build(quizAAgain) -> subjA
         subjectBuilder.build(quizBAgain) -> subjB
-        session.resolve(subjA) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a", "v1")
-        session.resolve(subjB) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b", "v1")
+        session.resolve(subjA) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a", "v1", null)
+        session.resolve(subjB) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b", "v1", null)
 
       then:
         quizA.getScores().isEmpty() is false
@@ -30381,7 +30453,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "APPROVED-BY-PREVIOUS-VERSION", previousJudgeVersion)
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "APPROVED-BY-PREVIOUS-VERSION", previousJudgeVersion, null)
         verdictReader.read("APPROVED-BY-PREVIOUS-VERSION") -> verdict
         scorer.score(verdict) -> 1.0
         session.coverage() -> coverage
@@ -30414,7 +30486,7 @@ elements:
       mock:
         subjectBuilder.build(node) -> subject
         scopeMatcher.matches(node, "all") -> true
-        session.resolveForced(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new-payload", "v1")
+        session.resolveForced(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new-payload", "v1", null)
         verdictReader.read("new-payload") -> verdict
         scorer.score(verdict) -> 1.0
 
@@ -30445,10 +30517,10 @@ elements:
         subjectBuilder.build(beyondBudget) -> subj2
         scopeMatcher.matches(withinBudget, "all") -> true
         scopeMatcher.matches(beyondBudget, "all") -> true
-        session.resolveForced(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1")
+        session.resolveForced(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1", null)
         verdictReader.read("payload-1") -> verdict
         scorer.score(verdict) -> 0.6
-        session.resolveForced(subj2) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null)
+        session.resolveForced(subj2) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null)
 
       then:
         withinBudget.getScores().isEmpty() is false
@@ -30472,7 +30544,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null)
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null)
 
       then:
         node.getScores().isEmpty() is true
@@ -30498,9 +30570,9 @@ elements:
 
       mock:
         subjectBuilder.build(firstRunNode) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null)
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null)
         subjectBuilder.build(laterRunNode) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-retry", "v1")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-retry", "v1", null)
         verdictReader.read("payload-retry") -> verdict
         scorer.score(verdict) -> 1.0
 
@@ -30527,7 +30599,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1", null)
         verdictReader.read("payload") -> verdict
         scorer.score(verdict) -> 1.0
 
@@ -30612,11 +30684,11 @@ elements:
       mock:
         session.consultedEvaluatorVersion() -> Optional.of(consultedThisRun)
         subjectBuilder.build(evaluatedInThisRun) -> subj1
-        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", consultedThisRun)
+        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", consultedThisRun, null)
         verdictReader.read("payload-new") -> newVerdict
         scorer.score(newVerdict) -> 1.0
         subjectBuilder.build(reusedFromEarlierRun) -> subj2
-        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-reused", previousProvenance)
+        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-reused", previousProvenance, null)
         verdictReader.read("payload-reused") -> reusedVerdict
         scorer.score(reusedVerdict) -> 1.0
         session.coverage() -> coverage
@@ -30662,13 +30734,13 @@ elements:
         scopeMatcher.decide(inDeclaredSet, policy) -> QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION
         scopeMatcher.decide(outsideWithVerdict, policy) -> QuizInstructionReevaluationDecision.OUTSIDE_DECLARED_SET
         scopeMatcher.decide(outsideWithoutVerdict, policy) -> QuizInstructionReevaluationDecision.OUTSIDE_DECLARED_SET
-        session.resolvePreferringNew(subjInSet) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", "v1")
+        session.resolvePreferringNew(subjInSet) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", "v1", null)
         verdictReader.read("payload-new") -> newVerdict
         scorer.score(newVerdict) -> 1.0
-        session.resolveWithoutConsulting(subjOutsideWithVerdict) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-old", "v1")
+        session.resolveWithoutConsulting(subjOutsideWithVerdict) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-old", "v1", null)
         verdictReader.read("payload-old") -> reusedVerdict
         scorer.score(reusedVerdict) -> 0.6
-        session.resolveWithoutConsulting(subjOutsideWithoutVerdict) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null)
+        session.resolveWithoutConsulting(subjOutsideWithoutVerdict) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null)
 
       then:
         inDeclaredSet.getScores().isEmpty() is false
@@ -30699,7 +30771,7 @@ elements:
       mock:
         subjectBuilder.build(beyondBudget) -> subject
         scopeMatcher.decide(beyondBudget, policy) -> QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION
-        session.resolvePreferringNew(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "previous-payload", "v1")
+        session.resolvePreferringNew(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "previous-payload", "v1", null)
         verdictReader.read("previous-payload") -> verdict
         scorer.score(verdict) -> 1.0
 
@@ -30732,7 +30804,7 @@ elements:
       mock:
         subjectBuilder.build(matchedNode) -> subject
         scopeMatcher.decide(matchedNode, policy) -> QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION
-        session.resolvePreferringNew(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1")
+        session.resolvePreferringNew(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1", null)
         verdictReader.read("payload") -> verdict
         scorer.score(verdict) -> 1.0
         session.coverage() -> coverage
@@ -30769,10 +30841,10 @@ elements:
         subjectBuilder.build(outsideDeclaredSet) -> subj2
         scopeMatcher.decide(inDeclaredSet, policy) -> QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION
         scopeMatcher.decide(outsideDeclaredSet, policy) -> QuizInstructionReevaluationDecision.OUTSIDE_DECLARED_SET
-        session.resolvePreferringNew(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", "v1")
+        session.resolvePreferringNew(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", "v1", null)
         verdictReader.read("payload-new") -> newVerdict
         scorer.score(newVerdict) -> 1.0
-        session.resolveWithoutConsulting(subj2) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-old", "v1")
+        session.resolveWithoutConsulting(subj2) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-old", "v1", null)
         verdictReader.read("payload-old") -> reusedVerdict
         scorer.score(reusedVerdict) -> 0.6
         session.coverage() -> coverage
@@ -31093,6 +31165,25 @@ elements:
         judge.asked() == List.of("q2")
         photo.quizzes().get(0).getScores().get("quiz-instruction") == 0.3
         ledger.records().stream().filter(r -> r.getKey().getEvaluatorId().equals(CONSIGNA_EVALUATOR)).count() == 2
+    - |
+      test: "should declare in its tally as many exercises as quizzes, in each state"
+      trace: FEAT-CIERRE / F-CIERRE-R001
+
+      given:
+        ledger = JexamLedger()
+        course = JexamCourse.withQuizzes(4)
+        judgedBefore = course.quizzes().get(0)
+        judge = CountingJudge("v-hoy", COMPLIANT)
+        analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-hoy"), budget(1, null))
+        coverage = course.judgeCoverage()
+
+      when:
+        sut.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(judgedBefore), quizId(judgedBefore), COMPLIANT, "v-hoy")
+
+      then:
+        judge.calls() == 1
+        List.of(coverage.getReached(), coverage.getEvaluated(), coverage.getNotEvaluated()) == List.of(4, 2, 2)
+        coverage.getQuizzes() == new JudgeQuizTally(4, 2, 2)
   - name: DefaultQuizInstructionSubjectBuilder
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilder.java
@@ -31518,8 +31609,8 @@ elements:
         subjectBuilder = Mockito.mock(QuizInstructionSubjectBuilder.class)
         subject = EvaluationSubject("quiz-1", Map.of("quiz", "I have eaten"))
         session = Mockito.mock(EvaluationSession.class)
-        recorded = EvaluationResolution(EvaluationResolutionKind.REUSED, "stale-payload", "judge-v1")
-        fresh = EvaluationResolution(EvaluationResolutionKind.EVALUATED, "fresh-payload", "judge-v2")
+        recorded = EvaluationResolution(EvaluationResolutionKind.REUSED, "stale-payload", "judge-v1", null)
+        fresh = EvaluationResolution(EvaluationResolutionKind.EVALUATED, "fresh-payload", "judge-v2", null)
         verdictReader = Mockito.mock(QuizInstructionVerdictReader.class)
         staleVerdict = QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR, "stale reason", List.of(), List.of())
         freshVerdict = QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE, "fresh reason", List.of(), List.of())
@@ -32665,7 +32756,7 @@ elements:
         card.getEvaluatedTargets() == List.of(AuditTarget.QUIZ)
         card.getResolutions() == List.of(FindingResolution.RULE, FindingResolution.PANEL)
         card.getCost() == AnalysisCost.INSTANT
-        card.getRules().stream().map(AnalyzerRuleCard::getId).toList() == List.of("missing-hint", "hint-words", "hint-subject", "hint-negation")
+        card.getRules().stream().map(AnalyzerRuleCard::getId).toList() == List.of("missing-hint", "hint-words", "hint-subject", "hint-negation", "rewrite-words")
         card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT) is true
         card.getGoal().contains("tres cuartos") is true
         provider.planBinding().isEmpty() is true
@@ -32684,11 +32775,6 @@ elements:
     - name: "should take exactly three quarters of the topic as reaching the threshold\
         \ and leave a topic below it without finding, as «I'd love ___ .» in One y\
         \ ones, where 12 of 20 carry a hint"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceAnalyzerTest.java
-    - name: "should count hints only among exercises of the same shape, so the 20\
-        \ transformations without hint of El posesivo are not measured against its\
-        \ 20 hinted gaps"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceAnalyzerTest.java
     - name: "should neither count nor mark multiple choice exercises, as «My brother\
@@ -32715,6 +32801,22 @@ elements:
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceAnalyzerTest.java
     - name: "should identify each finding by its rule and the word it names, so two\
         \ runs give «Who ___ (I / see)?» the same identity"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceAnalyzerTest.java
+    - name: "should raise a blocking finding for the panel, identified by the word,\
+        \ on a rewrite that asks for a word nothing announces, as «opinion» in «I\
+        \ think it's a good idea for her to see a dentist. ___» answered «She ought\
+        \ to see a dentist, in my opinion.»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceAnalyzerTest.java
+    - name: "should look for unannounced words only in answers that are the whole\
+        \ sentence, leaving a gap inside the sentence to R002, as «rain» in «It ___\
+        \ (be) soon.» answered «'s going to rain»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceAnalyzerTest.java
+    - name: "should count hints by shape and in the whole topic, so the 20 transformations\
+        \ without hint of El posesivo have no finding, since neither their shape (0\
+        \ of 20) nor the topic (20 of 40) reaches three quarters"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceAnalyzerTest.java
     testCleanViews:
@@ -32765,7 +32867,7 @@ elements:
         rules(analyzer.findingsAt(loveAgain)) == List.of(HintCoherenceAnalyzer.RULE_MISSING_HINT)
         loveAgain.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME) == 0.0
     - |
-      test: "should count hints only among exercises of the same shape, so the 20 transformations without hint of El posesivo are not measured against its 20 hinted gaps"
+      test: "should count hints by shape and in the whole topic, so the 20 transformations without hint of El posesivo have no finding, since neither their shape (0 of 20) nor the topic (20 of 40) reaches three quarters"
       trace: FEAT-PISTA / F-PISTA-R001
 
       given:
@@ -32869,6 +32971,40 @@ elements:
       then:
         identities.get(1) == identities.get(0)
         identities.get(0) == "hint-coherence|hint-subject|67fab6d59930102295342031|i"
+    - |
+      test: "should raise a blocking finding for the panel, identified by the word, on a rewrite that asks for a word nothing announces, as «opinion» in «I think it's a good idea for her to see a dentist. ___» answered «She ought to see a dentist, in my opinion.»"
+      trace: FEAT-PISTA / F-PISTA-R006
+
+      given:
+        dentist = DefaultHintAnswerCheckTest.rewrite("67fab6d599301022953444f8", "She ought to see a dentist, in my opinion.", "She|she|PRON ought|ought|AUX to|to|PART see|see|VERB a|a|DET dentist|dentist|NOUN ,|,|PUNCT in|in|ADP" + " my|my|PRON opinion|opinion|NOUN .|.|PUNCT", "Transforma las oraciones para que incluyan 'ought to' o 'shouldn't'.", text("I think it's a good idea for her to see a dentist."), cloze("She ought to see a dentist, in my opinion."))
+        topic = run(knowledge("6814dafa7d73e7209a13d47b", "Consejos con $ought to$", SentenceMode.REWRITE, List.of(dentist)))
+        node = quizNode(topic, "44f8")
+        drafts = analyzer.findingsAt(node)
+        opinion = drafts.get(0)
+
+      then:
+        rules(drafts) == List.of(HintCoherenceAnalyzer.RULE_REWRITE_WORDS)
+        opinion.getMarker() == "opinion"
+        opinion.getSeverity() == FindingSeverity.BLOCKING
+        opinion.getResolution() == FindingResolution.PANEL
+        part(opinion, "Respuesta") == "She ought to see a dentist, in my opinion."
+        opinion.getEvidence().getObservation().endsWith("«opinion» no sale de la oración de partida, la" + " pista ni la consigna. Va a la mesa: quien reescribe fiel da mal") is true
+        labels(opinion).contains("Pista propuesta") is false
+        diagnosis(node).getShape() == ExerciseShape.WHOLE_SENTENCE
+        node.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME) == 0.0
+    - |
+      test: "should look for unannounced words only in answers that are the whole sentence, leaving a gap inside the sentence to R002, as «rain» in «It ___ (be) soon.» answered «'s going to rain»"
+      trace: FEAT-PISTA / F-PISTA-R006
+
+      given:
+        rain = quiz("67fab6d5993010229534215c", "It's going to rain soon.", "It|it|PRON 's|be|AUX going|go|VERB to|to|PART rain|rain|VERB soon|soon|ADV .|.|PUNCT", text("It"), cloze("'s going to rain|is going to rain"), text("(be) soon."))
+        topic = run(knowledge("6814dafa7d73e7209a13d1d5", "Futuro con $going to$", SentenceMode.FILL, List.of(rain)))
+        node = quizNode(topic, "215c")
+
+      then:
+        diagnosis(node).getShape() == ExerciseShape.GAP_IN_SENTENCE
+        rules(analyzer.findingsAt(node)) == List.of(HintCoherenceAnalyzer.RULE_HINT_WORDS)
+        diagnosis(node).getIssues().stream().map(HintIssue::getKind).toList() == List.of(HintIssueKind.VERB_NOT_ANNOUNCED)
   - name: DefaultHintReader
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintReader.java
@@ -33002,6 +33138,23 @@ elements:
     - name: "should send to the panel instead of fixing by rule a hint word that is\
         \ not in the answer, as «bad» in «That was ___ (bad) holiday ever!» answered\
         \ «the best»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should report a content word of a rewrite that comes neither from the\
+        \ sentence it rewrites nor from its hint or instructions, as «have» in «Polite\
+        \ request: I want to eat some cake. ___» answered «Could I have some cake?»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should take as announced the words the instructions name, so only «practise»\
+        \ is reported in «The coach encouraged the players to repeat the drill. ___»\
+        \ answered «The coach made the players practise the drill.» under «Crea oraciones\
+        \ utilizando 'let' o 'make'.»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should not report the grammar a rewrite brings by itself, as the perfect\
+        \ and the time shift of reported speech in «“I overslept this morning” (the\
+        \ boy whispered) ___» answered «The boy whispered that he had overslept that\
+        \ morning.»"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
     testCleanViews:
@@ -33140,6 +33293,43 @@ elements:
         issues.get(0).getWord() == "bad"
         issues.get(0).getResolution() == FindingResolution.PANEL
         issues.get(0).getProposedHint() == "(good)"
+    - |
+      test: "should report a content word of a rewrite that comes neither from the sentence it rewrites nor from its hint or instructions, as «have» in «Polite request: I want to eat some cake. ___» answered «Could I have some cake?»"
+      trace: FEAT-PISTA / F-PISTA-R006
+
+      given:
+        cake = rewrite("67fab6d599301022953424f7", "Could I have some cake?", "Could|could|AUX I|I|PRON have|have|VERB some|some|DET cake|cake|NOUN ?|?|PUNCT", "Transforma las oraciones para que incluyan 'can' o 'could'.", text("Polite request: I want to eat some cake."), cloze("Could I have some cake?"))
+        issues = check().checkRewrite(cake)
+
+      then:
+        kinds(issues) == List.of(HintIssueKind.REWRITE_WORD_NOT_ANNOUNCED)
+        issues.get(0).getWord() == "have"
+        issues.get(0).getRule() == HintCoherenceAnalyzer.RULE_REWRITE_WORDS
+        issues.get(0).getResolution() == FindingResolution.PANEL
+        issues.get(0).getProposedHint() is null
+    - |
+      test: "should take as announced the words the instructions name, so only «practise» is reported in «The coach encouraged the players to repeat the drill. ___» answered «The coach made the players practise the drill.» under «Crea oraciones utilizando 'let' o 'make'.»"
+      trace: FEAT-PISTA / F-PISTA-R006
+
+      given:
+        tokens = "The|the|DET coach|coach|NOUN made|make|VERB the|the|DET players|player|NOUN" + " practise|practise|VERB the|the|DET drill|drill|NOUN .|.|PUNCT"
+        drill = rewrite("67fab6d59930102295344186", "The coach made the players practise the drill.", tokens, "Crea oraciones utilizando 'let' o 'make'.", text("The coach encouraged the players to repeat the drill."), cloze("The coach made the players practise the drill."))
+        withoutInstructions = rewrite("67fab6d59930102295344186", "The coach made the players practise the drill.", tokens, null, text("The coach encouraged the players to repeat the drill."), cloze("The coach made the players practise the drill."))
+
+      then:
+        words(check().checkRewrite(drill)) == List.of("practise")
+        words(check().checkRewrite(withoutInstructions)) == List.of("make", "practise")
+    - |
+      test: "should not report the grammar a rewrite brings by itself, as the perfect and the time shift of reported speech in «“I overslept this morning” (the boy whispered) ___» answered «The boy whispered that he had overslept that morning.»"
+      trace: FEAT-PISTA / F-PISTA-R006
+
+      given:
+        overslept = rewrite("67fab6d5993010229534447b", "“I overslept this morning” The boy whispered that he had overslept that morning.", "“|\"|PUNCT I|I|PRON overslept|overslept|ADV this|this|DET morning|morning|NOUN ”|\"|PUNCT The|the|DET" + " boy|boy|NOUN whispered|whisper|VERB that|that|SCONJ he|he|PRON had|have|VERB" + " overslept|overslept|ADV that|that|DET morning|morning|NOUN .|.|PUNCT", "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.", text("“I overslept this morning” (the boy whispered)"), cloze("The boy whispered that he had overslept that morning."))
+        tomorrow = rewrite("67fab6d59930102295343799", "John said that he would call Peter the next day.", "John|John|PROPN said|say|VERB that|that|SCONJ he|he|PRON would|would|AUX call|call|VERB" + " Peter|Peter|PROPN the|the|DET next|next|ADJ day|day|NOUN .|.|PUNCT", "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como" + " lo harías en un examen. Comienza con 'John said that'.", text("I will call Peter tomorrow. "), cloze("John said that he would call Peter the next day."))
+
+      then:
+        check().checkRewrite(overslept) == List.of()
+        check().checkRewrite(tomorrow) == List.of()
   - name: DefaultCorrectorMatcher
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcher.java
@@ -33169,11 +33359,27 @@ elements:
         \ (travel) to Europe.» answered «travelled»"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcherTest.java
-    - name: "should decide every golden case of the backend corrector as its «acepta»\
-        \ column says with the copy of the new corrector's table, reading each gap\
-        \ with the sentence around it, as «is» for «It ___ (be) hot inside.» answered\
-        \ «'s»"
+    - name: "should decide every golden case of the corrector with the four rules\
+        \ of 1/10 as its «acepta» column says with the copy of its table, which names\
+        \ those rules, as «'s forgotten» for «He ___ (forget) to pay.» and «Peter\
+        \ was admired.» for «Peter was admired (by Mary).»"
       status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcherTest.java
+    - name: "should give the benefit of the doubt only to the student, so an ambiguous\
+        \ contraction counts as any of its long forms when the student writes it and\
+        \ stays as written in the accepted answer, as «'s forgotten» for «has forgotten»\
+        \ but not «is trained» for «'s trained»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcherTest.java
+    - name: "should decide every golden case of the corrector #1191 as its «acepta»\
+        \ column says with the copy of its table, reading each gap with the sentence\
+        \ around it, as «is» for «It ___ (be) hot inside.» answered «'s»"
+      status: MISSING
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcherTest.java
+    - name: "should take two texts as the same answer when the corrector matches them\
+        \ in either order, so «He's forgotten to pay.» and «He has forgotten to pay.»\
+        \ are one answer with the four rules of #1194 and two with #1191"
+      status: MISSING
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcherTest.java
     testCleanViews:
     - |
@@ -33234,7 +33440,8 @@ elements:
         next.accepts(they, List.of("'re not"), "'re not") is true
         next.sameAnswer(they, "aren't", "'re not") is true
         next.accepts(they, List.of("'re not"), "are") is false
-        next.tableVersion() == "corrector en producción, ittm #1191 (30e0efcc0), desplegado el 1/10/2026"
+        next.tableVersion() == "corrector en producción, ittm #1194 (9915461ac), desplegado el 1/10/2026"
+        new DefaultCorrectorMatcher(corrector1191Table()).accepts(they, List.of("'re not"), "aren't") is true
     - |
       test: "should decide every golden case of the backend corrector as its «hoy» column says with today's empty table, as «traveled» rejected for «She ___ (travel) to Europe.» answered «travelled»"
       trace: FEAT-RESPC / F-RESPC-R001
@@ -33243,6 +33450,10 @@ elements:
         today = DefaultCorrectorMatcher(oldCorrectorTable())
         wrong = ArrayList<>()
         cases = 0
+        every = ArrayList<>(goldenCases())
+
+      when:
+        sut.addAll(goldenCases(GOLDEN_CASES_1191))
 
       then:
         cases > 0 is true
@@ -33253,7 +33464,7 @@ elements:
       trace: FEAT-RESPC / F-RESPC-R001
 
       given:
-        next = DefaultCorrectorMatcher(productionTable())
+        next = DefaultCorrectorMatcher(corrector1191Table())
         wrong = ArrayList<>()
         cases = 0
         hot = GapContext("It", "(be) hot inside.")
@@ -33263,19 +33474,75 @@ elements:
         wrong == List.of()
         next.accepts(hot, List.of("'s"), "is") is true
         next.accepts(hot, List.of("'s"), "has") is false
+    - |
+      test: "should decide every golden case of the corrector with the four rules of 1/10 as its «acepta» column says with the copy of its table, which names those rules, as «'s forgotten» for «He ___ (forget) to pay.» and «Peter was admired.» for «Peter was admired (by Mary).»"
+      trace: FEAT-RESPC / F-RESPC-R001
+
+      given:
+        table = productionTable()
+        next = DefaultCorrectorMatcher(table)
+        wrong = ArrayList<>()
+        cases = 0
+        before = DefaultCorrectorMatcher(corrector1191Table())
+        forgot = GapContext("He", "(forget) to pay.")
+        peter = GapContext("Mary admired Peter.", "")
+
+      then:
+        table.getRules() == List.of(CorrectorRule.AMBIGUOUS_CONTRACTIONS, CorrectorRule.STANDARD_IRREGULAR_PARTICIPLES, CorrectorRule.TILL_OWN_SUBJECTS, CorrectorRule.OPTIONAL_PARENTHESES)
+        cases == 192
+        wrong == List.of()
+        next.accepts(forgot, List.of("has forgotten"), "'s forgotten") is true
+        before.accepts(forgot, List.of("has forgotten"), "'s forgotten") is false
+        next.accepts(peter, List.of("Peter was admired (by Mary)."), "Peter was admired.") is true
+        next.accepts(peter, List.of("Peter was admired (by Mary)."), "Peter was admired by Mary.") is true
+        before.accepts(peter, List.of("Peter was admired (by Mary)."), "Peter was admired.") is false
+    - |
+      test: "should give the benefit of the doubt only to the student, so an ambiguous contraction counts as any of its long forms when the student writes it and stays as written in the accepted answer, as «'s forgotten» for «has forgotten» but not «is trained» for «'s trained»"
+      trace: FEAT-RESPC / F-RESPC-R001
+
+      given:
+        next = DefaultCorrectorMatcher(productionTable())
+        trained = GapContext("He", "(train) hard today.")
+
+      then:
+        next.accepts(new GapContext("He", "(forget) to pay."), List.of("has forgotten"), "'s forgotten") is true
+        next.accepts(new GapContext("He", "(forget) to pay."), List.of("has forgotten"), "is forgotten") is false
+        next.accepts(trained, List.of("'s trained"), "is trained") is false
+        next.accepts(trained, List.of("'s trained"), "has trained") is false
+        next.accepts(trained, List.of("'s trained"), "'s trained") is true
+        next.accepts(new GapContext("", ""), List.of("Peter has left hand."), "Peter's left hand.") is false
+        next.accepts(new GapContext("A: Has she left? B: Yes,", ""), List.of("she has."), "she's.") is false
+        next.accepts(new GapContext("He's forgotten to pay, so he", "."), List.of("has to"), "is to") is false
+    - |
+      test: "should take two texts as the same answer when the corrector matches them in either order, so «He's forgotten to pay.» and «He has forgotten to pay.» are one answer with the four rules and two with the corrector in production"
+      trace: FEAT-RESPC / F-RESPC-R001
+
+      given:
+        next = DefaultCorrectorMatcher(productionTable())
+        production = DefaultCorrectorMatcher(corrector1191Table())
+
+      then:
+        next.sameAnswer("He's forgotten to pay.", "He has forgotten to pay.") is true
+        next.sameAnswer("He has forgotten to pay.", "He's forgotten to pay.") is true
+        production.sameAnswer("He's forgotten to pay.", "He has forgotten to pay.") is false
+        next.sameAnswer("Peter was admired by Mary.", "Peter was admired (by Mary).") is true
+        next.sameAnswer("Peter was admired (by Mary).", "Peter was admired.") is true
+        production.sameAnswer("Peter was admired by Mary.", "Peter was admired (by Mary).") is false
+        next.sameAnswer("I do not know.", "I don't know.") && production.sameAnswer("I don't know.", "I do not know.") is true
+        next.sameAnswer("Peter was admired by.", "Peter was admired (by Mary).") is false
   - name: AnswerCompletenessAnalyzerProvider
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/answercompleteness/AnswerCompletenessAnalyzerProvider.java
     tests:
     - name: "should describe answer-completeness in the catalog as an errors analyzer\
-        \ that evaluates exercises, resolves by rule or at the panel and costs instant,\
-        \ asking «¿El corrector acepta todas las formas de la respuesta, y ninguna\
-        \ consigna pide una?»"
+        \ that evaluates exercises, resolves by rule, at the panel or by ranking only,\
+        \ and costs instant, asking «¿El corrector acepta todas las formas de la respuesta,\
+        \ y ninguna consigna pide una?»"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/answercompleteness/AnswerCompletenessAnalyzerProviderTest.java
     testCleanViews:
     - |
-      test: "should describe answer-completeness in the catalog as an errors analyzer that evaluates exercises, resolves by rule or at the panel and costs instant, asking «¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?»"
+      test: "should describe answer-completeness in the catalog as an errors analyzer that evaluates exercises, resolves by rule, at the panel or by ranking only, and costs instant, asking «¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?»"
       trace: FEAT-RESPC / F-RESPC-R006
 
       given:
@@ -33340,11 +33607,6 @@ elements:
         \ its audio as they are, as «aren't» for «They ___ (not / be) from Ireland.»"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/answercompleteness/AnswerCompletenessAnalyzerTest.java
-    - name: "should resolve by adding it after «|» a missing form the new corrector\
-        \ still rejects, as «has trained» if «He ___ (train) hard today.» only accepted\
-        \ «'s trained», a limit of the corrector"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/answercompleteness/AnswerCompletenessAnalyzerTest.java
     - name: "should stop reporting the forms the new corrector's table equates, reading\
         \ the gap with the sentence around it, as «is» for «It ___ (be) hot inside.»\
         \ answered «'s»"
@@ -33371,6 +33633,12 @@ elements:
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/answercompleteness/AnswerCompletenessAnalyzerTest.java
     - name: "should leave a finding on the mini-theory that asks for a form, naming\
         \ the mini-theory in its identity, as for «It ___ (be) hot inside.»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/answercompleteness/AnswerCompletenessAnalyzerTest.java
+    - name: "should only rank a missing form of a class the corrector in production\
+        \ equates and still rejects, naming the rule the corrector lacks instead of\
+        \ adding it after «|», as «has trained» if «He ___ (train) hard today.» only\
+        \ accepted «'s trained»"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/answercompleteness/AnswerCompletenessAnalyzerTest.java
     testCleanViews:
@@ -33464,16 +33732,19 @@ elements:
         arent.getEvidence().getObservation().contains("se arregla en el corrector y no en el curso") is true
         arent.getEvidence().getObservation().contains("la primera respuesta y su audio no cambian") is true
     - |
-      test: "should resolve by adding it after «|» a missing form the new corrector still rejects, as «has trained» if «He ___ (train) hard today.» only accepted «'s trained», a limit of the corrector"
+      test: "should only rank a missing form of a class the corrector in production equates and still rejects, naming the rule the corrector lacks instead of adding it after «|», as «has trained» if «He ___ (train) hard today.» only accepted «'s trained»"
       trace: FEAT-RESPC / F-RESPC-R005
 
       given:
         onlyContracted = quiz("67fab6d59930102295343061", "", "", text("He"), cloze("'s trained"), text("(train) hard today."))
         hasTrained = byMarker(findings(productionCorrector(), onlyContracted), "has trained")
         node = node(onlyContracted)
-        forgotten = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534283e", "", "", text("He"), cloze("has forgotten"), text("(forget) to pay."))), "'s forgotten")
-        overslept = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534447b", "", "", text("“I overslept this morning” (the boy whispered)"), cloze("The boy whispered that he had overslept that morning."))), "the boy whispered that he'd overslept that morning.")
-        till = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534326a", "", "", text("why / she / work there until then?"), cloze("Why had she worked there until then?"), text(""))), "why had she worked there till then?")
+        forgot = quiz("67fab6d5993010229534283e", "", "", text("He"), cloze("has forgotten"), text("(forget) to pay."))
+        forgotten = byMarker(findings(corrector1191(), forgot), "'s forgotten")
+        boy = quiz("67fab6d5993010229534447b", "", "", text("“I overslept this morning” (the boy whispered)"), cloze("The boy whispered that he had overslept that morning."))
+        overslept = byMarker(findings(corrector1191(), boy), "the boy whispered that he'd overslept that morning.")
+        then = quiz("67fab6d5993010229534326a", "", "", text("why / she / work there until then?"), cloze("Why had she worked there until then?"), text(""))
+        till = byMarker(findings(corrector1191(), then), "why had she worked there till then?")
 
       when:
         sut.onQuiz(node)
@@ -33491,6 +33762,7 @@ elements:
         part(overslept, "Le falta al corrector") == "falta «overslept» en los participios: lee «'d» como would"
         part(till, "Le falta al corrector") == "la regla de till toma «there» como sujeto"
         till.getResolution() == FindingResolution.RANK_ONLY
+        findings(productionCorrector(), forgot).isEmpty() && findings(productionCorrector(), boy).isEmpty() && findings(productionCorrector(), then).isEmpty() is true
     - |
       test: "should stop reporting the forms the new corrector's table equates, reading the gap with the sentence around it, as «is» for «It ___ (be) hot inside.» answered «'s»"
       trace: FEAT-RESPC / F-RESPC-R005
@@ -33628,6 +33900,9 @@ elements:
       then:
         forms("There is a house near the school.", "school").get("There's a house near the school.") == FormEquivalenceClass.CONTRACTION
         forms("She sells cheese that is produced in Switzerland.", "").get("She sells cheese that's produced in Switzerland.") == FormEquivalenceClass.CONTRACTION
+        forms("She has not responded yet.", "").get("She's not responded yet.") == FormEquivalenceClass.CONTRACTION
+        forms("has not studied", "He").get("'s not studied") == FormEquivalenceClass.CONTRACTION
+        forms("I have not a car.", "").containsKey("I've not a car.") is false
     - |
       test: "should read «'s» as has before a past participle and as is otherwise, as «has hated» for «'s hated» in «She ___ (hate) broccoli for ages» and «is» for «'s» in «It ___ (be) hot inside.»"
       trace: FEAT-RESPC / F-RESPC-R002
@@ -35017,7 +35292,7 @@ elements:
         courseSessions.opened() == 2
         examSessions.opened() == 0
         judgedAsCandidate.getKind() == EvaluationResolutionKind.EVALUATED
-        onTheCourse == new EvaluationResolution(EvaluationResolutionKind.REUSED, judgedAsCandidate.getPayload(), "qi-v1")
+        onTheCourse == new EvaluationResolution(EvaluationResolutionKind.REUSED, judgedAsCandidate.getPayload(), "qi-v1", null)
         judge.calls() == 1
     - |
       test: "should reject, for any judge, a declared empty set and a set declared together with a course area before opening any session"
@@ -35036,7 +35311,7 @@ elements:
         plan = runtime.plan(units, policy)
         judge = ScriptedJudge.healthy(CONSIGNA_JUDGE, "qi-v1")
         opened = runtime.open(QUIZ_INSTRUCTION, List.of(judge), policy)
-        coverage = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, 3, 1, 2, Map.of("qi-v1", 1), plan.getUnmatchedDeclaredIds()))
+        coverage = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, 3, 1, 2, Map.of("qi-v1", 1), plan.getUnmatchedDeclaredIds(), null))
 
       then:
         new HashSet<>(plan.getUnmatchedDeclaredIds()) == Set.of("q-borrado-1", "q-borrado-2")
@@ -35160,7 +35435,7 @@ elements:
       given:
         judge = ScriptedJudge.healthy(CONSIGNA_JUDGE, "qi-v3")
         opened = runtime.open(QUIZ_INSTRUCTION, List.of(judge), onTheCourse(0))
-        coverage = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, 20, 14, 6, Map.of("qi-v1", 5, "qi-v2", 7, "qi-v3", 2), List.of()))
+        coverage = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, 20, 14, 6, Map.of("qi-v1", 5, "qi-v2", 7, "qi-v3", 2), List.of(), null))
         byVersion = coverage.getVersions().stream().collect(Collectors.toMap(JudgeVersionStanding::getJudgeVersion, Function.identity()))
 
       then:
@@ -35185,7 +35460,7 @@ elements:
         fromEnglish = ScriptedJudge.healthy(FROM_ENGLISH, "en-v1")
         fromTranslation = ScriptedJudge.unavailable(FROM_TRANSLATION, "tr-v1", SESSION_EXPIRED)
         opened = runtime.open(TRANSLATION_SENSE, List.of(fromEnglish, fromTranslation), onTheCourse(10))
-        coverage = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, 2, 0, 2, Map.of(), List.of()))
+        coverage = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, 2, 0, 2, Map.of(), List.of(), null))
         healthyRun = runtime.open(QUIZ_INSTRUCTION, List.of(ScriptedJudge.healthy(CONSIGNA_JUDGE, "qi-v1")), onTheCourse(1))
 
       then:
@@ -35193,7 +35468,7 @@ elements:
         kinds(resolve(opened, 1, requests("q-1", "q-2"))) == List.of(EvaluationResolutionKind.FAILED, EvaluationResolutionKind.PENDING)
         coverage.getUnavailableReason() == SESSION_EXPIRED
         fromTranslation.calls() == 1
-        runtime.coverage(healthyRun, new JudgeUnitTally(AuditTarget.QUIZ, 1, 1, 0, Map.of("qi-v1", 1), List.of())).getUnavailableReason() is null
+        runtime.coverage(healthyRun, new JudgeUnitTally(AuditTarget.QUIZ, 1, 1, 0, Map.of("qi-v1", 1), List.of(), null)).getUnavailableReason() is null
     - |
       test: "should take the last exam record of a version as its standing, so an approval recorded after a failure lets it consult"
       trace: FEAT-JEXAM / F-JEXAM-R001
@@ -35214,6 +35489,39 @@ elements:
         standing.isConsultsOnCourse() is true
         kinds(resolve(afterApproval, 0, requests("q-1"))) == List.of(EvaluationResolutionKind.EVALUATED)
         judge.calls() == 1
+    - |
+      test: "should declare in the coverage of a topic judge the exercises its topics hold, under the state of each topic"
+      trace: FEAT-CIERRE / F-CIERRE-R001
+
+      given:
+        judge = ScriptedJudge.healthy(MINI_THEORY_JUDGE, "mt-v1")
+        opened = runtime.open(MINI_THEORY, List.of(judge), null)
+        counted = JudgeQuizTally(80, 20, 60)
+        tally = JudgeUnitTally(AuditTarget.KNOWLEDGE, 3, 1, 2, Map.of("mt-v1", 1), List.of(), counted)
+        coverage = runtime.coverage(opened, tally)
+
+      when:
+        sut.setNotEvaluated(0)
+
+      then:
+        coverage.getUnit() == AuditTarget.KNOWLEDGE
+        List.of(coverage.getReached(), coverage.getEvaluated(), coverage.getNotEvaluated()) == List.of(3, 1, 2)
+        coverage.getQuizzes() == new JudgeQuizTally(80, 20, 60)
+        coverage.getQuizzes().getEvaluated() + coverage.getQuizzes().getNotEvaluated() == coverage.getQuizzes().getReached()
+        runtime.coverage(opened, new JudgeUnitTally(AuditTarget.KNOWLEDGE, 3, 1, 2, Map.of(), List.of(), null)).getQuizzes() is null
+        judge.calls() == 0
+    - |
+      test: "should declare for a judge that consults by exercise as many exercises as units, in each state"
+      trace: FEAT-CIERRE / F-CIERRE-R001
+
+      given:
+        judge = ScriptedJudge.healthy(CONSIGNA_JUDGE, "qi-v1")
+        opened = runtime.open(QUIZ_INSTRUCTION, List.of(judge), null)
+        broughtByTheJudge = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, 10, 7, 3, Map.of("qi-v1", 7), List.of(), new JudgeQuizTally(10, 7, 3)))
+        derived = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, 10, 7, 3, Map.of("qi-v1", 7), List.of(), null))
+
+      then:
+        judge.calls() == 0
   - name: DefaultJudgeExamVerdictExporter
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/judgingengine/DefaultJudgeExamVerdictExporter.java
@@ -35836,6 +36144,22 @@ elements:
         reused.isReusedFromPreviousRun() is true
         entered.getScores().get(NAME) == 1.0
         diagnosisOf(marked).orElseThrow().getAgreement() != null
+    - |
+      test: "should declare in its tally as many exercises as quizzes, in each state"
+      trace: FEAT-CIERRE / F-CIERRE-R001
+
+      given:
+        lab = Lab(subject -> emits(PASS), subject -> emits(PASS))
+        course = Course()
+        recorded = course.add(numbered(1))
+        coverage = course.coverage()
+
+      when:
+        sut.add(numbered(2))
+
+      then:
+        List.of(coverage.getReached(), coverage.getEvaluated(), coverage.getNotEvaluated()) == List.of(4, 3, 1)
+        coverage.getQuizzes() == new JudgeQuizTally(4, 3, 1)
   - name: DefaultTranslationSenseSubjectBuilder
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/translationsenseengine/DefaultTranslationSenseSubjectBuilder.java
@@ -36472,6 +36796,24 @@ elements:
         entered.node(candidate).getScores().get(NAME) == 1.0
         analyzer.findingsAt(entered.node(candidate)).isEmpty() is true
         coverage(entered).getVersions() == List.of(new JudgeVersionStanding(VERSION, 1, JudgeExamStatus.APPROVED))
+    - |
+      test: "should declare in its tally as many exercises as quizzes, in each state"
+      trace: FEAT-CIERRE / F-CIERRE-R001
+
+      given:
+        bench = Bench(true)
+        doesHe = doesHeNeedWater()
+        verduras = verduras()
+        sheWontCome = sheWontCome()
+        course = course(doesHe, verduras, sheWontCome)
+        coverage = coverage(course)
+
+      when:
+        sut.answers(doesHe, verdict(alt("doesn't", AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.HIGH)))
+
+      then:
+        List.of(coverage.getReached(), coverage.getEvaluated(), coverage.getNotEvaluated()) == List.of(3, 2, 1)
+        coverage.getQuizzes() == new JudgeQuizTally(3, 2, 1)
   - name: DefaultSingleAnswerSubjectBuilder
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/singleanswerengine/DefaultSingleAnswerSubjectBuilder.java
@@ -36798,6 +37140,63 @@ elements:
         nothingListed.getFindings().isEmpty() is true
         onlyOffered.getScore() == 1.0
         onlyOffered.getFindings().stream().allMatch(f -> f.getResolution() == FindingResolution.RANK_ONLY) is true
+    - |
+      test: "should write the statement and the finished sentence of its evidence with the student view renderer it receives"
+      trace: FEAT-CIERRE / F-CIERRE-R003
+
+      given:
+        otherView = QuizStudentViewRenderer() {
+
+          @Override
+          public QuizStudentView render(AuditableQuiz quiz) {
+              return new QuizStudentView("[vista] Does he need water? He ___ .", List.of(new StudentGapView(0, null, List.of("does", "does [vista]"), "does")), List.of(), quiz.getInstructions(), quiz.getTranslation(), quiz.getMiniTheory());
+          }
+
+          @Override
+          public String finishedSentence(AuditableQuiz quiz, SentenceMode mode) {
+              return "[vista " + mode + "] Does he need water? He does.";
+          }
+      }
+        verdict = verdict(alt("doesn't", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.HIGH, "Sólo la traducción dice que es sí."))
+        corrector = FakeCorrector(List.of("doesn't", "does not"))
+        shownByTheOtherView = DefaultSingleAnswerClassifier(corrector, new Scale(), otherView).classify(verdict, doesHeNeedWater(), false).getFindings().get(0)
+        shownByMain = classifier(corrector).classify(verdict, doesHeNeedWater(), false).getFindings().get(0)
+        quiz = doesHeNeedWater()
+
+      then:
+        parts(shownByTheOtherView).contains(new EvidencePart("Ejercicio", "[vista] Does he need water? He ___ .")) is true
+        parts(shownByTheOtherView).contains(new EvidencePart("Oración terminada", "[vista FILL] Does he need water? He does.")) is true
+        parts(shownByTheOtherView).contains(new EvidencePart("Respuestas aceptadas", "does | does [vista]")) is true
+        parts(shownByMain).contains(new EvidencePart("Ejercicio", STUDENT_VIEW.render(quiz).getStatement())) is true
+        parts(shownByMain).contains(new EvidencePart("Oración terminada", STUDENT_VIEW.finishedSentence(quiz, SentenceMode.FILL))) is true
+    - |
+      test: "should keep the marker of each finding whatever text the student view renderer gives the exercise"
+      trace: FEAT-CIERRE / F-CIERRE-R003
+
+      given:
+        otherView = QuizStudentViewRenderer() {
+
+          @Override
+          public QuizStudentView render(AuditableQuiz quiz) {
+              return new QuizStudentView("[otra vista]", List.of(), List.of(), null, null, null);
+          }
+
+          @Override
+          public String finishedSentence(AuditableQuiz quiz, SentenceMode mode) {
+              return "[otra oración]";
+          }
+      }
+        italy = italy()
+        verdict = verdict(alt("from Friday until Sunday", 1, AlternativeAnswerKind.OFFERED_BY_INSTRUCTION, FindingSeverity.HIGH, "La consigna ofrece until."), alt("for three days", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.MEDIUM, "También dice cuánto estuvo."))
+        corrector = FakeCorrector()
+        withMain = classifier(corrector).classify(verdict, italy, false)
+        withOther = DefaultSingleAnswerClassifier(corrector, new Scale(), otherView).classify(verdict, italy, false)
+
+      then:
+        markers(withOther) == markers(withMain)
+        markers(withMain) == List.of("from Friday until Sunday", "for three days")
+        withOther.getFindings().stream().map(FindingDraft::getRule).toList() == withMain.getFindings().stream().map(FindingDraft::getRule).toList()
+        withOther.getScore() == withMain.getScore()
   - name: MiniTheoryAnalyzerProvider
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/minitheoryengine/MiniTheoryAnalyzerProvider.java
@@ -37171,6 +37570,44 @@ elements:
         recorded.getSubjectRef() == candidate.id
         world.judge.calls() == 2
         coverageOf(after).getEvaluators().get(0).getCoverage().getReused() == 1
+    - |
+      test: "should count in its tally every exercise of each topic under the state of that topic, evaluated or not"
+      trace: FEAT-CIERRE / F-CIERRE-R001
+
+      given:
+        world = World.approved()
+        gerundio = gerundio()
+        articulos = articulos()
+        afirmativas = afirmativas()
+        coverage = coverageOf(world.run(course(gerundio, articulos, afirmativas), budget(10)))
+        nothingAsked = coverageOf(World.approved().run(course(gerundio(), articulos(), afirmativas()), budget(0)))
+
+      when:
+        sut.holds(gerundio)
+
+      then:
+        List.of(coverage.getReached(), coverage.getEvaluated(), coverage.getNotEvaluated()) == List.of(3, 1, 2)
+        coverage.getQuizzes() == new JudgeQuizTally(28, 5, 23)
+        nothingAsked.getQuizzes() == new JudgeQuizTally(28, 0, 28)
+    - |
+      test: "should declare as exercises without evaluation exactly the exercises the report marks as not evaluated by mini-theory"
+      trace: FEAT-CIERRE / F-CIERRE-R001
+
+      given:
+        world = World.approved()
+        gerundio = gerundio()
+        articulos = articulos()
+        afirmativas = afirmativas()
+        root = world.run(course(gerundio, articulos, afirmativas), budget(10))
+        marked = HashSet<>()
+        ofTheTopicsWithoutVerdict = HashSet<>(articulos.exerciseIds)
+
+      when:
+        sut.holds(gerundio)
+
+      then:
+        marked == ofTheTopicsWithoutVerdict
+        coverageOf(root).getQuizzes().getNotEvaluated() == marked.size()
   - name: DefaultMiniTheorySubjectBuilder
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/minitheoryengine/DefaultMiniTheorySubjectBuilder.java
@@ -37317,7 +37754,7 @@ elements:
 
       given:
         topic = contrasteInicial()
-        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY)).distribute(enjoyIsFalse(), topic, false)
+        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY), STUDENT_VIEW).distribute(enjoyIsFalse(), topic, false)
         withFinding = 0
 
       then:
@@ -37329,7 +37766,7 @@ elements:
 
       given:
         topic = contrasteInicial()
-        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.WHOLE_TOPIC)).distribute(enjoyIsFalse(), topic, false)
+        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.WHOLE_TOPIC), STUDENT_VIEW).distribute(enjoyIsFalse(), topic, false)
 
       then:
         outcomes.size() == 80
@@ -37346,7 +37783,7 @@ elements:
       given:
         topic = topic("A2", "k-mix", "Repaso de A2", "Completa.", List.of(cloze("q-1", "She is", "a", "friend who lives in Paris.", "She is a friend who lives in Paris.", ARTICLES), cloze("q-2", "They stopped", "eating", "(eat) at noon.", "They stopped eating at noon.", STOP_ING), cloze("q-3", "She can", "swims", "(swim).", "She can swims.", CAN_BASE), cloze("q-4", "I called", "him", "(he).", "I called him.", SHE_HER), cloze("q-5", "This is", "the", "man who helped me.", "This is the man who helped me.", ARTICLES)))
         verdict = MiniTheoryVerdict(List.of(assessment(1, false, MiniTheoryProblem.FALSE_RULE, FindingSeverity.BLOCKING, "a friend who lives in Paris", List.of(1), "Con who también va a."), assessment(2, false, MiniTheoryProblem.OVERSTATED, FindingSeverity.HIGH, "They stopped to eat", List.of(2), "stop también va con to."), assessment(3, true, MiniTheoryProblem.CONTRADICTED_BY_EXERCISE, FindingSeverity.LOW, null, List.of(3), "E3 acepta swims después de can."), assessment(4, true, MiniTheoryProblem.NOT_COVERING_EXERCISE, FindingSeverity.MEDIUM, null, List.of(4), "E4 es de he/him.")), "Cuatro problemas.")
-        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY)).distribute(verdict, topic, false)
+        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY), STUDENT_VIEW).distribute(verdict, topic, false)
 
       then:
         severities(outcomes.get(0)) == List.of(FindingSeverity.HIGH)
@@ -37368,7 +37805,7 @@ elements:
       assessment(2, true, MiniTheoryProblem.NOT_COVERING_EXERCISE, FindingSeverity.LOW, null, List.of(2, 3, 4), "No los cubre."), // Medium in E3, which shows it.
       assessment(3, false, MiniTheoryProblem.OVERSTATED, FindingSeverity.MEDIUM, "They stopped to eat", List.of(3), "stop también va con to."), // High in E4, which shows it.
       assessment(4, false, MiniTheoryProblem.FALSE_RULE, FindingSeverity.HIGH, "a friend who lives in Paris", List.of(4), "Con who también va a.")), "Tres problemas.")
-        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY)).distribute(verdict, topic, false)
+        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY), STUDENT_VIEW).distribute(verdict, topic, false)
 
       then:
         outcomes.get(0).getFindings() == List.of()
@@ -37385,7 +37822,7 @@ elements:
 
       given:
         topic = contrasteInicial()
-        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY)).distribute(enjoyIsFalse(), topic, false)
+        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY), STUDENT_VIEW).distribute(enjoyIsFalse(), topic, false)
         finding = outcomes.get(19).getFindings().get(0)
         examined = finding.getEvidence().getExamined()
         ofE12 = outcomes.get(11).getFindings().get(0).getEvidence().getExamined()
@@ -37407,7 +37844,7 @@ elements:
       given:
         topic = contrasteInicial()
         verdict = MiniTheoryVerdict(List.of(assessment(1, true, null, null, null, List.of(), "Cierta."), assessment(2, false, MiniTheoryProblem.OVERSTATED, FindingSeverity.MEDIUM, "I'm always losing my keys.", List.of(), "Con always también va el continuo para quejarse."), enjoyAssessment()), "Dos tarjetas con problema.")
-        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY)).distribute(verdict, topic, false)
+        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY), STUDENT_VIEW).distribute(verdict, topic, false)
         groups = LinkedHashMap<>()
         showingEnjoy = LinkedHashSet<>()
         showingUsually = LinkedHashSet<>()
@@ -37431,7 +37868,7 @@ elements:
       given:
         topic = afirmativasRegulares()
         verdict = MiniTheoryVerdict(List.of(assessment(1, true, null, null, null, List.of(), "Es la regla del presente simple, y los 20 ejercicios la siguen.")), "La miniteoría es cierta; el problema de las verduras es la pista, no la regla.")
-        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY)).distribute(verdict, topic, true)
+        outcomes = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY), STUDENT_VIEW).distribute(verdict, topic, true)
         verduras = outcomes.get(10)
 
       then:
@@ -37442,6 +37879,39 @@ elements:
         verduras.getDiagnosis().getAssessments() == List.of()
         verduras.getDiagnosis().getScore() == 1.0
         verduras.getDiagnosis().isReusedFromPreviousRun() is true
+    - |
+      test: "should write the finished sentence of each exercise in its evidence with the student view renderer it receives"
+      trace: FEAT-CIERRE / F-CIERRE-R003
+
+      given:
+        otherView = QuizStudentViewRenderer() {
+
+          @Override
+          public QuizStudentView render(AuditableQuiz quiz) {
+              return new QuizStudentView("[vista] " + quiz.getId(), List.of(), List.of(), null, null, null);
+          }
+
+          @Override
+          public String finishedSentence(AuditableQuiz quiz, SentenceMode mode) {
+              return "[vista " + mode + "] " + quiz.getId();
+          }
+      }
+        topic = contrasteInicial()
+        byTheOtherView = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY), otherView).distribute(enjoyIsFalse(), topic, false).get(19).getFindings().get(0).getEvidence().getExamined()
+        rewritten = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY), otherView).distribute(enjoyIsFalse(), topic, false).get(19).getFindings().get(0).getEvidence().getExamined()
+        asMainSeesIt = contrasteInicial()
+        byMain = DefaultMiniTheoryDistributor(new Config(MiniTheoryErrorScope.SHOWN_ONLY), STUDENT_VIEW).distribute(enjoyIsFalse(), asMainSeesIt, false).get(19).getFindings().get(0).getEvidence().getExamined()
+        e20 = (AuditableQuiz) asMainSeesIt.getChildren().get(19).getEntity()
+
+      when:
+        sut.setSentenceMode(SentenceMode.REWRITE)
+
+      then:
+        textOf(byTheOtherView, "Ejercicio E20") == "[vista FILL] q-ci-20"
+        textOf(byTheOtherView, "Ejercicio E3") == "[vista FILL] q-ci-3"
+        textOf(byTheOtherView, "Ejercicio E12") == "[vista FILL] q-ci-12"
+        textOf(rewritten, "Ejercicio E20") == "[vista REWRITE] q-ci-20"
+        textOf(byMain, "Ejercicio E20") == STUDENT_VIEW.finishedSentence(e20, SentenceMode.FILL)
   - name: DefaultChoiceAlternativeJudgeRunFactory
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/choicealternativeengine/DefaultChoiceAlternativeJudgeRunFactory.java
@@ -37806,6 +38276,49 @@ elements:
         reused.getScore() == verified.getScore()
         reused.getQuizId() == TEA_ID
         course.coverage().getStanding().getJudgeVersion() == verification.coverage().getStanding().getJudgeVersion()
+    - |
+      test: "should declare in its coverage as many exercises as quizzes, in each state"
+      trace: FEAT-CIERRE / F-CIERRE-R001
+
+      given:
+        lab = Lab()
+        cat = mcNode(catQuiz())
+        tea = mcNode(teaQuiz())
+        food = mcNode(foodQuiz())
+        thirsty = mcNode(thirstyQuiz())
+        run = lab.open(policy(1))
+        coverage = run.coverage()
+
+      when:
+        sut.record(cat, CAT_PAYLOAD, "v0")
+
+      then:
+        List.of(coverage.getReached(), coverage.getEvaluated(), coverage.getNotEvaluated()) == List.of(4, 2, 2)
+        coverage.getQuizzes() == new JudgeQuizTally(4, 2, 2)
+    - |
+      test: "should name in a judgment that failed the cause of its own consultation, not the first failure of the run"
+      trace: FEAT-CIERRE / F-CIERRE-R002
+
+      given:
+        lab = Lab()
+        cat = mcNode(catQuiz())
+        tea = mcNode(teaQuiz())
+        expired = "sesión vencida: renovala con `claude auth login`"
+        run = lab.open(policy(5, 1))
+        unusable = run.judgmentOf(cat)
+        serviceDown = run.judgmentOf(tea)
+
+      when:
+        sut.fail(CAT_ID, EvaluationFailureKind.OUTPUT_UNUSABLE, "salida sin el artifact choiceAlternativeVerdict")
+
+      then:
+        assertNotJudged(unusable)
+        assertNotJudged(serviceDown)
+        unusable.getNotJudgedReason().contains("inutilizable") is true
+        unusable.getNotJudgedReason().contains("sesión vencida") is false
+        serviceDown.getNotJudgedReason().contains(expired) is true
+        lab.judge.consulted == List.of(CAT_ID, TEA_ID)
+        run.coverage().getUnavailableReason() == expired
   - name: DefaultChoiceAlternativeSubjectBuilder
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/choicealternativeengine/DefaultChoiceAlternativeSubjectBuilder.java
@@ -37913,7 +38426,7 @@ elements:
         matcher = TableCorrectorMatcher()
         quiz = quiz("67fab6d59930102295343a10", "The shop ___ open on Sundays.", "The shop", "open on Sundays.", "isn't", "isn't", "is not", "aren't")
         verdict = ChoiceAlternativeVerdict(true, List.of(new ChoiceAlternativeOption("is not", FindingSeverity.HIGH, "«is not» dice lo mismo que «isn't»")), null, "La correcta vale y «is not» es la forma larga de la misma respuesta")
-        judgment = DefaultChoiceAlternativeClassifier(matcher, scale()).classify(verdict, quiz, evaluated())
+        judgment = DefaultChoiceAlternativeClassifier(matcher, scale(), STUDENT_VIEW).classify(verdict, quiz, evaluated())
 
       then:
         judgment.getStatus() == ChoiceAlternativeJudgmentStatus.JUDGED
@@ -38036,6 +38549,35 @@ elements:
         judgment.getEvaluatorVersion() == VERSION
         judgment.isReused() is false
         judgment.getNotJudgedReason() is null
+    - |
+      test: "should write the statement, the options and the finished sentence of its evidence with the student view renderer it receives"
+      trace: FEAT-CIERRE / F-CIERRE-R003
+
+      given:
+        otherView = QuizStudentViewRenderer() {
+
+          @Override
+          public QuizStudentView render(AuditableQuiz quiz) {
+              return new QuizStudentView("[vista] She wants ___ hot tea.", List.of(), List.of(new StudentOptionView("some", true), new StudentOptionView("a", false)), quiz.getInstructions(), quiz.getTranslation(), quiz.getMiniTheory());
+          }
+
+          @Override
+          public String finishedSentence(AuditableQuiz quiz, SentenceMode mode) {
+              return "[vista " + mode + "] She wants some hot tea.";
+          }
+      }
+        quiz = quiz("67fab6d59930102295342a59", "She wants ___ hot tea.", "She wants", "hot tea.", "some", "a", "some")
+        verdict = ChoiceAlternativeVerdict(true, List.of(new ChoiceAlternativeOption("a", FindingSeverity.MEDIUM, "«a hot tea» es una taza")), null, "La correcta vale, y «a» también")
+        byTheOtherView = DefaultChoiceAlternativeClassifier(new TableCorrectorMatcher(), scale(), otherView).classify(verdict, quiz, evaluated()).getFindings().get(0).getEvidence().getExamined()
+        byMain = classifier().classify(verdict, quiz, evaluated()).getFindings().get(0).getEvidence().getExamined()
+
+      then:
+        byTheOtherView.contains(new EvidencePart("Ejercicio", "[vista] She wants ___ hot tea.")) is true
+        byTheOtherView.contains(new EvidencePart("Opciones", "some (correcta) · a")) is true
+        byTheOtherView.contains(new EvidencePart("Oración terminada", "[vista FILL] She wants some hot tea.")) is true
+        byMain.contains(new EvidencePart("Ejercicio", STUDENT_VIEW.render(quiz).getStatement())) is true
+        byMain.contains(new EvidencePart("Opciones", "a · some (correcta)")) is true
+        byMain.contains(new EvidencePart("Oración terminada", STUDENT_VIEW.finishedSentence(quiz, SentenceMode.FILL))) is true
   - name: DefaultTopicTeachingResolver
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/offlevelwords/DefaultTopicTeachingResolver.java
@@ -38166,7 +38708,7 @@ elements:
       then:
         card.getName() == "off-level-words"
         card.getQuestion() == "¿Hay palabras que el alumno de este nivel no puede conocer?"
-        card.getReads() == "La oración terminada de cada ejercicio, el título y las respuestas de su tema y su traducción"
+        card.getReads() == "La oración terminada de cada ejercicio, el título, las respuestas y las miniteorías de su tema, los " + "nombres de los temas del curso y su traducción"
         card.getFamily() == AnalyzerFamily.ERRORS
         card.getEvaluatedTargets() == List.of(AuditTarget.QUIZ)
         card.getRules().stream().map(r -> r.getId()).toList() == List.of("F-NIVFR-R002")
@@ -46878,7 +47420,7 @@ elements:
       trace: FEAT-QINST / F-QINST-R006
 
       given:
-        config = DefaultQuizInstructionConfig()
+        config = DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig())
 
       then:
         config.getDefaultMaxNewEvaluations() == 500
@@ -46887,13 +47429,57 @@ elements:
       trace: FEAT-QINST / F-QINST-R002
 
       given:
-        config = DefaultQuizInstructionConfig()
+        config = DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig())
 
       then:
         config.getScoreFor(InstructionSeverity.NONE) == 1.0
         config.getScoreFor(InstructionSeverity.MINOR) == 0.6
         config.getScoreFor(InstructionSeverity.MAJOR) == 0.3
         config.getScoreFor(InstructionSeverity.CRITICAL) == 0.0
+    - |
+      test: "should describe the analyze budget of quiz-instruction from the judges runtime config and the revise-instructions budget of 500, each named with its command"
+      trace: FEAT-CIERRE / F-CIERRE-R004
+
+      given:
+        described = DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()).describe()
+
+      then:
+        described.get("analyzeMaxNewEvaluations") == 0
+        described.get("reviseInstructionsMaxNewEvaluations") == 500
+        described.containsKey("defaultMaxNewEvaluations") is false
+        described.get("analyzerName") == "quiz-instruction"
+    - |
+      test: "should describe a different analyze budget when the judges runtime config gives another one, without copying 0"
+      trace: FEAT-CIERRE / F-CIERRE-R004
+
+      given:
+        seven = JudgeRuntimeConfig() {
+
+          @Override
+          public int getMaxConcurrentEvaluations() {
+              return 4;
+          }
+
+          @Override
+          public int getDefaultMaxNewEvaluations(String judgeName) {
+              return "quiz-instruction".equals(judgeName) ? 7 : 0;
+          }
+
+          @Override
+          public double getDefaultRatePerHour(String judgeName) {
+              return 189.0;
+          }
+
+          @Override
+          public Map<String, Object> describe() {
+              return Map.of();
+          }
+      }
+        described = DefaultQuizInstructionConfig(seven).describe()
+
+      then:
+        described.get("analyzeMaxNewEvaluations") == 7
+        described.get("reviseInstructionsMaxNewEvaluations") == 500
   - name: DefaultJudgeExamService
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultJudgeExamService.java
@@ -52301,7 +52887,8 @@ elements:
         run.exit() == 0
         run.err().contains("not found") is false
         run.out().contains("Analyzer: quiz-instruction") is true
-        run.out().contains("defaultMaxNewEvaluations: 500") is true
+        run.out().contains("analyzeMaxNewEvaluations: 0") is true
+        run.out().contains("reviseInstructionsMaxNewEvaluations: 500") is true
         run.out().contains("scoresBySeverity: ") is true
     - |
       test: "should answer config analyzer knowledge-title-length, which has no configuration, without reporting it not found"
@@ -52487,9 +53074,9 @@ elements:
       then:
         text.exit() == 0
         text.out().matches("(?s).*movie\\s+90\\s+1\\.005\\s+poco vista\\s+1\\.083\\s+6\\.510, de A1 a A2.*") is true
-        text.out().matches("(?s).*A1\\s+15\\.802\\s+450\\s+178\\s+257\\s+15\\s+39,6 %.*") is true
+        text.out().matches("(?s).*A1\\s+15\\.802\\s+448\\s+176\\s+257\\s+15\\s+39,3 %.*") is true
         json.exit() == 0
-        detail.get("lemmas").size() == 1750
+        detail.get("lemmas").size() == 1743
         detail.get("score").asDouble() == 0.08
         java.util.stream.StreamSupport.stream(detail.get("levels").spliterator(), false).map(level -> level.get("level").asText()).toList() == List.of("A1", "A2", "B1", "B2")
   - name: ApproveCmd
@@ -56169,6 +56756,11 @@ elements:
         \ of equivalent words with its class, as travelled and traveled"
       status: EXISTS
       testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/correctortable/FileSystemFormEquivalenceTableSourceTest.java
+    - name: "should read from «reglas» the rules that are code of the version of the\
+        \ corrector, the four in the copy of #1194, in production, and none in the\
+        \ copy of #1191, and stop at a rule it does not know"
+      status: MISSING
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/correctortable/FileSystemFormEquivalenceTableSourceTest.java
     testCleanViews:
     - |
       test: "should read from the copy of the corrector's table its version, each contraction with all its long forms, as «'s» with is and has, and each group of equivalent words with its class, as travelled and traveled"
@@ -56181,7 +56773,7 @@ elements:
         old = FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes-corrector-viejo.json")).load()
 
       then:
-        table.getVersion() == "corrector en producción, ittm #1191 (30e0efcc0), desplegado el 1/10/2026"
+        table.getVersion() == "corrector en producción, ittm #1194 (9915461ac), desplegado el 1/10/2026"
         s.isPresent() is true
         s.get().isWholeWord() is false
         s.get().getExpansions().stream().map(String::strip).toList().containsAll(List.of("is", "has")) is true
@@ -56192,6 +56784,21 @@ elements:
         table.isInvertsNegativeQuestions() is true
         old.getContractions().isEmpty() && old.getEquivalentWords().isEmpty() is true
         old.isInvertsNegativeQuestions() is false
+    - |
+      test: "should read from «reglas» the rules that are code of the version of the corrector, the four in the copy of the new corrector and none in the one in production, and stop at a rule it does not know"
+      trace: FEAT-RESPC / F-RESPC-R001
+
+      given:
+        next = FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes.json")).load()
+        before = FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes-corrector-1191.json")).load()
+        unknown = Files.createTempFile("formas-equivalentes", ".json")
+
+      then:
+        next.getRules() == List.of(CorrectorRule.AMBIGUOUS_CONTRACTIONS, CorrectorRule.STANDARD_IRREGULAR_PARTICIPLES, CorrectorRule.TILL_OWN_SUBJECTS, CorrectorRule.OPTIONAL_PARENTHESES)
+        next.getVersion().contains("#1194") is true
+        before.getRules() == List.of()
+        next.getContractions() == before.getContractions()
+        next.getEquivalentWords() == before.getEquivalentWords()
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -67854,16 +68461,16 @@ elements:
         batch = atATime.resolveAll(requests, 4)
 
       then:
-        oneByOne.get(0) == new EvaluationResolution(EvaluationResolutionKind.REUSED, "kept-old", "v0")
-        oneByOne.get(1) == new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for new-1", "v1")
-        oneByOne.get(2) == new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for forced", "v1")
-        oneByOne.get(3) == new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for preferred-reached", "v1")
+        oneByOne.get(0) == new EvaluationResolution(EvaluationResolutionKind.REUSED, "kept-old", "v0", null)
+        oneByOne.get(1) == new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for new-1", "v1", null)
+        oneByOne.get(2) == new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for forced", "v1", null)
+        oneByOne.get(3) == new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for preferred-reached", "v1", null)
         oneByOne.get(4).getKind() == EvaluationResolutionKind.FAILED
         oneByOne.get(6).getKind() == EvaluationResolutionKind.PENDING
-        oneByOne.get(7) == new EvaluationResolution(EvaluationResolutionKind.REUSED, "reuse-only-kept-old", "v0")
+        oneByOne.get(7) == new EvaluationResolution(EvaluationResolutionKind.REUSED, "reuse-only-kept-old", "v0", null)
         oneByOne.get(8).getKind() == EvaluationResolutionKind.PENDING
         oneByOne.get(9).getKind() == EvaluationResolutionKind.PENDING
-        oneByOne.get(10) == new EvaluationResolution(EvaluationResolutionKind.REUSED, "new verdict for new-1", "v1")
+        oneByOne.get(10) == new EvaluationResolution(EvaluationResolutionKind.REUSED, "new verdict for new-1", "v1", null)
         batch.size() == requests.size()
         sorted(batchEvaluator.consulted()) == sorted(oneEvaluator.consulted())
         batchLedger.appendedInRun() == oneLedger.appendedInRun()
@@ -68014,6 +68621,88 @@ elements:
         session.unavailableReason() == Optional.empty()
         timedOut.get() is false
         session.unavailableReason() == Optional.of(expiredSession)
+    - |
+      test: "should return a failed resolution carrying the kind and reason the evaluator gave when its output is unusable"
+      trace: FEAT-CIERRE / F-CIERRE-R002
+
+      given:
+        why = "agotó sus 3 intentos sin un veredicto válido"
+        script = text -> new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, why)
+        oneAtATime = DefaultEvaluationSession(new SynchronizedLedger(List.of()), TEXT_FINGERPRINT, new ScriptedEvaluator("v1", script), new EvaluationBudget(10)).resolve(subject("c1"))
+        inBatch = DefaultEvaluationSession(new SynchronizedLedger(List.of()), TEXT_FINGERPRINT, new ScriptedEvaluator("v1", script), new EvaluationBudget(10)).resolveAll(requests(List.of("c1"), EvaluationRequestMode.REUSE_OR_EVALUATE), 4).get(0)
+    - |
+      test: "should return a failed resolution as evaluator unavailable, with the exception message as its reason, when the evaluator throws"
+      trace: FEAT-CIERRE / F-CIERRE-R002
+
+      given:
+        withMessage = text -> {
+          throw new IllegalStateException("el proveedor cortó la conexión");
+      }
+        withoutMessage = text -> {
+          throw new IllegalStateException();
+      }
+        named = DefaultEvaluationSession(new SynchronizedLedger(List.of()), TEXT_FINGERPRINT, new ScriptedEvaluator("v1", withMessage), new EvaluationBudget(10)).resolveAll(requests(List.of("c1"), EvaluationRequestMode.REUSE_OR_EVALUATE), 4).get(0)
+        unnamed = DefaultEvaluationSession(new SynchronizedLedger(List.of()), TEXT_FINGERPRINT, new ScriptedEvaluator("v1", withoutMessage), new EvaluationBudget(10)).resolveAll(requests(List.of("c1"), EvaluationRequestMode.REUSE_OR_EVALUATE), 4).get(0)
+
+      then:
+        named.getKind() == EvaluationResolutionKind.FAILED
+        named.getFailure().getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE
+        named.getFailure().getReason() == "el proveedor cortó la conexión"
+        unnamed.getKind() == EvaluationResolutionKind.FAILED
+        unnamed.getFailure().getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE
+        unnamed.getFailure().getReason() == "IllegalStateException"
+    - |
+      test: "should give each failed resolution of a batch the cause of its own consultation, not the first failure of the run"
+      trace: FEAT-CIERRE / F-CIERRE-R002
+
+      given:
+        answers = Map.of("c1", new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "salida sin JSON"), "c2", new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "falta el campo passes"), "c3", new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, "sesión vencida: renovala con claude auth login"))
+        session = DefaultEvaluationSession(new SynchronizedLedger(List.of()), TEXT_FINGERPRINT, new ScriptedEvaluator("v1", answers::get), new EvaluationBudget(10))
+        resolutions = session.resolveAll(requests(List.of("c1", "c2", "c3"), EvaluationRequestMode.REUSE_OR_EVALUATE), 1)
+
+      then:
+        kinds(resolutions) == List.of(EvaluationResolutionKind.FAILED, EvaluationResolutionKind.FAILED, EvaluationResolutionKind.FAILED)
+        resolutions.get(0).getFailure().getReason() == "salida sin JSON"
+        resolutions.get(1).getFailure().getReason() == "falta el campo passes"
+        resolutions.get(1).getFailure().getKind() == EvaluationFailureKind.OUTPUT_UNUSABLE
+        resolutions.get(2).getFailure().getReason() == "sesión vencida: renovala con claude auth login"
+        resolutions.get(2).getFailure().getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE
+        session.unavailableReason() == Optional.of("sesión vencida: renovala con claude auth login")
+    - |
+      test: "should leave without cause every resolution that is reused, evaluated or pending, including the pending left by a stopped service"
+      trace: FEAT-CIERRE / F-CIERRE-R002
+
+      given:
+        answers = Map.of("c1", new EvaluationEmitted("verdict for c1"), "c2", new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, "servicio caído"))
+        ledger = SynchronizedLedger(List.of(recorded("r1", "verdict for r1", "v1")))
+        session = DefaultEvaluationSession(ledger, TEXT_FINGERPRINT, new ScriptedEvaluator("v1", answers::get), new EvaluationBudget(10))
+        resolutions = session.resolveAll(requests(List.of("r1", "c1", "c2", "c3"), EvaluationRequestMode.REUSE_OR_EVALUATE), 1)
+        noBudget = DefaultEvaluationSession(new SynchronizedLedger(List.of()), TEXT_FINGERPRINT, new ScriptedEvaluator("v1", answers::get), new EvaluationBudget(0)).resolve(subject("c1"))
+
+      then:
+        kinds(resolutions) == List.of(EvaluationResolutionKind.REUSED, EvaluationResolutionKind.EVALUATED, EvaluationResolutionKind.FAILED, EvaluationResolutionKind.PENDING)
+        resolutions.get(0).getFailure() is null
+        resolutions.get(1).getFailure() is null
+        resolutions.get(2).getFailure() is not null
+        resolutions.get(3).getFailure() is null
+        noBudget.getKind() == EvaluationResolutionKind.PENDING
+        noBudget.getFailure() is null
+    - |
+      test: "should never write the cause of a failed consultation into the ledger"
+      trace: FEAT-CIERRE / F-CIERRE-R002
+
+      given:
+        secret = "motivo de la falla, que no se registra"
+        answers = Map.of("c1", new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, secret), "c2", new EvaluationEmitted("verdict for c2"))
+        ledger = SynchronizedLedger(List.of())
+        session = DefaultEvaluationSession(ledger, TEXT_FINGERPRINT, new ScriptedEvaluator("v1", answers::get), new EvaluationBudget(10))
+        resolutions = session.resolveAll(requests(List.of("c1", "c2"), EvaluationRequestMode.REUSE_OR_EVALUATE), 1)
+
+      then:
+        resolutions.get(0).getFailure().getReason() == secret
+        ledger.appendedInRun() == List.of("qinst-judge|fp:c2|verdict for c2|quiz-c2|v1")
+        ledger.history(new EvaluationKey(JUDGE_ID, "fp:c1")).isEmpty() is true
+        ledger.appendedInRun().stream().anyMatch(line -> line.contains(secret)) is false
   - name: ExamEvaluationSessionFactory
     status: EXISTS
     filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/ExamEvaluationSessionFactory.java
@@ -68043,8 +68732,8 @@ elements:
         sut.append(record(JUDGE_ID, "A", "course verdict of v7 on A", "2026-08-05T10:00:00Z", "v7"))
 
       then:
-        resolutions.get(0) == new EvaluationResolution(EvaluationResolutionKind.REUSED, "course verdict of v7 on A", "v7")
-        resolutions.get(1) == new EvaluationResolution(EvaluationResolutionKind.REUSED, "exam verdict of v7 on B", "v7")
+        resolutions.get(0) == new EvaluationResolution(EvaluationResolutionKind.REUSED, "course verdict of v7 on A", "v7", null)
+        resolutions.get(1) == new EvaluationResolution(EvaluationResolutionKind.REUSED, "exam verdict of v7 on B", "v7", null)
         v7.consulted() == List.of()
         exam.coverage().getEvaluatedInRun() == 0
         ledger.all().size() == recordsBefore
@@ -68064,7 +68753,7 @@ elements:
         sut.append(courseVerdictOfV6)
 
       then:
-        resolutions.get(0) == new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "v7 verdict on C", "v7")
+        resolutions.get(0) == new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "v7 verdict on C", "v7", null)
         resolutions.get(1).getKind() == EvaluationResolutionKind.PENDING
         v7.consulted() == List.of("C")
         examHistoryOfC.size() == 2
@@ -69556,10 +70245,10 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 1996
-  passing: 1979
+  total: 2005
+  passing: 1982
   failing: 0
-  notImplemented: 17
+  notImplemented: 23
 qualitySummary:
   enforcement: warn
   thresholds:

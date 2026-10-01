@@ -14,6 +14,7 @@ import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 import com.learney.contentaudit.auditdomain.judging.JudgeRequestPlan;
 import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
 import com.learney.contentaudit.auditdomain.judging.JudgeSessions;
@@ -240,7 +241,24 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
         return new JudgeCoverageDiagnosis(opened.getJudgeName(), tally.getUnit(), tally.getReached(),
                 tally.getEvaluated(), tally.getNotEvaluated(), evaluators, opened.getStanding(), versions,
                 unavailableReason, cost,
-                tally.getUnmatchedDeclaredIds() != null ? new ArrayList<>(tally.getUnmatchedDeclaredIds()) : null, null);
+                tally.getUnmatchedDeclaredIds() != null ? new ArrayList<>(tally.getUnmatchedDeclaredIds()) : null,
+                quizzesOf(tally));
+    }
+
+    /**
+     * F-CIERRE-R001: the exercises the units of the tally hold, copied as the analyzer counted them.
+     * A judge that consults by exercise holds one per unit, so a tally that does not bring them still
+     * gets them; a judge by topic has to count them, and without its count the coverage says nothing.
+     */
+    static JudgeQuizTally quizzesOf(JudgeUnitTally tally) {
+        JudgeQuizTally quizzes = tally.getQuizzes();
+        if (quizzes != null) {
+            return new JudgeQuizTally(quizzes.getReached(), quizzes.getEvaluated(), quizzes.getNotEvaluated());
+        }
+        if (tally.getUnit() == AuditTarget.QUIZ) {
+            return new JudgeQuizTally(tally.getReached(), tally.getEvaluated(), tally.getNotEvaluated());
+        }
+        return null;
     }
 
     /**

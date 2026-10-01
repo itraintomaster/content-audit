@@ -3,7 +3,9 @@ package com.learney.contentaudit.evaluationledgerdomain.evaluationsession;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -1137,21 +1139,21 @@ public class DefaultEvaluationSessionTest {
         List<EvaluationResolution> batch = atATime.resolveAll(requests, 4);
 
         // The scenario really exercises every mode, as one at a time resolves it.
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "kept-old", "v0"), oneByOne.get(0));
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for new-1", "v1"),
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "kept-old", "v0", null), oneByOne.get(0));
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for new-1", "v1", null),
                 oneByOne.get(1));
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for forced", "v1"),
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for forced", "v1", null),
                 oneByOne.get(2));
         assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED,
-                "new verdict for preferred-reached", "v1"), oneByOne.get(3));
+                "new verdict for preferred-reached", "v1", null), oneByOne.get(3));
         assertEquals(EvaluationResolutionKind.FAILED, oneByOne.get(4).getKind());
         assertEquals(EvaluationResolutionKind.PENDING, oneByOne.get(6).getKind(),
                 "a forced request the exhausted budget cannot reach is pending");
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reuse-only-kept-old", "v0"),
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reuse-only-kept-old", "v0", null),
                 oneByOne.get(7));
         assertEquals(EvaluationResolutionKind.PENDING, oneByOne.get(8).getKind());
         assertEquals(EvaluationResolutionKind.PENDING, oneByOne.get(9).getKind());
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "new verdict for new-1", "v1"),
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "new verdict for new-1", "v1", null),
                 oneByOne.get(10), "the content asked twice reuses what the run already paid for it");
 
         assertEquals(requests.size(), batch.size(), "one resolution per request");
@@ -1390,7 +1392,27 @@ public class DefaultEvaluationSessionTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R002")
     public void shouldReturnAFailedResolutionCarryingTheKindAndReasonTheEvaluatorGaveWhenItsOutputIsUnusable() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R002: an unusable answer fails the consultation, and the resolution says so with the
+        // evaluator's own words -- one at a time and in a batch alike.
+        String why = "agotó sus 3 intentos sin un veredicto válido";
+        Function<String, EvaluationOutcome> script =
+                text -> new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, why);
+
+        EvaluationResolution oneAtATime = new DefaultEvaluationSession(new SynchronizedLedger(List.of()),
+                TEXT_FINGERPRINT, new ScriptedEvaluator("v1", script), new EvaluationBudget(10))
+                .resolve(subject("c1"));
+        EvaluationResolution inBatch = new DefaultEvaluationSession(new SynchronizedLedger(List.of()),
+                TEXT_FINGERPRINT, new ScriptedEvaluator("v1", script), new EvaluationBudget(10))
+                .resolveAll(requests(List.of("c1"), EvaluationRequestMode.REUSE_OR_EVALUATE), 4).get(0);
+
+        for (EvaluationResolution resolution : List.of(oneAtATime, inBatch)) {
+            assertEquals(EvaluationResolutionKind.FAILED, resolution.getKind());
+            assertNotNull(resolution.getFailure(), "a failed resolution carries its cause");
+            assertEquals(EvaluationFailureKind.OUTPUT_UNUSABLE, resolution.getFailure().getKind());
+            assertEquals(why, resolution.getFailure().getReason());
+            assertNull(resolution.getPayload(), "a failure has no result");
+            assertNull(resolution.getEvaluatorVersion(), "a failure has no version");
+        }
     }
 
     @Test
@@ -1398,7 +1420,29 @@ public class DefaultEvaluationSessionTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R002")
     public void shouldReturnAFailedResolutionAsEvaluatorUnavailableWithTheExceptionMessageAsItsReasonWhenTheEvaluatorThrows() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R002: an evaluator that throws instead of answering is a service failure (F-QINST-R007),
+        // and the resolution names it with the exception's message -- or its type, when it has none.
+        Function<String, EvaluationOutcome> withMessage = text -> {
+            throw new IllegalStateException("el proveedor cortó la conexión");
+        };
+        Function<String, EvaluationOutcome> withoutMessage = text -> {
+            throw new IllegalStateException();
+        };
+
+        EvaluationResolution named = new DefaultEvaluationSession(new SynchronizedLedger(List.of()),
+                TEXT_FINGERPRINT, new ScriptedEvaluator("v1", withMessage), new EvaluationBudget(10))
+                .resolveAll(requests(List.of("c1"), EvaluationRequestMode.REUSE_OR_EVALUATE), 4).get(0);
+        EvaluationResolution unnamed = new DefaultEvaluationSession(new SynchronizedLedger(List.of()),
+                TEXT_FINGERPRINT, new ScriptedEvaluator("v1", withoutMessage), new EvaluationBudget(10))
+                .resolveAll(requests(List.of("c1"), EvaluationRequestMode.REUSE_OR_EVALUATE), 4).get(0);
+
+        assertEquals(EvaluationResolutionKind.FAILED, named.getKind());
+        assertEquals(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, named.getFailure().getKind());
+        assertEquals("el proveedor cortó la conexión", named.getFailure().getReason());
+        assertEquals(EvaluationResolutionKind.FAILED, unnamed.getKind());
+        assertEquals(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, unnamed.getFailure().getKind());
+        assertEquals("IllegalStateException", unnamed.getFailure().getReason(),
+                "without a message, the type of the exception still says what happened");
     }
 
     @Test
@@ -1406,7 +1450,29 @@ public class DefaultEvaluationSessionTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R002")
     public void shouldGiveEachFailedResolutionOfABatchTheCauseOfItsOwnConsultationNotTheFirstFailureOfTheRun() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R002 inv. 3: three consultations fail, each its own way. Each resolution names its own
+        // cause; the session keeps naming the first service failure of the run, as before.
+        Map<String, EvaluationOutcome> answers = Map.of(
+                "c1", new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "salida sin JSON"),
+                "c2", new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "falta el campo passes"),
+                "c3", new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE,
+                        "sesión vencida: renovala con claude auth login"));
+        DefaultEvaluationSession session = new DefaultEvaluationSession(new SynchronizedLedger(List.of()),
+                TEXT_FINGERPRINT, new ScriptedEvaluator("v1", answers::get), new EvaluationBudget(10));
+
+        List<EvaluationResolution> resolutions =
+                session.resolveAll(requests(List.of("c1", "c2", "c3"), EvaluationRequestMode.REUSE_OR_EVALUATE), 1);
+
+        assertEquals(List.of(EvaluationResolutionKind.FAILED, EvaluationResolutionKind.FAILED,
+                EvaluationResolutionKind.FAILED), kinds(resolutions));
+        assertEquals("salida sin JSON", resolutions.get(0).getFailure().getReason());
+        assertEquals("falta el campo passes", resolutions.get(1).getFailure().getReason(),
+                "the second failure is not the first one of the run");
+        assertEquals(EvaluationFailureKind.OUTPUT_UNUSABLE, resolutions.get(1).getFailure().getKind());
+        assertEquals("sesión vencida: renovala con claude auth login", resolutions.get(2).getFailure().getReason());
+        assertEquals(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, resolutions.get(2).getFailure().getKind());
+        assertEquals(Optional.of("sesión vencida: renovala con claude auth login"), session.unavailableReason(),
+                "the run still names its first service failure");
     }
 
     @Test
@@ -1414,7 +1480,29 @@ public class DefaultEvaluationSessionTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R002")
     public void shouldLeaveWithoutCauseEveryResolutionThatIsReusedEvaluatedOrPendingIncludingThePendingLeftByAStoppedService() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R002 inv. 1 and 4: reused, evaluated and pending carry no cause -- also the pending left
+        // after the service stopped and the pending for lack of budget. Only the failure does.
+        Map<String, EvaluationOutcome> answers = Map.of(
+                "c1", new EvaluationEmitted("verdict for c1"),
+                "c2", new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, "servicio caído"));
+        SynchronizedLedger ledger = new SynchronizedLedger(List.of(recorded("r1", "verdict for r1", "v1")));
+        DefaultEvaluationSession session = new DefaultEvaluationSession(ledger, TEXT_FINGERPRINT,
+                new ScriptedEvaluator("v1", answers::get), new EvaluationBudget(10));
+
+        List<EvaluationResolution> resolutions = session.resolveAll(
+                requests(List.of("r1", "c1", "c2", "c3"), EvaluationRequestMode.REUSE_OR_EVALUATE), 1);
+        EvaluationResolution noBudget = new DefaultEvaluationSession(new SynchronizedLedger(List.of()),
+                TEXT_FINGERPRINT, new ScriptedEvaluator("v1", answers::get), new EvaluationBudget(0))
+                .resolve(subject("c1"));
+
+        assertEquals(List.of(EvaluationResolutionKind.REUSED, EvaluationResolutionKind.EVALUATED,
+                EvaluationResolutionKind.FAILED, EvaluationResolutionKind.PENDING), kinds(resolutions));
+        assertNull(resolutions.get(0).getFailure(), "a reused result has no cause");
+        assertNull(resolutions.get(1).getFailure(), "an evaluated result has no cause");
+        assertNotNull(resolutions.get(2).getFailure(), "only the failure carries one");
+        assertNull(resolutions.get(3).getFailure(), "the pending left by the stopped service is not a failure");
+        assertEquals(EvaluationResolutionKind.PENDING, noBudget.getKind());
+        assertNull(noBudget.getFailure(), "the pending for lack of budget is not a failure");
     }
 
     @Test
@@ -1422,6 +1510,24 @@ public class DefaultEvaluationSessionTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R002")
     public void shouldNeverWriteTheCauseOfAFailedConsultationIntoTheLedger() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R002 inv. 2: the failure leaves no record and its cause is never written -- only what an
+        // evaluator emitted reaches the ledger (F-EVCOST-R005).
+        String secret = "motivo de la falla, que no se registra";
+        Map<String, EvaluationOutcome> answers = Map.of(
+                "c1", new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, secret),
+                "c2", new EvaluationEmitted("verdict for c2"));
+        SynchronizedLedger ledger = new SynchronizedLedger(List.of());
+        DefaultEvaluationSession session = new DefaultEvaluationSession(ledger, TEXT_FINGERPRINT,
+                new ScriptedEvaluator("v1", answers::get), new EvaluationBudget(10));
+
+        List<EvaluationResolution> resolutions =
+                session.resolveAll(requests(List.of("c1", "c2"), EvaluationRequestMode.REUSE_OR_EVALUATE), 1);
+
+        assertEquals(secret, resolutions.get(0).getFailure().getReason());
+        assertEquals(List.of("qinst-judge|fp:c2|verdict for c2|quiz-c2|v1"), ledger.appendedInRun(),
+                "only the emitted verdict is recorded");
+        assertTrue(ledger.history(new EvaluationKey(JUDGE_ID, "fp:c1")).isEmpty(), "nothing for the failure");
+        assertFalse(ledger.appendedInRun().stream().anyMatch(line -> line.contains(secret)),
+                "the cause is never written");
     }
 }

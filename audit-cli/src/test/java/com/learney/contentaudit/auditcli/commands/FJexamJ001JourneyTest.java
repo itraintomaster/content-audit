@@ -174,7 +174,7 @@ public class FJexamJ001JourneyTest {
                     new ExamEvaluationSessionFactory(ledger, fingerprinter), registry, evaluatorId -> List.of(),
                     new DefaultJudgeRuntimeConfig());
             catalog = new DefaultAnalyzerCatalog(List.of(new DefaultQuizInstructionAnalyzerFactory(judge,
-                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(), runtime)));
+                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime)));
             CourseRepository repository = mock(CourseRepository.class);
             CourseToAuditableMapper mapper = mock(CourseToAuditableMapper.class);
             CourseEntity entity = new CourseEntity();

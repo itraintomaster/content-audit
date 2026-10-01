@@ -4,6 +4,7 @@ import com.learney.contentaudit.auditdomain.CorrectorMatcher;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -33,10 +34,31 @@ import javax.annotation.processing.Generated;
  * </ul>
  *
  * The grammar that tells the long forms apart -- the closed lists of participles, determiners,
- * pronouns and adverbs -- is the corrector's own ({@code written_answer_words.go}) and does not
- * change with the table; the table says which equivalences are on. The golden cases of the
- * corrector, copied as they are in {@code analysis/recursos-compartidos/corrector/casos-de-oro/},
- * check that this class and the Go corrector decide the same.
+ * pronouns and adverbs -- is the corrector's own ({@code written_answer_words.go}); the table says
+ * which equivalences are on and, in {@link FormEquivalenceTable#getRules()}, which rules of the
+ * corrector that are code its version has (none in ittm #1191; the four of 1/10/2026 in ittm #1194,
+ * in production since that day):
+ *
+ * <ul>
+ *   <li>{@link CorrectorRule#AMBIGUOUS_CONTRACTIONS}: a contraction whose long form cannot be told
+ *       -- «'s» before a participle without object, «'d» before a participle like the base --
+ *       counts as any of its long forms when the student writes it; in the accepted answer it
+ *       stays as written. So {@link #accepts} is not symmetric: the student's answer is the one
+ *       that gets the benefit of the doubt.</li>
+ *   <li>{@link CorrectorRule#STANDARD_IRREGULAR_PARTICIPLES}: the 48 irregular participles of the
+ *       standard list the corrector lacked (overslept, undergone), and the bases in -ing that are
+ *       no gerund (bring).</li>
+ *   <li>{@link CorrectorRule#TILL_OWN_SUBJECTS}: till is the verb only after I, you, he, she, we
+ *       or they; after there or it it is until.</li>
+ *   <li>{@link CorrectorRule#OPTIONAL_PARENTHESES}: what goes between parentheses in an accepted
+ *       answer is optional, whole or not at all; what the student writes between parentheses
+ *       counts as always.</li>
+ * </ul>
+ *
+ * The golden cases of each corrector, copied as they are in {@code
+ * analysis/recursos-compartidos/corrector/casos-de-oro/} (#1194, in production) and {@code
+ * casos-de-oro-corrector-1191/} (#1191), check that this class and the Go corrector decide the
+ * same.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -44,6 +66,9 @@ import javax.annotation.processing.Generated;
 )
 public class DefaultCorrectorMatcher implements CorrectorMatcher {
     private final FormEquivalenceTable table;
+
+    /** The rules of the corrector that are code and that the version of the table has. */
+    private final Set<CorrectorRule> rules = EnumSet.noneOf(CorrectorRule.class);
 
     /** The suffix contractions of the table and their long forms, as «'s» → is, has, us. */
     private final Map<String, List<String>> cliticReadings = new HashMap<>();
@@ -110,6 +135,13 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
             negatedAuxiliaries.clear();
         }
         this.invertsNegativeQuestions = table != null && table.isInvertsNegativeQuestions();
+        if (table != null && table.getRules() != null) {
+            for (CorrectorRule rule : table.getRules()) {
+                if (rule != null) {
+                    rules.add(rule);
+                }
+            }
+        }
         if (table != null && table.getEquivalentWords() != null) {
             for (EquivalentWordGroup group : table.getEquivalentWords()) {
                 if (group == null || group.getWords() == null || group.getEquivalenceClass() == null) {
@@ -154,6 +186,11 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
         return Collections.unmodifiableSet(forms);
     }
 
+    /**
+     * Whether the corrector accepts what the student wrote: it is the receiver, and with {@link
+     * CorrectorRule#AMBIGUOUS_CONTRACTIONS} its ambiguous contractions count as any of their long
+     * forms, while those of the accepted answers stay as written.
+     */
     @Override
     public boolean accepts(GapContext context, List<String> acceptedOptions, String written) {
         if (written == null || acceptedOptions == null) {
@@ -185,7 +222,11 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
             return false;
         }
         Context around = Context.of(context);
-        return written(first, around).matches(written(second, around));
+        Written a = written(first, around);
+        Written b = written(second, around);
+        // The same answer for the corrector in either order: with the four rules matching is not
+        // symmetric, and two options or two copies are one answer if either is taken as the other.
+        return a.matches(b) || b.matches(a);
     }
 
     @Override
@@ -197,10 +238,28 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
     // The written answer, as the corrector compares it
     // -------------------------------------------------------------------------
 
-    /** The two forms the corrector compares: letter by letter, and read in its long form. */
-    private record Written(String literal, String longForm) {
-        boolean matches(Written other) {
-            return literal.equals(other.literal) || longForm.equals(other.longForm);
+    /**
+     * The forms the corrector compares: letter by letter and read in its long form; the other
+     * readings of the ambiguous contractions it has (looked at only on the student's side); and
+     * its forms without what goes between parentheses (looked at only on the accepted side).
+     */
+    private record Written(String literal, String longForm, List<String> readings, List<Written> optional) {
+        /** Whether this answer, the student's, is the accepted one (Matches of the corrector). */
+        boolean matches(Written accepted) {
+            if (matchesForm(accepted)) {
+                return true;
+            }
+            for (Written form : accepted.optional) {
+                if (matchesForm(form)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private boolean matchesForm(Written accepted) {
+            return literal.equals(accepted.literal) || longForm.equals(accepted.longForm)
+                    || readings.contains(accepted.longForm);
         }
     }
 
@@ -218,8 +277,33 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
 
     private Written written(String text, Context context) {
         String value = text != null ? text : "";
-        return new Written(normalizeWritten(value),
-                normalizeWritten(readLong(context.before() + " " + value + " " + context.after())));
+        Written answer = read(value, context);
+        if (!rules.contains(CorrectorRule.OPTIONAL_PARENTHESES)) {
+            return answer;
+        }
+        List<Written> optional = new ArrayList<>();
+        for (String form : optionalForms(value)) {
+            optional.add(read(form, context));
+        }
+        return new Written(answer.literal(), answer.longForm(), answer.readings(), optional);
+    }
+
+    /** The answer written in its gap: the sentence is read whole, and only the gap can be ambiguous. */
+    private Written read(String value, Context context) {
+        String before = unifyApostrophes(context.before());
+        String written = unifyApostrophes(value);
+        int from = before.length() + 1;
+        Longs longs = readLongs(before + " " + written + " " + unifyApostrophes(context.after()), from,
+                from + written.length());
+        String longForm = normalizeWritten(longs.first());
+        List<String> readings = new ArrayList<>();
+        for (String reading : longs.others()) {
+            String normalized = normalizeWritten(reading);
+            if (!normalized.equals(longForm) && !readings.contains(normalized)) {
+                readings.add(normalized);
+            }
+        }
+        return new Written(normalizeWritten(value), longForm, readings, List.of());
     }
 
     /**
@@ -277,6 +361,58 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
     }
 
     // -------------------------------------------------------------------------
+    // What goes between parentheses in an accepted answer (written_answer_parentheses.go)
+    // -------------------------------------------------------------------------
+
+    /** How many spans between parentheses an accepted answer can have: each one doubles its forms. */
+    private static final int MAX_OPTIONAL = 3;
+
+    /**
+     * The other forms of an accepted answer with parentheses: each span goes with what is inside,
+     * without the parentheses, or does not go. Nested or unclosed parentheses give none: the answer
+     * stays as written. A form left with nothing does not count.
+     */
+    static List<String> optionalForms(String text) {
+        List<int[]> spans = new ArrayList<>();
+        int open = -1;
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (c == '(' && open < 0) {
+                open = i;
+            } else if (c == '(' || (c == ')' && open < 0)) {
+                return List.of();
+            } else if (c == ')') {
+                spans.add(new int[] {open, i});
+                open = -1;
+            }
+        }
+        if (open >= 0 || spans.isEmpty() || spans.size() > MAX_OPTIONAL) {
+            return List.of();
+        }
+        List<String> forms = List.of("");
+        int cursor = 0;
+        for (int[] span : spans) {
+            String inside = text.substring(span[0] + 1, span[1]);
+            List<String> next = new ArrayList<>(2 * forms.size());
+            for (String form : forms) {
+                String head = form + text.substring(cursor, span[0]);
+                next.add(head + inside);
+                next.add(head);
+            }
+            forms = next;
+            cursor = span[1] + 1;
+        }
+        List<String> out = new ArrayList<>();
+        for (String form : forms) {
+            String whole = form + text.substring(cursor);
+            if (!normalizeWritten(whole).isEmpty()) {
+                out.add(whole);
+            }
+        }
+        return out;
+    }
+
+    // -------------------------------------------------------------------------
     // The long reading of a sentence
     // -------------------------------------------------------------------------
 
@@ -299,27 +435,73 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
         }
     }
 
-    /** The long form of a word and the last word it covers. */
-    private record Read(String reading, int last) {
+    /**
+     * The long forms of a word and the last word it covers: one when what follows tells it, two for
+     * an ambiguous contraction («he's forgotten» is he has forgotten or he is forgotten).
+     */
+    private record Read(List<String> forms, int last) {
+        static Read of(String reading, int last) {
+            return new Read(List.of(reading), last);
+        }
     }
 
-    private String readLong(String sentence) {
-        String s = unifyApostrophes(sentence);
+    /** The sentence in its long form, and the other readings its ambiguous contractions give it. */
+    private record Longs(String first, List<String> others) {
+    }
+
+    /** How many ambiguous contractions of the student are opened, at most: each one triples the readings. */
+    private static final int MAX_AMBIGUOUS = 4;
+
+    /**
+     * The sentence with each contraction that can be opened in its long form, and the rest letter
+     * by letter, so the comparison of always treats it the same. An ambiguous contraction stays as
+     * written; with {@link CorrectorRule#AMBIGUOUS_CONTRACTIONS}, one the student wrote -- between
+     * from and to -- also gives the readings where it is each of its long forms.
+     */
+    private Longs readLongs(String s, int from, int to) {
         List<Token> tokens = tokenize(s);
-        StringBuilder out = new StringBuilder(s.length() + 16);
+        List<List<String>> pieces = new ArrayList<>();
         int cursor = 0;
+        int ambiguous = 0;
         for (int i = 0; i < tokens.size(); i++) {
             Read read = readToken(tokens, i);
-            if (read == null) {
+            if (read == null || read.forms().isEmpty()) {
                 continue;
             }
-            out.append(s, cursor, tokens.get(i).start);
-            out.append(' ').append(read.reading()).append(' ');
+            List<String> piece;
+            if (read.forms().size() > 1) {
+                Token token = tokens.get(i);
+                if (!rules.contains(CorrectorRule.AMBIGUOUS_CONTRACTIONS) || token.start < from || token.start >= to
+                        || ambiguous == MAX_AMBIGUOUS) {
+                    continue; // out of what the student wrote, the ambiguous one stays as written
+                }
+                ambiguous++;
+                piece = new ArrayList<>();
+                piece.add(s.substring(token.start, tokens.get(read.last()).end));
+                for (String form : read.forms()) {
+                    piece.add(" " + form + " ");
+                }
+            } else {
+                piece = List.of(" " + read.forms().get(0) + " ");
+            }
+            pieces.add(List.of(s.substring(cursor, tokens.get(i).start)));
+            pieces.add(piece);
             cursor = tokens.get(read.last()).end;
             i = read.last();
         }
-        out.append(s.substring(cursor));
-        return out.toString();
+        pieces.add(List.of(s.substring(cursor)));
+
+        List<String> readings = List.of("");
+        for (List<String> piece : pieces) {
+            List<String> next = new ArrayList<>(readings.size() * piece.size());
+            for (String reading : readings) {
+                for (String part : piece) {
+                    next.add(reading + part);
+                }
+            }
+            readings = next;
+        }
+        return new Longs(readings.get(0), readings.subList(1, readings.size()));
     }
 
     private List<Token> tokenize(String s) {
@@ -426,9 +608,10 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
     }
 
     /**
-     * Reads word i: its long form and the last word it covers (a negative question takes its
-     * subject too: «doesn't she» is «does she not»). Null when it has no long form, or when which
-     * one cannot be told: then the word stays as written.
+     * Reads word i: its long forms and the last word it covers (a negative question takes its
+     * subject too: «doesn't she» is «does she not»). One form when it reads without doubt, two
+     * for an ambiguous contraction; null when it has no long form or what follows does not even
+     * say it is a verb: then the word stays as written.
      */
     private Read readToken(List<Token> tokens, int i) {
         Token t = tokens.get(i);
@@ -447,21 +630,29 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
             host = tokens.get(i - 1).lower;
         }
 
-        List<String> parts = new ArrayList<>();
-        if (!t.host.isEmpty()) {
-            parts.add(hostWord(t));
-        }
+        List<String> forms = List.of(t.host.isEmpty() ? "" : hostWord(t));
         List<String> after = followingWords(tokens, i);
         for (int k = 0; k < t.clitics.size(); k++) {
             List<String> next = new ArrayList<>(tentativeLongForms(t.clitics.subList(k + 1, t.clitics.size())));
             next.addAll(after);
-            String reading = readClitic(t.clitics.get(k), host, next);
-            if (reading == null) {
+            List<String> longs = readClitic(t.clitics.get(k), host, next);
+            if (longs == null || longs.isEmpty()) {
                 return null;
             }
-            parts.add(reading);
+            forms = joinEach(forms, longs);
         }
-        return new Read(String.join(" ", parts), i);
+        return new Read(forms, i);
+    }
+
+    /** Each long form of a contracted part after each form of what goes before it in the word. */
+    private static List<String> joinEach(List<String> forms, List<String> longs) {
+        List<String> joined = new ArrayList<>(forms.size() * longs.size());
+        for (String form : forms) {
+            for (String longForm : longs) {
+                joined.add((form + " " + longForm).strip());
+            }
+        }
+        return joined;
     }
 
     /** A word without anything contracted: a listed spelling, or till. The rest stays as it is. */
@@ -469,24 +660,27 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
         String lower = tokens.get(i).lower;
         String american = spellings.get(lower);
         if (american != null) {
-            return new Read(american, i);
+            return Read.of(american, i);
         }
         String preposition = prepositions.get(lower);
         if (preposition != null && isThePreposition(tokens, i)) {
-            return new Read(preposition, i);
+            return Read.of(preposition, i);
         }
         return null;
     }
 
     /**
      * till is until, but not when it is the noun («the till») or the verb («They till the land»,
-     * «to till the soil»): the word before tells.
+     * «to till the soil»): the word before tells. With {@link CorrectorRule#TILL_OWN_SUBJECTS} the
+     * subjects of till are its own: there is never its subject («worked there till then») and it
+     * before till is its object («Keep it till Monday»).
      */
-    private static boolean isThePreposition(List<Token> tokens, int i) {
+    private boolean isThePreposition(List<Token> tokens, int i) {
         if (i > 0 && !tokens.get(i - 1).boundary) {
             String before = tokens.get(i - 1).lower;
+            Set<String> subjects = rules.contains(CorrectorRule.TILL_OWN_SUBJECTS) ? TILL_SUBJECTS : SUBJECT_PRONOUNS;
             return !(DETERMINERS.contains(before) || POSSESSIVES.contains(before)
-                    || SUBJECT_PRONOUNS.contains(before) || MODALS.contains(before) || before.equals("to"));
+                    || subjects.contains(before) || MODALS.contains(before) || before.equals("to"));
         }
         return true;
     }
@@ -521,25 +715,37 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
         return words;
     }
 
-    private String readClitic(String clitic, String host, List<String> next) {
+    /** The long forms of a contracted part: one if what follows tells it, two if it only says it is a verb. */
+    private List<String> readClitic(String clitic, String host, List<String> next) {
         if (clitic.equals("n't")) {
-            return notReading;
+            return notReading != null ? List.of(notReading) : null;
         }
         List<String> readings = cliticReadings.get(clitic);
         if (readings == null) {
             return null;
         }
         return switch (clitic) {
-            case "'ve" -> allowed(readings, readHave(next));
+            case "'ve" -> allowed(readings, readHave(next) != null ? List.of(readHave(next)) : null);
             case "'s" -> allowed(readings, readApostropheS(host, next));
             case "'d" -> allowed(readings, readApostropheD(host, next));
-            default -> readings.size() == 1 ? readings.get(0) : null;
+            default -> readings.size() == 1 ? List.of(readings.get(0)) : null;
         };
     }
 
-    /** The long form the grammar chose, if the table has it. */
-    private static String allowed(List<String> readings, String reading) {
-        return reading != null && readings.contains(reading) ? reading : null;
+    /**
+     * The long forms the grammar chose, if the table has every one of them: a table that lacks one
+     * of the two forms of an ambiguous contraction does not get to decide it.
+     */
+    private static List<String> allowed(List<String> readings, List<String> forms) {
+        if (forms == null || forms.isEmpty()) {
+            return null;
+        }
+        for (String form : forms) {
+            if (!readings.contains(form)) {
+                return null;
+            }
+        }
+        return forms;
     }
 
     /**
@@ -560,7 +766,7 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
                 return null;
             }
             String auxiliary = aux.equals("are") && tokens.get(next).lower.equals("i") ? "am" : aux;
-            return new Read(auxiliary + " " + tokens.get(next).lower + " " + notReading, next);
+            return Read.of(auxiliary + " " + tokens.get(next).lower + " " + notReading, next);
         }
 
         // At the start, without a pronoun behind, it is a question with another subject («Didn't
@@ -568,11 +774,11 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
         // its long form takes the not after a subject that can be long.
         if (atStart || QUESTION_WORDS_BEFORE_THE_SUBJECT.contains(before)) {
             if (aux.equals("do") && atStart && (!hasNext || !startsANounPhrase(tokens.get(next)))) {
-                return new Read("do " + notReading, i);
+                return Read.of("do " + notReading, i);
             }
             return null;
         }
-        return new Read(aux + " " + notReading, i);
+        return Read.of(aux + " " + notReading, i);
     }
 
     private static boolean startsANounPhrase(Token t) {
@@ -594,10 +800,17 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
         return "have";
     }
 
+    private static final List<String> IS = List.of("is");
+
+    private static final List<String> HAS = List.of("has");
+
+    /** «'s» before a participle that can be both, as «It's broken». */
+    private static final List<String> IS_OR_HAS = List.of("is", "has");
+
     /** «'s»: us after let, and otherwise is or has by what follows. */
-    private static String readApostropheS(String host, List<String> next) {
+    private List<String> readApostropheS(String host, List<String> next) {
         if (host.equals("let")) {
-            return "us";
+            return List.of("us");
         }
         if (PRONOUN_HOSTS.contains(host)) {
             return readSAfterPronoun(host, next);
@@ -609,12 +822,12 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
     private record Skipped(int k, boolean degree, boolean ever) {
     }
 
-    private static String readSAfterPronoun(String host, List<String> next) {
+    private List<String> readSAfterPronoun(String host, List<String> next) {
         Skipped skipped = skipAdverbs(next, 0);
         int k = skipped.k();
         boolean ever = skipped.ever();
         if (skipped.degree()) {
-            return "is"; // «She's very tired»
+            return IS; // «She's very tired»
         }
 
         boolean inverted = false;
@@ -623,61 +836,61 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
             Skipped more = skipAdverbs(next, k + 1);
             k = more.k();
             if (more.degree()) {
-                return "is";
+                return IS;
             }
             ever = ever || more.ever();
         }
 
         if (k == next.size()) {
             if (inverted || (k > 0 && next.get(k - 1).equals("not"))) {
-                return "is"; // «Where's he?», «No, it's not.»
+                return IS; // «Where's he?», «No, it's not.»
             }
-            return null; // at the end of the sentence it is not contracted: no way to know
+            return null; // at the end of the sentence it is not contracted: «Yes, she's.» is no contraction
         }
 
         String word = next.get(k);
         List<String> rest = next.subList(k + 1, next.size());
         if (word.equals("been") || word.equals("got") || word.equals("gotten")) {
-            return "has";
+            return HAS;
         }
         if (isGerund(word)) {
-            return "is";
+            return IS;
         }
         if (isParticiple(word)) {
             return readSBeforeParticiple(word, rest, inverted, ever);
         }
         if (QUESTION_HOSTS.contains(host) && !inverted && participleAhead(rest)) {
-            return null; // «Where's the cat gone?»: the subject is long and cannot be told
+            return IS_OR_HAS; // «Where's the cat gone?»: the subject is long and cannot be told
         }
-        return "is";
+        return IS;
     }
 
     /** Between is and has when a participle comes after «'s». */
-    private static String readSBeforeParticiple(String word, List<String> rest, boolean inverted, boolean ever) {
+    private List<String> readSBeforeParticiple(String word, List<String> rest, boolean inverted, boolean ever) {
         boolean object = objectFollows(word, rest);
         if ((word.equals("used") || word.equals("supposed")) && !rest.isEmpty() && rest.get(0).equals("to")) {
-            return "is"; // «She's used to running», «It's supposed to snow»
+            return IS; // «She's used to running», «It's supposed to snow»
         }
         if (ever) {
-            return "has"; // «the best film she's ever seen»
+            return HAS; // «the best film she's ever seen»
         }
         if (ADJECTIVE_PARTICIPLES.contains(word)) {
-            return object ? "has" : "is"; // «She's made a cake» / «It's crowded»
+            return object ? HAS : IS; // «She's made a cake» / «It's crowded»
         }
         if (object || inverted || INTRANSITIVE_PARTICIPLES.contains(word)) {
-            return "has"; // «She's broken her leg», «What's she done?», «He's arrived»
+            return HAS; // «She's broken her leg», «What's she done?», «He's arrived»
         }
         if (!rest.isEmpty() && rest.get(0).equals("by")) {
-            return "is"; // «the garden that's maintained by the gardener»: passive
+            return IS; // «the garden that's maintained by the gardener»: passive
         }
-        return null; // «It's broken»: it can be both
+        return IS_OR_HAS; // «It's broken»: it can be both
     }
 
     /**
      * «'s» after a noun, which is almost always a possessive («Mary's house»). It is opened only
      * when what follows cannot go after a possessive.
      */
-    private static String readSAfterNoun(List<String> next) {
+    private List<String> readSAfterNoun(List<String> next) {
         int k = 0;
         boolean negated = false;
         boolean perfect = false;
@@ -705,13 +918,13 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
         String word = next.get(k);
         List<String> rest = next.subList(k + 1, next.size());
         if (word.equals("been") || word.equals("got") || word.equals("gotten")) {
-            return "has"; // «Tom's been sleeping»
+            return HAS; // «Tom's been sleeping»
         }
         if (word.equals("a") || word.equals("an") || word.equals("the") || PLACE_WORDS.contains(word)) {
-            return "is"; // «Mary's a doctor», «Mary's in the kitchen»
+            return IS; // «Mary's a doctor», «Mary's in the kitchen»
         }
         if (isGerund(word) && !rest.isEmpty() && continuesAGerund(rest.get(0))) {
-            return "is"; // «Peter's reading a book»; «Peter's reading glasses» stays
+            return IS; // «Peter's reading a book»; «Peter's reading glasses» stays
         }
         if (isParticiple(word) && perfect) {
             return readSBeforeParticiple(word, rest, false, ever); // «My brother's just bought a car»
@@ -719,10 +932,14 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
         return null;
     }
 
+    private static final List<String> HAD = List.of("had");
+
+    private static final List<String> WOULD = List.of("would");
+
     /** «'d»: had before a participle or better, would before a verb in its base form. */
-    private static String readApostropheD(String host, List<String> next) {
+    private List<String> readApostropheD(String host, List<String> next) {
         if (QUESTION_WORDS_BEFORE_THE_SUBJECT.contains(host) || host.equals("what")) {
-            return null; // «Where'd you go?» is did
+            return null; // «Where'd you go?» can be did, would or had
         }
         int k = skipAdverbs(next, 0).k();
         if (k == next.size()) {
@@ -730,21 +947,21 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
         }
         String word = next.get(k);
         if (word.equals("better") || word.equals("been") || word.equals("got") || word.equals("gotten")) {
-            return "had";
+            return HAD;
         }
         if (word.equals("rather") || word.equals("have") || word.equals("be")) {
-            return "would";
+            return WOULD;
         }
-        if (PARTICIPLES_LIKE_THE_BASE.contains(word)) {
-            return null; // «She'd read the book» can be both
+        if (isParticipleLikeTheBase(word)) {
+            return List.of("had", "would"); // «She'd read the book» can be both
         }
         if (isParticiple(word)) {
-            return "had";
+            return HAD;
         }
         if (isGerund(word) || isNotAVerb(word)) {
             return null;
         }
-        return "would";
+        return WOULD;
     }
 
     private static Skipped skipAdverbs(List<String> next, int from) {
@@ -763,15 +980,24 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
         return new Skipped(k, degree, ever);
     }
 
-    private static boolean isGerund(String word) {
-        return word.length() >= 5 && word.endsWith("ing");
+    private boolean isGerund(String word) {
+        return word.length() >= 5 && word.endsWith("ing")
+                && !(rules.contains(CorrectorRule.STANDARD_IRREGULAR_PARTICIPLES) && NOT_GERUNDS.contains(word));
     }
 
-    private static boolean isParticiple(String word) {
-        if (IRREGULAR_PARTICIPLES.contains(word)) {
+    private boolean isParticiple(String word) {
+        if (IRREGULAR_PARTICIPLES.contains(word)
+                || (rules.contains(CorrectorRule.STANDARD_IRREGULAR_PARTICIPLES)
+                        && MORE_IRREGULAR_PARTICIPLES.contains(word))) {
             return true;
         }
         return word.length() > 3 && word.endsWith("ed") && !NOT_PARTICIPLES.contains(word);
+    }
+
+    private boolean isParticipleLikeTheBase(String word) {
+        return PARTICIPLES_LIKE_THE_BASE.contains(word)
+                || (rules.contains(CorrectorRule.STANDARD_IRREGULAR_PARTICIPLES)
+                        && MORE_PARTICIPLES_LIKE_THE_BASE.contains(word));
     }
 
     private static boolean isNumber(String word) {
@@ -799,7 +1025,7 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
                 && !CONJUNCTIONS.contains(word) && !SUBJECT_PRONOUNS.contains(word);
     }
 
-    private static boolean participleAhead(List<String> rest) {
+    private boolean participleAhead(List<String> rest) {
         for (int j = 0; j < rest.size() && j < 2; j++) {
             if (isParticiple(rest.get(j)) && !ADJECTIVE_PARTICIPLES.contains(rest.get(j))) {
                 return true;
@@ -921,6 +1147,29 @@ public class DefaultCorrectorMatcher implements CorrectorMatcher {
             "taken", "taught", "torn", "told", "thought", "thrown", "understood", "misunderstood",
             "woken", "worn", "wept", "won", "written", "withdrawn", "upset", "proven", "bred",
             "bound", "split", "thrust", "forecast", "broadcast", "sewn", "trodden", "wound");
+
+    /**
+     * With {@link CorrectorRule#STANDARD_IRREGULAR_PARTICIPLES}: the participles of the standard list
+     * the corrector lacked. Out of it, wet, wed, rid, spelt and smelt: after «'s» or «'d» they are
+     * almost always something else.
+     */
+    private static final Set<String> MORE_IRREGULAR_PARTICIPLES = set(
+            "befallen", "beheld", "beset", "bid", "cast", "dwelt", "flung", "foreseen", "foretold",
+            "forsaken", "knit", "mislaid", "mown", "outdone", "outgrown", "overdone", "overheard",
+            "overrun", "overseen", "overslept", "overtaken", "overthrown", "rebuilt", "redone",
+            "remade", "repaid", "rethought", "retold", "rewritten", "sawn", "shorn", "slain", "slit",
+            "slung", "sown", "spat", "spoilt", "stridden", "striven", "strung", "stunk", "undergone",
+            "undertaken", "undone", "withheld", "withstood", "woven", "wrung");
+
+    /** With the same rule, the ones of them equal to their base: after «'d» they do not tell. */
+    private static final Set<String> MORE_PARTICIPLES_LIKE_THE_BASE = set("beset", "bid", "knit", "overrun", "slit");
+
+    /** With the same rule, irregular bases ending in -ing that are no gerund: «She'd bring the drinks». */
+    private static final Set<String> NOT_GERUNDS = set("bring", "cling", "fling", "sling", "spring", "sting", "string",
+            "swing", "wring");
+
+    /** With {@link CorrectorRule#TILL_OWN_SUBJECTS}, the subjects that make till the verb («They till»). */
+    private static final Set<String> TILL_SUBJECTS = set("i", "you", "he", "she", "we", "they");
 
     /** The ones equal to the base verb: after «'d» they do not tell would from had. */
     private static final Set<String> PARTICIPLES_LIKE_THE_BASE = set(

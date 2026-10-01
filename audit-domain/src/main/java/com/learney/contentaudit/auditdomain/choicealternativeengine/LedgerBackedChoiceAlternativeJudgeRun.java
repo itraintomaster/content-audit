@@ -11,6 +11,7 @@ import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJ
 import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeVerdict;
 import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeVerdictReader;
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
 import com.learney.contentaudit.auditdomain.judging.JudgeRequestPlan;
 import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
@@ -18,6 +19,8 @@ import com.learney.contentaudit.auditdomain.judging.JudgeSessions;
 import com.learney.contentaudit.auditdomain.judging.JudgeUnitTally;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequest;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequestMode;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
@@ -248,9 +251,11 @@ class LedgerBackedChoiceAlternativeJudgeRun implements ChoiceAlternativeJudgeRun
         if (!everResolved || !settled.containsAll(requested)) {
             resolveAll();
         }
+        // F-CIERRE-R001: by exercise, the exercises are the units.
         JudgeUnitTally tally = new JudgeUnitTally(AuditTarget.QUIZ, reached, evaluated, notEvaluated,
                 new TreeMap<>(verdictsByVersion),
-                unmatchedDeclaredIds != null ? new ArrayList<>(unmatchedDeclaredIds) : null, null);
+                unmatchedDeclaredIds != null ? new ArrayList<>(unmatchedDeclaredIds) : null,
+                new JudgeQuizTally(reached, evaluated, notEvaluated));
         return runtime.coverage(opened, tally);
     }
 
@@ -282,11 +287,26 @@ class LedgerBackedChoiceAlternativeJudgeRun implements ChoiceAlternativeJudgeRun
             }
             return notJudged(unit, ChoiceAlternativeJudgmentStatus.PENDING, pendingReason(mode, session));
         }
-        // FAILED, or a resolution the session never gave.
+        return notJudged(unit, ChoiceAlternativeJudgmentStatus.FAILED, failedReason(resolution, session));
+    }
+
+    /**
+     * F-CIERRE-R002: why a consultation failed, from its own cause -- an unusable answer, or the
+     * service and its reason. Only a resolution that carries no cause falls back to the first one of
+     * the run, as before.
+     */
+    private static String failedReason(EvaluationResolution resolution, EvaluationSession session) {
+        EvaluationNotEmitted failure = resolution != null ? resolution.getFailure() : null;
+        if (failure != null) {
+            if (failure.getKind() == EvaluationFailureKind.OUTPUT_UNUSABLE) {
+                return REASON_UNUSABLE_OUTPUT;
+            }
+            if (failure.getReason() != null && !failure.getReason().isBlank()) {
+                return REASON_CONSULTATION_FAILED + failure.getReason().strip();
+            }
+        }
         String serviceReason = session.unavailableReason().orElse(null);
-        return notJudged(unit, ChoiceAlternativeJudgmentStatus.FAILED, serviceReason != null
-                ? REASON_CONSULTATION_FAILED + serviceReason
-                : REASON_UNUSABLE_OUTPUT);
+        return serviceReason != null ? REASON_CONSULTATION_FAILED + serviceReason : REASON_UNUSABLE_OUTPUT;
     }
 
     /**

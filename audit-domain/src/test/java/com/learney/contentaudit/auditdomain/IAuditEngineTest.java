@@ -1240,14 +1240,14 @@ public class IAuditEngineTest {
     @Tag("F-RECUR-R001")
     public void shouldKeepTheCourseVocabularyScoreAt7392WithLemmarecurrenceAt008PublishingItsCourseDiagnosisOnThePublishedScoresOfTheAnalysisOf299() {
         // F-RECUR-R001: lemma-recurrence run over the 91,873 positions of the 29/9 course gives 0,08 and
-        // publishes its course diagnosis and its 1,616 findings; next to the six other scores published on
-        // 29/9 the vocabulary of the course stays at 73,92 %.
+        // publishes its course diagnosis and its 1,612 findings (1/10: only lemmas written with letters);
+        // next to the six other scores published on 29/9 the vocabulary of the course stays at 73,92 %.
         AuditReport report = recurrenceRun299();
 
         assertEquals(0.08, report.getRoot().getScores().get("lemma-recurrence"), 1e-12, "R001: 0,08, as before");
-        assertEquals(1750, ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaRecurrenceDiagnosis().orElseThrow()
-                .getResult().getLemmaStats().size(), "R003: its course diagnosis, with the 1,750 returning lemmas");
-        assertEquals(1616, report.getRoot().getFindings().stream()
+        assertEquals(1743, ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaRecurrenceDiagnosis().orElseThrow()
+                .getResult().getLemmaStats().size(), "R003: its course diagnosis, with the 1,743 returning lemmas");
+        assertEquals(1612, report.getRoot().getFindings().stream()
                 .filter(f -> "lemma-recurrence".equals(f.getAnalyzer())).count(), "R005: its findings, in the course");
         assertEquals("73,92", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R001: 73,92 %");
     }

@@ -148,6 +148,7 @@ import org.junit.jupiter.api.io.TempDir;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
+import com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -1010,7 +1011,7 @@ public class AnalyzeCmdTest {
         /** The judge as Main builds it -- its factory, session and verdict reader -- over a fake judge. */
         static AnalyzerProvider judge(FakeJudge judge, EvaluationLedger ledger) {
             return new DefaultQuizInstructionAnalyzerFactory(judge, new JacksonQuizInstructionVerdictReader(),
-                    new DefaultQuizInstructionConfig(),
+                    new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()),
                     approvedJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, new Sha256ContentFingerprinter())));
         }
 
@@ -1074,7 +1075,7 @@ public class AnalyzeCmdTest {
                     absence, new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(), renderer));
             providers.add(classicProviders().get(6));
             providers.add(new DefaultQuizInstructionAnalyzerFactory(judge,
-                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(), runtime));
+                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime));
             providers.add(new com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzerProvider(
                     irregularForms, renderer));
             providers.add(new com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessAnalyzerProvider(

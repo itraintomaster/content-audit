@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (C) — La evidencia de una sola respuesta y de opción múltiple suma «Oración terminada» de la
+  vista (las pruebas de R003 la nombran); como el clasificador no sabe el modo del tema, la termina como hueco a
+  llenar (FILL), igual que los duplicados exactos. El repartidor de miniteoría usa el modo de su tema.
+
 2026-09-30 — architect (C) — La causa de un FAILED es EvaluationResolution.failure: EvaluationNotEmitted, el modelo
   que ya devolvía el evaluador (tipo + motivo). Un campo y no dos: no se inventa otro par tipo/motivo.
 2026-09-30 — architect (C) — La cuenta de ejercicios es un tipo propio, JudgeQuizTally, en JudgeUnitTally y en

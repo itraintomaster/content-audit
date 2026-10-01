@@ -3,6 +3,7 @@ import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.MiniTheoryConfig;
 import com.learney.contentaudit.auditdomain.finding.EvidencePart;
@@ -16,7 +17,9 @@ import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryDiagnosis;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryErrorScope;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryProblem;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdict;
-import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.auditdomain.studentview.StudentOptionView;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -64,12 +67,16 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
 
     private final MiniTheoryConfig config;
 
-private final QuizStudentViewRenderer studentViewRenderer;
+    /**
+     * F-CIERRE-R003: each exercise of the evidence is written by the student view -- its finished
+     * sentence, without the hint, and its options -- never by a rule of this class.
+     */
+    private final QuizStudentViewRenderer studentViewRenderer;
 
-public DefaultMiniTheoryDistributor(MiniTheoryConfig config, QuizStudentViewRenderer studentViewRenderer) {
-    this.config = config;
-    this.studentViewRenderer = studentViewRenderer;
-}
+    public DefaultMiniTheoryDistributor(MiniTheoryConfig config, QuizStudentViewRenderer studentViewRenderer) {
+        this.config = config;
+        this.studentViewRenderer = studentViewRenderer;
+    }
 
     @Override
     public List<MiniTheoryQuizOutcome> distribute(MiniTheoryVerdict verdict,
@@ -116,7 +123,8 @@ public DefaultMiniTheoryDistributor(MiniTheoryConfig config, QuizStudentViewRend
             }
 
             for (int e : targets(problem, scope, shown, named, size)) {
-                FindingDraft draft = draft(problem, text, assessment, e, shown, named, exercises);
+                FindingDraft draft = draft(problem, text, assessment, e, shown, named, exercises,
+                        sentenceModeOf(knowledgeNode));
                 merge(findings.get(e - 1), draft);
                 if (!reproached.get(e - 1).contains(assessment)) {
                     reproached.get(e - 1).add(assessment);
@@ -221,8 +229,8 @@ public DefaultMiniTheoryDistributor(MiniTheoryConfig config, QuizStudentViewRend
     // The finding of one exercise
     // -------------------------------------------------------------------------
 
-    private static FindingDraft draft(MiniTheoryProblem problem, String text, MiniTheoryAssessment assessment,
-            int exercise, List<Integer> shown, List<Integer> named, List<AuditNode> exercises) {
+    private FindingDraft draft(MiniTheoryProblem problem, String text, MiniTheoryAssessment assessment,
+            int exercise, List<Integer> shown, List<Integer> named, List<AuditNode> exercises, SentenceMode mode) {
         List<EvidencePart> examined = new ArrayList<>();
         examined.add(new EvidencePart("Miniteoría", text));
         if (!isBlank(assessment.getCounterexample())) {
@@ -231,7 +239,7 @@ public DefaultMiniTheoryDistributor(MiniTheoryConfig config, QuizStudentViewRend
         if (!isBlank(assessment.getExplanation())) {
             examined.add(new EvidencePart(explanationLabel(problem), assessment.getExplanation()));
         }
-        examined.add(new EvidencePart("Ejercicio E" + exercise, asSeen(exercises.get(exercise - 1))));
+        examined.add(new EvidencePart("Ejercicio E" + exercise, asSeen(exercises.get(exercise - 1), mode)));
 
         List<FindingNodeRef> related = new ArrayList<>();
         for (int other : named) {
@@ -239,7 +247,7 @@ public DefaultMiniTheoryDistributor(MiniTheoryConfig config, QuizStudentViewRend
                 continue;
             }
             AuditNode node = exercises.get(other - 1);
-            examined.add(new EvidencePart("Ejercicio E" + other, asSeen(node)));
+            examined.add(new EvidencePart("Ejercicio E" + other, asSeen(node, mode)));
             related.add(refOf(node));
         }
 
@@ -323,36 +331,42 @@ public DefaultMiniTheoryDistributor(MiniTheoryConfig config, QuizStudentViewRend
     }
 
     /**
-     * The exercise as the student reads it once answered: its finished sentence and, in a multiple
-     * choice, its options in the student's order with the correct one marked -- never the internal
-     * format of the course.
+     * The exercise as the student reads it once answered (F-CIERRE-R003): its finished sentence from
+     * the student view, without the hint, and, in a multiple choice, its options in the student's
+     * order with the correct one marked -- never the internal format of the course.
      */
-    private static String asSeen(AuditNode exercise) {
+    private String asSeen(AuditNode exercise, SentenceMode mode) {
         AuditableQuiz quiz = (AuditableQuiz) exercise.getEntity();
-        String sentence = null;
-        if (quiz.getSentences() != null) {
-            for (String candidate : quiz.getSentences()) {
-                if (!isBlank(candidate)) {
-                    sentence = candidate.strip();
-                    break;
-                }
-            }
-        }
-        if (sentence == null) {
+        String sentence = studentViewRenderer.finishedSentence(quiz, mode);
+        if (isBlank(sentence)) {
             sentence = !isBlank(quiz.getLabel()) ? quiz.getLabel() : String.valueOf(quiz.getId());
         }
-        if (quiz.getMultipleChoice() == null || quiz.getMultipleChoice().getItems() == null) {
-            return sentence;
+        if (quiz.getMultipleChoice() == null) {
+            return sentence.strip();
         }
+        QuizStudentView view = studentViewRenderer.render(quiz);
         List<String> options = new ArrayList<>();
-        for (MultipleChoiceItemEntity item : quiz.getMultipleChoice().getItems()) {
-            if (item == null) {
-                continue;
+        if (view != null && view.getOptions() != null) {
+            for (StudentOptionView option : view.getOptions()) {
+                if (option == null) {
+                    continue;
+                }
+                options.add((option.getLabel() != null ? option.getLabel() : "")
+                        + (option.isCorrect() ? " (correcta)" : ""));
             }
-            options.add((item.getLabel() != null ? item.getLabel() : "")
-                    + (item.getIncidence() > 0.0 ? " (correcta)" : ""));
         }
-        return sentence + " (opciones: " + String.join(", ", options) + ")";
+        return options.isEmpty()
+                ? sentence.strip()
+                : sentence.strip() + " (opciones: " + String.join(", ", options) + ")";
+    }
+
+    /** How the course finishes the exercises of the topic; a fill-in when the topic does not say. */
+    private static SentenceMode sentenceModeOf(AuditNode knowledgeNode) {
+        if (knowledgeNode != null && knowledgeNode.getEntity() instanceof AuditableKnowledge knowledge
+                && knowledge.getSentenceMode() != null) {
+            return knowledge.getSentenceMode();
+        }
+        return SentenceMode.FILL;
     }
 
     private static FindingNodeRef refOf(AuditNode exercise) {

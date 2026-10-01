@@ -1590,7 +1590,8 @@ pedidos, la UI tendría que inventar nombres, oraciones y conteos, que es lo que
 ### FEAT-PISTA: Pista coherente - la pista anuncia lo que el alumno tiene que escribir [F-PISTA]
 
 > **Qué**: Un analizador de la familia de errores compara la pista de cada ejercicio con su respuesta —el verbo, el
-sujeto y la negación— y marca los ejercicios sin pista en un tema donde tres cuartos o más la llevan.
+sujeto y la negación—, marca las reescrituras que piden palabras que nada anuncia y marca los ejercicios sin pista en
+un tema donde tres cuartos o más la llevan.
 
 **Por qué**: Una pista que no coincide con la respuesta hace imposible acertar: «Who ___ (I / see)?» sólo acepta «are
 you seeing». El 077 encontró 188 ejercicios imposibles y content-audit los muestra en verde.
@@ -1604,6 +1605,7 @@ you seeing». El 077 encontró 188 ejercicios imposibles y content-audit los mue
 | F-PISTA-R003 | El sujeto de la pista es el de la respuesta, y ninguno queda sin anunciar | critical | - |
 | F-PISTA-R004 | La pista lleva «not» sólo si la respuesta es negativa | major | - |
 | F-PISTA-R005 | `hint-coherence` es un analizador de errores con arreglo por regla | major | - |
+| F-PISTA-R006 | La reescritura no pide palabras que no salen de la oración de partida, la pista o la consigna | critical | - |
 
 **User Journeys:**
 

@@ -4,7 +4,11 @@ import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.IrregularFormsCatalog;
 import com.learney.contentaudit.auditdomain.NlpToken;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -30,6 +34,12 @@ import javax.annotation.processing.Generated;
  *
  * <p>Called with a hint without text, it is an exercise that must carry one and does not
  * (R001): the only issue is the missing hint, with the hint the answer gives.
+ *
+ * <p>{@link #checkRewrite} is R006, for an answer that is the whole sentence: every word with
+ * meaning of the first answer comes from the sentence it rewrites, the hint or the instructions,
+ * compared as R002 compares plus the bases the regular suffixes leave; the grammar a rewrite
+ * brings by itself does not count. Each word that comes from nowhere goes to the panel: a rule
+ * cannot tell whether the answer or the statement is the one to fix (DOUBT-PISTA-RESPUESTA).
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -129,6 +139,7 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
 
     private static HintIssue issue(String rule, HintIssueKind kind, String word, String proposed) {
         FindingResolution resolution = kind == HintIssueKind.HINT_WORD_ABSENT
+                || kind == HintIssueKind.REWRITE_WORD_NOT_ANNOUNCED
                 ? FindingResolution.PANEL
                 : FindingResolution.RULE;
         return new HintIssue(rule, kind, word, proposed, resolution);
@@ -290,6 +301,15 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
                 }
             }
             return new ArrayList<>(indexes);
+        }
+
+        /** The tokens of the saved sentence that are the answer, in their order. */
+        List<NlpToken> said() {
+            List<NlpToken> said = new ArrayList<>();
+            for (int i : answerIndexes()) {
+                said.add(sentence.get(i));
+            }
+            return said;
         }
 
         /** Whether a hint word is in the answer: written, inflected, by lemma or irregular form. */
@@ -481,4 +501,280 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
     private static String lower(String text) {
         return text == null ? "" : text.toLowerCase(Locale.ROOT);
     }
+
+    // -------------------------------------------------------------------------
+    // R006: the words a rewrite asks for that nothing announces
+    // -------------------------------------------------------------------------
+
+    /** The tags of the shared tokenizer for the words with meaning. */
+    private static final Set<String> CONTENT_TAGS = Set.of("NOUN", "PROPN", "VERB", "ADJ", "ADV", "NUM");
+
+    /** Words of the grammar a rewrite brings by itself, which the tokenizer sometimes tags as content. */
+    private static final Set<String> REWRITE_GRAMMAR = Set.of(
+            "not", "n't", "so", "too", "also", "very", "really", "just", "even", "only", "please", "then",
+            "there", "here", "let", "how", "when", "where", "why", "what", "neither", "either", "yes", "no",
+            "ever", "as", "well", "rather", "than", "more", "most", "less", "least",
+            // the indefinite pronouns, that the tokenizer may tag as nouns: «We had none.»
+            "none", "nothing", "nobody", "everything", "everybody", "everyone", "something", "somebody",
+            "someone", "anything", "anybody", "anyone", "one", "ones");
+
+    /** The auxiliaries: grammar at the end of a short answer, and have in the perfect. */
+    private static final Set<String> AUXILIARIES = Set.of("do", "have", "be", "will", "would", "can", "could",
+            "shall", "should", "may", "might", "must");
+
+    /** What may go between have and its participle without saying anything. */
+    private static final Set<String> BEFORE_THE_PARTICIPLE = Set.of("n't", "not", "never", "already", "just", "ever");
+
+    /**
+     * Reported speech shifts its time words by a closed list: the word of the source announces its
+     * shift («today» → that day). In this order: tomorrow announces next, and next its own.
+     */
+    private static final Map<String, Set<String>> TIME_SHIFTS = timeShifts();
+
+    private static Map<String, Set<String>> timeShifts() {
+        Map<String, Set<String>> shifts = new LinkedHashMap<>();
+        shifts.put("today", Set.of("that", "day"));
+        shifts.put("tonight", Set.of("that", "night"));
+        shifts.put("tomorrow", Set.of("next", "following", "day"));
+        shifts.put("yesterday", Set.of("day", "before", "previous"));
+        shifts.put("last", Set.of("before", "previous"));
+        shifts.put("ago", Set.of("before", "earlier"));
+        shifts.put("now", Set.of("then"));
+        shifts.put("here", Set.of("there"));
+        shifts.put("this", Set.of("that"));
+        shifts.put("these", Set.of("those"));
+        shifts.put("next", Set.of("following", "after"));
+        return shifts;
+    }
+
+    private static final Pattern SOURCE_TIME = Pattern.compile("\\b\\d{1,2}:\\d{2}\\b");
+
+    private static final Pattern SOURCE_WORD = Pattern.compile("[A-Za-z0-9][A-Za-z0-9'-]*");
+
+    private static final Pattern SOURCE_CLITIC = Pattern.compile("^([a-z]+)('s|'re|'ve|'ll|'d|'m|n't)$");
+
+    /** What a contraction of the source announces: «There's» announces be, as the tokenizer reads «'s». */
+    private static final Map<String, List<String>> CLITIC_ANNOUNCES = Map.of(
+            "'s", List.of("be", "have"), "'re", List.of("be"), "'m", List.of("be"), "'ve", List.of("have"),
+            "'ll", List.of("will"), "'d", List.of("would", "have"), "n't", List.of("not"));
+
+    @Override
+    public List<HintIssue> checkRewrite(AuditableQuiz quiz) {
+        List<HintIssue> issues = new ArrayList<>();
+        if (quiz == null) {
+            return issues;
+        }
+        Answer answer = new Answer(DefaultHintReader.firstAnswers(quiz), tokens(quiz));
+        List<NlpToken> said = answer.said();
+        if (said.isEmpty()) {
+            return issues;
+        }
+        Set<String> sources = sources(quiz);
+        // «So had I.», «Neither do we.»: the short answer brings its auxiliary.
+        String opening = lower(said.get(0).getText());
+        boolean elliptical = opening.equals("so") || opening.equals("neither") || opening.equals("nor");
+        for (int k = 0; k < said.size(); k++) {
+            NlpToken token = said.get(k);
+            if (!CONTENT_TAGS.contains(token.getPosTag())) {
+                continue;
+            }
+            String text = lower(token.getText());
+            String lemma = lower(token.getLemma());
+            if (REWRITE_GRAMMAR.contains(lemma) || REWRITE_GRAMMAR.contains(text)) {
+                continue;
+            }
+            if (AUXILIARIES.contains(lemma)) {
+                List<NlpToken> rest = said.subList(k + 1, said.size());
+                if (elliptical || rest.isEmpty()) {
+                    continue; // «So had I.», «than you do.»
+                }
+                if (lemma.equals("have") && perfect(rest)) {
+                    continue; // «would have been», «had overslept»: the perfect is grammar
+                }
+            }
+            if (lemma.equals("long") && k > 0 && lower(said.get(k - 1).getText()).equals("how")) {
+                continue; // «How long…?» asks for the duration
+            }
+            if (!announced(text, lemma, sources)) {
+                issues.add(issue(HintCoherenceAnalyzer.RULE_REWRITE_WORDS, HintIssueKind.REWRITE_WORD_NOT_ANNOUNCED,
+                        lemma.isEmpty() ? text : lemma, null));
+            }
+        }
+        return deduplicated(issues);
+    }
+
+    /** The words of the text of the exercise -- the sentence it rewrites and its hint -- and of the instructions. */
+    private static Set<String> sources(AuditableQuiz quiz) {
+        Set<String> sources = new HashSet<>();
+        for (SentencePartEntity part : DefaultHintReader.parts(quiz)) {
+            if (part != null && part.getKind() == SentencePartKind.TEXT) {
+                sources.addAll(sourceWords(part.getText()));
+            }
+        }
+        sources.addAll(sourceWords(quiz.getInstructions()));
+        for (Map.Entry<String, Set<String>> shift : TIME_SHIFTS.entrySet()) {
+            if (sources.contains(shift.getKey())) {
+                sources.addAll(shift.getValue());
+            }
+        }
+        return sources;
+    }
+
+    /**
+     * The words of a text as the tokenizer cuts them: «8:00» is one, a compound with a hyphen is also
+     * its pieces, and a contracted word also its host and what its contraction says («There's» →
+     * there, be).
+     */
+    private static List<String> sourceWords(String text) {
+        List<String> words = new ArrayList<>();
+        if (text == null) {
+            return words;
+        }
+        Matcher time = SOURCE_TIME.matcher(text);
+        while (time.find()) {
+            words.add(time.group());
+        }
+        Matcher m = SOURCE_WORD.matcher(text.replace('’', '\'').replace('‘', '\''));
+        while (m.find()) {
+            String word = m.group().toLowerCase(Locale.ROOT);
+            words.add(word);
+            if (word.contains("-")) {
+                for (String piece : word.split("-")) {
+                    if (!piece.isEmpty()) {
+                        words.add(piece);
+                    }
+                }
+            }
+            Matcher clitic = SOURCE_CLITIC.matcher(word);
+            if (clitic.matches()) {
+                words.add(clitic.group(1));
+                words.addAll(CLITIC_ANNOUNCES.getOrDefault(clitic.group(2), List.of()));
+            }
+        }
+        return words;
+    }
+
+    /** Whether have opens the perfect: a participle follows it, past the adverbs that say nothing. */
+    private boolean perfect(List<NlpToken> rest) {
+        for (NlpToken next : rest) {
+            String word = lower(next.getText());
+            if (BEFORE_THE_PARTICIPLE.contains(word)) {
+                continue;
+            }
+            return irregularForms.isPastParticiple(word) || word.endsWith("ed") || word.equals("been");
+        }
+        return false;
+    }
+
+    /**
+     * Whether a word of the answer comes from a word of the source: as R002 compares, by its regular
+     * inflection, or by the base its regular suffixes leave (drinking → drink, simply → simple).
+     */
+    private boolean announced(String text, String lemma, Set<String> sources) {
+        Set<String> answerBases = bases(text);
+        if (!lemma.isEmpty()) {
+            answerBases.addAll(bases(lemma));
+        }
+        for (String source : sources) {
+            if (rewriteMatches(source, text, lemma)
+                    || (!lemma.isEmpty() && (rewriteMatches(lemma, source, source) || regular(lemma).contains(source)
+                            || regular(source).contains(lemma)))) {
+                return true;
+            }
+            for (String base : bases(source)) {
+                if (answerBases.contains(base) || irregularForms.formsOf(base).contains(text)
+                        || (!lemma.isEmpty() && irregularForms.formsOf(base).contains(lemma))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /** A word of the source and a word of the answer: written, inflected, by lemma or irregular form. */
+    private boolean rewriteMatches(String source, String text, String lemma) {
+        if (source == null || source.isEmpty() || text == null || text.isEmpty()) {
+            return false;
+        }
+        if (text.equals(source) || source.equals(lemma)) {
+            return true;
+        }
+        if (source.length() >= 3) {
+            for (String stem : stems(source)) {
+                if (text.startsWith(stem)) {
+                    return true;
+                }
+            }
+        }
+        Set<String> inflected = regular(source);
+        if (inflected.contains(text) || (lemma != null && !lemma.isEmpty() && inflected.contains(lemma))) {
+            return true;
+        }
+        return irregularForms.formsOf(source).contains(text)
+                || (lemma != null && !lemma.isEmpty() && irregularForms.formsOf(lemma).contains(source))
+                || irregularForms.formsOf(text).contains(source);
+    }
+
+    /** The regular inflections of a base, also of a short one: go → goes, going; stop → stopped. */
+    private static Set<String> regular(String base) {
+        Set<String> out = new HashSet<>();
+        if (base == null || base.isEmpty()) {
+            return out;
+        }
+        String b = base;
+        for (String suffix : List.of("s", "es", "ed", "d", "ing", "er", "est", "ly")) {
+            out.add(b + suffix);
+        }
+        int n = b.length();
+        if (b.endsWith("e")) {
+            String stem = b.substring(0, n - 1);
+            out.add(stem + "ing");
+            out.add(stem + "er");
+            out.add(stem + "est");
+        }
+        if (b.endsWith("y")) {
+            String stem = b.substring(0, n - 1);
+            for (String suffix : List.of("ies", "ied", "ier", "iest", "ily")) {
+                out.add(stem + suffix);
+            }
+        }
+        if (n >= 3 && "aeiouwyx".indexOf(b.charAt(n - 1)) < 0 && "aeiou".indexOf(b.charAt(n - 2)) >= 0
+                && "aeiou".indexOf(b.charAt(n - 3)) < 0) {
+            char last = b.charAt(n - 1);
+            for (String suffix : List.of("ed", "ing", "er", "est")) {
+                out.add(b + last + suffix);
+            }
+        }
+        return out;
+    }
+
+    /**
+     * The word and the bases its regular suffixes leave: drinking → drink, clearest → clear, simpler →
+     * simple, steadily → steady, simply → simple.
+     */
+    private static Set<String> bases(String word) {
+        Set<String> out = new HashSet<>();
+        if (word == null || word.isEmpty()) {
+            return out;
+        }
+        out.add(word);
+        for (String suffix : List.of("ing", "ed", "es", "s", "er", "est", "ly")) {
+            if (word.endsWith(suffix) && word.length() - suffix.length() >= 3) {
+                String b = word.substring(0, word.length() - suffix.length());
+                out.add(b);
+                out.add(b + "e");
+                if (b.length() >= 2 && b.charAt(b.length() - 1) == b.charAt(b.length() - 2)) {
+                    out.add(b.substring(0, b.length() - 1)); // stopped → stop
+                }
+                if (b.endsWith("i")) {
+                    out.add(b.substring(0, b.length() - 1) + "y"); // tried, steadily → steady
+                }
+            }
+        }
+        if (word.endsWith("ly") && word.length() >= 5 && "aeiou".indexOf(word.charAt(word.length() - 3)) < 0) {
+            out.add(word.substring(0, word.length() - 2) + "le"); // simply → simple
+        }
+        return out;
+    }
+
 }

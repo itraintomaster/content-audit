@@ -5,6 +5,14 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — orquestador + developer (paquete D) — Lo que no es una palabra no entra a la recurrencia (opción A):
+  el criterio es el lema (letras, apóstrofo o guion internos), no el texto, porque el análisis cuenta lemas y el
+  fixture stream.tsv.gz guarda sólo lema y categoría; así la corrida real y el fixture dan lo mismo. Los ordinales con
+  cifras quedan afuera: no son vocabulario que se recicla y lemma-absence/lexis tampoco evalúan tokens con cifras.
+  why: la vista mostraba «'», «-» y «3rd» como primeras marcas; el puntaje sigue en 0,08 y el vocabulario no se mueve.
+2026-10-01 — orquestador — La opción B (posiciones sin puntuación) mueve el vocabulario a 74,00 %: queda en
+  ronda1/recur-posiciones, sin juntar, para que decida José con el antes y el después.
+
 2026-09-30 — developer (paquete D) — El detalle por nivel usa los mismos umbrales y el mismo tope de 2.000 que el curso,
   medido con las posiciones de los ejercicios de ese nivel. Regla «F-RECUR-R005» (antes unhealthy-recurrence); cada
   hallazgo suma «Curso: 8,0 % de las 1.750 palabras analizadas…»; con puntaje menor que 1 y ningún lema fuera de rango

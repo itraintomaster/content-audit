@@ -1,0 +1,24 @@
+{
+  "descripcion": "Casos de oro de las grafías británica y americana (written_answer_spelling.go). Se leen igual que formas-equivalentes.json.",
+  "como_se_lee": [
+    "Decisión de José del 30/9/2026 (077-2): se aceptan las dos grafías, con una lista cerrada. Cada palabra de la lista se lee en su forma americana.",
+    "Lo que no está en la lista queda como siempre, letra por letra.",
+    "Si José no quiere esta regla, se saca borrando written_answer_spelling.go, su línea en plainWordReadings y este archivo.",
+    "«clase» agrupa los casos: lo de siempre, negación, auxiliar pegado, inversión, ambiguas, sin apóstrofo, grafías, until/till, sigue mal, límite. «sigue mal» y «límite» no aceptan: el primero es una respuesta equivocada que tiene que seguir dando mal; el segundo, una respuesta que estaría bien pero el corrector no puede decidir sola (la otra forma se lista con «|» en el ejercicio). Las demás clases aceptan, salvo «lo de siempre», que muestra lo que no cambia."
+  ],
+  "casos": [
+    {"clase": "grafías", "regla": "grafia", "antes": "She", "esperado": "travelled", "despues": "(travel) to Europe.", "escrito": "traveled", "acepta": true, "hoy": false, "motivo": "travelled y traveled son la misma palabra.", "curso": "2211"},
+    {"clase": "grafías", "regla": "grafia", "antes": "She", "esperado": "traveled", "despues": "(travel) to Europe.", "escrito": "travelled", "acepta": true, "hoy": false, "motivo": "Al revés también."},
+    {"clase": "grafías", "regla": "grafia", "antes": "The rain canceled the game.", "esperado": "The game had been canceled.", "despues": "", "escrito": "The game had been cancelled.", "acepta": true, "hoy": false, "motivo": "canceled y cancelled son la misma palabra.", "curso": "365f"},
+    {"clase": "grafías", "regla": "grafia", "antes": "", "esperado": "What's your favourite colour?", "despues": "", "escrito": "What is your favorite color?", "acepta": true, "hoy": false, "motivo": "-our y -or; y la contracción también vale."},
+    {"clase": "grafías", "regla": "grafia", "antes": "", "esperado": "I realised my mistake.", "despues": "", "escrito": "I realized my mistake.", "acepta": true, "hoy": false, "motivo": "-ise y -ize."},
+    {"clase": "grafías", "regla": "grafia", "antes": "", "esperado": "We met in the city centre.", "despues": "", "escrito": "We met in the city center.", "acepta": true, "hoy": false, "motivo": "-re y -er."},
+    {"clase": "grafías", "regla": "grafia", "antes": "", "esperado": "The sky is grey.", "despues": "", "escrito": "The sky is gray.", "acepta": true, "hoy": false, "motivo": "grey y gray."},
+    {"clase": "grafías", "regla": "grafia", "antes": "We", "esperado": "learnt", "despues": "(learn) vocabulary all morning.", "escrito": "learned", "acepta": true, "hoy": false, "motivo": "El pasado británico en -t: learnt y learned.", "curso": "275e"},
+    {"clase": "grafías", "regla": "grafia", "antes": "", "esperado": "I haven't dreamt", "despues": "(not / dream) about her.", "escrito": "I have not dreamed", "acepta": true, "hoy": false, "motivo": "dreamt y dreamed; y la contracción también vale.", "curso": "2857"},
+    {"clase": "sigue mal", "regla": "grafia", "antes": "", "esperado": "The analyses were wrong.", "despues": "", "escrito": "The analyzes were wrong.", "acepta": false, "hoy": false, "motivo": "analyses también es el plural de analysis: fuera de la lista."},
+    {"clase": "sigue mal", "regla": "grafia", "antes": "", "esperado": "I have got a new car.", "despues": "", "escrito": "I have gotten a new car.", "acepta": false, "hoy": false, "motivo": "«have got» es tener y «have gotten», conseguir: fuera de la lista."},
+    {"clase": "sigue mal", "regla": "grafia", "antes": "", "esperado": "The tyre is flat.", "despues": "", "escrito": "The tire is flat.", "acepta": false, "hoy": false, "motivo": "tire también es cansarse: fuera de la lista."},
+    {"clase": "sigue mal", "regla": "grafia", "antes": "", "esperado": "My mum is a doctor.", "despues": "", "escrito": "My mom is a doctor.", "acepta": false, "hoy": false, "motivo": "mum y mom son dos palabras, no dos grafías: fuera de la lista."}
+  ]
+}

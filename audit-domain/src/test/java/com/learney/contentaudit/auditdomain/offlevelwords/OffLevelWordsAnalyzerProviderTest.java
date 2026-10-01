@@ -54,8 +54,8 @@ public class OffLevelWordsAnalyzerProviderTest {
 
         assertEquals("off-level-words", card.getName());
         assertEquals("¿Hay palabras que el alumno de este nivel no puede conocer?", card.getQuestion(), "R007: its question");
-        assertEquals("La oración terminada de cada ejercicio, el título y las respuestas de su tema y su traducción",
-                card.getReads(), "R007: what it reads");
+        assertEquals("La oración terminada de cada ejercicio, el título, las respuestas y las miniteorías de su tema, los "
+                + "nombres de los temas del curso y su traducción", card.getReads(), "R007: what it reads");
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily(), "R007: errors family");
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets(), "R007: it evaluates the quiz");
         assertEquals(List.of("F-NIVFR-R002"), card.getRules().stream().map(r -> r.getId()).toList(), "R007: one rule");

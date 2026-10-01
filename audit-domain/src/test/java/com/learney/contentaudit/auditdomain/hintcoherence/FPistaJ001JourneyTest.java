@@ -42,8 +42,8 @@ public class FPistaJ001JourneyTest {
     @Test
     @Order(1)
     @Tag("path-1")
-    @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe lee la pista y la primera ... → Hallazgo alta, con los ejercicios del... [El ejercicio no tiene pista y tres cuartos o más de su tema, del mismo tipo, sí] → success")
-    public void path1_elEjercicioNoTienePistaYTresCuartosOMsDeSuTemaDelMismoTipoS_success() {
+    @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe lee la pista y la primera ... → Hallazgo alta, con los ejercicios del... [El ejercicio no tiene pista y la llevan tres cuartos o más de su tipo, o de todo su tema] → success")
+    public void path1_elEjercicioNoTienePistaYLaLlevanTresCuartosOMsDeSuTipoODeTodoSuTema_success() {
         // correr: analyze with only hint-coherence, over Afirmativas regulares (19 of 20 with hint).
         AuditNode root = analyze(knowledge("6814dafa7d73e7209a13d389", "Afirmativas regulares",
                 HintCoherenceAnalyzerTest.afirmativasRegulares()));

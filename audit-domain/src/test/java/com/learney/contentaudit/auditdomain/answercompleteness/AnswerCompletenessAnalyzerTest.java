@@ -146,10 +146,10 @@ public class AnswerCompletenessAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should resolve by adding it after «|» a missing form the new corrector still rejects, as «has trained» if «He ___ (train) hard today.» only accepted «'s trained», a limit of the corrector")
+    @DisplayName("should only rank a missing form of a class the corrector in production equates and still rejects, naming the rule the corrector lacks instead of adding it after «|», as «has trained» if «He ___ (train) hard today.» only accepted «'s trained»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
-    public void shouldResolveByAddingItAfterAMissingFormTheNewCorrectorStillRejectsAsHasTrainedIfHeTrainHardTodayOnlyAcceptedSTrainedALimitOfTheCorrector(
+    public void shouldOnlyRankAMissingFormOfAClassTheCorrectorInProductionEquatesAndStillRejectsNamingTheRuleTheCorrectorLacksInsteadOfAddingItAfterAsHasTrainedIfHeTrainHardTodayOnlyAcceptedSTrained(
             ) {
         // R005: «He ___ (train) hard today.» (…3061, A2) accepts «'s trained|has trained». With only «'s trained»,
         // the corrector in production equates the contractions and still rejects «has trained»: it cannot tell
@@ -173,21 +173,25 @@ public class AnswerCompletenessAnalyzerTest {
         assertTrue(findings(productionCorrector(), quiz("67fab6d59930102295343061", "", "", text("He"),
                 cloze("'s trained|has trained"), text("(train) hard today."))).isEmpty(), "the course accepts both");
 
-        // The other limits of the 29/9 course name the rule the corrector lacks, as asked to the corrector.
-        FindingDraft forgotten = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534283e", "", "",
-                text("He"), cloze("has forgotten"), text("(forget) to pay."))), "'s forgotten");
+        // The other limits of the 29/9 course, those of #1191, name the rule the corrector lacked, as asked to the
+        // corrector; #1194, in production since 1/10/2026, added those rules, and they are no longer findings.
+        AuditableQuiz forgot = quiz("67fab6d5993010229534283e", "", "", text("He"), cloze("has forgotten"),
+                text("(forget) to pay."));
+        FindingDraft forgotten = byMarker(findings(corrector1191(), forgot), "'s forgotten");
         assertEquals("«'s» ambiguo: el corrector tiene que leerlo con la forma larga de la respuesta aceptada",
                 part(forgotten, "Le falta al corrector"));
-        FindingDraft overslept = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534447b", "", "",
-                text("“I overslept this morning” (the boy whispered)"),
-                cloze("The boy whispered that he had overslept that morning."))),
+        AuditableQuiz boy = quiz("67fab6d5993010229534447b", "", "", text("“I overslept this morning” (the boy whispered)"),
+                cloze("The boy whispered that he had overslept that morning."));
+        FindingDraft overslept = byMarker(findings(corrector1191(), boy),
                 "the boy whispered that he'd overslept that morning.");
         assertEquals("falta «overslept» en los participios: lee «'d» como would", part(overslept, "Le falta al corrector"));
-        FindingDraft till = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534326a", "", "",
-                text("why / she / work there until then?"), cloze("Why had she worked there until then?"), text(""))),
-                "why had she worked there till then?");
+        AuditableQuiz then = quiz("67fab6d5993010229534326a", "", "", text("why / she / work there until then?"),
+                cloze("Why had she worked there until then?"), text(""));
+        FindingDraft till = byMarker(findings(corrector1191(), then), "why had she worked there till then?");
         assertEquals("la regla de till toma «there» como sujeto", part(till, "Le falta al corrector"));
         assertEquals(FindingResolution.RANK_ONLY, till.getResolution());
+        assertTrue(findings(productionCorrector(), forgot).isEmpty() && findings(productionCorrector(), boy).isEmpty()
+                && findings(productionCorrector(), then).isEmpty(), "#1194 accepts the three");
     }
 
     @Test
@@ -287,12 +291,17 @@ public class AnswerCompletenessAnalyzerTest {
     }
 
     // ------------------------------------------------------------------
-    // The corrector in production since 1/10/2026 (#1191), and one that equates no class: the old
-    // one, kept as data, so the rules of this analyzer can be seen at work
+    // The corrector in production since 1/10/2026 (#1194), the copy of #1191 for its limits, and one that
+    // equates no class: the old one, kept as data, so the rules of this analyzer can be seen at work
     // ------------------------------------------------------------------
 
     static CorrectorMatcher oldCorrector() {
         return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.oldCorrectorTable());
+    }
+
+    /** The copy of ittm #1191, in production on 1/10/2026 until #1194: its limits are the ones #1194 fixed. */
+    static CorrectorMatcher corrector1191() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.corrector1191Table());
     }
 
     static CorrectorMatcher productionCorrector() {

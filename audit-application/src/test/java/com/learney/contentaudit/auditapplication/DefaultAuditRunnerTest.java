@@ -1152,7 +1152,7 @@ public class DefaultAuditRunnerTest {
                         List.of(new com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation(
                                 "TENSE", "Pasado", "goes", "Esta en presente")), List.of())
                 : new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "Cumple", List.of(), List.of());
-        return new DefaultQuizInstructionAnalyzerFactory(evaluator, reader, new DefaultQuizInstructionConfig(),
+        return new DefaultQuizInstructionAnalyzerFactory(evaluator, reader, new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()),
                 approvedJudgeRuntime(new DefaultEvaluationSessionFactory(
                         new FakeQuizInstructionEvaluationLedger(), new FakeQuizInstructionContentFingerprinter())));
     }
@@ -1423,7 +1423,7 @@ public class DefaultAuditRunnerTest {
                 new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(), renderer));
         providers.add(new LemmaCountAnalyzerProvider(evp, lemmaCount));
         providers.add(new DefaultQuizInstructionAnalyzerFactory(judge, mock(QuizInstructionVerdictReader.class),
-                new DefaultQuizInstructionConfig(), runtime));
+                new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime));
         providers.add(new com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzerProvider(irregularForms,
                 renderer));
         providers.add(new com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessAnalyzerProvider(

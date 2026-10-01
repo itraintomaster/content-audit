@@ -302,11 +302,11 @@ public class StatsAnalyzerCmdTest {
         assertEquals(0, text.exit(), text.err());
         assertTrue(text.out().matches("(?s).*movie\\s+90\\s+1\\.005\\s+poco vista\\s+1\\.083\\s+6\\.510, de A1 a A2.*"),
                 "R003: each lemma, movie among them: " + text.out().substring(0, Math.min(2000, text.out().length())));
-        assertTrue(text.out().matches("(?s).*A1\\s+15\\.802\\s+450\\s+178\\s+257\\s+15\\s+39,6 %.*"),
-                "R004: each level, A1 among them");
+        assertTrue(text.out().matches("(?s).*A1\\s+15\\.802\\s+448\\s+176\\s+257\\s+15\\s+39,3 %.*"),
+                "R004: each level, A1 among them (since 1/10, only lemmas written with letters)");
         assertEquals(0, json.exit(), json.err());
         JsonNode detail = new ObjectMapper().readTree(json.out()).get("detail");
-        assertEquals(1750, detail.get("lemmas").size(), "R003: the 1,750 analysed lemmas of the diagnosis");
+        assertEquals(1743, detail.get("lemmas").size(), "R003: the 1,743 analysed lemmas of the diagnosis");
         assertEquals(0.08, detail.get("score").asDouble(), 1e-12);
         assertEquals(List.of("A1", "A2", "B1", "B2"), java.util.stream.StreamSupport.stream(detail.get("levels")
                 .spliterator(), false).map(level -> level.get("level").asText()).toList(), "R004: the four levels");

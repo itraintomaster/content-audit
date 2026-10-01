@@ -47,8 +47,9 @@ public class OffLevelWordsAnalyzerProvider implements AnalyzerProvider {
 
     /**
      * F-NIVFR-R007: the card of off-level-words, with its one name: whether there are words a
-     * student of the level cannot know; it reads the finished sentence, the title and answers of the
-     * topic and the translation; errors family, evaluates the quiz, goal 0, panel and instant.
+     * student of the level cannot know; it reads the finished sentence, the title, answers and mini
+     * theories of the topic, the names of the course's topics and the translation; errors family,
+     * evaluates the quiz, goal 0, panel and instant.
      */
     @Override
     public AnalyzerDescriptor describe() {
@@ -57,10 +58,12 @@ public class OffLevelWordsAnalyzerProvider implements AnalyzerProvider {
                 OffLevelWordsAnalyzer.DESCRIPTION,
                 AuditTarget.QUIZ,
                 "¿Hay palabras que el alumno de este nivel no puede conocer?",
-                "La oración terminada de cada ejercicio, el título y las respuestas de su tema y su traducción",
+                "La oración terminada de cada ejercicio, el título, las respuestas y las miniteorías de su tema, los "
+                        + "nombres de los temas del curso y su traducción",
                 List.of(new AnalyzerRuleCard(OffLevelWordsAnalyzer.RULE_OFF_LEVEL,
                         "Una palabra está dos o más niveles arriba del ejercicio, o fuera del EVP en la banda de "
-                                + "descuento fuerte de su nivel, y ni el tema la enseña ni la traducción la repite",
+                                + "descuento fuerte de su nivel, ninguna lectura regular la acerca, y ni el tema la "
+                                + "enseña ni la traducción la repite",
                         AnalysisCost.INSTANT)),
                 "0 palabras de otro nivel en cada ejercicio",
                 AnalyzerFamily.ERRORS,

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
@@ -275,7 +276,7 @@ public class DefaultHintAnswerCheckTest {
                 "good", Set.of("better", "best", "well"), "bad", Set.of("worse", "worst", "badly"),
                 "dream", Set.of("dreamt", "dreamed"), "see", Set.of("saw", "seen"), "mean", Set.of("meant"),
                 "have", Set.of("had", "has", "having"));
-        Set<String> participles = Set.of("swum", "been", "dreamt", "dreamed", "seen", "meant", "had", "cut");
+        Set<String> participles = Set.of("swum", "been", "dreamt", "dreamed", "seen", "meant", "had", "cut", "overslept");
         return new IrregularFormsCatalog() {
             @Override
             public Set<String> formsOf(String baseWord) {
@@ -308,6 +309,17 @@ public class DefaultHintAnswerCheckTest {
                 List.of(parts), null, null, null);
     }
 
+    /** A rewrite of the course: its saved sentence with the tokens the shared tokenizer gave it, and its instructions. */
+    static AuditableQuiz rewrite(String id, String sentence, String tokens, String instructions,
+            SentencePartEntity... parts) {
+        return new AuditableQuiz(tokens(tokens), id, "label", "", null, List.of(sentence), null, instructions,
+                List.of(parts), null, null, null);
+    }
+
+    private static List<String> words(List<HintIssue> issues) {
+        return issues.stream().map(HintIssue::getWord).toList();
+    }
+
     /** «word|lemma|POS» tokens separated by spaces, as the shared tokenizer gave them. */
     static List<NlpToken> tokens(String spec) {
         List<NlpToken> tokens = new ArrayList<>();
@@ -324,5 +336,80 @@ public class DefaultHintAnswerCheckTest {
 
     static SentencePartEntity cloze(String... options) {
         return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(options));
+    }
+
+    @Test
+    @DisplayName("should report a content word of a rewrite that comes neither from the sentence it rewrites nor from its hint or instructions, as «have» in «Polite request: I want to eat some cake. ___» answered «Could I have some cake?»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldReportAContentWordOfARewriteThatComesNeitherFromTheSentenceItRewritesNorFromItsHintOrInstructionsAsHaveInPoliteRequestIWantToEatSomeCakeAnsweredCouldIHaveSomeCake() {
+        // R006: «Polite request: I want to eat some cake. ___» (…24f7, A1) accepts «Could I have some cake?».
+        // Nothing announces have, neither the sentence it rewrites nor the instructions, so the faithful
+        // rewrite, «Could I eat some cake?», is wrong. Could and I are no words with meaning; cake comes from
+        // the sentence. It goes to the panel, without a hint to propose.
+        AuditableQuiz cake = rewrite("67fab6d599301022953424f7", "Could I have some cake?",
+                "Could|could|AUX I|I|PRON have|have|VERB some|some|DET cake|cake|NOUN ?|?|PUNCT",
+                "Transforma las oraciones para que incluyan 'can' o 'could'.",
+                text("Polite request: I want to eat some cake."), cloze("Could I have some cake?"));
+
+        List<HintIssue> issues = check().checkRewrite(cake);
+
+        assertEquals(List.of(HintIssueKind.REWRITE_WORD_NOT_ANNOUNCED), kinds(issues));
+        assertEquals("have", issues.get(0).getWord());
+        assertEquals(HintCoherenceAnalyzer.RULE_REWRITE_WORDS, issues.get(0).getRule());
+        assertEquals(FindingResolution.PANEL, issues.get(0).getResolution());
+        assertNull(issues.get(0).getProposedHint(), "the panel decides: there is no fix by rule");
+    }
+
+    @Test
+    @DisplayName("should take as announced the words the instructions name, so only «practise» is reported in «The coach encouraged the players to repeat the drill. ___» answered «The coach made the players practise the drill.» under «Crea oraciones utilizando 'let' o 'make'.»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldTakeAsAnnouncedTheWordsTheInstructionsNameSoOnlyPractiseIsReportedInTheCoachEncouragedThePlayersToRepeatTheDrillAnsweredTheCoachMadeThePlayersPractiseTheDrillUnderCreaOracionesUtilizandoLetOMake() {
+        // R006: «The coach encouraged the players to repeat the drill. ___» (…4186, B1) accepts «The coach made the
+        // players practise the drill.». made comes from the instructions, that ask for make; practise, in place of
+        // repeat, comes from nowhere. Without the instructions, made would be reported too.
+        String tokens = "The|the|DET coach|coach|NOUN made|make|VERB the|the|DET players|player|NOUN"
+                + " practise|practise|VERB the|the|DET drill|drill|NOUN .|.|PUNCT";
+        AuditableQuiz drill = rewrite("67fab6d59930102295344186", "The coach made the players practise the drill.",
+                tokens, "Crea oraciones utilizando 'let' o 'make'.",
+                text("The coach encouraged the players to repeat the drill."),
+                cloze("The coach made the players practise the drill."));
+        AuditableQuiz withoutInstructions = rewrite("67fab6d59930102295344186",
+                "The coach made the players practise the drill.", tokens, null,
+                text("The coach encouraged the players to repeat the drill."),
+                cloze("The coach made the players practise the drill."));
+
+        assertEquals(List.of("practise"), words(check().checkRewrite(drill)));
+        assertEquals(List.of("make", "practise"), words(check().checkRewrite(withoutInstructions)));
+    }
+
+    @Test
+    @DisplayName("should not report the grammar a rewrite brings by itself, as the perfect and the time shift of reported speech in «“I overslept this morning” (the boy whispered) ___» answered «The boy whispered that he had overslept that morning.»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldNotReportTheGrammarARewriteBringsByItselfAsThePerfectAndTheTimeShiftOfReportedSpeechInIOversleptThisMorningTheBoyWhisperedAnsweredTheBoyWhisperedThatHeHadOversleptThatMorning() {
+        // R006: «“I overslept this morning” (the boy whispered) ___» (…447b, B2) accepts «The boy whispered that he
+        // had overslept that morning.». whispered comes from the parentheses of the statement, had is the perfect
+        // before its participle and that comes from this. In «I will call Peter tomorrow. ___» (…3799, B1),
+        // answered «John said that he would call Peter the next day.», tomorrow announces the next day, and the
+        // instructions bring John and said.
+        AuditableQuiz overslept = rewrite("67fab6d5993010229534447b",
+                "“I overslept this morning” The boy whispered that he had overslept that morning.",
+                "“|\"|PUNCT I|I|PRON overslept|overslept|ADV this|this|DET morning|morning|NOUN ”|\"|PUNCT The|the|DET"
+                        + " boy|boy|NOUN whispered|whisper|VERB that|that|SCONJ he|he|PRON had|have|VERB"
+                        + " overslept|overslept|ADV that|that|DET morning|morning|NOUN .|.|PUNCT",
+                "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+                text("“I overslept this morning” (the boy whispered)"),
+                cloze("The boy whispered that he had overslept that morning."));
+        AuditableQuiz tomorrow = rewrite("67fab6d59930102295343799", "John said that he would call Peter the next day.",
+                "John|John|PROPN said|say|VERB that|that|SCONJ he|he|PRON would|would|AUX call|call|VERB"
+                        + " Peter|Peter|PROPN the|the|DET next|next|ADJ day|day|NOUN .|.|PUNCT",
+                "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como"
+                        + " lo harías en un examen. Comienza con 'John said that'.",
+                text("I will call Peter tomorrow. "), cloze("John said that he would call Peter the next day."));
+
+        assertEquals(List.of(), check().checkRewrite(overslept));
+        assertEquals(List.of(), check().checkRewrite(tomorrow));
     }
 }

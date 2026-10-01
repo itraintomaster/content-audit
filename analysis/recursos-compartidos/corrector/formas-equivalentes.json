@@ -1,10 +1,11 @@
 {
- "version": "corrector en producción, ittm #1191 (30e0efcc0), desplegado el 1/10/2026",
- "descripcion": "La copia de content-audit de la tabla del corrector de respuestas escritas que está en producción: la de ittm #1191 (30e0efcc0, be/domain/quiz/pkg/shared), desplegada el 1/10/2026 (stack learney-app, sa-east-1). La forma contraída y la larga valen lo mismo, las dos grafías de la lista y till por until. La tabla del corrector es código Go; ésta es su copia como dato, con el formato que espera content-audit, y es la única copia de esa tabla. Los casos de oro de casos-de-oro/ tienen que dar lo que dice su columna «acepta» con esta tabla y lo que dice «hoy» con formas-equivalentes-corrector-viejo.json. Si el corrector cambia, se cambia en el mismo paso: primero el corrector, después esta copia.",
+ "version": "corrector en producción, ittm #1194 (9915461ac), desplegado el 1/10/2026",
+ "descripcion": "La copia de content-audit del corrector de respuestas escritas que está en producción: el de ittm #1194 (9915461ac, be/domain/quiz/pkg/shared), desplegado el 1/10/2026 (stack learney-app, sa-east-1). Es la tabla del #1191 —la forma contraída y la larga valen lo mismo, las dos grafías de la lista y till por until— más las cuatro reglas que son código y que nombra «reglas». La tabla del corrector es código Go; ésta es su copia como dato, con el formato que espera content-audit, y es la única copia de esa tabla. Los casos de oro de casos-de-oro/ tienen que dar lo que dice su columna «acepta» con esta tabla y lo que dice «hoy» con formas-equivalentes-corrector-viejo.json. Si el corrector cambia, se cambia en el mismo paso: primero el corrector, después esta copia.",
  "como_se_lee": [
   "contracciones: lo contraído y sus formas largas. Con palabraEntera, la palabra entera («won't» es «will not»); sin ella, lo que va pegado a la palabra («'s» es is, has o us, según lo que sigue).",
   "palabrasEquivalentes: grupos de palabras que valen lo mismo; cada una se lee como la última del grupo. CONTRACTION son las contracciones escritas sin apóstrofo, SPELLING las grafías británica y americana de la lista, PREPOSITION till y until.",
-  "invierteNegativas: el corrector lee la pregunta negativa con el not detrás del sujeto («Doesn't she dance?» es «Does she not dance?»)."
+  "invierteNegativas: el corrector lee la pregunta negativa con el not detrás del sujeto («Doesn't she dance?» es «Does she not dance?»).",
+  "reglas: las reglas del corrector que son código y no tabla, por su nombre. Vacía, el corrector #1191. AMBIGUOUS_CONTRACTIONS: una contracción ambigua que escribe el alumno («'s» antes de un participio sin objeto, «'d» antes de un participio igual a la base) vale por cualquiera de sus formas largas; en la aceptada queda como está escrita. STANDARD_IRREGULAR_PARTICIPLES: los participios irregulares de la lista estándar (48 más, como overslept y undergone) y las bases en -ing que no son gerundios (bring). TILL_OWN_SUBJECTS: till es el verbo sólo después de I, you, he, she, we o they, y no después de there ni de it. OPTIONAL_PARENTHESES: lo que va entre paréntesis en una respuesta aceptada es opcional: va entero, sin los paréntesis, o no va."
  ],
  "contracciones": [
   {
@@ -1336,5 +1337,11 @@
    ]
   }
  ],
- "invierteNegativas": true
+ "invierteNegativas": true,
+ "reglas": [
+  "AMBIGUOUS_CONTRACTIONS",
+  "STANDARD_IRREGULAR_PARTICIPLES",
+  "TILL_OWN_SUBJECTS",
+  "OPTIONAL_PARENTHESES"
+ ]
 }

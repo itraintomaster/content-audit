@@ -71,6 +71,7 @@ import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -931,6 +932,22 @@ public class TranslationSenseAnalyzerTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R001")
     public void shouldDeclareInItsTallyAsManyExercisesAsQuizzesInEachState() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R001 inv. 1: translation-sense consults by exercise, so its tally counts as many exercises as
+        // quizzes in each state -- here one reused, two consulted and one that did not fit in the budget.
+        Lab lab = new Lab(subject -> emits(PASS), subject -> emits(PASS));
+        Course course = new Course();
+        AuditNode recorded = course.add(numbered(1));
+        course.add(numbered(2));
+        course.add(numbered(3));
+        course.add(numbered(4));
+        lab.seed(lab.fromEnglish, recorded, PASS);
+        lab.seed(lab.fromTranslation, recorded, PASS);
+
+        lab.run(budget(4), course);
+
+        JudgeCoverageDiagnosis coverage = course.coverage();
+        assertEquals(List.of(4, 3, 1), List.of(coverage.getReached(), coverage.getEvaluated(),
+                coverage.getNotEvaluated()));
+        assertEquals(new JudgeQuizTally(4, 3, 1), coverage.getQuizzes(), "as many exercises as quizzes, in each state");
     }
 }

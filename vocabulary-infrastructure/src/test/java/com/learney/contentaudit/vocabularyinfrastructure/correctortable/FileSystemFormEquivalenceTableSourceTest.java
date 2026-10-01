@@ -2,12 +2,16 @@ package com.learney.contentaudit.vocabularyinfrastructure.correctortable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.learney.contentaudit.auditdomain.correctormatch.ContractionExpansion;
+import com.learney.contentaudit.auditdomain.correctormatch.CorrectorRule;
 import com.learney.contentaudit.auditdomain.correctormatch.EquivalentWordGroup;
 import com.learney.contentaudit.auditdomain.correctormatch.FormEquivalenceClass;
 import com.learney.contentaudit.auditdomain.correctormatch.FormEquivalenceTable;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
@@ -29,13 +33,13 @@ public class FileSystemFormEquivalenceTableSourceTest {
     @Tag("F-RESPC-R001")
     public void shouldReadFromTheCopyOfTheCorrectorsTableItsVersionEachContractionWithAllItsLongFormsAsSWithIsAndHasAndEachGroupOfEquivalentWordsWithItsClassAsTravelledAndTraveled(
             ) {
-        // R001: the installed copy is the table of the corrector in production since 1/10/2026, the new
-        // one of ittm #1191. «'s» keeps every long form (is, has), because the corrector reads it by
+        // R001: the installed copy is the table of the corrector in production since 1/10/2026, ittm #1194,
+        // the table of #1191 with four rules. «'s» keeps every long form (is, has), because the corrector reads it by
         // what follows; travelled and traveled are one group of the closed list of spellings.
         FormEquivalenceTable table =
                 new FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes.json")).load();
 
-        assertEquals("corrector en producción, ittm #1191 (30e0efcc0), desplegado el 1/10/2026", table.getVersion());
+        assertEquals("corrector en producción, ittm #1194 (9915461ac), desplegado el 1/10/2026", table.getVersion());
         Optional<ContractionExpansion> s = table.getContractions().stream()
                 .filter(c -> c.getContracted().equals("'s")).findFirst();
         assertTrue(s.isPresent());
@@ -57,5 +61,38 @@ public class FileSystemFormEquivalenceTableSourceTest {
                         .load();
         assertTrue(old.getContractions().isEmpty() && old.getEquivalentWords().isEmpty());
         assertFalse(old.isInvertsNegativeQuestions());
+    }
+
+    @Test
+    @DisplayName("should read from «reglas» the rules that are code of the version of the corrector, the four in the copy of #1194, in production, and none in the copy of #1191, and stop at a rule it does not know")
+    @Tag("FEAT-RESPC")
+    @Tag("F-RESPC-R001")
+    public void shouldReadFromReglasTheRulesThatAreCodeOfTheVersionOfTheCorrectorTheFourInTheCopyOf1194InProductionAndNoneInTheCopyOf1191AndStopAtARuleItDoesNotKnow(
+            ) throws IOException {
+        // R001: the copy of each corrector says its version and the rules of it that are code. The one in
+        // production, ittm #1194 (9915461ac), has the four of 1/10 and the table of #1191 as it is; the copy of
+        // #1191, kept to measure the before and after, names none.
+        FormEquivalenceTable next =
+                new FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes.json")).load();
+        assertEquals(List.of(CorrectorRule.AMBIGUOUS_CONTRACTIONS, CorrectorRule.STANDARD_IRREGULAR_PARTICIPLES,
+                CorrectorRule.TILL_OWN_SUBJECTS, CorrectorRule.OPTIONAL_PARENTHESES), next.getRules());
+        assertTrue(next.getVersion().contains("#1194"));
+        FormEquivalenceTable before = new FileSystemFormEquivalenceTableSource(
+                CORRECTOR.resolve("formas-equivalentes-corrector-1191.json")).load();
+        assertEquals(List.of(), before.getRules());
+        assertEquals(before.getContractions(), next.getContractions());
+        assertEquals(before.getEquivalentWords(), next.getEquivalentWords());
+
+        // A rule content-audit does not know how to imitate stops the run, as a missing file does.
+        Path unknown = Files.createTempFile("formas-equivalentes", ".json");
+        try {
+            Files.writeString(unknown, "{\"version\": \"x\", \"contracciones\": [], \"palabrasEquivalentes\": [],"
+                    + " \"invierteNegativas\": false, \"reglas\": [\"ACCEPTS_EVERYTHING\"]}");
+            IllegalStateException stop = assertThrows(IllegalStateException.class,
+                    () -> new FileSystemFormEquivalenceTableSource(unknown).load());
+            assertTrue(stop.getMessage().contains("ACCEPTS_EVERYTHING"), stop.getMessage());
+        } finally {
+            Files.deleteIfExists(unknown);
+        }
     }
 }

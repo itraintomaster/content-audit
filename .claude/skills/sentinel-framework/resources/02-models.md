@@ -1735,6 +1735,7 @@ new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 | `SUBJECT_MISMATCH` | `null` |
 | `SUBJECT_NOT_ANNOUNCED` | `null` |
 | `NEGATION_WITHOUT_NEGATIVE` | `null` |
+| `REWRITE_WORD_NOT_ANNOUNCED` | `null` |
 
 #### ExerciseShape (package: hintcoherence)
 
@@ -1784,6 +1785,7 @@ new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 | `contractions` | `List<ContractionExpansion>` |
 | `equivalentWords` | `List<EquivalentWordGroup>` |
 | `invertsNegativeQuestions` | `boolean` |
+| `rules` | `List<CorrectorRule>` |
 
 #### ContractionExpansion (package: correctormatch)
 
@@ -1820,6 +1822,19 @@ new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 | `BE_NEGATION` | `null` |
 | `SPELLING` | `null` |
 | `PREPOSITION` | `null` |
+
+#### CorrectorRule (package: correctormatch)
+
+**Package:** `com.learney.contentaudit.auditdomain.correctormatch`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `AMBIGUOUS_CONTRACTIONS` | `null` |
+| `STANDARD_IRREGULAR_PARTICIPLES` | `null` |
+| `TILL_OWN_SUBJECTS` | `null` |
+| `OPTIONAL_PARENTHESES` | `null` |
 
 #### AnswerCompletenessDiagnosis (package: answercompleteness)
 

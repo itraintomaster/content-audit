@@ -14,8 +14,9 @@ import com.learney.contentaudit.auditdomain.finding.FindingDraft;
 import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
-import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.auditdomain.studentview.StudentOptionView;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
 import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
@@ -70,16 +71,6 @@ class DefaultChoiceAlternativeClassifier implements ChoiceAlternativeClassifier 
 
     static final double SCORE_WITHOUT_FINDINGS = 1.0;
 
-    /**
-     * The evidence shows the exercise exactly as the judge read it, so it is drawn by the common
-     * renderer (F-RONDA1-R001). Only {@code render} is used, which reads the exercise and nothing
-     * else; the course's sentence converter it takes serves only {@code finishedSentence}, which
-     * the evidence never asks, and it lives in a package of course-domain that is hidden from this
-     * module. The contract of this classifier does not inject the renderer (reported to the
-     * integrator).
-     */
-    private static final QuizStudentViewRenderer STUDENT_VIEW = new DefaultQuizStudentViewRenderer(null);
-
     /** A hint of the statement, as the course's parser reads it. */
     private static final Pattern HINT = Pattern.compile("\\([^)]*\\)");
 
@@ -90,13 +81,19 @@ class DefaultChoiceAlternativeClassifier implements ChoiceAlternativeClassifier 
 
     private final ChoiceAlternativeConfig config;
 
-private final QuizStudentViewRenderer studentViewRenderer;
+    /**
+     * F-CIERRE-R003: the evidence shows the exercise exactly as the judge read it -- its statement
+     * and its options in the student's order, the correct one marked -- drawn by the common renderer
+     * (F-RONDA1-R001) that the subject builder also uses.
+     */
+    private final QuizStudentViewRenderer studentViewRenderer;
 
-public DefaultChoiceAlternativeClassifier(CorrectorMatcher correctorMatcher, ChoiceAlternativeConfig config, QuizStudentViewRenderer studentViewRenderer) {
-    this.correctorMatcher = correctorMatcher;
-    this.config = config;
-    this.studentViewRenderer = studentViewRenderer;
-}
+    public DefaultChoiceAlternativeClassifier(CorrectorMatcher correctorMatcher, ChoiceAlternativeConfig config,
+            QuizStudentViewRenderer studentViewRenderer) {
+        this.correctorMatcher = correctorMatcher;
+        this.config = config;
+        this.studentViewRenderer = studentViewRenderer;
+    }
 
     @Override
     public ChoiceAlternativeJudgment classify(ChoiceAlternativeVerdict verdict, AuditableQuiz quiz,
@@ -146,8 +143,9 @@ public DefaultChoiceAlternativeClassifier(CorrectorMatcher correctorMatcher, Cho
         // F-MCVALE-R003: the inverted key is blocking, whatever else counts.
         boolean correctInvalid = correct != null && !verdict.isCorrectIsValid();
 
-        QuizStudentView view = quiz != null ? STUDENT_VIEW.render(quiz) : null;
-        List<EvidencePart> seen = exerciseAsSeen(quiz, view, items, correct);
+        QuizStudentView view = quiz != null ? studentViewRenderer.render(quiz) : null;
+        String finished = quiz != null ? studentViewRenderer.finishedSentence(quiz, SentenceMode.FILL) : null;
+        List<EvidencePart> seen = exerciseAsSeen(quiz, view, finished, items, correct);
         List<FindingDraft> findings = new ArrayList<>();
         if (correctInvalid) {
             findings.add(correctNotValid(seen, correctLabel, verdict, alsoValid));
@@ -247,17 +245,29 @@ public DefaultChoiceAlternativeClassifier(CorrectorMatcher correctorMatcher, Cho
     // The exercise as the student sees it
     // -------------------------------------------------------------------------
 
-    private static List<EvidencePart> exerciseAsSeen(AuditableQuiz quiz, QuizStudentView view,
+    private static List<EvidencePart> exerciseAsSeen(AuditableQuiz quiz, QuizStudentView view, String finished,
             List<MultipleChoiceItemEntity> items, MultipleChoiceItemEntity correct) {
         List<EvidencePart> parts = new ArrayList<>();
         addIfPresent(parts, "Consigna", quiz != null ? quiz.getInstructions() : null);
         String statement = firstNonBlank(view != null ? view.getStatement() : null,
                 quiz != null ? quiz.getLabel() : null, quiz != null ? quiz.getId() : null, "(sin enunciado)");
         parts.add(new EvidencePart("Ejercicio", statement));
+        // A multiple choice is always a fill-in: the correct option in the gap, without the hint.
+        addIfPresent(parts, "Oración terminada", finished);
         List<String> shown = new ArrayList<>();
-        for (int i = 0; i < items.size(); i++) {
-            MultipleChoiceItemEntity item = items.get(i);
-            shown.add(shownLabel(item.getLabel(), i) + (item == correct ? " (correcta)" : ""));
+        if (view != null && view.getOptions() != null && !view.getOptions().isEmpty()) {
+            // F-CIERRE-R003: the options as the student view shows them, the same the judge read.
+            for (int i = 0; i < view.getOptions().size(); i++) {
+                StudentOptionView option = view.getOptions().get(i);
+                if (option != null) {
+                    shown.add(shownLabel(option.getLabel(), i) + (option.isCorrect() ? " (correcta)" : ""));
+                }
+            }
+        } else {
+            for (int i = 0; i < items.size(); i++) {
+                MultipleChoiceItemEntity item = items.get(i);
+                shown.add(shownLabel(item.getLabel(), i) + (item == correct ? " (correcta)" : ""));
+            }
         }
         addIfPresent(parts, "Opciones", String.join(" · ", shown));
         return parts;

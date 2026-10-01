@@ -142,10 +142,10 @@ public class ExamEvaluationSessionFactoryTest {
 
         List<EvaluationResolution> resolutions = exam.resolveAll(examRequests("A", "B"), 4);
 
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "course verdict of v7 on A", "v7"),
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "course verdict of v7 on A", "v7", null),
                 resolutions.get(0),
                 "what v7 judged on the course is reused, not the more recent verdict of v8 (F-JEXAM-R002 inv. 2)");
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "exam verdict of v7 on B", "v7"),
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "exam verdict of v7 on B", "v7", null),
                 resolutions.get(1), "what v7 judged in an earlier exam is reused");
         assertEquals(List.of(), v7.consulted(), "a version that already judged the contents is never consulted");
         assertEquals(0, exam.coverage().getEvaluatedInRun(), "reusing spends nothing of the budget");
@@ -174,7 +174,7 @@ public class ExamEvaluationSessionFactoryTest {
 
         List<EvaluationResolution> resolutions = exam.resolveAll(examRequests("C", "D"), 4);
 
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "v7 verdict on C", "v7"),
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "v7 verdict on C", "v7", null),
                 resolutions.get(0), "v7 never judged C: it is consulted although v6 judged it");
         assertEquals(EvaluationResolutionKind.PENDING, resolutions.get(1).getKind(),
                 "the budget of 1 is spent: D waits instead of reusing the verdict of v6");

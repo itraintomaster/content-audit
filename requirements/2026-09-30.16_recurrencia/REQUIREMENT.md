@@ -45,12 +45,21 @@ reproducido con un prototipo: 91.873 posiciones, 2.791 lemas de contenido, 1.750
 
 > El análisis usa las posiciones en orden A1 → B2 y los 2.000 lemas más usados; una palabra es sobre-expuesta si vuelve
 > en promedio cada 50 palabras o menos y poco vista si pasa de 1.000; el puntaje del curso es el de hoy, 0,08, con el
-> mismo 73,9 % de vocabulario. Ningún nivel recibe puntaje de `lemma-recurrence`.
+> mismo 73,9 % de vocabulario. Ningún nivel recibe puntaje de `lemma-recurrence`. Un lema entra al análisis sólo si
+> está escrito con letras, unidas a lo sumo por un apóstrofo o un guion («o'clock», «well-known»): la puntuación, los
+> símbolos y los números con cifras que el etiquetador lea como palabra de contenido conservan su posición, pero no
+> son una palabra que vuelve («'» de «I 'm», «-» de «in - Spain», «i.» de «Neither am I.», «a.m.», «3rd»).
 
 <details><summary>Detalle</summary>
 
-Mantiene [F-LREC-R001](#F-LREC-R001) a [F-LREC-R015](#F-LREC-R015) y [F-HALL-R009](#F-HALL-R009). Hoy son 134 normales,
-1.570 poco vistas y 46 sobre-expuestas: 134 / 1.750 = 7,7 %, que con dos decimales da 0,08. El tope de 2.000 no corta:
+Mantiene [F-LREC-R001](#F-LREC-R001) a [F-LREC-R015](#F-LREC-R015) y [F-HALL-R009](#F-HALL-R009); precisa
+[F-LREC-R003](#F-LREC-R003), que ya dejaba afuera la puntuación y los símbolos por su categoría: el etiquetador
+compartido igual leía como sustantivo, verbo o adjetivo «'», «-», «i.», «1st», «3rd» y «4th», y «comics» con el lema
+«comic_strip». Desde el 1/10 son 131 normales, 1.566 poco vistas y 46 sobre-expuestas: 131 / 1.743 = 7,5 %, que con dos
+decimales sigue en 0,08 (el 30/9 eran 134, 1.570 y 46 de 1.750, 7,7 %). Los números con cifras quedan afuera aunque
+sean ordinales: no son vocabulario que el alumno recicle, y `lemma-absence` y `lexis` tampoco evalúan un token con
+cifras ([F-LABS-R035](#F-LABS-R035)); «third» o «first», con letras, siguen contando. Las posiciones no cambian: siguen
+siendo 91.873, con la puntuación ([F-LREC-R001](#F-LREC-R001)). El tope de 2.000 no corta:
 el puesto 2.000 cae entre los 1.041 lemas que aparecen una sola vez, que [F-LREC-R006](#F-LREC-R006) excluye; en la
 práctica ya se analizan todos los que vuelven, que es la opción que José marcó en DOUBT-TOP-N-VALUE.
 
@@ -105,10 +114,13 @@ del tablero lo lee del informe (paquete G); `get audit` muestra sólo el resumen
 
 | Nivel | Posiciones | Lemas que vuelven | Normales | Poco vistos | Sobre-expuestos | Normales |
 |---|---:|---:|---:|---:|---:|---:|
-| A1 | 15.802 | 450 | 178 | 257 | 15 | 39,6 % |
+| A1 | 15.802 | 448 | 176 | 257 | 15 | 39,3 % |
 | A2 | 18.967 | 752 | 155 | 569 | 28 | 20,6 % |
-| B1 | 38.949 | 1.139 | 161 | 938 | 40 | 14,1 % |
-| B2 | 18.155 | 819 | 165 | 607 | 47 | 20,1 % |
+| B1 | 38.949 | 1.137 | 161 | 938 | 38 | 14,2 % |
+| B2 | 18.155 | 818 | 165 | 607 | 46 | 20,2 % |
+
+Con los lemas escritos con letras (1/10). El 30/9: A1 450 y 178 (39,6 %), B1 1.139 con 40 sobre-expuestos (14,1 %) y
+B2 819 con 47 (20,1 %); A2 no cambia.
 
 Es lo que pedía DOUBT-PER-LEVEL-ANALYSIS de FEAT-LREC (José marcó B), sin mover números: cumple [F-HALL-R010](#F-HALL-R010),
 las sub-métricas no se promedian. José decidió el 30/9 que quede como detalle y no como puntaje
@@ -125,7 +137,8 @@ puntaje del nivel. El semáforo lo espera para usar la recurrencia en el verde (
 > ([F-HALL-R001](#F-HALL-R001)): gravedad *baja*, resolución *sólo ordena*, costo *instantáneo*. La evidencia da el
 > [lema](glossary:Lema), sus veces, cada cuántas palabras vuelve contra la meta (más de 50 y hasta 1.000) y su hueco más largo.
 
-Son 1.616 hallazgos: 1.570 poco vistos y 46 sobre-expuestos. Ejemplo: «movie: 90 veces, vuelve cada 1.005 palabras (meta:
+Son 1.612 hallazgos: 1.566 poco vistos y 46 sobre-expuestos (1.616 el 30/9, antes de dejar afuera lo que no es una
+palabra). Ejemplo: «movie: 90 veces, vuelve cada 1.005 palabras (meta:
 más de 50 y hasta 1.000); su hueco más largo, 6.510, va de A1 a A2». La identidad es el lema ([F-HALL-R014](#F-HALL-R014)).
 
 <a id="F-RECUR-R006"></a>
@@ -147,7 +160,13 @@ Lo que José dejó abierto en FEAT-LREC sigue abierto allá; este requirement no
 necesario para decidirlo con datos.
 
 **El examen.** No tiene casos en el 077. Se prueba con los números: `analyze` antes y después da 0,08, 73,9 % y 4.036
-tareas, y la suma de normales, poco vistas y sobre-expuestas da 1.750 ([F-LREC-R009](#F-LREC-R009)). **Costo**: segundos.
+tareas, y la suma de normales, poco vistas y sobre-expuestas da 1.743 (1.750 hasta el 30/9)
+([F-LREC-R009](#F-LREC-R009)). **Costo**: segundos.
+
+**Lo que no es una palabra (1/10).** En la vista, las primeras marcas de Recurrencia eran «'», «-» y «3rd». Desde el 1/10
+sólo entra un lema escrito con letras (R001). El puntaje sigue en 0,08 y el vocabulario en 73,86 %. Contar además sólo
+las palabras como posiciones (78.162 en vez de 91.873) subiría el puntaje a 0,09 y el vocabulario a 74,00 %: queda
+para que decida José, en la rama `ronda1/recur-posiciones`.
 
 **El lematizador compartido** (anotado, no se arregla en esta ronda) casi no la toca: con las 17 formas mal leídas
 corregidas («hated» → hate, «drunk» → drink) vuelven 1.744 lemas, 134 normales, y el puntaje sigue en 0,08.

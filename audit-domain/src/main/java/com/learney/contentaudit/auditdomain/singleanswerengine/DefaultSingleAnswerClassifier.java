@@ -14,6 +14,8 @@ import com.learney.contentaudit.auditdomain.singleanswer.AlternativeAnswer;
 import com.learney.contentaudit.auditdomain.singleanswer.AlternativeAnswerKind;
 import com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerDiagnosis;
 import com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerVerdict;
+import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import java.util.ArrayList;
@@ -55,9 +57,6 @@ import javax.annotation.processing.Generated;
 )
 class DefaultSingleAnswerClassifier implements SingleAnswerClassifier {
 
-    /** The gap as the student sees it (F-RONDA1-R001). */
-    static final String GAP = "___";
-
     /** A hint: a parenthesized block of the text, as the student view reads it. */
     private static final Pattern HINT = Pattern.compile("\\([^)]*\\)");
 
@@ -74,20 +73,29 @@ class DefaultSingleAnswerClassifier implements SingleAnswerClassifier {
 
     private final SingleAnswerConfig config;
 
-private final QuizStudentViewRenderer studentViewRenderer;
+    /**
+     * F-CIERRE-R003: the exercise as the judge read it. The statement and the accepted answers of
+     * the evidence come from here, never from a rule of this class.
+     */
+    private final QuizStudentViewRenderer studentViewRenderer;
 
-public DefaultSingleAnswerClassifier(CorrectorMatcher correctorMatcher, SingleAnswerConfig config, QuizStudentViewRenderer studentViewRenderer) {
-    this.correctorMatcher = correctorMatcher;
-    this.config = config;
-    this.studentViewRenderer = studentViewRenderer;
-}
+    public DefaultSingleAnswerClassifier(CorrectorMatcher correctorMatcher, SingleAnswerConfig config,
+            QuizStudentViewRenderer studentViewRenderer) {
+        this.correctorMatcher = correctorMatcher;
+        this.config = config;
+        this.studentViewRenderer = studentViewRenderer;
+    }
 
     @Override
     public SingleAnswerOutcome classify(SingleAnswerVerdict verdict, AuditableQuiz quiz,
             boolean reused) {
-        List<Gap> gaps = gapsOf(quiz);
+        QuizStudentView view = quiz != null ? studentViewRenderer.render(quiz) : null;
+        List<Gap> gaps = gapsOf(quiz, view);
         boolean severalGaps = gaps.size() > 1;
-        String statement = statementOf(quiz);
+        String statement = view != null && view.getStatement() != null ? view.getStatement() : "";
+        // The classifier does not know the topic's mode, so it finishes the sentence mode-blind, as
+        // a fill-in, like the exact duplicates do (F-RONDA1-R001).
+        String finished = quiz != null ? studentViewRenderer.finishedSentence(quiz, SentenceMode.FILL) : null;
 
         List<AlternativeAnswer> counted = new ArrayList<>();
         List<String> droppedAsAccepted = new ArrayList<>();
@@ -125,7 +133,8 @@ public DefaultSingleAnswerClassifier(CorrectorMatcher correctorMatcher, SingleAn
             String reason = alternative.getReason() != null ? alternative.getReason().strip() : "";
             counted.add(new AlternativeAnswer(answer, gapNumber, kind, severity, reason));
 
-            FindingEvidence evidence = evidence(quiz, statement, gap, gaps, severalGaps, answer, kind, reason);
+            FindingEvidence evidence = evidence(quiz, statement, finished, gap, gaps, severalGaps, answer, kind,
+                    reason);
             if (kind == AlternativeAnswerKind.OFFERED_BY_INSTRUCTION) {
                 drafts.add(new FindingDraft(SingleAnswerAnalyzer.RULE_OFFERED_ALTERNATIVE, marker, severity,
                         FindingResolution.RANK_ONLY, evidence));
@@ -169,10 +178,11 @@ public DefaultSingleAnswerClassifier(CorrectorMatcher correctorMatcher, SingleAn
     }
 
     /**
-     * Each gap of the exercise, in the order of the statement: its accepted answers -- its options
-     * split on «|» -- and the text around it, without the hints, as the corrector reads it.
+     * Each gap of the exercise, in the order of the statement: its accepted answers as the student
+     * view gives them (F-CIERRE-R003) -- its options split on «|» -- and the text around it, without
+     * the hints, as the corrector reads it.
      */
-    private static List<Gap> gapsOf(AuditableQuiz quiz) {
+    private static List<Gap> gapsOf(AuditableQuiz quiz, QuizStudentView view) {
         List<SentencePartEntity> parts = quiz != null && quiz.getSentenceParts() != null
                 ? quiz.getSentenceParts()
                 : List.of();
@@ -184,8 +194,12 @@ public DefaultSingleAnswerClassifier(CorrectorMatcher correctorMatcher, SingleAn
             }
             String before = i > 0 ? textOf(parts.get(i - 1)) : "";
             String after = i + 1 < parts.size() ? textOf(parts.get(i + 1)) : "";
-            gaps.add(new Gap(gaps.size() + 1, new GapContext(withoutHints(before), withoutHints(after)),
-                    acceptedOf(part.getOptions())));
+            int index = gaps.size();
+            List<String> accepted = view != null && view.getGaps() != null && index < view.getGaps().size()
+                    && view.getGaps().get(index) != null && view.getGaps().get(index).getAcceptedAnswers() != null
+                    ? List.copyOf(view.getGaps().get(index).getAcceptedAnswers())
+                    : acceptedOf(part.getOptions());
+            gaps.add(new Gap(index + 1, new GapContext(withoutHints(before), withoutHints(after)), accepted));
         }
         return gaps;
     }
@@ -224,12 +238,13 @@ public DefaultSingleAnswerClassifier(CorrectorMatcher correctorMatcher, SingleAn
     // The evidence (F-HALL-R003): the exercise as the student sees it, never the course's format
     // -------------------------------------------------------------------------
 
-    private static FindingEvidence evidence(AuditableQuiz quiz, String statement, Gap gap, List<Gap> gaps,
-            boolean severalGaps, String answer, AlternativeAnswerKind kind, String reason) {
+    private static FindingEvidence evidence(AuditableQuiz quiz, String statement, String finished, Gap gap,
+            List<Gap> gaps, boolean severalGaps, String answer, AlternativeAnswerKind kind, String reason) {
         List<EvidencePart> examined = new ArrayList<>();
         addPart(examined, "Título", quiz != null ? quiz.getLabel() : null);
         addPart(examined, "Consigna", quiz != null ? quiz.getInstructions() : null);
         addPart(examined, "Ejercicio", statement);
+        addPart(examined, "Oración terminada", finished);
         if (gap != null) {
             addPart(examined, severalGaps ? "Respuestas aceptadas del hueco " + gap.number() : "Respuestas aceptadas",
                     String.join(" | ", gap.accepted()));
@@ -274,24 +289,6 @@ public DefaultSingleAnswerClassifier(CorrectorMatcher correctorMatcher, SingleAn
         }
     }
 
-    /** The statement as the student sees it: «___» in every gap and the hints where they are. */
-    private static String statementOf(AuditableQuiz quiz) {
-        List<SentencePartEntity> parts = quiz != null && quiz.getSentenceParts() != null
-                ? quiz.getSentenceParts()
-                : List.of();
-        List<String> tokens = new ArrayList<>();
-        for (SentencePartEntity part : parts) {
-            if (part == null || part.getKind() == null) {
-                continue;
-            }
-            if (part.getKind() == SentencePartKind.CLOZE) {
-                tokens.add(GAP);
-            } else if (part.getText() != null && !part.getText().isBlank()) {
-                tokens.add(part.getText().strip());
-            }
-        }
-        return String.join(" ", tokens);
-    }
 
     // -------------------------------------------------------------------------
     // Small helpers

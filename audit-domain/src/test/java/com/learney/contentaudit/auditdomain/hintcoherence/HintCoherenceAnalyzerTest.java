@@ -124,13 +124,15 @@ public class HintCoherenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should count hints only among exercises of the same shape, so the 20 transformations without hint of El posesivo are not measured against its 20 hinted gaps")
+    @DisplayName("should count hints by shape and in the whole topic, so the 20 transformations without hint of El posesivo have no finding, since neither their shape (0 of 20) nor the topic (20 of 40) reaches three quarters")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R001")
-    public void shouldCountHintsOnlyAmongExercisesOfTheSameShapeSoThe20TransformationsWithoutHintOfElPosesivoAreNotMeasuredAgainstIts20HintedGaps(
+    public void shouldCountHintsByShapeAndInTheWholeTopicSoThe20TransformationsWithoutHintOfElPosesivoHaveNoFindingSinceNeitherTheirShape0Of20NorTheTopic20Of40ReachesThreeQuarters(
             ) {
         // R001: El posesivo (A1, REWRITE) mixes 20 transformations answered with the whole sentence,
-        // none with a hint, and 20 gaps that carry one. Each shape is counted on its own.
+        // none with a hint, and 20 gaps that carry one. Each shape is counted on its own, and the whole
+        // topic too (the union of 1/10): neither the transformations (0 of 20) nor the topic (20 of 40)
+        // reach three quarters, so no transformation is asked for a hint.
         AuditNode topic = run(knowledge("6814dafa7d73e7209a13d3ca", "El posesivo", SentenceMode.REWRITE, elPosesivo()));
 
         AuditNode transformation = quizNode(topic, "2367");
@@ -519,5 +521,61 @@ public class HintCoherenceAnalyzerTest {
 
     static SentencePartEntity gap() {
         return new SentencePartEntity(SentencePartKind.CLOZE, "", null);
+    }
+
+    @Test
+    @DisplayName("should raise a blocking finding for the panel, identified by the word, on a rewrite that asks for a word nothing announces, as «opinion» in «I think it's a good idea for her to see a dentist. ___» answered «She ought to see a dentist, in my opinion.»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldRaiseABlockingFindingForThePanelIdentifiedByTheWordOnARewriteThatAsksForAWordNothingAnnouncesAsOpinionInIThinkItsAGoodIdeaForHerToSeeADentistAnsweredSheOughtToSeeADentistInMyOpinion() {
+        // R006 and R005: «I think it's a good idea for her to see a dentist. ___» (…44f8, B1) accepts «She ought to
+        // see a dentist, in my opinion.»: opinion comes neither from the sentence nor from the instructions, so the
+        // faithful rewrite is wrong. A blocking finding, at the panel, identified by its rule and the word; the
+        // evidence is the exercise as the student sees it, its answer and the line that names the word.
+        AuditableQuiz dentist = DefaultHintAnswerCheckTest.rewrite("67fab6d599301022953444f8",
+                "She ought to see a dentist, in my opinion.",
+                "She|she|PRON ought|ought|AUX to|to|PART see|see|VERB a|a|DET dentist|dentist|NOUN ,|,|PUNCT in|in|ADP"
+                        + " my|my|PRON opinion|opinion|NOUN .|.|PUNCT",
+                "Transforma las oraciones para que incluyan 'ought to' o 'shouldn't'.",
+                text("I think it's a good idea for her to see a dentist."),
+                cloze("She ought to see a dentist, in my opinion."));
+        AuditNode topic = run(knowledge("6814dafa7d73e7209a13d47b", "Consejos con $ought to$", SentenceMode.REWRITE,
+                List.of(dentist)));
+        AuditNode node = quizNode(topic, "44f8");
+
+        List<FindingDraft> drafts = analyzer.findingsAt(node);
+
+        assertEquals(List.of(HintCoherenceAnalyzer.RULE_REWRITE_WORDS), rules(drafts));
+        FindingDraft opinion = drafts.get(0);
+        assertEquals("opinion", opinion.getMarker());
+        assertEquals(FindingSeverity.BLOCKING, opinion.getSeverity());
+        assertEquals(FindingResolution.PANEL, opinion.getResolution());
+        assertEquals("She ought to see a dentist, in my opinion.", part(opinion, "Respuesta"));
+        assertTrue(opinion.getEvidence().getObservation().endsWith("«opinion» no sale de la oración de partida, la"
+                + " pista ni la consigna. Va a la mesa: quien reescribe fiel da mal"), opinion.getEvidence().getObservation());
+        assertFalse(labels(opinion).contains("Pista propuesta"), "no hint to propose: the panel decides");
+        assertEquals(ExerciseShape.WHOLE_SENTENCE, diagnosis(node).getShape());
+        assertEquals(0.0, node.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME));
+    }
+
+    @Test
+    @DisplayName("should look for unannounced words only in answers that are the whole sentence, leaving a gap inside the sentence to R002, as «rain» in «It ___ (be) soon.» answered «'s going to rain»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldLookForUnannouncedWordsOnlyInAnswersThatAreTheWholeSentenceLeavingAGapInsideTheSentenceToR002AsRainInItBeSoonAnsweredSGoingToRain() {
+        // R006 only where the answer is the whole sentence: «It ___ (be) soon.» (…215c, A1) accepts «'s going to
+        // rain», a gap inside the sentence. Nothing announces rain, and that is R002's verb without a hint
+        // (inv. 2), never a word of a rewrite as well: the two rules never look at the same exercise.
+        AuditableQuiz rain = quiz("67fab6d5993010229534215c", "It's going to rain soon.",
+                "It|it|PRON 's|be|AUX going|go|VERB to|to|PART rain|rain|VERB soon|soon|ADV .|.|PUNCT",
+                text("It"), cloze("'s going to rain|is going to rain"), text("(be) soon."));
+        AuditNode topic = run(knowledge("6814dafa7d73e7209a13d1d5", "Futuro con $going to$", SentenceMode.FILL,
+                List.of(rain)));
+        AuditNode node = quizNode(topic, "215c");
+
+        assertEquals(ExerciseShape.GAP_IN_SENTENCE, diagnosis(node).getShape());
+        assertEquals(List.of(HintCoherenceAnalyzer.RULE_HINT_WORDS), rules(analyzer.findingsAt(node)));
+        assertEquals(List.of(HintIssueKind.VERB_NOT_ANNOUNCED),
+                diagnosis(node).getIssues().stream().map(HintIssue::getKind).toList());
     }
 }

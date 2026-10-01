@@ -4,6 +4,27 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete D, integración) — Aplicados los nombres (70cc26eb) y hecho el generate (cda2f97a), que no
+  suma métodos (bug 2026-07-22-01): renombrados a mano, con nombre y @DisplayName de sentinel.yaml, los tres de
+  LemmaRecurrenceAnalyzerTest y los tres de RESPC (DefaultCorrectorMatcherTest ×2, FileSystemFormEquivalenceTableSourceTest).
+  Suite 2.408 en verde; `report generate` (a un archivo fuera del repo): los seis EXISTS, PASSING y trazados a F-RECUR-R001,
+  R004, R005 y F-RESPC-R001; MISSING baja de 23 a 17, todos viejos; el journey de PISTA ya coincidía.
+
+2026-10-01 — qa-tester (paquete D) — Parche de sólo nombres, propuesto y sin aplicar (architectural_patch.yaml): borra
+  y vuelve a agregar, con la misma regla, las tres pruebas de LemmaRecurrenceAnalyzer cuyo nombre decía los números
+  del 30/9 (R001 131 · 1.566 · 46 de 1.743; R004 A1 448/176 … B2 818/165; R005 1.612 hallazgos). `patch validate -i
+  sentinel.yaml` OK, solo y junto al de RESPC. TECH_SPEC sin tocar: el parche no cambia estructura.
+  Next: el integrador aplica los dos y genera; después se renombran a mano los seis métodos y corre la suite.
+
+2026-10-01 — developer + analyst (paquete D) — Opción A del orquestador: sólo entra un lema escrito con letras (con
+  apóstrofo o guion internos); afuera «'», «-», «i.», «1st», «3rd», «4th» y «comic_strip». Las posiciones no cambian
+  (91.873). Curso: 0,08 con 131 · 1.566 · 46 de 1.743 (7,52 %), 1.612 hallazgos; niveles 448/176 · 752/155 ·
+  1.137/161 · 818/165; vocabulario 73,86 % igual (0,738582). Pruebas con esos valores; REQUIREMENT R001, R004, R005.
+  Pendiente @qa-tester: tres nombres declarados en sentinel.yaml llevan los números del 30/9 (134/1.570/46 de 1.750;
+  A1 450/178…; 1.616 hallazgos): el cuerpo ya fija los nuevos.
+  La opción B (sin puntuación en las posiciones: 0,09 y vocabulario 74,00 %) queda en la rama ronda1/recur-posiciones,
+  sin juntar: decide José.
+
 2026-09-30 — developer + test-writer (paquete D) — FEAT-RECUR construido: 24 pruebas sin @Disabled. lemma-recurrence
   publica su LemmaRecurrenceCourseDiagnosis (cada lema con hueco más largo, niveles de inicio y fin y niveles; el detalle
   de cada nivel), deja un hallazgo F-RECUR-R005 por lema fuera de rango y Main enciende su formateador en analyze

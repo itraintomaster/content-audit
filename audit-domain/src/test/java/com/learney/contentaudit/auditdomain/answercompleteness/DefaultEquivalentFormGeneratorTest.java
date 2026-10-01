@@ -45,6 +45,13 @@ public class DefaultEquivalentFormGeneratorTest {
         // capital of the name, as the student would write it.
         assertEquals(FormEquivalenceClass.CONTRACTION, forms("She sells cheese that is produced in Switzerland.", "")
                 .get("She sells cheese that's produced in Switzerland."));
+        // The auxiliary have is contracted past the adverbs before its participle: «She / not / respond. ___»
+        // (…3ee2, B1) accepts «She has not responded yet.», and «She's not responded yet.» is the same answer;
+        // so is «'s not studied» for «He ___ (not / study).» (…281d, A2). Have as the main verb is not.
+        assertEquals(FormEquivalenceClass.CONTRACTION,
+                forms("She has not responded yet.", "").get("She's not responded yet."));
+        assertEquals(FormEquivalenceClass.CONTRACTION, forms("has not studied", "He").get("'s not studied"));
+        assertFalse(forms("I have not a car.", "").containsKey("I've not a car."));
     }
 
     @Test
