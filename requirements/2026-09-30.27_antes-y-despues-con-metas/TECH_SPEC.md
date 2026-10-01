@@ -1,7 +1,7 @@
 ---
 patch: FEAT-METAS
 requirement: 2026-09-30.27_antes-y-despues-con-metas
-generated: 2026-10-01T03:45:00Z
+generated: 2026-10-01T04:40:00Z
 ---
 
 # Tech Spec: Antes y después de una tanda contra la línea base, con metas (FEAT-METAS)
@@ -614,12 +614,14 @@ Por regla: R001 7, R002 4, R003 8, R004 3, R005 7, R006 9, R007 6, R008 7 y R009
 **Dependencias.** La medida en la raíz del informe (F-RONDA2-R004), lo que el tema enseña de D (F-14), la proyección de
 FEAT-PROYU y el resultado de la muestra de FEAT-CIEGA, que el veredicto lee por `SampleOutcomeSource`.
 
-**Para el analista.** (1) R006 dice que abrir una tanda también fija las metas, pero ninguna prueba puede trazarlo: la
-pieza que abre la tanda (`DefaultBatchService`, de FEAT-TANDA) no existe cuando se aplica este parche, y ninguna regla
-de FEAT-TANDA lo dice. Hace falta sumarlo a F-TANDA-R001 o declarar esa prueba en un parche de METAS posterior a TANDA.
-(2) R001 publica filas «para cada analizador que corrió en la línea base», pero su detalle dice que con la base del 29/9
-las filas de errores salen vacías, y R007 deja en «no se puede decidir» las filas de una medida nueva: ¿un analizador
-que no corrió en la base tiene filas vacías o no tiene filas? La prueba sigue el detalle: vacías, no en cero.
+**Decidido el 1/10.** (1) Que abrir una tanda también fija las metas (R006) se prueba en FEAT-TANDA, donde está el
+servicio que abre la tanda (`DefaultBatchService`): cuando se aplica este parche todavía no existe, así que acá no hay
+prueba de esa parte. La toma el qa-tester de E, y el REQUIREMENT lo anota en R006.
+
+**Para el analista.** (2) R001 publica filas «para cada analizador que corrió en la línea base», pero su detalle dice
+que con la base del 29/9 las filas de errores salen vacías, y R007 deja en «no se puede decidir» las filas de una medida
+nueva: ¿un analizador que no corrió en la base tiene filas vacías o no tiene filas? La prueba sigue el detalle: vacías,
+no en cero.
 
 ```architecture
 modules:

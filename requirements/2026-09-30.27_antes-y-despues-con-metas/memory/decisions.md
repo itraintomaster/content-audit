@@ -5,6 +5,9 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analyst — R006: la parte «abrir una tanda también las fija» se prueba en FEAT-TANDA (decidido por el orquestador el 1/10); anotado en la regla («Dónde se prueba») y en References. La regla no cambia.
+  why: el servicio que abre la tanda es de TANDA y no existe cuando se aplica METAS; lo toma el qa-tester de E.
+
 2026-10-01 — qa-tester — F-METAS-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
   why: el camino es set-goals y compare, package-private ahí; el comparador y el libro de metas están en comparisonengine, público para audit-cli.
 2026-10-01 — qa-tester — Para el analista (1): «abrir una tanda también las fija» (R006) no tiene prueba posible: DefaultBatchService (FEAT-TANDA) no existe cuando se aplica METAS y ninguna regla de TANDA lo dice. Sumarlo a F-TANDA-R001 o probarlo en un parche de METAS posterior a TANDA.
