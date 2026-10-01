@@ -4,6 +4,14 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (ronda2/pista-que-regala) — Agregado sólo el case HINT_GIVEAWAY al switch de fault() en
+  HintCoherenceAnalyzer (volvía a compilar main; checkGiveaway sigue UnsupportedOperationException, sin tocar).
+  Ojo: `mvn -o test-compile -pl audit-domain` solo toma course-domain y evaluation-ledger-domain de los .jar viejos
+  de ~/.m2 (sin FormEntities, QuizTemplateEntities, EvaluationRequestMode ni EvaluationTimeline) y no compila. No
+  hace falta `mvn install` (prohibido): con `-am` el reactor arma esas dependencias desde el fuente
+  (`mvn -o test-compile -pl audit-domain -am -Dexec.skip=true`), y la suite entera se corre desde la raíz.
+  Next: @test-writer implementa los handwrittenTests de F-PISTA-R007.
+
 2026-10-01 — qa-tester (pista que regala) — 16 handwrittenTests de F-PISTA-R007 fusionadas al parche del arquitecto
   (propose sin --replace, exit 0: 0 altas, 7 cambios = 4 del arquitecto + 3 implementaciones; patch validate OK).
   10 en DefaultHintAnswerCheck (checkGiveaway y el propose de R001 cuando falta pista), 3 en HintCoherenceAnalyzer

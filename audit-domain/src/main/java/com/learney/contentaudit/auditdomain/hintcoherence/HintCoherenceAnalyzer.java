@@ -304,6 +304,7 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
             case SUBJECT_NOT_ANNOUNCED -> "el sujeto " + word + " no lo nombran ni la pista ni el enunciado";
             case NEGATION_WITHOUT_NEGATIVE -> "la pista lleva not y la respuesta no niega";
             case REWRITE_WORD_NOT_ANNOUNCED -> "«" + word + "» no sale de la oración de partida, la pista ni la consigna";
+            case HINT_GIVEAWAY -> "la pista «" + word + "» es la respuesta: el alumno sólo la copia";
         };
     }
 
