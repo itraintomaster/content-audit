@@ -38,6 +38,9 @@ import javax.annotation.processing.Generated;
  *       topic of transformations that all carry one, as «We ___ eat eggs every morning.».</li>
  *   <li>R002 to R004: the hint against the first answer, by {@link HintAnswerCheck}: a blocking
  *       finding per word, subject or «not» that does not match.</li>
+ *   <li>R006: where the answer is the whole sentence, the words of the rewrite that come neither from
+ *       the sentence it rewrites nor from the hint or the instructions, also by {@link HintAnswerCheck}:
+ *       a blocking finding per word, at the panel.</li>
  * </ul>
  *
  * An exercise with a finding scores 0, one without any scores 1. The evidence is the exercise as
@@ -66,6 +69,9 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
 
     /** R004: «not» in the hint only if the answer is negative. */
     static final String RULE_HINT_NEGATION = "hint-negation";
+
+    /** R006: the rewrite asks for no word that the sentence it rewrites, the hint or the instructions do not bring. */
+    static final String RULE_REWRITE_WORDS = "rewrite-words";
 
     private final HintReader hintReader;
 
@@ -170,6 +176,12 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
         } else {
             issues = List.of();
         }
+        if (reading.shape() == ExerciseShape.WHOLE_SENTENCE) {
+            // R006: only an answer that is the whole sentence; a gap inside it is R002's (inv. 2).
+            List<HintIssue> all = new ArrayList<>(issues);
+            all.addAll(answerCheck.checkRewrite(quiz));
+            issues = all;
+        }
         double score = issues.isEmpty() ? 1.0 : 0.0;
         node.getScores().put(ANALYZER_NAME, score);
         if (!(node.getDiagnoses() instanceof DefaultQuizDiagnoses)) {
@@ -248,16 +260,23 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
                         ? "Pista que sale de la respuesta" : "Pista propuesta", issue.getProposedHint()));
             }
             String observation = statement + " → " + diagnosis.getFirstAnswer() + ": "
-                    + fault(issue, diagnosis, byTopic(node, diagnosis))
-                    + (issue.getResolution() == FindingResolution.PANEL
-                            ? ". Va a la mesa: arreglar la pista cambiaría lo que pide el ejercicio"
-                            : ". Se arregla completando la pista; la respuesta y su audio no cambian");
+                    + fault(issue, diagnosis, byTopic(node, diagnosis)) + howItIsFixed(issue);
             String marker = issue.getWord() == null || issue.getWord().isBlank()
                     ? null : issue.getWord().toLowerCase(Locale.ROOT);
             drafts.add(new FindingDraft(issue.getRule(), marker, severityOf(issue.getKind()),
                     issue.getResolution(), new FindingEvidence(examined, observation, List.of())));
         }
         return drafts;
+    }
+
+    /** Where the finding goes: the panel when a rule cannot tell what to fix, and otherwise the hint. */
+    private static String howItIsFixed(HintIssue issue) {
+        if (issue.getKind() == HintIssueKind.REWRITE_WORD_NOT_ANNOUNCED) {
+            return ". Va a la mesa: quien reescribe fiel da mal";
+        }
+        return issue.getResolution() == FindingResolution.PANEL
+                ? ". Va a la mesa: arreglar la pista cambiaría lo que pide el ejercicio"
+                : ". Se arregla completando la pista; la respuesta y su audio no cambian";
     }
 
     /** R001 is high; a hint that does not match its answer makes the exercise impossible. */

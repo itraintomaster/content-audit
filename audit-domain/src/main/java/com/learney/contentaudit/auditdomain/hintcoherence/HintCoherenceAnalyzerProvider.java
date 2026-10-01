@@ -19,7 +19,7 @@ import javax.annotation.processing.Generated;
 
 /**
  * F-PISTA-R005: hint-coherence in the catalog, an errors analyzer that evaluates exercises,
- * resolves by rule or at the panel and costs instant. No plan binding (the tasks are package E's;
+ * resolves by rule or at the panel and costs instant; R001 to R004 and R006 are its rules. No plan binding (the tasks are package E's;
  * the plan declares its scores as without task kind) and no configuration: the threshold of
  * three quarters is part of the rule and is written in its goal.
  */
@@ -50,11 +50,12 @@ public class HintCoherenceAnalyzerProvider implements AnalyzerProvider {
                 HintCoherenceAnalyzer.DESCRIPTION,
                 AuditTarget.QUIZ,
                 "¿La pista le anuncia al alumno lo que tiene que escribir?",
-                "La pista de cada ejercicio de hueco para escribir, su primera respuesta y cuántos ejercicios del"
-                        + " tema, del mismo tipo, llevan pista",
+                "La pista de cada ejercicio de hueco para escribir, su primera respuesta, cuántos del tema llevan"
+                        + " pista, por tipo y en todo el tema, y en la respuesta que es la oración entera, la oración de"
+                        + " partida y la consigna",
                 List.of(new AnalyzerRuleCard(HintCoherenceAnalyzer.RULE_MISSING_HINT,
-                                "F-PISTA-R001: si tres cuartos o más de los ejercicios del tema, del mismo tipo,"
-                                        + " llevan pista, la llevan todos",
+                                "F-PISTA-R001: si la llevan tres cuartos o más de los ejercicios del tema de su tipo,"
+                                        + " o de todo el tema, la llevan todos",
                                 AnalysisCost.INSTANT),
                         new AnalyzerRuleCard(HintCoherenceAnalyzer.RULE_HINT_WORDS,
                                 "F-PISTA-R002: las palabras de la pista están en la respuesta, y la respuesta no"
@@ -66,9 +67,13 @@ public class HintCoherenceAnalyzerProvider implements AnalyzerProvider {
                                 AnalysisCost.INSTANT),
                         new AnalyzerRuleCard(HintCoherenceAnalyzer.RULE_HINT_NEGATION,
                                 "F-PISTA-R004: la pista lleva «not» sólo si la respuesta es negativa",
+                                AnalysisCost.INSTANT),
+                        new AnalyzerRuleCard(HintCoherenceAnalyzer.RULE_REWRITE_WORDS,
+                                "F-PISTA-R006: la reescritura no pide palabras que no salen de la oración de partida,"
+                                        + " la pista o la consigna",
                                 AnalysisCost.INSTANT)),
-                "0 ejercicios con error. Un ejercicio sin pista es error cuando tres cuartos o más de su tema,"
-                        + " del mismo tipo, la llevan",
+                "0 ejercicios con error. Un ejercicio sin pista es error cuando la llevan tres cuartos o más de los"
+                        + " de su tipo, o de todo su tema",
                 AnalyzerFamily.ERRORS,
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.RULE, FindingResolution.PANEL),
