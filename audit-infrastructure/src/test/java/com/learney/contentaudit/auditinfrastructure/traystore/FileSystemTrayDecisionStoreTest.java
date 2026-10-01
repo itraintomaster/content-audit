@@ -39,7 +39,7 @@ public class FileSystemTrayDecisionStoreTest {
         store.remember(notError);
         store.remember(new RememberedDecision("sin-ganador|67fab6d59930102295341ec9|t-tea", null, "huella-2",
                 TrayAnswer.KEEP_ORIGINAL, "tanda-A1-20261001T120000Z", Instant.parse("2026-10-01T15:01:00Z")));
-        Path file = workdir.resolve(".content-audit/tray/decisions.jsonl");
+        Path file = workdir.resolve(".content-audit/tray-decisions.jsonl");
         List<String> before = lines(file);
         assertEquals(2, before.size(), "one line each");
 

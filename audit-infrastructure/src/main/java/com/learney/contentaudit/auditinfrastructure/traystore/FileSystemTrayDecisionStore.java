@@ -19,12 +19,11 @@ import javax.annotation.processing.Generated;
 
 /**
  * F-BANDEJA-R006: José's decisions on ties and exercises without winner, one JSON line each, appended to
- * {@code .content-audit/tray/decisions.jsonl} -- apart from the batches and the reports, so deleting or pruning analyses
+ * {@code .content-audit/tray-decisions.jsonl} -- apart from the batches and the reports, so deleting or pruning analyses
  * leaves them. A question is recalled by the identity of its finding, its marker and the fingerprint of the exercise; when
  * José answered the same question twice, the latest answer counts.
  *
- * <p>The constructor with the directory is the one of the architect's patch of FEAT-TANDA (requiresInject baseDir); the
- * one without arguments takes the working directory, as the other stores do when no {@code --workdir} is given.
+ * <p>{@code baseDir} is the root Main resolves from {@code --workdir}, as for the other stores.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -32,20 +31,20 @@ import javax.annotation.processing.Generated;
 )
 public class FileSystemTrayDecisionStore implements TrayDecisionStore {
 
-    static final String DECISIONS = ".content-audit/tray/decisions.jsonl";
+    static final String DECISIONS = ".content-audit/tray-decisions.jsonl";
 
     private final Path baseDir;
 
     private final ObjectMapper mapper;
 
-public FileSystemTrayDecisionStore(Path baseDir) {
-    this.baseDir = baseDir;
-    this.mapper = new ObjectMapper();
-    mapper.registerModule(new JavaTimeModule());
-    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    mapper.disable(SerializationFeature.INDENT_OUTPUT);
-    mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-}
+    public FileSystemTrayDecisionStore(Path baseDir) {
+        this.baseDir = baseDir;
+        this.mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.disable(SerializationFeature.INDENT_OUTPUT);
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+    }
 
     @Override
     public synchronized void remember(RememberedDecision decision) {

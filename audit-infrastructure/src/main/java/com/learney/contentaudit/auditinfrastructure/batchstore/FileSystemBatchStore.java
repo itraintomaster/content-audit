@@ -25,8 +25,7 @@ import javax.annotation.processing.Generated;
  * {@code .content-audit/batches/}, rewritten atomically -- written whole to a file of its own and moved over the old
  * one -- so a cut never leaves it half written. At most one batch is open: the one not published yet.
  *
- * <p>The constructor with the directory is the one of the architect's patch of FEAT-TANDA (requiresInject baseDir); the
- * one without arguments takes the working directory, as the other stores do when no {@code --workdir} is given.
+ * <p>{@code baseDir} is the root Main resolves from {@code --workdir}, as for the other stores.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -42,13 +41,13 @@ public class FileSystemBatchStore implements BatchStore {
 
     private final ObjectMapper mapper;
 
-public FileSystemBatchStore(Path baseDir) {
-    this.baseDir = baseDir;
-    this.mapper = new ObjectMapper();
-    mapper.registerModule(new JavaTimeModule());
-    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-}
+    public FileSystemBatchStore(Path baseDir) {
+        this.baseDir = baseDir;
+        this.mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+    }
 
     @Override
     public synchronized void save(CorrectionBatch batch) {
