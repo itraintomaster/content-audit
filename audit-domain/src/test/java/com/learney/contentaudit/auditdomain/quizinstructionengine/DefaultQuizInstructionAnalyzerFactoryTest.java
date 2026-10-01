@@ -26,7 +26,6 @@ import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -222,17 +221,46 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
     @DisplayName("should build the consigna analyzer with budget 0 when the run declares no budget for quiz-instruction, instead of the 500 of its configuration")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R010")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldBuildTheConsignaAnalyzerWithBudget0WhenTheRunDeclaresNoBudgetForQuizinstructionInsteadOfThe500OfItsConfiguration() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-JEXAM-R010 (José, 30/9): a run that asks quiz-instruction no budget pays nothing, whatever
+        // its configuration says (500, kept for revise-instructions) and even with an approved version.
+        versionWithExam("v-consigna", JudgeExamStatus.APPROVED);
+        Mockito.lenient().when(config.getDefaultMaxNewEvaluations()).thenReturn(500);
+        Mockito.when(sessionFactory.open(Mockito.any(), Mockito.eq(evaluator))).thenReturn(session);
+
+        sut.create(new EvaluationRunPolicy(0, false, null, null, null, 4));
+        sut.create(null);
+
+        ArgumentCaptor<EvaluationBudget> budgets = ArgumentCaptor.forClass(EvaluationBudget.class);
+        Mockito.verify(sessionFactory, Mockito.times(2)).open(budgets.capture(), Mockito.eq(evaluator));
+        Assertions.assertEquals(List.of(0, 0),
+                budgets.getAllValues().stream().map(EvaluationBudget::getMaxNewEvaluations).toList(),
+                "R010: without a budget asked for quiz-instruction its session opens with 0, not with the 500 of its "
+                + "configuration");
     }
 
     @Test
     @DisplayName("should open the consigna judge through the judges runtime, so a version that did not pass the exam gets budget 0 whatever the run asked")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R003")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenTheConsignaJudgeThroughTheJudgesRuntimeSoAVersionThatDidNotPassTheExamGetsBudget0WhateverTheRunAsked() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-JEXAM-R003 (José, 30/9: «sin aprobar, no paga»): the factory no longer opens the session on
+        // its own -- the judges runtime does, with the brake of the exam. The same run asking 500 opens
+        // with 0 for a version without exam or that failed it, and with 500 only once it is approved.
+        Mockito.when(sessionFactory.open(Mockito.any(), Mockito.eq(evaluator))).thenReturn(session);
+        EvaluationRunPolicy asks500 = new EvaluationRunPolicy(500, false, null, null, null, null);
+
+        versionWithExam("v-sin-examen", null);
+        sut.create(asks500);
+        versionWithExam("v-reprobada", JudgeExamStatus.FAILED);
+        sut.create(asks500);
+        versionWithExam("v-aprobada", JudgeExamStatus.APPROVED);
+        sut.create(asks500);
+
+        ArgumentCaptor<EvaluationBudget> budgets = ArgumentCaptor.forClass(EvaluationBudget.class);
+        Mockito.verify(sessionFactory, Mockito.times(3)).open(budgets.capture(), Mockito.eq(evaluator));
+        Assertions.assertEquals(List.of(0, 0, 500),
+                budgets.getAllValues().stream().map(EvaluationBudget::getMaxNewEvaluations).toList(),
+                "R003: without exam 0, failed 0, approved the 500 the run asked");
     }
 }

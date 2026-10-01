@@ -33,6 +33,37 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
+import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
+import com.learney.contentaudit.auditdomain.judging.JudgeCostEstimate;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory;
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -40,7 +71,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -1444,117 +1474,627 @@ public class QuizInstructionAnalyzerTest {
     @DisplayName("should resolve every quiz of a course judged before FEAT-JEXAM from its recorded verdicts without a single consultation, with budget 100 and an approved version")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R007")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldResolveEveryQuizOfACourseJudgedBeforeFEATJEXAMFromItsRecordedVerdictsWithoutASingleConsultationWithBudget100AndAnApprovedVersion() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The ledger as the consigna judge left it in August: one verdict per quiz, under the content
+        // the judge read then (cefrLevel, topic, title, instructions and the serialized quiz).
+        JexamLedger ledger = new JexamLedger();
+        JexamCourse course = JexamCourse.withQuizzes(3);
+        for (AuditNode quiz : course.quizzes()) {
+            ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(quiz), quizId(quiz), COMPLIANT,
+                    "v-agosto");
+        }
+        CountingJudge judge = new CountingJudge("v-agosto", COMPLIANT);
+        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-agosto"),
+                budget(100, null));
+
+        course.run(analyzer);
+
+        assertEquals(0, judge.calls(), "R007: a course judged before FEAT-JEXAM is resolved without consulting");
+        for (AuditNode quiz : course.quizzes()) {
+            assertEquals(1.0, quiz.getScores().get("quiz-instruction"), 1e-9, "R007: every quiz keeps its verdict");
+            assertTrue(((QuizDiagnoses) quiz.getDiagnoses()).getQuizInstructionDiagnosis().orElseThrow()
+                    .isReusedFromPreviousRun(), "R007: reused, not judged again");
+        }
+        EvaluationCoverage coverage = course.courseDiagnoses().getQuizInstructionCoverage().orElseThrow().getCoverage();
+        assertEquals(3, coverage.getReused());
+        assertEquals(0, coverage.getEvaluatedInRun());
     }
 
     @Test
     @DisplayName("should look up each quiz under the same fingerprint the ledger recorded for it before FEAT-JEXAM")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R007")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldLookUpEachQuizUnderTheSameFingerprintTheLedgerRecordedForItBeforeFEATJEXAM() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The fingerprint of «You ____ [see] (see) cats.» (A1, «Afirmativas regulares») as the code before
+        // FEAT-JEXAM computed it from what the consigna judge reads -- written down, not recomputed, so a
+        // change in what it reads or in how it is fingerprinted breaks this test before it re-bills 3.900
+        // verdicts.
+        String fingerprintBeforeJexam = "1fed2eb5ec3d3e6ebfa2e0c91046fc8f7d8e2378aac9196809113c9ea6fa757a";
+        JexamLedger ledger = new JexamLedger();
+        JexamCourse course = JexamCourse.withQuizzes(1);
+        ledger.append(new EvaluationRecord(new EvaluationKey(CONSIGNA_EVALUATOR, fingerprintBeforeJexam), COMPLIANT,
+                "q1", Instant.parse("2026-08-14T14:39:40Z"), "v-agosto"));
+        CountingJudge judge = new CountingJudge("v-agosto", COMPLIANT);
+        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-agosto"),
+                budget(100, null));
+
+        course.run(analyzer);
+
+        assertEquals(List.of(new EvaluationKey(CONSIGNA_EVALUATOR, fingerprintBeforeJexam)), ledger.lookedUp(),
+                "R007: the quiz is looked up under exactly the fingerprint recorded before FEAT-JEXAM");
+        assertEquals(0, judge.calls(), "R007: and found, so the judge is not consulted");
+        assertEquals(1.0, course.quizzes().get(0).getScores().get("quiz-instruction"), 1e-9);
     }
 
     @Test
     @DisplayName("should reuse without consulting the recorded verdict of a quiz whose translation or mini-theory changed, since the consigna judge reads neither")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R007")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldReuseWithoutConsultingTheRecordedVerdictOfAQuizWhoseTranslationOrMinitheoryChangedSinceTheConsignaJudgeReadsNeither() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        JexamLedger ledger = new JexamLedger();
+        JexamCourse before = JexamCourse.withQuizzes(1);
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(before.quizzes().get(0)), "q1", COMPLIANT,
+                "v-agosto");
+        // The same quiz after a batch that rewrote its translation and its mini theory.
+        JexamCourse after = JexamCourse.withQuizzes(1, "Tú ves gatos.", "Con you el verbo va sin -s.");
+        CountingJudge judge = new CountingJudge("v-agosto", COMPLIANT);
+        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-agosto"),
+                budget(100, null));
+
+        after.run(analyzer);
+
+        assertEquals(0, judge.calls(), "R007: neither the translation nor the mini theory is part of what it reads");
+        assertTrue(((QuizDiagnoses) after.quizzes().get(0).getDiagnoses()).getQuizInstructionDiagnosis().orElseThrow()
+                .isReusedFromPreviousRun(), "R007: the verdict recorded before is reused");
     }
 
     @Test
     @DisplayName("should reuse the recorded verdicts of a consigna judge version that failed its exam and leave the rest unevaluated, declaring the failed exam, even with budget 500")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R003")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldReuseTheRecordedVerdictsOfAConsignaJudgeVersionThatFailedItsExamAndLeaveTheRestUnevaluatedDeclaringTheFailedExamEvenWithBudget500() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        JexamLedger ledger = new JexamLedger();
+        JexamCourse course = JexamCourse.withQuizzes(2);
+        AuditNode judged = course.quizzes().get(0);
+        AuditNode pending = course.quizzes().get(1);
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(judged), quizId(judged), COMPLIANT, "v-hoy");
+        CountingJudge judge = new CountingJudge("v-hoy", COMPLIANT);
+        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge,
+                examsOf(Map.of("v-hoy", JudgeExamStatus.FAILED)), budget(500, null));
+
+        course.run(analyzer);
+
+        assertEquals(0, judge.calls(), "R003: a version that failed its exam is never consulted on the course");
+        assertEquals(1.0, judged.getScores().get("quiz-instruction"), 1e-9, "R003: what it recorded is still reused");
+        assertNull(pending.getScores().get("quiz-instruction"), "R003: the rest has no score");
+        assertEquals(List.of("quiz-instruction"), pending.getUnevaluatedBy(), "R003: and is declared unevaluated");
+        JudgeCoverageDiagnosis judgeCoverage = course.judgeCoverage();
+        assertEquals(JudgeExamStatus.FAILED, judgeCoverage.getStanding().getStatus(), "R003: the failed exam is declared");
+        assertFalse(judgeCoverage.getStanding().isConsultsOnCourse());
+        assertTrue(judgeCoverage.getStanding().getReason().startsWith("reprobada"),
+                "R003: and why it does not consult: " + judgeCoverage.getStanding().getReason());
     }
 
     @Test
     @DisplayName("should not consult the consigna judge in a run that asks no budget for quiz-instruction, and declare its pending quizzes and what they cost")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R010")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldNotConsultTheConsignaJudgeInARunThatAsksNoBudgetForQuizinstructionAndDeclareItsPendingQuizzesAndWhatTheyCost() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        JexamLedger ledger = new JexamLedger();
+        JexamCourse course = JexamCourse.withQuizzes(4);
+        CountingJudge judge = new CountingJudge("v-hoy", COMPLIANT);
+        // An approved version: the only thing missing is the request.
+        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-hoy"), null);
+
+        course.run(analyzer);
+
+        assertEquals(0, judge.calls(), "R010: without a request nothing is paid");
+        JudgeCostEstimate cost = course.judgeCoverage().getCost();
+        assertEquals(4, cost.getPendingUnits(), "R004: the four quizzes are pending");
+        assertEquals(4, cost.getPendingConsultations(), "R004: one consultation each");
+        assertEquals(189.0, cost.getRatePerHour(), 1e-9, "R004: without history, the configured rate");
+        assertFalse(cost.isRateMeasured());
+        assertEquals(4 / 189.0, cost.getHoursOneAtATime(), 1e-9);
+        assertEquals(4, cost.getMaxConcurrentEvaluations());
+        assertEquals(4 / 189.0 / 4, cost.getHoursConcurrent(), 1e-9);
     }
 
     @Test
     @DisplayName("should declare the same scores, diagnoses, findings and coverage for a course resolved with one and with four consultations at a time")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R006")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldDeclareTheSameScoresDiagnosesFindingsAndCoverageForACourseResolvedWithOneAndWithFourConsultationsAtATime() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        List<Map<String, Object>> outcomes = new ArrayList<>();
+        for (int atATime : List.of(1, 4)) {
+            JexamLedger ledger = new JexamLedger();
+            JexamCourse course = JexamCourse.withQuizzes(9);
+            // The same recorded verdicts and the same answers of the judge in both runs.
+            ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(course.quizzes().get(0)), "q1",
+                    BREACHING, "v-hoy");
+            ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(course.quizzes().get(4)), "q5",
+                    COMPLIANT, "v-hoy");
+            CountingJudge judge = new CountingJudge("v-hoy", COMPLIANT).breaching("q2", "q7");
+            QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-hoy"),
+                    budget(6, atATime));
+
+            course.run(analyzer);
+
+            Map<String, Object> outcome = new LinkedHashMap<>();
+            for (AuditNode quiz : course.quizzes()) {
+                outcome.put(quizId(quiz) + ".score", quiz.getScores().get("quiz-instruction"));
+                outcome.put(quizId(quiz) + ".diagnosis", quiz.getDiagnoses() instanceof QuizDiagnoses diagnoses
+                        ? diagnoses.getQuizInstructionDiagnosis().orElse(null) : null);
+                outcome.put(quizId(quiz) + ".findings", analyzer.findingsAt(quiz));
+                outcome.put(quizId(quiz) + ".unevaluated", List.copyOf(quiz.getUnevaluatedBy()));
+            }
+            outcome.put("coverage", course.courseDiagnoses().getQuizInstructionCoverage().orElseThrow().getCoverage());
+            outcome.put("versions", course.courseDiagnoses().getQuizInstructionCoverage().orElseThrow()
+                    .getVerdictsByJudgeVersion());
+            outcome.put("cost.pending", course.judgeCoverage().getCost().getPendingConsultations());
+            outcomes.add(outcome);
+        }
+        assertEquals(outcomes.get(0), outcomes.get(1),
+                "R006 inv. 3: the same scores, diagnoses, findings and coverage with one and with four at a time");
+        assertEquals(new EvaluationCoverage(9, 8, 6, 2, 1, 0), outcomes.get(0).get("coverage"),
+                "R006 inv. 1: the same six consultations within the budget, two reused, one left pending");
     }
 
     @Test
     @DisplayName("should put in the evidence of the finding of a breaching quiz each violation, each checked constraint that passed with its state, and the confidence of the judge")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R008")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldPutInTheEvidenceOfTheFindingOfABreachingQuizEachViolationEachCheckedConstraintThatPassedWithItsStateAndTheConfidenceOfTheJudge() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        InstructionViolation wrongTense = new InstructionViolation("WRONG_TENSE",
+                "El hueco debe completarse con un verbo en pasado", "\"goes\"", "La respuesta esta en presente");
+        InstructionCheck grammar = new InstructionCheck("grammar", "Gramática y naturalidad",
+                InstructionCheckStatus.PASSED, "\"She goes home\" es gramatical");
+        InstructionCheck meaning = new InstructionCheck("meaning", "Significado y traducción",
+                InstructionCheckStatus.NOT_APPLICABLE, "Sin traducción que comparar");
+        InstructionCheck tense = new InstructionCheck("explicit_instruction", "Pide el pasado",
+                InstructionCheckStatus.FAILED, "\"goes\" está en presente");
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(false, 0.85, InstructionSeverity.MAJOR,
+                "El ejercicio pide el pasado y acepta el presente", List.of(wrongTense), List.of(grammar, meaning, tense));
+        AuditNode node = buildQuizNode(buildQuiz("q1"));
+        QuizInstructionAnalyzer analyzer = judge(EvaluationResolutionKind.EVALUATED, verdict);
+
+        resolveNow(analyzer, node);
+        List<EvidencePart> examined = analyzer.findingsAt(node).get(0).getEvidence().getExamined();
+
+        assertTrue(examined.stream().anyMatch(p -> wrongTense.getConstraint().equals(p.getLabel())
+                && wrongTense.getEvidence().equals(p.getText())), "R008: each violation, as before");
+        assertTrue(examined.stream().anyMatch(p -> "Revisado (cumple)".equals(p.getLabel())
+                && p.getText().equals("Gramática y naturalidad: \"She goes home\" es gramatical")),
+                "R008: each checked constraint that passed, with its state: " + examined);
+        assertTrue(examined.stream().anyMatch(p -> "Revisado (no aplica)".equals(p.getLabel())
+                && p.getText().startsWith("Significado y traducción")), "R008: with its state, also not applicable");
+        assertFalse(examined.stream().anyMatch(p -> p.getText().startsWith("Pide el pasado")
+                && p.getLabel().startsWith("Revisado")), "R008: a failed check is a violation, never a passed one");
+        assertTrue(examined.stream().anyMatch(p -> "Confianza del juez".equals(p.getLabel())
+                && "0.85".equals(p.getText())), "R008: and the confidence of the judge");
     }
 
     @Test
     @DisplayName("should give a compliant quiz no finding and show in its detail every constraint the judge checked with its state")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R008")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldGiveACompliantQuizNoFindingAndShowInItsDetailEveryConstraintTheJudgeCheckedWithItsState() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        List<InstructionCheck> checks = List.of(
+                new InstructionCheck("grammar", "Gramática y naturalidad", InstructionCheckStatus.PASSED, "correcta"),
+                new InstructionCheck("meaning", "Significado y traducción", InstructionCheckStatus.PASSED, "fiel"),
+                new InstructionCheck("solvability", "Consigna y pistas resolubles", InstructionCheckStatus.NOT_APPLICABLE,
+                        "sin pista"));
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(true, 0.97, InstructionSeverity.NONE,
+                "Cumple la consigna", List.of(), checks);
+        AuditNode node = buildQuizNode(buildQuiz("q1"));
+        QuizInstructionAnalyzer analyzer = judge(EvaluationResolutionKind.EVALUATED, verdict);
+
+        resolveNow(analyzer, node);
+
+        assertTrue(analyzer.findingsAt(node).isEmpty(), "R008: a compliant quiz has no finding");
+        List<InstructionCheck> shown = ((QuizDiagnoses) node.getDiagnoses()).getQuizInstructionDiagnosis().orElseThrow()
+                .getVerdict().getCheckedConstraints();
+        assertEquals(checks, shown, "R008: its detail shows every constraint the judge checked, each with its state");
     }
 
     @Test
     @DisplayName("should give a breaching quiz the same score whatever confidence the judge reported")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R008")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldGiveABreachingQuizTheSameScoreWhateverConfidenceTheJudgeReported() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        List<Double> scores = new ArrayList<>();
+        for (double confidence : List.of(0.2, 0.55, 0.99)) {
+            QuizInstructionVerdict verdict = new QuizInstructionVerdict(false, confidence, InstructionSeverity.MAJOR,
+                    "Incumple", List.of(new InstructionViolation("X", "Pasado", "goes", "presente")), List.of());
+            AuditNode node = buildQuizNode(buildQuiz("q-" + confidence));
+            QuizInstructionAnalyzer analyzer = judge(EvaluationResolutionKind.EVALUATED, verdict);
+            resolveNow(analyzer, node);
+            scores.add(node.getScores().get("quiz-instruction"));
+        }
+        assertEquals(List.of(0.3, 0.3, 0.3), scores, "R008: the confidence never touches the score");
     }
 
     @Test
     @DisplayName("should call the consigna judge at most once and leave every quiz pending, with «sesión vencida: renovala con claude auth login» in its coverage, when the claude-cli session expired and the budget is 100")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldCallTheConsignaJudgeAtMostOnceAndLeaveEveryQuizPendingWithSesinVencidaRenovalaConClaudeAuthLoginInItsCoverageWhenTheClaudecliSessionExpiredAndTheBudgetIs100() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        JexamLedger ledger = new JexamLedger();
+        JexamCourse course = JexamCourse.withQuizzes(6);
+        // What the judge answers when its claude-cli session expired: unavailable, with cause and remedy.
+        CountingJudge judge = new CountingJudge("v-hoy", COMPLIANT)
+                .unavailable("sesión vencida: renovala con claude auth login");
+        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-hoy"), budget(100, null));
+
+        course.run(analyzer);
+
+        assertTrue(judge.calls() <= 1, "R011: at most one consultation, not four, not six: " + judge.calls());
+        for (AuditNode quiz : course.quizzes()) {
+            assertNull(quiz.getScores().get("quiz-instruction"), "R011: every quiz stays pending");
+            assertEquals(List.of("quiz-instruction"), quiz.getUnevaluatedBy());
+        }
+        assertEquals("sesión vencida: renovala con claude auth login", course.judgeCoverage().getUnavailableReason(),
+                "R011: the coverage names the cause and how to fix it");
+        assertTrue(ledger.records().isEmpty(), "R011: nothing is recorded");
     }
 
     @Test
     @DisplayName("should carry in its coverage, next to today's counts, the exam of its version and of every version whose verdicts it reused")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldCarryInItsCoverageNextToTodaysCountsTheExamOfItsVersionAndOfEveryVersionWhoseVerdictsItReused() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        JexamLedger ledger = new JexamLedger();
+        JexamCourse course = JexamCourse.withQuizzes(4);
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(course.quizzes().get(0)), "q1", COMPLIANT,
+                "v-agosto");
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(course.quizzes().get(1)), "q2", COMPLIANT,
+                "v-agosto");
+        CountingJudge judge = new CountingJudge("v-nueva", COMPLIANT);
+        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge,
+                examsOf(Map.of("v-agosto", JudgeExamStatus.FAILED, "v-nueva", JudgeExamStatus.APPROVED)),
+                budget(10, null));
+
+        course.run(analyzer);
+
+        QuizInstructionCoverageDiagnosis coverage = course.courseDiagnoses().getQuizInstructionCoverage().orElseThrow();
+        assertEquals(new EvaluationCoverage(4, 4, 2, 2, 0, 0), coverage.getCoverage(), "today's counts stay");
+        assertEquals(List.of(new JudgeVersionVerdictCount("v-agosto", 2), new JudgeVersionVerdictCount("v-nueva", 2)),
+                coverage.getVerdictsByJudgeVersion(), "today's verdicts by version stay");
+        JudgeCoverageDiagnosis judge2 = coverage.getJudge();
+        assertNotNull(judge2, "R001 inv. 2: the common coverage travels next to them");
+        assertEquals(JudgeExamStatus.APPROVED, judge2.getStanding().getStatus(), "R001: the exam of its version");
+        assertEquals("v-nueva", judge2.getStanding().getJudgeVersion());
+        assertEquals(List.of(new JudgeVersionStanding("v-agosto", 2, JudgeExamStatus.FAILED),
+                        new JudgeVersionStanding("v-nueva", 2, JudgeExamStatus.APPROVED)), judge2.getVersions(),
+                "R001 inv. 2: and of every version whose verdicts it used");
+        assertEquals(List.of(judge2), course.courseDiagnoses().getJudgeCoverages(),
+                "the same coverage in the common slot of the judges");
     }
 
     @Test
     @DisplayName("should neither ask nor count, in an EXAM run, a quiz that is not in the exam file")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldNeitherAskNorCountInAnEXAMRunAQuizThatIsNotInTheExamFile() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        JexamLedger ledger = new JexamLedger();
+        JexamCourse photo = JexamCourse.withQuizzes(3);
+        CountingJudge judge = new CountingJudge("v-hoy", COMPLIANT);
+        // The exam file: q2 and an id that is not in the photo.
+        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, examsOf(Map.of()),
+                new EvaluationRunPolicy(10, false, null, new LinkedHashSet<>(List.of("q2", "q-ausente")),
+                        EvaluationRunPurpose.EXAM, null));
+
+        photo.run(analyzer);
+
+        assertEquals(List.of("q2"), judge.asked(), "R001: only the quiz of the exam file is asked");
+        assertNull(photo.quizzes().get(0).getScores().get("quiz-instruction"));
+        assertTrue(photo.quizzes().get(0).getUnevaluatedBy().isEmpty(), "R001: a quiz outside the file is not counted");
+        assertEquals(1, photo.courseDiagnoses().getQuizInstructionCoverage().orElseThrow().getCoverage().getReached(),
+                "R001: the coverage counts only the exam quiz");
+        assertEquals(1, photo.judgeCoverage().getReached());
+        assertEquals(List.of("q-ausente"), photo.judgeCoverage().getUnmatchedDeclaredIds(),
+                "the id of the file that is not in the photo is declared");
+        assertTrue(ledger.records().stream().allMatch(r -> r.getKey().getEvaluatorId().startsWith("exam:")),
+                "the exam writes only in its own space");
     }
 
     @Test
     @DisplayName("should resolve without consulting, in an EXAM run, an exam quiz the same version already judged on the same content")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R002")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldResolveWithoutConsultingInAnEXAMRunAnExamQuizTheSameVersionAlreadyJudgedOnTheSameContent() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        JexamLedger ledger = new JexamLedger();
+        JexamCourse photo = JexamCourse.withQuizzes(2);
+        // The same version judged q1 on the course, on the same content; another version judged q2.
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(photo.quizzes().get(0)), "q1", BREACHING,
+                "v-hoy");
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(photo.quizzes().get(1)), "q2", COMPLIANT,
+                "v-otra");
+        CountingJudge judge = new CountingJudge("v-hoy", COMPLIANT);
+        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, examsOf(Map.of()),
+                new EvaluationRunPolicy(10, false, null, new LinkedHashSet<>(List.of("q1", "q2")),
+                        EvaluationRunPurpose.EXAM, null));
+
+        photo.run(analyzer);
+
+        assertEquals(List.of("q2"), judge.asked(),
+                "R002: q1 is reused (same version, same content); q2 was judged by another version, so it is asked");
+        assertEquals(0.3, photo.quizzes().get(0).getScores().get("quiz-instruction"), 1e-9,
+                "R002: the reused verdict of the same version scores the exam quiz");
+        assertEquals(2, ledger.records().stream().filter(r -> r.getKey().getEvaluatorId().equals(CONSIGNA_EVALUATOR))
+                .count(), "R002: the course's ledger does not change");
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-JEXAM fixtures: the consigna judge built by its factory over the real judges runtime,
+    // a ledger in memory, a judge that answers recorded verdicts and counts its consultations.
+    // ------------------------------------------------------------------
+
+    private static final String CONSIGNA_EVALUATOR = "quiz-instruction-validator";
+
+    private static final String COMPLIANT = "{\"compliant\":true}";
+
+    private static final String BREACHING = "{\"compliant\":false}";
+
+    private static String quizId(AuditNode quiz) {
+        return quiz.getEntity().getId();
+    }
+
+    private static EvaluationRunPolicy budget(int maxNewEvaluations, Integer atATime) {
+        return new EvaluationRunPolicy(maxNewEvaluations, false, null, null, null, atATime);
+    }
+
+    private static JudgeExamRegistry approvedExams(String version) {
+        return examsOf(Map.of(version, JudgeExamStatus.APPROVED));
+    }
+
+    private static JudgeExamRegistry examsOf(Map<String, JudgeExamStatus> byVersion) {
+        return new JudgeExamRegistry() {
+            @Override
+            public void record(JudgeExamRecord record) {
+            }
+
+            @Override
+            public Optional<JudgeExamRecord> latest(String judgeName, String judgeVersion) {
+                JudgeExamStatus status = byVersion.get(judgeVersion);
+                return status == null ? Optional.empty() : Optional.of(new JudgeExamRecord(judgeName, judgeVersion,
+                        status, 238, 0, List.of(), List.of(), status == JudgeExamStatus.APPROVED, "2026-09-29",
+                        "orquestador", Instant.parse("2026-09-30T22:00:00Z")));
+            }
+
+            @Override
+            public List<JudgeExamRecord> history(String judgeName) {
+                return List.of();
+            }
+        };
+    }
+
+    /** The analyzer exactly as the factory builds it for a run, over the real judges runtime. */
+    private static QuizInstructionAnalyzer consignaAnalyzer(JexamLedger ledger, CountingJudge judge,
+            JudgeExamRegistry exams, EvaluationRunPolicy policy) {
+        Sha256ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
+        JudgeRuntimeConfig config = new JudgeRuntimeConfig() {
+            @Override
+            public int getMaxConcurrentEvaluations() {
+                return 4;
+            }
+
+            @Override
+            public int getDefaultMaxNewEvaluations(String judgeName) {
+                return 0;
+            }
+
+            @Override
+            public double getDefaultRatePerHour(String judgeName) {
+                return 189.0;
+            }
+
+            @Override
+            public Map<String, Object> describe() {
+                return Map.of();
+            }
+        };
+        DefaultJudgeRuntime runtime = new DefaultJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, fingerprinter),
+                new ExamEvaluationSessionFactory(ledger, fingerprinter), exams, evaluatorId -> List.of(), config);
+        QuizInstructionConfig scores = mock(QuizInstructionConfig.class);
+        when(scores.getScoreFor(InstructionSeverity.NONE)).thenReturn(1.0);
+        when(scores.getScoreFor(InstructionSeverity.MINOR)).thenReturn(0.6);
+        when(scores.getScoreFor(InstructionSeverity.MAJOR)).thenReturn(0.3);
+        when(scores.getScoreFor(InstructionSeverity.CRITICAL)).thenReturn(0.0);
+        QuizInstructionVerdictReader reader = payload -> COMPLIANT.equals(payload)
+                ? new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "Cumple", List.of(), List.of())
+                : new QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR, "Incumple la consigna",
+                        List.of(new InstructionViolation("TENSE", "Pasado", "goes", "presente")), List.of());
+        return (QuizInstructionAnalyzer) new DefaultQuizInstructionAnalyzerFactory(judge, reader, scores, runtime)
+                .create(policy);
+    }
+
+    /** A judge that answers recorded verdicts, never a model, and counts what it was asked. */
+    private static final class CountingJudge implements Evaluator {
+        private final String version;
+        private final String payload;
+        private final Set<String> breaching = new HashSet<>();
+        private final List<String> asked = java.util.Collections.synchronizedList(new ArrayList<>());
+        private String unavailable;
+
+        CountingJudge(String version, String payload) {
+            this.version = version;
+            this.payload = payload;
+        }
+
+        CountingJudge breaching(String... quizIds) {
+            breaching.addAll(List.of(quizIds));
+            return this;
+        }
+
+        CountingJudge unavailable(String reason) {
+            this.unavailable = reason;
+            return this;
+        }
+
+        int calls() {
+            return asked.size();
+        }
+
+        List<String> asked() {
+            List<String> sorted = new ArrayList<>(asked);
+            java.util.Collections.sort(sorted);
+            return sorted;
+        }
+
+        @Override
+        public String evaluatorId() {
+            return CONSIGNA_EVALUATOR;
+        }
+
+        @Override
+        public Optional<String> evaluatorVersion() {
+            return Optional.of(version);
+        }
+
+        @Override
+        public EvaluationOutcome evaluate(EvaluationSubject subject) {
+            asked.add(subject.getSubjectRef());
+            if (unavailable != null) {
+                return new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, unavailable);
+            }
+            return new EvaluationEmitted(breaching.contains(subject.getSubjectRef()) ? BREACHING : payload);
+        }
+    }
+
+    /** A ledger in memory that also says under which keys it was looked up. */
+    private static final class JexamLedger implements EvaluationLedger {
+        private final List<EvaluationRecord> records = java.util.Collections.synchronizedList(new ArrayList<>());
+        private final List<EvaluationKey> lookedUp = java.util.Collections.synchronizedList(new ArrayList<>());
+
+        void record(String evaluatorId, Map<String, String> content, String subjectRef, String payload, String version) {
+            append(new EvaluationRecord(new EvaluationKey(evaluatorId, new Sha256ContentFingerprinter().fingerprint(content)),
+                    payload, subjectRef, Instant.parse("2026-08-14T14:39:40Z"), version));
+        }
+
+        List<EvaluationRecord> records() {
+            return List.copyOf(records);
+        }
+
+        List<EvaluationKey> lookedUp() {
+            return List.copyOf(lookedUp);
+        }
+
+        @Override
+        public void append(EvaluationRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public Optional<EvaluationRecord> findLatest(EvaluationKey key) {
+            lookedUp.add(key);
+            EvaluationRecord latest = null;
+            for (EvaluationRecord record : records()) {
+                if (record.getKey().equals(key)) {
+                    latest = record;
+                }
+            }
+            return Optional.ofNullable(latest);
+        }
+
+        @Override
+        public List<EvaluationRecord> history(EvaluationKey key) {
+            List<EvaluationRecord> matching = new ArrayList<>();
+            for (EvaluationRecord record : records()) {
+                if (record.getKey().equals(key)) {
+                    matching.add(record);
+                }
+            }
+            return matching;
+        }
+    }
+
+    /**
+     * An A1 course of one topic, «Afirmativas regulares», whose quizzes are «You ____ [see] (see) cats.»
+     * in the internal format of the course, each with its own id; run over it the way the engine does.
+     */
+    private static final class JexamCourse {
+        private static final List<String> NOUNS = List.of("cats", "dogs", "birds", "fish", "horses", "cows", "ducks",
+                "goats", "sheep", "rabbits");
+        private final AuditNode root;
+        private final List<AuditNode> quizzes;
+
+        private JexamCourse(AuditNode root, List<AuditNode> quizzes) {
+            this.root = root;
+            this.quizzes = quizzes;
+        }
+
+        static JexamCourse withQuizzes(int count) {
+            return withQuizzes(count, "Ves gatos.", "Con he, she, it el verbo lleva -s.");
+        }
+
+        static JexamCourse withQuizzes(int count, String translation, String miniTheory) {
+            AuditNode root = node(AuditTarget.COURSE, null, null);
+            AuditableKnowledge knowledgeEntity = new AuditableKnowledge(List.of(), "Afirmativas regulares",
+                    "Escribe la forma correcta del verbo.", false, "6814dafa7d73e7209a13d389", "Afirmativas regulares",
+                    "A1.01.06", SentenceMode.FILL, "Present Simple");
+            AuditNode milestone = node(AuditTarget.MILESTONE, new AuditableMilestone(List.of(), "m-a1", "A1", "A1"), root);
+            AuditNode topic = node(AuditTarget.TOPIC, new AuditableTopic(List.of(), "t-ps", "Present Simple", "A1.01"),
+                    milestone);
+            AuditNode knowledge = node(AuditTarget.KNOWLEDGE, knowledgeEntity, topic);
+            List<AuditNode> quizzes = new ArrayList<>();
+            for (int i = 1; i <= count; i++) {
+                // Each quiz with its own content: equal content shares its verdict (F-EVCOST-R001).
+                String noun = NOUNS.get(i - 1);
+                AuditableQuiz quiz = new AuditableQuiz(List.of(), "q" + i, "Afirmativas regulares", "A1.01.06." + i,
+                        translation, List.of("You see " + noun + "."), null, "Escribe la forma correcta del verbo.",
+                        List.of(new SentencePartEntity(SentencePartKind.TEXT, "You", null),
+                                new SentencePartEntity(SentencePartKind.CLOZE, "____", List.of("see")),
+                                new SentencePartEntity(SentencePartKind.TEXT, "(see) " + noun + ".", null)),
+                        null, miniTheory, "A1.01.06." + i);
+                quizzes.add(node(AuditTarget.QUIZ, quiz, knowledge));
+            }
+            return new JexamCourse(root, quizzes);
+        }
+
+        /** What the consigna judge read in August for one of these quizzes, key by key. */
+        static Map<String, String> contentJudgedBefore(AuditNode quiz) {
+            Map<String, String> content = new LinkedHashMap<>();
+            content.put("cefrLevel", "A1");
+            content.put("topic", "Present Simple");
+            content.put("title", "Afirmativas regulares");
+            content.put("instructions", "Escribe la forma correcta del verbo.");
+            String tail = ((AuditableQuiz) quiz.getEntity()).getSentenceParts().get(2).getText();
+            content.put("quiz", "TEXT:You:|CLOZE:____:see|TEXT:" + tail + ":|");
+            return content;
+        }
+
+        private static AuditNode node(AuditTarget target, AuditableEntity entity, AuditNode parent) {
+            AuditNode node = new AuditNode();
+            node.setTarget(target);
+            node.setEntity(entity);
+            node.setParent(parent);
+            node.setChildren(new ArrayList<>());
+            node.setScores(new LinkedHashMap<>());
+            node.setMetadata(new LinkedHashMap<>());
+            if (parent != null) {
+                parent.getChildren().add(node);
+            }
+            return node;
+        }
+
+        List<AuditNode> quizzes() {
+            return quizzes;
+        }
+
+        void run(QuizInstructionAnalyzer analyzer) {
+            for (AuditNode quiz : quizzes) {
+                analyzer.onQuiz(quiz);
+            }
+            analyzer.onCourseComplete(root);
+        }
+
+        DefaultCourseDiagnoses courseDiagnoses() {
+            return (DefaultCourseDiagnoses) root.getDiagnoses();
+        }
+
+        JudgeCoverageDiagnosis judgeCoverage() {
+            return courseDiagnoses().getJudgeCoverages().get(0);
+        }
     }
 
     // ------------------------------------------------------------------
