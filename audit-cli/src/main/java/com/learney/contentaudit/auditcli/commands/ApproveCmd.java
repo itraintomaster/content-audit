@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 import com.learney.contentaudit.revisiondomain.batch.BatchStore;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.tray.ProposalInOpenBatchException;
 
 import com.learney.contentaudit.auditcli.ApproveCommand;
 import com.learney.contentaudit.revisiondomain.ProposalDecisionOutcome;
@@ -77,6 +79,14 @@ public ApproveCmd(ProposalDecisionService decisionService, BatchStore batchStore
         // R011 — proposalId is required
         if (proposalId == null || proposalId.isBlank()) {
             System.err.println("Error: proposal id is required");
+            return 1;
+        }
+
+        // F-BANDEJA-R008: a proposal of the open batch enters the course only when the batch is published.
+        Optional<CorrectionBatch> open = batchStore != null ? batchStore.open() : Optional.empty();
+        if (open.isPresent() && open.get().getQuizProposals() != null && open.get().getQuizProposals().stream()
+                .anyMatch(ref -> ref != null && proposalId.equals(ref.getProposalId()))) {
+            System.err.println(new ProposalInOpenBatchException(proposalId, open.get().getId()).getMessage());
             return 1;
         }
 

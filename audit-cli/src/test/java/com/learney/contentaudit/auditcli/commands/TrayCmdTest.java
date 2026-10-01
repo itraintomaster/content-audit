@@ -1,7 +1,36 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.tray.Tray;
+import com.learney.contentaudit.revisiondomain.tray.TrayAnswer;
+import com.learney.contentaudit.revisiondomain.tray.TrayItem;
+import com.learney.contentaudit.revisiondomain.tray.TrayItemKind;
+import com.learney.contentaudit.revisiondomain.tray.TrayResponse;
+import com.learney.contentaudit.revisiondomain.tray.TrayService;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.io.TempDir;
+import picocli.CommandLine;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,27 +44,154 @@ public class TrayCmdTest {
     @DisplayName("should print with 'tray show' the items of the tray in their order")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPrintWithTrayShowTheItemsOfTheTrayInTheirOrder() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: 'tray show' prints the things of the tray in the order the tray gives them, each with what it asks.
+        Bandeja bandeja = new Bandeja();
+
+        Run run = run(bandeja, "show");
+
+        assertEquals(0, run.exit(), run.err());
+        String out = run.out();
+        assertTrue(out.startsWith("Bandeja de la tanda tanda-A1-20261001T120000Z · se puede publicar\n"), out);
+        int tie = out.indexOf("1. [TIE_ON_CANDIDATE] desempate-" + COME + " · HIGH");
+        int tea = out.indexOf("2. [NO_WINNER] sin-ganador-" + TEA);
+        int rule = out.indexOf("3. [RULE_SAMPLE] muestra-hint-coherence");
+        int audio = out.indexOf("4. [PENDING_RERECORDING] regrabar-A1.02.01.cd");
+        assertTrue(tie >= 0 && tie < tea && tea < rule && rule < audio, "in their order:\n" + out);
+        assertTrue(out.contains("   Los dos jueces de translation-sense no coinciden sobre el candidato de la mesa: ¿pasa?\n"
+                + "   antes: He ___ (come) every year.\n   después: Winter ___ (come) every year.\n"), out);
+        assertTrue(out.contains("   regrabar A1.02.01.cd con «I love vegetables.»\n"), out);
     }
 
     @Test
     @DisplayName("should read the fix José writes from the file given to 'tray answer', in the notation of the course with its translation, and pass it as a candidate")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldReadTheFixJosWritesFromTheFileGivenToTrayAnswerInTheNotationOfTheCourseWithItsTranslationAndPassItAsACandidate(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: José writes the fix of the tea in a file, in the notation of the course, with its translation under it.
+        // 'tray answer … WRITE_FIX --fix' reads it and gives it to the tray as a candidate of the panel.
+        Bandeja bandeja = new Bandeja();
+        Path file = write(workdir.resolve("arreglo-tea.txt"),
+                "I ____ [drink] (drink) green tea in the morning.\nTomo té verde por la mañana.\n");
+
+        Run run = run(bandeja, "answer", "sin-ganador-" + TEA, "WRITE_FIX", "--fix", file.toString());
+
+        assertEquals(0, run.exit(), run.err());
+        TrayResponse response = bandeja.answers.get(0);
+        assertEquals(TrayAnswer.WRITE_FIX, response.getAnswer());
+        assertEquals("José", response.getDecidedBy());
+        PanelCandidate fix = response.getFix();
+        assertEquals(PanelCandidateKind.WHOLE_EXERCISE, fix.getKind());
+        assertEquals(TEA, fix.getQuiz().getId(), "over the exercise of the item");
+        List<SentencePartEntity> parts = fix.getQuiz().getForm().getSentenceParts();
+        assertEquals(List.of(SentencePartKind.TEXT, SentencePartKind.CLOZE, SentencePartKind.TEXT),
+                parts.stream().map(SentencePartEntity::getKind).toList(), "in the notation of the course");
+        assertEquals(List.of("drink"), parts.get(1).getOptions());
+        assertTrue(parts.get(2).getText().contains("(drink) green tea in the morning."), parts.get(2).getText());
+        assertEquals("Tomo té verde por la mañana.", fix.getQuiz().getTranslation(), "with its translation");
+        assertEquals(List.of("I drink green tea in the morning."), fix.getQuiz().getSentences());
     }
 
     @Test
     @DisplayName("should publish the open batch with 'tray publish' as José's single OK")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPublishTheOpenBatchWithTrayPublishAsJossSingleOK() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: 'tray publish' is José's single OK.
+        Bandeja bandeja = new Bandeja();
+
+        Run run = run(bandeja, "publish", "--note", "la primera tanda de A1");
+
+        assertEquals(0, run.exit(), run.err());
+        assertEquals(List.of("José|la primera tanda de A1"), bandeja.published, "one OK, José's");
+        assertTrue(run.out().startsWith("Publicada por José: entraron 2 propuestas; tareas completadas 3, reabiertas 1; audios"
+                + " por regrabar 1. Análisis publicado: audit-20261001T190000Z (plan plan-20261001T190000Z)."), run.out());
+    }
+
+
+    private static final String COME = "67fab6d59930102295341ec6";
+
+    private static final String TEA = "67fab6d59930102295341ec9";
+
+    @TempDir
+    Path workdir;
+
+    record Run(int exit, String out, String err) {
+    }
+
+    private static Run run(TrayService tray, String... args) {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        ByteArrayOutputStream err = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        PrintStream originalErr = System.err;
+        System.setOut(new PrintStream(out, true, StandardCharsets.UTF_8));
+        System.setErr(new PrintStream(err, true, StandardCharsets.UTF_8));
+        try {
+            int exit = new CommandLine(new TrayCmd(tray, DefaultQuizSentenceConverter.create())).execute(args);
+            return new Run(exit, out.toString(StandardCharsets.UTF_8), err.toString(StandardCharsets.UTF_8));
+        } finally {
+            System.setOut(originalOut);
+            System.setErr(originalErr);
+        }
+    }
+
+    private static Path write(Path file, String content) {
+        try {
+            return Files.writeString(file, content, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    /** The tray of a closed batch of A1, by hand: what it shows, what it was answered and the OK it got. */
+    static final class Bandeja implements TrayService {
+        final List<TrayResponse> answers = new ArrayList<>();
+
+        final List<String> published = new ArrayList<>();
+
+        final Tray tray = new Tray("tanda-A1-20261001T120000Z", false, new ArrayList<>(List.of(
+                new TrayItem("desempate-" + COME, TrayItemKind.TIE_ON_CANDIDATE, FindingSeverity.HIGH, null, COME,
+                        "Los dos jueces de translation-sense no coinciden sobre el candidato de la mesa: ¿pasa?",
+                        List.of(TrayAnswer.PASSES, TrayAnswer.DOES_NOT_PASS),
+                        view("He ___ (come) every year."), view("Winter ___ (come) every year."), List.of(), List.of(),
+                        null, List.of(), null, List.of(), null),
+                new TrayItem("sin-ganador-" + TEA, TrayItemKind.NO_WINNER, null, null, TEA,
+                        "Nadie arregló este ejercicio en 3 intentos: ¿dejás el original, aprobás el candidato o escribís"
+                                + " el arreglo?", List.of(TrayAnswer.KEEP_ORIGINAL, TrayAnswer.APPROVE_CANDIDATE,
+                        TrayAnswer.WRITE_FIX), view("I ___ (drink) tea in the morning."), null, List.of(),
+                        List.of("intento 1: «have» sigue encajando"), null, List.of(), null, List.of(), null),
+                new TrayItem("muestra-hint-coherence", TrayItemKind.RULE_SAMPLE, null, null, null,
+                        "La regla hint-coherence cambió 2 ejercicios; mirá todos: ¿está bien?",
+                        List.of(TrayAnswer.RULE_OK, TrayAnswer.DROP_CHANGE, TrayAnswer.DROP_RULE), null, null, List.of(),
+                        List.of(), "hint-coherence", List.of(), null, List.of(), null),
+                new TrayItem("regrabar-A1.02.01.cd", TrayItemKind.PENDING_RERECORDING, null, null,
+                        "67fab6d59930102295341ecd", null, List.of(), view("I ___ vegetables."), null, List.of(),
+                        List.of(), null, List.of(), null, List.of(), new AudioRerecordRequest("67fab6d59930102295341ecd",
+                        "A1.02.01.cd", List.of("I love vegetables."))))), true, new ArrayList<>());
+
+        private static QuizStudentView view(String statement) {
+            return new QuizStudentView(statement, List.of(), List.of(), null, null, null);
+        }
+
+        @Override
+        public Tray view() {
+            return tray;
+        }
+
+        @Override
+        public Tray answer(TrayResponse response) {
+            answers.add(response);
+            return tray;
+        }
+
+        @Override
+        public BatchPublication publish(String approvedBy, String note) {
+            published.add(approvedBy + "|" + note);
+            return new BatchPublication(Instant.parse("2026-10-01T19:00:00Z"), approvedBy, note, "audit-20261001T190000Z",
+                    "plan-20261001T190000Z", List.of("p-1", "p-2"), List.of("t-1", "t-2", "t-3"), List.of("t-4"),
+                    List.of(new AudioRerecordRequest("67fab6d59930102295341ecd", "A1.02.01.cd",
+                            List.of("I love vegetables."))));
+        }
     }
 }

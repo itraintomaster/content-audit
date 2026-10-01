@@ -1,7 +1,28 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
+import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
+import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchProposalRef;
+import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
+import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchReport;
+import com.learney.contentaudit.revisiondomain.batch.BatchRunRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchService;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import java.nio.charset.StandardCharsets;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -16,7 +37,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -230,8 +250,108 @@ public class RejectCmdTest {
     @DisplayName("should drop through the batch the changes of the exercise when 'reject proposal' names a proposal of the open batch")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldDropThroughTheBatchTheChangesOfTheExerciseWhenRejectProposalNamesAProposalOfTheOpenBatch() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-BANDEJA-R008 and F-TANDA-R008: rejecting the proposal of the vegetables of the open batch takes its changes out of
+        // the batch -- the rule of the hint, and with it the rewrite of the panel made over it --; the change of another
+        // exercise stays, and the decision service of the proposals is not involved.
+        Batch batch = new Batch();
+        RejectCmd cmd = new RejectCmd(decisionService, batch);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(out, true, StandardCharsets.UTF_8));
+        int exit;
+        try {
+            exit = cmd.reject("proposal", PROPOSAL, null, "no me convence");
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        assertEquals(List.of("DROP_CHANGE regla-hint-coherence-" + VEGETABLES + " no me convence"), batch.adjusted,
+                "through the batch: the panel's rewrite leaves chained with it");
+        assertEquals("sale con regla-hint-coherence-" + VEGETABLES, batch.batch.getChanges().get(1).getDroppedReason());
+        assertNull(batch.batch.getChanges().get(2).getDroppedReason(), "another exercise stays");
+        verify(decisionService, never()).reject(any(), any(), any());
+        assertEquals("La propuesta " + PROPOSAL + " es de la tanda " + BATCH + ": salieron sus cambios (regla-hint-coherence-"
+                + VEGETABLES + ") y sus tareas vuelven a pendiente.", out.toString(StandardCharsets.UTF_8).trim());
+    }
+
+
+    private static final String BATCH = "tanda-A1-20261001T120000Z";
+
+    private static final String VEGETABLES = "67fab6d59930102295341ecd";
+
+    private static final String PROPOSAL = BATCH + "-" + VEGETABLES;
+
+    /** The service of the open batch, by hand: dropping a change takes the later one of the same exercise with it. */
+    static final class Batch implements BatchService {
+        final List<String> adjusted = new ArrayList<>();
+
+        final CorrectionBatch batch = new CorrectionBatch();
+
+        Batch() {
+            batch.setId(BATCH);
+            batch.setQuizProposals(new ArrayList<>(List.of(new BatchProposalRef(VEGETABLES, PROPOSAL),
+                    new BatchProposalRef("67fab6d59930102295341ec6", BATCH + "-67fab6d59930102295341ec6"))));
+            batch.setChanges(new ArrayList<>(List.of(change("regla-hint-coherence-" + VEGETABLES, VEGETABLES),
+                    change("mesa-" + VEGETABLES, VEGETABLES), change("mesa-67fab6d59930102295341ec6",
+                            "67fab6d59930102295341ec6"))));
+        }
+
+        private static BatchChange change(String id, String quizId) {
+            return new BatchChange(id, id.startsWith("regla") ? BatchChangeOrigin.RULE : BatchChangeOrigin.PANEL, null,
+                    null, new ArrayList<>(), new ArrayList<>(List.of(new BatchChangeStep(quizId, new ArrayList<>(), null))),
+                    null, false, Instant.parse("2026-10-01T12:30:00Z"), null);
+        }
+
+        @Override
+        public CorrectionBatch adjust(BatchAdjustment adjustment) {
+            adjusted.add(adjustment.getKind() + " " + adjustment.getChangeId() + " " + adjustment.getReason());
+            boolean chained = false;
+            for (BatchChange change : batch.getChanges()) {
+                if (change.getChangeId().equals(adjustment.getChangeId())) {
+                    change.setDroppedReason(adjustment.getReason());
+                    chained = true;
+                } else if (chained && change.getSteps().get(0).getQuizId().equals(adjustment.getQuizId())) {
+                    change.setDroppedReason("sale con " + adjustment.getChangeId());
+                }
+            }
+            return batch;
+        }
+
+        @Override
+        public Optional<CorrectionBatch> current() {
+            return Optional.of(batch);
+        }
+
+        @Override
+        public CorrectionBatch open(BatchOpenRequest request) {
+            throw new AssertionError("not here");
+        }
+
+        @Override
+        public BatchEstimate estimate() {
+            throw new AssertionError("not here");
+        }
+
+        @Override
+        public BatchReport run(BatchRunRequest request) {
+            throw new AssertionError("not here");
+        }
+
+        @Override
+        public BatchClosing close() {
+            throw new AssertionError("not here");
+        }
+
+        @Override
+        public BatchReport report(String batchId) {
+            throw new AssertionError("not here");
+        }
+
+        @Override
+        public BatchPublication publish(BatchPublishRequest request) {
+            throw new AssertionError("not here");
+        }
     }
 }
