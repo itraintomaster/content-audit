@@ -105,7 +105,7 @@ public class SingleAnswerAnalyzerProvider implements AnalyzerProvider {
         JudgeSessions opened = runtime.open(SingleAnswerAnalyzer.ANALYZER_NAME, List.of(judge), policy);
         return new SingleAnswerAnalyzer(opened, runtime,
                 new DefaultSingleAnswerSubjectBuilder(studentViewRenderer),
-                new DefaultSingleAnswerClassifier(correctorMatcher, config),
+                new DefaultSingleAnswerClassifier(correctorMatcher, config, studentViewRenderer),
                 verdictReader);
     }
 

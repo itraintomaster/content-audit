@@ -455,7 +455,7 @@ class Main {
         JudgeExamVerdictExporter judgeExamVerdictExporter = new DefaultJudgeExamVerdictExporter();
 
         QuizInstructionVerdictReader quizInstructionVerdictReader = new JacksonQuizInstructionVerdictReader();
-        QuizInstructionConfig quizInstructionConfig = new DefaultQuizInstructionConfig();
+        QuizInstructionConfig quizInstructionConfig = new DefaultQuizInstructionConfig(judgeRuntimeConfig);
 
         // Hook C-13 (FEAT-JEXAM): the quiz-instruction judge opens its session through the judges
         // runtime -- the exam's brake and budget 0 without a request (F-JEXAM-R003, R010); the
