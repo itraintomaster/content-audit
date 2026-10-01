@@ -311,10 +311,13 @@ modules:
 Orden: esta integración; B (MLOCAL, GRAMA, NATUR, DUPAR); F (PROYU, METAS y CIEGA, y después CERO); E (TAREA, NOEMP,
 MESA, TANDA, BANDEJA); y los clientes de los paquetes, cuando Sentinel los conserve. B y F antes que E porque E usa sus
 tipos y TAREA y TANDA suman piezas en paquetes de B. Simulado con la librería del jar (`integrador-2/cadena.sh`), cada
-`patch validate` pasa contra el modelo que deja el anterior, con 0 conflictos. Sobre el modelo final no hay choques de
-nombre, tipos sin resolver ni referencias que no se puedan ver, pero `generate` aborta: los trece J001 de B, E y F
-tienen flujo y nadie los ubicó todavía. Va primero el qa-tester de cada paquete, con sus pruebas y su J001, y recién
-después `generate`. Esta feature no trae journeys.
+`patch validate` pasa contra el modelo que deja el anterior, con 0 conflictos; y aplicada con el CLI real sobre una copia
+del worktree (`aplicar-ronda-2.sh`), la ronda da un `sentinel.yaml` idéntico byte a byte al simulado. Sobre el modelo
+final no hay choques de nombre, tipos sin resolver ni referencias que no se puedan ver, pero `generate` aborta: los trece
+J001 de B, E y F tienen flujo y nadie los ubicó todavía. Va primero el qa-tester de cada paquete, con sus pruebas y su
+J001, y recién después `generate`, que crea 322 archivos, cambia 85 y deja para adaptar 9 llamados en `Main` y en dos
+fábricas de revision-domain y 334 construcciones en pruebas (209 de `RefinementTask` y 78 de `GetTasksFilter`). No hace
+falta `feature sync`: cada parche registra su feature con su journey al aplicarse. Esta feature no trae journeys.
 
 ```architecture
 features:
