@@ -6,7 +6,17 @@ description: "FEAT-NOEMP: la compuerta de no empeorar en dos niveles. Por cambio
   \ sin devolver nunca por el largo. Rebasado por el integrador de la ronda 2 sobre\
   \ el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada y construida) y sobre\
   \ FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E: revision-domain\
-  \ lleva la lista entera de patrones, 3 (el apply reemplaza, no suma)."
+  \ lleva la lista entera de patrones, 3 (el apply reemplaza, no suma).; qa-tester:\
+  \ 36 handwrittenTests trazan las 10 reglas de FEAT-NOEMP sobre las dos compuertas,\
+  \ con los casos medidos del 30/9 (las cuatro propuestas de Afirmativas regulares:\
+  \ grandmother A2 vuelve y Winter pasa, cuatro pedidos de regrabar, A1 de 351 a 352\
+  \ ejercicios con palabras rojas, ningún número de vocabulario movido), y F-NOEMP-J001\
+  \ va a revision-domain, paquete batchengine: el cierre que recalcula, compara, devuelve\
+  \ y vuelve a recalcular es DefaultBatchCloser, package-private ahí, y la compuerta\
+  \ se obtiene por su fábrica pública.; orquestador, 1/10 (el audio sigue al ejercicio):\
+  \ ChangeProbe suma requestedRerecords, el pedido de regrabar de un arreglo que no\
+  \ cambia el ejercicio (F-NOEMP-R004, inv. 3 y 4), con dos pruebas sobre …399b, cuyo\
+  \ audio lee la pista."
 modules:
 - name: revision-domain
   patterns:
@@ -139,6 +149,13 @@ modules:
         type: UnitMeasurement
       - name: after
         type: UnitMeasurement
+      - name: requestedRerecords
+        type: List<AudioRerecordRequest>
+        description: "Pedidos de regrabar que trae el arreglo aunque no cambie lo\
+          \ que se escucha del ejercicio: el audio que lee la «/» o la pista, o el\
+          \ que nadie sabe con qué se grabó (F-NOEMP-R004, inv. 3). Cada uno tiene\
+          \ que decir lo que el ejercicio dice como queda, sin la «/» ni la pista\
+          \ (inv. 4)."
       _change: add
     - name: ChangeGateVerdict
       type: record
@@ -263,10 +280,214 @@ modules:
       - GateFactory
       _change: add
     - name: DefaultChangeGate
+      handwrittenTests:
+      - name: "should reject a change whose after measurement of «I ___ a lot of vegetables.»\
+          \ has a counting finding with an identity the before measurement did not\
+          \ have, naming it as a new error"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R001
+      - name: "should pass the change to «I ___ (love) vegetables.», which removes\
+          \ the findings of hint-coherence and single-answer and adds none"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R001
+      - name: "should find a new error by identity even when the exercise keeps the\
+          \ same number of counting findings, one gone and another new"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R001
+      - name: "should compare the whole topic for a change of the topic, rejecting\
+          \ a mini-theory rewritten for the nine exercises of «Contraste inicial»\
+          \ that leaves a new error in any exercise of the topic"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R001
+      - name: "should not count as a new error a finding that only ranks, as the disagreement\
+          \ of the two translation-sense judges on the candidate"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R001
+      - name: "should reject «My grandmother ___ (come) every year.» for «It ___ (come)\
+          \ every year.» (A1) because grandmother (A2) is a new red word, naming grandmother\
+          \ and A2 in its reason"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R002
+      - name: "should pass «Winter ___ (come) every year.» for «It ___ (come) every\
+          \ year.», which adds no red word"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R002
+      - name: "should pass a change that keeps red words that were already red, as\
+          \ spread and quilt when only the translation of «She spread the warm blue\
+          \ quilt on the bed.» changes"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R002
+      - name: "should check every new option of a multiple choice put in the gap,\
+          \ and reject the change when one of them brings a red word the exercise\
+          \ did not have"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R002
+      - name: "should reject a change that brings into an A1 exercise a word out of\
+          \ the catalog, as reside, and name it out of the catalog instead of a level"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R002
+      - name: "should pass and declare, with its measured length and the range, a\
+          \ change that leaves «All the sheep in the field are still ___ (alive /\
+          \ living).» (B2) at 9 tokens, one below the range of 10 to 25"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R003
+      - name: "should declare the lengths of the four vegetables fixes, 6, 5, 4 and\
+          \ 4 tokens within 3 to 8, without vetoing any of them"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R003
+      - name: "should ask four rerecords, one per exercise and with its new text,\
+          \ for the four vegetables fixes that change what is heard, as «I love vegetables.»\
+          \ and «Winter comes every year.»"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R004
+      - name: "should ask no rerecord for a change that touches only the translation,\
+          \ the hint or an alternative answer, as adding «aren't» after «'re not»\
+          \ in «They ___ (not / be) from Ireland.»"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R004
+      - name: "should name in each reason the rule that failed and its evidence, as\
+          \ F-NOEMP-R002 with grandmother (A2) in «My grandmother comes every year.»"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R009
+      - name: should give the same verdict and the same reasons for the same before
+          and after measurements
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R009
+      - name: "should neither count as new nor as solved a finding of an analyzer\
+          \ that did not evaluate the exercise at one end, and declare per analyzer\
+          \ how many changed exercises it left uncompared"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R010
+      - name: "should pass a rule fix that leaves «I learned ___ me / myself to drive\
+          \ a car.» (…399b) as it is and only asks to rerecord its audio with «I learned\
+          \ myself to drive a car.», listing the request although what the exercise\
+          \ says did not change"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R004
+      - name: "should not pass a request to rerecord …399b with «I learned myself\
+          \ me / myself to drive a car.», which reads the hint and is not what the\
+          \ exercise says"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R004
       implements:
       - ChangeGate
       _change: add
     - name: DefaultBatchGate
+      handwrittenTests:
+      - name: "should never return a change for a new length finding of the comparison,\
+          \ and list it among the declared length findings"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R003
+      - name: "should not pass the A1 batch when its comparison shows the exercises\
+          \ of A1 with red words going from 351 to 352, as with «My grandmother ___\
+          \ (come) every year.»"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R005
+      - name: should not pass when a node the batch changed gains a counting finding
+          or a red word that the starting analysis did not have
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R005
+      - name: "should not pass when the exercises with an error of some analyzer,\
+          \ with some error or blocking go up in a node, even if no changed exercise\
+          \ gained a finding, as a duplicate between two changed exercises of a topic"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R005
+      - name: "should list apart and not count the audio that no longer matches in\
+          \ an exercise listed for rerecording, nor what José approved in the tray\
+          \ knowing it did not pass"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R005
+      - name: "should pass the vegetables batch with «Winter ___ (come) every year.»\
+          , where no count goes up and no vocabulary number of A1 or of the course\
+          \ moves"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R005
+      - name: "should not pass when a vocabulary number of a level ends more than\
+          \ 0.5 points below the baseline fixed before the first batch, as sentence-length\
+          \ of B2 at 0.6 below"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R006
+      - name: should pass when a vocabulary number ends exactly 0.5 points below the
+          fixed baseline
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R006
+      - name: "should spend the tolerance accumulated against the fixed baseline and\
+          \ not against the start of the batch, so a second batch that lowers 0.3\
+          \ points after another 0.3 does not pass"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R006
+      - name: "should hold to the floor both each vocabulary analyzer and the vocabulary\
+          \ score of each level and of the course, as the 73.923 of the course"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R006
+      - name: "should not pass when a node outside the batch changed, as an exercise\
+          \ of «Contraste inicial» in the batch of the vegetables, and name that node"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R007
+      - name: "should return only the change of «My grandmother ___ (come) every year.»\
+          , with cause NEW_RED_WORD and its reason, and keep the other three vegetables\
+          \ fixes"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R008
+      - name: should return a change with cause NEW_ERROR when its node gains a counting
+          finding
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R008
+      - name: "should return, for a vocabulary number below its floor, the changes\
+          \ the comparison ranks as worsening it most, from the first on, until the\
+          \ sum of their effects brings it back within the floor"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R008
+      - name: should give the same verdict and return the same changes for the same
+          comparison
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R009
+      - name: "should name in each brake the number, its context, its value before\
+          \ and after, the tolerance and the changes it returned, as the exercises\
+          \ of A1 with red words from 351 to 352"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R009
+      - name: "should declare per analyzer how many exercises of the batch were left\
+          \ uncompared because the analyzer did not evaluate them at one end, and\
+          \ count them neither as better nor as worse"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R010
       implements:
       - BatchGate
       _change: add
@@ -275,3 +496,8 @@ modules:
 features:
 - id: FEAT-NOEMP
   code: F-NOEMP
+  journeys:
+  - id: F-NOEMP-J001
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.batchengine

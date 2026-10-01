@@ -246,3 +246,83 @@ modules:
   - name: revision-domain
     _change: modify
 ```
+
+## Pedir regrabar sin cambiar el ejercicio
+El audio sigue al ejercicio, nunca al revés (orquestador, 1/10). Un arreglo por regla puede dejar el ejercicio como
+está y pedir regrabar su audio con lo que dice hoy: el que lee la «/» o la pista (F-DATOS-R002, inv. 2, 85 audios) o el
+que nadie sabe con qué se grabó (F-DATOS-R004). Como lo que se escucha del ejercicio no cambia, las dos mediciones no
+traen ese pedido: lo trae el arreglo, en un campo propio de la unidad que se juzga. La compuerta lo deja pasar y lo lista
+con los demás (R004, inv. 3), y rechaza un pedido que no diga lo que el ejercicio dice como queda, sin la «/» ni la pista
+(inv. 4): así ninguna tanda graba un audio con algo que el ejercicio no dice.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: nonregression
+        _change: add
+        models:
+          - name: ChangeProbe
+            _change: add
+            type: record
+            fields:
+              - { name: changedQuizIds, type: "List<String>" }
+              - { name: topicLevelChange, type: boolean }
+              - { name: before, type: UnitMeasurement }
+              - { name: after, type: UnitMeasurement }
+              - { name: requestedRerecords, type: "List<AudioRerecordRequest>" }
+```
+
+## Declarar las 36 pruebas y ubicar el journey
+Las 36 son nuevas y cubren las diez reglas (R001 5, R002 5, R003 3, R004 4, R005 5, R006 4, R007 1, R008 3, R009 4,
+R010 2), sobre las dos compuertas: 19 en `DefaultChangeGate` (el grupo A, R009 y R010) y 17 en `DefaultBatchGate` (el
+grupo B, R008 a R010). Ninguna consulta un modelo: la compuerta por cambio recibe dos mediciones armadas a mano, y la de la
+tanda una `BatchComparison` de F armada a mano. La fábrica no lleva prueba: ninguna regla la pide.
+
+**De dónde sale cada prueba.** Lo medido el 30/9 con las cuatro propuestas del 077 para *Afirmativas regulares*:
+«It ___ (come) every year.» → «My grandmother ___ (come) every year.» suma grandmother (A2) y vuelve, y «Winter ___ (come)
+every year.» pasa; los cuatro cambian lo que se escucha y piden cuatro regrabaciones; sus largos (6, 5, 4 y 4, dentro de
+3 a 8) se declaran; A1 pasa de 351 a 352 ejercicios con palabras rojas y la tanda no pasa; ningún número de vocabulario de
+A1 ni del curso (73,923) se mueve. Además: spread y quilt, que ya eran rojas en «She spread the warm blue quilt on the
+bed.»; reside, fuera del catálogo; «All the sheep in the field are still ___ (alive / living).» (B2), que con 9 tokens
+queda uno abajo del rango de 10 a 25 y no vuelve; la miniteoría de «Contraste inicial» en sus nueve ejercicios, para un
+cambio del tema; «aren't» después de «'re not» en «They ___ (not / be) from Ireland.», que no cambia lo que se escucha;
+y «I learned ___ me / myself to drive a car.» (`…399b`), cuyo audio lee la pista: el pedido de regrabar con «I learned
+myself to drive a car.» pasa sin cambiar el ejercicio, y uno que repite la pista no pasa.
+
+**Lo que cumplen otras piezas.** La compuerta decide; mover lo que decide es de quien la llama, y se prueba allí con su
+regla: que un cambio devuelto gaste un intento y, sin intentos, vaya a la bandeja como sin ganador (R008), en el cierre
+de la tanda y la mesa (F-TANDA-R006, que pasa la compuerta de R005 a R008, y F-MESA-R007); que la tanda liste los audios
+(R004), en su informe (F-TANDA-R010); y que el curso recalculado deje igual lo que no es de la tanda (R007), en el libro
+de cambios (F-TANDA-R006, inv. 1). Acá se prueba que un nodo cambiado fuera de la tanda la frena.
+
+**El journey** va a `revision-domain`, en `com.learney.contentaudit.revisiondomain.batchengine`: recalcular, comparar,
+devolver y volver a recalcular es el lazo de `DefaultBatchCloser`, package-private ahí, y la compuerta de la tanda se
+obtiene por `DefaultGateFactory`, pública, como la obtiene la tanda. Es el criterio de F-PIPRE-J001: los pasos son del
+sistema y no de un comando. `generate` crearía `FNoempJ001JourneyTest` con 3 caminos.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: nonregressionengine
+        _change: add
+        implementations:
+          - name: DefaultChangeGate
+            _change: add
+            handwrittenTests:
+              - name: "should reject «My grandmother ___ (come) every year.» for «It ___ (come) every year.» (A1) because grandmother (A2) is a new red word, naming grandmother and A2 in its reason"
+                traceability: { feature: FEAT-NOEMP, rule: F-NOEMP-R002 }
+          - name: DefaultBatchGate
+            _change: add
+            handwrittenTests:
+              - name: "should not pass the A1 batch when its comparison shows the exercises of A1 with red words going from 351 to 352, as with «My grandmother ___ (come) every year.»"
+                traceability: { feature: FEAT-NOEMP, rule: F-NOEMP-R005 }
+features:
+  - id: FEAT-NOEMP
+    code: F-NOEMP
+    journeys:
+      - { id: F-NOEMP-J001, testModule: revision-domain, testPackage: com.learney.contentaudit.revisiondomain.batchengine }
+```

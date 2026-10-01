@@ -5,6 +5,34 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (como arquitecto) — Lo pendiente de regrabar vive en la publicación de cada tanda
+  (BatchPublication.rerecords): la siguiente los recibe al abrir (select) y no toma la tarea del audio. Sin almacén nuevo:
+  un pedido deja de estar pendiente cuando data-coherence ya no marca ese audio.
+  why: la tanda ya guarda sus publicaciones; un registro aparte de regrabaciones se desalinearía del de grabaciones (DATOS).
+
+2026-10-01 — qa-tester (como analista) — El audio sigue al ejercicio (orquestador, 1/10): R004 inv. 4 (un arreglo por
+  regla puede ser sólo un pedido de regrabar), R006 inv. 3 (esa tarea queda «pendiente de regrabar», no resuelta), R010
+  cuenta las pendientes de regrabar y R012 nueva: publicar deja pendientes los pedidos, y una tanda no toma, ni por regla
+  ni para la mesa, una tarea del audio pendiente; la bandeja la muestra.
+  why: sin R012, el audio viejo de un ejercicio que una tanda cambió volvía como hallazgo de mesa (F-DATOS-R003) y otra
+  tanda lo «arreglaba» cambiando el ejercicio. Las 7 diferencias de audio de hoy siguen en la mesa: el ejercicio está mal.
+
+2026-10-01 — qa-tester (como analista) — R005 nombra el desenlace «sin alcance declarado», que R010 ya contaba: una tarea cuyo
+  tipo no declara su alcance no se intenta (F-TAREA-R006). Decisión del orquestador del 1/10.
+  why: así la parte de F-TAREA-R006 que vive en la mesa se prueba en la tanda, con su regla, y no espera al apply.
+
+2026-10-01 — qa-tester — F-TANDA-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands` (2 caminos).
+  why: sus pasos son batch open, estimate, run y close y el OK de tray publish; BatchCmd y TrayCmd son package-private ahí,
+  como ExamCmd en F-JEXAM-J001, que es el molde del verbo.
+2026-10-01 — qa-tester — El arreglo por regla de grammar (GrammarRuleFix) es de F-RONDA2-R009 y espera al apply. Lo que
+  F-NOEMP-R008 pide a quien devuelve (un intento menos, sin intentos a la bandeja) se prueba con R006, que pasa la
+  compuerta de F-NOEMP-R005 a R008.
+
+2026-10-01 — qa-tester (como analista) — R011 nueva: abrir una tanda fija sus metas (la mitad de F-METAS-R006 que cumple
+  la tanda); entra en la puerta de `abrir` de J001. Invariantes: fija las de la declaración al abrir, la comparación evalúa
+  contra ellas y un pedido de abrir rechazado no fija nada. AUTO_VALIDATED: sale de F-METAS-R006, validada por José.
+  why: el qa-tester de F no la puede probar en METAS: el que abre es DefaultBatchService, que no existe al aplicar METAS.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): BatchServiceConfig y DefaultBatchService reciben el GoalBook de F (abrir fija las metas, F-10); suma los cinco RuleFix (E-06 de A y el de grammar); batch suma audit-infrastructure a sus clientes; RefinementTaskStatus declara type: enum; lista entera de patrones.
 
 2026-09-30 — architect — Una propuesta pendiente por ejercicio, compuesta por pasos con sus partes (`BatchChangeLedger`):

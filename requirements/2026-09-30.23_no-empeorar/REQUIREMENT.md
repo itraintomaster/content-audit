@@ -88,16 +88,29 @@ escrito que si entra o no en el rango». La última oración es la reconciliaci�
 por palabras de otro nivel y por errores, nunca por el largo ([DOUBT-NO-EMPEORAR](#DOUBT-NO-EMPEORAR)).
 
 <a id="F-NOEMP-R004"></a>
-### Rule[F-NOEMP-R004] - Lo que se escucha cambia sólo declarado
+### Rule[F-NOEMP-R004] - Lo que se escucha sigue al ejercicio, y cambia sólo declarado
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> Si un cambio altera la oración que dice el audio, lleva su pedido de regrabar con el texto nuevo, y la tanda lo lista.
-> Un cambio nunca altera lo que se escucha sin ese pedido, y un cambio que sólo toca la [traducción](glossary:Traducción), la pista o las
-> respuestas alternativas no pide regrabar.
+> El audio sigue al ejercicio, nunca al revés. Invariantes:
+> 1. si un cambio altera la oración que dice el audio, lleva su pedido de regrabar con el texto nuevo, y la tanda lo
+>    lista; un cambio nunca altera lo que se escucha sin ese pedido;
+> 2. un cambio que sólo toca la [traducción](glossary:Traducción), la pista o las respuestas alternativas no pide regrabar;
+> 3. un arreglo que deja el ejercicio como está y sólo pide regrabar su audio con lo que dice hoy —el audio que lee la
+>    «/» o la pista ([F-DATOS-R002](#F-DATOS-R002), inv. 2), o el que nadie sabe con qué se grabó
+>    ([F-DATOS-R004](#F-DATOS-R004))— pasa la compuerta, y su pedido se lista igual que los demás;
+> 4. todo pedido de regrabar dice lo que el ejercicio dice como queda, como lo dice el audio por la regla del 24/8, sin
+>    leer la «/» ni la pista: un pedido con otro texto no pasa.
 
 En el 077 cambia lo que se escucha en 979 de 2.892 ejercicios (34 %); en el ejemplo de las verduras, en los cuatro.
 Regrabar es trabajo fuera de content-audit y tiene que hacerse antes de que el texto nuevo llegue al alumno
-([F-DATOS-R003](#F-DATOS-R003)).
+([F-DATOS-R003](#F-DATOS-R003)). Las invariantes 3 y 4 son la decisión del orquestador del 1/10: regrabar es un
+desenlace de primera de un arreglo, y ninguna tanda cambia un ejercicio para que diga lo que dice un audio viejo
+([F-TANDA-R012](#F-TANDA-R012)).
+
+**Criterio**: «I learned ___ me / myself to drive a car.» (`…399b`, B1, *¿Mismo referente?*) tiene un audio que lee la
+pista: «I learned myself me / myself to drive a car.». El arreglo deja el ejercicio como está y pide regrabar con «I
+learned myself to drive a car.», y pasa; un pedido con «I learned myself me / myself to drive a car.» no pasa. Igual
+«He pinched ___ him / himself on the leg.» (`…39a0`): se pide «He pinched him on the leg.».
 
 ### Grupo B — Por tanda, con el curso recalculado
 
@@ -310,4 +323,5 @@ hallazgo nuevo de vocabulario. Las dos se reconcilian en [F-NOEMP-R003](#F-NOEMP
   evaluado y las proyecciones de hoy: R007, R008, R010.
 - **FEAT-METAS, FEAT-PROYU** (ronda 2, paquete F) — La comparación contra la línea base, sus pisos, lo que vuelve y la
   proyección única: R005, R006, R008.
-- **FEAT-MESA, FEAT-TANDA** (este paquete) — Quién aplica cada nivel de la compuerta.
+- **FEAT-MESA, FEAT-TANDA** (este paquete) — Quién aplica cada nivel de la compuerta, y lo que queda pendiente de
+  regrabar: R004.

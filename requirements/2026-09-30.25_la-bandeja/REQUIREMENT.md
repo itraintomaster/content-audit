@@ -41,11 +41,13 @@ regla y muestra ciega—, una decisión por cosa, y publicar la tanda entera con
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > La bandeja de la tanda abierta lista todo lo que la tanda necesita de José, y nada más. Cada cosa dice su clase
-> —muestra ciega, desempate, sin ganador o muestra de una regla—, muestra el ejercicio como lo ve el alumno y dice qué se
-> le pregunta y con qué respuestas. El orden es:
+> —muestra ciega, desempate, sin ganador, muestra de una regla o audio para regrabar—, muestra el ejercicio como lo ve el
+> alumno y dice qué se le pregunta y con qué respuestas; un audio para regrabar no pregunta nada
+> ([F-BANDEJA-R009](#F-BANDEJA-R009)). El orden es:
 > 1. primero, la muestra ciega; mientras no se cierra, la bandeja no muestra nada más de la tanda;
 > 2. después, las que piden una decisión —desempates y sin ganador—, por gravedad;
-> 3. al final, las muestras de cada regla.
+> 3. después, las muestras de cada regla;
+> 4. al final, los audios para regrabar.
 
 La bandeja es de content-audit: el tablero (paquete G) la dibuja, no la arma ([F-HALL-R010](#F-HALL-R010), regla 5 del
 brief 089). La ciega va primero para que siga siendo ciega: si José ya vio un cambio en otra cosa de la bandeja, sabe
@@ -136,6 +138,22 @@ Sacar un cambio de la tanda sigue siendo rechazarlo ([F-TANDA-R008](#F-TANDA-R00
 
 **Error**: "La propuesta <id> es de la tanda <id>: entra al curso al publicar la tanda."
 
+<a id="F-BANDEJA-R009"></a>
+### Rule[F-BANDEJA-R009] - La bandeja muestra lo que hay que regrabar
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> La bandeja muestra cada audio pendiente de regrabar —los que pide la tanda abierta y los que quedaron de tandas
+> publicadas ([F-TANDA-R012](#F-TANDA-R012))— con el ejercicio como lo ve el alumno, la clave del audio y el texto con
+> que hay que grabarlo. Invariantes:
+> 1. no se contesta: regrabar es trabajo de José fuera de content-audit, y no frena la publicación
+>    ([F-BANDEJA-R007](#F-BANDEJA-R007));
+> 2. cada audio aparece una sola vez, con el último texto pedido.
+
+Es la mitad visible de la decisión del orquestador del 1/10: lo pendiente de regrabar no vuelve a la mesa, y José lo ve.
+**Criterio**: con una tanda de B1 que pidió regrabar `B1.13.05.15` («I learned ___ me / myself to drive a car.»,
+`…399b`) con «I learned myself to drive a car.», la bandeja de la tanda siguiente lo muestra al final, sin pregunta, hasta
+que el registro de grabaciones tiene ese texto.
+
 ## Contexto
 
 **Qué llega a la bandeja de A1** (estimado con los casos de `escribir/`): unos 28 ejercicios sin ganador (el 10 % de los
@@ -219,4 +237,5 @@ opción A de [DOUBT-QUIEN-CIEGA](#DOUBT-QUIEN-CIEGA) del paquete F.
 - **FEAT-QICOR, FEAT-EVCOST** — Ver el candidato con lo que no cumple y decidir; identificar por el contenido: R003, R006.
 - **FEAT-TRSEN** (ronda 1, paquete C) — El desacuerdo de los jueces va a la bandeja: R002.
 - **FEAT-CIEGA, FEAT-METAS** (ronda 2, paquete F) — La muestra ciega y el veredicto de la tanda: R005, R007, R008.
-- **FEAT-TANDA, FEAT-MESA, FEAT-NOEMP** (este paquete) — Qué llega, desde dónde y con qué compuerta se publica.
+- **FEAT-TANDA, FEAT-MESA, FEAT-NOEMP** (este paquete) — Qué llega, desde dónde, con qué compuerta se publica y qué
+  queda pendiente de regrabar: R009.

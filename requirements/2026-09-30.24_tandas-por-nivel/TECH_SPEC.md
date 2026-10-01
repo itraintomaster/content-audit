@@ -181,6 +181,8 @@ de F toma el inicio de la tanda del par activo, así que sin este paso comparar�
 tareas de errores del nivel con resolución regla o mesa, las de `lemma-absence` que cubren un error y los encargos de
 José; deja fuera, declaradas, las que tienen una propuesta pendiente ajena (R002), junta los desacuerdos de los jueces
 para la bandeja (F-TAREA-R005) y cuenta lo no evaluado por analizador. N y C son 4 y 4 si no se piden (José, 30/9).
+Desde el 1/10 recibe también los audios pendientes de regrabar de las tandas publicadas, y deja fuera las tareas del
+audio de esos ejercicios (R012, ver «Regrabar es un desenlace de un arreglo»).
 
 ```architecture
 modules:
@@ -225,7 +227,7 @@ modules:
             visibility: internal
             sealed: false
             exposes:
-              - signature: "select(RefinementPlan plan, AuditReport start, CefrLevel level, List<String> conversionTopics): CorrectionBatch"
+              - signature: "select(RefinementPlan plan, AuditReport start, CefrLevel level, List<String> conversionTopics, List<AudioRerecordRequest> pendingRerecords): CorrectionBatch"
         implementations:
           - name: DefaultBatchTaskSelector
             _change: add
@@ -874,4 +876,144 @@ modules:
             _change: add
             requiresInject:
               - { name: goalBook, type: GoalBook }
+```
+
+## Regrabar es un desenlace de un arreglo, y lo que se pidió regrabar no vuelve a la mesa
+El audio sigue al ejercicio, nunca al revés (orquestador, 1/10). Un arreglo por regla puede no cambiar el ejercicio y sólo
+pedir regrabar su audio con lo que dice hoy (R004, inv. 4): el resultado del arreglo lo declara, con la clave y el texto,
+y la compuerta lo deja pasar (F-NOEMP-R004). Su tarea no queda resuelta sino «pendiente de regrabar», porque el hallazgo
+sigue hasta que se graba (R006, inv. 3), y el informe la cuenta aparte (R010). Al publicar, la tanda deja esos pedidos
+pendientes en su publicación; la siguiente los recibe al abrir y no toma, ni por regla ni para la mesa, la tarea del audio
+de esos ejercicios (R012): sin esto, el audio viejo de «I ___ (love) vegetables.» volvía como hallazgo de mesa de
+F-DATOS-R003 y otra tanda lo «arreglaba» cambiando el ejercicio. Qué hallazgo es «del audio» lo dice el analizador en su
+declaración de corrección (`concernsAudio`), no la tanda: en `data-coherence`, el audio que lee la «/» o la pista, el que
+dice otra cosa y el que no tiene texto conocido; la «/» de una respuesta y la oración guardada no.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    interfaces:
+      - name: AnalyzerCorrection
+        _change: modify
+        exposes:
+          - signature: "concernsAudio(Finding finding): boolean"
+            _change: add
+    packages:
+      - name: rulefix
+        _change: add
+        models:
+          - name: RuleFixResult
+            _change: add
+            type: record
+            fields:
+              - { name: quiz, type: QuizTemplateEntity }
+              - { name: fixed, type: "List<FindingIdentity>" }
+              - { name: declined, type: "List<FindingIdentity>" }
+              - { name: detail, type: String }
+              - { name: rerecordings, type: "List<RuleFixRerecording>" }
+          - name: RuleFixRerecording
+            _change: add
+            type: record
+            fields:
+              - { name: audioKey, type: String }
+              - { name: text, type: String }
+```
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: batch
+        _change: add
+        models:
+          - name: CorrectionBatch
+            _change: add
+            fields:
+              - { name: pendingRerecords, type: "List<AudioRerecordRequest>" }
+          - name: BatchPublication
+            _change: add
+            fields:
+              - { name: rerecords, type: "List<AudioRerecordRequest>" }
+          - name: BatchTaskOutcomeKind
+            _change: add
+            type: enum
+            fields:
+              - { name: PENDING_RERECORDING }
+```
+
+## Declarar las 77 pruebas y ubicar el journey
+Las 77 son nuevas y cubren las doce reglas (R001 8, R002 6, R003 5, R004 13, R005 5, R006 8, R007 5, R008 6, R009 7,
+R010 6, R011 3, R012 5). Van sobre el servicio y sus piezas de `batchengine` (57), los cuatro arreglos por regla de A
+(8), el almacén de archivos (2), `BatchCmd` (5) y lo que ya existía: `ReviseCmd`, `nextTask` de `DefaultRefinerEngine` y
+la corrida de consignas para R002, `DefaultTopicPanel` (FEAT-MESA) para R005 y la declaración de `data-coherence`
+(FEAT-TAREA) para R012. Ninguna consulta un modelo: proponente guionado, jueces con veredictos
+grabados, una comparación, una muestra ciega y un libro de metas de F armados a mano, y almacenes en memoria o en un
+directorio temporal.
+
+**R011 es nueva.** La mitad de F-METAS-R006 que cumple la tanda —abrir una tanda fija sus metas— no se puede probar en
+FEAT-METAS, porque el que abre es `DefaultBatchService`, que todavía no existe cuando se aplica ese parche. El qa-tester
+de F lo pidió y el de E, como analista, la sumó: fija al abrir, no vuelve a fijar al retomar ni al cerrar, y un pedido de
+abrir rechazado no fija nada. Entra también en la puerta de `abrir` de J001. La estructura ya estaba: el servicio recibe
+el `GoalBook` de F (gancho F-10).
+
+**El audio sigue al ejercicio (orquestador, 1/10).** R004 suma la inv. 4, R006 la 3, R010 cuenta las pendientes de
+regrabar y R012 es nueva; R005 nombra «sin alcance declarado» y con eso se prueba acá lo de F-TAREA-R006 que antes
+esperaba al apply. Los casos: `…399b` («I learned ___ me / myself to drive a car.») y `…39a0` («He pinched ___ him /
+himself on the leg.»), cuyos audios leen la pista, y el de «He ___ (not / cut) himself.», que lee la «/»: se piden «I
+learned myself to drive a car.», «He pinched him on the leg.» y «He has not cut himself.», sin tocar el ejercicio.
+
+**De dónde sale cada prueba.** Abrir A1 sobre la línea base fijada: entran las tres tareas de «I ___ a lot of
+vegetables.» y la `LEMMA_ABSENCE` de «We reside ___ London with our granddad.», que cubre reside, y quedan afuera las
+3.051 de largo. Las reglas antes que las mesas, sin modelos: la pista «(love)» que sale de la primera respuesta; «aren't»
+en «They ___ (not / be) from Ireland.», que se declina porque lo arregla el corrector nuevo; las opciones de «___ a child?
+(He)» con mayúscula, todas a la vez; y la «/» de «has not cut/hasn't cut». Correr sin tope y ver las mesas sin intentar;
+cortar a mitad y retomar sin repetir ni pagar dos veces; devolver «My grandmother ___ (come) every year.» y recalcular
+sin él; sacar la regla de mayúsculas y conservar la oración que arregló la mesa; la miniteoría de «Contraste inicial» que
+no sale con un cambio de sus ejercicios; publicar y ver el curso escrito una vez, el análisis igual al recálculo, el par
+activo movido y la base quieta.
+
+**Lo que no se declara o espera.** Los arreglos por regla de `grammar` son de F-RONDA2-R009 y esperan al apply, como dejó
+el integrador. La estimación de 2,9 horas para A1 es del paquete con los casos de `escribir/`: la prueba fija el cálculo
+(19 s por consulta con N y C), no ese número.
+
+**El journey** va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: sus pasos son `batch open`, `estimate`,
+`run` y `close`, y el OK que publica sale de la bandeja (`tray publish`); `BatchCmd` y `TrayCmd` son package-private ahí,
+como `ExamCmd` en F-JEXAM-J001, que es el molde del verbo. `generate` crearía `FTandaJ001JourneyTest` con 2 caminos.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: batchengine
+        _change: add
+        implementations:
+          - name: DefaultBatchService
+            _change: add
+            handwrittenTests:
+              - name: "should fix, when the batch of A1 opens, the goals of the declaration as they are, with the time of the opening, as the vocabulary floor of 0.5 points"
+                traceability: { feature: FEAT-TANDA, rule: F-TANDA-R011 }
+          - name: DefaultBatchCloser
+            _change: add
+            handwrittenTests:
+              - name: "should hand F a scope with the pending proposals of the batch, one per exercise, and no other, even when the plan holds a vocabulary correction pending from revise"
+                traceability: { feature: FEAT-TANDA, rule: F-TANDA-R006 }
+  - name: audit-cli
+    _change: modify
+    packages:
+      - name: commands
+        _change: modify
+        implementations:
+          - name: ReviseCmd
+            _change: modify
+            handwrittenTests:
+              - name: "should reject 'revise' of a task of the open batch with «La tarea <id> es de la tanda <id> y se decide en su bandeja.» and exit non-zero without calling the revision engine"
+                traceability: { feature: FEAT-TANDA, rule: F-TANDA-R002 }
+features:
+  - id: FEAT-TANDA
+    code: F-TANDA
+    journeys:
+      - { id: F-TANDA-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
 ```

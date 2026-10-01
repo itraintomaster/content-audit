@@ -528,3 +528,56 @@ modules:
   - name: revision-domain
     _change: modify
 ```
+
+## Declarar las 55 pruebas y ubicar el journey
+Las 55 son nuevas y cubren las quince reglas (R001 4, R002 4, R003 6, R004 3, R005 5, R006 5, R007 3, R008 2, R009 2,
+R010 6, R011 3, R012 2, R013 2, R014 3, R015 5). Van sobre el motor de la mesa —`DefaultTopicPanel` 19,
+`DefaultPanelRunner` 4, `CappedQueryAllowance` 2, `CatalogTopicMeter` 10, `DefaultPanelDecisionScript` 8 y
+`DefaultCandidateScreen` 6—, sobre el agente que propone (3) y, para R014, sobre lo que corrige fuera de las tandas:
+`ReviseCmd`, `DefaultQuizInstructionCorrectionRunner` y `DefaultQuizInstructionCandidateAssessor`, que ya existen.
+Ninguna consulta un modelo: proponen `ScriptedPanelProposer` o un agente con su runtime simulado, y los jueces son de
+mentira o leen veredictos grabados en un libro de prueba.
+
+**De dónde sale cada prueba.** El ejercicio 11 de *Afirmativas regulares* (`…1ecd`), «I ___ a lot of vegetables.», con
+sus tres tareas en un solo candidato; después de que la regla de la tanda le pone «(love)», `single-answer` ya no lo marca
+y su tarea «ya no se sostiene» sin gastar un intento; sus dos arreglos: sólo la traducción vuelve por no sonar natural y el
+inglés pasa y pide regrabar. «My grandmother ___ (come) every year.» rechazado con grandmother (A2) como evidencia y
+«Winter ___ (come) every year.» aceptado en el segundo intento; tres intentos sin ganador; un desacuerdo de los dos
+jueces de traducción, que queda para José sin gastar intentos. La miniteoría de los verbos de estado de «Contraste
+inicial», en sus nueve ejercicios y antes que sus candidatos. «Contracciones» (A1) pasado a opción múltiple: «You ___
+(do not) work at the bank.» con «don't» y dos contracciones más pasa; «She ___ (is not) very happy.» con «isn't» al lado
+de la correcta «'s not» no. Y las mismas decisiones con 1 y 1, 4 y 4, y 8 y 8 a la vez.
+
+**Lo que cumplen otras piezas.** Que el candidato aceptado quede como propuesta pendiente con su artefacto (R009) lo
+guarda la tanda, y se prueba con F-TANDA-R007; acá, que la mesa lo entrega en su decisión y no escribe el curso. El tope
+total de consultas de la tanda es F-TANDA-R003. Una parte de F-TAREA-R006 vive en `DefaultTopicPanel`: que un tipo sin
+alcance declarado nunca se intenta; desde el 1/10 se prueba en la tanda con F-TANDA-R005, que nombra ese desenlace. Y la
+mesa nunca recibe la tarea de un audio pendiente de regrabar (F-TANDA-R012): ninguna tanda cambia un ejercicio para que
+diga lo que dice un audio viejo.
+
+**El journey** va a `revision-domain`, en `com.learney.contentaudit.revisiondomain.panelengine`: el corredor, la mesa, el
+medidor, el filtro y el guion son package-private ahí, y quien propone y la compuerta se arman con sus piezas públicas
+(`ScriptedPanelProposer`, `DefaultGateFactory`). Sus pasos son del sistema, como en F-PIPRE-J001. `generate` crearía
+`FMesaJ001JourneyTest` con 4 caminos.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: panelengine
+        _change: add
+        implementations:
+          - name: DefaultPanelDecisionScript
+            _change: add
+            handwrittenTests:
+              - name: "should accept «Winter ___ (come) every year.» because it solves its task and the change gate passes"
+                traceability: { feature: FEAT-MESA, rule: F-MESA-R006 }
+              - name: "should reject «My grandmother ___ (come) every year.», which solves its task but adds grandmother (A2)"
+                traceability: { feature: FEAT-MESA, rule: F-MESA-R006 }
+features:
+  - id: FEAT-MESA
+    code: F-MESA
+    journeys:
+      - { id: F-MESA-J001, testModule: revision-domain, testPackage: com.learney.contentaudit.revisiondomain.panelengine }
+```

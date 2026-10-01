@@ -379,3 +379,64 @@ modules:
             requiresInject:
               - { name: errorTaskBriefer, type: ErrorTaskBriefer, _change: add }
 ```
+
+## Declarar las 49 pruebas y ubicar el journey
+Las 49 son nuevas y cubren las nueve reglas (R001 6, R002 3, R003 4, R004 4, R005 2, R006 16, R007 3, R008 5, R009 6).
+Van sobre lo que existe cuando se aplica este parche: el plan (`DefaultRefinerEngine`, 18), la declaración de cada
+analizador (14 en 12 implementaciones: el catálogo, las de consigna y lemas y las nueve de A, C y D), el armado del
+detalle (`DefaultErrorTaskBriefer`, 5), la preservación por partes (`DefaultCorrectionScope` y `DefaultPreservationCheck`,
+4), `PlanCmd` (1, la cuenta) y `GetCmd` (7, los filtros y `get task`). Ninguna consulta un modelo: el plan se arma sobre
+informes hechos a mano y, para R007, sobre el del 29/9.
+
+**De dónde sale cada prueba.** El ejercicio 11 de *Afirmativas regulares* (`…1ecd`, A1), «I ___ a lot of vegetables.»:
+pista alta (19 de 20 la llevan), una sola respuesta bloqueante (eat, like, buy y want encajan) y traducción, tres tareas
+de un ejercicio. La miniteoría de «$In time$ u $on time$» (B1, `…d37d`), la misma en sus 40 ejercicios: una tarea del
+tema con uno propio y 39 cubiertos. «Contraste inicial» (A1): ocho miniteorías, la de los verbos de estado en nueve
+ejercicios. «She spread the warm blue quilt on the bed.» (A2, `…484a`): spread y quilt son B2, las marcan
+`lemma-absence` y `off-level-words`, y la tarea `LEMMA_ABSENCE` del ejercicio cubre las dos (D-04, sin regla general que
+cubra con la del largo). Las declaraciones siguen la tabla de R006 con un caso de cada analizador: «They ___ (not / be)
+from Ireland.» (`…25ac`), «___ a child? (He)» (`…1e87`), «This idea ___ (not / sound) very good.» (`…2657`). Y las 4.036
+tareas de vocabulario del 29/9, iguales una por una.
+
+**Lo que no se declara o espera.** Que el catálogo de declaraciones rompa al armarse con un analizador que no existe no
+tiene regla: no lleva prueba. Las declaraciones de `grammar` y `near-duplicates` son de F-RONDA2-R009 y esperan al apply,
+como dejó el integrador. Tres partes de reglas de este parche las cumplen piezas de parches posteriores y se prueban allí
+con su propia regla: lo que cubre una tarea se da por resuelto en la tanda (F-TANDA-R006, inv. 2), el desacuerdo de los
+jueces aparece en la bandeja (F-BANDEJA-R002) y la mesa recibe el mismo detalle (F-MESA-R003). La cuarta, que un tipo
+sin declaración «nunca se intenta», la cumple `DefaultTopicPanel`, que crea FEAT-MESA: desde el 1/10 se prueba en la
+tanda con F-TANDA-R005, que nombra ese desenlace. Y desde ese día la declaración de `data-coherence` deja que su arreglo
+por regla sea sólo un pedido de regrabar el audio con lo que el ejercicio dice (el audio sigue al ejercicio,
+F-NOEMP-R004 y F-TANDA-R004): su prueba lo dice.
+
+**El journey** va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: sus pasos son `plan`, `get tasks` y
+`get task`, y `PlanCmd` y `GetCmd` son package-private ahí, como en F-HALL-J001 y F-JEXAM-J001. `generate` crearía
+`FTareaJ001JourneyTest` con 3 caminos; el de «no convertido» usa un analizador de reglas de prueba sin tipo de tarea,
+como el de `FHallJ001JourneyTest`.
+
+```architecture
+modules:
+  - name: refiner-domain
+    _change: modify
+    implementations:
+      - name: DefaultRefinerEngine
+        _change: modify
+        handwrittenTests:
+          - name: "should open one task for each of the three counting findings of «I ___ a lot of vegetables.» (A1, Afirmativas regulares), from hint-coherence, single-answer and translation-sense, all three on the same exercise"
+            traceability: { feature: FEAT-TAREA, rule: F-TAREA-R001 }
+  - name: audit-cli
+    _change: modify
+    packages:
+      - name: commands
+        _change: modify
+        implementations:
+          - name: GetCmd
+            _change: modify
+            handwrittenTests:
+              - name: "should reject 'get tasks' filtered by an analyzer outside the catalog with 'Analyzer 'hint-coherense' not found. Run 'content-audit get analyzers' to see available analyzers.' and exit non-zero"
+                traceability: { feature: FEAT-TAREA, rule: F-TAREA-R008 }
+features:
+  - id: FEAT-TAREA
+    code: F-TAREA
+    journeys:
+      - { id: F-TAREA-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
+```

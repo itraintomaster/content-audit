@@ -5,6 +5,12 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (como analista) — R009 nueva y R001 con una clase más: los audios pendientes de regrabar se
+  ven en la bandeja, al final y sin pregunta (orquestador, 1/10); no frenan la publicación (R007).
+
+2026-10-01 — qa-tester — F-BANDEJA-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands` (2 caminos).
+  why: sus pasos son tray show, tray answer y tray publish; TrayCmd es package-private ahí, como ExamCmd en F-JEXAM-J001.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): tray suma audit-infrastructure a sus clientes (FileSystemTrayDecisionStore); lleva la lista entera de patrones de revision-domain, las seis.
 
 2026-09-30 — architect — La bandeja es una vista que arma content-audit y convierte cada respuesta en un ajuste de la tanda

@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — `patch propose` (fusión): 55 handwrittenTests (R001 4, R002 4, R003 6, R004 3, R005 5, R006 5,
+  R007 3, R008 2, R009 2, R010 6, R011 3, R012 2, R013 2, R014 3, R015 5) y F-MESA-J001 en revision-domain, paquete
+  panelengine. Los cuatro patrones de revision-domain intactos. `tech-spec write` y `patch validate -i` contra M11 del
+  integrador y contra la cadena con pruebas: exit 0, 0 conflictos. Sin aplicar.
+
 2026-09-30 — architect — Parche (3 altas, 2 cambios, 0 conflictos) y TECH_SPEC (9 fragmentos) en exit 0. Next: el orquestador revisa; se aplica después de la ronda 1 integrada y de F, en el orden TAREA → NOEMP → MESA → TANDA → BANDEJA; luego `definitions`, `feature sync`, @qa-tester. Ganchos en tablero/ronda2/ganchos-E.md.
 
 2026-09-30 — analyst — REQUIREMENT v2 con José, 30/9: cuatro dudas RESOLVED (B, A, A, A), R015 nueva («Contracciones» a opción múltiple) y DOUBT-OPCIONES-CONTRACCIONES abierta. `requirement validate` → [OK].
