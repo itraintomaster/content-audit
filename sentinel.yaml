@@ -1123,12 +1123,6 @@ modules:
       traceability:
         feature: FEAT-POCOV
         rule: F-POCOV-R001
-    - name: "should keep the course vocabulary score at 73.92% with lemma-recurrence\
-        \ at 0.08 publishing its course diagnosis, on the published scores of the\
-        \ analysis of 29/9"
-      traceability:
-        feature: FEAT-RECUR
-        rule: F-RECUR-R001
     - name: "should keep the vocabulary score of every level at 96.54, 94.16, 79.45\
         \ and 63.51 with the recurrence of each level published as detail"
       traceability:
@@ -1153,12 +1147,6 @@ modules:
       traceability:
         feature: FEAT-RONDA2
         rule: F-RONDA2-R004
-    - name: "should give the base of 29/9 on its second run in the same process 73.92%\
-        \ in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA\
-        \ in B1 and 8.00 of recurrence, as a new invocation, and not 72.90"
-      traceability:
-        feature: FEAT-CERO
-        rule: F-CERO-R001
     - name: "should give a run the numbers of a new invocation whatever courses ran\
         \ before it, so a word only the earlier course used is absent for lemma-absence\
         \ and lemma-count"
@@ -1171,6 +1159,18 @@ modules:
       traceability:
         feature: FEAT-CERO
         rule: F-CERO-R002
+    - name: "should keep the course vocabulary score at 74.07% with lemma-recurrence\
+        \ at 0.09 publishing its course diagnosis, on the published scores of the\
+        \ analysis of 29/9"
+      traceability:
+        feature: FEAT-RECUR
+        rule: F-RECUR-R001
+    - name: "should give the base of 29/9 on its second run in the same process 74.07%\
+        \ in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA\
+        \ in B1 and 9.00 of recurrence, as a new invocation, and not 72.90"
+      traceability:
+        feature: FEAT-CERO
+        rule: F-CERO-R001
     implements:
     - AuditEngine
   - name: KnowledgeTitleLengthAnalyzer
@@ -2418,19 +2418,6 @@ modules:
         traceability:
           feature: FEAT-RECUR
           rule: F-RECUR-R001
-      - name: "should publish in the course diagnosis each analysed lemma with its\
-          \ count, mean interval, status, deviation, longest gap with its start and\
-          \ end levels and its levels, like 'movie': 90 times, every 1,005 words,\
-          \ under-exposed, longest gap 6,510 from A1 to A2"
-        traceability:
-          feature: FEAT-RECUR
-          rule: F-RECUR-R003
-      - name: "should take a lemma's longest gap as the largest interval between two\
-          \ consecutive occurrences, with the levels of the quizzes where it starts\
-          \ and ends, like 27,379 from B1 to B2 for 'suppose'"
-        traceability:
-          feature: FEAT-RECUR
-          rule: F-RECUR-R003
       - name: should list the levels where a lemma appears from A1 to B2 without repeating
           them
         traceability:
@@ -2462,13 +2449,6 @@ modules:
         traceability:
           feature: FEAT-RECUR
           rule: F-RECUR-R005
-      - name: "should give as evidence the lemma, its times, how often it returns\
-          \ against the goal and its longest gap, like 'movie: 90 times, returns every\
-          \ 1,005 words (goal: more than 50 and up to 1,000); its longest gap, 6,510,\
-          \ goes from A1 to A2'"
-        traceability:
-          feature: FEAT-RECUR
-          rule: F-RECUR-R005
       - name: should leave no finding when the course score is 1
         traceability:
           feature: FEAT-RECUR
@@ -2482,20 +2462,40 @@ modules:
         traceability:
           feature: FEAT-RECUR
           rule: F-RECUR-R005
-      - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
-          \ 131 normal, 1,566 under-exposed and 46 over-exposed of its 1,743 returning\
+      - name: "should give the course of 29/9 a lemma-recurrence score of 0.09, with\
+          \ 160 normal, 1,534 under-exposed and 49 over-exposed of its 1,743 returning\
           \ lemmas"
         traceability:
           feature: FEAT-RECUR
           rule: F-RECUR-R001
+      - name: "should publish in the course diagnosis each analysed lemma with its\
+          \ count, mean interval, status, deviation, longest gap with its start and\
+          \ end levels and its levels, like 'movie': 90 times, every 855 words, normal,\
+          \ longest gap 5,400 from A1 to A2"
+        traceability:
+          feature: FEAT-RECUR
+          rule: F-RECUR-R003
+      - name: "should take a lemma's longest gap as the largest interval between two\
+          \ consecutive occurrences, with the levels of the quizzes where it starts\
+          \ and ends, like 23,684 from B1 to B2 for 'suppose'"
+        traceability:
+          feature: FEAT-RECUR
+          rule: F-RECUR-R003
       - name: "should publish for the course of 29/9 A1 448 returning lemmas with\
-          \ 176 normal (39.3%), A2 752 with 155 (20.6%), B1 1,137 with 161 (14.2%)\
-          \ and B2 818 with 165 (20.2%)"
+          \ 200 normal (44.6%), A2 752 with 203 (27.0%), B1 1,137 with 187 (16.4%)\
+          \ and B2 818 with 201 (24.6%)"
         traceability:
           feature: FEAT-RECUR
           rule: F-RECUR-R004
-      - name: "should leave 1,612 findings in the course of 29/9, 1,566 for under-exposed\
-          \ and 46 for over-exposed lemmas"
+      - name: "should give as evidence the lemma, its times, how often it returns\
+          \ against the goal and its longest gap, like 'vegetable: 10 times, returns\
+          \ every 7,765 words (goal: more than 50 and up to 1,000); its longest gap,\
+          \ 23,825, is in B1'"
+        traceability:
+          feature: FEAT-RECUR
+          rule: F-RECUR-R005
+      - name: "should leave 1,583 findings in the course of 29/9, 1,534 for under-exposed\
+          \ and 49 for over-exposed lemmas"
         traceability:
           feature: FEAT-RECUR
           rule: F-RECUR-R005
@@ -2720,8 +2720,8 @@ modules:
           feature: FEAT-RECUR
           rule: F-RECUR-R006
       - name: "should create for every run an analyzer that counts positions from\
-          \ the start, so the recurrence of the course stays at 8.0% on a second run\
-          \ instead of falling to 4.0%"
+          \ the start, so the recurrence of the course stays at 9.0% on a second run\
+          \ instead of falling to 5.0%"
         traceability:
           feature: FEAT-CERO
           rule: F-CERO-R001
@@ -14430,18 +14430,6 @@ modules:
       traceability:
         feature: FEAT-HALL
         rule: F-HALL-R013
-    - name: "should publish on the 29/9 course with the seventeen analyzers of round\
-        \ 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels\
-        \ 96.0, 93.6, 78.9 and 63.9"
-      traceability:
-        feature: FEAT-RONDA1
-        rule: F-RONDA1-R008
-    - name: "should publish on the 29/9 course with the seventeen analyzers of round\
-        \ 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2,\
-        \ 79.5 and 63.5"
-      traceability:
-        feature: FEAT-RONDA1
-        rule: F-RONDA1-R008
     - name: "should accept a budget for near-duplicates, which consults a model, and\
         \ keep rejecting a budget for grammar, which is instant"
       traceability:
@@ -14452,11 +14440,6 @@ modules:
       traceability:
         feature: FEAT-RONDA2
         rule: F-RONDA2-R002
-    - name: "should publish on the 29/9 course with the twenty analyzers a vocabulary\
-        \ of 73.86 % and levels 96.02, 93.60, 78.87 and 63.86"
-      traceability:
-        feature: FEAT-RONDA2
-        rule: F-RONDA2-R010
     - name: "should reject before loading the course a run that asks for naturalness\
         \ by name when neither llama3:8b in Ollama nor claude -p is available, with\
         \ «Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is\
@@ -14485,6 +14468,23 @@ modules:
       traceability:
         feature: FEAT-MLOCAL
         rule: F-MLOCAL-R004
+    - name: "should publish on the 29/9 course with the seventeen analyzers of round\
+        \ 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 74.00% and levels\
+        \ 96.0, 93.6, 78.9 and 63.9"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R008
+    - name: "should publish on the 29/9 course with the seventeen analyzers of round\
+        \ 1 and 4 for every band the numbers of today, 74.07% and levels 96.5, 94.2,\
+        \ 79.5 and 63.5"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R008
+    - name: "should publish on the 29/9 course with the twenty analyzers a vocabulary\
+        \ of 74.00 % and levels 96.02, 93.60, 78.87 and 63.86"
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R010
     implements:
     - AuditRunner
   - name: DefaultCocaBucketsConfig
@@ -16749,12 +16749,6 @@ modules:
         traceability:
           feature: FEAT-HALL
           rule: F-HALL-R006
-      - name: "should show in get audit and get audits the vocabulary score published\
-          \ on the course, 73,9 % for the 29/9 base, instead of 73,4 %, the average\
-          \ of its eleven course keys"
-        traceability:
-          feature: FEAT-HALL
-          rule: F-HALL-R010
       - name: "should print as JSON the whole topic as the student sees it with get\
           \ student-view 6814dafa7d73e7209a13d389, Afirmativas regulares"
         traceability:
@@ -16795,11 +16789,6 @@ modules:
         traceability:
           feature: FEAT-SEMAF
           rule: F-SEMAF-R001
-      - name: "should leave the stored analysis of 29/9 and its plan byte for byte\
-          \ identical after get word-lights, at 73.92% and 4,036 tasks"
-        traceability:
-          feature: FEAT-SEMAF
-          rule: F-SEMAF-R007
       - name: "should show in get analyzers the twenty analyzers with twenty different\
           \ Spanish names, the three of package B last"
         traceability:
@@ -16858,6 +16847,17 @@ modules:
         traceability:
           feature: FEAT-CALUM
           rule: F-CALUM-R003
+      - name: "should show in get audit and get audits the vocabulary score published\
+          \ on the course, 74,1 % for the 29/9 base, instead of 73,5 %, the average\
+          \ of its eleven course keys"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R010
+      - name: "should leave the stored analysis of 29/9 and its plan byte for byte\
+          \ identical after get word-lights, at 74.07% and 4,036 tasks"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R007
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:

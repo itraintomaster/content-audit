@@ -1,0 +1,21 @@
+code: FEAT-SEMAF
+description: "orquestador como qa-tester, FEAT-SEMAF, sólo nombres de pruebas: con\
+  \ la opción B de FEAT-RECUR (José, 1/10: la puntuación no ocupa posición), el aná\
+  lisis guardado del 29/9 queda en 74,07 % (antes 73,92) y sigue con 4.036 tareas.\
+  \ Se borra con el nombre viejo y se agrega con el nuevo, con la misma regla. Sin\
+  \ cambios de estructura."
+modules:
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: "should leave the stored analysis of 29/9 and its plan byte for byte\
+          \ identical after get word-lights, at 73.92% and 4,036 tasks"
+        _change: delete
+      - name: "should leave the stored analysis of 29/9 and its plan byte for byte\
+          \ identical after get word-lights, at 74.07% and 4,036 tasks"
+        traceability:
+          feature: FEAT-SEMAF
+          rule: F-SEMAF-R007
