@@ -64,9 +64,15 @@ class SpacyProcessRunner {
     /** The fingerprint of each resource, read again only when its size or its date change. */
     private final Map<Path, FileFingerprint> fingerprints = new HashMap<>();
 
-public SpacyProcessRunner(NlpTokenizerConfig config) {
-}
+    public SpacyProcessRunner(NlpTokenizerConfig config) {
+        this(config, DEFAULT_CACHE_DIR);
+    }
 
+    /** The cache under another directory, as the tests keep one of their own. */
+    SpacyProcessRunner(NlpTokenizerConfig config, Path cacheDir) {
+        this.config = config;
+        this.cacheDir = cacheDir;
+    }
 
     /**
      * The spaCy output of the sentences, as one {@code processed_sentences} document: one entry
