@@ -347,8 +347,14 @@ class DefaultEquivalentFormGenerator implements EquivalentFormGenerator {
             String[] rest = low.substring(m.end()).strip().split("\\s+");
             String next = rest.length > 0 ? rest[0] : "";
             String bare = next.replaceAll("[.,!?]", "");
+            // The verb is past the adverbs that say nothing: «has not studied», «has already left».
+            int k = 0;
+            while (k < rest.length && ADVERBS_BEFORE_THE_VERB.contains(bare(rest[k]))) {
+                k++;
+            }
+            String verb = k < rest.length ? bare(rest[k]) : "";
             if (Set.of("has", "have", "had").contains(aux)
-                    && !(isParticiple(bare) || Set.of("got", "been", "better").contains(bare))) {
+                    && !(isParticiple(verb) || Set.of("got", "been", "better").contains(verb))) {
                 continue; // have as the main verb is not contracted
             }
             if (next.isEmpty() || !Character.isLetter(next.charAt(0))) {
