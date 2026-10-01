@@ -35,7 +35,7 @@ import javax.annotation.processing.Generated;
 )
 public class SingleAnswerAnalyzerProvider implements AnalyzerProvider {
 
-    /** The plan's task for its scores below 1; this round it has no constant and is declared unconverted. */
+    /** The plan's task for its scores below 1, on the exercise (F-RONDA2-R008). */
     static final String PLAN_TASK_KIND = "SINGLE_ANSWER";
 
     private final JudgeRuntime runtime;

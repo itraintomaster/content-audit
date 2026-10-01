@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 import com.learney.contentaudit.auditdomain.catalog.UnknownAnalyzerException;
@@ -34,11 +35,13 @@ public class IAuditEngine implements AuditEngine {
     }
 
     /**
-     * The base run: every analyzer of the catalog whose card costs INSTANT, in catalog order
-     * (today the seven classic ones), plus every analyzer with a model whose card has at least
-     * one instant rule, run with budget 0 so its rules always run and of its judge only what is
-     * already recorded counts (F-RONDA1-R007: today only multiple-choice-validity). The
-     * consolidated view and the impact preview rely on it, so they never pay a judge.
+     * The base run: every analyzer of the catalog whose card costs INSTANT, in catalog order,
+     * plus every analyzer with a model whose card has at least one instant rule and none of local
+     * model, run with budget 0 so its rules always run and of its judge only what is already
+     * recorded counts (F-RONDA1-R007, F-RONDA2-R003: today only multiple-choice-validity; an
+     * analyzer with a rule of local model stays out even when it has an instant one, as
+     * near-duplicates). The consolidated view and the impact preview rely on it, so they never pay
+     * a judge.
      */
     @Override
     public AuditReport runAudit(AuditableCourse auditableCourse) {
@@ -114,13 +117,21 @@ public class IAuditEngine implements AuditEngine {
         // Step 6: the numbers of every node, published once (F-HALL-R008 to R010)
         contextNumbersCalculator.compute(root, ranCards);
 
+        // Step 7: F-RONDA2-R004 -- with what each analyzer that ran measured, on the root only and
+        // in catalog order, so a comparison tells a change of measure from a change of the course.
+        List<AnalyzerMeasure> measures = new ArrayList<>();
+        for (AnalyzerDescriptor card : ranCards) {
+            analyzerCatalog.measure(card.getName()).ifPresent(measures::add);
+        }
+        root.setMeasures(measures);
+
         return new AuditReport(root);
     }
 
     private List<String> baseSelection() {
         List<String> names = new ArrayList<>();
         for (AnalyzerDescriptor card : analyzerCatalog.list()) {
-            if (card.getCost() == AnalysisCost.INSTANT || hasInstantRule(card)) {
+            if (card.getCost() == AnalysisCost.INSTANT || runsInTheBaseWithBudget0(card)) {
                 names.add(card.getName());
             }
         }
@@ -131,19 +142,28 @@ public class IAuditEngine implements AuditEngine {
     private Map<String, EvaluationRunPolicy> basePolicies() {
         Map<String, EvaluationRunPolicy> policies = new LinkedHashMap<>();
         for (AnalyzerDescriptor card : analyzerCatalog.list()) {
-            if (card.getCost() != AnalysisCost.INSTANT && hasInstantRule(card)) {
+            if (card.getCost() != AnalysisCost.INSTANT && runsInTheBaseWithBudget0(card)) {
                 policies.put(card.getName(), new EvaluationRunPolicy(0, false, null, null, null, null));
             }
         }
         return policies;
     }
 
-    private static boolean hasInstantRule(AnalyzerDescriptor card) {
+    /**
+     * F-RONDA1-R007 and F-RONDA2-R003: an analyzer with a model enters the base run when its card
+     * has an instant rule and no rule of local model. It is decided by the rules of the card, never
+     * by its cost nor by its name.
+     */
+    private static boolean runsInTheBaseWithBudget0(AnalyzerDescriptor card) {
+        return hasRuleOfCost(card, AnalysisCost.INSTANT) && !hasRuleOfCost(card, AnalysisCost.LOCAL_MODEL);
+    }
+
+    private static boolean hasRuleOfCost(AnalyzerDescriptor card, AnalysisCost cost) {
         if (card.getRules() == null) {
             return false;
         }
         for (AnalyzerRuleCard rule : card.getRules()) {
-            if (rule != null && rule.getCost() == AnalysisCost.INSTANT) {
+            if (rule != null && rule.getCost() == cost) {
                 return true;
             }
         }

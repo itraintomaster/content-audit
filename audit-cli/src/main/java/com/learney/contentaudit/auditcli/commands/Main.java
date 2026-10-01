@@ -251,6 +251,54 @@ import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLightsQuery;
 import com.learney.contentaudit.vocabularyinfrastructure.correctortable.FileSystemFormEquivalenceTableSource;
 import com.learney.contentaudit.vocabularyinfrastructure.irregularforms.FileSystemIrregularFormsCatalog;
 import com.learney.contentaudit.auditdomain.AnalyzerCorrectionCatalog;
+import com.learney.contentaudit.auditdomain.RuleFix;
+import com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessRuleFix;
+import com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceRuleFix;
+import com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader;
+import com.learney.contentaudit.auditdomain.finishedsentence.FinishedSentenceReader;
+import com.learney.contentaudit.auditdomain.grammar.GrammarAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.grammar.GrammarRuleFix;
+import com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceRuleFix;
+import com.learney.contentaudit.auditdomain.localtools.EmbeddingModel;
+import com.learney.contentaudit.auditdomain.localtools.GrammarChecker;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolGate;
+import com.learney.contentaudit.auditdomain.localtools.YesNoModel;
+import com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate;
+import com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityRuleFix;
+import com.learney.contentaudit.auditdomain.naturalness.NaturalnessAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicatesAnalyzerProvider;
+import com.learney.contentaudit.auditinfrastructure.FileSystemBlindSampleStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemGoalDeclarationSource;
+import com.learney.contentaudit.auditinfrastructure.FileSystemProjectionStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemSealedGoalsStore;
+import com.learney.contentaudit.auditinfrastructure.traystore.FileSystemTrayDecisionStore;
+import com.learney.contentaudit.locallanguageinfrastructure.OllamaEndpoint;
+import com.learney.contentaudit.locallanguageinfrastructure.OllamaModelFactory;
+import com.learney.contentaudit.locallanguageinfrastructure.languagetool.LanguageToolGrammarChecker;
+import com.learney.contentaudit.locallanguageinfrastructure.ollama.DefaultOllamaModelFactory;
+import com.learney.contentaudit.revisiondomain.BlindSampleStore;
+import com.learney.contentaudit.revisiondomain.GoalDeclarationSource;
+import com.learney.contentaudit.revisiondomain.ProjectionStore;
+import com.learney.contentaudit.revisiondomain.SealedGoalsStore;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindErrorRateService;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSampleService;
+import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcomeSource;
+import com.learney.contentaudit.revisiondomain.blindsampleengine.DefaultBlindErrorRateService;
+import com.learney.contentaudit.revisiondomain.blindsampleengine.DefaultBlindSampleService;
+import com.learney.contentaudit.revisiondomain.blindsampleengine.DefaultSampleOutcomeSource;
+import com.learney.contentaudit.revisiondomain.blindsampleengine.DefaultSampleStatistics;
+import com.learney.contentaudit.revisiondomain.blindsampleengine.SampleStatistics;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparator;
+import com.learney.contentaudit.revisiondomain.comparison.GoalBook;
+import com.learney.contentaudit.revisiondomain.comparisonengine.DefaultBatchComparator;
+import com.learney.contentaudit.revisiondomain.comparisonengine.DefaultGoalBook;
+import com.learney.contentaudit.revisiondomain.comparisonengine.LeaveOneOutChangeAttributor;
+import com.learney.contentaudit.revisiondomain.engine.DefaultCourseProjectorFactory;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjection;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjector;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjectorConfig;
+import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
+import com.learney.contentaudit.revisiondomain.tray.TrayDecisionStore;
 import com.learney.contentaudit.auditdomain.BaselineStore;
 import com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessCorrection;
 import com.learney.contentaudit.auditdomain.correctionengine.DefaultAnalyzerCorrectionCatalog;
@@ -565,6 +613,30 @@ class Main {
                 new JacksonMiniTheoryVerdictReader(), new DefaultMiniTheoryConfig(), studentViewRenderer);
 
         // ----------------------------------------------------------------
+        // Step 4b''': FEAT-RONDA2 -- the local tools of package B (hook B-07), built once:
+        // LanguageTool, Ollama (CONTENT_AUDIT_OLLAMA_URL, or this machine's; «off» turns the local
+        // models off, to take the exam of the alternative), the gate that decides which tool each
+        // run measures with -- over the judges' runtime --, the finished sentence of grammar and
+        // naturalness, and the two alternatives with claude -p (hook B-21), asked of their factory
+        // on first use like the judges of round 1.
+        // ----------------------------------------------------------------
+        GrammarChecker grammarChecker = new LanguageToolGrammarChecker();
+        OllamaEndpoint ollamaEndpoint = new OllamaEndpoint(ollamaUrl(System.getenv("CONTENT_AUDIT_OLLAMA_URL")), 120);
+        OllamaModelFactory ollamaModelFactory = new DefaultOllamaModelFactory();
+        LocalToolGate localToolGate = new DefaultLocalToolGate(judgeRuntime);
+        FinishedSentenceReader finishedSentenceReader = new DefaultFinishedSentenceReader();
+        Evaluator naturalnessAlternative = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+                new AgentJudgeSpec("naturalness-yes-no", "naturalnessAnswer", "Naturalidad (claude -p)"),
+                quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
+        Evaluator nearDuplicatesAlternative = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+                new AgentJudgeSpec("near-duplicates-same-exercise", "sameExerciseVerdict",
+                        "Duplicados parecidos (claude -p)"),
+                quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
+        // B · FEAT-MLOCAL turns these two on with its factory, which does not build them yet:
+        // YesNoModel yesNoModel = ollamaModelFactory.yesNoModel(ollamaEndpoint, "llama3:8b");
+        // EmbeddingModel embeddingModel = ollamaModelFactory.embeddingModel(ollamaEndpoint, "nomic-embed-text");
+
+        // ----------------------------------------------------------------
         // Step 4c: FEAT-HALL -- the catalog: one provider per analyzer, and the only list of
         // them. Its order is the order of every run and of the findings within a node
         // (F-HALL-R014); a new analyzer adds one line here (the third hook of the TECH_SPEC).
@@ -607,6 +679,16 @@ class Main {
         analyzerProviders.add(singleAnswerProvider);              // 16 · C · FEAT-UNICA
 
         analyzerProviders.add(miniTheoryProvider);                // 17 · C · FEAT-MINIT
+
+        // FEAT-RONDA2 (F-RONDA2-R001): the three of package B go after the seventeen, in this
+        // order -- «Gramática», «Naturalidad» and «Duplicados parecidos». The catalog reads every
+        // card at startup, so each stays off until package B builds it.
+        // analyzerProviders.add(new GrammarAnalyzerProvider(grammarChecker, finishedSentenceReader,
+        //         localToolGate));                                                              // 18 · B · FEAT-GRAMA
+        // analyzerProviders.add(new NaturalnessAnalyzerProvider(yesNoModel, naturalnessAlternative, judgeRuntime,
+        //         finishedSentenceReader, localToolGate));                                      // 19 · B · FEAT-NATUR
+        // analyzerProviders.add(new NearDuplicatesAnalyzerProvider(embeddingModel, nearDuplicatesAlternative,
+        //         judgeRuntime, correctorMatcher, studentViewRenderer, localToolGate));         // 20 · B · FEAT-DUPAR
 
         AnalyzerCatalog analyzerCatalog = new DefaultAnalyzerCatalog(analyzerProviders);
 
@@ -667,6 +749,46 @@ class Main {
         BaselineStore baselineStore = new FileSystemBaselineStore(baseDir);
         // FEAT-RONDA2 (hook E-09): the batches of corrections (FEAT-TANDA, package E).
         BatchStore batchStore = new FileSystemBatchStore();
+
+        // ----------------------------------------------------------------
+        // Step 6b: FEAT-RONDA2 -- before and after, package F (hook F-06). The projection of the
+        // course with its pending proposals is the one photo every comparison measures; it is
+        // asked of its factory on first use, so no other command pays for it.
+        // ----------------------------------------------------------------
+        ProjectionStore projectionStore = new FileSystemProjectionStore(baseDir);
+        GoalDeclarationSource goalDeclarationSource =
+                new FileSystemGoalDeclarationSource(Paths.get(projectRoot, "analysis", "metas.json"));
+        SealedGoalsStore sealedGoalsStore = new FileSystemSealedGoalsStore(baseDir);
+        BlindSampleStore blindSampleStore = new FileSystemBlindSampleStore(baseDir);
+        CourseProjector courseProjector = lazyCourseProjector(() -> new DefaultCourseProjectorFactory().create(
+                new CourseProjectorConfig(activeAnalysisSelectionStore, auditReportStore, refinementPlanStore,
+                        revisionArtifactStore, (CourseRepository) courseRepository, courseToAuditableMapper,
+                        auditEngine)));
+        GoalBook goalBook = new DefaultGoalBook(goalDeclarationSource, sealedGoalsStore, analyzerCatalog);
+        SampleStatistics sampleStatistics = new DefaultSampleStatistics();
+        SampleOutcomeSource sampleOutcomeSource = new DefaultSampleOutcomeSource(blindSampleStore, sampleStatistics);
+        // Hook F-14: the comparison never returns a change for a word its topic teaches, as the panel.
+        BatchComparator batchComparator = new DefaultBatchComparator(courseProjector, baselineStore,
+                auditReportStore, goalBook, analyzerCatalog, auditEngine, new LeaveOneOutChangeAttributor(auditEngine),
+                sampleOutcomeSource, topicTeachingResolver);
+        BlindSampleService blindSampleService = new DefaultBlindSampleService(courseProjector, batchComparator,
+                goalBook, baselineStore, studentViewRenderer, blindSampleStore, sampleStatistics);
+        BlindErrorRateService blindErrorRateService = new DefaultBlindErrorRateService(courseProjector,
+                baselineStore, auditReportStore, studentViewRenderer, blindSampleStore, sampleStatistics);
+
+        // ----------------------------------------------------------------
+        // Step 6c: FEAT-RONDA2 -- correction by batches, package E (hook E-09): the fixes by rule
+        // of A and of grammar (hooks E-06 and F-RONDA2-R009) and the decisions of the tray. The
+        // panel, the batch and the tray are asked of their factories, with the baseline, the
+        // comparator, the goal book and the blind sample above, when package E builds them.
+        // ----------------------------------------------------------------
+        List<RuleFix> ruleFixes = List.of(
+                new HintCoherenceRuleFix(irregularForms),
+                new AnswerCompletenessRuleFix(correctorMatcher),
+                new MultipleChoiceValidityRuleFix(),
+                new DataCoherenceRuleFix(quizSentenceConverter),
+                new GrammarRuleFix());
+        TrayDecisionStore trayDecisionStore = new FileSystemTrayDecisionStore();
 
         // ----------------------------------------------------------------
         // Step 7: Refiner + Revision engines
@@ -1061,6 +1183,7 @@ class Main {
             ApproveCmd approveCmd = new ApproveCmd(proposalDecisionService, batchStore);
             cmd.addSubcommand("approve", new picocli.CommandLine(approveCmd));
 
+            // The batch of E (FEAT-TANDA) is wired with its factory when package E builds it.
             RejectCmd rejectCmd = new RejectCmd(proposalDecisionService, null);
             cmd.addSubcommand("reject", new picocli.CommandLine(rejectCmd));
         }
@@ -1159,6 +1282,19 @@ class Main {
         // judges. Without --budget, exam run is a rehearsal that pays nothing (F-JEXAM-R010).
 
         cmd.addSubcommand("exam", new picocli.CommandLine(new ExamCmd(judgeExamService)));   // C · FEAT-JEXAM
+
+        // FEAT-RONDA2 (hooks F-06 and E-09): the commands of packages F and E, each registered by
+        // its package with its picocli wrapper: set-baseline, save-projection, compare, get-goals
+        // and set-goals, sample and error-rate (F, built here over Step 6b), and batch and tray
+        // (E, over the batch and the tray of its factories).
+        DefaultSetBaselineCommand setBaselineCommand = new DefaultSetBaselineCommand(baselineStore, auditReportStore);
+        DefaultSaveProjectionCommand saveProjectionCommand =
+                new DefaultSaveProjectionCommand(courseProjector, projectionStore);
+        DefaultCompareCommand compareCommand = new DefaultCompareCommand(batchComparator,
+                new com.learney.contentaudit.auditcli.formatting.DefaultBatchComparisonFormatter());
+        DefaultGoalsCommand goalsCommand = new DefaultGoalsCommand(goalBook);
+        DefaultBlindSampleCommand blindSampleCommand = new DefaultBlindSampleCommand(blindSampleService);
+        DefaultErrorRateCommand errorRateCommand = new DefaultErrorRateCommand(blindErrorRateService);
 
         // ----------------------------------------------------------------
         // Step 9: Execute
@@ -1285,6 +1421,33 @@ class Main {
             @Override
             public String tableVersion() {
                 return delegate().tableVersion();
+            }
+        };
+    }
+
+    /** Hook B-07: the address of Ollama, CONTENT_AUDIT_OLLAMA_URL or this machine's. */
+    private static String ollamaUrl(String configured) {
+        return configured != null && !configured.isBlank() ? configured.strip() : "http://127.0.0.1:11434";
+    }
+
+    /**
+     * The projection of package F, asked of its factory on first use (hook F-06): only the
+     * commands that compare or project build it.
+     */
+    private static CourseProjector lazyCourseProjector(Supplier<CourseProjector> factory) {
+        return new CourseProjector() {
+            private CourseProjector delegate;
+
+            private synchronized CourseProjector delegate() {
+                if (delegate == null) {
+                    delegate = factory.get();
+                }
+                return delegate;
+            }
+
+            @Override
+            public CourseProjection project(Path coursePath, ProjectionScope scope) {
+                return delegate().project(coursePath, scope);
             }
         };
     }
