@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — Cableado el audio pendiente en F (e5d49e18): `PendingCopies`, comparador, atributor y las dos
+  compuertas; `PendingRerecordingIntegrationTest` (motor real + data-coherence real sobre las verduras, 2 pruebas) y
+  `PendingCopiesGateIntegrationTest` (3). Contraprueba: sin asentar, A1 sube a 1 y el atributor no nombra a nadie.
+
 2026-10-01 — developer — Las dos compuertas implementadas (`GateRules`, `DefaultChangeGate`, `DefaultBatchGate`,
   `DefaultGateFactory`) y sus 36 pruebas en verde (19 en DefaultChangeGate, 17 en DefaultBatchGate). F-NOEMP-J001 sigue
   apagada: vive en `batchengine` y espera a DefaultBatchCloser (FEAT-TANDA). Next: TANDA cablea la compuerta en el cierre.

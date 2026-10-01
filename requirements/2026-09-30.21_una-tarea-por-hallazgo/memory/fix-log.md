@@ -5,6 +5,11 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — Tras juntar ronda2/integracion, FProyuJ001 (F) rompía en `DefaultAnalyzerCorrectionCatalog`
+  («nombra un analizador que no está en el catálogo»): arma quiz-instruction sobre el catálogo del 29/9. Ahora la
+  declaración de un analizador que la corrida no tiene queda afuera en vez de tirar (bfc9bb8a).
+  why: un comando puede componer un catálogo de pocos analizadores; lo que no corre no se corrige.
+
 2026-10-01 — test-writer (construcción E) — Los fixtures de get, plan y J001 viven en
   `FTareaJ001JourneyTest.Tarea` (como `AnalyzeCmdTest.Base299`): catálogo de mentira con ligaduras, declaraciones de
   verdad, el plan de verdad, almacenes de mentira y la CLI por picocli (`Base299.run`). Sin mocks con stubs: la
