@@ -5,6 +5,16 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (impl A) — El generador no inventa formas que nadie escribe: un sujeto sustantivo sólo va de contraída a larga
+  («Peter's reading» → «Peter is reading», nunca «The car's»), have como verbo principal no se contrae («I have a car»), al final
+  de la oración tampoco («than he is.»), «'s» ante been/got/gotten es has y ante un participio adjetivo sin objeto es is («It's
+  crowded»), y «'d» ante un participio igual a la base («She'd run») se saltea porque no se sabe si es had o would.
+  why: cada forma falsa sería un hallazgo que manda a agregar con «|» algo que el alumno no escribe.
+
+2026-09-30 — developer (impl A) — La copia de producción de la tabla (formas-equivalentes.json) queda vacía, con la versión
+  «corrector de hoy»; la del corrector nuevo va al lado (formas-equivalentes-corrector-nuevo.json) sólo para medir y para las
+  pruebas. La resolución de cada forma que falta sale de preguntarle al corrector instalado si ya iguala su clase.
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): CorrectorMatcher.accepts recibe GapContext (antes y después del hueco, sin pistas) y suma sameAnswer(GapContext, …) para opciones de un hueco; modelo GapContext en correctormatch (pendiente del qa-tester de A).
 
 2026-09-30 — qa-tester — F-RESPC-J001 en audit-domain, paquete answercompleteness: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.

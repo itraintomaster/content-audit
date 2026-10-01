@@ -1,7 +1,28 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,44 +42,138 @@ public class FRespcJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → Para cada respuesta aceptada, el info... → Un hallazgo por forma que falta, con ... [Falta la forma contraída o la larga] → success")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void path1_faltaLaFormaContradaOLaLarga_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr: analyze with only answer-completeness over Rutinas y ahora, with the corrector of today.
+        AuditNode root = analyze(knowledge("6814dafa7d73e7209a13d221", "Rutinas y ahora",
+                List.of(AnswerCompletenessAnalyzerTest.iDontEatMeat())));
+
+        // generar → falta_forma: «I ___ (not / eat) meat often.» accepts «don't eat» and not «do not eat»:
+        // one finding identified by the form, medium, fixed by rule (R002, R005).
+        AuditNode meat = quiz(root, "67fab6d5993010229534263c");
+        assertEquals(1, meat.getFindings().size());
+        Finding missing = meat.getFindings().get(0);
+        assertEquals("contracted-and-long-forms", missing.getRule());
+        assertEquals("do not eat", missing.getIdentity().getMarker());
+        assertEquals(FindingSeverity.MEDIUM, missing.getSeverity());
+        assertEquals(FindingResolution.RULE, missing.getResolution());
+        assertEquals(0.0, meat.getScores().get("answer-completeness"));
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo só... → Para cada respuesta aceptada, el info... → Un hallazgo por forma que falta, con ... [Falta la otra negación corta de be] → success")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void path2_faltaLaOtraNegacinCortaDeBe_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → generar → falta_negacion: «They ___ (not / be) from Ireland.» accepts «'re not» while its mini
+        // theory teaches «aren't»: high (R003, R005).
+        AuditNode root = analyze(knowledge("6814dafa7d73e7209a13d386", "$Be$: preguntas $yes / no$",
+                List.of(AnswerCompletenessAnalyzerTest.theyAreNotFromIreland())));
+
+        Finding arent = finding(quiz(root, "67fab6d599301022953425ac"), "aren't");
+        assertEquals("be-short-negations", arent.getRule());
+        assertEquals(FindingSeverity.HIGH, arent.getSeverity());
+        assertTrue(arent.getEvidence().getObservation().startsWith("They ___ (not / be) from Ireland. → acepta 're not; falta aren't"));
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → Para cada respuesta aceptada, el info... → Un hallazgo por forma que falta, con ... [Falta la otra grafía de una palabra de la lista, o until o till] → success")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void path3_faltaLaOtraGrafaDeUnaPalabraDeLaListaOUntilOTill_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → generar → falta_grafia: «She ___ (travel) to Europe.» only accepts «travelled»; «why / she / work
+        // there until then? ___» only accepts the sentence with until (R004).
+        AuditableQuiz untilThen = AnswerCompletenessAnalyzerTest.quiz("67fab6d5993010229534326a",
+                "Escribe oraciones en 'past perfect'.", "Para preguntar, $had$ se adelanta: Had + sujeto + participio.",
+                AnswerCompletenessAnalyzerTest.text("why / she / work there until then?"),
+                AnswerCompletenessAnalyzerTest.cloze("Why had she worked there until then?"),
+                AnswerCompletenessAnalyzerTest.text(""));
+        AuditNode root = analyze(knowledge("6814dafa7d73e7209a13d3b7", "Cambios ortográficos",
+                List.of(AnswerCompletenessAnalyzerTest.sheTravelledToEurope(), untilThen)));
+
+        assertEquals("spellings-and-till", finding(quiz(root, "67fab6d59930102295342211"), "traveled").getRule());
+        assertEquals("spellings-and-till",
+                finding(quiz(root, "67fab6d5993010229534326a"), "why had she worked there till then?").getRule());
     }
 
     @Test
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo só... → Para cada respuesta aceptada, el info... → Un hallazgo con la consigna o la mini... [La consigna o la miniteoría piden short forms o long forms] → success")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void path4_laConsignaOLaMiniteoraPidenShortFormsOLongForms_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → generar → pide_forma: «It ___ (be) hot inside.» asks for the short form in its instructions and
+        // in its mini theory: two low findings; the standard sentence is removed by rule, the mini theory goes to
+        // the panel (R007).
+        AuditNode root = analyze(knowledge("6814dafa7d73e7209a13d394", "Todas las formas",
+                List.of(AnswerCompletenessAnalyzerTest.itIsHotInside())));
+
+        AuditNode inside = quiz(root, "67fab6d59930102295341fa5");
+        Finding instructions = finding(inside, "consigna");
+        Finding mini = finding(inside, "miniteoria");
+        assertEquals("form-request", instructions.getRule());
+        assertEquals(FindingSeverity.LOW, instructions.getSeverity());
+        assertEquals(FindingResolution.RULE, instructions.getResolution());
+        assertEquals("form-request", mini.getRule());
+        assertEquals(FindingResolution.PANEL, mini.getResolution());
     }
 
     @Test
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: El operador corre analyze pidiendo só... → Para cada respuesta aceptada, el info... → Sin hallazgo de este analizador; el e... [Todas las formas equivalentes están aceptadas y nada pide una forma] → success")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void path5_todasLasFormasEquivalentesEstnAceptadasYNadaPideUnaForma_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → generar → completa: «You ___ (see) cats.» has no other form and asks for none: no finding of
+        // this analyzer, and it scores 1.
+        AuditableQuiz cats = AnswerCompletenessAnalyzerTest.quiz("67fab6d59930102295341ec3",
+                "Escribe la forma afirmativa en presente simple.",
+                "Con he, she, it el verbo lleva $-s$. Con I, you, we, they va en forma base.",
+                AnswerCompletenessAnalyzerTest.text("You"), AnswerCompletenessAnalyzerTest.cloze("see"),
+                AnswerCompletenessAnalyzerTest.text("(see) cats."));
+        AuditNode root = analyze(knowledge("6814dafa7d73e7209a13d389", "Afirmativas regulares", List.of(cats)));
+
+        AuditNode node = quiz(root, "67fab6d59930102295341ec3");
+        assertEquals(List.of(), node.getFindings());
+        assertEquals(1.0, node.getScores().get("answer-completeness"));
+    }
+
+    // ------------------------------------------------------------------
+    // analyze with only answer-completeness, through the engine, with the corrector of today
+    // ------------------------------------------------------------------
+
+    private static AuditNode analyze(AuditableKnowledge knowledge) {
+        AnswerCompletenessAnalyzerProvider provider = new AnswerCompletenessAnalyzerProvider(
+                AnswerCompletenessAnalyzerTest.todaysCorrector(), AnswerCompletenessAnalyzerTest.participles(),
+                AnswerCompletenessAnalyzerTest.renderer());
+        IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
+                new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+        AuditableCourse course = new AuditableCourse(List.of(new AuditableMilestone(List.of(new AuditableTopic(
+                List.of(knowledge), "topic", "Topic", "topic")), "A1", "A1", "A1")));
+        AuditReport report = engine.runAudit(course,
+                new AnalyzerRunSelection(List.of("answer-completeness"), Map.of()));
+        return report.getRoot();
+    }
+
+    private static AuditableKnowledge knowledge(String id, String label, List<AuditableQuiz> quizzes) {
+        return new AuditableKnowledge(quizzes, label, null, true, id, label, id, SentenceMode.FILL, "Topic");
+    }
+
+    private static AuditNode quiz(AuditNode node, String id) {
+        if (node.getEntity() != null && id.equals(node.getEntity().getId())) {
+            return node;
+        }
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                AuditNode found = quiz(child, id);
+                if (found != null) {
+                    return found;
+                }
+            }
+        }
+        return null;
+    }
+
+    private static Finding finding(AuditNode node, String marker) {
+        return node.getFindings().stream().filter(f -> marker.equals(f.getIdentity().getMarker())).findFirst()
+                .orElseThrow(() -> new AssertionError("no finding «" + marker + "» in "
+                        + node.getFindings().stream().map(f -> f.getIdentity().getMarker()).toList()));
     }
 }

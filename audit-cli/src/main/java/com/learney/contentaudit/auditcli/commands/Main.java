@@ -573,7 +573,7 @@ class Main {
 
         analyzerProviders.add(hintCoherenceProvider);                                                     // 10 · A · FEAT-PISTA
 
-        // analyzerProviders.add(answerCompletenessProvider);     // 11 · A · FEAT-RESPC, pendiente
+        analyzerProviders.add(answerCompletenessProvider);                                                // 11 · A · FEAT-RESPC
 
         // analyzerProviders.add(multipleChoiceValidityProvider); // 12 · A · FEAT-OMVAL (+ C · FEAT-MCVALE), pendiente
 

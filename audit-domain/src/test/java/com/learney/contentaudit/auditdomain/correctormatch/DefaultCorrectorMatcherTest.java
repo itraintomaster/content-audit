@@ -188,12 +188,12 @@ public class DefaultCorrectorMatcherTest {
     }
 
     /** The copy of the table of the corrector in production: today's, empty. */
-    private static FormEquivalenceTable installedTable() {
+    public static FormEquivalenceTable installedTable() {
         return table(CORRECTOR.resolve("formas-equivalentes.json"));
     }
 
     /** The copy of the new corrector's table, the one that replaces it when the corrector ships. */
-    private static FormEquivalenceTable newCorrectorTable() {
+    public static FormEquivalenceTable newCorrectorTable() {
         return table(CORRECTOR.resolve("formas-equivalentes-corrector-nuevo.json"));
     }
 
