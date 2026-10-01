@@ -16040,9 +16040,10 @@ modules:
         \ List<String> convertToMultipleChoice): Integer"
     - signature: "estimateBatch(): Integer"
     - signature: "runBatch(Integer queryCap): Integer"
-    - signature: "closeBatch(): Integer"
     - signature: "dropFromBatch(String changeId, String ruleId, String reason): Integer"
     - signature: "reportBatch(String batchId, String format): Integer"
+    - signature: "closeBatch(Map<String,Integer> judgeBudgets, Integer queryCap):\
+        \ Integer"
   - name: TrayCommand
     stereotype: port
     sealed: true
@@ -27398,6 +27399,25 @@ modules:
         type: int
       - name: queriesAtOnce
         type: int
+      - name: changedQuizzes
+        type: int
+        description: "Los ejercicios que la tanda cambia hoy: los que tienen una propuesta\
+          \ pendiente de la tanda, y todos los de un tema cuya consigna cambia (F-CJUEZ-R001,\
+          \ R002). Es la misma cuenta del paso de los jueces. 0: la tanda todavía\
+          \ no cambió ninguno, y los jueces se estiman después de batch run."
+      - name: judges
+        type: List<BatchJudgeAccount>
+        description: "La cuenta de cada juez que lee lo que la tanda cambia hoy, en\
+          \ el orden del catálogo, hecha sin consultar nada: lo que juzga, lo que\
+          \ reusa del libro y lo que falta; los sin aprobar, con su motivo (F-CJUEZ-R002)."
+      - name: judgeQueries
+        type: int
+        description: El total de consultas que faltan de los jueces aprobados que
+          se pagan; las de un juez sin aprobar o local no suman (F-CJUEZ-R002).
+      - name: judgeHours
+        type: double
+        description: "Lo que tardan esas consultas, a 19 s cada una con las consultas\
+          \ a la vez de la tanda, como estimatedHours (F-CJUEZ-R002, F-TANDA-R003)."
     - name: BatchTaskCount
       type: record
       fields:
@@ -27540,6 +27560,16 @@ modules:
         type: List<String>
       - name: rounds
         type: int
+      - name: request
+        type: BatchCloseRequest
+        description: "El pedido con que se cerró, con sus topes (F-CJUEZ-R003). El\
+          \ reajuste de José (batch drop) y el cierre de la bandeja cierran con el\
+          \ pedido vacío, sin tope."
+      - name: judges
+        type: List<BatchJudgeAccount>
+        description: "La cuenta de cada juez que lee lo que la tanda cambió, en el\
+          \ orden del catálogo: lo gastado en este cierre, lo reusado, lo que falta,\
+          \ el tope que tuvo y sus pisos (F-CJUEZ-R005)."
     - name: BatchReport
       type: record
       fields:
@@ -27570,6 +27600,10 @@ modules:
         type: double
       - name: joseDecisions
         type: List<BatchAdjustment>
+      - name: judges
+        type: List<BatchJudgeAccount>
+        description: Las cuentas por juez del último cierre de la tanda (F-CJUEZ-R005);
+          vacío si todavía no se cerró.
     - name: OutcomeCount
       type: record
       fields:
@@ -27682,6 +27716,11 @@ modules:
         type: GoalBook
         description: "El libro de metas de F: abrir una tanda fija sus metas (F-METAS-R006,\
           \ gancho F-10)."
+      - name: analyzerCatalog
+        type: AnalyzerCatalog
+        description: "El catálogo de analizadores para el paso de los jueces: quié\
+          nes de la tanda son jueces, su orden y su nombre visible (F-CJUEZ-R002,\
+          \ R003, R005). Main pasa el mismo que usa la mesa."
     - name: BatchAlreadyOpenException
       type: exception
       fields:
@@ -27714,6 +27753,105 @@ modules:
         type: String
       message: "La tanda %s no se puede publicar: %s"
       extends: RuntimeException
+    - name: BatchCloseRequest
+      type: record
+      fields:
+      - name: judgeBudgets
+        type: "Map<String,Integer>"
+        description: "El tope de cada juez que nombra --budget, por su nombre único\
+          \ (F-CJUEZ-R003). Vacío o nulo: ninguno. Un nombre que no es de un juez\
+          \ de la tanda, o un tope negativo, se rechaza sin consultar nada (R003 inv.\
+          \ 4). Un juez local se puede nombrar, pero no tiene nada que pagar."
+      - name: queryCap
+        type: Integer
+        description: "El tope de la tanda (--cap): lo comparten, en el orden del catá\
+          logo, los jueces que judgeBudgets no nombra, y con los dos el total nunca\
+          \ lo pasa (F-CJUEZ-R003). Nulo: ninguno. Sin ningún tope el cierre es un\
+          \ ensayo y no le paga ninguna consulta a ningún juez (R003 inv. 1)."
+    - name: BatchJudgeAccount
+      type: record
+      fields:
+      - name: judge
+        type: String
+        description: "El nombre único del analizador juez (F-HALL-R005): el que nombra\
+          \ --budget."
+      - name: displayName
+        type: String
+        description: "Su nombre visible, el de la ficha (F-FILAS-R001); el nombre\
+          \ único si la ficha no tiene."
+      - name: unit
+        type: AuditTarget
+        description: "Lo que juzga: QUIZ, los ejercicios que la tanda cambia; KNOWLEDGE,\
+          \ los temas que tienen un ejercicio que cambia, como la miniteoría (F-CJUEZ-R001)."
+      - name: approved
+        type: boolean
+        description: "False si el juez está sin aprobar: su versión vigente reprobó\
+          \ su examen o no lo rindió (F-JEXAM-R003). No consulta con ningún tope y,\
+          \ si lee lo que la tanda cambió, sus pisos no se deciden y la tanda no se\
+          \ publica (F-CJUEZ-R004). Una herramienta local que no está instalada no\
+          \ está sin aprobar: no evaluó, y lo dice reason."
+      - name: examStatus
+        type: JudgeExamStatus
+        description: "El examen de su versión vigente: el de su cobertura de juez\
+          \ o, en una herramienta local sin cobertura, el de su corrida (F-JEXAM-R001,\
+          \ F-MLOCAL-R006). Nulo si no se conoce."
+      - name: reason
+        type: String
+        description: "Por qué no consulta, en castellano: sin examen, reprobado, rendido\
+          \ sin medir o sin versión (F-JEXAM-R003), o la herramienta local que no\
+          \ está (F-MLOCAL-R003). Nulo si está aprobado y consulta."
+      - name: units
+        type: int
+        description: "Cuántos ejercicios —o temas, en un juez de temas— juzga, sumando\
+          \ el antes y el después (F-CJUEZ-R001, R002)."
+      - name: budget
+        type: Integer
+        description: "El tope que tuvo en este cierre: el suyo de --budget o lo que\
+          \ le quedó del de la tanda cuando le tocó (F-CJUEZ-R003, R005). Nulo sin\
+          \ tope, en la estimación y en un juez local."
+      - name: queriesSpent
+        type: int
+        description: "Las consultas que se le pagaron en este cierre, dentro de su\
+          \ tope; se suman a las consultas de la tanda (F-CJUEZ-R003 inv. 2). 0 en\
+          \ la estimación y en el cierre sin tope."
+      - name: queriesReused
+        type: int
+        description: "Las consultas que el libro ya tenía de ese juez para ese mismo\
+          \ contenido al empezar: se reusan y no se pagan (F-CJUEZ-R001 inv. 2, R002,\
+          \ R005)."
+      - name: queriesMissing
+        type: int
+        description: "Las consultas que faltan para decidir sus pisos: en la estimació\
+          n, antes de pagar (F-CJUEZ-R002); en el cierre, después de comparar, donde\
+          \ lo que un juez local juzgó al comparar ya no falta (R003 inv. 3, R005)."
+      - name: floorsDecided
+        type: int
+        description: "Sus pisos decididos en la última comparación del cierre: las\
+          \ filas del juez con un piso cumplido o no cumplido (F-METAS-R002, F-CJUEZ-R005).\
+          \ 0 en la estimación."
+      - name: floorsUndecided
+        type: int
+        description: "Sus pisos sin decidir en la última comparación del cierre (F-METAS-R008,\
+          \ F-CJUEZ-R005). 0 en la estimación."
+      - name: unavailableReason
+        type: String
+        description: "La falla del servicio tras la cual el juez no empezó ninguna\
+          \ consulta más, con la causa y cómo se resuelve (F-CJUEZ-R003 inv. 5, F-JEXAM-R011).\
+          \ Nulo si no hubo."
+      - name: local
+        type: boolean
+        description: "True si consultó su modelo o su herramienta local, como Ollama\
+          \ o LanguageTool: es gratis, no gasta ningún tope y no suma al total de\
+          \ consultas ni de horas; lo juzga la comparación al cerrar, sin tope (F-CJUEZ-R002,\
+          \ R003, F-MLOCAL-R008, F-RONDA2-R002). Un juez que va por su alternativa\
+          \ de claude -p se paga como cualquiera."
+      glossarySuggestions:
+      - name: Cuenta del juez
+        technicalName: BatchJudgeAccount
+        kind: value-object-candidate
+        basedOn: revision-domain/batch/BatchJudgeAccount
+        rationale: "Lo que un juez de la tanda juzga, gasta, reusa, le falta y decide\
+          \ en un cierre o en una estimación (F-CJUEZ-R002, R005)."
     interfaces:
     - name: BatchService
       stereotype: port
@@ -27723,10 +27861,10 @@ modules:
       - signature: "current(): Optional<CorrectionBatch>"
       - signature: "estimate(): BatchEstimate"
       - signature: "run(BatchRunRequest request): BatchReport"
-      - signature: "close(): BatchClosing"
       - signature: "adjust(BatchAdjustment adjustment): CorrectionBatch"
       - signature: "report(String batchId): BatchReport"
       - signature: "publish(BatchPublishRequest request): BatchPublication"
+      - signature: "close(BatchCloseRequest request): BatchClosing"
     - name: BatchStore
       stereotype: port
       sealed: false
@@ -27784,7 +27922,8 @@ modules:
     - name: BatchCloser
       sealed: false
       exposes:
-      - signature: "close(CorrectionBatch batch, CourseEntity startCourse): CorrectionBatch"
+      - signature: "close(CorrectionBatch batch, CourseEntity startCourse, BatchCloseRequest\
+          \ request): CorrectionBatch"
       visibility: internal
     - name: BatchPublisher
       sealed: false
@@ -27797,6 +27936,23 @@ modules:
       exposes:
       - signature: "build(CorrectionBatch batch): BatchReport"
       visibility: internal
+    - name: BatchJudgePass
+      sealed: false
+      exposes:
+      - signature: "estimate(CorrectionBatch batch, CourseEntity startCourse, CourseEntity\
+          \ composedCourse): List<BatchJudgeAccount>"
+      - signature: "judge(CorrectionBatch batch, CourseEntity startCourse, CourseEntity\
+          \ composedCourse, BatchCloseRequest request): List<BatchJudgeAccount>"
+      - signature: "judges(CorrectionBatch batch): List<String>"
+      visibility: internal
+      glossarySuggestions:
+      - name: Paso de los jueces
+        technicalName: BatchJudgePass
+        kind: process-candidate
+        basedOn: revision-domain/batchengine/BatchJudgePass
+        rationale: "Al cerrar, la tanda juzga con cada juez lo que cambió, antes y\
+          \ después, dentro del tope pedido; antes de pagar, dice cuánto falta (F-CJUEZ-R001\
+          \ a R003)."
     implementations:
     - name: DefaultBatchServiceFactory
       visibility: public
@@ -27842,6 +27998,11 @@ modules:
         type: GoalBook
         description: "Al abrir la tanda llama a seal(): fija las metas con que se\
           \ la va a comparar (F-METAS-R006, gancho F-10)."
+      - name: judgePass
+        type: BatchJudgePass
+        description: "Estima por juez sin consultar, sobre lo que la tanda cambia\
+          \ hoy (F-CJUEZ-R002); al cerrar, da los jueces de la tanda para rechazar\
+          \ un --budget que nombra a otro, sin consultar nada (R003 inv. 4)."
       handwrittenTests:
       - name: should open the first batch on the baseline fixed in the registry of
           F and set the active pair to that analysis and its plan
@@ -28113,6 +28274,12 @@ modules:
         type: BatchStore
       - name: coursePath
         type: Path
+      - name: judgePass
+        type: BatchJudgePass
+        description: "Antes del bucle de la compuerta paga a los jueces dentro del\
+          \ tope pedido y suma lo gastado a la tanda (F-CJUEZ-R001, R003); al final,\
+          \ un ensayo sin consultas sobre lo que quedó dice lo que falta de cada juez,\
+          \ y sus pisos salen de la última comparación (R005)."
       handwrittenTests:
       - name: "should hand F a scope with the pending proposals of the batch, one\
           \ per exercise, and no other, even when the plan holds a vocabulary correction\
@@ -28254,6 +28421,26 @@ modules:
           rule: F-TANDA-R010
       implements:
       - BatchReportBuilder
+    - name: DefaultBatchJudgePass
+      requiresInject:
+      - name: auditEngine
+        type: AuditEngine
+        description: "Corre a cada juez sobre recortes del curso con los ancestros\
+          \ reales —los ejercicios que cambian y los temas tocados, antes y despué\
+          s— con AnalyzerRunSelection y EvaluationRunPolicy, como CatalogTopicMeter:\
+          \ con tope 0 para estimar (F-CJUEZ-R002) y con lo que le queda a cada juez\
+          \ aprobado y no local para pagar (R001, R003)."
+      - name: courseMapper
+        type: CourseMapper
+        description: "Pasa cada recorte, el del curso de partida (antes) y el del\
+          \ curso compuesto (después), a lo que lee el motor."
+      - name: analyzerCatalog
+        type: AnalyzerCatalog
+        description: "Quiénes de los analizadores de la tanda son jueces —su ficha\
+          \ o alguna regla consulta un modelo, o trae una herramienta local—, en qué\
+          \ orden y con qué nombre visible (F-CJUEZ-R003, R005, F-FILAS-R001)."
+      implements:
+      - BatchJudgePass
   - name: tray
     description: "Contrato de la bandeja (FEAT-BANDEJA). Público sólo para audit-cli.\
       \ La muestra ciega es del paquete F (FEAT-CIEGA): la bandeja la presenta con\
@@ -31458,6 +31645,11 @@ features:
   code: F-CALUM
 - id: FEAT-FILAS
   code: F-FILAS
+- id: FEAT-CJUEZ
+  code: F-CJUEZ
+  journeys:
+  - id: F-CJUEZ-J001
+    validation: AUTO_VALIDATED
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:1.13.0

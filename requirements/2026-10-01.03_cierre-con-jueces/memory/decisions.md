@@ -5,6 +5,28 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — architect (CJUEZ) — Parche de FEAT-CJUEZ sin pruebas: propose --replace y validate dan 4 altas, 11
+  cambios, 0 bajas, 0 conflictos; TECH_SPEC.md con 12 fences. Entrada guardada en el scratchpad de la sesión.
+2026-10-01 — architect (CJUEZ) — BatchJudgePass interno de batchengine (estimate, judge, judges) y DefaultBatchJudgePass
+  con AuditEngine, CourseMapper y AnalyzerCatalog. Recibe el curso compuesto como argumento; la fábrica arma uno solo y se
+  lo da al cierre y al servicio (judgePass al final de los requiresInject de DefaultBatchCloser y DefaultBatchService).
+  why: es un colaborador del motor de la tanda; sin armar el compuesto no depende del libro de cambios y sirve para
+  estimar y para pagar.
+2026-10-01 — architect (CJUEZ) — BatchCloseRequest y BatchJudgeAccount son records del paquete público batch. Los campos
+  nuevos de BatchClosing, BatchEstimate, BatchReport y BatchServiceConfig van al final de cada uno.
+  why: audit-cli los lee; al final no se mueve el orden de los existentes, sólo crece el constructor con todos los campos.
+2026-10-01 — architect (CJUEZ) — Las firmas que cambian (BatchService.close, BatchCloser.close,
+  BatchCommand.closeBatch) van como delete de la vieja más add de la nueva.
+  why: patch apply ignora en silencio un add sobre un elemento que ya existe.
+2026-10-01 — architect (CJUEZ) — BatchCostEstimator no cambia de contrato: el servicio llena changedQuizzes, judges,
+  judgeQueries y judgeHours con lo que da el paso. changedQuizzes tiene que salir del mismo ayudante que usa el paso para
+  elegir qué juzgar (por ejemplo BatchBook).
+  why: el pedido no lo cambia, y una sola cuenta evita que «sobre los N ejercicios» diga otra cosa que lo juzgado.
+2026-10-01 — architect (CJUEZ) — BatchJudgeAccount.approved es false sólo para un juez sin aprobar: una herramienta local
+  no instalada no lo está y su motivo va en reason. Un pedido de cierre nulo vale como vacío. A confirmar por el orquestador.
+  why: sigue el punto C del diseño («una herramienta que no está instalada no es sin aprobar»).
+2026-10-01 — architect (CJUEZ) — Sin cambios de contrato en comparison, comparisonengine ni audit-domain: R004 es cuerpo
+  del comparador. Sugerencias de glosario para el analista: «Cuenta del juez» y «Paso de los jueces».
 2026-10-01 — analyst (CJUEZ) — DOUBT-CJUEZ-VERSION queda abierta y rige A hasta que José conteste: un veredicto del
   libro dado por otra versión del juez cuenta para decidir, como en todo el curso (F-EVCOST-R006), y el informe sigue
   mostrando las versiones.
