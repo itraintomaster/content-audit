@@ -508,4 +508,20 @@ public class DefaultSingleAnswerClassifierTest {
         }
         return sb.toString();
     }
+
+    @Test
+    @DisplayName("should write the statement and the finished sentence of its evidence with the student view renderer it receives")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R003")
+    public void shouldWriteTheStatementAndTheFinishedSentenceOfItsEvidenceWithTheStudentViewRendererItReceives() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep the marker of each finding whatever text the student view renderer gives the exercise")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R003")
+    public void shouldKeepTheMarkerOfEachFindingWhateverTextTheStudentViewRendererGivesTheExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

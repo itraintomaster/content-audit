@@ -832,4 +832,20 @@ public class LedgerBackedChoiceAlternativeJudgeRunTest {
             return lower.replace("isn't", "is not").replace("aren't", "are not");
         }
     }
+
+    @Test
+    @DisplayName("should declare in its coverage as many exercises as quizzes, in each state")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R001")
+    public void shouldDeclareInItsCoverageAsManyExercisesAsQuizzesInEachState() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should name in a judgment that failed the cause of its own consultation, not the first failure of the run")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R002")
+    public void shouldNameInAJudgmentThatFailedTheCauseOfItsOwnConsultationNotTheFirstFailureOfTheRun() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

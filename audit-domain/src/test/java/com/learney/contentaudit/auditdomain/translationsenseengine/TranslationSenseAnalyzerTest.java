@@ -925,4 +925,12 @@ public class TranslationSenseAnalyzerTest {
             return values.stream().sorted().toList();
         }
     }
+
+    @Test
+    @DisplayName("should declare in its tally as many exercises as quizzes, in each state")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R001")
+    public void shouldDeclareInItsTallyAsManyExercisesAsQuizzesInEachState() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

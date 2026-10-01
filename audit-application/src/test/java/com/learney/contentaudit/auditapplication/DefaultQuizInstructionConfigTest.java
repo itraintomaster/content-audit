@@ -44,4 +44,20 @@ public class DefaultQuizInstructionConfigTest {
         assertEquals(0.0, config.getScoreFor(InstructionSeverity.CRITICAL), 0.0001,
                 "R002: severity CRITICAL must score 0.0");
     }
+
+    @Test
+    @DisplayName("should describe the analyze budget of quiz-instruction from the judges runtime config and the revise-instructions budget of 500, each named with its command")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R004")
+    public void shouldDescribeTheAnalyzeBudgetOfQuizinstructionFromTheJudgesRuntimeConfigAndTheReviseinstructionsBudgetOf500EachNamedWithItsCommand() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should describe a different analyze budget when the judges runtime config gives another one, without copying 0")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R004")
+    public void shouldDescribeADifferentAnalyzeBudgetWhenTheJudgesRuntimeConfigGivesAnotherOneWithoutCopying0() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

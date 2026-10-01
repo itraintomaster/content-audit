@@ -80,7 +80,7 @@ public class UnavailableChoiceAlternativeJudgeRunFactory implements ChoiceAltern
             int reached = requested.size();
             return new JudgeCoverageDiagnosis(MultipleChoiceValidityAnalyzer.ANALYZER_NAME, AuditTarget.QUIZ, reached,
                     0, reached, new ArrayList<>(), null, new ArrayList<>(), UNAVAILABLE_REASON, null,
-                    new ArrayList<>());
+                    new ArrayList<>(), null);
         }
     }
 }

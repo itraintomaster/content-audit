@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.minitheoryengine;
+import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -63,9 +64,12 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
 
     private final MiniTheoryConfig config;
 
-    public DefaultMiniTheoryDistributor(MiniTheoryConfig config) {
-        this.config = config;
-    }
+private final QuizStudentViewRenderer studentViewRenderer;
+
+public DefaultMiniTheoryDistributor(MiniTheoryConfig config, QuizStudentViewRenderer studentViewRenderer) {
+    this.config = config;
+    this.studentViewRenderer = studentViewRenderer;
+}
 
     @Override
     public List<MiniTheoryQuizOutcome> distribute(MiniTheoryVerdict verdict,

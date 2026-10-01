@@ -177,7 +177,7 @@ class TranslationSenseAnalyzer implements ContentAnalyzer {
         }
 
         JudgeUnitTally tally = new JudgeUnitTally(AuditTarget.QUIZ, size, evaluated, size - evaluated,
-                verdictsByVersion, plan.getUnmatchedDeclaredIds());
+                verdictsByVersion, plan.getUnmatchedDeclaredIds(), null);
         JudgeCoverageDiagnosis coverage = runtime.coverage(opened, tally);
         if (rootNode != null) {
             if (!(rootNode.getDiagnoses() instanceof DefaultCourseDiagnoses)) {

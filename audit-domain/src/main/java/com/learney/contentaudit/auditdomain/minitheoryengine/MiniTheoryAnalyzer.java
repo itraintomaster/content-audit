@@ -174,7 +174,7 @@ class MiniTheoryAnalyzer implements ContentAnalyzer {
         }
 
         JudgeUnitTally tally = new JudgeUnitTally(AuditTarget.KNOWLEDGE, units.size(), evaluated, notEvaluated,
-                verdictsByVersion, plan.getUnmatchedDeclaredIds());
+                verdictsByVersion, plan.getUnmatchedDeclaredIds(), null);
         if (!(rootNode.getDiagnoses() instanceof DefaultCourseDiagnoses)) {
             rootNode.setDiagnoses(new DefaultCourseDiagnoses());
         }
@@ -236,7 +236,7 @@ class MiniTheoryAnalyzer implements ContentAnalyzer {
     private static List<EvaluationResolution> pendingFor(List<EvaluationRequest> requests) {
         List<EvaluationResolution> pending = new ArrayList<>();
         for (int i = 0; i < requests.size(); i++) {
-            pending.add(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
+            pending.add(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null));
         }
         return pending;
     }

@@ -310,7 +310,7 @@ public QuizInstructionAnalyzer(EvaluationSession session, QuizInstructionSubject
         if (runtime != null && opened != null) {
             judgeCoverage = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, reachedQuizzes,
                     evaluatedQuizzes, unevaluatedQuizzes, new TreeMap<>(withoutNullVersion(verdictCountByJudgeVersion)),
-                    unmatchedReevaluationIds));
+                    unmatchedReevaluationIds, null));
             courseDiagnoses.addJudgeCoverage(judgeCoverage);
         }
 

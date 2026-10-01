@@ -90,11 +90,13 @@ class DefaultChoiceAlternativeClassifier implements ChoiceAlternativeClassifier 
 
     private final ChoiceAlternativeConfig config;
 
-    public DefaultChoiceAlternativeClassifier(CorrectorMatcher correctorMatcher,
-            ChoiceAlternativeConfig config) {
-        this.correctorMatcher = correctorMatcher;
-        this.config = config;
-    }
+private final QuizStudentViewRenderer studentViewRenderer;
+
+public DefaultChoiceAlternativeClassifier(CorrectorMatcher correctorMatcher, ChoiceAlternativeConfig config, QuizStudentViewRenderer studentViewRenderer) {
+    this.correctorMatcher = correctorMatcher;
+    this.config = config;
+    this.studentViewRenderer = studentViewRenderer;
+}
 
     @Override
     public ChoiceAlternativeJudgment classify(ChoiceAlternativeVerdict verdict, AuditableQuiz quiz,

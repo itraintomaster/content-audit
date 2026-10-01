@@ -14,14 +14,17 @@ public class EvaluationResolution {
 
     private String evaluatorVersion;
 
+    private EvaluationNotEmitted failure;
+
     public EvaluationResolution() {
     }
 
     public EvaluationResolution(EvaluationResolutionKind kind, String payload,
-            String evaluatorVersion) {
+            String evaluatorVersion, EvaluationNotEmitted failure) {
         this.kind = kind;
         this.payload = payload;
         this.evaluatorVersion = evaluatorVersion;
+        this.failure = failure;
     }
 
     public EvaluationResolutionKind getKind() {
@@ -48,6 +51,14 @@ public class EvaluationResolution {
         this.evaluatorVersion = evaluatorVersion;
     }
 
+    public EvaluationNotEmitted getFailure() {
+        return this.failure;
+    }
+
+    public void setFailure(EvaluationNotEmitted failure) {
+        this.failure = failure;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,11 +66,12 @@ public class EvaluationResolution {
         EvaluationResolution that = (EvaluationResolution) o;
         return Objects.equals(this.kind, that.kind)
                     && Objects.equals(this.payload, that.payload)
-                    && Objects.equals(this.evaluatorVersion, that.evaluatorVersion);
+                    && Objects.equals(this.evaluatorVersion, that.evaluatorVersion)
+                    && Objects.equals(this.failure, that.failure);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(kind, payload, evaluatorVersion);
+        return Objects.hash(kind, payload, evaluatorVersion, failure);
     }
 }
