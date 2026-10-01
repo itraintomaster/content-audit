@@ -8,7 +8,13 @@ description: "FEAT-BANDEJA: la bandeja de la tanda como una vista que content-au
   \ y construida) y sobre FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2,\
   \ B, F y E: revision-domain lleva la lista entera de patrones, 6 (el apply reemplaza,\
   \ no suma); el paquete tray suma audit-infrastructure a sus clientes: FileSystemTrayDecisionStore\
-  \ implementa TrayDecisionStore."
+  \ implementa TrayDecisionStore.; qa-tester: 39 handwrittenTests trazan las 8 reglas\
+  \ de FEAT-BANDEJA con una tanda armada a mano, un servicio de muestra ciega de mentira\
+  \ y la mesa con el proponente guionado, sin consultar modelos: la ciega primero\
+  \ y sola, el no es error que no vuelve mientras el ejercicio no cambie, la misma\
+  \ muestra de 20 en dos lecturas y el approve de una propuesta de la tanda rechazado.\
+  \ F-BANDEJA-J001 va a audit-cli, paquete commands: sus pasos son tray show, answer\
+  \ y publish, y TrayCmd es package-private ahí."
 modules:
 - name: revision-domain
   dependsOn:
@@ -331,6 +337,100 @@ modules:
         type: CourseRepository
       - name: coursePath
         type: Path
+      handwrittenTests:
+      - name: "should reject an answer the item does not accept, as keeping the original\
+          \ for a tie, naming the answers it accepts"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R001
+      - name: should open a task of the exercise in the panel of the batch when José
+          answers that a tie on the course is an error
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R002
+      - name: should open no task and leave the exercise as it is when José answers
+          that a tie on the course is not an error
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R002
+      - name: should accept the candidate in the batch when José answers that a tie
+          on a candidate passes
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R002
+      - name: "should send the exercise back to the panel with one attempt less when\
+          \ José answers that the candidate does not pass, or end it without winner\
+          \ when no attempt is left"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R002
+      - name: should leave the exercise unchanged and its tasks open when José keeps
+          the original
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R003
+      - name: "should take the candidate into the batch as approved by José when he\
+          \ approves it, declaring what it did not pass as his exception for the batch\
+          \ gate"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R003
+      - name: "should measure and judge the fix José writes like any candidate of\
+          \ the panel, and send it back to him with the reasons when it does not pass"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R003
+      - name: should approve the changes of a rule when José answers that its sample
+          is fine
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R004
+      - name: "should drop through the batch one change of the sample, or the whole\
+          \ rule, when José asks it"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R004
+      - name: "should pass each answer of the blind sample to the service of F, pair\
+          \ by pair, without touching the batch"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R005
+      - name: "should close the blind sample with F after its last pair, and only\
+          \ then show the rest of the tray"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R005
+      - name: should remember José's answer to a tie or to an exercise without winner
+          as soon as he gives it
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R006
+      - name: "should publish the rest of the batch with a tie or an exercise without\
+          \ winner unanswered, leaving that exercise as it was, its tasks open and\
+          \ «sin decidir» in the report"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R007
+      - name: "should publish without the changes of a rule whose sample is unanswered,\
+          \ and with the rest of the batch"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R007
+      - name: "should refuse to publish while the blind sample is not closed, with\
+          \ the verdict «falta la muestra ciega»"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R007
+      - name: "should publish the batch with José's single OK and record who, when\
+          \ and which proposals entered"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R008
+      - name: "should refuse the OK when, with José's decisions incorporated, the\
+          \ verdict of F is not «pasa» or the gate does not pass"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R008
       implements:
       - TrayService
       _change: add
@@ -342,10 +442,76 @@ modules:
         type: DecisionMemory
       - name: quizStudentViewRenderer
         type: QuizStudentViewRenderer
+      handwrittenTests:
+      - name: "should show only the blind sample, and nothing else of the batch, while\
+          \ the blind sample is not closed"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R001
+      - name: "should list after the closed blind sample the ties and the exercises\
+          \ without winner by severity, and the samples of each rule at the end"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R001
+      - name: "should give each item its kind, the exercise as the student sees it,\
+          \ what is asked and the answers it accepts"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R001
+      - name: "should list only what the batch needs from José, never a change the\
+          \ panel accepted on its own"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R001
+      - name: "should show a tie on an exercise of the course with the two verdicts\
+          \ of translation-sense and their evidence, asking whether it is an error"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R002
+      - name: "should show for an exercise without winner the original, the candidate\
+          \ that failed least with each control it did not pass, and the reasons of\
+          \ its three attempts"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R003
+      - name: should show each sampled change of a rule with its before and after
+          as the student sees them
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R004
+      - name: "should show the pairs of the blind sample as F gives them, without\
+          \ side, reason or author"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R005
+      - name: "should not ask again, in a later batch or analysis, a question José\
+          \ already answered while the exercise did not change"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R006
+      - name: should ask again the question of an exercise whose content changed since
+          José answered it
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R006
+      - name: "should say whether the tray can be published and, when it cannot, why"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R007
       implements:
       - TrayAssembler
       _change: add
     - name: SeededRuleSampleDrawer
+      handwrittenTests:
+      - name: "should draw 20 changes at random from a rule with 170, the same 20\
+          \ every time the tray of the same batch is opened"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R004
+      - name: should show all the changes of a rule with fewer than 20
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R004
       implements:
       - RuleSampleDrawer
       _change: add
@@ -355,6 +521,13 @@ modules:
         type: TrayDecisionStore
       - name: contentFingerprinter
         type: ContentFingerprinter
+      handwrittenTests:
+      - name: "should recall José's answer to a tie by the identity of the finding\
+          \ and the fingerprint of the exercise as the student sees it, and nothing\
+          \ once the exercise changed"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R006
       implements:
       - DecisionMemory
       _change: add
@@ -369,6 +542,12 @@ modules:
     implementations:
     - name: FileSystemTrayDecisionStore
       visibility: public
+      handwrittenTests:
+      - name: "should keep José's decisions in an append-only file apart from batches\
+          \ and reports, so pruning analyses leaves them"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R006
       implements:
       - TrayDecisionStore
       _change: add
@@ -397,6 +576,20 @@ modules:
         type: QuizSentenceConverter
       types:
       - Component
+      handwrittenTests:
+      - name: should print with 'tray show' the items of the tray in their order
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R001
+      - name: "should read the fix José writes from the file given to 'tray answer',\
+          \ in the notation of the course with its translation, and pass it as a candidate"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R003
+      - name: should publish the open batch with 'tray publish' as José's single OK
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R008
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -409,6 +602,17 @@ modules:
         description: "Rechaza aprobar de a una una propuesta de la tanda abierta con\
           \ el mensaje de F-BANDEJA-R008, sin escribir el curso."
         _change: add
+      handwrittenTests:
+      - name: "should reject 'approve proposal' of a proposal of the open batch with\
+          \ «La propuesta <id> es de la tanda <id>: entra al curso al publicar la\
+          \ tanda.» and exit non-zero, leaving the course identical"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R008
+      - name: should approve as today a proposal that belongs to no open batch
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R008
       _change: modify
     - name: RejectCmd
       requiresInject:
@@ -418,9 +622,20 @@ modules:
           \ (F-TANDA-R008): se delega en la tanda, que recompone el ejercicio y deja\
           \ la tarea pendiente."
         _change: add
+      handwrittenTests:
+      - name: should drop through the batch the changes of the exercise when 'reject
+          proposal' names a proposal of the open batch
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R008
       _change: modify
     _change: modify
   _change: modify
 features:
 - id: FEAT-BANDEJA
   code: F-BANDEJA
+  journeys:
+  - id: F-BANDEJA-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands

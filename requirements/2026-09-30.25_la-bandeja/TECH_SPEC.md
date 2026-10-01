@@ -399,3 +399,51 @@ modules:
   - name: revision-domain
     _change: modify
 ```
+
+## Declarar las 39 pruebas y ubicar el journey
+Las 39 son nuevas y cubren las ocho reglas (R001 6, R002 5, R003 5, R004 5, R005 3, R006 5, R007 4, R008 6). Van sobre
+el armado de la vista (`DefaultTrayAssembler`, 11), el servicio (`DefaultTrayService`, 18), el sorteo (2), la memoria de
+lo decidido (2, con su almacén de archivos), `TrayCmd` (3) y lo que ya existía: `ApproveCmd` y `RejectCmd` (3). Ninguna
+consulta un modelo: una tanda armada a mano, un servicio de muestra ciega de mentira y la mesa con el proponente guionado.
+
+**De dónde sale cada prueba.** La ciega primero y sola, con los pares como los da F; un desempate de traducción sobre un
+ejercicio del curso que José llama «no es error» y no vuelve en la tanda siguiente con el mismo ejercicio, y sí vuelve si
+el ejercicio cambió; un sin ganador con el original, el candidato que menos falló y los motivos de sus tres intentos, que
+José aprueba como excepción suya o arregla él; la muestra de 20 de una regla de 170 cambios —las mayúsculas de A1 y A2
+son 170 de 186 en `escribir/`—, la misma en dos lecturas; publicar con lo no decidido afuera y sin publicar sin la ciega
+cerrada; y `approve` de una propuesta de la tanda abierta, rechazado con el mensaje de R008 y el curso idéntico.
+
+**El journey** va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: sus pasos son `tray show`,
+`tray answer` (la ciega, las decisiones y las muestras) y `tray publish`, y `TrayCmd` es package-private ahí, como
+`ExamCmd` en F-JEXAM-J001. `generate` crearía `FBandejaJ001JourneyTest` con 2 caminos.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: trayengine
+        _change: add
+        implementations:
+          - name: DefaultTrayAssembler
+            _change: add
+            handwrittenTests:
+              - name: "should show only the blind sample, and nothing else of the batch, while the blind sample is not closed"
+                traceability: { feature: FEAT-BANDEJA, rule: F-BANDEJA-R001 }
+  - name: audit-cli
+    _change: modify
+    packages:
+      - name: commands
+        _change: modify
+        implementations:
+          - name: ApproveCmd
+            _change: modify
+            handwrittenTests:
+              - name: "should reject 'approve proposal' of a proposal of the open batch with «La propuesta <id> es de la tanda <id>: entra al curso al publicar la tanda.» and exit non-zero, leaving the course identical"
+                traceability: { feature: FEAT-BANDEJA, rule: F-BANDEJA-R008 }
+features:
+  - id: FEAT-BANDEJA
+    code: F-BANDEJA
+    journeys:
+      - { id: F-BANDEJA-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
+```
