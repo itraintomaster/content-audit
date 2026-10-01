@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (impl A) — Tercer parche de FEAT-RESPC, propuesto y sin aplicar: tres nombres que el #1194 en
+  producción dejó falsos (los casos de oro del #1191, la misma respuesta en cualquier orden y las reglas que lee la
+  tabla). propose y `patch validate -i` contra ronda1/integracion: 0 altas, 4 cambios, 0 conflictos. Después de
+  generate, los tres métodos se renombran a mano (bug 2026-07-22-01).
+
 2026-10-01 — developer (impl A) — Encendido en ronda1/integracion: el corrector imita las cuatro reglas que nombra su
   tabla (031c01c6) y el #1194 pasa a producción. Suite entera: 2.408 pruebas, todas en verde, ninguna apagada.
 

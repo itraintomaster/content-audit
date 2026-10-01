@@ -1,0 +1,59 @@
+code: FEAT-RESPC
+description: "qa-tester, FEAT-RESPC, tercer parche, sólo nombres de pruebas: desde\
+  \ que el #1194 (9915461ac) está en producción, el 1/10/2026, tres nombres dejaron\
+  \ de decir lo que hace el código. Dos decían que el corrector en producción no tiene\
+  \ las cuatro reglas (la misma respuesta en cualquier orden y las reglas que lee\
+  \ la tabla), y la de los 153 casos de oro del #1191 decía «el corrector nuevo».\
+  \ Cada una se borra con el nombre viejo y se agrega con el nuevo, con la misma regla.\
+  \ Sin cambios de estructura."
+modules:
+- name: audit-domain
+  packages:
+  - name: correctormatch
+    implementations:
+    - name: DefaultCorrectorMatcher
+      handwrittenTests:
+      - name: "should decide every golden case of the backend corrector as its «acepta»\
+          \ column says with the copy of the new corrector's table, reading each gap\
+          \ with the sentence around it, as «is» for «It ___ (be) hot inside.» answered\
+          \ «'s»"
+        _change: delete
+      - name: "should decide every golden case of the corrector #1191 as its «acepta»\
+          \ column says with the copy of its table, reading each gap with the sentence\
+          \ around it, as «is» for «It ___ (be) hot inside.» answered «'s»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      - name: "should take two texts as the same answer when the corrector matches\
+          \ them in either order, so «He's forgotten to pay.» and «He has forgotten\
+          \ to pay.» are one answer with the four rules and two with the corrector\
+          \ in production"
+        _change: delete
+      - name: "should take two texts as the same answer when the corrector matches\
+          \ them in either order, so «He's forgotten to pay.» and «He has forgotten\
+          \ to pay.» are one answer with the four rules of #1194 and two with #1191"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      _change: modify
+    _change: modify
+  _change: modify
+- name: vocabulary-infrastructure
+  packages:
+  - name: correctortable
+    implementations:
+    - name: FileSystemFormEquivalenceTableSource
+      handwrittenTests:
+      - name: "should read from «reglas» the rules that are code of the version of\
+          \ the corrector, the four in the copy of the new corrector and none in the\
+          \ one in production, and stop at a rule it does not know"
+        _change: delete
+      - name: "should read from «reglas» the rules that are code of the version of\
+          \ the corrector, the four in the copy of #1194, in production, and none\
+          \ in the copy of #1191, and stop at a rule it does not know"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      _change: modify
+    _change: modify
+  _change: modify
