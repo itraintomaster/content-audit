@@ -53,12 +53,14 @@ class InstructionComplianceCriterion implements CandidateCriterionEvaluator {
                     "No se pudo verificar el cumplimiento de consigna: falta el candidato");
         }
 
+        // F-CALUM-R002: the candidate is judged as the student will see it, with the title and
+        // the instructions of its own copy, exactly as the audit reads a quiz.
         QuizInstructionSubjectView view = subjectViewFactory.fromQuiz(
                 candidateQuiz,
                 input.getCefrLevelLabel(),
                 input.getTopicLabel(),
-                input.getKnowledgeTitle(),
-                input.getKnowledgeInstructions());
+                candidateQuiz.getTitle(),
+                candidateQuiz.getInstructions());
 
         QuizInstructionComplianceResult result = complianceChecker.check(view);
 

@@ -1362,6 +1362,33 @@ public class QuizInstructionReviserTest {
     @Tag("FEAT-CALUM")
     @Tag("F-CALUM-R002")
     public void shouldRevalidateTheOriginalQuizWithTheTitleAndTheInstructionsOfItsCopyTheOnesTheStudentSees() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Arrange: the copy the app shows carries its own title and instructions, different from
+        // the knowledge's that the correction context brings.
+        QuizInstructionProposalStrategyRegistry strategyRegistry =
+                mock(QuizInstructionProposalStrategyRegistry.class);
+        LemmaAbsenceProposalDeriver deriver = mock(LemmaAbsenceProposalDeriver.class);
+        QuizInstructionComplianceChecker complianceChecker = mock(QuizInstructionComplianceChecker.class);
+        QuizInstructionSubjectViewFactory subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class);
+        QuizInstructionCandidateAssessor candidateAssessor = mock(QuizInstructionCandidateAssessor.class);
+
+        QuizTemplateEntity copy = buildQuiz("run");
+        copy.setTitle("Tercera persona");
+        copy.setInstructions("Escribí el verbo en presente.");
+        CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, copy, null);
+
+        when(subjectViewFactory.fromQuiz(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(),
+                Mockito.any())).thenReturn(subjectView(copy));
+        when(complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)))
+                .thenReturn(compliant());
+
+        QuizInstructionReviser reviser = new QuizInstructionReviser(
+                strategyRegistry, deriver, complianceChecker, subjectViewFactory, buildConfig(3), candidateAssessor);
+
+        // Act: the original already complies, so the task ends right after the revalidation
+        assertThrows(DiagnosisNotSustainedException.class, () -> reviser.propose(buildTask(), buildContext(), before));
+
+        // Assert
+        verify(subjectViewFactory).fromQuiz(copy, "A2", "Verb Tenses", "Tercera persona",
+                "Escribí el verbo en presente.");
     }
 }
