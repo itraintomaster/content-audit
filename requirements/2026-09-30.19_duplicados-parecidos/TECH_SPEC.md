@@ -58,7 +58,8 @@ El parecido de R002 inv. 2 es el coseno de dos vectores de nomic-embed-text, cad
 prefijo «clustering: », que el modelo pide y con el que se midió. Cada vector se guarda en el libro de evaluaciones con
 la versión examinada —el modelo con su huella y el `methodId` del prefijo— en el id del evaluador: el curso entero
 cuesta unos 4 minutos la primera vez y después sólo se pide el de lo que cambió (F-MLOCAL-R002 inv. 2), y el coseno sale
-siempre de los mismos vectores, así que dos corridas marcan lo mismo. El umbral, 0,95, el prefijo y el parecido de
+siempre de los mismos vectores, así que dos corridas marcan lo mismo. Su `evaluatorVersion()` es esa versión examinada:
+el runtime frena con la misma clave de examen que `LocalToolGate`. El umbral, 0,95, el prefijo y el parecido de
 palabras de los candidatos de claude -p, 0,6, quedan en la configuración, a la vista en `config analyzer near-duplicates`.
 
 ```architecture

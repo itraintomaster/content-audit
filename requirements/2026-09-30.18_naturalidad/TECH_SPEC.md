@@ -48,8 +48,9 @@ modules:
 
 Una consulta por oración (R002, R008). Con llama3, el evaluador es propio del analizador: su contenido es la oración y su
 id lleva la versión examinada —el modelo con su huella y el `methodId` de la pregunta—, así que cada versión tiene su
-archivo y ninguna reusa lo de otra (F-MLOCAL-R002 inv. 2); se guardan las dos probabilidades y no el número, para no
-volver a preguntar si la cuenta cambia. Con claude -p, el contenido es el mensaje de sistema y la pregunta ya armada con
+archivo y ninguna reusa lo de otra (F-MLOCAL-R002 inv. 2); su `evaluatorVersion()` es esa misma versión examinada, así
+que el runtime frena con la misma clave de examen que `LocalToolGate`. Se guardan las dos probabilidades y no el número,
+para no volver a preguntar si la cuenta cambia. Con claude -p, el contenido es el mensaje de sistema y la pregunta ya armada con
 la oración, los mismos que recibe llama3 (`NaturalnessConfig.system()` y `question(...)`): «la misma pregunta» queda por
 construcción, y cambiar la pregunta cambia la huella y vuelve a consultar. Ese formato queda congelado por la huella: el
 gancho B-22 lo cuida. Una consulta que falla deja sin evaluar ese ejercicio y no la corrida.
