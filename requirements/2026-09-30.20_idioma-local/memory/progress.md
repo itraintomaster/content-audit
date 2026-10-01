@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — Simulación rehecha con GRAMA R001 inv. 5 y el umbral de A2 en 10,0 (`qa-B2/sim2`, `qa-B2/dry2`):
+  FEAT-RONDA2 + B sin errores de definición, de traza ni de ubicación; `generate` crearía los 4 journeys y 157 stubs (22
+  clases nuevas y 11 stubs en 6 que ya existen). Con F y E encima, 9 journeys sin ubicar, todos de E y F; ninguna prueba
+  de B se pierde. Contra M14 del integrador sólo cambia la descripción de `finishedsentence`.
+
 2026-10-01 — qa-tester — PENDIENTE PARA DESPUÉS DEL APPLY de los cuatro de B (no antes): segundo parche de pruebas de
   MLOCAL en esta carpeta, sólo handwrittenTests trazadas a FEAT-MLOCAL sobre GrammarAnalyzer, NaturalnessAnalyzer y
   NearDuplicatesAnalyzer (la fila de la corrida en el curso con herramienta, versión examinada, si publicó, si usó la
